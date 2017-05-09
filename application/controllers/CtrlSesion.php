@@ -27,6 +27,7 @@ class CtrlSesion extends CI_Controller {
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado'); 
+            $this->load->view('vNavegacion'); 
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
