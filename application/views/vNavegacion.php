@@ -9,15 +9,23 @@
         <span class="icon-bar"></span>
       </button>
         <a class="navbar-brand" href="#">
-            <img src="<?php print base_url(); ?>img/Logo.png" width="50px">
+            <img src="<?php print base_url(); ?>img/logo.png" width="60px">
         </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">INICIO</a></li>       
-        <li><a href="#">LEVANTAMIENTOS</a></li>
+          
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FASE INICIAL <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">LEVANTAMIENTO</a></li> 
+            <li><a href="#">COTIZACIÓN</a></li> 
+          </ul>
+        </li> 
+          
+        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MANTENIMIENTO <span class="caret"></span></a>
           <ul class="dropdown-menu">

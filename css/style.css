@@ -8,11 +8,12 @@
 *{
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase !important;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 html{ 
-    background: url(../img/Logo.png) no-repeat center center fixed; 
+    /*background: url(../img/Logo.png) no-repeat center center fixed; */
+    background-color: #002c4c;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -86,7 +87,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e789a', end
 
 input[type="text"],input[type="password"],input[type="number"]{
     color: #1a3783 !important;
-    font-size: 24px; 
+    font-size: 20px; 
 }
 
 .margin-top-50{
