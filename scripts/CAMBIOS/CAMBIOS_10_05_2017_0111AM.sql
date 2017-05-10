@@ -1,0 +1,4 @@
+/*10 05 2017*/
+
+ALTER TABLE `ayr`.`usuarios` 
+CHANGE COLUMN `Estatus` `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;

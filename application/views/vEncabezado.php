@@ -29,6 +29,9 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php print base_url(); ?>js/jquery-3.2.1.min.js"></script> 
         
+        <!--DataTables Plugin-->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.css">
+        <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
         
         <!--select2 control-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
@@ -60,12 +63,14 @@
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
+        <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
+        
     </head>
    <script>
             var base_url = "<?php print base_url(); ?>"; 
             $(function () { 
-//                $.fn.dataTable.tables({visible: true, api: true})
-//                        .columns.adjust();
+                $.fn.dataTable.tables({visible: true, api: true})
+                        .columns.adjust();
                 $(".modal").on('hidden.bs.modal', function () {
                     $(".modal input").val("");
                 });

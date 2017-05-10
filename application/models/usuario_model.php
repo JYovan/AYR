@@ -27,14 +27,13 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
     public function getAcceso($USUARIO, $CONTRASENA) {
         try {
             $this->db->select('U.*', false);
             $this->db->from('usuarios AS U');
-            $this->db->where('U.Usuario',$USUARIO);
-            $this->db->where('U.Contrasena',$CONTRASENA);
+            $this->db->where('U.Usuario', $USUARIO);
+            $this->db->where('U.Contrasena', $CONTRASENA);
             $this->db->where_in('U.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
@@ -48,4 +47,53 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
+    public function onAgregar($array) {
+        try {
+            $this->db->insert("usuarios", $array);
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificar($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("usuarios", $DATA);
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function onEliminar($ID) {
+        try {
+            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->where('ID', $ID);
+            $this->db->update("usuarios");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getUsuarioByID($ID) {
+        try {
+            $this->db->select('U.*', false);
+            $this->db->from('usuarios AS U');
+            $this->db->where('U.ID', $ID);
+            $this->db->where_in('U.Estatus', 'ACTIVO');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
 }
