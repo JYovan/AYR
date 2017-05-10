@@ -54,7 +54,11 @@
                         <div class="col-md-6">
                             <label for="">TIPO DE ACCESO</label>
                             <select id="TipoAcceso" name="TipoAcceso" class="form-control">
-                                <option value=""></option> 
+                                 <option value=""></option> 
+                                <option value="1">ADMINISTRADOR</option> 
+                                <option value="2">COORDINADOR DE PROCESOS</option>
+                                <option value="3">RESIDENTE</option> 
+                                <option value="4">INVITADO</option> 
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -67,8 +71,8 @@
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-primary">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -119,7 +123,11 @@
                         <div class="col-md-6">
                             <label for="">TIPO DE ACCESO</label>
                             <select id="TipoAcceso" name="TipoAcceso" class="form-control">
-                                <option value=""></option> 
+                                 <option value=""></option> 
+                                <option value="1">ADMINISTRADOR</option> 
+                                <option value="2">COORDINADOR DE PROCESOS</option>
+                                <option value="3">RESIDENTE</option> 
+                                <option value="4">INVITADO</option> 
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -132,8 +140,8 @@
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-primary">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

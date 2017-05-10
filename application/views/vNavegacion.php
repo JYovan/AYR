@@ -27,20 +27,21 @@
           
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MANTENIMIENTO <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SEGUNDA FASE <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">REPORTES</a></li> 
-            <li><a href="#">TRABAJO POR ETAPAS</a></li> 
-            <li><a href="#">CONTROL</a></li> 
+            <li><a href="#">PRESUPUESTO</a></li> 
+            <li><a href="#">ESTIMACIÓN</a></li> 
+            <li><a href="#">CONTROL DE ENTREGAS</a></li>
+            <li><a href="#">CONTROL DE PREFACTURAS</a></li> 
           </ul>
         </li>
-        <li class="dropdown">
+<!--        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OBRA <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">POC</a></li> 
             <li><a href="#">ORDENES DE CAMBIO</a></li>
           </ul>
-        </li>
+        </li>-->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">REPORTES <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -49,7 +50,7 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPLORADOR <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPLORADORES <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">OBRA</a></li> 
             <li><a href="#">MANTENIMIENTO</a></li> 
@@ -59,10 +60,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOGOS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">CLIENTES</a></li> 
-            <li><a href="#">PROVEEDORES</a></li> 
+             <li><a href="<?php print base_url() ?>index.php/ctrlEmpresas/">EMPRESAS</a></li>
             <li><a href="#">PRECIARIOS</a></li> 
             <li class="disabled"><a href="#"><b>OBRA</b></a></li>
-            <li><a href="#">COMPAÑIAS SUPERVISORAS</a></li> 
+            <li><a href="<?php print base_url() ?>index.php/ctrlEmpresasSupervisoras/">EMPRESAS SUPERVISORAS</a></li> 
             <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>
             <li><a href="#">CUADRILLAS</a></li> 
             <li><a href="#">CÓDIGOS PPTA</a></li> 
