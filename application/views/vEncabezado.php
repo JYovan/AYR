@@ -52,6 +52,12 @@
         <!--HoldOn Stupid Accions-->
         <link href="<?php print base_url(); ?>css/HoldOn.min.css" rel="stylesheet">
         <script src="<?php print base_url(); ?>js/HoldOn.min.js"></script>
+
+        <!--Notifiers-->
+        <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>   
+        <!--Date picker--> 
+        <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
+        <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
     </head>
@@ -71,12 +77,6 @@
 
 
             function onNotify(span, message, type) {
-                if (type === "danger") {
-                    beep();
-                }
-                if (type === "success") {
-                    beeds();
-                }
                 $.notify({
                     title: span,
                     message: message

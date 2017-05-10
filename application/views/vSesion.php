@@ -58,7 +58,11 @@
                             CONTRASENA: frm.find("#Contrasena").val()
                         }
                     }).done(function (data, x, jq) {
-                        location.reload(true);
+                        if (parseInt(data) === 1) {
+                            location.reload(true);
+                        } else {
+                            onNotify('x', data, 'danger');
+                        }
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
