@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ctrlEmpresasSupervisoras extends CI_Controller {
+class CtrlEmpresasSupervisoras extends CI_Controller {
 
     /**
      * Index Page for this controller.
