@@ -68,9 +68,9 @@
             <li><a href="#">CÓDIGOS PPTA</a></li> 
           </ul>
         </li>
-        <li><a href="#">USUARIOS</a></li>
+        <li><a href="<?php print base_url() ?>index.php/ctrlUsuario/">USUARIOS</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right"> 
         <li><a href="<?php print base_url()."index.php/ctrlSesion/onSalir";?>">SALIR</a></li>
          
       </ul>
