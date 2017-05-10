@@ -3,12 +3,15 @@
         <div class="panel-heading">USUARIOS</div>
         <div class="panel-body">
             <fieldset>
-                <div class="col-md-12" align="center">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-2x"></span><p>NUEVO</p></button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-2x"></span><p>EDITAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-2x"></span><p>REFRESCAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-2x"></span><p>ELIMINAR</p></button>
+                <div class="col-md-12" align="right">
+                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><p>NUEVO</p></button>
+                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                 </div>
+                
+                
+                
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
         </div>
@@ -28,35 +31,35 @@
                 <div class="modal-body">
                     <fieldset>
                         <div class="col-6 col-md-6">
-                            <label for="">Usuario</label>    
-                            <input type="text" class="form-control" id="Usuario" name="Usuario" >
+                            <label for="">Usuario*</label>    
+                            <input type="text" class="form-control" id="Usuario" name="Usuario" required >
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">Contrasena</label>    
-                            <input type="text" class="form-control" id="Contrasena" name="Contrasena" >
+                            <label for="">Contraseña*</label>    
+                            <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
                         </div>
                         <div class="col-6 col-md-12">
-                            <label for="">ESTATUS</label>
-                            <select id="Estatus" name="Estatus" class="form-control">
+                            <label for="">ESTATUS*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
                                 <option value="1">ACTIVO</option> 
                                 <option value="0">INACTIVO</option> 
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <h1>DATOS PERSONALES</h1>
+                            <h3>DATOS PERSONALES</h3>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
-                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
-                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">TIPO DE ACCESO</label>
-                            <select id="TipoAcceso" name="TipoAcceso" class="form-control">
+                            <label for="">TIPO DE ACCESO*</label>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
                                 <option value=""></option> 
                                 <option value="ADMINISTRADOR">ADMINISTRADOR</option> 
                                 <option value=">COORDINADOR DE PROCESOS">COORDINADOR DE PROCESOS</option>
@@ -65,10 +68,15 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="">EMPRESA</label>
-                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                            <label for="">EMPRESA*</label>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
                                 <option value=""></option> 
                             </select>
+                        </div>
+                        
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                            
                         </div>
                     </fieldset>
                 </div>
@@ -94,38 +102,38 @@
                 <div class="modal-body">
                     <fieldset>
                         <div class="col-md-12">
-                            <input type="text" id="ID" name="ID" class="form-control">
+                            <input type="text" id="ID" name="ID" class="form-control" disabled="true" required>
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">Usuario</label>    
-                            <input type="text" class="form-control" id="Usuario" name="Usuario" >
+                            <label for="">Usuario*</label>    
+                            <input type="text" class="form-control" id="Usuario" name="Usuario" required >
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">Contrasena</label>    
-                            <input type="text" class="form-control" id="Contrasena" name="Contrasena" >
+                            <label for="">Contraseña*</label>    
+                            <input type="password" class="form-control" id="Contrasena" name="Contrasena" required >
                         </div>
                         <div class="col-6 col-md-12">
-                            <label for="">ESTATUS</label>
-                            <select id="Estatus" name="Estatus" class="form-control">
+                            <label for="">ESTATUS*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="1">ACTIVO</option> 
-                                <option value="0">INACTIVO</option> 
+                                <option value="Activo">ACTIVO</option> 
+                                <option value="Inactivo">INACTIVO</option> 
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <h1>DATOS PERSONALES</h1>
+                            <h3>DATOS PERSONALES</h3>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
-                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
-                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">TIPO DE ACCESO</label>
-                            <select id="TipoAcceso" name="TipoAcceso" class="form-control">
+                            <label for="">TIPO DE ACCESO*</label>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
                                 <option value=""></option> 
                                 <option value="ADMINISTRADOR">ADMINISTRADOR</option> 
                                 <option value=">COORDINADOR DE PROCESOS">COORDINADOR DE PROCESOS</option>
@@ -134,11 +142,17 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="">EMPRESA</label>
-                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                            <label for="">EMPRESA*</label>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
                                 <option value=""></option> 
                             </select>
                         </div>
+                        
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                            
+                        </div>
+                        
                     </fieldset>
                 </div>
             </form>
@@ -302,7 +316,7 @@
             $("#tblRegistros").html(getTable('tblUsuarios', data));
             $('#tblUsuarios tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<label for="">' + title + '</label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
             });
             var tblSelected = $('#tblUsuarios').DataTable(tableOptions);
             $('#tblUsuarios tbody').on('click', 'tr', function () {

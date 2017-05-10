@@ -3,10 +3,15 @@
         <div class="panel-heading">EMPRESAS</div>
         <div class="panel-body">
             <fieldset>
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-default" id="btnNuevo">NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnEditar">EDITAR</button>
+                <div class="col-md-12" align="right">
+                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><p>NUEVO</p></button>
+                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                 </div>
+                
+                
+                
             </fieldset>
         </div>
     </div>
@@ -27,72 +32,70 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h1>DATOS DE LA EMPRESA</h1>
-                        </div>
+                       
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE</label>    
+                            <label for="">NOMBRE*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">RFC</label>    
+                            <label for="">RFC*</label>    
                             <input type="text" class="form-control" id="Contrasena" name="Rfc" >
                         </div>
                         
 
                      
                         <div class="col-md-12">
-                            <h1>INFORMACIÓN DE CONTACTO</h1>
+                            <h3>INFORMACIÓN DE CONTACTO</h3>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
+                            <label for="">NOMBRE*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="">
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
+                            <label for="">APELLIDOS*</label>
                             <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="">
                         </div>
                         
                         <div class="col-md-12">
-                            <h1>DATOS DE LA EMPRESA</h1>
+                            <h3>DATOS DE LA EMPRESA</h3>
                         </div>
                        
                         <div class="col-md-6">
-                            <label for="">DIRECCION</label>
+                            <label for="">DIRECCION*</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
                       
                         </div>
                         
-                        <div class="col-md-6">
-                            <label for="">N°</label>
+                        <div class="col-md-3">
+                            <label for="">N°*</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
                       
                         </div>
-                        <div class="col-md-6">
-                            <label for="">N° INT</label>
+                        <div class="col-md-3">
+                            <label for="">N° INT.*</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
                       
                         </div>
                         
                         <div class="col-md-6">
-                            <label for="">CÓDIGO POSTAL</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                            <label for="">CÓDIGO POSTAL*</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                         </div>
                         
                         
                          <div class="col-md-6">
-                            <label for="">COLONIA</label>
+                            <label for="">COLONIA*</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                         </div>
                         
                         
                         <div class="col-md-6">
-                            <label for="">CIUDAD</label>
+                            <label for="">CIUDAD*</label>
                             <input type="text" id="Ciudad" name="Colonia" class="form-control" placeholder="">
                         </div>
                         
                           <div class="col-md-6">
-                            <label for="">ESTADO</label>
+                            <label for="">ESTADO*</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                         </div>
                         
@@ -110,7 +113,10 @@
                                 SELECCIONA EL LOGO DE LA EMPRESA
                             </button>
                         </div>
-
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                            
+                        </div>
                     </fieldset>
                 </div>
             </form>
@@ -134,71 +140,67 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h1>DATOS DE LA EMPRESA</h1>
-                        </div>
+                        
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE</label>    
+                            <label for="">NOMBRE*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">RFC</label>    
+                            <label for="">RFC*</label>    
                             <input type="text" class="form-control" id="Contrasena" name="Rfc" >
                         </div>
                         
                    
                         <div class="col-md-12">
-                            <h1>INFORMACIÓN DE CONTACTO</h1>
+                            <h3>INFORMACIÓN DE CONTACTO</h3>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
+                            <label for="">NOMBRE*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="">
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
+                            <label for="">APELLIDOS*</label>
                             <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="">
                         </div>
                         
                         <div class="col-md-12">
-                            <h1>DATOS DE LA EMPRESA</h1>
+                            <h3>DATOS DE LA EMPRESA</h3>
                         </div>
-                       
-                        <div class="col-md-6">
-                            <label for="">DIRECCION</label>
+                       <div class="col-md-6">
+                            <label for="">DIRECCION*</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
                       
                         </div>
-                        
-                        <div class="col-md-6">
-                            <label for="">N°</label>
+                        <div class="col-md-3">
+                            <label for="">N°*</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
                       
                         </div>
-                        <div class="col-md-6">
-                            <label for="">N° INT</label>
+                        <div class="col-md-3">
+                            <label for="">N° INT.*</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
                       
                         </div>
                         
                         <div class="col-md-6">
-                            <label for="">CÓDIGO POSTAL</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                            <label for="">CÓDIGO POSTAL*</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                         </div>
                         
                         
                          <div class="col-md-6">
-                            <label for="">COLONIA</label>
+                            <label for="">COLONIA*</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                         </div>
                         
                         
                         <div class="col-md-6">
-                            <label for="">CIUDAD</label>
+                            <label for="">CIUDAD*</label>
                             <input type="text" id="Ciudad" name="Colonia" class="form-control" placeholder="">
                         </div>
                         
                           <div class="col-md-6">
-                            <label for="">ESTADO</label>
+                            <label for="">ESTADO*</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                         </div>
                         
@@ -216,7 +218,10 @@
                                 MODIFICAR EL LOGO DE LA EMPRESA
                             </button>
                         </div>
-
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                            
+                        </div>
                     </fieldset>
                 </div>
             </form>

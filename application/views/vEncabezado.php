@@ -62,7 +62,7 @@
         <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
+        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
         
     </head>
