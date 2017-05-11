@@ -1,4 +1,5 @@
 <?php
+
 header('Access-Control-Allow-Origin: http://project.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -27,9 +28,15 @@ class CtrlUsuario extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('vEncabezado');
-        $this->load->view('vNavegacion');
-        $this->load->view('vUsuarios');
+
+        if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
+            $this->load->view('vEncabezado');
+            $this->load->view('vNavegacion');
+            $this->load->view('vUsuarios');
+        } else {
+            $this->load->view('vEncabezado');
+            $this->load->view('vSesion');
+        }
     }
 
     public function getRecords() {
@@ -79,15 +86,15 @@ class CtrlUsuario extends CI_Controller {
                 'TipoAcceso' => ($TipoAcceso !== NULL) ? $TipoAcceso : NULL,
                 'Empresa_ID' => ($Empresa_ID !== NULL) ? $Empresa_ID : NULL
             );
-            $this->usuario_model->onModificar($ID,$DATA);
+            $this->usuario_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar() {
         try {
-            extract($this->input->post()); 
+            extract($this->input->post());
             $this->usuario_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
