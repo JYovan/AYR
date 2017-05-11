@@ -39,16 +39,17 @@ var tableOptions = {
                 columns: ':visible'
             }
         },
-        {
-            extend: 'csvHtml5',
-            text: '<span class="fa fa-table"></span><h6>CSV</h6>',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                },
-                columns: ':visible'
-            }
-        },
+        
+//        {
+//            extend: 'csvHtml5',
+//            text: '<span class="fa fa-table"></span><h6>CSV</h6>',
+//            exportOptions: {
+//                modifier: {
+//                    page: 'current'
+//                },
+//                columns: ':visible'
+//            }
+//        },
         {
             extend: 'pdfHtml5',
             text: '<span class="fa fa-file-pdf-o"></span><h6>PDF</h6>',
@@ -58,29 +59,29 @@ var tableOptions = {
                 columns: ':visible'
             }
         },
-        {
-            extend: 'print',
-            customize: function (win) {
-                $(win.document.body)
-                        .css('font-size', '10pt')
-                        .prepend('<img src="' + base_url + '/media/log_1o.png" style="width:25%;heigth:25%; position:absolute; top:0; left:30%;" />');
-                $(win.document.body).find('table').addClass('compact')
-                        .css('font-size', 'inherit').css('margin-top', '500px');
-            },
-            text: '<span class="fa fa-eye"></span><h6>VISTA PREVIA</h6>',
-            exportOptions: { 
-                columns: ':visible'
-            }
-        },
-        {
-            extend: 'pdfHtml5',
-            text: '<span class="fa fa-asterisk"></span><h6>PDF</h6>',
-            orientation: 'landscape',
-            pageSize: 'LEGAL',
-            exportOptions: {
-                columns: ':visible'
-            }
-        },
+//        {
+//            extend: 'print',
+//            customize: function (win) {
+//                $(win.document.body)
+//                        .css('font-size', '10pt')
+//                        .prepend('<img src="' + base_url + '/media/log_1o.png" style="width:25%;heigth:25%; position:absolute; top:0; left:30%;" />');
+//                $(win.document.body).find('table').addClass('compact')
+//                        .css('font-size', 'inherit').css('margin-top', '500px');
+//            },
+//            text: '<span class="fa fa-eye"></span><h6>VISTA PREVIA</h6>',
+//            exportOptions: { 
+//                columns: ':visible'
+//            }
+//        },
+//        {
+//            extend: 'pdfHtml5',
+//            text: '<span class="fa fa-asterisk"></span><h6>PDF</h6>',
+//            orientation: 'landscape',
+//            pageSize: 'LEGAL',
+//            exportOptions: {
+//                columns: ':visible'
+//            }
+//        },
         {
             extend: 'colvis',
             text: '<span class="fa fa-columns"></span><h6>COLUMNAS</h6>',
@@ -90,16 +91,16 @@ var tableOptions = {
                 },
                 columns: ':visible'
             }
-        },
-        {
-            extend: 'print',
-            text: '<span class="fa fa-check"></span><h6>SELECCIONADOS</h6>',
-            exportOptions: {
-                modifier: {
-                    selected: true
-                }
-            }
         }
+//        {
+//            extend: 'print',
+//            text: '<span class="fa fa-check"></span><h6>SELECCIONADOS</h6>',
+//            exportOptions: {
+//                modifier: {
+//                    selected: true
+//                }
+//            }
+//        }
     ],
     language: {
         processing: "Proceso en curso...",
