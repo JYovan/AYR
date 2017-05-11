@@ -258,6 +258,32 @@
 
     $(document).ready(function () {
 
+        btnEliminar.click(function () {
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminar',
+                    type: "POST", 
+                    data: {
+                        ID: temp
+                    }
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EMPRESA ELIMINADA', 'danger');
+                    getRecords();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+        
         btnRefrescar.click(function () {
             getRecords();
         });

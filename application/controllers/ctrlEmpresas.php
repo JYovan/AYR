@@ -113,4 +113,12 @@ class CtrlEmpresas extends CI_Controller {
         }
     }
 
+    public function onEliminar() {
+        try {
+            extract($this->input->post()); 
+            $this->empresa_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }

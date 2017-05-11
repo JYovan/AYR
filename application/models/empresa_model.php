@@ -88,4 +88,15 @@ class empresa_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onEliminar($ID) {
+        try {
+            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->where('ID', $ID);
+            $this->db->update("empresas");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }
