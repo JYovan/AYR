@@ -75,12 +75,15 @@ table thead tr{
     height: 50px;
 }
 
-
+/*LABEL CUSTOM*/
+label {
+    font-size: 12px;
+}
 .btn {
     display: inline-block;
-    padding: 3px 6px;
+    padding: 6px 12px;
     margin-bottom: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 1.42857143;
     text-align: center;
