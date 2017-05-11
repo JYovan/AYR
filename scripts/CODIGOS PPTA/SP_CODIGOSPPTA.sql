@@ -1,0 +1,17 @@
+USE `ayr`;
+DROP procedure IF EXISTS `SP_CODIGOSPPTA`;
+
+DELIMITER $$
+USE `ayr`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CODIGOSPPTA`()
+BEGIN 
+	 SELECT 
+     CP.ID, CP.Codigo AS CODIGO, CP.DIAS AS "DÍAS DE ATENCIÓN"
+     FROM CodigosPPTA AS CP;
+    
+END$$
+
+DELIMITER ;	
+
+
+

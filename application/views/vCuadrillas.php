@@ -220,7 +220,7 @@
                 data: frm
             }).done(function (data, x, jq) {
                  
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO USUARIO', 'success');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
                 getRecords();
                 mdlNuevo.modal('hide');
                 console.log(data, x, jq);

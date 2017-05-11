@@ -59,7 +59,7 @@ class CtrlCuadrillas extends CI_Controller {
             $DATA = array(
                 'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
                 'Miembros' => ($Miembros !== NULL) ? $Miembros : NULL,
-                'Estatus' => ($Estatus !== NULL) ? $Estatus : NULL,
+                'Estatus' => ($Estatus !== NULL) ? $Estatus : NULL
 
             );
             $this->cuadrilla_model->onModificar($ID, $DATA);
