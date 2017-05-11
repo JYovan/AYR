@@ -16,7 +16,7 @@ class empresa_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $query = $this->db->query("CALL SP_GETEMPRESAS()");
+            $query = $this->db->query("CALL SP_EMPRESAS()");
             /*
              * FOR DEBUG ONLY
              */
@@ -27,12 +27,11 @@ class empresa_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
     public function getEmpresas() {
         try {
             $this->db->select('E.ID, E.Nombre AS NOMBRE', false);
-            $this->db->from('empresas AS E'); 
+            $this->db->from('empresas AS E');
 //            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
@@ -42,6 +41,49 @@ class empresa_model extends CI_Model {
 //        print $str;
             $data = $query->result();
             return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getEmpresaByID($ID) {
+        try {
+            $this->db->select('E.*', false);
+            $this->db->from('empresas AS E');
+            $this->db->where('E.ID', $ID);
+            $this->db->where_in('E.Estatus', 'ACTIVO');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregar($array) {
+        try {
+            $this->db->insert("empresas", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificar($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("empresas", $DATA);
+//            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

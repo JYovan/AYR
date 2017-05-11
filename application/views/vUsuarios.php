@@ -9,9 +9,6 @@
                     <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                 </div>
-                
-                
-                
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
         </div>

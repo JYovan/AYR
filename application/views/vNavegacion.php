@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?php print base_url(); ?>">
                 <img src="<?php print base_url(); ?>img/logo.png" width="60px">
             </a>
         </div>
@@ -85,7 +85,6 @@
             theme: 'sk-bounce',
             message: 'CARGANDO...'
         });
-        setTimeout(
-                HoldOn.close(), 1500);
+        setTimeout(HoldOn.close(), 1500);
     });
 </script>
