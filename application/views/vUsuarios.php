@@ -42,8 +42,8 @@
                             <label for="">ESTATUS*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="1">ACTIVO</option> 
-                                <option value="0">INACTIVO</option> 
+                                <option value="ACTIVO">ACTIVO</option> 
+                                <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
                         <div class="col-md-12">
@@ -116,8 +116,8 @@
                             <label for="">ESTATUS*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="Activo">ACTIVO</option> 
-                                <option value="Inactivo">INACTIVO</option> 
+                                <option value="ACTIVO">ACTIVO</option> 
+                                <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
                         <div class="col-md-12">
