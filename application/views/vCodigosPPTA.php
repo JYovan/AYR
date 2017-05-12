@@ -6,7 +6,7 @@
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><p>NUEVO</p></button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
@@ -15,8 +15,31 @@
     </div>
 </div>
 
+<!--Confirmacion-->
 
+
+<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+        </div>
+    </div>
+ 
+</div>
 <!--NUEVO-->
+
+
+
 
 <div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -44,7 +67,7 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
 
 
@@ -87,7 +110,7 @@
 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -103,7 +126,7 @@
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlCodigosPPTA/'
-    
+
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
 
@@ -112,13 +135,17 @@
     //Boton que guarda los datos del formulario
     var btnGuardar = mdlNuevo.find("#btnGuardar");
     //Boton que actualiza los datos del formulario
-     var btnModificar = mdlEditar.find("#btnModificar");
+    var btnModificar = mdlEditar.find("#btnModificar");
     //Botones del tablero que actualizan y eliminan registros
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
 
+
+    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
+    var mdlConfirmar = $("#mdlConfirmar");
+
     //---------------------------EVENTOS DEL TABLERO--------------------------
-       $(document).ready(function () {   
+    $(document).ready(function () {
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
             //Limpia los campos
@@ -126,13 +153,24 @@
             //Muestra el modal
             mdlNuevo.modal('show');
         });
-       
-       //Actualiza los datos
+
+        //Evento clic del boton confirmar borrar
+        btnConfirmarEliminar.click(function () {
+            
+             if (temp !== 0 && temp !== undefined && temp > 0) {
+                //Muestra el modal
+                mdlConfirmar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+        //Actualiza los datos
         btnRefrescar.click(function () {
             getRecords();
         });
-       //Evento clic del boton editar
-         btnEditar.click(function () {
+        //Evento clic del boton editar
+        btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -146,7 +184,7 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                    
+
                     btnEditar.find("input").val("");
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
@@ -164,9 +202,9 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         //Boton de eliminar del tablero
-         btnEliminar.click(function () {
+        btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -174,12 +212,13 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
                     console.log(temp);
+                    mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CÓDIGO ELIMINADO', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
@@ -191,13 +230,13 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         //-----------------------EVENTOS DEL FORMULARIO--------------------------
-        
-         //Eventos del boton de guardar el formulario cuando es nuevo
+
+        //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
             var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-           
+
             $.ajax({
                 url: master_url + 'onAgregar',
                 type: "POST",
@@ -206,7 +245,7 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                 
+
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CÓDIGO', 'success');
                 getRecords();
                 mdlNuevo.modal('hide');
@@ -217,9 +256,9 @@
                 HoldOn.close();
             });
         });
-        
-        
-        
+
+
+
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
             var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
@@ -242,15 +281,15 @@
                 HoldOn.close();
             });
         });
-        
+
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
-        
+
 
     });
-    
-    
+
+
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -311,7 +350,7 @@
             HoldOn.close();
         });
     }
-    
-   
+
+
 
 </script>

@@ -6,7 +6,7 @@
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><p>NUEVO</p></button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
@@ -15,6 +15,28 @@
     </div>
 </div>
 
+
+<!--Confirmacion-->
+
+
+<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+        </div>
+    </div>
+ 
+</div>
 <!--MODALES-->
 
 <div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
@@ -176,10 +198,23 @@
     var btnRefrescar = $("#btnRefrescar");
 
     var btnEliminar = $("#btnEliminar");
-
+    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
+    var mdlConfirmar = $("#mdlConfirmar");
     $(document).ready(function () {
 
-
+            
+          //Evento clic del boton confirmar borrar
+        btnConfirmarEliminar.click(function () {
+            
+             if (temp !== 0 && temp !== undefined && temp > 0) {
+                //Muestra el modal
+                mdlConfirmar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+        
+        
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -194,6 +229,7 @@
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
+                    mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'USUARIO ELIMINADO', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
