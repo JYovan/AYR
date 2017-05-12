@@ -59,7 +59,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOGOS <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">CLIENTES</a></li> 
+                        <li><a href="<?php print base_url() ?>index.php/CtrlClientes/">CLIENTES</a></li> 
                         <li><a href="<?php print base_url() ?>index.php/CtrlEmpresas/">EMPRESAS</a></li>
                         <li><a href="<?php print base_url() ?>index.php/CtrlPreciarios/">PRECIARIOS</a></li> 
                         <li class="disabled"><a href="#"><b>OBRA</b></a></li>

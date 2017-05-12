@@ -20,3 +20,7 @@ CHANGE COLUMN `EstaActivo` `Estatus` VARCHAR(45) NULL DEFAULT 'ACTIVO' ;
 
 ALTER TABLE `ayr`.`preciarios` 
 DROP COLUMN `Preciarioscol`;
+
+ALTER TABLE `ayr`.`clientes` 
+ADD COLUMN `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' AFTER `Contacto3`,
+ADD COLUMN `Registro` VARCHAR(45) NULL AFTER `Estatus`;

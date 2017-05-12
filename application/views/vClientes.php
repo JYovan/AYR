@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading">EMPRESAS</div>
+        <div class="panel-heading">CLIENTES</div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
@@ -15,102 +15,75 @@
     </div>
 </div>
 
-
 <!--MODALES-->
-
-<!--NUEVO-->
 
 <div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVA EMPRESA</h4>
+                <h4 class="modal-title">NUEVO CLIENTE</h4>
             </div>
             <form id="frmNuevo">
                 <div class="modal-body">
-                    <fieldset>
-
-                        <div class="col-6 col-md-6">
-                            <label for="">NOMBRE*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" >
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">RFC*</label>    
-                            <input type="text" class="form-control" id="Rfc" name="Rfc" >
-                        </div>
-                        <div class="col-md-12">
-                            <h3>INFORMACIÓN DE CONTACTO</h3>
-                        </div>
+                    <fieldset> 
                         <div class="col-md-6">
                             <label for="">NOMBRE*</label>
-                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                            <label for="">CALLE*</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA</h3>
+                        <div class="col-md-4">
+                            <label for="">No EXTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-6">
-                            <label for="">DIRECCION*</label>
-                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
+                        <div class="col-md-4">
+                            <label for="">No INTERIOR*</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-3">
-                            <label for="">N°*</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">N° INT.*</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
-                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">COLONIA*</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">CIUDAD*</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">ESTADO*</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-12">
-                            <span> <br></span>
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 1*</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
                         </div>
-
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 2*</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 3*</label>
+                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" required>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                            
+                        </div>
                         <div class="col-md-12" align="center">
+                            <br>
                             <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-1x">
                                 </span> 
-                                SELECCIONA EL LOGO DE LA EMPRESA
+                                SELECCIONA LA IMAGEN,LOGO O IDENTIDAD DEL CLIENTE
                             </button>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
                         </div>
                     </fieldset>
                 </div>
@@ -124,101 +97,80 @@
 </div><!-- /.modal -->
 
 
-<!--EDITAR-->
+
 <div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR EMPRESA</h4>
+                <h4 class="modal-title">EDITAR CLIENTE</h4>
             </div>
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
                         <div class="col-md-12 hide">
-                            <input type="text" id="ID" name="ID" class="form-control">
+                            <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">NOMBRE*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" >
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">RFC*</label>    
-                            <input type="text" class="form-control" id="Rfc" name="Rfc" >
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <h3>INFORMACIÓN DE CONTACTO</h3>
-                        </div>
-                        <div class="col-md-6">
+                         <div class="col-md-6">
                             <label for="">NOMBRE*</label>
-                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                            <label for="">CALLE*</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA</h3>
+                        <div class="col-md-4">
+                            <label for="">No EXTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="">DIRECCION*</label>
-                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
+                        <div class="col-md-4">
+                            <label for="">No INTERIOR*</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div>
-                        <div class="col-md-3">
-                            <label for="">N°*</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">N° INT.*</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
-                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">COLONIA*</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">CIUDAD*</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">ESTADO*</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
-
-
-                        <div class="col-md-12">
-                            <span> <br></span>
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 1*</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
                         </div>
-
-                        <div class="col-md-12" align="center">
-                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                            <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
-                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-1x">
-                                </span> 
-                                MODIFICAR EL LOGO DE LA EMPRESA
-                            </button>
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 2*</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CONTACTO 3*</label>
+                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-
+                            
                         </div>
+                        <div class="col-md-12" align="center">
+                            <br>
+                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                            <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                            <br>
+                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                                <span class="fa fa-upload fa-1x">
+                                </span> 
+                                SELECCIONA LA IMAGEN,LOGO O IDENTIDAD DEL CLIENTE
+                            </button>
+                        </div>
+                        
                     </fieldset>
                 </div>
             </form>
@@ -232,9 +184,8 @@
 
 
 <!--SCRIPT-->
-
 <script>
-    var master_url = base_url + 'index.php/CtrlEmpresas/'
+    var master_url = base_url + 'index.php/CtrlClientes/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
 
@@ -272,7 +223,7 @@
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EMPRESA ELIMINADA', 'danger');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CLIENTE ELIMINADO', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -300,7 +251,7 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA EMPRESA', 'success');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CLIENTE', 'success');
                 getRecords();
                 mdlEditar.modal('hide');
                 console.log(data, x, jq);
@@ -312,13 +263,14 @@
         });
 
         btnEditar.click(function () {
+        console.log(temp);
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "CARGANDO DATOS..."
                 });
                 $.ajax({
-                    url: master_url + 'getEmpresaByID',
+                    url: master_url + 'getClienteByID',
                     type: "POST",
                     dataType: "JSON",
                     data: {
@@ -326,30 +278,29 @@
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
-                    btnEditar.find("input").val("");
-                    btnEditar.find("select").empty().select2();
-                    btnEditar.find("select").val(null).trigger("change");
-                    var empresa = data[0];
-                    mdlEditar.find("#ID").val(empresa.ID);
-                    mdlEditar.find("#Nombre").val(empresa.Nombre);
-                    mdlEditar.find("#Rfc").val(empresa.Rfc);
-                    mdlEditar.find("#NoInterior").val(empresa.NoInterior);
-                    mdlEditar.find("#NoExterior").val(empresa.NoExterior);
-                    mdlEditar.find("#Estado").val(empresa.Estado);
-                    mdlEditar.find("#Direccion").val(empresa.Direccion);
-                    mdlEditar.find("#ContactoNombre").val(empresa.ContactoNombre);
-                    mdlEditar.find("#ContactoApellidos").val(empresa.ContactoApellidos);
-                    mdlEditar.find("#Colonia").val(empresa.Colonia);
-                    mdlEditar.find("#CodigoPostal").val(empresa.CodigoPostal);
-                    mdlEditar.find("#Ciudad").val(empresa.Ciudad);
-                    if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
-                        var ext = getExt(empresa.RutaLogo);
+                    btnEditar.find("input").val(""); 
+                    var cliente = data[0];
+                    
+                    mdlEditar.find("#ID").val(cliente.ID);
+                    mdlEditar.find("#Nombre").val(cliente.Nombre); 
+                    mdlEditar.find("#Calle").val(cliente.Calle); 
+                    mdlEditar.find("#NoExterior").val(cliente.NoExterior); 
+                    mdlEditar.find("#NoInterior").val(cliente.NoInterior); 
+                    mdlEditar.find("#CodigoPostal").val(cliente.CodigoPostal); 
+                    mdlEditar.find("#Colonia").val(cliente.Colonia); 
+                    mdlEditar.find("#Ciudad").val(cliente.Ciudad); 
+                    mdlEditar.find("#Estado").val(cliente.Estado); 
+                    mdlEditar.find("#Contacto1").val(cliente.Contacto1); 
+                    mdlEditar.find("#Contacto2").val(cliente.Contacto2); 
+                    mdlEditar.find("#Contacto3").val(cliente.Contacto3); 
+                    if (cliente.RutaLogo !== null && cliente.RutaLogo !== undefined && cliente.RutaLogo !== '') {
+                        var ext = getExt(cliente.RutaLogo);
                         console.log(ext);
                         if (ext === "gif" || ext === "jpg" || ext === "png") {
-                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class ="img-responsive"/>');
+                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + cliente.RutaLogo + '" class ="img-responsive"/>');
                         }
                         if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + cliente.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                         }
                         if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
                             mdlEditar.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
@@ -379,7 +330,7 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CLIENTE', 'success');
                 getRecords();
                 mdlNuevo.modal('hide');
                 console.log(data, x, jq);
@@ -484,15 +435,15 @@
             dataType: "JSON"
         }).done(function (data, x, jq) {
             console.log(data);
-            $("#tblRegistros").html(getTable('tblEmpresas', data));
-            $('#tblEmpresas tfoot th').each(function () {
+            $("#tblRegistros").html(getTable('tbllClientes', data));
+            $('#tbllClientes tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
             });
-            var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
-            $('#tblEmpresas tbody').on('click', 'tr', function () {
-                $("#tblEmpresas").find("tr").removeClass("success");
-                $("#tblEmpresas").find("tr").removeClass("warning");
+            var tblSelected = $('#tbllClientes').DataTable(tableOptions);
+            $('#tbllClientes tbody').on('click', 'tr', function () {
+                $("#tbllClientes").find("tr").removeClass("success");
+                $("#tbllClientes").find("tr").removeClass("warning");
 //                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
@@ -510,8 +461,8 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblEmpresas tbody').on('dblclick', 'tr', function () {
-                $("#tblEmpresas").find("tr").removeClass("warning");
+            $('#tbllClientes tbody').on('dblclick', 'tr', function () {
+                $("#tbllClientes").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
@@ -536,4 +487,6 @@
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
     }
+ 
+
 </script>

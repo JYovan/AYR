@@ -98,8 +98,8 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <input type="text" id="ID" name="ID" class="form-control" disabled="true" required>
+                        <div class="col-md-12 hide">
+                            <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="">Usuario*</label>    
