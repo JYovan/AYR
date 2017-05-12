@@ -77,6 +77,9 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
+                        <div class="col-md-12 hide">
+                            <input type="text" id="ID" name="ID" class="form-control">
+                        </div>
                         <div class="col-md-12">
                             <h3>DATOS DE LA CUADRILLA</h3>
                         </div>
