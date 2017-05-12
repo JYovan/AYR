@@ -127,6 +127,29 @@ input[type="text"],input[type="password"],input[type="number"]{
     font-size: 12px; 
 }
 
+/*Imput combobox*/
+.select2-container .select2-choice {
+    display: block;
+    height: 26px;
+    padding: 0 0 0 0px;
+    overflow: hidden;
+    position: relative;
+    border: 0 solid #aaa;
+    border: 0 solid #000;
+    white-space: nowrap;
+    line-height: 20px;
+    color: #444;
+    text-decoration: none;
+    border-radius: 0;
+    background-clip: padding-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+}
+
 .margin-top-50{
     margin-top: 50px;
 }

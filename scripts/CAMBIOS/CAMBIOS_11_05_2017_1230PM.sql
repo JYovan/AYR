@@ -14,3 +14,9 @@ CHANGE COLUMN `Estatus` `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
 
 ALTER TABLE `ayr`.`Cuadrillas` 
 ADD COLUMN `Estatus`  VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
+
+ALTER TABLE `ayr`.`preciarios` 
+CHANGE COLUMN `EstaActivo` `Estatus` VARCHAR(45) NULL DEFAULT 'ACTIVO' ;
+
+ALTER TABLE `ayr`.`preciarios` 
+DROP COLUMN `Preciarioscol`;
