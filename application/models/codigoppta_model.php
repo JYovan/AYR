@@ -88,7 +88,7 @@ class codigoppta_model extends CI_Model {
         try {
             
             $this->db->where('ID', $ID);
-            $this->db->delete("codigosppta",$ID);
+            $this->db->delete("codigosppta");
 
             
         } catch (Exception $exc) {

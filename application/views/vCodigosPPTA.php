@@ -73,6 +73,9 @@
                         <div class="col-md-12">
                             <h3>DATOS DEL CÓDIGO</h3>
                         </div>
+                        <div class="col-md-12 hide">
+                            <input type="text" id="ID" name="ID" class="form-control">
+                        </div>
                         <div class="col-6 col-md-6">
                             <label for="">CÓDIGO*</label>    
                             <input type="text" class="form-control" id="Codigo" name="Codigo" required >

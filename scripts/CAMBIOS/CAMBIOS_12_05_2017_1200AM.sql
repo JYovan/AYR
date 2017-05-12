@@ -24,3 +24,6 @@ DROP COLUMN `Preciarioscol`;
 ALTER TABLE `ayr`.`clientes` 
 ADD COLUMN `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' AFTER `Contacto3`,
 ADD COLUMN `Registro` VARCHAR(45) NULL AFTER `Estatus`;
+
+ALTER TABLE `ayr`.`empresassupervisoras` 
+ADD COLUMN `Estatus`  VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;

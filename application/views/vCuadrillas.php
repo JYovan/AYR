@@ -31,6 +31,10 @@
                         <div class="col-md-12">
                             <h3>DATOS DE LA CUADRILLA</h3>
                         </div>
+                        
+                        <div class="col-md-12 hide">
+                            <input type="text" id="ID" name="ID" class="form-control">
+                        </div>
                         <div class="col-6 col-md-12">
                             <label for="">CUADRILLA*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
@@ -39,7 +43,7 @@
 
                         <div class="col-6 col-md-12">
                             <label for="">MIEMBROS</label>
-                            <textarea class="col-md-12 form-control" id="Miembros2" name="Miembros2" rows="4" ></textarea>
+                            <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
                         
                          <div class="col-6 col-md-12">
@@ -89,7 +93,7 @@
                         </div>
                         <div class="col-6 col-md-12">
                             <label for="">MIEMBROS</label>
-                            <textarea class="col-md-12 form-control" id="Miembros2" name="Miembros2" rows="4" ></textarea>
+                            <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
                         <div class="col-6 col-md-12">
                             <label for="">ESTATUS*</label>

@@ -73,6 +73,7 @@ class CtrlCodigosPPTA extends CI_Controller {
      public function onEliminar() {
         try {
             extract($this->input->post()); 
+            
             $this->codigoppta_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
