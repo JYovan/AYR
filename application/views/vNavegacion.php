@@ -70,12 +70,37 @@
                     </ul>
                 </li>
                 <li><a href="<?php print base_url() ?>index.php/CtrlUsuario/">USUARIOS</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right"> 
-                <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>">SALIR</a></li>
+
+
 
             </ul>
+
+            
+              
+                
+             
+            
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li class="dropdown">
+                    <!--style="font-weight:bold; font-size:18px;"-->
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $this->session->userdata('Nombre').' '.$this->session->userdata('Apellidos');?>
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">CAMBIAR CONTRASEÑA</a></li> 
+                        <li><a href="">REPORTAR UN PROBLEMA</a></li>
+                        <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" style="font-weight:bold;">SALIR</a></li> 
+                       
+                    </ul>
+                </li>
+                
+
+               
+            </ul>
         </div><!-- /.navbar-collapse -->
+
+
     </div><!-- /.container-fluid -->
 </nav>
 <script>

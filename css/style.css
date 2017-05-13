@@ -102,6 +102,21 @@ background: -webkit-linear-gradient(top, #002c4c 0%,#002c4c 100%); /* Chrome10-2
 background: linear-gradient(to bottom, #002c4c 0%,#002c4c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002c4c', endColorstr='#002c4c',GradientType=0 ); /* IE6-9 */
 }
+
+
+div.dt-buttons > .btn-default{
+        background: none;
+        border: none;
+        color: #002c4c;
+    }
+    
+    div.dt-buttons > .btn-default:hover{
+       
+        
+        color: #97A3AB;
+    }
+
+
 .btn-default {
     color: #ffffff;   
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */

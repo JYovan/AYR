@@ -29,3 +29,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 
 uploads/
+js/tabletools/master/DataTables/datatables.min.js
