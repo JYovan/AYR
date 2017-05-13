@@ -4,21 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlSesion extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     * 	- or -
-     * 		http://example.com/index.php/welcome/index
-     * 	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
-     */
+
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
@@ -44,10 +30,15 @@ class CtrlSesion extends CI_Controller {
                 $newdata = array(
                     'USERNAME' => $data[0]->Usuario,
                     'PASSWORD' => $data[0]->Contrasena, 
+                    'Nombre' => $data[0]->Nombre,
+                    'Apellidos' => $data[0]->Apellidos,
                     'LOGGED' => TRUE
                 );
                 $this->session->mark_as_temp('LOGGED', 28800);
                 $this->session->set_userdata($newdata);
+             
+               
+                
                 print 1;
             } else {
                 print 'ACCESO DENEGADO';
