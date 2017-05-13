@@ -250,6 +250,12 @@ textarea.form-control{
     color: #fff;
     font-size: 25px!important;
 }
+.modal-subtitle{
+    text-align: center;
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+    color: #fff;
+    font-size: 25px!important;
+}
 .modal-title>h4{
     font-size: 50px !important;
 }
@@ -277,4 +283,29 @@ textarea.form-control{
     text-decoration: none;
     background-color: #002c4c;
     outline: 0;
+} 
+    
+.table-responsive 
+{   
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: auto;   
+    overflow-y: hidden;     
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #2c3e50; 
+}
+
+#table.table-responsive td{
+    min-width:250px; /* force table to be oversize */
+}
+
+#table > thead > tr > th{
+    width: 100%
+}
+thead > tr > th{
+    width: 100%
+}
+tr > th{
+    width: 100%
 }

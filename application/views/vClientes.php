@@ -8,6 +8,12 @@
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
+                    <button type="button" class="btn btn-default" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
+                    <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><p>EDITAR SUCURSAL</p></button>
+                    <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR SUCURSAL</p></button> 
+                </div>
+
+                <div class="col-md-12" align="right">
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
@@ -36,7 +42,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 
 <!--MODALES-->
@@ -97,7 +103,7 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                         <div class="col-md-12" align="center">
                             <br>
@@ -123,7 +129,7 @@
 
 
 <div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -135,7 +141,7 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
-                         <div class="col-md-6">
+                        <div class="col-md-6">
                             <label for="">NOMBRE*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
@@ -181,7 +187,7 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                         <div class="col-md-12" align="center">
                             <br>
@@ -193,8 +199,20 @@
                                 </span> 
                                 SELECCIONA LA IMAGEN,LOGO O IDENTIDAD DEL CLIENTE
                             </button>
+                            <br>
                         </div>
-                        
+                        <div class="col-md-12">
+                            <br>
+                        </div>
+                        <div class="col-md-12 modal-subtitle" align="center"> 
+                            <h1>SUCURSALES</h1> 
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                        </div>
+                        <div class="col-md-12" id="tblDetalleSucursales">
+                        </div>
+
                     </fieldset>
                 </div>
             </form>
@@ -206,6 +224,574 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!--MODAL SUCURSAL-->
+
+
+
+<div id="mdlNuevaSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+    <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">NUEVA SUCURSAL</h4>
+            </div>
+            <form id="frmNuevo">
+                <div class="modal-body">
+                    <fieldset> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>CLIENTE</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>   
+                        <div class="col-md-12">
+                            <label for="">SUCURSAL*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CR*</label>
+                            <input type="text" id="CR" name="CR" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CALLE*</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NO EXTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NO INTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CÓDIGO POSTAL*</label>
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">COLONIA*</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CIUDAD*</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">ESTADO*</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">REGIÓN*</label>
+                            <select id="Region" name="Region" class="form-control">
+                                <option value=""></option> 
+                                <option value="BAJÍO">BAJÍO</option> 
+                                <option value="METROPOLITANA NORTE">METROPOLITANA NORTE</option> 
+                                <option value="METROPOLITANA SUR">METROPOLITANA SUR</option> 
+                                <option value="NORESTE">NORESTE</option> 
+                                <option value="NOROESTE">NOROESTE</option> 
+                                <option value="OCCIDENTE">OCCIDENTE</option> 
+                                <option value="SUR">SUR</option> 
+                                <option value="SURESTE">SURESTE</option> 
+                            </select>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>FIRMAS DE MATENIMIENTO</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">TIPO DE OBRA*</label>
+                            <select id="TipoObra" name="TipoObra" class="form-control">
+                                <option value=""></option> 
+                                <option value="REMODELACIÓN">REMODELACIÓN</option> 
+                                <option value="ADJUDICACIÓN">ADJUDICACIÓN</option> 
+                                <option value="NUEVO PROYECTO">NUEVO PROYECTO</option> 
+                                <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
+                                <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">TIPO DE CONCEPTO*</label>
+                            <select id="TipoConcepto" name="TipoConcepto" class="form-control">
+                                <option value=""></option> 
+                                <option value="ADICIONAL">ADICIONAL</option>  
+                                <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">EMPRESA SUPERVISORA*</label>
+                            <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">FECHA DE INICIO</label>
+                            <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">FECHA FINAL</label>
+                            <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">DIAS</label>
+                            <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">NÚMERO DE SEMANAS</label>
+                            <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
+                        </div>  
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>COORDINADOR</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">NOMBRES*</label>
+                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>SUPERVISOR</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">NOMBRES*</label>
+                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">PROVEEDOR DE ENERGÍA*</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>FIRMAS DE OBRA</h1>
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>CONTRATO</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">CONTRATO*</label>
+                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">CONTRATISTA*</label> 
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">CONTACTO 1*</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">CONTACTO 2*</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+
+                        </div> 
+                    </fieldset>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCancelarSucursal">CANCELAR</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarSucursal">GUARDAR</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="mdlEditarSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+    <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">EDITAR SUCURSAL</h4>
+            </div>
+            <form id="frmEditar">
+                <div class="modal-body">
+                    <fieldset> 
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="ID" name="ID">
+                        </div>
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>CLIENTE</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>   
+                        <div class="col-md-12">
+                            <label for="">SUCURSAL*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CR*</label>
+                            <input type="text" id="CR" name="CR" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CALLE*</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NO EXTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NO INTERIOR*</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CÓDIGO POSTAL*</label>
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">COLONIA*</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">CIUDAD*</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">ESTADO*</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">REGIÓN*</label>
+                            <select id="Region" name="Region" class="form-control">
+                                <option value=""></option> 
+                                <option value="BAJÍO">BAJÍO</option> 
+                                <option value="METROPOLITANA NORTE">METROPOLITANA NORTE</option> 
+                                <option value="METROPOLITANA SUR">METROPOLITANA SUR</option> 
+                                <option value="NORESTE">NORESTE</option> 
+                                <option value="NOROESTE">NOROESTE</option> 
+                                <option value="OCCIDENTE">OCCIDENTE</option> 
+                                <option value="SUR">SUR</option> 
+                                <option value="SURESTE">SURESTE</option> 
+                            </select>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>FIRMAS DE MATENIMIENTO</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">TIPO DE OBRA*</label>
+                            <select id="TipoObra" name="TipoObra" class="form-control">
+                                <option value=""></option> 
+                                <option value="REMODELACIÓN">REMODELACIÓN</option> 
+                                <option value="ADJUDICACIÓN">ADJUDICACIÓN</option> 
+                                <option value="NUEVO PROYECTO">NUEVO PROYECTO</option> 
+                                <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
+                                <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">TIPO DE CONCEPTO*</label>
+                            <select id="TipoConcepto" name="TipoConcepto" class="form-control">
+                                <option value=""></option> 
+                                <option value="ADICIONAL">ADICIONAL</option>  
+                                <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">EMPRESA SUPERVISORA*</label>
+                            <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">FECHA DE INICIO</label>
+                            <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">FECHA FINAL</label>
+                            <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">DIAS</label>
+                            <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
+                        </div>  
+                        <div class="col-md-3">
+                            <label for="">NÚMERO DE SEMANAS</label>
+                            <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
+                        </div>  
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>COORDINADOR</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">NOMBRES*</label>
+                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>SUPERVISOR</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">NOMBRES*</label>
+                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">PROVEEDOR DE ENERGÍA*</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>FIRMAS DE OBRA</h1>
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE*</label>
+                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS*</label>
+                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" required>
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO*</label>
+                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>CONTRATO</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">CONTRATO*</label>
+                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">CONTRATISTA*</label> 
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div> 
+                        <div class="col-md-12" align="center">
+                            <hr>
+                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <hr>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">CONTACTO 1*</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-md-6">
+                            <label for="">CONTACTO 2*</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                        </div> 
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+
+                        </div> 
+                        
+                    </fieldset>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCancelarSucursal">CANCELAR</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarSucursal">GUARDAR</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!--SCRIPT-->
 <script>
@@ -230,17 +816,53 @@
     var btnRefrescar = $("#btnRefrescar");
 
     var btnEliminar = $("#btnEliminar");
-    
-    
+
+
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
 
+
+    var btnNuevaSucursal = $("#btnNuevaSucursal");
+    var mdlNuevaSucursal = $("#mdlNuevaSucursal");
+    var btnCancelarSucursal = mdlNuevaSucursal.find("#btnCancelarSucursal");
+    var btnGuardarSucursal = mdlNuevaSucursal.find("#btnGuardarSucursal");
+
     $(document).ready(function () {
-        
-          //Evento clic del boton confirmar borrar
+
+        btnGuardarSucursal.click(function () {
+            var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/onAgregar',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                mdlNuevaSucursal.modal('hide');
+                btnEditar.trigger('click');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
+                console.log(data, x, jq);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+
+        btnCancelarSucursal.click(function () {
+            mdlNuevaSucursal.modal('hide'); 
+        });
+
+        btnNuevaSucursal.click(function (e) {
+            getEmpresasSupervisoras();  
+            mdlNuevaSucursal.modal('show'); 
+        });
+
+        //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
@@ -248,7 +870,7 @@
             }
 
         });
-        
+
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -257,13 +879,13 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
-                     mdlConfirmar.modal('hide');
+                    mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CLIENTE ELIMINADO', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
@@ -275,7 +897,7 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         btnRefrescar.click(function () {
             getRecords();
         });
@@ -304,8 +926,8 @@
         });
 
         btnEditar.click(function () {
-        console.log(temp);
-            if (temp !== 0 && temp !== undefined && temp > 0) {
+            console.log(cliente_id);
+            if (cliente_id !== 0 && cliente_id !== undefined && cliente_id > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "CARGANDO DATOS..."
@@ -315,25 +937,25 @@
                     type: "POST",
                     dataType: "JSON",
                     data: {
-                        ID: temp
+                        ID: cliente_id
                     }
                 }).done(function (data, x, jq) {
+
                     console.log(data);
-                    btnEditar.find("input").val(""); 
-                    var cliente = data[0];
-                    
+                    btnEditar.find("input").val("");
+                    var cliente = data[0]; 
                     mdlEditar.find("#ID").val(cliente.ID);
-                    mdlEditar.find("#Nombre").val(cliente.Nombre); 
-                    mdlEditar.find("#Calle").val(cliente.Calle); 
-                    mdlEditar.find("#NoExterior").val(cliente.NoExterior); 
-                    mdlEditar.find("#NoInterior").val(cliente.NoInterior); 
-                    mdlEditar.find("#CodigoPostal").val(cliente.CodigoPostal); 
-                    mdlEditar.find("#Colonia").val(cliente.Colonia); 
-                    mdlEditar.find("#Ciudad").val(cliente.Ciudad); 
-                    mdlEditar.find("#Estado").val(cliente.Estado); 
-                    mdlEditar.find("#Contacto1").val(cliente.Contacto1); 
-                    mdlEditar.find("#Contacto2").val(cliente.Contacto2); 
-                    mdlEditar.find("#Contacto3").val(cliente.Contacto3); 
+                    mdlEditar.find("#Nombre").val(cliente.Nombre);
+                    mdlEditar.find("#Calle").val(cliente.Calle);
+                    mdlEditar.find("#NoExterior").val(cliente.NoExterior);
+                    mdlEditar.find("#NoInterior").val(cliente.NoInterior);
+                    mdlEditar.find("#CodigoPostal").val(cliente.CodigoPostal);
+                    mdlEditar.find("#Colonia").val(cliente.Colonia);
+                    mdlEditar.find("#Ciudad").val(cliente.Ciudad);
+                    mdlEditar.find("#Estado").val(cliente.Estado);
+                    mdlEditar.find("#Contacto1").val(cliente.Contacto1);
+                    mdlEditar.find("#Contacto2").val(cliente.Contacto2);
+                    mdlEditar.find("#Contacto3").val(cliente.Contacto3);
                     if (cliente.RutaLogo !== null && cliente.RutaLogo !== undefined && cliente.RutaLogo !== '') {
                         var ext = getExt(cliente.RutaLogo);
                         console.log(ext);
@@ -351,6 +973,7 @@
                     }
 
                     mdlEditar.modal('show');
+                    getSucursalesByCliente(cliente.ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -457,7 +1080,7 @@
 
         btnNuevo.click(function () {
             mdlNuevo.modal('show');
-        }); 
+        });
         /*CALLS*/
         getRecords();
     });
@@ -499,14 +1122,14 @@
                 console.log(dtm);
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
+                cliente_id = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
             $('#tbllClientes tbody').on('dblclick', 'tr', function () {
                 $("#tbllClientes").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
+                cliente_id = parseInt(dtm[0]);
                 btnEditar.trigger("click");
             });
             // Apply the search
@@ -524,10 +1147,151 @@
             HoldOn.close();
         });
     }
+    var cliente_id = 0;
+    function getSucursalesByCliente(IDX) {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: base_url + 'index.php/CtrlSucursal/getSucursalesByCliente',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            console.log(data);
+            $("#tblDetalleSucursales").html(getTable('tblSucursales', data));
+            $('#tblSucursales tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+            });
+            var tblSelected = $('#tblSucursales').DataTable(tableOptions);
+            $('#tblSucursales tbody').on('click', 'tr', function () {
+                $("#tblSucursales").find("tr").removeClass("success");
+                $("#tblSucursales").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                console.log(dtm);
+                console.log(dtm[0]);
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                temp = parseInt(dtm[0]);
+            });
+            //DB CLICK FOR EDIT
+            $('#tblSucursales tbody').on('dblclick', 'tr', function () {
+                $("#tblSucursales").find("tr").removeClass("warning");
+                $(this).addClass('warning');
+                var dtm = tblSelected.row(this).data();
+                temp = parseInt(dtm[0]);
+                btnEditar.trigger("click");
+            });
+            // Apply the search
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            }); 
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
     }
- 
+
+    function getContratistas() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getContratistas',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.CONTRATISTA + '</option>';
+            });
+            mdlNuevaSucursal.find("#Empresa_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getEmpresasSupervisoras() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getEmpresasSupervisoras',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.EMPRESA + '</option>';
+            });
+            mdlNuevaSucursal.find("#EmpresaSupervisora_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+        getClientes();
+        getContratistas();
+    }
+
+    function getClientes() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getClientes',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+            });
+            mdlNuevaSucursal.find("#Cliente_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 
 </script>
+<style>
+
+    .super-fullscreen {
+        width: 90% !important; 
+        overflow: auto;
+    }
+    .super-fullscreen {
+        width: 90% !important; 
+    } 
+</style>

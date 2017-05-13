@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
 
-class cliente_model extends CI_Model {
+class sucursal_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -16,15 +16,32 @@ class cliente_model extends CI_Model {
 
     public function getRecords() {
         try {
-            
-             $query = $this->db->query("CALL SP_CLIENTES()");
-          
+            $query = $this->db->query("CALL SP_SUCURSALES()");
+
+            $str = $this->db->last_query();
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-    } 
+    }
+
+    public function getEmpresasSupervisoras() {
+        try {
+            $this->db->select('ES.ID, ES.Nombre AS EMPRESA, ES.Contacto AS CONTACTO1, ES.Contacto2 AS CONTACTO2', false);
+            $this->db->from('empresassupervisoras AS ES');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getClientes() {
         try {
@@ -42,30 +59,12 @@ class cliente_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    public function getContratistas() {
+
+    public function getSucursalesByCliente($ID) {
         try {
-            $this->db->select('E.ID, E.Nombre AS CONTRATISTA', false);
-            $this->db->from('empresas AS E');
-//            $this->db->where_in('E.Estatus', 'ACTIVO');
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    public function getClienteByID($ID) {
-        try {
-            $this->db->select('C.*', false);    
-            $this->db->from('clientes AS C');
-            $this->db->where('C.ID', $ID);
-            $this->db->where_in('C.Estatus', 'ACTIVO');
+            $this->db->select('S.ID, S.CR AS CR, S.Region AS "REGIÓN"', false);
+            $this->db->from('sucursales AS S');
+            $this->db->where('S.Cliente_ID', $ID);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -81,8 +80,7 @@ class cliente_model extends CI_Model {
 
     public function onAgregar($array) {
         try {
-            $array['Registro'] = Date('d/m/Y h:i:s a');
-            $this->db->insert("clientes", $array);
+            $this->db->insert("sucursales", $array);
             print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
@@ -97,17 +95,17 @@ class cliente_model extends CI_Model {
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
-            $this->db->update("clientes", $DATA);
+            $this->db->update("sucursales", $DATA);
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar($ID) {
         try { 
             $this->db->where('ID', $ID);
-            $this->db->delete("clientes");
+            $this->db->delete("sucursales");
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

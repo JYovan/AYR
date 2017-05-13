@@ -35,11 +35,11 @@ var tableOptions = {
         {
             extend: 'excelHtml5',
             text: '<span class="fa fa-file-excel-o"></span><h6>EXCEL</h6>',
-            exportOptions: { 
+            exportOptions: {
                 columns: ':visible'
             }
         },
-        
+
 //        {
 //            extend: 'csvHtml5',
 //            text: '<span class="fa fa-table"></span><h6>CSV</h6>',
@@ -131,9 +131,8 @@ var tableOptions = {
             }
         }
     },
-     "autoWidth": false,
-    colReorder: true,
-    rowReorder: true,
+    "autoWidth": false,
+    colReorder: true, 
     "displayLength": 30,
     "bLengthChange": false,
     "deferRender": true,
@@ -142,8 +141,8 @@ var tableOptions = {
     "scrollCollapse": true,
     "aaSorting": [[0, 'desc']],
     "columnDefs": [
-    { "width": "20%", "targets": 0 }
-  ]
+        {"width": "20%", "targets": 0}
+    ]
 };
 function getTable(tblname, data) {
     var column = '';
@@ -182,7 +181,7 @@ function onNotify(span, message, type) {
     if (type === "danger") {
         beep();
     }
-    if(type==="success"){
+    if (type === "success") {
         beeds();
     }
     $.notify({
@@ -191,12 +190,12 @@ function onNotify(span, message, type) {
         message: message
     }, {
         type: type,
-	z_index: 3031,
-        
-	placement: {
-		from: "top",
-		align: "center"
-	}
+        z_index: 3031,
+
+        placement: {
+            from: "top",
+            align: "center"
+        }
     }, {
         animate: {
             enter: 'animated bounceIn',

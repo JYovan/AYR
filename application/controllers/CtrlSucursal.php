@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: http://project.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CtrlClientes extends CI_Controller {
+class CtrlSucursal extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -24,48 +24,21 @@ class CtrlClientes extends CI_Controller {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('cliente_model');
+        $this->load->model('sucursal_model');
         $this->load->model('empresa_model');
         $this->load->model('empresaSupervisora_model');
     }
-
-    public function index() {
-
-        if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vClientes');
-        } else {
-            $this->load->view('vEncabezado');
-            $this->load->view('vSesion');
-        }
-    }
+ 
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->sucursal_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getClientes() {
-        try {
-            $data = $this->cliente_model->getClientes();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    public function getContratistas() {
-        try {
-            $data = $this->cliente_model->getContratistas();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
     public function getEmpresas() {
         try {
             $data = $this->empresa_model->getEmpresas();
@@ -86,7 +59,16 @@ class CtrlClientes extends CI_Controller {
     public function getClienteByID() {
         try {
             extract($this->input->post());
-            $data = $this->cliente_model->getClienteByID($ID);
+            $data = $this->sucursal_model->getClienteByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function getSucursalesByCliente() {
+        try {
+            extract($this->input->post());
+            $data = $this->sucursal_model->getSucursalesByCliente($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -95,28 +77,7 @@ class CtrlClientes extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $ID = $this->cliente_model->onAgregar($this->input->post());
-            print "ID: " . $ID;
-            $URL_DOC = 'uploads/Clientes';
-            $master_url = $URL_DOC . '/';
-
-            if (isset($_FILES["RutaLogo"]["name"])) {
-                if (!file_exists($URL_DOC)) {
-                    mkdir($URL_DOC, 0777, true);
-                }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
-                }
-                if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
-                    $DATA = array(
-                        'RutaLogo' => ($img)
-                    );
-                    $this->cliente_model->onModificar($ID, $DATA);
-                } else {
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
-                }
-            }
+            $ID = $this->sucursal_model->onAgregar($this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -138,28 +99,7 @@ class CtrlClientes extends CI_Controller {
                 'Contacto2'=> ($Contacto2 !== NULL) ? $Contacto2 : NULL,  
                 'Contacto3'=> ($Contacto3 !== NULL) ? $Contacto3 : NULL
             );
-            $this->cliente_model->onModificar($ID, $DATA);
-            print "ID: " . $ID;
-            $URL_DOC = 'uploads/Clientes';
-            $master_url = $URL_DOC . '/';
-
-            if (isset($_FILES["RutaLogo"]["name"])) {
-                if (!file_exists($URL_DOC)) {
-                    mkdir($URL_DOC, 0777, true);
-                }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
-                }
-                if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
-                    $DATA = array(
-                        'RutaLogo' => ($img)
-                    );
-                    $this->cliente_model->onModificar($ID, $DATA);
-                } else {
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
-                }
-            }
+            $this->sucursal_model->onModificar($ID, $DATA); 
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -168,7 +108,7 @@ class CtrlClientes extends CI_Controller {
     public function onEliminar() {
         try {
             extract($this->input->post());
-            $this->cliente_model->onEliminar($ID);
+            $this->sucursal_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
