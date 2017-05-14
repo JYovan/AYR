@@ -9,6 +9,7 @@
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
                     <button type="button" class="btn btn-default" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
+                    <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-eye fa-1x"></span><p>VER SUCURSALES</p></button>
                     <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><p>EDITAR SUCURSAL</p></button>
                     <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR SUCURSAL</p></button> 
                 </div>
@@ -266,7 +267,7 @@
                         </div> 
                         <div class="col-md-4">
                             <label for="">NO INTERIOR*</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
@@ -348,7 +349,7 @@
                             <h1>INFORMACIÓN DE OBRA</h1>
                             <hr>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">TIPO DE OBRA*</label>
                             <select id="TipoObra" name="TipoObra" class="form-control">
                                 <option value=""></option> 
@@ -359,7 +360,7 @@
                                 <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">TIPO DE CONCEPTO*</label>
                             <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                 <option value=""></option> 
@@ -367,11 +368,15 @@
                                 <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">EMPRESA SUPERVISORA*</label>
                             <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">SUPERFICIE*</label>
+                            <input type="text" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                         </div>
                         <div class="col-md-3">
                             <label for="">FECHA DE INICIO</label>
@@ -424,7 +429,7 @@
                             <h1>FIRMAS DE OBRA</h1>
                             <hr>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <label for="">NOMBRE*</label>
                             <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
@@ -482,7 +487,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <h1>INFORMACIÓN DE CONTACTO</h1>
                             <hr>
                         </div>
                         <div class="col-md-6">
@@ -519,8 +524,8 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset> 
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="ID" name="ID">
+                        <div class="col-md-12 hide">
+                            <input type="text" class="form-control hide" id="ID" name="ID">
                         </div>
                         <div class="col-md-12" align="center">
                             <hr>
@@ -550,7 +555,7 @@
                         </div> 
                         <div class="col-md-4">
                             <label for="">NO INTERIOR*</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
@@ -632,7 +637,7 @@
                             <h1>INFORMACIÓN DE OBRA</h1>
                             <hr>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">TIPO DE OBRA*</label>
                             <select id="TipoObra" name="TipoObra" class="form-control">
                                 <option value=""></option> 
@@ -643,7 +648,7 @@
                                 <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">TIPO DE CONCEPTO*</label>
                             <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                 <option value=""></option> 
@@ -651,11 +656,15 @@
                                 <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">EMPRESA SUPERVISORA*</label>
                             <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">SUPERFICIE*</label>
+                            <input type="text" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                         </div>
                         <div class="col-md-3">
                             <label for="">FECHA DE INICIO</label>
@@ -708,7 +717,7 @@
                             <h1>FIRMAS DE OBRA</h1>
                             <hr>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <label for="">NOMBRE*</label>
                             <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
@@ -766,7 +775,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <h1>INFORMACIÓN DE CONTACTO</h1>
                             <hr>
                         </div>
                         <div class="col-md-6">
@@ -781,17 +790,40 @@
                             <h6>Los campos con * son obligatorios</h6>    
 
                         </div> 
-                        
                     </fieldset>
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="btnCancelarSucursal">CANCELAR</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-primary" id="btnGuardarSucursal">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!--Confirmacion-->
+
+
+<div id="mdlEliminarSucursal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnEliminarSucursal">ACEPTAR</button>
+        </div>
+    </div>
+
+</div>
+
 
 <!--SCRIPT-->
 <script>
@@ -817,17 +849,80 @@
 
     var btnEliminar = $("#btnEliminar");
 
-
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
 
     var btnNuevaSucursal = $("#btnNuevaSucursal");
     var mdlNuevaSucursal = $("#mdlNuevaSucursal");
     var btnCancelarSucursal = mdlNuevaSucursal.find("#btnCancelarSucursal");
     var btnGuardarSucursal = mdlNuevaSucursal.find("#btnGuardarSucursal");
-
+    var btnEliminarSucursal = $("#btnEliminarSucursal");
+    var btnVerSucursales = $("#btnVerSucursales");
+    var btnEditarSucursal = $("#btnEditarSucursal");
+    var mdlEditarSucursal = $("#mdlEditarSucursal");
+    var btnModificarSucursal = mdlEditarSucursal.find("#btnGuardarSucursal");
+    var mdlEliminarSucursal = $("#mdlEliminarSucursal");
+    var mdlbtnEliminarSucursal = mdlEliminarSucursal.find("#btnEliminarSucursal");
     $(document).ready(function () {
+
+        btnVerSucursales.click(function () {
+            btnEliminarSucursal.removeClass("hide");
+            btnEditar.addClass("hide");
+            btnConfirmarEliminar.addClass("hide");
+            getSucursales();
+        });
+
+        mdlbtnEliminarSucursal.click(function () {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "ELIMINANDO..."
+            });
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/onEliminar',
+                type: "POST",
+                data: {
+                    ID: temp
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                mdlEliminarSucursal.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'SUCURSAL ELIMINADA', 'danger');
+                btnVerSucursales.trigger('click');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+
+        btnEliminarSucursal.click(function () {
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                mdlEliminarSucursal.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+        btnModificarSucursal.click(function () {
+            var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/onModificar',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                btnVerSucursales.trigger('click');
+                mdlEditarSucursal.modal('hide');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
+                console.log(data, x, jq);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
 
         btnGuardarSucursal.click(function () {
             var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
@@ -840,7 +935,6 @@
                 data: frm
             }).done(function (data, x, jq) {
                 mdlNuevaSucursal.modal('hide');
-                btnEditar.trigger('click');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
                 console.log(data, x, jq);
             }).fail(function (x, y, z) {
@@ -851,12 +945,11 @@
         });
 
         btnCancelarSucursal.click(function () {
-            mdlNuevaSucursal.modal('hide'); 
+            mdlNuevaSucursal.modal('hide');
         });
 
         btnNuevaSucursal.click(function (e) {
-            getEmpresasSupervisoras();  
-            mdlNuevaSucursal.modal('show'); 
+            mdlNuevaSucursal.modal('show');
         });
 
         //Evento clic del boton confirmar borrar
@@ -899,6 +992,9 @@
         });
 
         btnRefrescar.click(function () {
+            btnEliminarSucursal.addClass("hide");
+            btnEditar.removeClass("hide");
+            btnConfirmarEliminar.removeClass("hide");
             getRecords();
         });
 
@@ -943,7 +1039,7 @@
 
                     console.log(data);
                     btnEditar.find("input").val("");
-                    var cliente = data[0]; 
+                    var cliente = data[0];
                     mdlEditar.find("#ID").val(cliente.ID);
                     mdlEditar.find("#Nombre").val(cliente.Nombre);
                     mdlEditar.find("#Calle").val(cliente.Calle);
@@ -1083,6 +1179,7 @@
         });
         /*CALLS*/
         getRecords();
+        getEmpresasSupervisoras();
     });
 
 
@@ -1147,6 +1244,7 @@
             HoldOn.close();
         });
     }
+
     var cliente_id = 0;
     function getSucursalesByCliente(IDX) {
         temp = 0;
@@ -1163,7 +1261,135 @@
             }
         }).done(function (data, x, jq) {
             console.log(data);
-            $("#tblDetalleSucursales").html(getTable('tblSucursales', data));
+            $("#tblDetalleSucursales").html(getTable('tblDetalleSucursalesModal', data));
+            $('#tblDetalleSucursalesModal tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+            });
+            var tblSelected = $('#tblDetalleSucursalesModal').DataTable(tableOptions);
+            $('#tblDetalleSucursalesModal tbody').on('click', 'tr', function () {
+                $("#tblDetalleSucursalesModal").find("tr").removeClass("success");
+                $("#tblDetalleSucursalesModal").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                console.log(dtm);
+                console.log(dtm[0]);
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                temp = parseInt(dtm[0]);
+            }); 
+            // Apply the search
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function onRemovePreview(e) {
+        $(e).parent().parent("#VistaPrevia").html("");
+    }
+
+    function getContratistas() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getContratistas',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.CONTRATISTA + '</option>';
+            });
+            mdlNuevaSucursal.find("#Empresa_ID").html(options);
+            mdlEditarSucursal.find("#Empresa_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getEmpresasSupervisoras() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getEmpresasSupervisoras',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.EMPRESA + '</option>';
+            });
+            mdlNuevaSucursal.find("#EmpresaSupervisora_ID").html(options);
+            mdlEditarSucursal.find("#EmpresaSupervisora_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+        getClientes();
+        getContratistas();
+    }
+
+    function getClientes() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getClientes',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+            });
+            mdlNuevaSucursal.find("#Cliente_ID").html(options);
+            mdlEditarSucursal.find("#Cliente_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getSucursales() {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: base_url + 'index.php/CtrlSucursal/getSucursales',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            console.log(data);
+            $("#tblRegistros").html(getTable('tblSucursales', data));
             $('#tblSucursales tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
@@ -1194,7 +1420,7 @@
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
-                btnEditar.trigger("click");
+                getSucursalByID(temp);
             });
             // Apply the search
             tblSelected.columns().every(function () {
@@ -1204,33 +1430,7 @@
                         that.search(this.value).draw();
                     }
                 });
-            }); 
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function onRemovePreview(e) {
-        $(e).parent().parent("#VistaPrevia").html("");
-    }
-
-    function getContratistas() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'getContratistas',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            var options = '<option></option>';
-            $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CONTRATISTA + '</option>';
             });
-            mdlNuevaSucursal.find("#Empresa_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1238,52 +1438,41 @@
         });
     }
 
-    function getEmpresasSupervisoras() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'getEmpresasSupervisoras',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            var options = '<option></option>';
-            $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.EMPRESA + '</option>';
+    function getSucursalByID(IDX) {
+
+        console.log(IDX);
+        if (IDX !== 0 && IDX !== undefined && IDX > 0) {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "CARGANDO DATOS..."
             });
-            mdlNuevaSucursal.find("#EmpresaSupervisora_ID").html(options);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-        getClientes();
-        getContratistas();
-    }
-
-    function getClientes() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'getClientes',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            var options = '<option></option>';
-            $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/getSucursalByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: IDX
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                mdlEditarSucursal.find("input").val("");
+                mdlEditarSucursal.find("select").val("");
+                mdlEditarSucursal.find("select").select2("val", "");
+                var sucursal = data[0];
+                $.each(sucursal, function (k, v) {
+                    mdlEditarSucursal.find("#" + k).val(v);
+                    mdlEditarSucursal.find("#" + k).select2("val", v);
+                });
+                mdlEditarSucursal.modal('show');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
             });
-            mdlNuevaSucursal.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+        }
     }
-
 </script>
 <style>
 

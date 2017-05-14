@@ -1,0 +1,55 @@
+/*10 05 2017*/
+
+ALTER TABLE `ayr`.`usuarios` 
+CHANGE COLUMN `Estatus` `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
+
+
+ALTER TABLE `ayr`.`empresas` 
+ADD COLUMN `Estatus` VARCHAR(45) NULL AFTER `Estado`,
+ADD COLUMN `Registro` VARCHAR(45) NULL AFTER `Estatus`;
+
+UPDATE `ayr`.`empresas` SET Estatus = 'ACTIVO' WHERE ID > 0;
+ALTER TABLE `ayr`.`empresas` 
+CHANGE COLUMN `Estatus` `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
+
+ALTER TABLE `ayr`.`Cuadrillas` 
+ADD COLUMN `Estatus`  VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
+
+ALTER TABLE `ayr`.`preciarios` 
+CHANGE COLUMN `EstaActivo` `Estatus` VARCHAR(45) NULL DEFAULT 'ACTIVO' ;
+
+ALTER TABLE `ayr`.`preciarios` 
+DROP COLUMN `Preciarioscol`;
+
+ALTER TABLE `ayr`.`clientes` 
+ADD COLUMN `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' AFTER `Contacto3`,
+ADD COLUMN `Registro` VARCHAR(45) NULL AFTER `Estatus`;
+
+ALTER TABLE `ayr`.`empresassupervisoras` 
+ADD COLUMN `Estatus`  VARCHAR(45) NOT NULL DEFAULT 'ACTIVO' ;
+
+/*13 05 2017 12:00 am*/
+ALTER TABLE `ayr`.`sucursales` 
+DROP FOREIGN KEY `fk_Sucursales_Clientes1`,
+DROP FOREIGN KEY `fk_Sucursales_Empresas1`,
+DROP FOREIGN KEY `fk_Sucursales_EmpresasSupervisoras1`;
+ALTER TABLE `ayr`.`sucursales` 
+CHANGE COLUMN `Cliente_ID` `Cliente_ID` INT(11) NULL ,
+CHANGE COLUMN `Empresa_ID` `Empresa_ID` INT(11) NULL ,
+CHANGE COLUMN `EmpresaSupervisora_ID` `EmpresaSupervisora_ID` INT(11) NULL ;
+ALTER TABLE `ayr`.`sucursales` 
+ADD CONSTRAINT `fk_Sucursales_Clientes1`
+  FOREIGN KEY (`Cliente_ID`)
+  REFERENCES `ayr`.`clientes` (`ID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_Sucursales_Empresas1`
+  FOREIGN KEY (`Empresa_ID`)
+  REFERENCES `ayr`.`empresas` (`ID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_Sucursales_EmpresasSupervisoras1`
+  FOREIGN KEY (`EmpresaSupervisora_ID`)
+  REFERENCES `ayr`.`empresassupervisoras` (`ID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

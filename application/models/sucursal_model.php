@@ -78,6 +78,24 @@ class sucursal_model extends CI_Model {
         }
     }
 
+    public function getSucursalByID($ID) {
+        try {
+            $this->db->select('S.*', false);
+            $this->db->from('sucursales AS S');
+            $this->db->where('S.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onAgregar($array) {
         try {
             $this->db->insert("sucursales", $array);
@@ -96,7 +114,7 @@ class sucursal_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("sucursales", $DATA);
-//            print $str = $this->db->last_query();
+            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
