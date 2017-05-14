@@ -1195,6 +1195,7 @@
 
 
     function getRecords() {
+        cliente_id = 0;
         temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
