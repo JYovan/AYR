@@ -37,10 +37,11 @@
                         </div>
                         
                         
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label for="">FECHA DE CREACION*</label>
-                            <input type="date" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="" required>
-                        </div>
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                        </div>  
+                        
                         
                         <div class="col-6 col-md-6">
                             <label for="">ESTATUS*</label>
@@ -126,10 +127,11 @@
                         </div>
                         
                         
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label for="">FECHA DE CREACION*</label>
-                            <input type="date" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="" required>
-                        </div>
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                        </div>  
+                        
                         
                         <div class="col-6 col-md-6">
                             <label for="">ESTATUS*</label>

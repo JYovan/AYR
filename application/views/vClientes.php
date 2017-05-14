@@ -255,7 +255,7 @@
                         </div> 
                         <div class="col-md-4">
                             <label for="">CR*</label>
-                            <input type="text" id="CR" name="CR" class="form-control" placeholder="" required>
+                            <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">CALLE*</label>
@@ -266,12 +266,12 @@
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
-                            <label for="">NO INTERIOR*</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
+                            <label for="">NO INTERIOR</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">COLONIA*</label>
@@ -305,44 +305,44 @@
                             <hr>
                         </div>
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
+                            <label for="">NOMBRE</label>
                             <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" required>
-                        </div> 
-
-                        <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -350,7 +350,7 @@
                             <hr>
                         </div>
                         <div class="col-md-3">
-                            <label for="">TIPO DE OBRA*</label>
+                            <label for="">TIPO DE OBRA</label>
                             <select id="TipoObra" name="TipoObra" class="form-control">
                                 <option value=""></option> 
                                 <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -361,7 +361,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">TIPO DE CONCEPTO*</label>
+                            <label for="">TIPO DE CONCEPTO</label>
                             <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                 <option value=""></option> 
                                 <option value="ADICIONAL">ADICIONAL</option>  
@@ -369,14 +369,14 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">EMPRESA SUPERVISORA*</label>
+                            <label for="">EMPRESA SUPERVISORA</label>
                             <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">SUPERFICIE*</label>
-                            <input type="text" id="Superficie" name="Superficie" class="form-control" placeholder="0">
+                            <label for="">SUPERFICIE</label>
+                            <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                         </div>
                         <div class="col-md-3">
                             <label for="">FECHA DE INICIO</label>
@@ -394,18 +394,22 @@
                             <label for="">NÚMERO DE SEMANAS</label>
                             <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
                         </div>  
+                        <div class="col-md-3">
+                            <label for="">PROVEEDOR DE ENERGÍA</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                        </div> 
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>COORDINADOR</h1>
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRES*</label>
-                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" required>
+                            <label for="">NOMBRES</label>
+                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -413,17 +417,14 @@
                             <hr>
                         </div>
                         <div class="col-md-4">
-                            <label for="">NOMBRES*</label>
-                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" required>
+                            <label for="">NOMBRES</label>
+                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" >
                         </div> 
-                        <div class="col-md-4">
-                            <label for="">PROVEEDOR DE ENERGÍA*</label>
-                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
-                        </div> 
+                        
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>FIRMAS DE OBRA</h1>
@@ -431,44 +432,44 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" required>
-                        </div> 
-
-                        <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -476,8 +477,8 @@
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CONTRATO*</label>
-                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" required>
+                            <label for="">CONTRATO</label>
+                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
                             <label for="">CONTRATISTA*</label> 
@@ -491,12 +492,12 @@
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CONTACTO 1*</label>
-                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 1</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 2*</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 2</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
@@ -543,7 +544,7 @@
                         </div> 
                         <div class="col-md-4">
                             <label for="">CR*</label>
-                            <input type="text" id="CR" name="CR" class="form-control" placeholder="" required>
+                            <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">CALLE*</label>
@@ -554,12 +555,12 @@
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
-                            <label for="">NO INTERIOR*</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
+                            <label for="">NO INTERIOR</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div> 
                         <div class="col-md-4">
                             <label for="">COLONIA*</label>
@@ -593,44 +594,44 @@
                             <hr>
                         </div>
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" required>
-                        </div> 
-
-                        <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -638,7 +639,7 @@
                             <hr>
                         </div>
                         <div class="col-md-3">
-                            <label for="">TIPO DE OBRA*</label>
+                            <label for="">TIPO DE OBRA</label>
                             <select id="TipoObra" name="TipoObra" class="form-control">
                                 <option value=""></option> 
                                 <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -649,7 +650,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">TIPO DE CONCEPTO*</label>
+                            <label for="">TIPO DE CONCEPTO</label>
                             <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                 <option value=""></option> 
                                 <option value="ADICIONAL">ADICIONAL</option>  
@@ -657,14 +658,14 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">EMPRESA SUPERVISORA*</label>
+                            <label for="">EMPRESA SUPERVISORA</label>
                             <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">SUPERFICIE*</label>
-                            <input type="text" id="Superficie" name="Superficie" class="form-control" placeholder="0">
+                            <label for="">SUPERFICIE</label>
+                            <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                         </div>
                         <div class="col-md-3">
                             <label for="">FECHA DE INICIO</label>
@@ -682,18 +683,22 @@
                             <label for="">NÚMERO DE SEMANAS</label>
                             <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
                         </div>  
+                        <div class="col-md-3">
+                            <label for="">PROVEEDOR DE ENERGÍA</label>
+                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                        </div> 
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>COORDINADOR</h1>
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRES*</label>
-                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" required>
+                            <label for="">NOMBRES</label>
+                            <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="CordinadorApellidos" name="CordinadorApellidos" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -701,17 +706,14 @@
                             <hr>
                         </div>
                         <div class="col-md-4">
-                            <label for="">NOMBRES*</label>
-                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" required>
+                            <label for="">NOMBRES</label>
+                            <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" >
                         </div> 
-                        <div class="col-md-4">
-                            <label for="">PROVEEDOR DE ENERGÍA*</label>
-                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" required>
-                        </div> 
+                        
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>FIRMAS DE OBRA</h1>
@@ -719,44 +721,44 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" required>
-                        </div> 
-
-                        <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" required>
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-4">
-                            <label for="">NOMBRE*</label>
-                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" required>
-                        </div> 
-                        <div class="col-md-4">
-                            <label for="">APELLIDOS*</label>
-                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" required>
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                         </div> 
 
                         <div class="col-md-4">
-                            <label for="">PUESTO*</label>
-                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" required>
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">NOMBRE</label>
+                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="">APELLIDOS</label>
+                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
+                        </div> 
+
+                        <div class="col-md-4">
+                            <label for="">PUESTO</label>
+                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
@@ -764,8 +766,8 @@
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CONTRATO*</label>
-                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" required>
+                            <label for="">CONTRATO</label>
+                            <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
                             <label for="">CONTRATISTA*</label> 
@@ -779,12 +781,12 @@
                             <hr>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CONTACTO 1*</label>
-                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 1</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 2*</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO *</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    

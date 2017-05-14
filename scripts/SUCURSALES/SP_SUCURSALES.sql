@@ -5,8 +5,11 @@ DELIMITER $$
 USE `ayr`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_SUCURSALES`()
 BEGIN 
-	 SELECT S.ID, S.CR AS CR, S.Region AS "REGIÓN"
-     FROM sucursales AS S;
+	 SELECT S.ID, S.CR AS CR,S.Nombre as "SUCURSAL" , S.Region AS "REGIÓN", C.Nombre AS "CLIENTE"
+     FROM sucursales AS S
+     INNER JOIN Clientes C 
+     ON C.ID = S.Cliente_ID
+     ;
     
 END$$
 
