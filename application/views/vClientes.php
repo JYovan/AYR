@@ -8,7 +8,7 @@
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
+                    <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
                     <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-eye fa-1x"></span><p>VER SUCURSALES</p></button>
                     <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><p>EDITAR SUCURSAL</p></button>
                     <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR SUCURSAL</p></button> 
@@ -424,7 +424,7 @@
                             <label for="">APELLIDOS</label>
                             <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" >
                         </div> 
-                        
+
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>FIRMAS DE OBRA</h1>
@@ -713,7 +713,7 @@
                             <label for="">APELLIDOS</label>
                             <input type="text" id="SupervisorApellidos" name="SupervisorApellidos" class="form-control" placeholder="" >
                         </div> 
-                        
+
                         <div class="col-md-12" align="center">
                             <hr>
                             <h1>FIRMAS DE OBRA</h1>
@@ -868,10 +868,15 @@
     $(document).ready(function () {
 
         btnVerSucursales.click(function () {
-            btnEliminarSucursal.removeClass("hide");
-            btnEditar.addClass("hide");
-            btnConfirmarEliminar.addClass("hide");
-            getSucursales();
+            if (cliente_id !== 0 && cliente_id !== null) {
+                btnNuevaSucursal.removeClass("hide");
+                btnEliminarSucursal.removeClass("hide");
+                btnEditar.addClass("hide");
+                btnConfirmarEliminar.addClass("hide");
+                getSucursalesByClienteID(cliente_id);
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
+            }
         });
 
         mdlbtnEliminarSucursal.click(function () {
@@ -952,6 +957,7 @@
         });
 
         btnNuevaSucursal.click(function (e) {
+            mdlNuevaSucursal.find("#Cliente_ID").select2("val", cliente_id);
             mdlNuevaSucursal.modal('show');
         });
 
@@ -995,6 +1001,7 @@
         });
 
         btnRefrescar.click(function () {
+            btnNuevaSucursal.addClass("hide");
             btnEliminarSucursal.addClass("hide");
             btnEditar.removeClass("hide");
             btnConfirmarEliminar.removeClass("hide");
@@ -1288,7 +1295,7 @@
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
                 temp = parseInt(dtm[0]);
-            }); 
+            });
             // Apply the search
             tblSelected.columns().every(function () {
                 var that = this;
@@ -1305,6 +1312,61 @@
         });
     }
 
+    function getSucursalesByClienteID(IDX) {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: base_url + 'index.php/CtrlSucursal/getSucursalesByCliente',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            console.log(data);
+            $("#tblRegistros").html(getTable('tblSucursales', data));
+            $('#tblSucursales tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+            });
+            var tblSelected = $('#tblSucursales').DataTable(tableOptions);
+            $('#tblSucursales tbody').on('click', 'tr', function () {
+                $("#tblSucursales").find("tr").removeClass("success");
+                $("#tblSucursales").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                console.log(dtm);
+                console.log(dtm[0]);
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                temp = parseInt(dtm[0]);
+            });
+            // Apply the search
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
     }
