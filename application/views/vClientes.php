@@ -934,6 +934,7 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
+                btnVerSucursales.trigger('click');
                 mdlNuevaSucursal.modal('hide');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
                 console.log(data, x, jq);
