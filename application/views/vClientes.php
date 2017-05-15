@@ -92,16 +92,16 @@
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 1*</label>
-                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 1</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 2*</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 2</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 3*</label>
-                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 3</label>
+                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
@@ -176,16 +176,16 @@
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 1*</label>
-                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 1</label>
+                            <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 2*</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 2</label>
+                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 3*</label>
-                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" required>
+                            <label for="">CONTACTO 3</label>
+                            <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
@@ -203,17 +203,7 @@
                             </button>
                             <br>
                         </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
-                        <div class="col-md-12 modal-subtitle" align="center"> 
-                            <h1>SUCURSALES</h1> 
-                        </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
-                        <div class="col-md-12" id="tblDetalleSucursales">
-                        </div>
+                       
 
                     </fieldset>
                 </div>
@@ -786,7 +776,7 @@
                             <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-md-6">
-                            <label for="">CONTACTO *</label>
+                            <label for="">CONTACTO 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div> 
                         <div class="col-6 col-md-6">
@@ -884,6 +874,7 @@
 
         btnVerSucursales.click(function () {
             if (cliente_id !== 0 && cliente_id !== null) {
+                
                 btnNuevo.addClass("hide");
                 btnRefrescar.addClass("hide");
                 btnVolverAClientes.removeClass("hide");
@@ -1204,6 +1195,9 @@
         });
 
         btnNuevo.click(function () {
+            //Limpia los campos
+            mdlNuevo.find("input").val("");
+            //Muestra el modal
             mdlNuevo.modal('show');
         });
         /*CALLS*/

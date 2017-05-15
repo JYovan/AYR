@@ -242,6 +242,9 @@
             }
         });
 
+
+        
+
         btnModificar.click(function () {
             var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
 
@@ -295,6 +298,10 @@
             mdlNuevo.find("input").val("");
             mdlNuevo.modal('show');
         });
+
+
+
+
 
         btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
