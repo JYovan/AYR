@@ -8,6 +8,7 @@
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
+                    <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-refresh fa-1x"></span><p>VOLVER A CLIENTES</p></button>
                     <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
                     <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-eye fa-1x"></span><p>VER SUCURSALES</p></button>
                     <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><p>EDITAR SUCURSAL</p></button>
@@ -865,12 +866,30 @@
     var btnModificarSucursal = mdlEditarSucursal.find("#btnGuardarSucursal");
     var mdlEliminarSucursal = $("#mdlEliminarSucursal");
     var mdlbtnEliminarSucursal = mdlEliminarSucursal.find("#btnEliminarSucursal");
+    var btnVolverAClientes = $("#btnVolverAClientes");
+
     $(document).ready(function () {
+
+        btnVolverAClientes.click(function () {
+            btnNuevo.removeClass("hide");
+            btnRefrescar.removeClass("hide");
+            btnVolverAClientes.addClass("hide");
+            btnNuevaSucursal.addClass("hide");
+            btnEliminarSucursal.addClass("hide");
+            btnVerSucursales.removeClass("hide");
+            btnEditar.removeClass("hide");
+            btnConfirmarEliminar.removeClass("hide");
+            getRecords();
+        });
 
         btnVerSucursales.click(function () {
             if (cliente_id !== 0 && cliente_id !== null) {
+                btnNuevo.addClass("hide");
+                btnRefrescar.addClass("hide");
+                btnVolverAClientes.removeClass("hide");
                 btnNuevaSucursal.removeClass("hide");
                 btnEliminarSucursal.removeClass("hide");
+                btnVerSucursales.addClass("hide");
                 btnEditar.addClass("hide");
                 btnConfirmarEliminar.addClass("hide");
                 getSucursalesByClienteID(cliente_id);
@@ -1352,6 +1371,7 @@
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
                 temp = parseInt(dtm[0]);
+                getSucursalByID(temp);
             });
             // Apply the search
             tblSelected.columns().every(function () {
