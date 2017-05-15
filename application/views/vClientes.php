@@ -4,15 +4,22 @@
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><p>NUEVO</p></button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><p>EDITAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR</p></button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><p>ACTUALIZAR</p></button>
-                    <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-refresh fa-1x"></span><p>VOLVER A CLIENTES</p></button>
-                    <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><p>NUEVA SUCURSAL</p></button>
-                    <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-eye fa-1x"></span><p>VER SUCURSALES</p></button>
-                    <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><p>EDITAR SUCURSAL</p></button>
-                    <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><p>ELIMINAR SUCURSAL</p></button> 
+                    
+                    
+                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-pencil fa-1x"></span><br>NUEVO</button>
+                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+              
+<!--Sucursales-->
+                    <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-refresh fa-1x"></span><br>VOLVER A CLIENTES</button>
+                    <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><br>NUEVA SUCURSAL</button>
+                    <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-eye fa-1x"></span><br>VER SUCURSALES</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><br>EDITAR SUCURSAL</button>
+                    <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR SUCURSAL</button> 
+                
+                
+                
                 </div>
 
                 <div class="col-md-12" align="right">

@@ -136,7 +136,7 @@ var tableOptions = {
     "displayLength": 30,
     "bLengthChange": false,
     "deferRender": true,
-    "scrollY": 230,
+    "scrollY": 200,
     "scrollX": true,
     "scrollCollapse": true,
     "aaSorting": [[0, 'desc']],
