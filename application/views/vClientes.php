@@ -203,17 +203,6 @@
                             </button>
                             <br>
                         </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
-                        <div class="col-md-12 modal-subtitle" align="center"> 
-                            <h1>SUCURSALES</h1> 
-                        </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
-                        <div class="col-md-12" id="tblDetalleSucursales">
-                        </div>
 
                     </fieldset>
                 </div>
@@ -1098,7 +1087,6 @@
                     }
 
                     mdlEditar.modal('show');
-                    getSucursalesByCliente(cliente.ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {

@@ -29,20 +29,20 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
-                      
-                        
+
+
                         <div class="col-6 col-md-12">
                             <label for="">NOMBRE*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                         </div>
-                        
-                        
+
+
                         <div class="col-md-3">
                             <label for="">FECHA DE CREACION*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
                         </div>  
-                        
-                        
+
+
                         <div class="col-6 col-md-6">
                             <label for="">ESTATUS*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
@@ -51,7 +51,7 @@
                                 <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" required>
@@ -60,21 +60,21 @@
                                 <option value="OBRA">OBRA</option> 
                             </select>
                         </div>
-                     
 
-                      
+
+
                         <div class="col-md-6">
                             <label for="">CLIENTE*</label>
                             <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
                                 <option value=""></option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <span> <br></span>
                         </div>
 
-                      <div class="col-md-12" align="center">
+                        <div class="col-md-12" align="center">
                             <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
@@ -83,11 +83,11 @@
                                 SELECCIONAR ARCHIVO 
                             </button>
                         </div>
-                        
-                        
+
+
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -114,25 +114,25 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
-                      
-                        
+
+
                         <div class="col-6 col-md-12 hidden">
                             <label for="">ID*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required disabled="true">
                         </div>
-                        
+
                         <div class="col-6 col-md-12">
                             <label for="">NOMBRE*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                         </div>
-                        
-                        
+
+
                         <div class="col-md-3">
                             <label for="">FECHA DE CREACION*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
                         </div>  
-                        
-                        
+
+
                         <div class="col-6 col-md-6">
                             <label for="">ESTATUS*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
@@ -141,7 +141,7 @@
                                 <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" required>
@@ -150,21 +150,21 @@
                                 <option value="OBRA">OBRA</option> 
                             </select>
                         </div>
-                     
 
-                      
+
+
                         <div class="col-md-6">
                             <label for="">CLIENTE*</label>
                             <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
                                 <option value=""></option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <span> <br></span>
                         </div>
 
-                      <div class="col-md-12" align="center">
+                        <div class="col-md-12" align="center">
                             <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
@@ -173,11 +173,11 @@
                                 SELECCIONAR ARCHIVO 
                             </button>
                         </div>
-                        
-                        
+
+
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -195,12 +195,13 @@
 
 <!--SCRIPT-->
 <script>
+    var master_url = base_url + 'index.php/CtrlPreciarios/'
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
-    
+
     var btnEditar = $("#btnEditar");
     var mdlEditar = $("#mdlEditar");
-    
+
     //Variables de controles para subir archivo
     var Archivo = mdlNuevo.find("#RutaArchivo");
     var btnArchivo = mdlNuevo.find("#btnArchivo");
@@ -213,46 +214,59 @@
         btnEditar.click(function () {
             mdlEditar.modal('show');
         });
-        
-        
-         btnArchivo.click(function () {
-          
+
+
+        btnArchivo.click(function () {
+
             Archivo.change(function () {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
                 });
-                console.log(Archivo[0].files[0].type);
-             
-                if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-                     ||   Archivo[0].files[0].type.match('application/vnd.ms-excel') 
-                ) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        console.log(Archivo[0].files[0]);
-                        var preview = '\n\
-                                    <div class="caption">\n\
-                                        <p>' + Archivo[0].files[0].name + '</p>\n\
-                                    </div>';
-                        VistaPrevia.html(preview);
-                    };
-                    reader.readAsDataURL(Archivo[0].files[0]);
-                } else {
-                    
-                        VistaPrevia.html('EL SISTEMA SÓLO ADMITE HOJAS DE EXCEL');
-                    
-                }
+                console.log(Archivo[0].files[0]);
+
+
                 HoldOn.close();
             });
             Archivo.trigger('click');
         });
-        
-       
-        
-        
-        
+
+        /*READY*/
+        getClientes();
+
     });
 
+    function getClientes() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getClientes',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+            });
+            mdlNuevo.find("#Cliente_ID").html(options);
+            mdlEditar.find("#Cliente_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 
+
+    /*FUNCIONES PARA LEER EL XLS*/
+    var tarea = document.getElementById('b64data');
+    function b64it() {
+        if (typeof console !== 'undefined')
+            console.log("onload", new Date());
+        var wb = X.read(tarea.value, {type: 'base64', WTF: wtf_mode});
+        process_wb(wb);
+    }
 
 </script>

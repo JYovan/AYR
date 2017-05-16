@@ -6,11 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlPreciarios extends CI_Controller {
 
-   
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('usuario_model');
+        $this->load->model('preciario_model');
     }
 
     public function index() {
@@ -25,8 +24,13 @@ class CtrlPreciarios extends CI_Controller {
         }
     }
 
- 
-
-   
+    public function getClientes() {
+        try {
+            $data = $this->preciario_model->getClientes();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }

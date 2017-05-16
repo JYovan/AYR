@@ -61,6 +61,14 @@
         <!--Date picker--> 
         <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
+        
+        <!--JS XLXS API-->
+        
+        <script src="<?php echo base_url(); ?>js/js-xlsx/dist/cpexcel.js"></script>
+        <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
+        <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
+        <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
+        
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
