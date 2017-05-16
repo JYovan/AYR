@@ -33,4 +33,35 @@ class CtrlPreciarios extends CI_Controller {
         }
     }
 
+    public function onAgregar() {
+        try {
+            $this->usuario_model->onAgregar($this->input->post());
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificar() {
+        try {
+            extract($this->input->post());
+            $DATA = array(
+                'Nombre' => ($Nombre !== NULL && $Nombre !=='') ? $Nombre : NULL,
+                'Tipo' => ($Tipo !== NULL && $Tipo !=='') ? $Tipo : NULL,
+                'FechaCreacion' => ($FechaCreacion !== NULL && $FechaCreacion !=='') ? $FechaCreacion : NULL, 
+                'Cliente_ID' => ($Cliente_ID !== NULL && $Cliente_ID !=='') ? $Cliente_ID : NULL
+            );
+            $this->usuario_model->onModificar($ID, $DATA);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminar() {
+        try {
+            extract($this->input->post());
+            $this->usuario_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }

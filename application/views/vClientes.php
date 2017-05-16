@@ -210,10 +210,6 @@
                             </button>
                             <br>
                         </div>
-<<<<<<< HEAD
-=======
-                       
->>>>>>> origin/master
 
                     </fieldset>
                 </div>
