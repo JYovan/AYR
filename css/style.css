@@ -6,9 +6,9 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 *{
-    font-family: 'Oswald', sans-serif;
+/*    font-family: 'Oswald', sans-serif;*/
     text-transform: uppercase !important;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 html{ 
@@ -20,69 +20,42 @@ html{
     background-size: cover;
 
 }
-
 body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 1.42857143; 
-    color: #666666 !important;
+/*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+/*    line-height: 1.42857143; 
+    color: #666666 !important;*/
     background: none !important; 
+    letter-spacing: 0px;
 
-}
-
-
-/*Close Modals*/
-.close {
-    float: right;
-    font-size: 21px !important;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff !important;
-    /* text-shadow: 0 1px 0 #fff; */
-    filter: alpha(opacity=20);
-    opacity: .8;
-}
-
-
-
-
-
-table tbody tr{
-    cursor: pointer;
-}
-table thead tr{
-    cursor: pointer;
-}
-
-.navbar {
-    border-radius: 0px;
-}
-
-/*DROPDOWN*/
-.dropdown-menu {
-    text-decoration: none;
-    color: #59666B; 
-}
-.dropdown-menu > li > a{
-    text-decoration: none;
-    color: #7A8C93;
-}
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    text-decoration: none;
-    color: #59666B !important; 
-}
-
-.navbar-brand {
-    float: left;
-    padding: 10px 10px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
 }
 
 /*LABEL CUSTOM*/
-label {
-    font-size: 14px;
+form label  {
+    /* font-weight: normal; */
+    font-size: 11px !important;
+    font-weight: 200;
+    color: #666666;
 }
+
+
+h1, .h1 {
+    font-size: 30px;
+}
+
+h2, .h2 {
+    font-size: 26px;
+}
+
+h3, .h3 {
+    font-size: 22px;
+}
+
+h6, .h6 {
+    font-size: 12px;
+}
+
+
+/*Botones*/
 .btn {
     display: inline-block;
     padding: 6px 12px;
@@ -96,7 +69,6 @@ label {
     border-radius: 2px;
 }
 
-
 .btn-primary {
     color: #ffffff;   
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5e789a+0,103e76+100 */
@@ -107,25 +79,24 @@ background: linear-gradient(to bottom, #002c4c 0%,#002c4c 100%); /* W3C, IE10+, 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002c4c', endColorstr='#002c4c',GradientType=0 ); /* IE6-9 */
 }
 
-
 div.dt-buttons > .btn-default{
         background: none;
         border: none;
         color: #002c4c;
+            -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.0);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.0);
     }
     
     div.dt-buttons > .btn-default:hover{
        
-        
+            -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         color: #97A3AB;
     }
-
 
 .btn-default {
     color: #ffffff;   
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
-    
-
     background: #FFA000; 
     background: -moz-linear-gradient(top, #FFA000 0%, #FFA000 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #FFA000 0%,#FFA000 100%); /* Chrome10-25,Safari5.1-6 */
@@ -139,34 +110,6 @@ div.dt-buttons > .btn-default{
 }
 .panel-default {
     border: #1a3783 solid 2px;
-}
-
-input[type="text"],input[type="password"],input[type="number"]{
-    color: #002c4c !important;
-    font-size: 16px; 
-}
-
-/*Imput combobox*/
-.select2-container .select2-choice {
-    display: block;
-    height: 26px;
-    padding: 0 0 0 0px;
-    overflow: hidden;
-    position: relative;
-    border: 0 solid #aaa;
-    border: 0 solid #000;
-    white-space: nowrap;
-    line-height: 20px;
-    color: #444;
-    text-decoration: none;
-    border-radius: 0;
-    background-clip: padding-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #fff;
 }
 
 .margin-top-50{
@@ -230,24 +173,86 @@ a{
     background-color: #7a8288;
     background-image: linear-gradient(#1f429d, #1a3783 60%, #173072) !important;
 }
-.panel-title{
-    font-family: 'Oswald', sans-serif !important;
-    font-size: 40px;
+
+
+/*Imput combobox*/
+.select2-container .select2-choice {
+    display: block;
+    height: 26px;
+    padding: 0 0 0 0px;
+    overflow: hidden;
+    position: relative;
+    border: 0 solid #aaa;
+    border: 0 solid #000;
+    white-space: nowrap;
+    line-height: 20px;
+    color: #000;
+    font-size: 12px; 
+    text-decoration: none;
+    border-radius: 0;
 }
-.table thead th{
-    color: #ffffff !important; 
-    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+
+.select2-container .select2-choice>.select2-chosen {
+    font-size: 12px; 
 }
-.table tr:hover{
-    color: #ffffff !important; 
-    background-image: linear-gradient(#ACB1BE, #ACB1BE 60%, #ACB1BE) !important;
+textarea, textarea.form-control, input.form-control, input[type=text], input[type=password], input[type=email], input[type=number], [type=text].form-control, [type=password].form-control, [type=email].form-control, [type=tel].form-control, [contenteditable].form-control {
+    padding: 0;
+    border: none;
+    color: #000;
+    border-radius: 0;
+    font-size: 12px; 
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 37px;
+    padding: 0px 0px;
+    font-size: 12px;
+    line-height: 1.846;
+    color: #666666;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
 
+/*navegacion DROPDOWN*/
+
+.navbar {
+    border-radius: 0px;
+}
+
+.dropdown-menu {
+    text-decoration: none;
+    color: #59666B; 
+}
+.dropdown-menu > li > a{
+    text-decoration: none;
+    color: #666666;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #59666B !important; 
+}
+
+.navbar-brand {
+    float: left;
+    padding: 10px 10px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+}
 
 .navbar-default .navbar-nav > li > a {
     
-    color: #67767C !important;
+    color: #666666 !important;
+    
 }
 textarea.form-control{
     color: #1a3783 !important;
@@ -266,8 +271,14 @@ textarea.form-control{
 .modal-header{
     text-align: center;
     background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+  
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.846;
     color: #fff;
-    font-size: 25px!important;
+    font-size: 18px;
 }
 .modal-subtitle{
     text-align: center;
@@ -278,10 +289,17 @@ textarea.form-control{
 .modal-title>h4{
     font-size: 50px !important;
 }
-
-
-
-/*Custom*/
+/*Close Modals*/
+.close {
+    float: right;
+    font-size: 21px !important;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff !important;
+    /* text-shadow: 0 1px 0 #fff; */
+    filter: alpha(opacity=20);
+    opacity: .8;
+}
 /*Paginacion*/
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 3;
@@ -296,7 +314,6 @@ textarea.form-control{
     color: #59666B;
 }
 
-
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
     color: #fff;
     text-decoration: none;
@@ -304,6 +321,14 @@ textarea.form-control{
     outline: 0;
 } 
     
+/*TABLAS*/
+table tbody tr{
+    cursor: pointer;
+}
+table thead tr{
+    cursor: pointer;
+}
+
 .table-responsive 
 {   
     width: 100%;
@@ -328,8 +353,21 @@ thead > tr > th{
 tr > th{
     width: 100%
 }
+.table thead th{
+    color: #ffffff !important; 
+    font-weight: normal !important;
+    background-color: #002c4c !important;
+}
+.table tr:hover{
+    color: #ffffff !important; 
+    background-color: #ACB1BE !important;
+}
 
-
+.table tfoot tr th{
+    color: #000 !important; 
+    font-weight: normal !important;
+    background-color: #fff !important;
+}
 
 .table-hover>tbody>tr.success:hover>td, 
 .table-hover>tbody>tr.success:hover>th, 
@@ -351,14 +389,33 @@ tr > th{
 .table>thead>tr.success>th, 
 .table>tbody>tr.success>th, 
 .table>tfoot>tr.success>th {
-    
         background-color: #6D6F76;
         color: #FFF;
 }
 
-
 table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
-    font-size: 13px !important;
+    font-size: 12px !important;
+     border-bottom: 1px solid #dddddd;
+}
+
+
+.table-bordered {
+    border: 0px solid #dddddd;
+}
+
+
+.table-bordered>thead>tr>th, 
+.table-bordered>tbody>tr>th, 
+.table-bordered>thead>tr>td, 
+.table-bordered>tbody>tr>td {
+     border: 0px solid #dddddd; 
+}
+
+.table>thead>tr>th, 
+.table>tbody>tr>th, 
+.table>thead>tr>td, 
+.table>tbody>tr>td {
+    padding: 6px;   
 }
 
 
@@ -379,8 +436,6 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
 .btn .btnTableros-default {
     color: #ffffff;   
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
-    
-
     background: #FFA000; 
     background: -moz-linear-gradient(top, #FFA000 0%, #FFA000 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #FFA000 0%,#FFA000 100%); /* Chrome10-25,Safari5.1-6 */

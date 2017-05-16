@@ -3,7 +3,7 @@
         <div class="panel-heading">CUADRILLAS</div>
         <div class="panel-body">
             <fieldset>
-                 <div class="col-md-12" align="right">
+                <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-pencil fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
@@ -35,7 +35,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 
 <!--NUEVO-->
@@ -53,7 +53,7 @@
                         <div class="col-md-12">
                             <h3>DATOS DE LA CUADRILLA</h3>
                         </div>
-                        
+
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
@@ -67,8 +67,8 @@
                             <label for="">MIEMBROS</label>
                             <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
-                        
-                         <div class="col-6 col-md-12">
+
+                        <div class="col-6 col-md-12">
                             <label for="">ESTATUS*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
@@ -76,6 +76,9 @@
                                 <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
+
+         
+                       
 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
@@ -142,7 +145,7 @@
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlCuadrillas/'
-    
+
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
 
@@ -151,7 +154,7 @@
     //Boton que guarda los datos del formulario
     var btnGuardar = mdlNuevo.find("#btnGuardar");
     //Boton que actualiza los datos del formulario
-     var btnModificar = mdlEditar.find("#btnModificar");
+    var btnModificar = mdlEditar.find("#btnModificar");
     //Botones del tablero que actualizan y eliminan registros
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
@@ -160,10 +163,10 @@
     var mdlConfirmar = $("#mdlConfirmar");
 
     $(document).ready(function () {
-        
-        
+
+
         //---------------------------EVENTOS DEL TABLERO--------------------------
-        
+
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
             //Limpia los campos
@@ -171,13 +174,13 @@
             //Muestra el modal
             mdlNuevo.modal('show');
         });
-       
-       //Actualiza los datos
+
+        //Actualiza los datos
         btnRefrescar.click(function () {
             getRecords();
         });
-       //Evento clic del boton editar
-         btnEditar.click(function () {
+        //Evento clic del boton editar
+        btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -209,20 +212,20 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-         //Evento clic del boton confirmar borrar
+
+        //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         //Boton de eliminar del tablero
-         btnEliminar.click(function () {
+        btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -230,13 +233,13 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
-                     mdlConfirmar.modal('hide');
+                    mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CUADRILLA ELIMINADO', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
@@ -248,13 +251,13 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         //-----------------------EVENTOS DEL FORMULARIO--------------------------
-        
-         //Eventos del boton de guardar el formulario cuando es nuevo
+
+        //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
             var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-           
+
             $.ajax({
                 url: master_url + 'onAgregar',
                 type: "POST",
@@ -263,7 +266,7 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                 
+
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
                 getRecords();
                 mdlNuevo.modal('hide');
@@ -274,9 +277,9 @@
                 HoldOn.close();
             });
         });
-        
-        
-        
+
+
+
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
             var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
@@ -299,15 +302,15 @@
                 HoldOn.close();
             });
         });
-        
+
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
-        
+
 
     });
-    
-    
+
+
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -368,9 +371,9 @@
             HoldOn.close();
         });
     }
-    
-   
-    
-    
+
+
+
+
 
 </script>

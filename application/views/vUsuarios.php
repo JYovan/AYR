@@ -155,7 +155,7 @@
                             <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
                                 <option value=""></option> 
                                 <option value="ADMINISTRADOR">ADMINISTRADOR</option> 
-                                <option value=">COORDINADOR DE PROCESOS">COORDINADOR DE PROCESOS</option>
+                                <option value="COORDINADOR DE PROCESOS">COORDINADOR DE PROCESOS</option>
                                 <option value="RESIDENTE">RESIDENTE</option> 
                                 <option value="INVITADO">INVITADO</option> 
                             </select>

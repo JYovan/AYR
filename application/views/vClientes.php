@@ -238,7 +238,7 @@
                     <fieldset> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>CLIENTE</h1>
+                            <h3>CLIENTE</h3>
                             <hr>
                         </div>
                         <div class="col-md-12">
@@ -298,7 +298,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>FIRMAS DE MATENIMIENTO</h1>
+                            <h3>FIRMAS DE MATENIMIENTO</h3>
                             <hr>
                         </div>
                         <div class="col-md-4">
@@ -343,7 +343,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <h3>INFORMACIÓN DE OBRA</h3>
                             <hr>
                         </div>
                         <div class="col-md-3">
@@ -397,7 +397,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>COORDINADOR</h1>
+                            <h3>COORDINADOR</h3>
                             <hr>
                         </div>
                         <div class="col-md-6">
@@ -410,7 +410,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>SUPERVISOR</h1>
+                            <h3>SUPERVISOR</h3>
                             <hr>
                         </div>
                         <div class="col-md-4">
@@ -527,7 +527,7 @@
                         </div>
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>CLIENTE</h1>
+                            <h3>CLIENTE</h3>
                             <hr>
                         </div>
                         <div class="col-md-12">
@@ -587,7 +587,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>FIRMAS DE MATENIMIENTO</h1>
+                            <h3>FIRMAS DE MATENIMIENTO</h3>
                             <hr>
                         </div>
                         <div class="col-md-4">
@@ -632,7 +632,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>INFORMACIÓN DE OBRA</h1>
+                            <h3>INFORMACIÓN DE OBRA</h3>
                             <hr>
                         </div>
                         <div class="col-md-3">
@@ -686,7 +686,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>COORDINADOR</h1>
+                            <h3>COORDINADOR</h3>
                             <hr>
                         </div>
                         <div class="col-md-6">
@@ -699,7 +699,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>SUPERVISOR</h1>
+                            <h3>SUPERVISOR</h3>
                             <hr>
                         </div>
                         <div class="col-md-4">
@@ -713,7 +713,7 @@
 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>FIRMAS DE OBRA</h1>
+                            <h3>FIRMAS DE OBRA</h3>
                             <hr>
                         </div>
 
@@ -759,7 +759,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>CONTRATO</h1>
+                            <h3>CONTRATO</h3>
                             <hr>
                         </div>
                         <div class="col-md-6">
@@ -774,7 +774,7 @@
                         </div> 
                         <div class="col-md-12" align="center">
                             <hr>
-                            <h1>INFORMACIÓN DE CONTACTO</h1>
+                            <h3>INFORMACIÓN DE CONTACTO</h3>
                             <hr>
                         </div>
                         <div class="col-md-6">

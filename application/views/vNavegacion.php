@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="<?php print base_url(); ?>">
-                <img src="<?php print base_url(); ?>img/logo.png" width="60px">
+                <img src="<?php print base_url(); ?>img/logo.png" width="75px">
             </a>
         </div>
 
@@ -90,7 +90,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="">CAMBIAR CONTRASEÑA</a></li> 
                         <li><a href="">REPORTAR UN PROBLEMA</a></li>
-                        <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" style="font-weight:bold;">SALIR</a></li> 
+                        <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" >SALIR</a></li> 
                        
                     </ul>
                 </li>
