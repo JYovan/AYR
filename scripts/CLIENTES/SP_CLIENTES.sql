@@ -7,7 +7,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CLIENTES`()
 BEGIN 
 	 SELECT C.ID, C.Nombre 
      FROM Clientes AS C
-     WHERE C.Estatus='ACTIVO';
+     WHERE C.Estatus='ACTIVO'
+     ORDER BY C.ID ASC;
     
 END$$
 

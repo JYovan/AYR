@@ -8,7 +8,7 @@
 *{
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase !important;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 html{ 
@@ -41,6 +41,10 @@ body {
     filter: alpha(opacity=20);
     opacity: .8;
 }
+
+
+
+
 
 table tbody tr{
     cursor: pointer;
@@ -77,7 +81,7 @@ table thead tr{
 
 /*LABEL CUSTOM*/
 label {
-    font-size: 12px;
+    font-size: 14px;
 }
 .btn {
     display: inline-block;
@@ -139,7 +143,7 @@ div.dt-buttons > .btn-default{
 
 input[type="text"],input[type="password"],input[type="number"]{
     color: #002c4c !important;
-    font-size: 12px; 
+    font-size: 16px; 
 }
 
 /*Imput combobox*/
@@ -323,4 +327,68 @@ thead > tr > th{
 }
 tr > th{
     width: 100%
+}
+
+
+
+.table-hover>tbody>tr.success:hover>td, 
+.table-hover>tbody>tr.success:hover>th, 
+.table-hover>tbody>tr:hover>.success, 
+.table-hover>tbody>tr>td.success:hover, 
+.table-hover>tbody>tr>th.success:hover {
+     background-color: #6D6F76;
+}
+
+.table>thead>tr>td.success, 
+.table>tbody>tr>td.success, 
+.table>tfoot>tr>td.success, 
+.table>thead>tr>th.success, 
+.table>tbody>tr>th.success, 
+.table>tfoot>tr>th.success, 
+.table>thead>tr.success>td, 
+.table>tbody>tr.success>td, 
+.table>tfoot>tr.success>td, 
+.table>thead>tr.success>th, 
+.table>tbody>tr.success>th, 
+.table>tfoot>tr.success>th {
+    
+        background-color: #6D6F76;
+        color: #FFF;
+}
+
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    font-size: 13px !important;
+}
+
+
+/*Botones de tableros*/
+.btn .btnTableros {
+    display: inline-block;
+    padding: 0px 6px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.btn .btnTableros-default {
+    color: #ffffff;   
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
+    
+
+    background: #FFA000; 
+    background: -moz-linear-gradient(top, #FFA000 0%, #FFA000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #FFA000 0%,#FFA000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #FFA000 0%,#FFA000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFA000', endColorstr='#FFA000',GradientType=0 ); /* IE6-9 */
+}
+.btn .btnTableros-default:hover {
+    color: #ffffff;   
+    background-color: #B57404;
+    border-color: #B57404;
 }
