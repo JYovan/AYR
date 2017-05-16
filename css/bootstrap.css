@@ -4059,7 +4059,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   top: auto;
   left: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .nav-tabs.nav-justified > li {
     display: table-cell;
     width: 1%;
@@ -4077,7 +4077,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs.nav-justified > .active > a:focus {
   border: 1px solid transparent;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .nav-tabs.nav-justified > li > a {
     border-bottom: 1px solid transparent;
     border-radius: 3px 3px 0 0;
@@ -4124,7 +4124,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   top: auto;
   left: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .nav-justified > li {
     display: table-cell;
     width: 1%;
@@ -4145,7 +4145,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs-justified > .active > a:focus {
   border: 1px solid transparent;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .nav-tabs-justified > li > a {
     border-bottom: 1px solid transparent;
     border-radius: 3px 3px 0 0;
@@ -4173,12 +4173,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 23px;
   border: 1px solid transparent;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar {
     border-radius: 3px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-header {
     float: left;
   }
@@ -4195,7 +4195,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-collapse.in {
   overflow-y: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-collapse {
     width: auto;
     border-top: 0;
@@ -4235,7 +4235,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-right: -15px;
   margin-left: -15px;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .container > .navbar-header,
   .container-fluid > .navbar-header,
   .container > .navbar-collapse,
@@ -4248,7 +4248,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   z-index: 1000;
   border-width: 0 0 1px;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-static-top {
     border-radius: 0;
   }
@@ -4260,7 +4260,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   left: 0;
   z-index: 1030;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-fixed-top,
   .navbar-fixed-bottom {
     border-radius: 0;
@@ -4289,7 +4289,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand > img {
   display: block;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
@@ -4319,7 +4319,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-toggle {
     display: none;
   }
@@ -4355,7 +4355,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     background-image: none;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-nav {
     float: left;
     margin: 0;
@@ -4379,7 +4379,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 13.5px;
   margin-bottom: 13.5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-form .form-group {
     display: inline-block;
     margin-bottom: 0;
@@ -4437,7 +4437,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-bottom: 0;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-form {
     width: auto;
     border: 0;
@@ -4477,14 +4477,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 20.5px;
   margin-bottom: 20.5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-text {
     float: left;
     margin-left: 15px;
     margin-right: 15px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 894px) {
   .navbar-left {
     float: left !important;
   }
