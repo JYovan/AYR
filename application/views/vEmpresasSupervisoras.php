@@ -327,7 +327,8 @@
             $("#tblRegistros").html(getTable('tblEmpresasSupervisoras', data));
             $('#tblEmpresasSupervisoras tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+            
             });
             var tblSelected = $('#tblEmpresasSupervisoras').DataTable(tableOptions);
             $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {

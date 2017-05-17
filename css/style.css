@@ -322,6 +322,12 @@ textarea.form-control{
 } 
     
 /*TABLAS*/
+
+ table{
+    table-layout: fixed !important;
+   /* word-wrap:break-word;*/
+}
+
 table tbody tr{
     cursor: pointer;
 }

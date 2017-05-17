@@ -305,7 +305,8 @@
             $("#tblRegistros").html(getTable('tblCodigosPPTA', data));
             $('#tblCodigosPPTA tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                
             });
             var tblSelected = $('#tblCodigosPPTA').DataTable(tableOptions);
             $('#tblCodigosPPTA tbody').on('click', 'tr', function () {

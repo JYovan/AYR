@@ -141,7 +141,7 @@ var tableOptions = {
     "scrollCollapse": true,
     "aaSorting": [[0, 'desc']],
     "columnDefs": [
-        {"width": "20%", "targets": 0}
+        {"width": "20%", "targets": [0]}
     ]
 };
 function getTable(tblname, data) {
