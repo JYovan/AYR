@@ -82,7 +82,6 @@
 
 
                         <div class="col-md-12" align="center">
-                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
@@ -183,14 +182,18 @@
                         </div>
 
                         <div class="col-md-12" align="center">
-                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
                                 </span> 
                                 SELECCIONAR ARCHIVO 
-                            </button>
-                        </div>
+                            </button> 
+                        </div> 
+                        <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto !important; height: 250px!important;"></div>
+                        <div class="col-md-12 hide">
+                            <textarea id="json_preciario" name="json_preciario" rows="5" cols="10" class="form-control">
+                            </textarea>
+                        </div> 
 
 
                         <div class="col-6 col-md-6">
