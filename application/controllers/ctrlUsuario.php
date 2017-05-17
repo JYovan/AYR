@@ -84,7 +84,8 @@ class CtrlUsuario extends CI_Controller {
                 'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
                 'Apellidos' => ($Apellidos !== NULL) ? $Apellidos : NULL,
                 'TipoAcceso' => ($TipoAcceso !== NULL) ? $TipoAcceso : NULL,
-                'Empresa_ID' => ($Empresa_ID !== NULL) ? $Empresa_ID : NULL
+                'Empresa_ID' => ($Empresa_ID !== NULL) ? $Empresa_ID : NULL,
+                'Estatus'=>($Estatus !== NULL) ? $Estatus : NULL
             );
             $this->usuario_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {

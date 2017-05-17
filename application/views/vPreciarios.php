@@ -7,7 +7,7 @@
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-pencil fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default" id="btnEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
@@ -71,19 +71,28 @@
                         </div>
 
                         <div class="col-md-12">
-                            <span> <br></span>
+                            <br>
+                            <div class="alert alert-dismissible alert-warning">
+
+                                <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
+                                <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
+                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Cantidad, Precio, Tipo, Moneda</p>
+                            </div> 
                         </div>
 
+
                         <div class="col-md-12" align="center">
+                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
-                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-1x">
+                            <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
+                                <span class="fa fa-upload fa-2x">
                                 </span> 
                                 SELECCIONAR ARCHIVO 
                             </button>
+                            <br>
                         </div> 
                         <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
-                        <div class="col-md-12 ">
+                        <div class="col-md-12 hide">
                             <textarea id="json_preciario" name="json_preciario" rows="5" cols="10" class="form-control">
                             </textarea>
                         </div>
@@ -115,9 +124,7 @@
             </div>
             <form id="frmEditar">
                 <div class="modal-body">
-                    <fieldset>
-
-
+                    <fieldset> 
                         <div class="col-6 col-md-12 hidden">
                             <label for="">ID*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required disabled="true">
@@ -163,14 +170,23 @@
                         </div>
 
                         <div class="col-md-12">
+                            <br>
+                            <div class="alert alert-dismissible alert-warning">
+
+                                <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
+                                <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
+                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Cantidad, Precio, Tipo, Moneda</p>
+                            </div> 
+                        </div>
+                        <div class="col-md-12">
                             <span> <br></span>
                         </div>
 
                         <div class="col-md-12" align="center">
                             <div id="VistaPrevia" class="col-md-12" align="center"></div>
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
-                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-1x">
+                            <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
+                                <span class="fa fa-upload fa-2x">
                                 </span> 
                                 SELECCIONAR ARCHIVO 
                             </button>
@@ -192,7 +208,27 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!--Confirmacion-->
 
+
+<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+        </div>
+    </div>
+ 
+</div>
 
 
 <!--SCRIPT-->
@@ -201,9 +237,15 @@
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
     var btnGuardar = mdlNuevo.find("#btnGuardar");
+    var btnRefrescar = $("#btnRefrescar");
+    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
+
+    var mdlConfirmar = $("#mdlConfirmar");
+    var btnEliminar = $("#btnEliminar");
 
     var btnEditar = $("#btnEditar");
     var mdlEditar = $("#mdlEditar");
+    var btnModificar = mdlEditar.find("#btnEditar");
 
     //Variables de controles para subir archivo
     var Archivo = mdlNuevo.find("#RutaArchivo");
@@ -211,11 +253,53 @@
     var VistaPrevia = mdlNuevo.find("#VistaPrevia");
 
     $(document).ready(function () {
+ 
+          //Evento clic del boton confirmar borrar
+        btnConfirmarEliminar.click(function () {
+            
+             if (temp !== 0 && temp !== undefined && temp > 0) {
+                //Muestra el modal
+                mdlConfirmar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+        
+        btnEliminar.click(function () {
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminar',
+                    type: "POST", 
+                    data: {
+                        ID: temp
+                    }
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    mdlConfirmar.modal('hide');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
+                    getRecords();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+        btnRefrescar.click(function () {
+            getRecords();
+        });
 
         btnGuardar.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
-                message: "POR FAVOR ESPERE..."
+                message: "GUARDANDO... POR FAVOR ESPERE"
             });
             var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
             frm.append('PRECIARIO', mdlNuevo.find("#json_preciario").val());
@@ -230,6 +314,7 @@
                 mdlNuevo.modal('hide');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                 console.log(data, x, jq);
+                btnRefrescar.trigger('click');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -239,10 +324,43 @@
 
         btnNuevo.click(function () {
             tblConceptos.html("");
+            mdlNuevo.find("select").select2("val", "");
+            mdlNuevo.find("input").val("");
             mdlNuevo.modal('show');
         });
+        
         btnEditar.click(function () {
-            mdlEditar.modal('show');
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'getPreciarioByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    var preciario = data[0];
+                    mdlEditar.find("#ID").val(preciario.ID);
+                    mdlEditar.find("#Nombre").val(preciario.Nombre);
+                    mdlEditar.find("#Tipo").val(preciario.Tipo);
+                    mdlEditar.find("#FechaCreacion").val(preciario.FechaCreacion);
+                    mdlEditar.find("#Cliente_ID").select2("val",preciario.Cliente_ID); 
+                    mdlEditar.find("#Estatus").select2("val",preciario.Estatus); 
+                    mdlEditar.find("#Tipo").select2("val",preciario.Tipo); 
+                    mdlEditar.modal('show');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
         });
 
         btnArchivo.click(function () {
@@ -251,17 +369,23 @@
                 message: "POR FAVOR ESPERE..."
             });
             Archivo.change(function () {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    console.log("onload", new Date());
-                    var data = e.target.result;
-                    var wb;
-                    var arr = fixdata(data);
-                    wb = X.read(btoa(arr), {type: 'base64'});
-                    onProcesarLibroXLS(wb);
-                };
-                if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
-                    reader.readAsArrayBuffer(Archivo[0].files[0]);
+                var extension = getExt(Archivo[0].files[0].name);
+                console.log('EXTENSION ' + extension);
+                if (extension === "xlsx" || extension === "xls") {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        console.log("onload", new Date());
+                        var data = e.target.result;
+                        var wb;
+                        var arr = fixdata(data);
+                        wb = X.read(btoa(arr), {type: 'base64'});
+                        onProcesarLibroXLS(wb);
+                    };
+                    if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
+                        reader.readAsArrayBuffer(Archivo[0].files[0]);
+                    }
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-3x"></span>', 'SOLO ARCHIVOS DE EXCEL (XLS, XLSX, CSV)', 'danger');
                 }
                 HoldOn.close();
             });
@@ -269,6 +393,7 @@
         });
 
         /*READY*/
+        getRecords();
         getClientes();
 
     });
@@ -296,6 +421,67 @@
         });
     }
 
+
+    function getRecords() {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'getRecords',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            console.log(data);
+            $("#tblRegistros").html(getTable('tblEmpresas', data));
+            $('#tblEmpresas tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+            });
+            var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
+            $('#tblEmpresas tbody').on('click', 'tr', function () {
+                $("#tblEmpresas").find("tr").removeClass("success");
+                $("#tblEmpresas").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                console.log(dtm);
+                console.log(dtm[0]);
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                temp = parseInt(dtm[0]);
+            });
+            //DB CLICK FOR EDIT
+            $('#tblEmpresas tbody').on('dblclick', 'tr', function () {
+                $("#tblEmpresas").find("tr").removeClass("warning");
+                $(this).addClass('warning');
+                var dtm = tblSelected.row(this).data();
+                temp = parseInt(dtm[0]);
+                btnEditar.trigger("click");
+            });
+            // Apply the search
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 </script>
 
 <script>
@@ -323,11 +509,15 @@
     }
 
     function to_json(workbook) {
+        var sheet = "HOJAN";
+        var i = 1;
         var result = {};
         workbook.SheetNames.forEach(function (sheetName) {
             var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]);
             if (roa.length > 0) {
-                result[sheetName] = roa;
+                sheet = sheet + "" + i;
+                result[sheet] = roa;
+                i += 1;
             }
         });
         return result;
@@ -357,18 +547,9 @@
     }
 
     function onProcesarLibroXLS(wb) {
-
         var output = "";
+        output = JSON.stringify(to_json(wb), 2, 2);
+        mdlNuevo.find("#json_preciario").html(output);
         to_html(wb);
-        switch ("json") {
-            case "json":
-                output = JSON.stringify(to_json(wb), 2, 2);
-                mdlNuevo.find("#json_preciario").html(output);
-                break;
-            case "html":
-                return to_html(wb);
-            default:
-                return to_html(wb);
-        }
     }
 </script>
