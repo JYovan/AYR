@@ -236,7 +236,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlPreciarios/'
+    var master_url = base_url + 'index.php/CtrlPreciarios/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
     var btnGuardar = mdlNuevo.find("#btnGuardar");

@@ -24,6 +24,7 @@
                         <li><a href="#">COTIZACIÓN</a></li> 
                         <li><a href="#">PRESUPUESTO</a></li> 
                         <li><a href="#">ESTIMACIÓN</a></li> 
+                        <li onclick="onReport()">REPORTE FOTOGRAFICO</li> 
                     </ul>
                 </li> 
 
@@ -104,5 +105,26 @@
             message: 'CARGANDO...'
         });
         setTimeout(HoldOn.close(), 1500);
+        
+        
+        
     });
+    function onReport(){
+            HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ESPERE...'
+            });
+            $.ajax({
+                url: base_url + 'index.php/ctrlSesion/onReport',
+                type: "POST"
+            }).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
+                console.log(data);
+                window.open(data, '_blank');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+    }
 </script>
