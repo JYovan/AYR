@@ -4,12 +4,10 @@ header('Access-Control-Allow-Origin: http://project.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlSesion extends CI_Controller {
-
-    public $xpdf;
+ 
 
     public function __construct() {
         parent::__construct();
-        $this->xpdf = new PDF('L', 'mm', array(295/* ANCHO */, 230/* ALTURA */));
         $this->load->library('session');
         $this->load->model('usuario_model');
     }
@@ -64,149 +62,150 @@ class CtrlSesion extends CI_Controller {
 
     public function onReport() {
 // Creación del objeto de la clase heredada 
-        $this->xpdf->AliasNbPages();
-        $this->xpdf->AddPage();
-        $this->xpdf->SetAutoPageBreak(false, 300);
+        $pdf = new PDF('L', 'mm', array(295/* ANCHO */, 230/* ALTURA */));
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        $pdf->SetAutoPageBreak(false, 300);
         /* CUERPO */
-        $CURRENT_Y = $this->xpdf->GetY();
-        $this->xpdf->SetY(25);
+        $CURRENT_Y = $pdf->GetY();
+        $pdf->SetY(25);
         $borders = 0;
         $bottom = 0;
-        $this->xpdf->SetLineWidth(0.5);
+        $pdf->SetLineWidth(0.5);
         $page = 1;
         for ($i = 1; $i <= 75; $i++) {
             if ($bottom == 290) {
-                $this->xpdf->AddPage();
+                $pdf->AddPage();
                 $borders = 0;
                 $bottom = 0;
                 $page += 1;
             }
             if ($borders == 0) {
 
-//        $this->xpdf->Rect($x, $y, $w, $h);
-//        $this->xpdf->Line($x1, $y1, $x2, $y2)
+//        $pdf->Rect($x, $y, $w, $h);
+//        $pdf->Line($x1, $y1, $x2, $y2)
 
                 /* INICIA  EN LA ESQUINA DE EMPRESA */
-                $this->xpdf->Rect(190, 28, 100, 22);
+                $pdf->Rect(190, 28, 100, 22);
 
                 /* INICIA EN LA ESQUINA DE OBRA */
-                $this->xpdf->Rect(5, 35, 285, 15);
+                $pdf->Rect(5, 35, 285, 15);
 
                 /* INICIA EN LA ESQUINA DE CLAVE */
-                $this->xpdf->Rect(5, 52.5, 285, 20);
+                $pdf->Rect(5, 52.5, 285, 20);
 
                 /* INICIA EN LA ESQUINA DE FOTOS */
-                $this->xpdf->Rect(5, 75, 285, 95);
+                $pdf->Rect(5, 75, 285, 95);
 
                 /* ENCIERRA LA PALABRA FOTOS */
-                $this->xpdf->Rect(5, 75, 15, 5);
+                $pdf->Rect(5, 75, 15, 5);
 
 
                 /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
-                $this->xpdf->Line(60, 35, 60, 50);
+                $pdf->Line(60, 35, 60, 50);
 
                 /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
-                $this->xpdf->Line(235, 28, 235, 50);
+                $pdf->Line(235, 28, 235, 50);
 
                 /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
-                $this->xpdf->Line(5, 42, 290, 42);
+                $pdf->Line(5, 42, 290, 42);
 
                 /* LINEA VERTICAL DELANTE DE CLAVE */
-                $this->xpdf->Line(45, 52.5, 45, 72);
+                $pdf->Line(45, 52.5, 45, 72);
                 /* LINEA VERTICAL PARTIDA DE PARTIDA */
-                $this->xpdf->Line(90, 52.5, 90, 72);
+                $pdf->Line(90, 52.5, 90, 72);
 
                 /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
-                $this->xpdf->Line(5, 60, 290, 60);
+                $pdf->Line(5, 60, 290, 60);
 
                 /* TITULOS */
-                $this->xpdf->SetFont('Arial', 'B', 10);
-                $this->xpdf->SetY(36);
-                $this->xpdf->SetX(25);
-                $this->xpdf->Cell(55, 5, "OBRA: ", 0, 1);
-                $this->xpdf->SetY(43);
-                $this->xpdf->SetX(20);
-                $this->xpdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
-                $this->xpdf->SetY(29);
-                $this->xpdf->SetX(185);
-                $this->xpdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
-                $this->xpdf->SetY(36);
-                $this->xpdf->SetX(185);
-                $this->xpdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
-                $this->xpdf->SetY(43);
-                $this->xpdf->SetX(185);
-                $this->xpdf->Cell(55, 5, utf8_decode("PZA "), 0, 1, 'C');
-                $this->xpdf->SetY(54);
-                $this->xpdf->SetX(15);
-                $this->xpdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
-                $this->xpdf->SetY(54);
-                $this->xpdf->SetX(60);
-                $this->xpdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
-                $this->xpdf->SetY(54);
-                $this->xpdf->SetX(180);
-                $this->xpdf->Cell(15, 5, utf8_decode("CONCEPTO "), 0, 1, 'C');
-                $this->xpdf->SetFont('Arial', 'B', 8);
-                $this->xpdf->SetY(75);
-                $this->xpdf->SetX(5);
-                $this->xpdf->Cell(15, 5, utf8_decode("FOTOS "), 0, 1, 'C');
-                $this->xpdf->SetFont('Arial', 'B', 10);
+                $pdf->SetFont('Arial', 'B', 10);
+                $pdf->SetY(36);
+                $pdf->SetX(25);
+                $pdf->Cell(55, 5, "OBRA: ", 0, 1);
+                $pdf->SetY(43);
+                $pdf->SetX(20);
+                $pdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
+                $pdf->SetY(29);
+                $pdf->SetX(185);
+                $pdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+                $pdf->SetY(36);
+                $pdf->SetX(185);
+                $pdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
+                $pdf->SetY(43);
+                $pdf->SetX(185);
+                $pdf->Cell(55, 5, utf8_decode("PZA "), 0, 1, 'C');
+                $pdf->SetY(54);
+                $pdf->SetX(15);
+                $pdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
+                $pdf->SetY(54);
+                $pdf->SetX(60);
+                $pdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
+                $pdf->SetY(54);
+                $pdf->SetX(180);
+                $pdf->Cell(15, 5, utf8_decode("CONCEPTO "), 0, 1, 'C');
+                $pdf->SetFont('Arial', 'B', 8);
+                $pdf->SetY(75);
+                $pdf->SetX(5);
+                $pdf->Cell(15, 5, utf8_decode("FOTOS "), 0, 1, 'C');
+                $pdf->SetFont('Arial', 'B', 10);
                 /*DETALLE IMAGENES*/
                 if ($page == 1) {
                     $dimensiones = getimagesize(base_url() . 'img/1.jpg'); 
-                $this->xpdf->Cell(25, 5, utf8_decode("FOTO W:".$dimensiones[0]." H:".$dimensiones[1]), 0, 1, 'C');
-                    $this->xpdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80); 
+                $pdf->Cell(25, 5, utf8_decode("FOTO W:".$dimensiones[0]." H:".$dimensiones[1]), 0, 1, 'C');
+                    $pdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80); 
                 }if ($page == 2) {
-                    $this->xpdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80);
-                    $this->xpdf->Image(base_url() . 'img/2.jpg', 107.5, 85, 80, 80); 
+                    $pdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80);
+                    $pdf->Image(base_url() . 'img/2.jpg', 107.5, 85, 80, 80); 
                 }if ($page > 2) {
-                    $this->xpdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80);
-                    $this->xpdf->Image(base_url() . 'img/2.jpg', 107.5, 85, 80, 80);
-                    $this->xpdf->Image(base_url() . 'img/3.jpg', 200, 85, 80, 80);
+                    $pdf->Image(base_url() . 'img/1.jpg', 15, 85, 80, 80);
+                    $pdf->Image(base_url() . 'img/2.jpg', 107.5, 85, 80, 80);
+                    $pdf->Image(base_url() . 'img/3.jpg', 200, 85, 80, 80);
                 }
                 /*FIN DETALLE IMAGENES*/
                 /*FIRMAS*/
-//        $this->xpdf->Line($x1, $y1, $x2, $y2)
-                $this->xpdf->SetY(180);
-                $this->xpdf->SetX(22.5);
-                $this->xpdf->Cell(15, 5, utf8_decode("FIRMAS DE CONFORMIDAD"), 0, 1, 'C');
-                $this->xpdf->SetFont('Arial', '', 10);
+//        $pdf->Line($x1, $y1, $x2, $y2)
+                $pdf->SetY(180);
+                $pdf->SetX(22.5);
+                $pdf->Cell(15, 5, utf8_decode("FIRMAS DE CONFORMIDAD"), 0, 1, 'C');
+                $pdf->SetFont('Arial', '', 10);
                 
                 /*ELABORÓ*/
-                $this->xpdf->SetY(185);
-                $this->xpdf->SetX(35);
-                $this->xpdf->Cell(15, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
+                $pdf->SetY(185);
+                $pdf->SetX(35);
+                $pdf->Cell(15, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
                 
                 /* LINEA HORIZONTAL ELABORÓ */ 
-                $this->xpdf->Line(5, 200, 90, 200);
-                $this->xpdf->SetY(200);
-                $this->xpdf->SetX(35);
-                $this->xpdf->Cell(15, 5, utf8_decode("GENERADOR DE OBRA"), 0, 1, 'C');
+                $pdf->Line(5, 200, 90, 200);
+                $pdf->SetY(200);
+                $pdf->SetX(35);
+                $pdf->Cell(15, 5, utf8_decode("GENERADOR DE OBRA"), 0, 1, 'C');
                 
                 
                 /*REVISÓ*/
-                $this->xpdf->SetY(185);
-                $this->xpdf->SetX(140);
-                $this->xpdf->Cell(15, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
+                $pdf->SetY(185);
+                $pdf->SetX(140);
+                $pdf->Cell(15, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
                 /* LINEA HORIZONTAL REVISÓ*/ 
-                $this->xpdf->Line(100, 200, 190, 200);
-                $this->xpdf->SetY(200);
-                $this->xpdf->SetX(140);
-                $this->xpdf->Cell(15, 5, utf8_decode("RESIDENTE DE OBRA"), 0, 1, 'C');
+                $pdf->Line(100, 200, 190, 200);
+                $pdf->SetY(200);
+                $pdf->SetX(140);
+                $pdf->Cell(15, 5, utf8_decode("RESIDENTE DE OBRA"), 0, 1, 'C');
                 
                 /*AUTORIZO*/
-                $this->xpdf->SetY(185);
-                $this->xpdf->SetX(240);
-                $this->xpdf->Cell(15, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
+                $pdf->SetY(185);
+                $pdf->SetX(240);
+                $pdf->Cell(15, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
                 /* LINEA HORIZONTAL AUTORIZÓ */
-                $this->xpdf->Line(200, 200, 290, 200);
-                $this->xpdf->SetY(200);
-                $this->xpdf->SetX(240);
-                $this->xpdf->Cell(15, 5, utf8_decode("SUPERVISIÓN"), 0, 1, 'C');
+                $pdf->Line(200, 200, 290, 200);
+                $pdf->SetY(200);
+                $pdf->SetX(240);
+                $pdf->Cell(15, 5, utf8_decode("SUPERVISIÓN"), 0, 1, 'C');
                 
-//                $this->xpdf->Image('http://chart.googleapis.com/chart?cht=p3&chd=t:60,40&chs=250x100&chl=Hello|World',60,30,90,0,'PNG');
+//                $pdf->Image('http://chart.googleapis.com/chart?cht=p3&chd=t:60,40&chs=250x100&chl=Hello|World',60,30,90,0,'PNG');
                 $borders = 1;
             }
-//            $this->xpdf->Cell(0, 5, 'Imprimiendo linea numero ' . $i, 0, 1);
+//            $pdf->Cell(0, 5, 'Imprimiendo linea numero ' . $i, 0, 1);
             /* AUMENTAR EL TAMAÑO */
             $bottom += 10;
         }
@@ -217,7 +216,7 @@ class CtrlSesion extends CI_Controller {
         $file_name = "REPORTE_FOTOGRAFICO";
         $url = 'uploads/Reportes/' . $file_name . '.pdf';
 
-        $this->xpdf->Output($url);
+        $pdf->Output($url);
         print base_url() . $url;
     }
 
