@@ -74,6 +74,7 @@ class CtrlSesion extends CI_Controller {
         $bottom = 0;
         $this->xpdf->SetLineWidth(0.5);
         $page = 1;
+        for ($i = 1; $i <= 75; $i++) {
             if ($bottom == 290) {
                 $this->xpdf->AddPage();
                 $borders = 0;
