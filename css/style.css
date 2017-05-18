@@ -78,7 +78,7 @@ background: -webkit-linear-gradient(top, #002c4c 0%,#002c4c 100%); /* Chrome10-2
 background: linear-gradient(to bottom, #002c4c 0%,#002c4c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002c4c', endColorstr='#002c4c',GradientType=0 ); /* IE6-9 */
 }
-
+/*controles de tabla*/
 div.dt-buttons > .btn-default{
         background: none;
         border: none;
@@ -323,17 +323,20 @@ textarea.form-control{
     
 /*TABLAS*/
 
- table{
+/* table{
     table-layout: fixed !important;
-   /* word-wrap:break-word;*/
+   
 }
-
-table tbody tr{
-    cursor: pointer;
+#table > thead > tr > th{
+    width: 100%
 }
-table thead tr{
-    cursor: pointer;
+thead > tr > th{
+    width: 100%
 }
+tr > th{
+    width: 100%
+}
+*/
 
 .table-responsive 
 {   
@@ -350,19 +353,18 @@ table thead tr{
     min-width:250px; /* force table to be oversize */
 }
 
-#table > thead > tr > th{
-    width: 100%
+table tbody tr{
+    cursor: pointer;
 }
-thead > tr > th{
-    width: 100%
+table thead tr{
+    cursor: pointer;
 }
-tr > th{
-    width: 100%
-}
+
 .table thead th{
     color: #ffffff !important; 
     font-weight: normal !important;
     background-color: #002c4c !important;
+    font-size: 13px;
 }
 .table tr:hover{
     color: #ffffff !important; 
@@ -399,7 +401,8 @@ tr > th{
         color: #FFF;
 }
 
-table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+table.table-bordered.dataTable tbody th, 
+table.table-bordered.dataTable tbody td {
     font-size: 12px !important;
      border-bottom: 1px solid #dddddd;
 }
@@ -452,4 +455,104 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
     color: #ffffff;   
     background-color: #B57404;
     border-color: #B57404;
+}
+/*TOOLTIPS*/
+
+[data-tooltip] {
+    display: inline-block;
+    position: relative;
+/*    cursor: help;*/
+    padding: 1px;
+}
+/* Tooltip styling */
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    background: #002c4c;
+    color: #fff;
+    margin-left: 30px;
+    margin-top: -25px;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+/* Dynamic horizontal centering */
+[data-tooltip-position="top"]:before,
+[data-tooltip-position="bottom"]:before {
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+[data-tooltip-position="top"]:before {
+    bottom: 100%;
+    margin-bottom: 6px;
+}
+[data-tooltip-position="right"]:before {
+    left: 100%;
+    margin-left: 6px;
+}
+[data-tooltip-position="bottom"]:before {
+    top: 100%;
+    margin-top: 6px;
+}
+[data-tooltip-position="left"]:before {
+    right: 100%;
+    margin-right: 60px;
+}
+
+/* Tooltip arrow styling/placement */
+[data-tooltip]:after {
+    content: '';
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+/* Dynamic horizontal centering for the tooltip */
+[data-tooltip-position="top"]:after,
+[data-tooltip-position="bottom"]:after {
+    left: 50%;
+    margin-left: -6px;
+}
+/* Dynamic vertical centering for the tooltip */
+[data-tooltip-position="right"]:after,
+[data-tooltip-position="left"]:after {
+    top: 50%;
+    margin-top: -6px;
+}
+[data-tooltip-position="top"]:after {
+    bottom: 100%;
+    border-width: 6px 6px 0;
+    border-top-color: #000;
+}
+[data-tooltip-position="right"]:after {
+    left: 100%;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #000;
+}
+[data-tooltip-position="bottom"]:after {
+    top: 100%;
+    border-width: 0 6px 6px;
+    border-bottom-color: #000;
+}
+[data-tooltip-position="left"]:after {
+    right: 100%;
+    border-width: 6px 0 6px 6px;
+    border-left-color: #000;
+}
+/* Show the tooltip when hovering */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    display: block;
+    z-index: 50;
 }
