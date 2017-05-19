@@ -556,3 +556,11 @@ table.table-bordered.dataTable tbody td {
     display: block;
     z-index: 50;
 }
+
+.errorForms{
+    
+    color: rgb(221,44,0);
+    font-size: 12px;
+}
+
+
