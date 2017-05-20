@@ -3,7 +3,7 @@
         <div class="panel-heading">CÓDIGOS PPTA</div>
         <div class="panel-body">
             <fieldset>
-                 <div class="col-md-12" align="right">
+                <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
@@ -34,7 +34,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 <!--NUEVO-->
 
@@ -148,16 +148,18 @@
     $(document).ready(function () {
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
-            //Limpia los campos
-            mdlNuevo.find("input").val("");
+
             //Muestra el modal
             mdlNuevo.modal('show');
+            //Limpia los campos
+            mdlNuevo.find("input").val("");
+            mdlNuevo.find("select").val(null).trigger("change");
         });
 
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
@@ -235,51 +237,132 @@
 
         //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
 
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CÓDIGO', 'success');
-                getRecords();
-                mdlNuevo.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Codigo: 'required',
+                    Dias: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CÓDIGO', 'success');
+                    getRecords();
+                    mdlNuevo.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
         });
 
 
 
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
 
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL CÓDIGO', 'success');
-                getRecords();
-                mdlEditar.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Codigo: 'required',
+                    Dias: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL CÓDIGO', 'success');
+                    getRecords();
+                    mdlEditar.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+
+
         });
 
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
@@ -305,8 +388,8 @@
             $("#tblRegistros").html(getTable('tblCodigosPPTA', data));
             $('#tblCodigosPPTA tfoot th').each(function () {
                 var title = $(this).text();
-                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-                
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+
             });
             var tblSelected = $('#tblCodigosPPTA').DataTable(tableOptions);
             $('#tblCodigosPPTA tbody').on('click', 'tr', function () {

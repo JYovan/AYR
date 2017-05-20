@@ -57,6 +57,8 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
+
+
                         <div class="col-6 col-md-12">
                             <label for="">CUADRILLA*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
@@ -77,15 +79,19 @@
                             </select>
                         </div>
 
-         
-                       
+
+
 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
 
                         </div>
                     </fieldset>
+
                 </div>
+
+
+
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
@@ -112,7 +118,7 @@
                         <div class="col-md-12">
                             <h3>DATOS DE LA CUADRILLA</h3>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-12">
                             <label for="">CUADRILLA*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                         </div>
@@ -142,6 +148,8 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlCuadrillas/'
@@ -163,16 +171,16 @@
     var mdlConfirmar = $("#mdlConfirmar");
 
     $(document).ready(function () {
-
-
         //---------------------------EVENTOS DEL TABLERO--------------------------
 
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
-            //Limpia los campos
-            mdlNuevo.find("input").val("");
             //Muestra el modal
             mdlNuevo.modal('show');
+            //Limpia los campos
+            mdlNuevo.find("input").val("");
+            mdlNuevo.find("select").val(null).trigger("change");
+
         });
 
         //Actualiza los datos
@@ -181,6 +189,7 @@
         });
         //Evento clic del boton editar
         btnEditar.click(function () {
+
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -240,7 +249,7 @@
                 }).done(function (data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CUADRILLA ELIMINADO', 'danger');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CUADRILLA ELIMINADA', 'danger');
                     getRecords();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -256,60 +265,140 @@
 
         //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
-                getRecords();
-                mdlNuevo.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required',
+                    Estatus: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+
+                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
+                    getRecords();
+                    mdlNuevo.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
         });
-
-
 
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
 
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA CUADRILLA', 'success');
-                getRecords();
-                mdlEditar.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required',
+                    Estatus: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA CUADRILLA', 'success');
+                    getRecords();
+                    mdlEditar.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+
+            }
+
+
         });
 
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
 
-
     });
-
 
     function getRecords() {
         temp = 0;
@@ -326,9 +415,9 @@
             $("#tblRegistros").html(getTable('tblCuadrillas', data));
             $('#tblCuadrillas tfoot th').each(function () {
                 var title = $(this).text();
-                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            
-               
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+
+
             });
             var tblSelected = $('#tblCuadrillas').DataTable(tableOptions);
             $('#tblCuadrillas tbody').on('click', 'tr', function () {
@@ -375,7 +464,7 @@
     }
 
 
-
-
-
 </script>
+
+
+

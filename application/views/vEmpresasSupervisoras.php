@@ -3,7 +3,7 @@
         <div class="panel-heading">EMPRESAS SUPERVISORAS</div>
         <div class="panel-body">
             <fieldset>
-                 <div class="col-md-12" align="right">
+                <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
@@ -35,7 +35,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 
 <!--MODALES-->
@@ -55,7 +55,7 @@
                         <div class="col-md-12">
                             <h3>DATOS DE LA EMPRESA SUPERVISORA</h3>
                         </div>
-                         <div class="col-md-12 hide">
+                        <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
@@ -66,19 +66,19 @@
                             <label for="">DESCRIPCIÓN</label>    
                             <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                         </div>
-                        
+
                         <div class="col-md-6">
                             <label for="">CONTACTO 1</label>
                             <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                         </div>
-                        
-                          <div class="col-md-6">
+
+                        <div class="col-md-6">
                             <label for="">CONTACTO 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -107,7 +107,7 @@
                         <div class="col-md-12">
                             <h3>DATOS DE LA EMPRESA SUPERVISORA</h3>
                         </div>
-                         <div class="col-md-12 hide">
+                        <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
@@ -118,19 +118,19 @@
                             <label for="">DESCRIPCIÓN</label>    
                             <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                         </div>
-                        
+
                         <div class="col-md-6">
                             <label for="">CONTACTO 1</label>
                             <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                         </div>
-                        
-                          <div class="col-md-6">
+
+                        <div class="col-md-6">
                             <label for="">CONTACTO 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -145,43 +145,41 @@
 
 <!--SCRIPT-->
 <script>
-     var master_url = base_url + 'index.php/CtrlEmpresasSupervisoras/';
-    
+    var master_url = base_url + 'index.php/CtrlEmpresasSupervisoras/';
+
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
-    
+
     var btnEditar = $("#btnEditar");
     var mdlEditar = $("#mdlEditar");
-    
-    
-    
+
     //Boton que guarda los datos del formulario
     var btnGuardar = mdlNuevo.find("#btnGuardar");
     //Boton que actualiza los datos del formulario
-     var btnModificar = mdlEditar.find("#btnModificar");
+    var btnModificar = mdlEditar.find("#btnModificar");
     //Botones del tablero que actualizan y eliminan registros
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
 
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-    
+
     $(document).ready(function () {
-       //Evento clic del boton nuevo
+        //Evento clic del boton nuevo
         btnNuevo.click(function () {
-            //Limpia los campos
-            mdlNuevo.find("input").val("");
             //Muestra el modal
             mdlNuevo.modal('show');
+            //Limpia los campos
+            mdlNuevo.find("input").val("");
         });
-        
+
         //Actualiza los datos
         btnRefrescar.click(function () {
             getRecords();
         });
-        
+
         //Evento clic del boton editar
-         btnEditar.click(function () {
+        btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -195,7 +193,7 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                    
+
                     btnEditar.find("input").val("");
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
@@ -213,20 +211,20 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-         //Evento clic del boton confirmar borrar
+
+        //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-         
+
         //Boton de eliminar del tablero
-         btnEliminar.click(function () {
+        btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -234,7 +232,7 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
@@ -252,66 +250,149 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-        
+
+
         //-----------------------EVENTOS DEL FORMULARIO--------------------------
-        
-         //Eventos del boton de guardar el formulario cuando es nuevo
+
+        //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-           
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                 
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
-                getRecords();
-                mdlNuevo.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+
+                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
+                    getRecords();
+                    mdlNuevo.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
         });
-        
-        
-        
+
+
+
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
 
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA EMPRESA', 'success');
-                getRecords();
-                mdlEditar.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA EMPRESA', 'success');
+                    getRecords();
+                    mdlEditar.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
+
+
         });
-        
+
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
     });
-    
-    
-    
+
+
+
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -327,8 +408,8 @@
             $("#tblRegistros").html(getTable('tblEmpresasSupervisoras', data));
             $('#tblEmpresasSupervisoras tfoot th').each(function () {
                 var title = $(this).text();
-                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+
             });
             var tblSelected = $('#tblEmpresasSupervisoras').DataTable(tableOptions);
             $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {

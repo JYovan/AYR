@@ -35,7 +35,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 <!--MODALES-->
 
@@ -92,10 +92,10 @@
                                 <option value=""></option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
                     </fieldset>
                 </div>
@@ -166,12 +166,12 @@
                                 <option value=""></option> 
                             </select>
                         </div>
-                        
+
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-                            
+
                         </div>
-                        
+
                     </fieldset>
                 </div>
             </form>
@@ -202,19 +202,19 @@
     var mdlConfirmar = $("#mdlConfirmar");
     $(document).ready(function () {
 
-            
-          //Evento clic del boton confirmar borrar
+
+        //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-        
+
+
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -223,7 +223,7 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
@@ -243,50 +243,136 @@
         });
 
 
-        
-
         btnModificar.click(function () {
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
 
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN USUARIO', 'success');
-                getRecords();
-                mdlEditar.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Usuario: 'required',
+                    Contrasena: 'required',
+                    Nombre: 'required',
+                    Apellidos: 'required',
+                    Estatus: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN USUARIO', 'success');
+                    getRecords();
+                    mdlEditar.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
         });
 
 
         btnGuardar.click(function () {
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO USUARIO', 'success');
-                getRecords();
-                mdlNuevo.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Usuario: 'required',
+                    Contrasena: 'required',
+                    Nombre: 'required',
+                    Apellidos: 'required',
+                    Estatus: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+
+                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO USUARIO', 'success');
+                    getRecords();
+                    mdlNuevo.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
+
         });
 
         btnRefrescar.click(function () {
@@ -295,13 +381,11 @@
         });
 
         btnNuevo.click(function () {
-            mdlNuevo.find("input").val("");
+
             mdlNuevo.modal('show');
+            mdlNuevo.find("input").val("");
+            mdlNuevo.find("select").val(null).trigger("change");
         });
-
-
-
-
 
         btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -340,7 +424,6 @@
         getEmpresas();
     });
 
-
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -356,10 +439,10 @@
             $("#tblRegistros").html(getTable('tblUsuarios', data));
             $('#tblUsuarios tfoot th').each(function () {
                 var title = $(this).text();
-               // $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
-               //  $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" /></div>');
-               $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            
+                // $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                //  $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" /></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+
             });
             var tblSelected = $('#tblUsuarios').DataTable(tableOptions);
             $('#tblUsuarios tbody').on('click', 'tr', function () {

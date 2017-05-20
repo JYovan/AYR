@@ -34,12 +34,21 @@
         <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
 
         <!--select2 control-->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
+       
         <script src="<?php echo base_url(); ?>js/select2/select2.min.js"></script>
-
+<link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+
+
+   
+        
+        <!-- Validacion forms -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>js/additional-methods.min.js">
+        <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
+        
+        
         <!-- Bootstrap -->
         <link href="<?php print base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
 
@@ -69,6 +78,10 @@
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/master
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>

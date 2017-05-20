@@ -4,22 +4,22 @@
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
-                    
-                    
+
+
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
-              
-<!--Sucursales-->
+
+                    <!--Sucursales-->
                     <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-arrow-left fa-1x"></span><br>VOLVER A CLIENTES</button>
                     <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><br>NUEVA SUCURSAL</button>
                     <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-arrow-right fa-1x"></span><br>SUCURSALES</button>
                     <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><br>EDITAR SUCURSAL</button>
                     <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR SUCURSAL</button> 
-                
-                
-                
+
+
+
                 </div>
 
                 <div class="col-md-12" align="right">
@@ -71,31 +71,31 @@
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CALLE*</label>
+                            <label for="">CALLE</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No EXTERIOR*</label>
+                            <label for="">No EXTERIOR</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No INTERIOR*</label>
+                            <label for="">No INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CÓDIGO POSTAL*</label>
+                            <label for="">CÓDIGO POSTAL</label>
                             <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">COLONIA*</label>
+                            <label for="">COLONIA</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CIUDAD*</label>
+                            <label for="">CIUDAD</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">ESTADO*</label>
+                            <label for="">ESTADO</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
@@ -155,31 +155,31 @@
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CALLE*</label>
+                            <label for="">CALLE</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No EXTERIOR*</label>
+                            <label for="">No EXTERIOR</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No INTERIOR*</label>
+                            <label for="">No INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CÓDIGO POSTAL*</label>
+                            <label for="">CÓDIGO POSTAL</label>
                             <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">COLONIA*</label>
+                            <label for="">COLONIA</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">CIUDAD*</label>
+                            <label for="">CIUDAD</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="">ESTADO*</label>
+                            <label for="">ESTADO</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-4">
@@ -880,7 +880,7 @@
 
         btnVerSucursales.click(function () {
             if (cliente_id !== 0 && cliente_id !== null) {
-                
+
                 btnNuevo.addClass("hide");
                 btnRefrescar.addClass("hide");
                 btnVolverAClientes.removeClass("hide");
@@ -927,45 +927,130 @@
         });
 
         btnModificarSucursal.click(function () {
-            var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
-            $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                btnVerSucursales.trigger('click');
-                mdlEditarSucursal.modal('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
+                $.ajax({
+                    url: base_url + 'index.php/CtrlSucursal/onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    btnVerSucursales.trigger('click');
+                    mdlEditarSucursal.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
+
+
         });
 
         btnGuardarSucursal.click(function () {
-            var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
-            $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                btnVerSucursales.trigger('click');
-                mdlNuevaSucursal.modal('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+
+                var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
+                $.ajax({
+                    url: base_url + 'index.php/CtrlSucursal/onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    btnVerSucursales.trigger('click');
+                    mdlNuevaSucursal.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
+
         });
 
         btnCancelarSucursal.click(function () {
@@ -1026,25 +1111,66 @@
 
 
         btnModificar.click(function () {
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
-
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CLIENTE', 'success');
-                getRecords();
-                mdlEditar.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CLIENTE', 'success');
+                    getRecords();
+                    mdlEditar.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+
+
         });
 
         btnEditar.click(function () {
@@ -1106,7 +1232,44 @@
         });
 
         btnGuardar.click(function () {
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+           $.validator.setDefaults({
+                ignore: []
+            });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
+//            $('#frmNuevo').valid();
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+                
+                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
             $.ajax({
                 url: master_url + 'onAgregar',
                 type: "POST",
@@ -1124,6 +1287,10 @@
             }).always(function () {
                 HoldOn.close();
             });
+            }
+        
+        
+            
         });
 
         btnArchivo.click(function () {
@@ -1200,10 +1367,12 @@
         });
 
         btnNuevo.click(function () {
-            //Limpia los campos
-            mdlNuevo.find("input").val("");
+
             //Muestra el modal
             mdlNuevo.modal('show');
+            //Limpia los campos
+            mdlNuevo.find("input").val("");
+            mdlNuevo.find("select").val(null).trigger("change");
         });
         /*CALLS*/
         getRecords();
@@ -1228,8 +1397,8 @@
             $("#tblRegistros").html(getTable('tbllClientes', data));
             $('#tbllClientes tfoot th').each(function () {
                 var title = $(this).text();
-                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+
             });
             var tblSelected = $('#tbllClientes').DataTable(tableOptions);
             $('#tbllClientes tbody').on('click', 'tr', function () {
