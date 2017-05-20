@@ -561,8 +561,7 @@ table.table-bordered.dataTable tbody td {
     display: block;
     z-index: 50;
 }
-
-<<<<<<< HEAD
+ 
 .hand-cursor{
     cursor: pointer; 
 }
@@ -632,12 +631,8 @@ table tfoot th input[type="text"]{
 table tfoot th input[type="text"]:focus{
     color: #fff !important;
 }
-=======
 .errorForms{
     
     color: rgb(221,44,0);
     font-size: 12px;
 }
-
-
->>>>>>> origin/master
