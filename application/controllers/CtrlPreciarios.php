@@ -1,4 +1,3 @@
-
 <?php
 
 header('Access-Control-Allow-Origin: http://project.ayr.mx/');
@@ -41,11 +40,51 @@ class CtrlPreciarios extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getPreciarioByID() {
         try {
             extract($this->input->post());
             $data = $this->preciario_model->getPreciarioByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getCategoriasByPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getCategoriasByPreciarioID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubCategoriasByCategoriaIDPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getSubCategoriasByCategoriaIDPreciarioID($ID, $IDC);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID($ID, $IDC, $IDSC);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID($ID, $IDC, $IDSC, $IDSSC);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -149,8 +188,8 @@ class CtrlPreciarios extends CI_Controller {
 
     public function onModificar() {
         try {
-            extract($this->input->post()); 
-            
+            extract($this->input->post());
+
             $DATA = array(
                 'Nombre' => (isset($Nombre) && $Nombre !== NULL && $Nombre !== '') ? $Nombre : 'NO ESPECÍFICA',
                 'Tipo' => (isset($Tipo) && $Tipo !== NULL && $Tipo !== '') ? $Tipo : 'NO ESPECÍFICA',
@@ -158,7 +197,7 @@ class CtrlPreciarios extends CI_Controller {
                 'Cliente_ID' => (isset($Cliente_ID) && $Cliente_ID !== NULL && $Cliente_ID !== '') ? $Cliente_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== NULL && $Estatus !== '') ? $Estatus : NULL
             );
-            $this->preciario_model->onModificar($ID, $DATA); 
+            $this->preciario_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

@@ -5,7 +5,7 @@
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
+                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
@@ -115,7 +115,7 @@
 <!--EDITAR-->
 
 <div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg super-fullscreen" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -126,7 +126,7 @@
                     <fieldset> 
                         <div class="col-6 col-md-12 hidden">
                             <label for="">ID*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required disabled="true">
+                            <input type="text" class="form-control" id="ID" name="ID" required disabled="true">
                         </div>
 
                         <div class="col-6 col-md-12">
@@ -168,34 +168,15 @@
                             </select>
                         </div>
 
-                        <div class="col-md-12">
-                            <br>
-                            <div class="alert alert-dismissible alert-warning">
-
-                                <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
-                                <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
-                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Cantidad, Precio, Tipo, Moneda</p>
-                            </div> 
-                        </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12">  
                             <span> <br></span>
-                        </div>
 
-                        <div class="col-md-12" align="center">
-                            <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
-                            <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-2x">
-                                </span> 
-                                SELECCIONAR ARCHIVO 
-                            </button> 
                         </div> 
-                        <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto !important; height: 250px!important;"></div>
+                        <div id="VistaPrevia" class="col-md-12" align="center"></div>
                         <div class="col-md-12 hide">
                             <textarea id="json_preciario" name="json_preciario" rows="5" cols="10" class="form-control">
                             </textarea>
-                        </div> 
-
-
+                        </div>  
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
 
@@ -230,7 +211,7 @@
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
- 
+
 </div>
 
 
@@ -256,18 +237,18 @@
     var VistaPrevia = mdlNuevo.find("#VistaPrevia");
 
     $(document).ready(function () {
- 
-          //Evento clic del boton confirmar borrar
+
+        //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-            
-             if (temp !== 0 && temp !== undefined && temp > 0) {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -276,7 +257,7 @@
                 });
                 $.ajax({
                     url: master_url + 'onEliminar',
-                    type: "POST", 
+                    type: "POST",
                     data: {
                         ID: temp
                     }
@@ -331,7 +312,7 @@
             mdlNuevo.find("input").val("");
             mdlNuevo.modal('show');
         });
-        
+
         btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -352,9 +333,12 @@
                     mdlEditar.find("#Nombre").val(preciario.Nombre);
                     mdlEditar.find("#Tipo").val(preciario.Tipo);
                     mdlEditar.find("#FechaCreacion").val(preciario.FechaCreacion);
-                    mdlEditar.find("#Cliente_ID").select2("val",preciario.Cliente_ID); 
-                    mdlEditar.find("#Estatus").select2("val",preciario.Estatus); 
-                    mdlEditar.find("#Tipo").select2("val",preciario.Tipo); 
+                    mdlEditar.find("#Cliente_ID").select2("val", preciario.Cliente_ID);
+                    mdlEditar.find("#Estatus").select2("val", preciario.Estatus);
+                    mdlEditar.find("#Tipo").select2("val", preciario.Tipo);
+                    mdlEditar.find("#VistaPrevia").html("");
+                    getCategoriasByPreciarioID(preciario.ID);
+
                     mdlEditar.modal('show');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -374,7 +358,7 @@
             Archivo.change(function () {
                 var extension = getExt(Archivo[0].files[0].name);
                 console.log('EXTENSION ' + extension);
-                if (extension === "xlsx" || extension === "xls" || extension==="csv") {
+                if (extension === "xlsx" || extension === "xls" || extension === "csv") {
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         console.log("onload", new Date());
@@ -485,6 +469,197 @@
             HoldOn.close();
         });
     }
+    function getCategoriasByPreciarioID(IDX) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO..."
+        });
+        $.ajax({
+            url: master_url + 'getCategoriasByPreciarioID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            console.log(data, x, jq);
+
+            var categoriax = '';
+            $.each(data, function (k, v) {
+                categoriax += '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
+                categoriax += '<div class="panel panel-default">';
+                categoriax += '<div class="panel-heading" role="tab" id="' + IDX + v.ID + v.CLAVE + '" onclick="getSubCategoriasByCategoriaIDPreciarioID(this, ' + IDX + ',' + v.ID + ', \'' + v.CLAVE + '\')">';
+                categoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + IDX + v.ID + v.CLAVE + '" aria-expanded="true" aria-controls="collapseOne">';
+                categoriax += '<div class="row">';
+                categoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
+                categoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                categoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span></div>';
+                categoriax += '</div>';
+                categoriax += '</a>';
+                categoriax += '</div>';
+                categoriax += '<div id="collapse' + IDX + v.ID + v.CLAVE + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + IDX + v.ID + v.CLAVE + '">';
+                categoriax += '<div class="panel-body" id="SubCategoria' + IDX + v.ID + v.CLAVE + '">';
+
+                categoriax += '</div>';
+                categoriax += '</div>';
+                categoriax += '</div> ';
+            });
+//            categoriax += '</div>';
+            mdlEditar.find("#VistaPrevia").html(categoriax);
+
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function getSubCategoriasByCategoriaIDPreciarioID(e, ID, IDC, CLAVEX) {
+
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO..."
+        });
+        $.ajax({
+            url: master_url + 'getSubCategoriasByCategoriaIDPreciarioID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: ID,
+                IDC: IDC
+            }
+        }).done(function (data, x, jq) {
+            console.log(data, x, jq);
+            var subcategoriax = '';
+            $.each(data, function (k, v) {
+                subcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + v.ID + v.CLAVE + '" role="tablist" aria-multiselectable="true">';
+                subcategoriax += '<div class="panel panel-default">';
+                if (v.NSUB > 0) {
+                    subcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + v.ID + v.CLAVE + '" onclick="getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(' + ID + ',' + IDC + ',' + v.ID + ',\'' + v.CLAVE + '\')">';
+                } else {
+                    subcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + v.ID + v.CLAVE + '" onclick="">';
+                }
+                subcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + v.ID + v.CLAVE + '" href="#collapse' + ID + IDC + v.ID + v.CLAVE + '" aria-expanded="true" aria-controls="collapseOne">';
+                subcategoriax += '<div class="row">';
+                subcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
+                subcategoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                subcategoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span></div>';
+                subcategoriax += '</div>';
+                subcategoriax += '</a>';
+                subcategoriax += '</div>';
+                subcategoriax += '<div id="collapse' + ID + IDC + v.ID + v.CLAVE + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + ID + IDC + v.ID + v.CLAVE + '">';
+                subcategoriax += '<div class="panel-body" id="SubSubCategoria' + ID + IDC + v.ID + v.CLAVE + '">';
+
+                subcategoriax += '</div>';
+                subcategoriax += '</div>';
+                subcategoriax += '</div> ';
+            });
+            subcategoriax += '</div>';
+            mdlEditar.find("#SubCategoria" + ID + IDC + CLAVEX).html(subcategoriax);
+
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(ID, IDC, IDSC, CLAVE) {
+        console.log(ID, IDC, IDSC, CLAVE);
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO..."
+        });
+        $.ajax({
+            url: master_url + 'getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: ID,
+                IDC: IDC,
+                IDSC: IDSC
+            }
+        }).done(function (data, x, jq) {
+            console.log(data);
+
+            var subsubcategoriax = '';
+            $.each(data, function (k, v) {
+                subsubcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + IDSC + v.ID + v.CLAVE + '" role="tablist" aria-multiselectable="true">';
+                subsubcategoriax += '<div class="panel panel-default">';
+                if (v.NSUB > 0) {
+                    subsubcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + IDSC + v.ID + v.CLAVE + '" onclick="getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(\'Conceptos' + ID + IDC + IDSC + v.ID + v.CLAVE + '\',' + ID + ',' + IDC + ',' + IDSC + ',' + v.ID + ',\'' + v.CLAVE + '\')">';
+                } else {
+                    subsubcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + IDSC + v.ID + v.CLAVE + '">';
+                }
+                subsubcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + IDSC + v.ID + v.CLAVE + '">';
+                subsubcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + v.ID + v.CLAVE + '" href="#collapse' + ID + IDC + IDSC + v.ID + v.CLAVE + '" aria-expanded="true" aria-controls="collapseOne">';
+                subsubcategoriax += '<div class="row">';
+                subsubcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
+                subsubcategoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                subsubcategoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span></div>';
+                subsubcategoriax += '</div>';
+                subsubcategoriax += '</a>';
+                subsubcategoriax += '</div>';
+                subsubcategoriax += '<div id="collapse' + ID + IDC + IDSC + v.ID + v.CLAVE + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + ID + IDC + IDSC + v.ID + v.CLAVE + '">';
+                subsubcategoriax += '<div class="panel-body" id="Conceptos' + ID + IDC + IDSC + v.ID + v.CLAVE + '">';
+
+                subsubcategoriax += '</div>';
+                subsubcategoriax += '</div>';
+                subsubcategoriax += '</div> ';
+            });
+            subsubcategoriax += '</div>';
+            mdlEditar.find("#SubSubCategoria" + ID + IDC + IDSC + CLAVE).html(subsubcategoriax);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(CONTAINER, ID, IDC, IDSC, IDSSC, CLAVE) {
+        if (!mdlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC + CLAVE).hasClass("in")) {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "CARGANDO..."
+            });
+            $.ajax({
+                url: master_url + 'getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: ID,
+                    IDC: IDC,
+                    IDSC: IDSC,
+                    IDSSC: IDSSC
+                }
+            }).done(function (data, x, jq) {
+                mdlEditar.find("#" + CONTAINER).html(getTable("getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID", data));
+                mdlEditar.find('#getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                });
+                var tblSelected = mdlEditar.find("#getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID").DataTable(tableOptions);
+
+                // Apply the search
+                tblSelected.columns().every(function () {
+                    var that = this;
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        }
+    }
+
+    function onEditarCategoria(e, IDX, CLAVE, DESCRIPCION) {
+        $(e).parent().find("div").removeClass("hide");
+        console.log(IDX, CLAVE, DESCRIPCION);
+    }
 </script>
 
 <script>
@@ -494,7 +669,6 @@
     /*global Uint8Array, Uint16Array, ArrayBuffer */
     /*global XLSX */
     var X = XLSX;
-
     function fixdata(data) {
         var o = "", l = 0, w = 10240;
         for (; l < data.byteLength / w; ++l)

@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 *{
-/*    font-family: 'Oswald', sans-serif;*/
+    /*    font-family: 'Oswald', sans-serif;*/
     text-transform: uppercase !important;
     font-size: 14px;
 }
@@ -21,9 +21,9 @@ html{
 
 }
 body {
-/*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
-/*    line-height: 1.42857143; 
-    color: #666666 !important;*/
+    /*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    /*    line-height: 1.42857143; 
+        color: #666666 !important;*/
     background: none !important; 
     letter-spacing: 0px;
 
@@ -71,28 +71,28 @@ h6, .h6 {
 
 .btn-primary {
     color: #ffffff;   
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5e789a+0,103e76+100 */
-background: #5e789a; /* Old browsers */
-background: -moz-linear-gradient(top, #002c4c 0%, #002c4c 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #002c4c 0%,#002c4c 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #002c4c 0%,#002c4c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002c4c', endColorstr='#002c4c',GradientType=0 ); /* IE6-9 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5e789a+0,103e76+100 */
+    background: #5e789a; /* Old browsers */
+    background: -moz-linear-gradient(top, #002c4c 0%, #002c4c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #002c4c 0%,#002c4c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #002c4c 0%,#002c4c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002c4c', endColorstr='#002c4c',GradientType=0 ); /* IE6-9 */
 }
 /*controles de tabla*/
 div.dt-buttons > .btn-default{
-        background: none;
-        border: none;
-        color: #002c4c;
-            -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.0);
+    background: none;
+    border: none;
+    color: #002c4c;
+    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.0);
     box-shadow: 1px 1px 4px rgba(0,0,0,0.0);
-    }
-    
-    div.dt-buttons > .btn-default:hover{
-       
-            -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-        box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-        color: #97A3AB;
-    }
+}
+
+div.dt-buttons > .btn-default:hover{
+
+    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    color: #97A3AB;
+}
 
 .btn-default {
     color: #ffffff;   
@@ -250,9 +250,9 @@ textarea, textarea.form-control, input.form-control, input[type=text], input[typ
 }
 
 .navbar-default .navbar-nav > li > a {
-    
+
     color: #666666 !important;
-    
+
 }
 textarea.form-control{
     color: #1a3783 !important;
@@ -271,7 +271,7 @@ textarea.form-control{
 .modal-header{
     text-align: center;
     background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
-  
+
 }
 
 .modal-title {
@@ -320,7 +320,7 @@ textarea.form-control{
     background-color: #002c4c;
     outline: 0;
 } 
-    
+
 /*TABLAS*/
 
 /* table{
@@ -366,15 +366,20 @@ table thead tr{
     background-color: #002c4c !important;
     font-size: 13px;
 }
+.table tfoot th{
+    color: #ffffff !important; 
+    font-weight: normal !important;
+    background-color: #002c4c !important;
+    font-size: 13px;
+}
 .table tr:hover{
     color: #ffffff !important; 
     background-color: #ACB1BE !important;
 }
 
 .table tfoot tr th{
-    color: #000 !important; 
-    font-weight: normal !important;
-    background-color: #fff !important;
+    color: #fff !important; 
+    font-weight: normal !important; 
 }
 
 .table-hover>tbody>tr.success:hover>td, 
@@ -382,7 +387,7 @@ table thead tr{
 .table-hover>tbody>tr:hover>.success, 
 .table-hover>tbody>tr>td.success:hover, 
 .table-hover>tbody>tr>th.success:hover {
-     background-color: #6D6F76;
+    background-color: #6D6F76;
 }
 
 .table>thead>tr>td.success, 
@@ -397,14 +402,14 @@ table thead tr{
 .table>thead>tr.success>th, 
 .table>tbody>tr.success>th, 
 .table>tfoot>tr.success>th {
-        background-color: #6D6F76;
-        color: #FFF;
+    background-color: #6D6F76;
+    color: #FFF;
 }
 
 table.table-bordered.dataTable tbody th, 
 table.table-bordered.dataTable tbody td {
     font-size: 12px !important;
-     border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
 }
 
 
@@ -417,7 +422,7 @@ table.table-bordered.dataTable tbody td {
 .table-bordered>tbody>tr>th, 
 .table-bordered>thead>tr>td, 
 .table-bordered>tbody>tr>td {
-     border: 0px solid #dddddd; 
+    border: 0px solid #dddddd; 
 }
 
 .table>thead>tr>th, 
@@ -461,7 +466,7 @@ table.table-bordered.dataTable tbody td {
 [data-tooltip] {
     display: inline-block;
     position: relative;
-/*    cursor: help;*/
+    /*    cursor: help;*/
     padding: 1px;
 }
 /* Tooltip styling */
@@ -555,4 +560,74 @@ table.table-bordered.dataTable tbody td {
 [data-tooltip]:hover:after {
     display: block;
     z-index: 50;
+}
+
+.hand-cursor{
+    cursor: pointer; 
+}
+.hand-cursor:hover{
+    cursor: pointer;
+    color: #ffffff !important; 
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+}
+
+.list-group-item:hover > .badge {
+    color: #ffffff !important; 
+    background-color: #bbb;
+    background-image: none !important;
+} 
+.list-group-item>.badgeft {
+    float: left;
+    color: #ffffff !important; 
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+} 
+.list-group-item:hover>.badgeft {
+    color: #ffffff !important; 
+    background-color: #bbb;
+    background-image: none !important;
+} 
+.badgeft {
+    padding: 4px 6px 4px;
+} 
+.badge { 
+    background-color: #bbb; 
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+} 
+.badgeft {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #bbb;
+    border-radius: 10px;
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+}
+.super-fullscreen {
+    width: 90% !important;
+    height: 90% !important; 
+}
+.super-fullscreen {
+    width: 90% !important;
+    min-height: 90%;
+    height: auto; 
+}
+.super-fullscreen > .modal-content {
+    height: auto;
+    border-radius: 0;
+}
+.super-fullscreen > .modal-body {
+    height: auto;
+    border-radius: 0;
+} 
+table tfoot th input[type="text"]{
+    color: #fff !important;
+}
+table tfoot th input[type="text"]:focus{
+    color: #fff !important;
 }

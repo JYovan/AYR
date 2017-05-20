@@ -30,7 +30,104 @@ class preciario_model extends CI_Model {
         try {
             $this->db->select('*', false);
             $this->db->from('preciarios AS P');
-            $this->db->where('P.ID',$ID);
+            $this->db->where('P.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getCategoriasByPreciarioID($ID) {
+        try {
+            $this->db->select('PC.ID, PC.Clave AS CLAVE, PC.Descripcion AS DESCRIPCION, (SELECT COUNT(*) FROM preciariosubcategorias AS PSC WHERE PSC.Preciario_ID = PC.Preciario_ID AND PSC.PreciarioCategoria_ID = PC.ID) AS NSUB', false);
+            $this->db->from('preciariocategorias AS PC');
+            $this->db->where('PC.Preciario_ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubCategoriasByCategoriaIDPreciarioID($ID, $IDC) {
+        try {
+            $this->db->select('PSC.ID, PSC.Clave AS CLAVE, PSC.Descripcion AS DESCRIPCION, (SELECT COUNT(*) FROM preciariosubsubcategoria AS PSSC WHERE PSSC.Preciario_ID = PSC.Preciario_ID AND PSSC.PreciarioCategoria_ID = PSC.ID) AS NSUB', false);
+            $this->db->from('preciariosubcategorias AS PSC');
+            $this->db->where('PSC.Preciario_ID', $ID);
+            $this->db->where('PSC.PreciarioCategoria_ID', $IDC);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID($ID, $IDC, $IDSC) {
+        try {
+            $this->db->select("PSSC.ID, PSSC.Clave AS CLAVE, PSSC.Descripcion AS DESCRIPCION, "
+                    . "(SELECT COUNT(*) FROM preciarioconceptos AS PC "
+                    . "WHERE PC.Preciarios_ID = $ID "
+                    . "AND PC.PreciarioCategorias_ID = $IDC "
+                    . "AND PC.PreciarioSubCategorias_ID = $IDSC "
+                    . "AND PC.PreciarioSubSubCategoria_ID = PSSC.ID) AS NSUB", false);
+            $this->db->from('preciariosubsubcategoria AS PSSC');
+            $this->db->where('PSSC.Preciario_ID', $ID);
+            $this->db->where('PSSC.PreciarioCategoria_ID', $IDC);
+            $this->db->where('PSSC.PreciarioSubCategorias_ID', $IDSC);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID($ID, $IDC, $IDSC, $IDSSC) {
+        try {
+            $this->db->select("PC.ID, "
+                    . "CONCAT('<span class=\"label label-danger\">',"
+                    . "PC.Clave"
+                    . ",'</span>')"
+                    . " AS CLAVE, "
+                    . "PC.Descripcion AS DESCRIPCION, PC.Unidad AS UNIDAD, "
+                    . "CONCAT('<span class=\"label label-success\">',\"$\",FORMAT(PC.Costo,2),'</span>') AS COSTO, PC.Moneda AS MONEDA", false);
+            $this->db->from('preciarioconceptos AS PC');
+            if ($ID !== NULL && $ID !== '') {
+                $this->db->where('PC.Preciarios_ID', $ID);
+            }
+            if ($IDC !== NULL && $IDC !== '') {
+                $this->db->where('PC.PreciarioCategorias_ID', $IDC);
+            }
+            if ($IDSC !== NULL && $IDSC !== '') {
+                $this->db->where('PC.PreciarioSubCategorias_ID', $IDSC);
+            }
+            if ($IDSSC !== NULL && $IDSSC !== '') {
+                $this->db->where('PC.PreciarioSubSubCategoria_ID', $IDSSC);
+            }
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -60,7 +157,7 @@ class preciario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregar($array) {
         try {
             $this->db->insert("preciarios", $array);
@@ -116,7 +213,7 @@ class preciario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
- 
+
     public function onAgregarPreciarioSubSubCategoria($array) {
         try {
             $this->db->insert("preciariosubsubcategoria", $array);
@@ -131,7 +228,6 @@ class preciario_model extends CI_Model {
         }
     }
 
-
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -143,24 +239,25 @@ class preciario_model extends CI_Model {
     }
 
     public function onEliminar($ID) {
-        try { 
+        try {
             $this->db->where('Preciario_ID', $ID);
-            $this->db->delete("preciariosubsubcategoria"); 
-            
+            $this->db->delete("preciariosubsubcategoria");
+
             $this->db->where('Preciarios_ID', $ID);
-            $this->db->delete("preciarioconceptos"); 
-            
+            $this->db->delete("preciarioconceptos");
+
             $this->db->where('Preciario_ID', $ID);
-            $this->db->delete("preciariosubcategorias"); 
-            
+            $this->db->delete("preciariosubcategorias");
+
             $this->db->where('Preciario_ID', $ID);
-            $this->db->delete("preciariocategorias"); 
-            
+            $this->db->delete("preciariocategorias");
+
             $this->db->where('id', $ID);
-            $this->db->delete("preciarios"); 
+            $this->db->delete("preciarios");
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
 }

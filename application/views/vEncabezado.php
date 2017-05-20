@@ -61,16 +61,16 @@
         <!--Date picker--> 
         <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
-        
+
         <!--JS XLXS API-->
-        
+
         <script src="<?php echo base_url(); ?>js/js-xlsx/dist/cpexcel.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
-        
+
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" /> 
+        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
 
     </head>
@@ -78,14 +78,15 @@
         var base_url = "<?php print base_url(); ?>";
         $(function () {
             $('table dataTable').css('display', 'block');
-
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
             $("select").select2({
                 placeholder: "SELECCIONE UNA OPCIÓN",
                 allowClear: true
-            }); 
+            });
 
             $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
