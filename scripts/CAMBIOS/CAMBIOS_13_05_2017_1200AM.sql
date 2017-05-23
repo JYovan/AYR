@@ -53,3 +53,7 @@ ADD CONSTRAINT `fk_Sucursales_EmpresasSupervisoras1`
   REFERENCES `ayr`.`empresassupervisoras` (`ID`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+
+ALTER TABLE `ayr`.`sucursales` 
+ADD COLUMN `EntreCalles` VARCHAR(150) NULL AFTER `NoInterior`;

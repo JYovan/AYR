@@ -262,10 +262,15 @@
                             <label for="">NO EXTERIOR*</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div> 
+                         
                         <div class="col-md-4">
                             <label for="">NO INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div> 
+                        <div class="col-md-12">
+                            <label for="">ENTRE CALLES</label>
+                            <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" required>
+                        </div>
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
@@ -555,6 +560,10 @@
                             <label for="">NO INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div> 
+                         <div class="col-md-12">
+                            <label for="">ENTRE CALLES</label>
+                            <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" required>
+                        </div>
                         <div class="col-md-4">
                             <label for="">CÓDIGO POSTAL*</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
@@ -928,43 +937,6 @@
 
         btnModificarSucursal.click(function () {
 
-            $.validator.setDefaults({
-                ignore: []
-            });
-
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
-
-            $('#frmEditar').validate({
-                errorElement: 'span',
-                errorClass: 'errorForms',
-                rules: {
-                    Nombre: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-
-                    var elem = $(element);
-                    elem.addClass(errorClass);
-
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
-                }
-
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
-
-            //Si es verdadero que hacer
-            if ($('#frmEditar').valid()) {
-
                 var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
                 $.ajax({
                     url: base_url + 'index.php/CtrlSucursal/onModificar',
@@ -984,7 +956,7 @@
                     HoldOn.close();
                 });
 
-            }
+            
 
 
 
@@ -992,42 +964,7 @@
 
         btnGuardarSucursal.click(function () {
 
-            $.validator.setDefaults({
-                ignore: []
-            });
-
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
-
-            $('#frmNuevo').validate({
-                errorElement: 'span',
-                errorClass: 'errorForms',
-                rules: {
-                    Nombre: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-
-                    var elem = $(element);
-                    elem.addClass(errorClass);
-
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
-                }
-
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
-
-            //Si es verdadero que hacer
-            if ($('#frmNuevo').valid()) {
+          
 
                 var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
                 $.ajax({
@@ -1048,8 +985,7 @@
                     HoldOn.close();
                 });
 
-            }
-
+            
 
         });
 

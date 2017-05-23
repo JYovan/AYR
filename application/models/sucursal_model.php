@@ -62,7 +62,7 @@ class sucursal_model extends CI_Model {
 
     public function getSucursalesByCliente($ID) {
         try {
-            $this->db->select('S.ID, S.CR AS CR, S.Region AS "REGIÓN"', false);
+            $this->db->select('S.ID, S.CR AS CR,S.Nombre as "SUCURSAL" , S.Region AS "REGIÓN"', false);
             $this->db->from('sucursales AS S');
             $this->db->where('S.Cliente_ID', $ID);
             $query = $this->db->get();
