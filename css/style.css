@@ -469,7 +469,7 @@ table thead tr{
 
 table.table-bordered.dataTable tbody th, 
 table.table-bordered.dataTable tbody td {
-    font-size: 14px !important;
+    font-size: 13px !important;
     border-bottom: 1px solid #dddddd;
 }
 

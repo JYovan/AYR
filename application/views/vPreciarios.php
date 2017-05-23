@@ -37,7 +37,7 @@
                         </div>
 
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="">FECHA DE CREACION*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
                         </div>  
@@ -51,7 +51,7 @@
                                 <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
-
+                       
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" required>
@@ -76,7 +76,7 @@
 
                                 <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
                                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
-                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Cantidad, Precio, Tipo, Moneda</p>
+                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div> 
                         </div>
 
@@ -134,7 +134,7 @@
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="">FECHA DE CREACION*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
                         </div>  
@@ -177,7 +177,7 @@
                         </div>  
 
                         <div class="col-md-12">
-                            <h3>PRECIARIO ESPECÍFICO</h3>
+                            <h3>CONCEPTOS</h3>
                         </div>
                         <div id="mdlEditarXConceptoID" class="hide"> 
                             <div class="col-md-12 hide">
@@ -234,15 +234,15 @@
                         <div class="col-md-12">
                             <br>
                         </div>
-                        <div class="col-md-5">
-                            <input type="text" id="ClaveConcepto" name="ClaveConcepto" class="form-control" placeholder="BUSCAR POR CLAVE">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" id="DescripcionConcepto" name="DescripcionConcepto" class="form-control" placeholder="BUSCAR POR DESCRIPCIÓN">
-                        </div>
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-default" id="btnBuscarConcepto"><span class="fa fa-search fa-1x"></span><br>BUSCAR</button> 
-                        </div>
+                        <!--                        <div class="col-md-5">
+                                                    <input type="text" id="ClaveConcepto" name="ClaveConcepto" class="form-control" placeholder="BUSCAR POR CLAVE">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" id="DescripcionConcepto" name="DescripcionConcepto" class="form-control" placeholder="BUSCAR POR DESCRIPCIÓN">
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="btn btn-default" id="btnBuscarConcepto"><span class="fa fa-search fa-1x"></span><br>BUSCAR</button> 
+                                                </div>-->
                         <div id="PreciarioEspecifico" class="col-md-12">
                         </div>
                         <div class="col-6 col-md-6">
@@ -315,7 +315,7 @@
         btnBuscarConcepto.click(function () {
             getConceptoByClaveXDescripcion(mdlEditar.find("#ID").val());
         });
- 
+
         btnCancelarConcepto.click(function () {
             mdlEditarXConceptoID.addClass("hide");
             mdlEditarXConceptoID.find("#IDConcepto").val("");
@@ -385,7 +385,7 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
+
         btnEliminarConcepto.click(function () {
             console.log('ELIMINANDO...' + temp);
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -468,13 +468,13 @@
                 HoldOn.close();
             });
         });
-        
+
         btnModificar.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
             });
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]); 
+            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
             $.ajax({
                 url: master_url + 'onModificar',
                 type: "POST",
@@ -526,6 +526,24 @@
                     mdlEditar.find("#Estatus").select2("val", preciario.Estatus);
                     mdlEditar.find("#Tipo").select2("val", preciario.Tipo);
                     mdlEditar.find("#PreciarioEspecifico").html("");
+
+
+                    mdlEditarXConceptoID.addClass("hide");
+                    mdlEditarXConceptoID.find("#IDConcepto").val("");
+                    mdlEditarXConceptoID.find("#Clave").val("");
+                    mdlEditarXConceptoID.find("#Descripcion").val("");
+                    mdlEditarXConceptoID.find("#Costo").val("");
+                    mdlEditarXConceptoID.find("#Moneda").val("");
+                    mdlEditarXConceptoID.find("#Unidad").val("");
+                    mdlEditarXConceptoID.find("#Categoria").select2("val", "");
+                    mdlEditarXConceptoID.find("#SubCategoria").select2("val", "");
+                    mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", "");
+                    btnCancelarConcepto.addClass("hide");
+                    btnGuardarConcepto.addClass("hide");
+
+
+
+
 //                    getCategoriasByPreciarioID(preciario.ID);
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
