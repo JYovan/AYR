@@ -65,15 +65,7 @@
                 </li>
                 <li><a href="<?php print base_url() ?>index.php/CtrlUsuario/">USUARIOS</a></li>
 
-
-
             </ul>
-
-            
-              
-                
-             
-            
             <ul class="nav navbar-nav navbar-right">
                 
                 <li class="dropdown">
@@ -104,10 +96,7 @@
             theme: 'sk-bounce',
             message: 'CARGANDO...'
         });
-        setTimeout(HoldOn.close(), 1500);
-        
-        
-        
+        setTimeout(HoldOn.close(), 1500);        
     });
     function onReport(){
             HoldOn.open({

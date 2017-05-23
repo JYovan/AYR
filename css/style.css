@@ -608,6 +608,27 @@ table.table-bordered.dataTable tbody td {
     border-radius: 10px;
     background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
 }
+ 
+.list-group-item>.badge-success {
+    float: left;
+    color: #ffffff !important; 
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
+}  
+.badge-success {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #4caf50;
+    border-radius: 10px;
+    background-image: none !important;
+}
 .super-fullscreen {
     width: 90% !important;
     height: 90% !important; 
@@ -635,4 +656,12 @@ table tfoot th input[type="text"]:focus{
     
     color: rgb(221,44,0);
     font-size: 12px;
+}
+.panel-default-list:hover {
+    color: #fff !important;
+    background: linear-gradient(to bottom,#ffa000 0,#ffa000 100%) !important;
+    border-color: #ffa000 !important;
+}
+.panel-default-list:hover > a{
+    color: #fff !important; 
 }

@@ -34,21 +34,21 @@
         <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
 
         <!--select2 control-->
-       
+
         <script src="<?php echo base_url(); ?>js/select2/select2.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 
 
-   
-        
+
+
         <!-- Validacion forms -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/additional-methods.min.js">
         <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
-        
-        
+
+
         <!-- Bootstrap -->
         <link href="<?php print base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
         <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
- 
+
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
@@ -86,10 +86,14 @@
     <script>
         var base_url = "<?php print base_url(); ?>";
         $(function () {
-            $('table dataTable').css('display', 'block');
+//            $("table.display").DataTable(tableOptions);
+            $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+            });
+            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
             $("select").select2({
@@ -99,6 +103,9 @@
 
             $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+            });
+            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
+                $(this).datepicker('hide');
             });
         });
 

@@ -51,6 +51,65 @@ class CtrlPreciarios extends CI_Controller {
         }
     }
 
+    public function getConceptoByClaveXDescripcion() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getConceptoByClaveXDescripcion($ID,$CLAVE,$DESCRIPCION);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function getConceptoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getConceptoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getConceptosXPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getConceptosXPreciarioID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getCategoriasXPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getCategoriasXPreciarioID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubCategoriasXCategoriaIDXPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getSubCategoriasXCategoriaIDXPreciarioID($ID, $IDC);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID($ID, $IDC, $IDSC);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getCategoriasByPreciarioID() {
         try {
             extract($this->input->post());
@@ -203,10 +262,44 @@ class CtrlPreciarios extends CI_Controller {
         }
     }
 
+    public function onEditarConcepto() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'XXXXX',
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NO ESPECÍFICA',
+                'Unidad' => (isset($Unidad) && $Unidad !== NULL && $Unidad !== '') ? $Unidad : 'NA',
+                'Costo' => (isset($Costo) && $Costo !== NULL && $Costo !== '') ? $Costo : 0.0,
+                'Moneda' => (isset($Moneda) && $Moneda !== NULL && $Moneda !== '') ? $Moneda : 'MXN'
+            );
+            if (isset($Categoria) && $Categoria !== NULL && $Categoria !== '') {
+                $data["PreciarioCategorias_ID"] = $Categoria;
+            }
+            if (isset($SubCategoria) && $SubCategoria !== NULL && $SubCategoria !== '') {
+                $data["PreciarioSubCategorias_ID"] = $SubCategoria;
+            }
+            if (isset($SubSubCategoria) && $SubSubCategoria !== NULL && $SubSubCategoria !== '') {
+                $data["PreciarioSubSubCategoria_ID"] = $SubSubCategoria;
+            }
+            $this->preciario_model->onEditarConcepto($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminar() {
         try {
             extract($this->input->post());
             $this->preciario_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onEliminarConcepto() {
+        try {
+            extract($this->input->post());
+            $this->preciario_model->onEliminarConcepto($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

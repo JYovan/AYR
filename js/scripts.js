@@ -176,33 +176,7 @@ function getTable(tblname, data) {
     div += "</table>";
     div += "</div>";
     return div;
-}
-function onNotify(span, message, type) {
-    if (type === "danger") {
-        beep();
-    }
-    if (type === "success") {
-        beeds();
-    }
-    $.notify({
-        icon: "media/logo.png",
-        title: span,
-        message: message
-    }, {
-        type: type,
-        z_index: 3031,
-
-        placement: {
-            from: "top",
-            align: "center"
-        }
-    }, {
-        animate: {
-            enter: 'animated bounceIn',
-            exit: 'animated bounceOut'
-        }
-    });
-}
+} 
 function getExt(filename) {
     var dot_pos = filename.lastIndexOf(".");
     if (dot_pos === -1)
