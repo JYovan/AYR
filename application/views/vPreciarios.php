@@ -126,7 +126,7 @@
                     <fieldset> 
                         <div class="col-md-12 hide">
                             <label for="">ID*</label>    
-                            <input type="text" class="form-control" id="ID" name="ID" required disabled="true">
+                            <input type="text" class="form-control" id="ID" name="ID" required>
                         </div>
 
                         <div class="col-md-12">
@@ -385,6 +385,7 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
+        
         btnEliminarConcepto.click(function () {
             console.log('ELIMINANDO...' + temp);
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -459,6 +460,31 @@
             }).done(function (data, x, jq) {
                 mdlNuevo.modal('hide');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
+                console.log(data, x, jq);
+                btnRefrescar.trigger('click');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+        
+        btnModificar.click(function () {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "GUARDANDO... POR FAVOR ESPERE"
+            });
+            var frm = new FormData(mdlEditar.find("#frmEditar")[0]); 
+            $.ajax({
+                url: master_url + 'onModificar',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                mdlEditar.modal('hide');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                 console.log(data, x, jq);
                 btnRefrescar.trigger('click');
             }).fail(function (x, y, z) {
