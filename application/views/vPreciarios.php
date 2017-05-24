@@ -51,7 +51,7 @@
                                 <option value="INACTIVO">INACTIVO</option> 
                             </select>
                         </div>
-                       
+
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" required>
@@ -165,16 +165,132 @@
                                 <option value=""></option> 
                             </select>
                         </div>
+                        
+                        <div id="pnlConceptos" class="col-md-12" align="center">  
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                            <ul class="nav nav-tabs">
+                                <li><a href="#Conceptos" data-toggle="tab">CONCEPTOS</a></li>
+                                <li><a href="#Categorias" data-toggle="tab">CATEGORÍAS</a></li>
+                                <li><a href="#SubCategorias" data-toggle="tab">SUB CATEGORÍAS</a></li>
+                                <li><a href="#SubSubCategorias" data-toggle="tab">SUBSUB CATEGORÍAS</a></li>
+                            </ul>
+                            </div>
+                            <div class="col-md-12"></div>
+                            <div id="pnlTabConceptos" class="tab-content">
+                                <div class="tab-pane fade" id="Conceptos">
+                                    <div class="col-md-4">
+                                        <label for="">CLAVE</label>
+                                        <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="">DESCRIPCIÓN</label>
+                                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                                        </textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">COSTO</label>
+                                        <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">MONEDA</label>
+                                        <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">UNIDAD</label>
+                                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">CATEGORÍA</label>
+                                        <select id="Categoria" name="Categoria" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">SUB CATEGORÍA</label>
+                                        <select id="SubCategoria" name="SubCategoria" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">SUB SUB CATEGORÍA</label>
+                                        <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>   
+                                    <div class="col-md-12" align="right">
+                                        <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
+                                        <button type="button" class="btn btn-default" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
 
-                        <div class="col-md-12">  
-                            <span> <br></span>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="Categorias">
+                                    <div class="" id="mdlNuevaCategoria">
+                                        <div class="col-md-6">
+                                            <label for="">CLAVE</label>
+                                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="">DESCRIPCIÓN</label>
+                                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                                        </div>
+                                        <div class="col-md-12" align="right">
+                                            <br>
+                                            <button type="button" class="btn btn-default" id="btnCancelarCategoria" name="btnCancelarCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+                                            <button type="button" class="btn btn-default" id="btnGuardarCategoria" name="btnGuardarCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="tab-pane fade" id="SubCategorias">
+                                    <div class="col-md-4">
+                                        <label for="">CLAVE</label>
+                                        <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">DESCRIPCIÓN</label>
+                                        <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12" align="right">
+                                        <br>
+                                        <button type="button" class="btn btn-default" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+                                        <button type="button" class="btn btn-default" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="SubSubCategorias">
+                                    <div class="col-md-6">
+                                        <label for="">CLAVE</label>
+                                        <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">DESCRIPCIÓN</label>
+                                        <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">CATEGORÍA</label>
+                                        <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>       
+                                    <div class="col-md-6">
+                                        <label for="">SUBCATEGORÍA</label>
+                                        <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
+                                            <option value=""></option> 
+                                        </select>
+                                    </div>
 
-                        </div> 
-                        <div id="VistaPrevia" class="col-md-12 hide" align="center"></div>
-                        <div class="col-md-12 hide">
-                            <textarea id="json_preciario" name="json_preciario" rows="5" cols="10" class="form-control">
-                            </textarea>
-                        </div>  
+                                    <div class="col-md-12" align="right">
+                                        <br>
+                                        <button type="button" class="btn btn-default" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+                                        <button type="button" class="btn btn-default" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-md-12">
                             <h3>CONCEPTOS</h3>
@@ -228,8 +344,8 @@
                             <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
                         </div>
                         <div class="col-md-6" align="right">
-                            <button type="button" class="btn btn-default hide" id="btnCancelarConcepto" name="btnCancelarConcepto"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
-                            <button type="button" class="btn btn-default hide" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
+                            <button type="button" class="btn btn-default hide" id="btnCancelarModificacion" name="btnCancelarModificacion"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
+                            <button type="button" class="btn btn-default hide" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
                         </div>
                         <div class="col-md-12">
                             <br>
@@ -299,11 +415,26 @@
     var btnModificar = mdlEditar.find("#btnEditar");
     var PreciarioEspecifico = mdlEditar.find("#PreciarioEspecifico");
     var mdlEditarXConceptoID = mdlEditar.find("#mdlEditarXConceptoID");
-    var btnGuardarConcepto = mdlEditar.find("#btnGuardarConcepto");
+    var btnModificarConcepto = mdlEditar.find("#btnModificarConcepto");
     var btnRefrescarConceptos = mdlEditar.find("#btnRefrescarConceptos");
     var btnEliminarConcepto = mdlEditar.find("#btnEliminarConcepto");
     var btnBuscarConcepto = mdlEditar.find("#btnBuscarConcepto");
+    var btnCancelarModificacion = mdlEditar.find("#btnCancelarModificacion");
+    var btnNuevoConcepto = mdlEditar.find("#btnNuevoConcepto");
+    var mdlNuevoConcepto = mdlEditar.find("#mdlNuevoConcepto");
+    var btnGuardarConcepto = mdlEditar.find("#btnGuardarConcepto");
     var btnCancelarConcepto = mdlEditar.find("#btnCancelarConcepto");
+    var btnNuevaCategoria = mdlEditar.find("#btnNuevaCategoria");
+    var pnlConceptos = mdlEditar.find("#pnlConceptos");
+    var btnCancelarCategoria = pnlConceptos.find("#btnCancelarCategoria");
+
+    var btnNuevaSubCategoria = mdlEditar.find("#btnNuevaSubCategoria");
+    var mdlNuevaSubCategoria = mdlEditar.find("#mdlNuevaSubCategoria");
+    var btnCancelarSubCategoria = mdlEditar.find("#btnCancelarSubCategoria");
+
+    var btnNuevaSubSubCategoria = mdlEditar.find("#btnNuevaSubSubCategoria");
+    var mdlNuevaSubSubCategoria = mdlEditar.find("#mdlNuevaSubSubCategoria");
+    var btnCancelarSubSubCategoria = mdlEditar.find("#btnCancelarSubSubCategoria");
 
     //Variables de controles para subir archivo
     var Archivo = mdlNuevo.find("#RutaArchivo");
@@ -312,11 +443,102 @@
 
     $(document).ready(function () {
 
+        btnCancelarSubSubCategoria.click(function () {
+            pnlConceptos.find("#SubSubCategorias").removeClass("active in");
+            pnlConceptos.find(".nav-tabs li").removeClass("active");
+            $.each(pnlConceptos.find("#SubSubCategorias").find("input"), function (k, v) {
+                $(v).val("");
+            });
+            $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function (k, v) {
+                $(v).select2("val", "");
+            });
+        });
+
+        btnCancelarSubCategoria.click(function () {
+            pnlConceptos.find("#SubCategorias").removeClass("active in");
+            pnlConceptos.find(".nav-tabs li").removeClass("active");
+            $.each(pnlConceptos.find("#SubCategorias").find("input"), function (k, v) {
+                $(v).val("");
+            });
+            $.each(pnlConceptos.find("#SubCategorias").find("select"), function (k, v) {
+                $(v).select2("val", "");
+            });
+        });
+
+        btnCancelarCategoria.click(function () {
+            pnlConceptos.find("#Categorias").removeClass("active in");
+            pnlConceptos.find(".nav-tabs li").removeClass("active");
+            $.each(pnlConceptos.find("#Categorias").find("input"), function (k, v) {
+                $(v).val("");
+            });
+            $.each(pnlConceptos.find("#Categorias").find("select"), function (k, v) {
+                $(v).select2("val", "");
+            });
+        });
+
+        btnNuevaSubSubCategoria.click(function () {
+            mdlNuevaSubSubCategoria.removeClass("hide");
+        });
+        btnNuevaSubCategoria.click(function () {
+            mdlNuevaSubCategoria.removeClass("hide");
+        });
+        btnNuevaCategoria.click(function () {
+            mdlNuevaCategoria.removeClass("hide");
+        });
+        btnCancelarConcepto.click(function () {
+            pnlConceptos.find("#Conceptos").removeClass("active in");
+            pnlConceptos.find(".nav-tabs li").removeClass("active");
+            $.each(pnlConceptos.find("#Conceptos").find("input"), function (k, v) {
+                $(v).val("");
+            });
+            $.each(pnlConceptos.find("#Conceptos").find("select"), function (k, v) {
+                $(v).select2("val", "");
+            });
+        });
+
+        btnGuardarConcepto.click(function () {
+            var frm = new FormData();
+            frm.append('ID', mdlEditar.find("#ID").val());
+            frm.append('Clave', mdlNuevoConcepto.find("#Clave").val());
+            frm.append('Descripcion', mdlNuevoConcepto.find("#Descripcion").val());
+            frm.append('Costo', mdlNuevoConcepto.find("#Costo").val());
+            frm.append('Moneda', mdlNuevoConcepto.find("#Moneda").val());
+            frm.append('Unidad', mdlNuevoConcepto.find("#Unidad").val());
+            frm.append('Categoria', mdlNuevoConcepto.find("#Categoria").val());
+            frm.append('SubCategoria', mdlNuevoConcepto.find("#SubCategoria").val());
+            frm.append('SubSubCategoria', mdlNuevoConcepto.find("#SubSubCategoria").val());
+            $.ajax({
+                url: master_url + 'onAgregarConcepto',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
+                console.log(data, x, jq);
+                btnRefrescarConceptos.trigger('click');
+                mdlNuevoConcepto.addClass("hide");
+                btnNuevoConcepto.addClass("hide");
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+
+
+        btnNuevoConcepto.click(function () {
+            btnCancelarConcepto.removeClass("hide");
+            btnGuardarConcepto.removeClass("hide");
+            mdlNuevoConcepto.removeClass("hide");
+        });
+
         btnBuscarConcepto.click(function () {
             getConceptoByClaveXDescripcion(mdlEditar.find("#ID").val());
         });
 
-        btnCancelarConcepto.click(function () {
+        btnCancelarModificacion.click(function () {
             mdlEditarXConceptoID.addClass("hide");
             mdlEditarXConceptoID.find("#IDConcepto").val("");
             mdlEditarXConceptoID.find("#Clave").val("");
@@ -327,15 +549,15 @@
             mdlEditarXConceptoID.find("#Categoria").select2("val", "");
             mdlEditarXConceptoID.find("#SubCategoria").select2("val", "");
             mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", "");
-            btnCancelarConcepto.addClass("hide");
-            btnGuardarConcepto.addClass("hide");
+            btnCancelarModificacion.addClass("hide");
+            btnModificarConcepto.addClass("hide");
         });
 
         btnRefrescarConceptos.click(function () {
             getConceptosXPreciarioID(mdlEditar.find("#ID").val());
         });
 
-        btnGuardarConcepto.click(function () {
+        btnModificarConcepto.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
@@ -362,7 +584,7 @@
                 console.log(data, x, jq);
                 btnRefrescarConceptos.trigger('click');
                 mdlEditarXConceptoID.addClass("hide");
-                btnGuardarConcepto.addClass("hide");
+                btnModificarConcepto.addClass("hide");
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -538,8 +760,8 @@
                     mdlEditarXConceptoID.find("#Categoria").select2("val", "");
                     mdlEditarXConceptoID.find("#SubCategoria").select2("val", "");
                     mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", "");
-                    btnCancelarConcepto.addClass("hide");
-                    btnGuardarConcepto.addClass("hide");
+                    btnCancelarModificacion.addClass("hide");
+                    btnModificarConcepto.addClass("hide");
 
 
 
@@ -1077,8 +1299,8 @@
                     mdlEditarXConceptoID.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
                     mdlEditarXConceptoID.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
                     mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
-                    btnGuardarConcepto.removeClass("hide");
-                    btnCancelarConcepto.removeClass("hide");
+                    btnModificarConcepto.removeClass("hide");
+                    btnCancelarModificacion.removeClass("hide");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1167,8 +1389,8 @@
                     mdlEditarXConceptoID.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
                     mdlEditarXConceptoID.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
                     mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
-                    btnGuardarConcepto.removeClass("hide");
-                    btnCancelarConcepto.removeClass("hide");
+                    btnModificarConcepto.removeClass("hide");
+                    btnCancelarModificacion.removeClass("hide");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {

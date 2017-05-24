@@ -54,12 +54,13 @@ class CtrlPreciarios extends CI_Controller {
     public function getConceptoByClaveXDescripcion() {
         try {
             extract($this->input->post());
-            $data = $this->preciario_model->getConceptoByClaveXDescripcion($ID,$CLAVE,$DESCRIPCION);
+            $data = $this->preciario_model->getConceptoByClaveXDescripcion($ID, $CLAVE, $DESCRIPCION);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getConceptoByID() {
         try {
             extract($this->input->post());
@@ -287,6 +288,25 @@ class CtrlPreciarios extends CI_Controller {
         }
     }
 
+    public function onAgregarConcepto() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Clave'=>(isset($Clave) && $Clave!=='')?$Clave:'NA',
+                'Descripcion'=>(isset($Descripcion) && $Descripcion!=='')?$Descripcion:'NA',
+                'Unidad'=>(isset($Unidad) && $Unidad!=='')?$Unidad:'NA',
+                'Costo'=>(isset($Costo) && $Costo!=='')?$Costo:0.0,
+                'Moneda'=>(isset($Moneda) && $Moneda!=='')?$Moneda:'MXN',
+                'PreciarioSubSubCategoria_ID', 
+                'PreciarioSubCategorias_ID', 
+                'PreciarioCategorias_ID', 
+                'Preciarios_ID'=>$ID
+            );
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminar() {
         try {
             extract($this->input->post());
@@ -295,7 +315,7 @@ class CtrlPreciarios extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarConcepto() {
         try {
             extract($this->input->post());
