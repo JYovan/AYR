@@ -126,7 +126,8 @@ class CtrlClientes extends CI_Controller {
         try {
             extract($this->input->post());
             $DATA = array(
-                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL, 
+                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
+                'NombreCorto' => ($NombreCorto !== NULL) ? $NombreCorto : NULL,
                 'Calle' => ($Calle !== NULL) ? $Calle : NULL, 
                 'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL, 
                 'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL, 

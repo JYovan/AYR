@@ -66,14 +66,22 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset> 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="">NOMBRE*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
+                       
+
                         <div class="col-md-6">
+                            <label for="">NOMBRE CORTO</label>
+                            <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
+                        </div>
+                        
+                         <div class="col-md-6">
                             <label for="">CALLE</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
+                        
                         <div class="col-md-4">
                             <label for="">No EXTERIOR</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
@@ -150,11 +158,16 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="">NOMBRE*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
+                            <label for="">NOMBRE CORTO</label>
+                            <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
+                        </div>
+                        
+                         <div class="col-md-6">
                             <label for="">CALLE</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                         </div>
@@ -262,7 +275,7 @@
                             <label for="">NO EXTERIOR*</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                         </div> 
-                         
+
                         <div class="col-md-4">
                             <label for="">NO INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
@@ -560,7 +573,7 @@
                             <label for="">NO INTERIOR</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div> 
-                         <div class="col-md-12">
+                        <div class="col-md-12">
                             <label for="">ENTRE CALLES</label>
                             <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" required>
                         </div>
@@ -937,26 +950,26 @@
 
         btnModificarSucursal.click(function () {
 
-                var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
-                $.ajax({
-                    url: base_url + 'index.php/CtrlSucursal/onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    btnVerSucursales.trigger('click');
-                    mdlEditarSucursal.modal('hide');
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
-                    console.log(data, x, jq);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
+            var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/onModificar',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                btnVerSucursales.trigger('click');
+                mdlEditarSucursal.modal('hide');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
+                console.log(data, x, jq);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
 
-            
+
 
 
 
@@ -964,28 +977,28 @@
 
         btnGuardarSucursal.click(function () {
 
-          
 
-                var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
-                $.ajax({
-                    url: base_url + 'index.php/CtrlSucursal/onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    btnVerSucursales.trigger('click');
-                    mdlNuevaSucursal.modal('hide');
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
-                    console.log(data, x, jq);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
 
-            
+            var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
+            $.ajax({
+                url: base_url + 'index.php/CtrlSucursal/onAgregar',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                btnVerSucursales.trigger('click');
+                mdlNuevaSucursal.modal('hide');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
+                console.log(data, x, jq);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
+
 
         });
 
@@ -1059,7 +1072,8 @@
                 errorElement: 'span',
                 errorClass: 'errorForms',
                 rules: {
-                    Nombre: 'required'
+                    Nombre: 'required',
+                    NombreCorto: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
 
@@ -1168,7 +1182,7 @@
         });
 
         btnGuardar.click(function () {
-           $.validator.setDefaults({
+            $.validator.setDefaults({
                 ignore: []
             });
 
@@ -1180,7 +1194,8 @@
                 errorElement: 'span',
                 errorClass: 'errorForms',
                 rules: {
-                    Nombre: 'required'
+                    Nombre: 'required',
+                    NombreCorto: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
 
@@ -1204,29 +1219,29 @@
 
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-                
+
                 var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CLIENTE', 'success');
-                getRecords();
-                mdlNuevo.modal('hide');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CLIENTE', 'success');
+                    getRecords();
+                    mdlNuevo.modal('hide');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
             }
-        
-        
-            
+
+
+
         });
 
         btnArchivo.click(function () {
