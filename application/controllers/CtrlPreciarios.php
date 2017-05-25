@@ -7,6 +7,7 @@ class CtrlPreciarios extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('preciario_model');
     }
@@ -292,16 +293,61 @@ class CtrlPreciarios extends CI_Controller {
         try {
             extract($this->input->post());
             $data = array(
-                'Clave'=>(isset($Clave) && $Clave!=='')?$Clave:'NA',
-                'Descripcion'=>(isset($Descripcion) && $Descripcion!=='')?$Descripcion:'NA',
-                'Unidad'=>(isset($Unidad) && $Unidad!=='')?$Unidad:'NA',
-                'Costo'=>(isset($Costo) && $Costo!=='')?$Costo:0.0,
-                'Moneda'=>(isset($Moneda) && $Moneda!=='')?$Moneda:'MXN',
-                'PreciarioSubSubCategoria_ID', 
-                'PreciarioSubCategorias_ID', 
-                'PreciarioCategorias_ID', 
-                'Preciarios_ID'=>$ID
+                'Clave' => (isset($Clave) && $Clave !== '') ? $Clave : 'NA',
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== '') ? $Descripcion : 'NA',
+                'Unidad' => (isset($Unidad) && $Unidad !== '') ? $Unidad : 'NA',
+                'Costo' => (isset($Costo) && $Costo !== '') ? $Costo : 0.0,
+                'Moneda' => (isset($Moneda) && $Moneda !== '') ? $Moneda : 'MXN',
+                'PreciarioSubSubCategoria_ID',
+                'PreciarioSubCategorias_ID',
+                'PreciarioCategorias_ID',
+                'Preciarios_ID' => $ID
             );
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarCategoria() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'NA',
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NA',
+                'Preciario_ID' => $Preciario_ID
+            );
+            $this->preciario_model->onAgregarPreciarioCategoria($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarSubCategoria() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'NA',
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NA',
+                'Preciario_ID' => $Preciario_ID,
+                'PreciarioCategoria_ID'=>$PreciarioCategoria_ID
+            );
+            $this->preciario_model->onAgregarPreciarioSubCategoria($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarSubSubCategoria() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'NA',
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NA',
+                'Preciario_ID' => $Preciario_ID,
+                'PreciarioCategoria_ID'=>$PreciarioCategoria_ID,
+                'PreciarioSubCategorias_ID'=>$PreciarioSubCategorias_ID
+            );
+            $this->preciario_model->onAgregarPreciarioSubSubCategoria($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

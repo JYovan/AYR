@@ -1,6 +1,6 @@
 
-<div class="col-md-12">
-    <div class="panel panel-default">
+<div  class="col-md-12">
+    <div id="pnlPreciario" class="panel panel-default">
         <div class="panel-heading">PRECIARIOS</div>
         <div class="panel-body">
             <fieldset>
@@ -16,16 +16,14 @@
     </div>
 </div>
 
-
-<!--MODALES-->
-
-<div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVO PRECIARIO</h4>
-            </div>
+<!--PANELES-->
+<div class="col-md-12">
+    <!--GUARDAR-->
+    <div id="pnlNuevo" class="panel panel-default hide">
+        <div class="panel-heading">
+            <h3 class="panel-title">NUEVO PRECIARIO</h3>
+        </div>
+        <div class="panel-body">
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
@@ -99,281 +97,304 @@
                             <h6>Los campos con * son obligatorios</h6>    
 
                         </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-default" id="btnCancelar"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+                            <button type="button" class="btn btn-primary" id="btnGuardar"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+                        </div>
                     </fieldset>
                 </div>
             </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+        </div>
+    </div>
+
+    <!--EDITAR-->
+    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+        <div class="panel-heading">
+            <h3 class="panel-title">EDITAR PRECIARIO</h3>
+        </div>
+        <div class="panel-body">
+            <form id="frmEditar"> 
+                <fieldset> 
+                    <div class="col-md-12" align="right">
+                        <button type="button" class="btn btn-default" id="btnCancelarEditar"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
+                        <button type="button" class="btn btn-primary" id="btnEditar"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
+                    </div>
+                    <div class="col-md-12 hide">
+                        <label for="">ID*</label>    
+                        <input type="text" class="form-control" id="ID" name="ID" required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="">NOMBRE*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">FECHA DE CREACION*</label>
+                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                    </div>  
+
+                    <div class="col-6 col-md-6">
+                        <label for="">ESTATUS*</label>
+                        <select id="Estatus" name="Estatus" class="form-control" required>
+                            <option value=""></option> 
+                            <option value="ACTIVO">ACTIVO</option> 
+                            <option value="INACTIVO">INACTIVO</option> 
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-6">
+                        <label for="">TIPO*</label>
+                        <select id="Tipo" name="Tipo" class="form-control" required>
+                            <option value=""></option> 
+                            <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
+                            <option value="OBRA">OBRA</option> 
+                        </select>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label for="">CLIENTE*</label>
+                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
+                            <option value=""></option> 
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <h3>CONCEPTOS</h3>
+                    </div>
+
+                    <div class="col-md-6" align="left"> 
+                        <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
+                        <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
+                        <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
+                    </div> 
+                    <div class="col-md-12">
+                        <br>
+                    </div> 
+                    <div id="PreciarioEspecifico" class="col-md-12">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>
+                    </div>
+                </fieldset> 
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--EDITAR--> 
+
+
+<div id="mdlNuevoConcepto" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content modal-lg">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">NUEVO CONCEPTO</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="col-md-12 hide">
+                <input type="text" class="form-control hide" id="ID" name="ID">
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-<!--EDITAR-->
-
-<div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg super-fullscreen" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR PRECIARIO</h4>
-            </div>
-            <form id="frmEditar">
-                <div class="modal-body">
-                    <fieldset> 
-                        <div class="col-md-12 hide">
-                            <label for="">ID*</label>    
-                            <input type="text" class="form-control" id="ID" name="ID" required>
+            <div id="pnlConceptos" class="col-md-12" align="center">   
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#Conceptos" data-toggle="tab">CONCEPTOS</a></li>
+                        <li><a href="#Categorias" data-toggle="tab">CATEGORÍAS</a></li>
+                        <li><a href="#SubCategorias" data-toggle="tab">SUB CATEGORÍAS</a></li>
+                        <li><a href="#SubSubCategorias" data-toggle="tab">SUBSUB CATEGORÍAS</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12"></div>
+                <div id="pnlTabConceptos" class="tab-content">
+                    <div class="tab-pane fade active in" id="Conceptos">
+                        <div class="col-md-4">
+                            <label for="">CLAVE</label>
+                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                         </div>
-
-                        <div class="col-md-12">
-                            <label for="">NOMBRE*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                        <div class="col-md-8">
+                            <label for="">DESCRIPCIÓN</label>
+                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                            </textarea>
                         </div>
-
-                        <div class="col-md-6">
-                            <label for="">FECHA DE CREACION*</label>
-                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                        <div class="col-md-4">
+                            <label for="">COSTO</label>
+                            <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">MONEDA</label>
+                            <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">UNIDAD</label>
+                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CATEGORÍA</label>
+                            <select id="Categoria" name="Categoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">SUB CATEGORÍA</label>
+                            <select id="SubCategoria" name="SubCategoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">SUB SUB CATEGORÍA</label>
+                            <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
                         </div>  
-
-                        <div class="col-6 col-md-6">
-                            <label for="">ESTATUS*</label>
-                            <select id="Estatus" name="Estatus" class="form-control" required>
-                                <option value=""></option> 
-                                <option value="ACTIVO">ACTIVO</option> 
-                                <option value="INACTIVO">INACTIVO</option> 
-                            </select>
-                        </div>
-
-                        <div class="col-6 col-md-6">
-                            <label for="">TIPO*</label>
-                            <select id="Tipo" name="Tipo" class="form-control" required>
-                                <option value=""></option> 
-                                <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
-                                <option value="OBRA">OBRA</option> 
-                            </select>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <label for="">CLIENTE*</label>
-                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
-                                <option value=""></option> 
-                            </select>
-                        </div>
-                        
-                        <div id="pnlConceptos" class="col-md-12" align="center">  
-                            <div class="col-md-3"></div>
-                            <div class="col-md-9">
-                            <ul class="nav nav-tabs">
-                                <li><a href="#Conceptos" data-toggle="tab">CONCEPTOS</a></li>
-                                <li><a href="#Categorias" data-toggle="tab">CATEGORÍAS</a></li>
-                                <li><a href="#SubCategorias" data-toggle="tab">SUB CATEGORÍAS</a></li>
-                                <li><a href="#SubSubCategorias" data-toggle="tab">SUBSUB CATEGORÍAS</a></li>
-                            </ul>
-                            </div>
-                            <div class="col-md-12"></div>
-                            <div id="pnlTabConceptos" class="tab-content">
-                                <div class="tab-pane fade" id="Conceptos">
-                                    <div class="col-md-4">
-                                        <label for="">CLAVE</label>
-                                        <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <label for="">DESCRIPCIÓN</label>
-                                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                                        </textarea>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">COSTO</label>
-                                        <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">MONEDA</label>
-                                        <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">UNIDAD</label>
-                                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">CATEGORÍA</label>
-                                        <select id="Categoria" name="Categoria" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">SUB CATEGORÍA</label>
-                                        <select id="SubCategoria" name="SubCategoria" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">SUB SUB CATEGORÍA</label>
-                                        <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>   
-                                    <div class="col-md-12" align="right">
-                                        <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
-                                        <button type="button" class="btn btn-default" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="Categorias">
-                                    <div class="" id="mdlNuevaCategoria">
-                                        <div class="col-md-6">
-                                            <label for="">CLAVE</label>
-                                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="">DESCRIPCIÓN</label>
-                                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
-                                        </div>
-                                        <div class="col-md-12" align="right">
-                                            <br>
-                                            <button type="button" class="btn btn-default" id="btnCancelarCategoria" name="btnCancelarCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-                                            <button type="button" class="btn btn-default" id="btnGuardarCategoria" name="btnGuardarCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
-                                        </div>
-                                    </div>  
-                                </div>
-                                <div class="tab-pane fade" id="SubCategorias">
-                                    <div class="col-md-4">
-                                        <label for="">CLAVE</label>
-                                        <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">DESCRIPCIÓN</label>
-                                        <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12" align="right">
-                                        <br>
-                                        <button type="button" class="btn btn-default" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-                                        <button type="button" class="btn btn-default" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="SubSubCategorias">
-                                    <div class="col-md-6">
-                                        <label for="">CLAVE</label>
-                                        <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">DESCRIPCIÓN</label>
-                                        <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">CATEGORÍA</label>
-                                        <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>       
-                                    <div class="col-md-6">
-                                        <label for="">SUBCATEGORÍA</label>
-                                        <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
-                                            <option value=""></option> 
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12" align="right">
-                                        <br>
-                                        <button type="button" class="btn btn-default" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-                                        <button type="button" class="btn btn-default" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria"><span class="fa fa-ban 1x"></span><br>GUARDAR</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <h3>CONCEPTOS</h3>
-                        </div>
-                        <div id="mdlEditarXConceptoID" class="hide"> 
-                            <div class="col-md-12 hide">
-                                <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
-                            </div>
-                            <div class="col-md-4">
+                    </div>
+                    <div class="tab-pane fade" id="Categorias">
+                        <div class="" id="mdlNuevaCategoria">
+                            <div class="col-md-6">
                                 <label for="">CLAVE</label>
-                                <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                                <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <label for="">DESCRIPCIÓN</label>
-                                <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                                </textarea>
+                                <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
                             </div>
-                            <div class="col-md-4">
-                                <label for="">COSTO</label>
-                                <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="">MONEDA</label>
-                                <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="">UNIDAD</label>
-                                <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="">CATEGORÍA</label>
-                                <select id="Categoria" name="Categoria" class="form-control">
-                                    <option value=""></option> 
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="">SUB CATEGORÍA</label>
-                                <select id="SubCategoria" name="SubCategoria" class="form-control">
-                                    <option value=""></option> 
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="">SUB SUB CATEGORÍA</label>
-                                <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                                    <option value=""></option> 
-                                </select>
-                            </div> 
+                        </div>  
+                    </div>
+                    <div class="tab-pane fade" id="SubCategorias">
+                        <div class="col-md-4">
+                            <label for="">CLAVE</label>
+                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                         </div>
-                        <div class="col-md-6" align="left">
-                            <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
-                            <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
-                        </div>
-                        <div class="col-md-6" align="right">
-                            <button type="button" class="btn btn-default hide" id="btnCancelarModificacion" name="btnCancelarModificacion"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
-                            <button type="button" class="btn btn-default hide" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
+                        <div class="col-md-8">
+                            <label for="">DESCRIPCIÓN</label>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <br>
+                            <label for="">CATEGORIA</label>
+                            <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
                         </div>
-                        <!--                        <div class="col-md-5">
-                                                    <input type="text" id="ClaveConcepto" name="ClaveConcepto" class="form-control" placeholder="BUSCAR POR CLAVE">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" id="DescripcionConcepto" name="DescripcionConcepto" class="form-control" placeholder="BUSCAR POR DESCRIPCIÓN">
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <button type="button" class="btn btn-default" id="btnBuscarConcepto"><span class="fa fa-search fa-1x"></span><br>BUSCAR</button> 
-                                                </div>-->
-                        <div id="PreciarioEspecifico" class="col-md-12">
+                    </div>
+                    <div class="tab-pane fade" id="SubSubCategorias">
+                        <div class="col-md-4">
+                            <label for="">CLAVE</label>
+                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                         </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>
+                        <div class="col-md-8">
+                            <label for="">DESCRIPCIÓN</label>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
                         </div>
-                    </fieldset>
+                        <div class="col-md-12">
+                            <label for="">CATEGORÍA</label>
+                            <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>       
+                        <div class="col-md-12">
+                            <label for="">SUBCATEGORÍA</label>
+                            <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-                <button type="button" class="btn btn-primary" id="btnEditar"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+
+        <div class="modal-footer"> 
+            <!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
+            <button type="button" class="btn btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>  
+            <!--BOTONES CATEGORIA-->
+            <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+            <button type="button" class="btn btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+            <!--BOTONES SUBCATEGORIA-->
+            <br>
+            <button type="button" class="btn btn-default hide" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+            <button type="button" class="btn btn-primary hide" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+            <!--BOTONES SUBSUBCATEGORIA-->
+            <br>
+            <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
+            <button type="button" class="btn btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+        </div> 
+    </div>
+</div>
+
+
+<div id="mdlEditarConcepto" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content modal-lg">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">EDITAR CONCEPTO</h4>
+        </div>
+        <div class="modal-body">
+            <form id="frmEditar"> 
+                <fieldset> 
+                    <div id="mdlEditarXConceptoID" class="hide"> 
+                        <div class="col-md-12 hide">
+                            <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CLAVE</label>
+                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
+                        <div class="col-md-8">
+                            <label for="">DESCRIPCIÓN</label>
+                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                            </textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">COSTO</label>
+                            <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">MONEDA</label>
+                            <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">UNIDAD</label>
+                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CATEGORÍA</label>
+                            <select id="Categoria" name="Categoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">SUB CATEGORÍA</label>
+                            <select id="SubCategoria" name="SubCategoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">SUB SUB CATEGORÍA</label>
+                            <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>
+                    </div>
+                </fieldset> 
+            </form>
+        </div>
+
+        <div class="modal-footer"> 
+            <!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-default hide" id="btnCancelarModificacion" name="btnCancelarModificacion"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
+            <button type="button" class="btn btn-default hide" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
+        </div> 
+    </div>
+</div>
 
 <!--Confirmacion-->
 
@@ -401,9 +422,11 @@
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlPreciarios/';
+    var pnlPreciario = $("#pnlPreciario");
     var btnNuevo = $("#btnNuevo");
-    var mdlNuevo = $("#mdlNuevo");
-    var btnGuardar = mdlNuevo.find("#btnGuardar");
+    var pnlNuevo = $("#pnlNuevo");
+    var btnGuardar = pnlNuevo.find("#btnGuardar");
+    var btnCancelar = pnlNuevo.find("#btnCancelar");
     var btnRefrescar = $("#btnRefrescar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
 
@@ -411,38 +434,210 @@
     var btnEliminar = $("#btnEliminar");
 
     var btnEditar = $("#btnEditar");
-    var mdlEditar = $("#mdlEditar");
-    var btnModificar = mdlEditar.find("#btnEditar");
-    var PreciarioEspecifico = mdlEditar.find("#PreciarioEspecifico");
-    var mdlEditarXConceptoID = mdlEditar.find("#mdlEditarXConceptoID");
-    var btnModificarConcepto = mdlEditar.find("#btnModificarConcepto");
-    var btnRefrescarConceptos = mdlEditar.find("#btnRefrescarConceptos");
-    var btnEliminarConcepto = mdlEditar.find("#btnEliminarConcepto");
-    var btnBuscarConcepto = mdlEditar.find("#btnBuscarConcepto");
-    var btnCancelarModificacion = mdlEditar.find("#btnCancelarModificacion");
-    var btnNuevoConcepto = mdlEditar.find("#btnNuevoConcepto");
-    var mdlNuevoConcepto = mdlEditar.find("#mdlNuevoConcepto");
-    var btnGuardarConcepto = mdlEditar.find("#btnGuardarConcepto");
-    var btnCancelarConcepto = mdlEditar.find("#btnCancelarConcepto");
-    var btnNuevaCategoria = mdlEditar.find("#btnNuevaCategoria");
-    var pnlConceptos = mdlEditar.find("#pnlConceptos");
-    var btnCancelarCategoria = pnlConceptos.find("#btnCancelarCategoria");
+    var pnlEditar = $("#pnlEditar");
+    var btnModificar = pnlEditar.find("#btnEditar");
+    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico");
+    var mdlEditarXConceptoID = pnlEditar.find("#mdlEditarXConceptoID");
+    var btnModificarConcepto = pnlEditar.find("#btnModificarConcepto");
+    var btnRefrescarConceptos = pnlEditar.find("#btnRefrescarConceptos");
+    var btnEliminarConcepto = pnlEditar.find("#btnEliminarConcepto");
+    var btnBuscarConcepto = pnlEditar.find("#btnBuscarConcepto");
+    var btnCancelarModificacion = pnlEditar.find("#btnCancelarModificacion");
+    var btnNuevoConcepto = pnlEditar.find("#btnNuevoConcepto");
+    var mdlNuevoConcepto = $("#mdlNuevoConcepto");
+    var btnGuardarConcepto = mdlNuevoConcepto.find("#btnGuardarConcepto");
+    var btnCancelarConcepto = mdlNuevoConcepto.find("#btnCancelarConcepto");
+    var btnNuevaCategoria = mdlNuevoConcepto.find("#btnNuevaCategoria");
+    var btnGuardarCategoria = mdlNuevoConcepto.find("#btnGuardarCategoria");
+    var btnGuardarSubCategoria = mdlNuevoConcepto.find("#btnGuardarSubCategoria");
+    var btnGuardarSubSubCategoria = mdlNuevoConcepto.find("#btnGuardarSubSubCategoria");
+    var pnlConceptos = pnlEditar.find("#pnlConceptos");
+    var btnCancelarCategoria = mdlNuevoConcepto.find("#btnCancelarCategoria");
 
-    var btnNuevaSubCategoria = mdlEditar.find("#btnNuevaSubCategoria");
-    var mdlNuevaSubCategoria = mdlEditar.find("#mdlNuevaSubCategoria");
-    var btnCancelarSubCategoria = mdlEditar.find("#btnCancelarSubCategoria");
+    var btnNuevaSubCategoria = pnlEditar.find("#btnNuevaSubCategoria");
+    var mdlNuevaSubCategoria = pnlEditar.find("#mdlNuevaSubCategoria");
+    var btnCancelarSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubCategoria");
 
-    var btnNuevaSubSubCategoria = mdlEditar.find("#btnNuevaSubSubCategoria");
-    var mdlNuevaSubSubCategoria = mdlEditar.find("#mdlNuevaSubSubCategoria");
-    var btnCancelarSubSubCategoria = mdlEditar.find("#btnCancelarSubSubCategoria");
+    var btnNuevaSubSubCategoria = pnlEditar.find("#btnNuevaSubSubCategoria");
+    var mdlNuevaSubSubCategoria = pnlEditar.find("#mdlNuevaSubSubCategoria");
+    var btnCancelarSubSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubSubCategoria");
+
+    var btnCancelarEditar = pnlEditar.find("#btnCancelarEditar");
 
     //Variables de controles para subir archivo
-    var Archivo = mdlNuevo.find("#RutaArchivo");
-    var btnArchivo = mdlNuevo.find("#btnArchivo");
-    var VistaPrevia = mdlNuevo.find("#VistaPrevia");
+    var Archivo = pnlNuevo.find("#RutaArchivo");
+    var btnArchivo = pnlNuevo.find("#btnArchivo");
+    var VistaPrevia = pnlNuevo.find("#VistaPrevia");
+
 
     $(document).ready(function () {
 
+        btnGuardarSubSubCategoria.click(function () {
+            var Clave = mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val();
+            var Descripcion = mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val();
+            var Categoria = mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val();
+            var SubCategoria = mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").val();
+            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0 &&
+                    SubCategoria !== undefined && SubCategoria !== null && SubCategoria !== '' && SubCategoria.length > 0) {
+                var frm = new FormData();
+                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+                frm.append('Clave', mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val());
+                frm.append('Descripcion', mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val());
+                frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val());
+                frm.append('PreciarioSubCategorias_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").val());
+                $.ajax({
+                    url: master_url + 'onAgregarSubSubCategoria',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUBSUB CATEGORIA', 'success');
+                    console.log(data, x, jq);
+                    mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val("");
+                    mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val("");
+                    mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
+                    mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").select2("val", "");
+                    getCategorias(mdlNuevoConcepto.find("#ID").val());
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
+            }
+        });
+
+        btnGuardarSubCategoria.click(function () {
+            var Clave = mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val();
+            var Categoria = mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val();
+            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0) {
+                var frm = new FormData();
+                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+                frm.append('Clave', mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val());
+                frm.append('Descripcion', mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val());
+                frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val());
+                $.ajax({
+                    url: master_url + 'onAgregarSubCategoria',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUB CATEGORIA', 'success');
+                    console.log(data, x, jq);
+                    mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val("");
+                    mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val("");
+                    mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
+                    getCategorias(mdlNuevoConcepto.find("#ID").val());
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
+            }
+        });
+
+        btnGuardarCategoria.click(function () {
+            var Clave = mdlNuevoConcepto.find("#Categorias").find("#Clave").val();
+            var Descripcion = mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val();
+            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
+                var frm = new FormData();
+                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+                frm.append('Clave', mdlNuevoConcepto.find("#Categorias").find("#Clave").val());
+                frm.append('Descripcion', mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val());
+                $.ajax({
+                    url: master_url + 'onAgregarCategoria',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA CATEGORIA', 'success');
+                    console.log(data, x, jq);
+                    mdlNuevoConcepto.find("#Categorias").find("#Clave").val("");
+                    mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val("");
+                    getCategorias(mdlNuevoConcepto.find("#ID").val());
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
+            }
+        });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var target = $(e.target).attr("href"); // activated tab
+
+            switch (target) {
+                case "#Conceptos":
+                    btnCancelarConcepto.removeClass("hide");
+                    btnGuardarConcepto.removeClass("hide");
+                    btnCancelarCategoria.addClass("hide");
+                    btnGuardarCategoria.addClass("hide");
+                    btnCancelarSubCategoria.addClass("hide");
+                    btnGuardarSubCategoria.addClass("hide");
+                    btnCancelarSubSubCategoria.addClass("hide");
+                    btnGuardarSubSubCategoria.addClass("hide");
+                    break;
+                case "#Categorias":
+                    btnCancelarConcepto.addClass("hide");
+                    btnGuardarConcepto.addClass("hide");
+                    btnCancelarCategoria.removeClass("hide");
+                    btnGuardarCategoria.removeClass("hide");
+                    btnCancelarSubCategoria.addClass("hide");
+                    btnGuardarSubCategoria.addClass("hide");
+                    btnCancelarSubSubCategoria.addClass("hide");
+                    btnGuardarSubSubCategoria.addClass("hide");
+                    break;
+                case "#SubCategorias":
+                    btnCancelarConcepto.addClass("hide");
+                    btnGuardarConcepto.addClass("hide");
+                    btnCancelarCategoria.addClass("hide");
+                    btnGuardarCategoria.addClass("hide");
+                    btnCancelarSubCategoria.removeClass("hide");
+                    btnGuardarSubCategoria.removeClass("hide");
+                    btnCancelarSubSubCategoria.addClass("hide");
+                    btnGuardarSubSubCategoria.addClass("hide");
+                    break;
+                case "#SubSubCategorias":
+                    btnCancelarConcepto.addClass("hide");
+                    btnGuardarConcepto.addClass("hide");
+                    btnCancelarCategoria.addClass("hide");
+                    btnGuardarCategoria.addClass("hide");
+                    btnCancelarSubCategoria.addClass("hide");
+                    btnGuardarSubCategoria.addClass("hide");
+                    btnCancelarSubSubCategoria.removeClass("hide");
+                    btnGuardarSubSubCategoria.removeClass("hide");
+                    break;
+
+                default:
+
+                    break;
+            }
+        });
+
+        btnCancelarEditar.click(function () {
+            pnlPreciario.removeClass("hide");
+            pnlEditar.addClass("hide");
+        });
+
+        btnCancelar.click(function () {
+            pnlPreciario.removeClass("hide");
+            pnlNuevo.addClass("hide");
+
+        });
         btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -497,45 +692,80 @@
         });
 
         btnGuardarConcepto.click(function () {
-            var frm = new FormData();
-            frm.append('ID', mdlEditar.find("#ID").val());
-            frm.append('Clave', mdlNuevoConcepto.find("#Clave").val());
-            frm.append('Descripcion', mdlNuevoConcepto.find("#Descripcion").val());
-            frm.append('Costo', mdlNuevoConcepto.find("#Costo").val());
-            frm.append('Moneda', mdlNuevoConcepto.find("#Moneda").val());
-            frm.append('Unidad', mdlNuevoConcepto.find("#Unidad").val());
-            frm.append('Categoria', mdlNuevoConcepto.find("#Categoria").val());
-            frm.append('SubCategoria', mdlNuevoConcepto.find("#SubCategoria").val());
-            frm.append('SubSubCategoria', mdlNuevoConcepto.find("#SubSubCategoria").val());
-            $.ajax({
-                url: master_url + 'onAgregarConcepto',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
-                console.log(data, x, jq);
-                btnRefrescarConceptos.trigger('click');
-                mdlNuevoConcepto.addClass("hide");
-                btnNuevoConcepto.addClass("hide");
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+
+            var Clave = mdlNuevoConcepto.find("#Conceptos").find("#Clave").val();
+            var Descripcion = mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val();
+            var Categoria = mdlNuevoConcepto.find("#Conceptos").find("#Categoria").val();
+            var SubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").val();
+            var SubSubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubSubCategoria").val();
+
+            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0 &&
+                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0 &&
+                    SubCategoria !== undefined && SubCategoria !== null && SubCategoria !== '' && SubCategoria.length > 0 &&
+                    SubSubCategoria !== undefined && SubSubCategoria !== null && SubSubCategoria !== '' && SubSubCategoria.length > 0) {
+                var frm = new FormData();
+                frm.append('ID', pnlEditar.find("#ID").val());
+                frm.append('Clave', mdlNuevoConcepto.find("#Conceptos").find("#Clave").val());
+                frm.append('Descripcion', mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val());
+                frm.append('Costo', mdlNuevoConcepto.find("#Conceptos").find("#Costo").val());
+                frm.append('Moneda', mdlNuevoConcepto.find("#Conceptos").find("#Moneda").val());
+                frm.append('Unidad', mdlNuevoConcepto.find("#Conceptos").find("#Unidad").val());
+                frm.append('Categoria', mdlNuevoConcepto.find("#Conceptos").find("#Categoria").val());
+                frm.append('SubCategoria', mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").val());
+                frm.append('SubSubCategoria', mdlNuevoConcepto.find("#Conceptos").find("#SubSubCategoria").val());
+                $.ajax({
+                    url: master_url + 'onAgregarConcepto',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
+                    console.log(data, x, jq);
+                    btnRefrescarConceptos.trigger('click');
+                    mdlNuevoConcepto.addClass("hide");
+                    btnNuevoConcepto.addClass("hide");
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
+            }
         });
 
 
         btnNuevoConcepto.click(function () {
+
+            mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
+            $(mdlNuevoConcepto.find(".nav-tabs li")[0]).addClass("active");
+            console.log(mdlNuevoConcepto.find(".nav-tabs"));
+            mdlNuevoConcepto.find("#Conceptos").addClass("active in");
+            mdlNuevoConcepto.find("#Categorias").removeClass("active in");
+            mdlNuevoConcepto.find("#SubSubCategorias").removeClass("active in");
+            mdlNuevoConcepto.find("#SubSubCategorias").removeClass("active in");
             btnCancelarConcepto.removeClass("hide");
             btnGuardarConcepto.removeClass("hide");
-            mdlNuevoConcepto.removeClass("hide");
+            btnCancelarCategoria.addClass("hide");
+            btnGuardarCategoria.addClass("hide");
+            btnCancelarSubCategoria.addClass("hide");
+            btnGuardarSubCategoria.addClass("hide");
+            btnCancelarSubSubCategoria.addClass("hide");
+            btnGuardarSubSubCategoria.addClass("hide");
+            mdlNuevoConcepto.find("input").val("");
+            mdlNuevoConcepto.find("select").select2("val", "");
+            getCategorias(pnlEditar.find("#ID").val());
+            mdlNuevoConcepto.find("#ID").val(pnlEditar.find("#ID").val());
+            mdlNuevoConcepto.modal('show');
+            btnCancelarConcepto.removeClass("hide");
+            btnGuardarConcepto.removeClass("hide");
         });
 
         btnBuscarConcepto.click(function () {
-            getConceptoByClaveXDescripcion(mdlEditar.find("#ID").val());
+            getConceptoByClaveXDescripcion(pnlEditar.find("#ID").val());
         });
 
         btnCancelarModificacion.click(function () {
@@ -554,7 +784,7 @@
         });
 
         btnRefrescarConceptos.click(function () {
-            getConceptosXPreciarioID(mdlEditar.find("#ID").val());
+            getConceptosXPreciarioID(pnlEditar.find("#ID").val());
         });
 
         btnModificarConcepto.click(function () {
@@ -593,7 +823,7 @@
         });
 
         mdlEditarXConceptoID.find("#Categoria").change(function () {
-            getSubCategorias(mdlEditar.find("#ID").val(), $(this).val());
+            getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
         });
 
 
@@ -670,8 +900,8 @@
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
             });
-            var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
-            frm.append('PRECIARIO', mdlNuevo.find("#json_preciario").val());
+            var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
+            frm.append('PRECIARIO', pnlNuevo.find("#json_preciario").val());
             $.ajax({
                 url: master_url + 'onAgregar',
                 type: "POST",
@@ -680,7 +910,8 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                mdlNuevo.modal('hide');
+                pnlNuevo.addClass('hide');
+                pnlPreciario.removeClass('hide');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                 console.log(data, x, jq);
                 btnRefrescar.trigger('click');
@@ -696,7 +927,7 @@
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
             });
-            var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+            var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
             $.ajax({
                 url: master_url + 'onModificar',
                 type: "POST",
@@ -705,7 +936,8 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                mdlEditar.modal('hide');
+                pnlPreciario.removeClass('hide');
+                pnlEditar.addClass('hide');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                 console.log(data, x, jq);
                 btnRefrescar.trigger('click');
@@ -718,9 +950,10 @@
 
         btnNuevo.click(function () {
             tblConceptos.html("");
-            mdlNuevo.find("select").select2("val", "");
-            mdlNuevo.find("input").val("");
-            mdlNuevo.modal('show');
+            pnlNuevo.find("select").select2("val", "");
+            pnlNuevo.find("input").val("");
+            pnlNuevo.removeClass('hide');
+            pnlPreciario.addClass("hide");
         });
 
         btnEditar.click(function () {
@@ -740,14 +973,14 @@
                     console.log(data);
                     var preciario = data[0];
                     mdlEditarXConceptoID.find("#Descripcion").val("");
-                    mdlEditar.find("#ID").val(preciario.ID);
-                    mdlEditar.find("#Nombre").val(preciario.Nombre);
-                    mdlEditar.find("#Tipo").val(preciario.Tipo);
-                    mdlEditar.find("#FechaCreacion").val(preciario.FechaCreacion);
-                    mdlEditar.find("#Cliente_ID").select2("val", preciario.Cliente_ID);
-                    mdlEditar.find("#Estatus").select2("val", preciario.Estatus);
-                    mdlEditar.find("#Tipo").select2("val", preciario.Tipo);
-                    mdlEditar.find("#PreciarioEspecifico").html("");
+                    pnlEditar.find("#ID").val(preciario.ID);
+                    pnlEditar.find("#Nombre").val(preciario.Nombre);
+                    pnlEditar.find("#Tipo").val(preciario.Tipo);
+                    pnlEditar.find("#FechaCreacion").val(preciario.FechaCreacion);
+                    pnlEditar.find("#Cliente_ID").select2("val", preciario.Cliente_ID);
+                    pnlEditar.find("#Estatus").select2("val", preciario.Estatus);
+                    pnlEditar.find("#Tipo").select2("val", preciario.Tipo);
+                    pnlEditar.find("#PreciarioEspecifico").html("");
 
 
                     mdlEditarXConceptoID.addClass("hide");
@@ -762,14 +995,12 @@
                     mdlEditarXConceptoID.find("#SubSubCategoria").select2("val", "");
                     btnCancelarModificacion.addClass("hide");
                     btnModificarConcepto.addClass("hide");
-
-
-
-
 //                    getCategoriasByPreciarioID(preciario.ID);
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
-                    mdlEditar.modal('show');
+
+                    pnlPreciario.addClass('hide');
+                    pnlEditar.removeClass('hide');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -837,8 +1068,8 @@
             $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
             });
-            mdlNuevo.find("#Cliente_ID").html(options);
-            mdlEditar.find("#Cliente_ID").html(options);
+            pnlNuevo.find("#Cliente_ID").html(options);
+            pnlEditar.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -942,7 +1173,7 @@
                 categoriax += '</div>';
                 categoriax += '</div> ';
             });
-            mdlEditar.find("#VistaPrevia").html(categoriax);
+            pnlEditar.find("#VistaPrevia").html(categoriax);
 
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -994,7 +1225,7 @@
                 subcategoriax += '</div>';
                 getConceptosBySubCategoriaIDCategoriaIDPreciarioID('SubCategoriaConceptos' + ID + IDC + v.ID, ID, IDC, v.ID, '');
             });
-            mdlEditar.find("#SubCategoria" + ID + IDC).html(subcategoriax);
+            pnlEditar.find("#SubCategoria" + ID + IDC).html(subcategoriax);
 
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -1051,7 +1282,7 @@
                 subsubcategoriax += '</div> ';
                 subsubcategoriax += '</div>';
             });
-            mdlEditar.find("#SubSubCategorias" + ID + IDC + IDSC).html(subsubcategoriax);
+            pnlEditar.find("#SubSubCategorias" + ID + IDC + IDSC).html(subsubcategoriax);
 
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -1061,7 +1292,7 @@
     }
 
     function getConceptosBySubCategoriaIDCategoriaIDPreciarioID(CONTAINER, ID, IDC, IDSC, IDSSC) {
-        if (!mdlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
+        if (!pnlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "CARGANDO..."
@@ -1079,12 +1310,12 @@
             }).done(function (data, x, jq) {
                 console.log(data, x, jq);
                 var table_name = "tblConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID" + ID + IDC + IDSC;
-                mdlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
-                mdlEditar.find('#' + table_name + ' tfoot th').each(function () {
+                pnlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
+                pnlEditar.find('#' + table_name + ' tfoot th').each(function () {
                     var title = $(this).text();
                     $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
                 });
-                var tblSelected = mdlEditar.find("#" + table_name).DataTable(tableOptions);
+                var tblSelected = pnlEditar.find("#" + table_name).DataTable(tableOptions);
 //                // Apply the search
                 tblSelected.columns().every(function () {
                     var that = this;
@@ -1106,7 +1337,7 @@
     }
 
     function getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(CONTAINER, ID, IDC, IDSC, IDSSC, CLAVE) {
-        if (!mdlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
+        if (!pnlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "CARGANDO..."
@@ -1123,12 +1354,12 @@
                 }
             }).done(function (data, x, jq) {
                 var table_name = "tblConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID" + ID;
-                mdlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
-                mdlEditar.find('#' + table_name + ' tfoot th').each(function () {
+                pnlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
+                pnlEditar.find('#' + table_name + ' tfoot th').each(function () {
                     var title = $(this).text();
                     $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
                 });
-                var tblSelected = mdlEditar.find("#" + table_name).DataTable(tableOptions);
+                var tblSelected = pnlEditar.find("#" + table_name).DataTable(tableOptions);
 //                // Apply the search
                 tblSelected.columns().every(function () {
                     var that = this;
@@ -1170,6 +1401,9 @@
                 options += '<option value="' + v.ID + '">' + v.CATEGORIA + '</option>';
             });
             mdlEditarXConceptoID.find("#Categoria").html(options);
+            mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
+            mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").html(options);
+            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
             getSubCategorias(IDX, '');
             getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(IDX, '', '');
         }).fail(function (x, y, z) {
@@ -1199,6 +1433,8 @@
                 options += '<option value="' + v.ID + '">' + v.SUBCATEGORIA + '</option>';
             });
             mdlEditarXConceptoID.find("#SubCategoria").html(options);
+            mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
+            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1227,6 +1463,7 @@
                 options += '<option value="' + v.ID + '">' + v.SUBSUBCATEGORIA + '</option>';
             });
             mdlEditarXConceptoID.find("#SubSubCategoria").html(options);
+            mdlNuevoConcepto.find("#SubSubCategoria").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1334,8 +1571,8 @@
             dataType: "JSON",
             data: {
                 ID: IDX,
-                CLAVE: (mdlEditar.find("#ClaveConcepto").val() !== '') ? mdlEditar.find("#ClaveConcepto").val() : '',
-                DESCRIPCION: (mdlEditar.find("#DescripcionConcepto").val() !== '') ? mdlEditar.find("#DescripcionConcepto").val() : ''
+                CLAVE: (pnlEditar.find("#ClaveConcepto").val() !== '') ? pnlEditar.find("#ClaveConcepto").val() : '',
+                DESCRIPCION: (pnlEditar.find("#DescripcionConcepto").val() !== '') ? pnlEditar.find("#DescripcionConcepto").val() : ''
             }
         }).done(function (data, x, jq) {
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
@@ -1465,7 +1702,7 @@
         return result.join("\n");
     }
 
-    var tblConceptos = mdlNuevo.find("#VistaPrevia");
+    var tblConceptos = pnlNuevo.find("#VistaPrevia");
     function to_html(workbook) {
         tblConceptos.html("");
         workbook.SheetNames.forEach(function (sheetName) {
@@ -1478,7 +1715,7 @@
     function onProcesarLibroXLS(wb) {
         var output = "";
         output = JSON.stringify(to_json(wb), 2, 2);
-        mdlNuevo.find("#json_preciario").html(output);
+        pnlNuevo.find("#json_preciario").html(output);
         to_html(wb);
     }
 
