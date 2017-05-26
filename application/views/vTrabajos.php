@@ -1,6 +1,6 @@
 
 <div class="col-md-12" id="MenuTablero">
-    <div class="panel panel-default">
+    <div class="panel panel-default animated">
         <div class="panel-heading">TRABAJOS</div>
         <div class="panel-body">
             <fieldset>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-default" >REGRESAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
@@ -40,18 +40,19 @@
 
 <!--Boton para regresar-->
 <div class="col-6 col-md-12"> 
-    <div class="panel panel-default hide" id="pnlNuevoTrabajo">
+    <div class="panel panel-default hide animated slideInRight" id="pnlNuevoTrabajo">
 
-        <div class="panel-heading">
+        <div class="panel-heading" >
 
             <div class="panel-heading row">
                 <div class="col-md-8"> 
                     <div class="cursor-hand" >NUEVO TRABAJO </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-default" id="btnRegresar" data-toggle="tooltip" data-placement="top" title="" data-original-title="ATRAS">
-                        <span class="fa fa-arrow-left fa-2x" ></span>
-                    </button>
+                   
+                    <button type="button" class="btn btn-default" id="btnCancelar">REGRESAR</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+                    
                 </div>
             </div>
         </div>
@@ -59,6 +60,11 @@
             <form id="frmNuevo">
 
                 <fieldset>
+                    
+<!--                     <div class="col-6 col-md-12 panel-Raiz" align="right" >-->
+                        
+<!--                    </div>-->
+                    
                     <div class="col-6 col-md-12">      
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -335,7 +341,7 @@
                                 <label for="">PUEDE SUBIR UN PDF, EXCEL, IMAGEN (JPG.PNG) O ARCHIVO DE AUTOCAD</label>
                             </div>
                             <div class="col-md-12" align="center">
-                                <div id="ArchivoAdjunto" class="col-md-12" align="center"></div>
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x">
@@ -369,15 +375,6 @@
                             <h6>Los campos con * son obligatorios</h6>    
                         </div>
                     </div>
-
-
-                    <div class="col-6 col-md-12 panel-Raiz" align="right" >
-                        <button type="button" class="btn btn-default" id="btnCancelar">CANCELAR</button>
-                        <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
-                    </div>
-
-
-
                 </fieldset>
 
             </form>
@@ -396,12 +393,14 @@
     var btnNuevo = $("#btnNuevo");
     var btnRefrescar = $("#btnRefrescar");
     var btnCancelar = $("#btnCancelar");
-    var btnRegresar = $("#btnRegresar");
     var btnGuardar = $("#btnGuardar");
     var mdlNuevo = $("#mdlNuevo");
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
-    var btnRefrescar = $("#btnRefrescar");
     var menuTablero = $('#MenuTablero');
+    
+    var Archivo = $("#Adjunto");
+    var btnArchivo = $("#btnArchivo");
+    var VistaPrevia = $("#VistaPrevia");
 
     var currentDate = new Date();
 
@@ -483,9 +482,9 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO REGISTRO', 'success');
-                    getRecords();
-//                    mdlNuevo.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
+
+                    btnRefrescar.trigger('click');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -493,9 +492,6 @@
                     HoldOn.close();
                 });
             }
-
-
-
         });
 
 
@@ -503,11 +499,9 @@
         btnCancelar.click(function () {
             pnlNuevoTrabajo.addClass("hide");
             menuTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
         });
-        btnRegresar.click(function () {
-            pnlNuevoTrabajo.addClass("hide");
-            menuTablero.removeClass("hide");
-        });
+       
 
         btnNuevo.click(function () {
             menuTablero.addClass("hide");
@@ -535,6 +529,46 @@
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
+        
+        
+         btnArchivo.click(function () {
+            Archivo.change(function () {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "POR FAVOR ESPERE..."
+                });
+                var imageType = /image.*/;
+                if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        console.log(Archivo[0].files[0]);
+                        var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
+                                    <div class="caption">\n\
+                                        <p>' + Archivo[0].files[0].name + '</p>\n\
+                                    </div>';
+                        VistaPrevia.html(preview);
+                    };
+                    reader.readAsDataURL(Archivo[0].files[0]);
+                } else {
+                    if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
+                        console.log('ES UN PDF');
+                        var readerpdf = new FileReader();
+                        readerpdf.onload = function (e) {
+                            VistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        };
+                        readerpdf.readAsDataURL(Archivo[0].files[0]);
+                    } else {
+                        VistaPrevia.html('EL ARCHIVO SE SUBIRÁ, PERO NO ES POSIBLE RECONOCER SI ES UN PDF O UNA IMAGEN');
+                    }
+                }
+                HoldOn.close();
+            });
+            Archivo.trigger('click');
+        });
+        
+        
+        
 
         getClientes();
         getCodigosPPTA();
@@ -774,6 +808,10 @@
         }).always(function () {
             HoldOn.close();
         });
+    }
+    
+    function onRemovePreview(e) {
+        $(e).parent().parent("#VistaPrevia").html("");
     }
 
 </script>

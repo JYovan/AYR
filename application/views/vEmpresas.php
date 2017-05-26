@@ -257,7 +257,7 @@
 <!--SCRIPT-->
 
 <script>
-    var master_url = base_url + 'index.php/CtrlEmpresas/'
+    var master_url = base_url + 'index.php/CtrlEmpresas/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
 
