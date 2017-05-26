@@ -1012,12 +1012,26 @@
         });
 
         btnArchivo.click(function () {
-            Archivo.click(function () {
-                HoldOn.open({
+        
+        
+         HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
                 });
-                Archivo.change(function () {
+     
+    
+        
+            Archivo.click(function () {
+                
+                  
+        
+                
+            
+                
+                
+                 Archivo.change(function () {
+              
+               
                     if (Archivo[0].files[0] !== undefined) {
                         var extension = getExt(Archivo[0].files[0].name);
                         console.log('EXTENSION ' + extension);
@@ -1044,7 +1058,11 @@
                         HoldOn.close();
                     }
                 });
+            
+           
+               
             });
+
             Archivo.trigger('click');
         });
 

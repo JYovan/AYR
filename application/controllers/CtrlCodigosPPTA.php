@@ -37,6 +37,9 @@ class CtrlCodigosPPTA extends CI_Controller {
         }
     }
 
+    
+   
+    
     public function getCodigoPPTAByID() {
         try {
             extract($this->input->post());

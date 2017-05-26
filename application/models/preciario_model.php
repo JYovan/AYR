@@ -43,6 +43,25 @@ class preciario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
+    public function getPreciariosByCliente($Cliente_ID) {
+        try {
+            $this->db->select('P.ID as ID, P.Nombre as PRECIARIO', false);
+            $this->db->from('preciarios AS P');
+            $this->db->where('P.Cliente_ID', $Cliente_ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getConceptosXPreciarioID($ID) {
         try {

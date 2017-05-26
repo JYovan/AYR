@@ -71,6 +71,11 @@
         <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
 
+         <!--Time picker--> 
+        <link href="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/> 
+        <script src="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.js"></script>
+
+        
         <!--JS XLXS API-->
 
         <script src="<?php echo base_url(); ?>js/js-xlsx/dist/cpexcel.js"></script>
@@ -104,9 +109,18 @@
             $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
-            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
-                $(this).datepicker('hide');
+//            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
+//                $(this).datepicker('hide');
+//            });
+            
+          $('[data-provide="datepicker"]').datepicker({
+   
+                todayBtn: true,
+                autoclose: true,
+                todayHighlight: true
             });
+
+
         });
 
 

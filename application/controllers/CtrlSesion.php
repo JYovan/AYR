@@ -32,6 +32,7 @@ class CtrlSesion extends CI_Controller {
                     'PASSWORD' => $data[0]->Contrasena,
                     'Nombre' => $data[0]->Nombre,
                     'Apellidos' => $data[0]->Apellidos,
+                    'ID' => $data[0]->ID,
                     'LOGGED' => TRUE
                 );
                 $this->session->mark_as_temp('LOGGED', 28800);

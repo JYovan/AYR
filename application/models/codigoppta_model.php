@@ -45,7 +45,7 @@ class codigoppta_model extends CI_Model {
 
     public function getCodigoPPTAByID($ID) {
         try {
-            $this->db->select('CP.*', false);
+            $this->db->select('CP.ID,CP.Codigo, CP.Dias', false);
             $this->db->from('codigosppta AS CP');
             $this->db->where('CP.ID', $ID);
             $query = $this->db->get();
@@ -60,6 +60,8 @@ class codigoppta_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
 
     public function onAgregar($array) {
         try {
