@@ -91,6 +91,7 @@
     <script>
         var base_url = "<?php print base_url(); ?>";
         $(function () {
+            $(".btn").addClass("animated shake");
 //            $("table.display").DataTable(tableOptions);
             $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();

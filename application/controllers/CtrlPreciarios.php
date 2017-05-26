@@ -298,11 +298,12 @@ class CtrlPreciarios extends CI_Controller {
                 'Unidad' => (isset($Unidad) && $Unidad !== '') ? $Unidad : 'NA',
                 'Costo' => (isset($Costo) && $Costo !== '') ? $Costo : 0.0,
                 'Moneda' => (isset($Moneda) && $Moneda !== '') ? $Moneda : 'MXN',
-                'PreciarioSubSubCategoria_ID',
-                'PreciarioSubCategorias_ID',
-                'PreciarioCategorias_ID',
+                'PreciarioSubSubCategoria_ID' => $SubSubCategoria,
+                'PreciarioSubCategorias_ID' => $SubCategoria,
+                'PreciarioCategorias_ID' => $Categoria,
                 'Preciarios_ID' => $ID
             );
+            $IDPCO = $this->preciario_model->onAgregarPreciarioConceptos($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -329,7 +330,7 @@ class CtrlPreciarios extends CI_Controller {
                 'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'NA',
                 'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NA',
                 'Preciario_ID' => $Preciario_ID,
-                'PreciarioCategoria_ID'=>$PreciarioCategoria_ID
+                'PreciarioCategoria_ID' => $PreciarioCategoria_ID
             );
             $this->preciario_model->onAgregarPreciarioSubCategoria($data);
         } catch (Exception $exc) {
@@ -344,8 +345,8 @@ class CtrlPreciarios extends CI_Controller {
                 'Clave' => (isset($Clave) && $Clave !== NULL && $Clave !== '') ? $Clave : 'NA',
                 'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NA',
                 'Preciario_ID' => $Preciario_ID,
-                'PreciarioCategoria_ID'=>$PreciarioCategoria_ID,
-                'PreciarioSubCategorias_ID'=>$PreciarioSubCategorias_ID
+                'PreciarioCategoria_ID' => $PreciarioCategoria_ID,
+                'PreciarioSubCategorias_ID' => $PreciarioSubCategorias_ID
             );
             $this->preciario_model->onAgregarPreciarioSubSubCategoria($data);
         } catch (Exception $exc) {
