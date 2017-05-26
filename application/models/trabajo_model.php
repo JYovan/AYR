@@ -55,5 +55,35 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+      public function onEliminar($ID) {
+        try {
+            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajos");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+     public function getTrabajoByID($ID) {
+        try {
+            $this->db->select('T.*', false);
+            $this->db->from('trabajos AS T');
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }

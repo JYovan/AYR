@@ -28,7 +28,7 @@ class preciario_model extends CI_Model {
 
     public function getPreciarioByID($ID) {
         try {
-            $this->db->select('*', false);
+            $this->db->select('P.*', false);
             $this->db->from('preciarios AS P');
             $this->db->where('P.ID', $ID);
             $query = $this->db->get();

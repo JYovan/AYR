@@ -39,6 +39,15 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
     
+      public function getTrabajoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     
       public function onAgregar() {
         try {
@@ -81,6 +90,15 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
     
+     public function onEliminar() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
@@ -104,6 +122,27 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->preciario_model->getPreciariosByCliente($Cliente_ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    public function getSucursalByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->sucursal_model->getSucursalByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function getPreciarioByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getPreciarioByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

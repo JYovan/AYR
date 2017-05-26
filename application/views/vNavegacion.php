@@ -56,9 +56,9 @@
                         <li><a href="<?php print base_url() ?>index.php/CtrlClientes/">CLIENTES</a></li> 
                         <li><a href="<?php print base_url() ?>index.php/CtrlEmpresas/">EMPRESAS</a></li>
                         <li><a href="<?php print base_url() ?>index.php/CtrlPreciarios/">PRECIARIOS</a></li> 
-                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>
+<!--                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>-->
                         <li><a href="<?php print base_url() ?>index.php/CtrlEmpresasSupervisoras/">EMPRESAS SUPERVISORAS</a></li> 
-                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>
+<!--                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>-->
                         <li><a href="<?php print base_url() ?>index.php/CtrlCuadrillas/">CUADRILLAS</a></li> 
                         <li><a href="<?php print base_url() ?>index.php/CtrlCodigosPPTA/">CÓDIGOS PPTA</a></li> 
                     </ul>
