@@ -13,11 +13,29 @@ class trabajo_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
-    
+
     public function getRecords() {
         try {
-            $this->db->select('T.ID, T.Movimiento, T.Estatus FROM Trabajos T where T.Estatus = \'ACTIVO\' ', false);
+            $this->db->select("T.ID, T.Movimiento,"
+                    . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'FOLIO', "
+                    . "(CASE WHEN  T.Situacion ='AUTORIZADO' THEN CONCAT('<span class=\'label label-success\'>','AUTORIZADO','</span>') "
+                    . "WHEN  T.Situacion ='SIN AUTORIZAR' THEN CONCAT('<span class=\'label label-danger\'>','SIN AUTORIZAR','</span>')"
+                    . "ELSE CONCAT('<span class=\'label label-warning\'>','PENDIENTE','</span>') END) AS ESTATUS ,"
+                    . "T.FechaCreacion as 'FECHA DE CREACIÓN' ,"
+                    . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS ATENDIDO ,"
+                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS ADJUNTO ,"
+                    . "Ct.Nombre as 'CLIENTE', "
+                    . "concat(S.CR,' ',S.Nombre) as 'SUCURSAL' ,"
+                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'CLASIFICACIÓN', "
+                    . "S.Region ,"
+                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'CUADRILLA', "
+                    . "concat(u.nombre,' ',u.apellidos)as 'USUARIO' "
+                    . "FROM TRABAJOS T  "
+                    . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
+                    . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
+                    . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID  "
+                    . "INNER JOIN USUARIOs U ON U.ID = T.Usuario_ID WHERE T.ESTATUS='ACTIVO' ", false);
+
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -30,7 +48,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregar($array) {
         try {
             $this->db->insert("trabajos", $array);
@@ -44,9 +62,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onModificar($ID, $DATA) {
+
+    public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajos", $DATA);
@@ -55,10 +72,10 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function onEliminar($ID) {
+
+    public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'INACTIVO');
             $this->db->where('ID', $ID);
             $this->db->update("trabajos");
 //            print $str = $this->db->last_query();
@@ -66,9 +83,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function getTrabajoByID($ID) {
+
+    public function getTrabajoByID($ID) {
         try {
             $this->db->select('T.*', false);
             $this->db->from('trabajos AS T');

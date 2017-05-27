@@ -404,7 +404,7 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#EditarDatos" aria-controls="EditarDatos" role="tab" data-toggle="tab">Datos Generales</a></li>
-                            <li role="presentation"><a href="#EditarDatos2" aria-controls="EditarDatos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
+                            <li role="presentation" ><a href="#EditarDatos2" aria-controls="EditarDatos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
                             <li role="presentation"><a href="#EditarDatos3" aria-controls="EditarDatos3" role="tab" data-toggle="tab">Otros Datos</a></li>
                             <li role="presentation"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab">Adjuntos</a></li>
                         </ul>
@@ -727,8 +727,9 @@
     var btnCancelar = $("#btnCancelar");
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
+    var btnModificar = $("#btnModificar");
     var btnEditar = $("#btnEditar");
-    var mdlNuevo = $("#mdlNuevo");
+
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
     var pnlEditarTrabajo = $("#pnlEditarTrabajo");
     var menuTablero = $('#MenuTablero');
@@ -793,8 +794,8 @@
 
         btnEditar.click(function () {
 
-
-        
+            pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -818,13 +819,14 @@
                     //trae los catalogos
                     getSucursalesbyCliente(trabajo.Cliente_ID);
                     getPreciariosbyCliente(trabajo.Cliente_ID);
+
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-                    
+
                     //traer valores seleccionados de los catalogos de la bd
                     getSucursalByID(trabajo.Sucursal_ID);
                     getPreciarioByID(trabajo.Preciario_ID);
-                    
+
 
                     pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                     pnlEditarTrabajo.find("#ID").val(trabajo.ID);
@@ -852,8 +854,8 @@
                         pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
                     }
                     pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
-                    pnlEditarTrabajo.find("#CausaTrabajo").select2("val",trabajo.CausaTrabajo);
-                    pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val",trabajo.ClaveOrigenTrabajo);
+                    pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
+                    pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
                     pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
                     pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
                     pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
@@ -880,8 +882,6 @@
                     }
 
 
-                  
-                    
                     menuTablero.addClass("hide");
                     pnlEditarTrabajo.removeClass("hide");
 
@@ -893,6 +893,91 @@
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
+        });
+
+        btnModificar.click(function () {
+
+            $.validator.setDefaults({
+                ignore: []
+            });
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Movimiento: 'required',
+                    FechaCreacion: 'required',
+                    Cliente_ID: 'required',
+                    Sucursal_ID: 'required',
+                    Preciario_ID: 'required',
+                    Situacion: 'required'
+
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
+
+                //  Para los checkbox
+                if ($("#Atendido").is(':checked')) {
+                    frm.delete('Atendido');
+                    frm.append('Atendido', 'Si');
+                } else {
+                    frm.delete('Atendido');
+                    frm.append('Atendido', 'No');
+                }
+
+                if ($("#ImpactoEnPlazo").is(':checked')) {
+                    frm.delete('ImpactoEnPlazo');
+                    frm.append('ImpactoEnPlazo', 'Si');
+                } else {
+                    frm.delete('ImpactoEnPlazo');
+                    frm.append('ImpactoEnPlazo', 'No');
+                }
+
+                frm.delete('Dias');
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
+                    btnRefrescar.trigger('click');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+
+            }
+
+
         });
 
         btnGuardar.click(function () {
@@ -985,6 +1070,7 @@
 
         btnCancelarModificar.click(function () {
 
+
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarTrabajo.addClass("hide");
             //  menuTablero.removeClass("hide");
@@ -992,6 +1078,10 @@
         });
 
         btnNuevo.click(function () {
+            
+              pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
             pnlNuevoTrabajo.find("input").val("");
@@ -1013,6 +1103,17 @@
 
 
         });
+
+        /*Funcion que trae los catalogos en base al cliente*/
+        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+            pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
+            pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+
+
+        });
+
         //Trae dias de ppta
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
@@ -1231,7 +1332,7 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-    
+
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
 
         }).fail(function (x, y, z) {
@@ -1329,11 +1430,11 @@
         }).done(function (data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
-                
+
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
-                
-             
+
+
             }
 
         }).fail(function (x, y, z) {
