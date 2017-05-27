@@ -39,10 +39,61 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
     
+      public function getTrabajoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     
       public function onAgregar() {
         try {
-            $this->trabajo_model->onAgregar($this->input->post());
+           $ID = $this->trabajo_model->onAgregar($this->input->post());
+            print "ID: " . $ID;
+            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["Adjunto"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                    $DATA = array(
+                        'Adjunto' => ($img)
+                    );
+                    $this->trabajo_model->onModificar($ID, $DATA);
+                } else {
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+            
+            
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function onModificar() {
+        try {
+            extract($this->input->post());
+            
+            $this->trabajo_model->onModificar($ID, $this->input->post());
+  
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function onEliminar() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -71,6 +122,27 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->preciario_model->getPreciariosByCliente($Cliente_ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    public function getSucursalByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->sucursal_model->getSucursalByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function getPreciarioByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->preciario_model->getPreciarioByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

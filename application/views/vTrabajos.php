@@ -1,6 +1,6 @@
 
 <div class="col-md-12" id="MenuTablero">
-    <div class="panel panel-default">
+    <div class="panel panel-default animated">
         <div class="panel-heading">TRABAJOS</div>
         <div class="panel-body">
             <fieldset>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-default" >REGRESAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
@@ -38,27 +38,28 @@
 </div>
 
 
-<!--Boton para regresar-->
+<!--PANEL NUEVO-->
 <div class="col-6 col-md-12"> 
-    <div class="panel panel-default hide" id="pnlNuevoTrabajo">
+    <div class="panel panel-default hide animated slideInRight" id="pnlNuevoTrabajo">
 
-        <div class="panel-heading">
+        <div class="panel-heading" >
 
             <div class="panel-heading row">
                 <div class="col-md-8"> 
                     <div class="cursor-hand" >NUEVO TRABAJO </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-default" id="btnRegresar" data-toggle="tooltip" data-placement="top" title="" data-original-title="ATRAS">
-                        <span class="fa fa-arrow-left fa-2x" ></span>
-                    </button>
+
+                    <button type="button" class="btn btn-default" id="btnCancelar">REGRESAR</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+
                 </div>
             </div>
         </div>
         <div class="panel-body">
             <form id="frmNuevo">
 
-                <fieldset>
+                <fieldset>       
                     <div class="col-6 col-md-12">      
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -273,7 +274,7 @@
 
                                     <div class="col-6 col-md-6">
                                         <label for="">CAUSA DEL TRABAJO</label>
-                                        <select id="Causa" name="CausaTrabajo" class="form-control" >
+                                        <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
                                             <option value="EP">EP - ERROR DEL PROYECTO</option>
@@ -335,7 +336,7 @@
                                 <label for="">PUEDE SUBIR UN PDF, EXCEL, IMAGEN (JPG.PNG) O ARCHIVO DE AUTOCAD</label>
                             </div>
                             <div class="col-md-12" align="center">
-                                <div id="ArchivoAdjunto" class="col-md-12" align="center"></div>
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x">
@@ -369,15 +370,345 @@
                             <h6>Los campos con * son obligatorios</h6>    
                         </div>
                     </div>
+                </fieldset>
 
+            </form>
 
-                    <div class="col-6 col-md-12 panel-Raiz" align="right" >
-                        <button type="button" class="btn btn-default" id="btnCancelar">CANCELAR</button>
-                        <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+        </div>
+    </div>
+</div>
+
+<!--PANEL EDITAR-->
+<div class="col-6 col-md-12"> 
+    <div class="panel panel-default hide animated slideInRight" id="pnlEditarTrabajo">
+
+        <div class="panel-heading" >
+
+            <div class="panel-heading row">
+                <div class="col-md-8"> 
+                    <div class="cursor-hand" >EDITAR TRABAJO </div>
+                </div> 
+                <div class="col-md-4 panel-title" align="right">
+
+                    <button type="button" class="btn btn-default" id="btnCancelarModificar">REGRESAR</button>
+                    <button type="button" class="btn btn-primary" id="btnModificar">GUARDAR</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form id="frmEditar">
+
+                <fieldset>       
+                    <div class="col-6 col-md-12">      
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist" id="Encabezado">
+                            <li role="presentation" class="active"><a href="#EditarDatos" aria-controls="EditarDatos" role="tab" data-toggle="tab">Datos Generales</a></li>
+                            <li role="presentation" ><a href="#EditarDatos2" aria-controls="EditarDatos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
+                            <li role="presentation"><a href="#EditarDatos3" aria-controls="EditarDatos3" role="tab" data-toggle="tab">Otros Datos</a></li>
+                            <li role="presentation"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab">Adjuntos</a></li>
+                        </ul>
                     </div>
 
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                        <!-- PANEL DE DATOS GENERALES-->
+                        <div role="tabpanel" class="tab-pane fade in active" id="EditarDatos">
+                            <div class="col-6 col-md-12">
+                                <br>
+                            </div>
 
 
+                            <div class="col-6 col-md-6">
+                                <label for="">MOVIMIENTO*</label>
+                                <select id="Movimiento" name="Movimiento" class="form-control" >
+                                    <option value=""></option> 
+                                    <option value="LEVANTAMIENTO">LEVANTAMIENTO</option> 
+                                    <option value="COTIZACIÓN">COTIZACIÓN</option> 
+                                    <option value="PRESUPUESTO">PRESUPUESTO</option> 
+                                    <option value="ESTIMACIÓN">ESTIMACIÓN</option> 
+                                </select>
+                            </div>
+
+                            <div class=" col-6 col-md-3">
+                                <label for="">MOV ID</label>
+                                <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                            </div>
+
+
+                            <div class="col-6 col-md-3">
+                                <label for="">FECHA DE CREACION*</label>
+                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div> 
+
+                            <div class="col-6 col-md-6">
+                                <label for="">CLIENTE*</label>
+                                <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                    <option value=""></option> 
+                                </select>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <label for="">SUCURSAL*</label>
+                                <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
+                                    <option value=""></option> 
+                                </select>
+                            </div>
+
+
+                            <div class="col-6 col-md-6">
+                                <label for="">PRECIARIO*</label>
+                                <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
+                                    <option value=""></option> 
+                                </select>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <label for="">CLASIFICACIÓN</label>
+                                <select id="Clasificacion" name="Clasificacion" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="CERRAJERÍA">CERRAJERÍA</option> 
+                                    <option value="MOBILIARIO">MOBILIARIO</option> 
+                                    <option value="INMUEBLE">INMUEBLE</option> 
+                                </select>
+                            </div>
+
+
+                            <div class="col-6 col-md-3">
+                                <label for="">ESTA COMPLETADO?</label>
+                                <spam><br></spam>
+                                <label class="switch">
+                                    <input type="checkbox" id="Atendido" name="Atendido"  class="form-control">
+
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+
+                                <label for="">SITUACION*</label>
+                                <select id="Situacion" name="Situacion" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="PENDIENTE">PENDIENTE</option>
+                                    <option value="AUTORIZADO">AUTORIZADO</option>
+                                    <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <label for="">CUADRILLA</label>
+                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- PANEL DE DATOS DEL TRABAJO-->
+
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos2">
+                            <div class="col-6 col-md-12">
+                                <br>
+                            </div>
+
+
+                            <div class="col-6 col-md-3">
+                                <label for="">FOLIO</label>
+                                <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label for="">FECHA ATENCIÓN</label>
+                                <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label for="">Codigo PPTA</label>
+                                <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <label for="">DIAS</label>
+                                <input type="text" id="Dias" name="Dias" class="form-control" readonly="" placeholder="" >
+                            </div>
+
+
+                            <div class=" col-6 col-md-12">
+                                <label for="">SOLICITANTE</label>
+                                <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <label for="">TRABAJO SOLICITADO</label>
+                                <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <label for="">TRABAJO REQUERIDO</label>
+                                <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
+                            </div>
+
+
+                            <div class="col-6 col-md-12">
+                                <div class="row ">
+                                    <div class="col-6 col-md-3">
+                                        <label for="">FECHA ORIGEN</label>
+                                        <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div> 
+                                    <div class="col-6 col-md-3">
+                                        <label for="">HORA ORIGEN</label>
+                                        <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-6 col-md-3">
+                                <label for="">FECHA VISITA</label>
+                                <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div> 
+                            <div class="col-6 col-md-3">
+                                <label for="">HORA VISITA</label>
+                                <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
+
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label for="">FECHA FIN VISITA</label>
+                                <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div> 
+                            <div class="col-6 col-md-3">
+                                <label for="">HORA FIN VISITA</label>
+                                <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <!--PANEL DE OTROS DATOS-->
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos3">
+                            <div class="col-6 col-md-12">
+                                <br>
+                            </div>
+                            <div class="col-6 col-md-12">
+                                <div class="row ">
+                                    <div class="col-6 col-md-3">
+                                        <label for="">IMPACTO EN EL PLAZO (SI/NO)</label>
+                                        <spam><br></spam>
+                                        <label class="switch">
+                                            <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control">
+
+                                            <div class="slider round"></div>
+                                        </label>
+                                    </div>
+                                    <div class=" col-6 col-md-3">
+                                        <label for="">DIAS DE IMPACTO</label>
+                                        <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                    </div>
+
+                                    <div class="col-6 col-md-6">
+                                        <label for="">CAUSA DEL TRABAJO</label>
+                                        <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="MP">MP - MEJORAS AL PROYECTO</option>
+                                            <option value="EP">EP - ERROR DEL PROYECTO</option>
+                                            <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
+                                            <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
+                                            <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
+                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option> 
+                                            <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
+                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option> 
+                                            <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
+                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option> 
+                                            <option value="OTR">OTR - OTROS</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <label for="">CLAVE ORIGEN</label>
+                                <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="CONTR">CONTR - CONTRATISTA</option>
+                                    <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
+                                    <option value="BBVA">CTE - CLIENTE</option>
+                                    <option value="OTRO">OTRO - OTRO</option>
+
+
+                                </select>
+                            </div>
+                            <div class=" col-6 col-md-6">
+                                <label for="">(EN CASO DE SER OTROS) ESPECIFICA</label>
+                                <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <label for="">ORIGEN DEL TRABAJO</label>
+                                <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <label for="">RIESGO DEL TRABAJO</label>
+                                <textarea class="col-md-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                            </div>
+                            <div class="col-6 col-md-12">
+                                <label for="">ALCANCE DEL TRABAJO</label>
+                                <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                            </div>
+
+                        </div>
+
+                        <!--                                PANEL DE ARCHVIO ADJUNTO-->
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
+
+                            <div class="col-md-12">
+                                <span> <br></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="">PUEDE SUBIR UN PDF, EXCEL, IMAGEN (JPG.PNG) O ARCHIVO DE AUTOCAD</label>
+                            </div>
+                            <div class="col-md-12" align="center">
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                                <input type="file" id="Adjunto" name="Adjunto" class="hide">
+                                <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                                    <span class="fa fa-upload fa-1x">
+                                    </span> 
+                                    SELECCIONA EL ARCHIVO
+                                </button>
+                            </div>
+
+                            <div class="col-md-12 hide">
+                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" > 
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <span> <br></span>
+                        </div>
+                        <div class="col-md-12">
+                            <span> <br></span>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+
+                            <label for="">ESTATUS</label>
+                            <input type="text" id="Estatus" name="Estatus" class="form-control"  placeholder="SIN GUARDAR" readonly="">
+
+                        </div>
+
+
+                        <div class="col-6 col-md-12">
+                            <h6>Los campos con * son obligatorios</h6>    
+                        </div>
+                    </div>
                 </fieldset>
 
             </form>
@@ -388,20 +719,26 @@
 
 
 
-
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlTrabajos/';
     var btnNuevo = $("#btnNuevo");
     var btnRefrescar = $("#btnRefrescar");
     var btnCancelar = $("#btnCancelar");
-    var btnRegresar = $("#btnRegresar");
+    var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
-    var mdlNuevo = $("#mdlNuevo");
+    var btnModificar = $("#btnModificar");
+    var btnEditar = $("#btnEditar");
+
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
-    var btnRefrescar = $("#btnRefrescar");
+    var pnlEditarTrabajo = $("#pnlEditarTrabajo");
     var menuTablero = $('#MenuTablero');
+    var Archivo = $("#Adjunto");
+    var btnArchivo = $("#btnArchivo");
+    var VistaPrevia = $("#VistaPrevia");
+    var btnEliminar = $("#btnEliminar");
+    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
+    var mdlConfirmar = $("#mdlConfirmar");
 
     var currentDate = new Date();
 
@@ -412,7 +749,235 @@
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
-            
+
+        });
+
+        //Evento clic del boton confirmar borrar
+        btnConfirmarEliminar.click(function () {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                //Muestra el modal
+                mdlConfirmar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+
+        btnEliminar.click(function () {
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminar',
+                    type: "POST",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    mdlConfirmar.modal('hide');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
+                    getRecords();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+
+        btnEditar.click(function () {
+
+            pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'getTrabajoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function (data, x, jq) {
+
+                    pnlEditarTrabajo.find("input").val("");
+                    pnlEditarTrabajo.find("select").val(null).trigger("change");
+
+                    var trabajo = data[0];
+
+                    //trae los catalogos
+                    getSucursalesbyCliente(trabajo.Cliente_ID);
+                    getPreciariosbyCliente(trabajo.Cliente_ID);
+
+                    //trae los días
+                    getCodigoPPTAbyID(trabajo.Codigoppta_ID);
+
+                    //traer valores seleccionados de los catalogos de la bd
+                    getSucursalByID(trabajo.Sucursal_ID);
+                    getPreciarioByID(trabajo.Preciario_ID);
+
+
+                    pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
+                    pnlEditarTrabajo.find("#ID").val(trabajo.ID);
+                    pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                    pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
+
+                    pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                    if (trabajo.Atendido === 'Si') {
+                        pnlEditarTrabajo.find("#Atendido").prop('checked', true);
+                    }
+                    pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
+                    pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
+                    pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                    pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
+                    pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
+                    pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                    pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                    pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                    pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                    pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                    pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                    pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
+                    pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                    if (trabajo.ImpactoEnPlazo === 'Si') {
+                        pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
+                    }
+                    pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                    pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
+                    pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
+                    pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                    pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                    pnlEditarTrabajo.find("#Estatus").val(trabajo.Estatus);
+                    pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
+
+
+                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                        var ext = getExt(trabajo.Adjunto);
+                        console.log(ext);
+                        if (ext === "gif" || ext === "jpg" || ext === "png") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
+                        }
+                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        }
+                        if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                        }
+                    } else {
+                        pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                    }
+
+
+                    menuTablero.addClass("hide");
+                    pnlEditarTrabajo.removeClass("hide");
+
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+        btnModificar.click(function () {
+
+            $.validator.setDefaults({
+                ignore: []
+            });
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Movimiento: 'required',
+                    FechaCreacion: 'required',
+                    Cliente_ID: 'required',
+                    Sucursal_ID: 'required',
+                    Preciario_ID: 'required',
+                    Situacion: 'required'
+
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+
+                var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
+
+                //  Para los checkbox
+                if ($("#Atendido").is(':checked')) {
+                    frm.delete('Atendido');
+                    frm.append('Atendido', 'Si');
+                } else {
+                    frm.delete('Atendido');
+                    frm.append('Atendido', 'No');
+                }
+
+                if ($("#ImpactoEnPlazo").is(':checked')) {
+                    frm.delete('ImpactoEnPlazo');
+                    frm.append('ImpactoEnPlazo', 'Si');
+                } else {
+                    frm.delete('ImpactoEnPlazo');
+                    frm.append('ImpactoEnPlazo', 'No');
+                }
+
+                frm.delete('Dias');
+
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
+                    btnRefrescar.trigger('click');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+
+            }
+
+
         });
 
         btnGuardar.click(function () {
@@ -434,7 +999,7 @@
                     Sucursal_ID: 'required',
                     Preciario_ID: 'required',
                     Situacion: 'required'
-                    
+
                 },
                 highlight: function (element, errorClass, validClass) {
 
@@ -464,7 +1029,7 @@
                     frm.delete('Atendido');
                     frm.append('Atendido', 'No');
                 }
-                
+
                 if ($("#ImpactoEnPlazo").is(':checked')) {
                     frm.delete('ImpactoEnPlazo');
                     frm.append('ImpactoEnPlazo', 'Si');
@@ -472,9 +1037,9 @@
                     frm.delete('ImpactoEnPlazo');
                     frm.append('ImpactoEnPlazo', 'No');
                 }
-                    frm.append('Estatus', 'ACTIVO');
-                    frm.delete('Dias');
-              
+                frm.append('Estatus', 'ACTIVO');
+                frm.delete('Dias');
+
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -483,9 +1048,9 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO REGISTRO', 'success');
-                    getRecords();
-//                    mdlNuevo.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
+
+                    btnRefrescar.trigger('click');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -493,23 +1058,30 @@
                     HoldOn.close();
                 });
             }
-
-
-
         });
-
-
 
         btnCancelar.click(function () {
+
+            menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
-            menuTablero.removeClass("hide");
+            //  menuTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
         });
-        btnRegresar.click(function () {
-            pnlNuevoTrabajo.addClass("hide");
-            menuTablero.removeClass("hide");
+
+        btnCancelarModificar.click(function () {
+
+
+            menuTablero.addClass("animated slideInLeft").removeClass("hide");
+            pnlEditarTrabajo.addClass("hide");
+            //  menuTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
         });
 
         btnNuevo.click(function () {
+            
+              pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
             pnlNuevoTrabajo.find("input").val("");
@@ -526,8 +1098,19 @@
         pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
-            getSucursales(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getPreciarios(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+
+
+        });
+
+        /*Funcion que trae los catalogos en base al cliente*/
+        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+            pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
+            pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+
 
         });
 
@@ -536,12 +1119,48 @@
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
+
+
+        btnArchivo.click(function () {
+            Archivo.change(function () {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "POR FAVOR ESPERE..."
+                });
+                var imageType = /image.*/;
+                if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        console.log(Archivo[0].files[0]);
+                        var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
+                                    <div class="caption">\n\
+                                        <p>' + Archivo[0].files[0].name + '</p>\n\
+                                    </div>';
+                        VistaPrevia.html(preview);
+                    };
+                    reader.readAsDataURL(Archivo[0].files[0]);
+                } else {
+                    if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
+                        console.log('ES UN PDF');
+                        var readerpdf = new FileReader();
+                        readerpdf.onload = function (e) {
+                            VistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        };
+                        readerpdf.readAsDataURL(Archivo[0].files[0]);
+                    } else {
+                        VistaPrevia.html('EL ARCHIVO SE SUBIRÁ, PERO NO ES POSIBLE RECONOCER SI ES UN PDF O UNA IMAGEN');
+                    }
+                }
+                HoldOn.close();
+            });
+            Archivo.trigger('click');
+        });
+
         getClientes();
         getCodigosPPTA();
         getRecords();
         getCuadrillas();
-        
-         
 
     });
 
@@ -609,12 +1228,10 @@
         });
     }
 
-
     $('#Encabezado a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
-
 
     /*Traer catálogos para el encabezado*/
     function getClientes() {
@@ -632,6 +1249,7 @@
                 options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
+            pnlEditarTrabajo.find("#Cliente_ID").html(options);
             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -640,8 +1258,7 @@
         });
     }
 
-
-    function getSucursales(IDX) {
+    function getSucursalesbyCliente(IDX) {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -660,9 +1277,12 @@
             $.each(data, function (k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.SUCURSAL + '</option>';
-            });
-            pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
 
+            });
+
+
+            pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
+            pnlEditarTrabajo.find("#Sucursal_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -670,8 +1290,7 @@
         });
     }
 
-
-    function getPreciarios(Cliente_ID) {
+    function getPreciariosbyCliente(Cliente_ID) {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -692,6 +1311,29 @@
                 options += '<option value="' + v.ID + '">' + v.PRECIARIO + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
+            pnlEditarTrabajo.find("#Preciario_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function getSucursalByID(IDX) {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getSucursalByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+
+            pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
 
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -700,6 +1342,28 @@
         });
     }
 
+    function getPreciarioByID(IDX) {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getPreciarioByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+
+            pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
+
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 
     function getCodigosPPTA() {
         HoldOn.open({
@@ -717,14 +1381,14 @@
             });
 
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
-
+            pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
-    
+
     function getCuadrillas() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -736,14 +1400,14 @@
             dataType: "JSON"
         }).done(function (data, x, jq) {
             console.log(data);
-            
+
             var options = '<option></option>';
             $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.CUADRILLA + '</option>';
             });
 
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
-
+            pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -766,7 +1430,11 @@
         }).done(function (data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
+
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
+                pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
+
+
             }
 
         }).fail(function (x, y, z) {
@@ -774,6 +1442,10 @@
         }).always(function () {
             HoldOn.close();
         });
+    }
+
+    function onRemovePreview(e) {
+        $(e).parent().parent("#VistaPrevia").html("");
     }
 
 </script>

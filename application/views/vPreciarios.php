@@ -20,8 +20,17 @@
 <div class="col-md-12">
     <!--GUARDAR-->
     <div id="pnlNuevo" class="panel panel-default hide">
-        <div class="panel-heading">
-            <h3 class="panel-title">NUEVO PRECIARIO</h3>
+        <div class="panel-heading" >
+            <div class="panel-heading row">
+                <div class="col-md-8"> 
+                    <div class="cursor-hand" >NUEVO PRECIARIO</div>
+                </div> 
+                <div class="col-md-4 panel-title" align="right">
+                    <button type="button" class="btn btn-default" id="btnCancelar">CANCELAR</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <form id="frmNuevo">
@@ -31,19 +40,19 @@
 
                         <div class="col-6 col-md-12">
                             <label for="">NOMBRE*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                            <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                         </div>
 
 
                         <div class="col-md-6">
                             <label for="">FECHA DE CREACION*</label>
-                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                         </div>  
 
 
                         <div class="col-6 col-md-6">
                             <label for="">ESTATUS*</label>
-                            <select id="Estatus" name="Estatus" class="form-control" required>
+                            <select id="Estatus" name="Estatus" class="form-control" >
                                 <option value=""></option> 
                                 <option value="ACTIVO">ACTIVO</option> 
                                 <option value="INACTIVO">INACTIVO</option> 
@@ -52,7 +61,7 @@
 
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
-                            <select id="Tipo" name="Tipo" class="form-control" required>
+                            <select id="Tipo" name="Tipo" class="form-control" >
                                 <option value=""></option> 
                                 <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
                                 <option value="OBRA">OBRA</option> 
@@ -63,7 +72,7 @@
 
                         <div class="col-md-6">
                             <label for="">CLIENTE*</label>
-                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                 <option value=""></option> 
                             </select>
                         </div>
@@ -90,17 +99,14 @@
                         </div> 
                         <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
                         <div class="col-md-12 hide">
-                            <textarea id="json_preciario" name="json_preciario" rows="5" cols="10" class="form-control">
+                            <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
 
                         </div>
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-default" id="btnCancelar"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-                            <button type="button" class="btn btn-primary" id="btnGuardar"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
-                        </div>
+
                     </fieldset>
                 </div>
             </form>
@@ -110,33 +116,39 @@
     <!--EDITAR-->
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="panel-heading">
-            <h3 class="panel-title">EDITAR PRECIARIO</h3>
+            <div class="panel-heading row">
+                <div class="col-md-8"> 
+                    <div class="cursor-hand" >EDITAR PRECIARIO </div>
+                </div> 
+                <div class="col-md-4 panel-title" align="right">
+                    <button type="button" class="btn btn-default" id="btnCancelarEditar">CANCELAR</button>
+                    <button type="button" class="btn btn-primary" id="btnEditar">GUARDAR</button>
+
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <form id="frmEditar"> 
                 <fieldset> 
-                    <div class="col-md-12" align="right">
-                        <button type="button" class="btn btn-default" id="btnCancelarEditar"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-                        <button type="button" class="btn btn-primary" id="btnEditar"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
-                    </div>
+
                     <div class="col-md-12 hide">
                         <label for="">ID*</label>    
-                        <input type="text" class="form-control" id="ID" name="ID" required>
+                        <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
 
                     <div class="col-md-12">
                         <label for="">NOMBRE*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                        <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                     </div>
 
                     <div class="col-md-6">
                         <label for="">FECHA DE CREACION*</label>
-                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required>
+                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                     </div>  
 
                     <div class="col-6 col-md-6">
                         <label for="">ESTATUS*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" required>
+                        <select id="Estatus" name="Estatus" class="form-control" >
                             <option value=""></option> 
                             <option value="ACTIVO">ACTIVO</option> 
                             <option value="INACTIVO">INACTIVO</option> 
@@ -145,7 +157,7 @@
 
                     <div class="col-6 col-md-6">
                         <label for="">TIPO*</label>
-                        <select id="Tipo" name="Tipo" class="form-control" required>
+                        <select id="Tipo" name="Tipo" class="form-control" >
                             <option value=""></option> 
                             <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
                             <option value="OBRA">OBRA</option> 
@@ -156,7 +168,7 @@
 
                     <div class="col-md-6">
                         <label for="">CLIENTE*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" required>
+                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option> 
                         </select>
                     </div>
@@ -166,7 +178,7 @@
                         <h3>CONCEPTOS</h3>
                     </div>
 
-                    <div class="col-md-6" align="left"> 
+                    <div class="col-md-12" align="right"> 
                         <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
                         <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
                         <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
@@ -201,7 +213,7 @@
             <div class="col-md-12 hide">
                 <input type="text" class="form-control hide" id="ID" name="ID">
             </div>
-            <div id="pnlConceptos" class="col-md-12" align="center">   
+            <div id="pnlConceptos" class="col-md-12" >   
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#Conceptos" data-toggle="tab">CONCEPTOS</a></li>
@@ -213,13 +225,17 @@
                 <div class="col-md-12"></div>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active in" id="Conceptos">
-                        <div class="col-md-4">
-                            <label for="">CLAVE</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">CLAVE</label>
+                                    <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <label for="">DESCRIPCIÓN</label>
-                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                             </textarea>
                         </div>
                         <div class="col-md-4">
@@ -255,24 +271,35 @@
                     </div>
                     <div class="tab-pane fade" id="Categorias">
                         <div class="" id="mdlNuevaCategoria">
-                            <div class="col-md-6">
-                                <label for="">CLAVE</label>
-                                <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="">CLAVE</label>
+                                        <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
+                                </div>
+                            </div>  
+
+                            <div class="col-md-12">
                                 <label for="">DESCRIPCIÓN</label>
-                                <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                                <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                             </div>
                         </div>  
                     </div>
                     <div class="tab-pane fade" id="SubCategorias">
-                        <div class="col-md-4">
-                            <label for="">CLAVE</label>
-                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">CLAVE</label>
+                                    <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
+
+                        <div class="col-md-12">
                             <label for="">DESCRIPCIÓN</label>
-                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                         </div>
                         <div class="col-md-12">
                             <label for="">CATEGORIA</label>
@@ -282,13 +309,17 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="SubSubCategorias">
-                        <div class="col-md-4">
-                            <label for="">CLAVE</label>
-                            <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">CLAVE</label>
+                                    <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <label for="">DESCRIPCIÓN</label>
-                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="4" cols="10"></textarea>
+                            <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                         </div>
                         <div class="col-md-12">
                             <label for="">CATEGORÍA</label>
@@ -303,11 +334,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div> 
+
                 </div>
             </div>
         </div>
 
-        <div class="modal-footer"> 
+        <div class="modal-footer" > 
             <!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
             <button type="button" class="btn btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>  
@@ -346,7 +381,11 @@
                     </div>
                     <div class="col-md-8">
                         <label for="">DESCRIPCIÓN</label>
+<<<<<<< HEAD
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+=======
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
+>>>>>>> origin/master
                         </textarea>
                     </div>
                     <div class="col-md-4">
@@ -734,8 +773,6 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-
-
         btnNuevoConcepto.click(function () {
 
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
@@ -820,8 +857,6 @@
         mdlEditarConcepto.find("#Categoria").change(function () {
             getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
         });
-
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
 
@@ -891,56 +926,140 @@
         });
 
         btnGuardar.click(function () {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "GUARDANDO... POR FAVOR ESPERE"
+            $.validator.setDefaults({
+                ignore: []
             });
-            var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
-            frm.append('PRECIARIO', pnlNuevo.find("#json_preciario").val());
-            $.ajax({
-                url: master_url + 'onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                pnlNuevo.addClass('hide');
-                pnlPreciario.removeClass('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
-                console.log(data, x, jq);
-                btnRefrescar.trigger('click');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevo').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required',
+                    FechaCreacion: 'required',
+                    Estatus: 'required',
+                    Tipo: 'required',
+                    Cliente_ID: 'required'
+
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
             });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Si es verdadero que hacer
+            if ($('#frmNuevo').valid()) {
+
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "GUARDANDO... POR FAVOR ESPERE"
+                });
+                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
+                frm.append('PRECIARIO', pnlNuevo.find("#json_preciario").val());
+                $.ajax({
+                    url: master_url + 'onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    pnlNuevo.addClass('hide');
+                    pnlPreciario.removeClass('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
+                    console.log(data, x, jq);
+                    btnRefrescar.trigger('click');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+
+            }
+
+
+
         });
 
         btnModificar.click(function () {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "GUARDANDO... POR FAVOR ESPERE"
+            $.validator.setDefaults({
+                ignore: []
             });
-            var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-            $.ajax({
-                url: master_url + 'onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                pnlPreciario.removeClass('hide');
-                pnlEditar.addClass('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
-                console.log(data, x, jq);
-                btnRefrescar.trigger('click');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmEditar').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required',
+                    FechaCreacion: 'required',
+                    Estatus: 'required',
+                    Tipo: 'required',
+                    Cliente_ID: 'required'
+
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
             });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+
+            //Si es verdadero que hacer
+            if ($('#frmEditar').valid()) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "GUARDANDO... POR FAVOR ESPERE"
+                });
+                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
+                $.ajax({
+                    url: master_url + 'onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    pnlPreciario.removeClass('hide');
+                    pnlEditar.addClass('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
+                    console.log(data, x, jq);
+                    btnRefrescar.trigger('click');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
         });
 
         btnNuevo.click(function () {
@@ -1003,11 +1122,11 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnArchivo.click(function () {
+        btnArchivo.click(function () { 
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "POR FAVOR ESPERE..."
-            });
+            }); 
             Archivo.change(function () { 
                 if (Archivo[0].files[0] !== undefined) {
 
@@ -1025,11 +1144,11 @@
                             onProcesarLibroXLS(wb);
                         };
                         if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
-                            reader.readAsArrayBuffer(Archivo[0].files[0]); 
-                        }
-                        HoldOn.close();
-                    } else {
-                        HoldOn.close(); 
+                            reader.readAsArrayBuffer(Archivo[0].files[0]);  
+                            }
+                            HoldOn.close();
+                        } else {
+                            HoldOn.close();
                         is_filled = false;
                     }
                 } else {
@@ -1043,7 +1162,7 @@
                 } else {
                     HoldOn.close();
                 } 
-            });
+                });
             Archivo.trigger('click');
 
         });
