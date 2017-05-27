@@ -378,6 +378,27 @@
     </div>
 </div>
 
+
+
+<!--PANEL DETALLE-->
+<div class="col-6 col-md-12"> 
+    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
+
+        <div class="panel-heading" >
+
+            <div class="panel-heading row">
+                <div class="col-md-8"> 
+                    <div class="cursor-hand" >CONCEPTOS </div>
+                </div> 
+               
+            </div>
+        </div>
+        <div class="panel-body"> 
+        </div>
+    </div>
+        
+</div>
+
 <!--PANEL EDITAR-->
 <div class="col-6 col-md-12"> 
     <div class="panel panel-default hide animated slideInRight" id="pnlEditarTrabajo">
@@ -729,7 +750,6 @@
     var btnGuardar = $("#btnGuardar");
     var btnModificar = $("#btnModificar");
     var btnEditar = $("#btnEditar");
-
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
     var pnlEditarTrabajo = $("#pnlEditarTrabajo");
     var menuTablero = $('#MenuTablero');
@@ -739,6 +759,9 @@
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
+    
+    /*Detalle*/
+    var pnlDetalleNuevoTrabajo=$("#pnlDetalleNuevoTrabajo");
 
     var currentDate = new Date();
 
@@ -793,7 +816,7 @@
 
 
         btnEditar.click(function () {
-
+        
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
 
@@ -1064,8 +1087,11 @@
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
+            //Detalle
+            pnlDetalleNuevoTrabajo.addClass("hide");
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
+            
         });
 
         btnCancelarModificar.click(function () {
@@ -1091,6 +1117,10 @@
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             //Trae el usuario logeado quien estará registrando el movimiento
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
+            
+            /*DETALLE*/
+            pnlDetalleNuevoTrabajo.removeClass("hide");
+ 
 
         });
 

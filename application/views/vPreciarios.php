@@ -381,11 +381,9 @@
                     </div>
                     <div class="col-md-8">
                         <label for="">DESCRIPCIÓN</label>
-<<<<<<< HEAD
+
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-=======
-                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
->>>>>>> origin/master
+
                         </textarea>
                     </div>
                     <div class="col-md-4">
