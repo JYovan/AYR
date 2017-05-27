@@ -337,48 +337,48 @@
         <div class="modal-body">
             <form id="frmEditar"> 
                 <fieldset>  
-                        <div class="col-md-12 hide">
-                            <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">CLAVE</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
-                        </div>
-                        <div class="col-md-8">
-                            <label for="">DESCRIPCIÓN</label>
-                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                            </textarea>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">COSTO</label>
-                            <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">MONEDA</label>
-                            <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">UNIDAD</label>
-                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">CATEGORÍA</label>
-                            <select id="Categoria" name="Categoria" class="form-control">
-                                <option value=""></option> 
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">SUB CATEGORÍA</label>
-                            <select id="SubCategoria" name="SubCategoria" class="form-control">
-                                <option value=""></option> 
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">SUB SUB CATEGORÍA</label>
-                            <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                                <option value=""></option> 
-                            </select>
-                        </div>  
+                    <div class="col-md-12 hide">
+                        <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">CLAVE</label>
+                        <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                    </div>
+                    <div class="col-md-8">
+                        <label for="">DESCRIPCIÓN</label>
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                        </textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">COSTO</label>
+                        <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">MONEDA</label>
+                        <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">UNIDAD</label>
+                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">CATEGORÍA</label>
+                        <select id="Categoria" name="Categoria" class="form-control">
+                            <option value=""></option> 
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">SUB CATEGORÍA</label>
+                        <select id="SubCategoria" name="SubCategoria" class="form-control">
+                            <option value=""></option> 
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">SUB SUB CATEGORÍA</label>
+                        <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
+                            <option value=""></option> 
+                        </select>
+                    </div>  
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -723,7 +723,7 @@
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
                     console.log(data, x, jq);
                     btnRefrescarConceptos.trigger('click');
-                    mdlNuevoConcepto.modal("hide"); 
+                    mdlNuevoConcepto.modal("hide");
                     HoldOn.close();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -766,7 +766,7 @@
             getConceptoByClaveXDescripcion(pnlEditar.find("#ID").val());
         });
 
-        btnCancelarModificacion.click(function () { 
+        btnCancelarModificacion.click(function () {
             mdlEditarConcepto.find("#IDConcepto").val("");
             mdlEditarConcepto.find("#Clave").val("");
             mdlEditarConcepto.find("#Descripcion").val("");
@@ -809,7 +809,7 @@
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CONCEPTO', 'success');
                 console.log(data, x, jq);
                 btnRefrescarConceptos.trigger('click');
-                mdlEditarConcepto.modal("hide"); 
+                mdlEditarConcepto.modal("hide");
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -992,7 +992,7 @@
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
 
-                    pnlPreciario.addClass('hide'); 
+                    pnlPreciario.addClass('hide');
                     pnlEditar.addClass("animated slideInLeft").removeClass('hide');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1003,60 +1003,49 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnArchivo.click(function () {
-        
-        
-         HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "POR FAVOR ESPERE..."
-                });
-     
-    
-        
-            Archivo.click(function () {
-                
-                  
-        
-                
-            
-                
-                
-                 Archivo.change(function () {
-              
-               
-                    if (Archivo[0].files[0] !== undefined) {
-                        var extension = getExt(Archivo[0].files[0].name);
-                        console.log('EXTENSION ' + extension);
-                        if (extension === "xlsx" || extension === "xls" || extension === "csv") {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                console.log("onload", new Date());
-                                var data = e.target.result;
-                                var wb;
-                                var arr = fixdata(data);
-                                wb = X.read(btoa(arr), {type: 'base64'});
-                                onProcesarLibroXLS(wb);
-                            };
-                            if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
-                                reader.readAsArrayBuffer(Archivo[0].files[0]);
-                            }
-                            HoldOn.close();
-                        } else {
-                            HoldOn.close();
-                            onNotify('<span class="fa fa-exclamation"></span>', 'SOLO ARCHIVOS DE EXCEL (XLS, XLSX, CSV)', 'danger');
-                        }
-                    } else {
-                        onNotify('<span class="fa fa-exclamation"></span>', 'DEBE DE SELECCIONAR SOLO ARCHIVOS DE EXCEL (XLS, XLSX, CSV)', 'danger');
-                        HoldOn.close();
-                    }
-                });
-            
-           
-               
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "POR FAVOR ESPERE..."
             });
+            Archivo.change(function () { 
+                if (Archivo[0].files[0] !== undefined) {
 
+                    var extension = getExt(Archivo[0].files[0].name);
+                    console.log('EXTENSION ' + extension);
+                    if (extension === "xlsx" || extension === "xls" || extension === "csv") {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            console.log("onload", new Date());
+                            var data = e.target.result;
+                            var wb;
+                            var arr = fixdata(data);
+                            wb = X.read(btoa(arr), {type: 'base64'});
+                            is_filled = true;
+                            onProcesarLibroXLS(wb);
+                        };
+                        if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
+                            reader.readAsArrayBuffer(Archivo[0].files[0]); 
+                        }
+                        HoldOn.close();
+                    } else {
+                        HoldOn.close(); 
+                        is_filled = false;
+                    }
+                } else {
+                    HoldOn.close();
+                }
+            });
+            $("html").focusin(function () {
+                if (Archivo[0].files[0] !== undefined && is_filled) {
+                    is_filled = false;
+                    HoldOn.close();
+                } else {
+                    HoldOn.close();
+                } 
+            });
             Archivo.trigger('click');
+
         });
 
         /*READY*/
@@ -1064,7 +1053,7 @@
         getClientes();
 
     });
-
+var is_filled = false;
     function getClientes() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -1536,9 +1525,9 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                console.log('EDITANDO CONCEPTO ');
+                    console.log('EDITANDO CONCEPTO ');
                     console.log(data);
-                    var concepto = data[0]; 
+                    var concepto = data[0];
                     mdlEditarConcepto.find("#IDConcepto").val(concepto.ID);
                     mdlEditarConcepto.find("#Clave").val(concepto.Clave);
                     mdlEditarConcepto.find("#Costo").val(concepto.Costo);
@@ -1548,7 +1537,7 @@
                     mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
                     mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
                     mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
-                    mdlEditarConcepto.modal('show'); 
+                    mdlEditarConcepto.modal('show');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1728,6 +1717,7 @@
         output = JSON.stringify(to_json(wb), 2, 2);
         pnlNuevo.find("#json_preciario").html(output);
         to_html(wb);
+
     }
 
 </script>
