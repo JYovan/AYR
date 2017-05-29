@@ -816,9 +816,18 @@
 
 
         btnEditar.click(function () {
+        
+        
 
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+
+
+             pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
+            
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -1154,6 +1163,12 @@
 
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            
+            
+             pnlNuevoTrabajo.find("#Datos").addClass("active in");
+            pnlNuevoTrabajo.find("#Datos2").removeClass("active in");
+            pnlNuevoTrabajo.find("#Datos3").removeClass("active in");
+            pnlNuevoTrabajo.find("#Datos4").removeClass("active in");
 
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
