@@ -104,30 +104,30 @@ var tableOptions = {
     ],
     language: {
         processing: "Proceso en curso...",
-        search: "BUSCAR:",
-        lengthMenu: "MOSTRAR _MENU_ ELEMENTOS",
-        info: "MOSTRANDO  _START_ DE _END_ , DE UN TOTAL DE _TOTAL_ ELEMENTOS.",
-        infoEmpty: "MOSTRANDO 0 DE 0 A 0 ELEMENTOS.",
-        infoFiltered: "(FILTRANDO UN TOTAL DE _MAX_ ELEMENTOS. )",
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ Elementos",
+        info: "Mostrando  _START_ de _END_ , de _TOTAL_ Elementos.",
+        infoEmpty: "Mostrando 0 de 0 A 0 Elementos.",
+        infoFiltered: "(Filtrando un total _MAX_ Elementos. )",
         infoPostFix: "",
         loadingRecords: "Procesando los datos...",
         zeroRecords: "No s&eacute; encontro nada.",
         emptyTable: "No existen datos en la tabla.",
         paginate: {
-            first: "PRIMERO",
-            previous: "ANTERIOR",
-            next: "SIGUIENTE",
-            last: "&Uacute;LTIMO"
+            first: "Primero",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "&Uacute;ltimo"
         },
         aria: {
             sortAscending: ": Habilitado para ordenar la columna en orden ascendente",
             sortDescending: ": Habilitado para ordenar la columna en orden descendente"
         }, buttons: {
-            copyTitle: 'REGISTROS COPIADOS A PORTAPAPELES',
-            copyKeys: 'COPIADO CON TECLAS CLAVE.',
+            copyTitle: 'Registros copiados a portapapeles',
+            copyKeys: 'Copiado con teclas clave.',
             copySuccess: {
-                _: ' %d REGISTROS COPIADOS',
-                1: ' 1 REGISTRO COPIADO'
+                _: ' %d Registros copiados',
+                1: ' 1 Registro copiado'
             }
         }
     },
@@ -147,11 +147,11 @@ var tableOptions = {
 function getTable(tblname, data) {
     var column = '';
     var i = 0;
-    var div = "<div class=\"table-responsive\">";
-    div = "<table id=\"" + tblname + "\" class=\"table table-bordered table-striped table-hover display row-border hover order-column\" cellspacing=\"10\" width=\"100%\">";
+    var div = "<div class=\" \">";
+    div = "<table id=\"" + tblname + "\" class=\"table table-striped table-hover \" cellspacing=\"10\" width=\"100%\">";
     //Create header
     div += "<thead>";
-    div += "<tr class=\"primary text-center\" >";
+    div += "<tr class=\"\" >";
     for (var key in data[i]) {
         column += "<th>" + key + "</th>";
     }
@@ -160,7 +160,7 @@ function getTable(tblname, data) {
     //Create Rows
     div += "<tbody>";
     $.each(data, function (key, value) {
-        div += "<tr data-toggle='tooltip' title='HAGA DOBLE CLIC PARA EDITAR' >";
+        div += "<tr data-toggle='tooltip' title='Haga doble clic para editar' >";
         $.each(value, function (key, value) {
             div += "<td>" + value + "</td>";
         });
@@ -169,7 +169,7 @@ function getTable(tblname, data) {
     div += "</tbody>";
     //Create Footer
     div += "<tfoot>";
-    div += "<tr class=\"primary text-center\">";
+    div += "<tr class=\"\">";
 
     div += column;
     div += "</tr></tfoot>";
@@ -183,3 +183,4 @@ function getExt(filename) {
         return "";
     return filename.substr(dot_pos + 1).toLowerCase();
 }
+

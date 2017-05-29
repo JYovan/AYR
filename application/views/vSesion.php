@@ -1,32 +1,48 @@
 <div class="col-md-4"></div>
 <div class="col-md-4">
     <div class="panel panel-default animated bounceInUp form-group margin-top-100">
-        <form id="frmIngresar">
+        <form id="frmIngresar" class="form-horizontal">
             <div class="panel-body">
                 <div class="col-md-12"  align="center">
                     <img src="<?php print base_url(); ?>img/logo.png" class="img-responsive" width="148" height="143">
                     <br>
                 </div>
-                <div class="col-md-12"> 
-                    <input type="text" class="form-control" placeholder="USUARIO" id="Usuario" name="Usuario">
-                </div>
-                <div class="col-md-12"> 
-                    <br>
-                    <input type="password" class="form-control" placeholder="CONTRASEÑA" id="Contrasena" name="Contrasena">
-                </div>
-                
-                <div class="col-md-12" align="center"> 
-                    <div class="checkbox">
-                        <label for="">
-                            <input type="checkbox" placeholder="NO SOY UN ROBOT" id="chkRobot" name="chkRobot"> NO SOY UN ROBOT
-                        </label>
+
+                <div class="form-group">
+                    <label for="usuario" class="col-md-2 control-label">Usuario</label>
+
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" name="Usuario" id="Usuario" placeholder="Email">
                     </div>
                 </div>
+
+
+
+                <div class="form-group">
+                    <label for="Contrasena" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" placeholder="Contraseña" id="Contrasena" name="Contrasena">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" placeholder="NO SOY UN ROBOT" id="chkRobot" name="chkRobot"> No soy un robot
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="col-md-12 animated fadeInDown" align="center"> 
                     <div id="msg" class="col-md-12"></div>
                     <br>
-                    <button id="btnResetear" type="button" class="btn btn-primary"><span class="fa fa-refresh fa-1x"></span><br>LIMPIAR</button>
-                    <button id="btnIngresar" type="button" class="btn btn-default"><span class="fa fa-check fa-1x"></span><br>INGRESAR</button>
+                    <button id="btnResetear" type="button" class="btn btn-raised btn-default">LIMPIAR</button>
+                    <button id="btnIngresar" type="button" class="btn btn-raised btn-primary">INGRESAR</button>
 
                 </div> 
             </div>
@@ -81,4 +97,6 @@
             $("#frmIngresar")[0].reset();
         });
     });
+
+
 </script>

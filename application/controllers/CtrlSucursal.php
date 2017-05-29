@@ -29,6 +29,20 @@ class CtrlSucursal extends CI_Controller {
         $this->load->model('empresaSupervisora_model');
     }
 
+    public function index() {
+
+        if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
+            $this->load->view('vEncabezado');
+            $this->load->view('vNavegacion');
+            $this->load->view('vSucursales');
+             $this->load->view('vFooter');
+        } else {
+            $this->load->view('vEncabezado');
+            $this->load->view('vSesion');
+             $this->load->view('vFooter');
+        }
+    }
+    
     public function getSucursales() {
         try {
             $data = $this->sucursal_model->getRecords();

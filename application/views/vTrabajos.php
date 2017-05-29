@@ -136,13 +136,13 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">ESTA COMPLETADO?</label>
-                                <spam><br></spam>
-                                <label class="switch">
-                                    <input type="checkbox" id="Atendido" name="Atendido"  class="form-control">
-
-                                    <div class="slider round"></div>
-                                </label>
+                                <div class="togglebutton">
+                                    <label for="">ESTA COMPLETADO?</label>
+                                    <spam><br></spam>
+                                    <label>
+                                        <input type="checkbox" id="Atendido" name="Atendido" > 
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="col-6 col-md-3">
@@ -258,15 +258,17 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
-                                    <div class="col-6 col-md-3">
-                                        <label for="">IMPACTO EN EL PLAZO (SI/NO)</label>
-                                        <spam><br></spam>
-                                        <label class="switch">
-                                            <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control">
-
-                                            <div class="slider round"></div>
-                                        </label>
+                                    
+                                     <div class="col-6 col-md-3">
+                                        <div class="togglebutton">
+                                            <label for="">IMPACTO EN EL PLAZO</label>
+                                            <spam><br></spam>
+                                            <label>
+                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 
+                                            </label>
+                                        </div>
                                     </div>
+                               
                                     <div class=" col-6 col-md-3">
                                         <label for="">DIAS DE IMPACTO</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
@@ -497,13 +499,13 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">ESTA COMPLETADO?</label>
-                                <spam><br></spam>
-                                <label class="switch">
-                                    <input type="checkbox" id="Atendido" name="Atendido"  class="form-control">
-
-                                    <div class="slider round"></div>
-                                </label>
+                                <div class="togglebutton">
+                                    <label for="">ESTA COMPLETADO?</label>
+                                    <spam><br></spam>
+                                    <label>
+                                        <input type="checkbox" id="Atendido" name="Atendido" > 
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="col-6 col-md-3">
@@ -618,14 +620,14 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
-                                    <div class="col-6 col-md-3">
-                                        <label for="">IMPACTO EN EL PLAZO (SI/NO)</label>
-                                        <spam><br></spam>
-                                        <label class="switch">
-                                            <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control">
-
-                                            <div class="slider round"></div>
-                                        </label>
+                                     <div class="col-6 col-md-3">
+                                        <div class="togglebutton">
+                                            <label for="">IMPACTO EN EL PLAZO</label>
+                                            <spam><br></spam>
+                                            <label>
+                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class=" col-6 col-md-3">
                                         <label for="">DIAS DE IMPACTO</label>
@@ -816,18 +818,18 @@
 
 
         btnEditar.click(function () {
-        
-        
+
+
 
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
 
 
-             pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
             pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-            
+
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -1044,7 +1046,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
-                   
+
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1162,9 +1164,9 @@
 
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
-            
-            
-             pnlNuevoTrabajo.find("#Datos").addClass("active in");
+
+
+            pnlNuevoTrabajo.find("#Datos").addClass("active in");
             pnlNuevoTrabajo.find("#Datos2").removeClass("active in");
             pnlNuevoTrabajo.find("#Datos3").removeClass("active in");
             pnlNuevoTrabajo.find("#Datos4").removeClass("active in");
@@ -1209,8 +1211,8 @@
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-        
-        
+
+
         //Trae dias de ppta
         pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());

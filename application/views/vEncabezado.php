@@ -49,11 +49,7 @@
         <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
 
 
-        <!-- Bootstrap -->
-        <link href="<?php print base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
-
-        <!--End Bootstrap-->
-        <script src="<?php print base_url(); ?>js/bootstrap.min.js"></script> 
+   
         <!--Third Party-->
         <!--Pace loading and performance for web applications-->
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
@@ -82,14 +78,28 @@
         <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
+        
+        <script src="<?php print base_url(); ?>js/bootstrap.min.js"></script> 
+        <script src="<?php print base_url(); ?>js/material.min.js"></script> 
+        <script src="<?php print base_url(); ?>js/ripples.min.js"></script> 
 
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" /> 
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
 
     </head>
+    
+   
+           
+   
+        
+   
+    
     <script>
         var base_url = "<?php print base_url(); ?>";
+        
+    
+        
         $(function () {
             $(".btn").addClass("animated shake");
 //            $("table.display").DataTable(tableOptions);
@@ -103,7 +113,7 @@
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
             $("select").select2({
-                placeholder: "SELECCIONE UNA OPCIÓN",
+                placeholder: "Selecciona una opción",
                 allowClear: true
             });
 
@@ -144,5 +154,12 @@
                 }
             });
         }
+        
+        
+       
+  
 
     </script>
+    
+
+    

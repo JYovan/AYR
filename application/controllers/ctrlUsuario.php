@@ -33,9 +33,11 @@ class CtrlUsuario extends CI_Controller {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
             $this->load->view('vUsuarios');
+            $this->load->view('vFooter');
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
+            $this->load->view('vFooter');
         }
     }
 
