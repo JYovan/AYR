@@ -390,13 +390,13 @@
                 <div class="col-md-8"> 
                     <div class="cursor-hand" >CONCEPTOS </div>
                 </div> 
-               
+
             </div>
         </div>
         <div class="panel-body"> 
         </div>
     </div>
-        
+
 </div>
 
 <!--PANEL EDITAR-->
@@ -759,9 +759,9 @@
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-    
+
     /*Detalle*/
-    var pnlDetalleNuevoTrabajo=$("#pnlDetalleNuevoTrabajo");
+    var pnlDetalleNuevoTrabajo = $("#pnlDetalleNuevoTrabajo");
 
     var currentDate = new Date();
 
@@ -816,7 +816,7 @@
 
 
         btnEditar.click(function () {
-        
+
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
 
@@ -839,16 +839,63 @@
 
                     var trabajo = data[0];
 
+                    $.ajax({
+                        url: master_url + 'getSucursalesByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+
+
+                        var options = '<option></option>';
+                        $.each(data, function (k, v) {
+
+                            options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.SUCURSAL + '</option>';
+
+                        });
+                        pnlEditarTrabajo.find("#Sucursal_ID").html(options);
+                        pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getPreciariosByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            Cliente_ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+
+
+                        var options = '<option></option>';
+                        $.each(data, function (k, v) {
+
+                            options += '<option value="' + v.ID + '">' + v.PRECIARIO + '</option>';
+                        });
+                        pnlEditarTrabajo.find("#Preciario_ID").html(options);
+                        pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+
+
                     //trae los catalogos
-                    getSucursalesbyCliente(trabajo.Cliente_ID);
-                    getPreciariosbyCliente(trabajo.Cliente_ID);
+//                    getSucursalesbyCliente(trabajo.Cliente_ID);
+//                    getPreciariosbyCliente(trabajo.Cliente_ID);
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
                     //traer valores seleccionados de los catalogos de la bd
-                    getSucursalByID(trabajo.Sucursal_ID);
-                    getPreciarioByID(trabajo.Preciario_ID);
+//                    getSucursalByID(trabajo.Sucursal_ID);
+//                    getPreciarioByID(trabajo.Preciario_ID);
 
 
                     pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
@@ -1091,7 +1138,7 @@
             pnlDetalleNuevoTrabajo.addClass("hide");
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
-            
+
         });
 
         btnCancelarModificar.click(function () {
@@ -1104,10 +1151,10 @@
         });
 
         btnNuevo.click(function () {
-            
-              pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
+
+            pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
-            
+
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
             pnlNuevoTrabajo.find("input").val("");
@@ -1117,10 +1164,10 @@
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             //Trae el usuario logeado quien estará registrando el movimiento
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
-            
+
             /*DETALLE*/
             pnlDetalleNuevoTrabajo.removeClass("hide");
- 
+
 
         });
 
@@ -1460,11 +1507,8 @@
         }).done(function (data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
-
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
-
-
             }
 
         }).fail(function (x, y, z) {
