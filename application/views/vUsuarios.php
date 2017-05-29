@@ -188,7 +188,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlUsuario/'
+    var master_url = base_url + 'index.php/CtrlUsuario/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
     var btnGuardar = mdlNuevo.find("#btnGuardar");

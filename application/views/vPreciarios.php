@@ -26,8 +26,8 @@
                     <div class="cursor-hand" >NUEVO PRECIARIO</div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-default" id="btnCancelar">CANCELAR</button>
-                    <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-default" id="btnCancelar">CANCELAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
 
                 </div>
             </div>
@@ -121,8 +121,8 @@
                     <div class="cursor-hand" >EDITAR PRECIARIO </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-default" id="btnCancelarEditar">CANCELAR</button>
-                    <button type="button" class="btn btn-primary" id="btnEditar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-default" id="btnCancelarEditar">CANCELAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnEditar">GUARDAR</button>
 
                 </div>
             </div>

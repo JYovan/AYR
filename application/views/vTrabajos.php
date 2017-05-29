@@ -50,8 +50,8 @@
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
 
-                    <button type="button" class="btn btn-default" id="btnCancelar">REGRESAR</button>
-                    <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-default" id="btnCancelar">REGRESAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
 
                 </div>
             </div>
@@ -138,6 +138,7 @@
                             <div class="col-6 col-md-3">
                                 <div class="togglebutton">
                                     <label for="">ESTA COMPLETADO?</label>
+                                    <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
                                         <input type="checkbox" id="Atendido" name="Atendido" > 
@@ -258,17 +259,18 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
-                                    
-                                     <div class="col-6 col-md-3">
+
+                                    <div class="col-6 col-md-3">
                                         <div class="togglebutton">
                                             <label for="">IMPACTO EN EL PLAZO</label>
+                                            <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
                                                 <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 
                                             </label>
                                         </div>
                                     </div>
-                               
+
                                     <div class=" col-6 col-md-3">
                                         <label for="">DIAS DE IMPACTO</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
@@ -413,8 +415,8 @@
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
 
-                    <button type="button" class="btn btn-default" id="btnCancelarModificar">REGRESAR</button>
-                    <button type="button" class="btn btn-primary" id="btnModificar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-default" id="btnCancelarModificar">REGRESAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
 
                 </div>
             </div>
@@ -499,13 +501,14 @@
 
 
                             <div class="col-6 col-md-3">
-                                <div class="togglebutton">
-                                    <label for="">ESTA COMPLETADO?</label>
-                                    <spam><br></spam>
-                                    <label>
-                                        <input type="checkbox" id="Atendido" name="Atendido" > 
-                                    </label>
-                                </div>
+                                <label for="">ESTA COMPLETADO?</label>
+                                <spam><br></spam>
+                                <spam><br></spam>
+                                <label class="switch">
+                                    <input type="checkbox" id="Atendido" name="Atendido"  class="form-control">
+
+                                    <div class="slider round"></div>
+                                </label>
                             </div>
 
                             <div class="col-6 col-md-3">
@@ -620,9 +623,10 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
-                                     <div class="col-6 col-md-3">
+                                    <div class="col-6 col-md-3">
                                         <div class="togglebutton">
                                             <label for="">IMPACTO EN EL PLAZO</label>
+                                            <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
                                                 <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 

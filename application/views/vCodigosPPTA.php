@@ -75,8 +75,8 @@
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-primary" id="btnGuardar">GUARDAR</button>
+                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -116,8 +116,8 @@
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-primary" id="btnModificar">GUARDAR</button>
+               <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

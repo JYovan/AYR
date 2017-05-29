@@ -27,6 +27,10 @@
 }
 
 
+.cursor-hand{
+ color: #000;   
+    
+}
 
 /*Estilo select2*/
 .select2-drop-active {
@@ -268,7 +272,6 @@ table thead tr{
 
 .table tfoot th{
     color: #ffffff !important; 
-    font-weight: normal !important;
     background-color: #009688 !important;
  
 }
@@ -279,8 +282,7 @@ table thead tr{
 }
 
 .table tfoot tr th{
-    color: #fff !important; 
-    font-weight: normal !important; 
+    color: #fff !important;  
 }
 
 .table-hover>tbody>tr.success:hover>td, 
