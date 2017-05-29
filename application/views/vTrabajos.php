@@ -844,7 +844,6 @@
                 }).done(function (data, x, jq) {
 
                     pnlEditarTrabajo.find("input").val("");
-                    pnlEditarTrabajo.find("select").val(null).trigger("change");
 
                     var trabajo = data[0];
 
@@ -1045,7 +1044,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
-                    btnRefrescar.trigger('click');
+                   
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1209,6 +1208,12 @@
         //Trae dias de ppta
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
+        });
+        
+        
+        //Trae dias de ppta
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
+            getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
 
