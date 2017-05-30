@@ -1183,7 +1183,7 @@ var is_filled = false;
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevo.find("#Cliente_ID").html(options);
             pnlEditar.find("#Cliente_ID").html(options);
@@ -1516,7 +1516,7 @@ var is_filled = false;
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Categoria + '</option>';
             });
             mdlEditarConcepto.find("#Categoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
@@ -1548,7 +1548,7 @@ var is_filled = false;
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubCategoria").select2("val", "");
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.SUBCATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Subcategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
@@ -1578,7 +1578,7 @@ var is_filled = false;
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.SUBSUBCATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.SubSubCategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubSubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategoria").html(options);
