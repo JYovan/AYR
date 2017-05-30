@@ -1,50 +1,57 @@
 <div class="col-md-4"></div>
+
+
+
 <div class="col-md-4">
-    <div class="panel panel-default animated bounceInUp form-group margin-top-100">
+    <div class="panel panel-primary animated bounceInUp form-group margin-top-100">
+        <div class="panel-heading">
+            <h3 class="panel-title">Acceso</h3>
+        </div>
         <form id="frmIngresar" class="form-horizontal">
             <div class="panel-body">
-                <div class="col-md-12"  align="center">
+
+
+
+                <div class="col-md-10"  align="center">
                     <img src="<?php print base_url(); ?>img/logo.png" class="img-responsive" width="148" height="143">
-                    <br>
+                    <br><br>
                 </div>
 
-                <div class="form-group">
-                    <label for="usuario" class="col-md-2 control-label">Usuario</label>
 
+                <div class="form-group">
                     <div class="col-md-10">
-                        <input type="email" class="form-control" name="Usuario" id="Usuario" placeholder="Email">
+
+                        <input type="email" class="form-control" id="Usuario" name="Usuario" placeholder="Email" >
                     </div>
                 </div>
-
-
-
                 <div class="form-group">
-                    <label for="Contrasena" class="col-md-2 control-label">Password</label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" placeholder="Contraseña" id="Contrasena" name="Contrasena">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" placeholder="NO SOY UN ROBOT" id="chkRobot" name="chkRobot"> No soy un robot
-                            </label>
-                        </div>
+                        <input type="password" class="form-control" id="Contrasena" name="Contrasena" placeholder="Contraseña">
                     </div>
                 </div>
 
 
 
-                <div class="col-md-12 animated fadeInDown" align="center"> 
-                    <div id="msg" class="col-md-12"></div>
-                    <br>
-                    <button id="btnResetear" type="button" class="btn btn-raised btn-default">LIMPIAR</button>
+
+                <div class="col-md-10" >
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" placeholder="No soy un robot" id="chkRobot" name="chkRobot"> No soy un robot
+                        </label>
+                    </div>
+                </div>
+
+
+                <!--Mensaje de error-->
+                <div id="msg" class="col-md-10" ></div>
+
+
+                <div class="col-md-10" align="right"> 
+
                     <button id="btnIngresar" type="button" class="btn btn-raised btn-primary">INGRESAR</button>
 
                 </div> 
+
             </div>
         </form>
     </div>
@@ -88,14 +95,12 @@
                     });
                 }, 1000);
             } else {
-                $("#msg").html('<br><div class="alert alert-dismissible alert-info">' +
+                $("#msg").html('<div  class="alert alert-dismissible alert-danger">' +
                         '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                        '<strong>ERROR!</strong> VERIFIQUE SU USUARIO Y CONTRASEÑA</div>');
+                        '<strong>ERROR!</strong> Verifique su usuario y contraseña</div>');
             }
         });
-        btnResetear.click(function () {
-            $("#frmIngresar")[0].reset();
-        });
+
     });
 
 
