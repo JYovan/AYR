@@ -47,33 +47,31 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVA EMPRESA SUPERVISORA</h4>
+                <h4 class="modal-title">Nueva Empresa Supervisora</h4>
             </div>
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA SUPERVISORA</h3>
-                        </div>
+                       
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE* </label>    
+                            <label for="">Nombre* </label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">DESCRIPCIÓN</label>    
+                            <label for="">Descripción</label>    
                             <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 1</label>
+                            <label for="">Contacto 1</label>
                             <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 2</label>
+                            <label for="">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                         </div>
                         <div class="col-6 col-md-6">
@@ -99,33 +97,31 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR EMPRESA SUPERVISORA</h4>
+                <h4 class="modal-title">Editar Empresa Supervisora</h4>
             </div>
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA SUPERVISORA</h3>
-                        </div>
+                      
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE* </label>    
+                            <label for="">Nombre* </label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">DESCRIPCIÓN</label>    
+                            <label for="">Descripción</label>    
                             <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 1</label>
+                            <label for="">Contacto 1</label>
                             <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CONTACTO 2</label>
+                            <label for="">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                         </div>
                         <div class="col-6 col-md-6">
@@ -408,7 +404,7 @@
             $("#tblRegistros").html(getTable('tblEmpresasSupervisoras', data));
             $('#tblEmpresasSupervisoras tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buuscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
             });
             var tblSelected = $('#tblEmpresasSupervisoras').DataTable(tableOptions);

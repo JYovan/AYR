@@ -50,32 +50,29 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA CUADRILLA</h3>
-                        </div>
-
+                    
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
 
 
                         <div class="col-6 col-md-12">
-                            <label for="">CUADRILLA*</label>    
+                            <label for="">Cuadrilla*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
                         </div>
 
 
                         <div class="col-6 col-md-12">
-                            <label for="">MIEMBROS</label>
+                            <label for="">Miembros</label>
                             <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
 
                         <div class="col-6 col-md-12">
-                            <label for="">ESTATUS*</label>
+                            <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="ACTIVO">ACTIVO</option> 
-                                <option value="INACTIVO">INACTIVO</option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
 
@@ -115,23 +112,21 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA CUADRILLA</h3>
-                        </div>
+                       
                         <div class="col-6 col-md-12">
-                            <label for="">CUADRILLA*</label>    
+                            <label for="">Cuadrilla*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                         </div>
                         <div class="col-6 col-md-12">
-                            <label for="">MIEMBROS</label>
+                            <label for="">Miembros</label>
                             <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
                         <div class="col-6 col-md-12">
-                            <label for="">ESTATUS*</label>
+                            <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="ACTIVO">ACTIVO</option> 
-                                <option value="INACTIVO">INACTIVO</option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
                         <div class="col-6 col-md-6">
@@ -415,7 +410,7 @@
             $("#tblRegistros").html(getTable('tblCuadrillas', data));
             $('#tblCuadrillas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
 
             });

@@ -23,7 +23,7 @@
         <div class="panel-heading" >
             <div class="panel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >NUEVO PRECIARIO</div>
+                    <div class="cursor-hand" >Nuevo preciario</div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
                     <button type="button" class="btn btn-raised btn-default" id="btnCancelar">CANCELAR</button>
@@ -39,23 +39,23 @@
 
 
                         <div class="col-6 col-md-12">
-                            <label for="">NOMBRE*</label>    
+                            <label for="">Nombre*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">FECHA DE CREACION*</label>
+                            <label for="">Fecha de Creación*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                         </div>  
 
 
                         <div class="col-6 col-md-6">
-                            <label for="">ESTATUS*</label>
+                            <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" >
                                 <option value=""></option> 
-                                <option value="ACTIVO">ACTIVO</option> 
-                                <option value="INACTIVO">INACTIVO</option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
 
@@ -63,8 +63,8 @@
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" >
                                 <option value=""></option> 
-                                <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
-                                <option value="OBRA">OBRA</option> 
+                                <option value="MANTENIMIENTO">Mantenimiento</option> 
+                                <option value="OBRA">Obra</option> 
                             </select>
                         </div>
 
@@ -93,7 +93,7 @@
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
                                 </span> 
-                                SELECCIONAR ARCHIVO 
+                                Seleccionar Archivo
                             </button>
                             <br>
                         </div> 
@@ -118,7 +118,7 @@
         <div class="panel-heading">
             <div class="panel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >EDITAR PRECIARIO </div>
+                    <div class="cursor-hand" >Editar Preciario </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
                     <button type="button" class="btn btn-raised btn-default" id="btnCancelarEditar">CANCELAR</button>
@@ -137,37 +137,37 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="">NOMBRE*</label>    
+                        <label for="">Nombre*</label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                     </div>
 
                     <div class="col-md-6">
-                        <label for="">FECHA DE CREACION*</label>
+                        <label for="">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                     </div>  
 
                     <div class="col-6 col-md-6">
-                        <label for="">ESTATUS*</label>
+                        <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" >
                             <option value=""></option> 
-                            <option value="ACTIVO">ACTIVO</option> 
-                            <option value="INACTIVO">INACTIVO</option> 
+                            <option value="Activo">Activo</option> 
+                            <option value="Inactivo">Inactivo</option> 
                         </select>
                     </div>
 
                     <div class="col-6 col-md-6">
-                        <label for="">TIPO*</label>
+                        <label for="">Tipo*</label>
                         <select id="Tipo" name="Tipo" class="form-control" >
                             <option value=""></option> 
-                            <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
-                            <option value="OBRA">OBRA</option> 
+                            <option value="MANTENIMIENTO">Mantenimiento</option> 
+                            <option value="OBRA">Obra</option> 
                         </select>
                     </div>
 
 
 
                     <div class="col-md-6">
-                        <label for="">CLIENTE*</label>
+                        <label for="">Cliente*</label>
                         <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option> 
                         </select>
@@ -175,7 +175,7 @@
 
 
                     <div class="col-md-12">
-                        <h3>CONCEPTOS</h3>
+                        <h3>Conceptos</h3>
                     </div>
 
                     <div class="col-md-12" align="right"> 
@@ -206,7 +206,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">NUEVO CONCEPTO</h4>
+            <h4 class="modal-title">Nuevo Concepto</h4>
         </div>
 
         <div class="modal-body">
@@ -216,54 +216,59 @@
             <div id="pnlConceptos" class="col-md-12" >   
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#Conceptos" data-toggle="tab">CONCEPTOS</a></li>
-                        <li><a href="#Categorias" data-toggle="tab">CATEGORÍAS</a></li>
-                        <li><a href="#SubCategorias" data-toggle="tab">SUB CATEGORÍAS</a></li>
-                        <li><a href="#SubSubCategorias" data-toggle="tab">SUBSUB CATEGORÍAS</a></li>
+                        <li class="active"><a href="#Conceptos" data-toggle="tab">Conceptos</a></li>
+                        <li><a href="#Categorias" data-toggle="tab">Categorías</a></li>
+                        <li><a href="#SubCategorias" data-toggle="tab">Sub Categorías</a></li>
+                        <li><a href="#SubSubCategorias" data-toggle="tab">SubSub Categorías</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            <span>
+                                <br>
+                            </span>
+                        </div>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active in" id="Conceptos">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">CLAVE</label>
+                                    <label for="">Clave</label>
                                     <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">DESCRIPCIÓN</label>
+                            <label for="">Descripción</label>
                             <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                             </textarea>
                         </div>
                         <div class="col-md-4">
-                            <label for="">COSTO</label>
+                            <label for="">Costo</label>
                             <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                         </div>
                         <div class="col-md-4">
-                            <label for="">MONEDA</label>
+                            <label for="">Moneda</label>
                             <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
                         </div>
                         <div class="col-md-4">
-                            <label for="">UNIDAD</label>
-                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                            <label for="">Unidad</label>
+                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: PZA">
                         </div>
                         <div class="col-md-4">
-                            <label for="">CATEGORÍA</label>
+                            <label for="">Categoría</label>
                             <select id="Categoria" name="Categoria" class="form-control">
                                 <option value=""></option> 
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">SUB CATEGORÍA</label>
+                            <label for="">Sub Categoría</label>
                             <select id="SubCategoria" name="SubCategoria" class="form-control">
                                 <option value=""></option> 
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">SUB SUB CATEGORÍA</label>
+                            <label for="">Sub Sub Categoría</label>
                             <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
                                 <option value=""></option> 
                             </select>
@@ -274,14 +279,14 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="">CLAVE</label>
+                                        <label for="">Clave</label>
                                         <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                                     </div>
                                 </div>
                             </div>  
 
                             <div class="col-md-12">
-                                <label for="">DESCRIPCIÓN</label>
+                                <label for="">Descripción</label>
                                 <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                             </div>
                         </div>  
@@ -291,18 +296,18 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">CLAVE</label>
+                                    <label for="">Clave</label>
                                     <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-12">
-                            <label for="">DESCRIPCIÓN</label>
+                            <label for="">Descripción</label>
                             <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <label for="">CATEGORIA</label>
+                            <label for="">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
@@ -312,23 +317,23 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">CLAVE</label>
+                                    <label for="">Clave</label>
                                     <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">DESCRIPCIÓN</label>
+                            <label for="">Descripción</label>
                             <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <label for="">CATEGORÍA</label>
+                            <label for="">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
                         </div>       
                         <div class="col-md-12">
-                            <label for="">SUBCATEGORÍA</label>
+                            <label for="">Sub Categoría</label>
                             <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
                                 <option value=""></option> 
                             </select>
@@ -367,7 +372,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">EDITAR CONCEPTO</h4>
+            <h4 class="modal-title">Editar</h4>
         </div>
         <div class="modal-body">
             <form id="frmEditar"> 
@@ -376,42 +381,42 @@
                         <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="">CLAVE</label>
+                        <label for="">Clave</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                     </div>
                     <div class="col-md-8">
-                        <label for="">DESCRIPCIÓN</label>
+                        <label for="">Descripción</label>
 
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
 
                         </textarea>
                     </div>
                     <div class="col-md-4">
-                        <label for="">COSTO</label>
+                        <label for="">Costo</label>
                         <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                     </div>
                     <div class="col-md-4">
-                        <label for="">MONEDA</label>
+                        <label for="">Moneda</label>
                         <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
                     </div>
                     <div class="col-md-4">
-                        <label for="">UNIDAD</label>
-                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: TRP10">
+                        <label for="">Unidad</label>
+                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: PZA">
                     </div>
                     <div class="col-md-4">
-                        <label for="">CATEGORÍA</label>
+                        <label for="">Categoría</label>
                         <select id="Categoria" name="Categoria" class="form-control">
                             <option value=""></option> 
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="">SUB CATEGORÍA</label>
+                        <label for="">Sub Categoría</label>
                         <select id="SubCategoria" name="SubCategoria" class="form-control">
                             <option value=""></option> 
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="">SUB SUB CATEGORÍA</label>
+                        <label for="">Sub Sub Categoría</label>
                         <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
                             <option value=""></option> 
                         </select>
@@ -666,6 +671,7 @@
         btnCancelarEditar.click(function () {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
+             btnRefrescar.trigger('click');
         });
 
         btnCancelar.click(function () {
@@ -1183,7 +1189,7 @@ var is_filled = false;
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevo.find("#Cliente_ID").html(options);
             pnlEditar.find("#Cliente_ID").html(options);
@@ -1209,7 +1215,7 @@ var is_filled = false;
             $("#tblRegistros").html(getTable('tblEmpresas', data));
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
             $('#tblEmpresas tbody').on('click', 'tr', function () {
@@ -1274,11 +1280,11 @@ var is_filled = false;
             $.each(data, function (k, v) {
                 categoriax += '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
                 categoriax += '<div class="panel panel-default">';
-                categoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + IDX + v.ID + '" onclick="getSubCategoriasByCategoriaIDPreciarioID(this, ' + IDX + ',' + v.ID + ', \'' + v.CLAVE + '\')">';
+                categoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + IDX + v.ID + '" onclick="getSubCategoriasByCategoriaIDPreciarioID(this, ' + IDX + ',' + v.ID + ', \'' + v.Clave + '\')">';
                 categoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + IDX + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
                 categoriax += '<div class="row">';
-                categoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
-                categoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                categoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
+                categoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
                 categoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span></div>';
                 categoriax += '</div>';
                 categoriax += '</a>';
@@ -1320,11 +1326,11 @@ var is_filled = false;
                 subcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + v.ID + '" role="tablist" aria-multiselectable="true">';
                 subcategoriax += '<div class="panel panel-default">';
 
-                subcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + v.ID + '" onclick="getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(' + ID + ',' + IDC + ',' + v.ID + ',\'' + v.CLAVE + '\')">';
+                subcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + v.ID + '" onclick="getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(' + ID + ',' + IDC + ',' + v.ID + ',\'' + v.Clave + '\')">';
                 subcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + v.ID + '" href="#collapse' + ID + IDC + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
                 subcategoriax += '<div class="row">';
-                subcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
-                subcategoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                subcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
+                subcategoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
                 subcategoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span><span class="badge-success" align="left">' + v.NCON + '</span></div>';
                 subcategoriax += '</div>';
                 subcategoriax += '</a>';
@@ -1374,7 +1380,7 @@ var is_filled = false;
                 subsubcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + IDSC + v.ID + '" role="tablist" aria-multiselectable="true">';
                 subsubcategoriax += '<div class="panel panel-default">';
                 if (v.NSUB > 0) {
-                    subsubcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + IDSC + v.ID + '" onclick="getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(\'Conceptos' + ID + IDC + IDSC + v.ID + '\',' + ID + ',' + IDC + ',' + IDSC + ',' + v.ID + ',\'' + v.CLAVE + '\')">';
+                    subsubcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + IDSC + v.ID + '" onclick="getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(\'Conceptos' + ID + IDC + IDSC + v.ID + '\',' + ID + ',' + IDC + ',' + IDSC + ',' + v.ID + ',\'' + v.Clave + '\')">';
                 } else {
                     subsubcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + IDSC + v.ID + '">';
                 }
@@ -1382,8 +1388,8 @@ var is_filled = false;
 
                 subsubcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + IDSC + v.ID + '" href="#collapse' + ID + IDC + IDSC + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
                 subsubcategoriax += '<div class="row">';
-                subsubcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.CLAVE + '</span></div>';
-                subsubcategoriax += '<div class="col-md-4" align="center">' + v.DESCRIPCION + '</div>';
+                subsubcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
+                subsubcategoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
                 subsubcategoriax += '<div class="col-md-4" align="right"><span class="badge-success">' + v.NCON + '</span></div>';
                 subsubcategoriax += '</div>';
                 subsubcategoriax += '</a>';
@@ -1516,7 +1522,7 @@ var is_filled = false;
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Categoria + '</option>';
             });
             mdlEditarConcepto.find("#Categoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
@@ -1548,7 +1554,7 @@ var is_filled = false;
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubCategoria").select2("val", "");
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.SUBCATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Subcategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
@@ -1578,7 +1584,7 @@ var is_filled = false;
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.SUBSUBCATEGORIA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.SubSubCategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubSubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategoria").html(options);
@@ -1606,7 +1612,7 @@ var is_filled = false;
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
             $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
@@ -1695,7 +1701,7 @@ var is_filled = false;
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
             $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {

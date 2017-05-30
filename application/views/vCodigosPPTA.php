@@ -46,7 +46,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVO CÓDIGO PPTA</h4>
+                <h4 class="modal-title">Nuevo Código PPTA</h4>
             </div>
             <form id="frmNuevo">
                 <div class="modal-body">
@@ -54,15 +54,13 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
-                        <div class="col-md-12">
-                            <h3>DATOS DEL CÓDIGO</h3>
-                        </div>
+                       
                         <div class="col-6 col-md-6">
-                            <label for="">CÓDIGO*</label>    
+                            <label for="">Código*</label>    
                             <input type="text" class="form-control" id="Codigo" name="Codigo" required>
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">DÍAS*</label>    
+                            <label for="">Días*</label>    
                             <input type="number" class="form-control" id="Dias" name="Dias" required>
                         </div>
                         <div class="col-6 col-md-6">
@@ -88,23 +86,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR CÓDIGO PPTA</h4>
+                <h4 class="modal-title">Editar Código PPTA</h4>
             </div>
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
-                        <div class="col-md-12">
-                            <h3>DATOS DEL CÓDIGO</h3>
-                        </div>
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">CÓDIGO*</label>    
+                            <label for="">Código*</label>    
                             <input type="text" class="form-control" id="Codigo" name="Codigo" required >
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">DÍAS*</label>    
+                            <label for="">Días*</label>    
                             <input type="text" class="form-control" id="Dias" name="Dias" required>
                         </div>
 
@@ -388,7 +383,7 @@
             $("#tblRegistros").html(getTable('tblCodigosPPTA', data));
             $('#tblCodigosPPTA tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
             });
             var tblSelected = $('#tblCodigosPPTA').DataTable(tableOptions);

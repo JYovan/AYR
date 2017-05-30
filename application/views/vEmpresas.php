@@ -48,38 +48,33 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVA EMPRESA</h4>
+                <h4 class="modal-title">Nueva Empresa</h4>
             </div>
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
 
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE*</label>    
+                            <label for="">Nombre*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="">RFC*</label>    
                             <input type="text" class="form-control" id="Rfc" name="Rfc" >
                         </div>
-                        <div class="col-md-12">
-                            <h3>INFORMACIÓN DE CONTACTO</h3>
-                        </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
+                            <label for="">Contacto Nombre</label>
                             <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
+                            <label for="">Contacto Apellidos</label>
                             <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
                         </div>
 
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA</h3>
-                        </div>
+                   
 
                         <div class="col-md-6">
-                            <label for="">DIRECCION</label>
+                            <label for="">Dirección</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
 
                         </div>
@@ -90,30 +85,30 @@
 
                         </div>
                         <div class="col-md-3">
-                            <label for="">N° INT.</label>
+                            <label for="">N° Int.</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
 
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CÓDIGO POSTAL</label>
+                            <label for="">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">COLONIA</label>
+                            <label for="">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">CIUDAD</label>
+                            <label for="">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">ESTADO</label>
+                            <label for="">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                         </div>
 
@@ -128,7 +123,7 @@
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-1x">
                                 </span> 
-                                SELECCIONA EL LOGO DE LA EMPRESA
+                                Selecciona el logo de la empresa
                             </button>
                         </div>
                         <div class="col-6 col-md-6">
@@ -162,7 +157,7 @@
                             <input type="text" id="ID" name="ID" class="form-control">
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">NOMBRE*</label>    
+                            <label for="">Nombre*</label>    
                             <input type="text" class="form-control" id="Nombre" name="Nombre" >
                         </div>
                         <div class="col-6 col-md-6">
@@ -171,56 +166,53 @@
                         </div>
 
 
-                        <div class="col-md-12">
-                            <h3>INFORMACIÓN DE CONTACTO</h3>
-                        </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE</label>
+                            <label for="">Contacto Nombre</label>
                             <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
                         </div>
                         <div class="col-md-6">
-                            <label for="">APELLIDOS</label>
+                            <label for="">Contacto Apellidos</label>
                             <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
                         </div>
 
-                        <div class="col-md-12">
-                            <h3>DATOS DE LA EMPRESA</h3>
-                        </div>
+                   
+
                         <div class="col-md-6">
-                            <label for="">DIRECCION</label>
+                            <label for="">Dirección</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
 
                         </div>
+
                         <div class="col-md-3">
                             <label for="">N°</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
 
                         </div>
                         <div class="col-md-3">
-                            <label for="">N° INT.</label>
+                            <label for="">N° Int.</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
 
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CÓDIGO POSTAL</label>
+                            <label for="">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">COLONIA</label>
+                            <label for="">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">CIUDAD</label>
+                            <label for="">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">ESTADO</label>
+                            <label for="">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                         </div>
 
@@ -235,7 +227,7 @@
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-1x">
                                 </span> 
-                                MODIFICAR EL LOGO DE LA EMPRESA
+                                Modificar el logo de la empresa
                             </button>
                         </div>
                         <div class="col-6 col-md-6">
@@ -613,7 +605,7 @@
             $("#tblRegistros").html(getTable('tblEmpresas', data));
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
 
             });
