@@ -866,7 +866,7 @@
                         var options = '<option></option>';
                         $.each(data, function (k, v) {
 
-                            options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.SUCURSAL + '</option>';
+                            options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
 
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
@@ -889,7 +889,7 @@
                         var options = '<option></option>';
                         $.each(data, function (k, v) {
 
-                            options += '<option value="' + v.ID + '">' + v.PRECIARIO + '</option>';
+                            options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
@@ -1349,7 +1349,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
             pnlEditarTrabajo.find("#Cliente_ID").html(options);
@@ -1480,7 +1480,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CODIGO + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
 
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
@@ -1506,7 +1506,7 @@
 
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CUADRILLA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
 
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
