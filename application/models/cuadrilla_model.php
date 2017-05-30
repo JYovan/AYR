@@ -30,7 +30,7 @@ class cuadrilla_model extends CI_Model {
 
     public function getCuadrillas() {
         try {
-            $this->db->select('C.ID, C.Nombre AS CUADRILLA, C.MIEMBROS', false);
+            $this->db->select('C.ID, C.Nombre AS Cuadrilla, C.Miembros', false);
             $this->db->from('cuadrillas AS C');
             $this->db->where_in('C.Estatus', 'ACTIVO');
             $query = $this->db->get();
@@ -51,7 +51,7 @@ class cuadrilla_model extends CI_Model {
             $this->db->select('C.*', false);
             $this->db->from('cuadrillas AS C');
             $this->db->where('C.ID', $ID);
-            $this->db->where_in('C.Estatus', 'ACTIVO');
+            $this->db->where_in('C.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

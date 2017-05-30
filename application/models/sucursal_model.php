@@ -28,7 +28,7 @@ class sucursal_model extends CI_Model {
 
     public function getEmpresasSupervisoras() {
         try {
-            $this->db->select('ES.ID, ES.Nombre AS EMPRESA, ES.Contacto AS CONTACTO1, ES.Contacto2 AS CONTACTO2', false);
+            $this->db->select('ES.ID, ES.Nombre AS Empresa, ES.Contacto AS Contacto1, ES.Contacto2 AS Contacto2', false);
             $this->db->from('empresassupervisoras AS ES');
             $query = $this->db->get();
             /*
@@ -45,7 +45,7 @@ class sucursal_model extends CI_Model {
 
     public function getClientes() {
         try {
-            $this->db->select('C.ID, C.Nombre AS CLIENTE', false);
+            $this->db->select('C.ID, C.Nombre AS Cliente', false);
             $this->db->from('Clientes AS C');
             $query = $this->db->get();
             /*
@@ -62,7 +62,7 @@ class sucursal_model extends CI_Model {
 
     public function getSucursalesByCliente($ID) {
         try {
-            $this->db->select('S.ID, S.CR AS CR,S.Nombre as "SUCURSAL" , S.Region AS "REGIÓN"', false);
+            $this->db->select('S.ID, S.CR AS CR,S.Nombre as "Sucursal" , S.Region AS "Región"', false);
             $this->db->from('sucursales AS S');
             $this->db->where('S.Cliente_ID', $ID);
             $query = $this->db->get();

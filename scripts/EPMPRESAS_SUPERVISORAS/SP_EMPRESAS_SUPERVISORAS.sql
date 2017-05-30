@@ -6,9 +6,9 @@ USE `ayr`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_EMPRESAS_SUPERVISORAS`()
 BEGIN 
 	 SELECT 
-     ES.ID,ES.Nombre as EMPRESA
+     ES.ID,ES.Nombre as Empresa
      FROM empresassupervisoras AS ES
-     WHERE ES.Estatus = 'ACTIVO';
+     WHERE ES.Estatus = 'Activo';
     
 END$$
 

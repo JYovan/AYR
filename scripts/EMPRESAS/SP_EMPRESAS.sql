@@ -6,10 +6,10 @@ USE `ayr`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_EMPRESAS`()
 BEGIN 
 	 SELECT 
-     E.ID, E.Nombre AS NOMBRE, E.Rfc AS RFC, 
-     CONCAT(E.ContactoNombre ,' ',E.ContactoApellidos) AS "CONTACTO "
+     E.ID, E.Nombre AS Nombre, E.Rfc AS RFC, 
+     CONCAT(E.ContactoNombre ,' ',E.ContactoApellidos) AS "Contacto "
      FROM Empresas AS E
-     WHERE E.Estatus IN('ACTIVO');
+     WHERE E.Estatus IN('Activo');
 END$$
 
 DELIMITER ;	

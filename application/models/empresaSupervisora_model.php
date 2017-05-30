@@ -28,7 +28,7 @@ class empresaSupervisora_model extends CI_Model {
 
     public function getEmpresasSupervisoras() {
         try {
-            $this->db->select('ES.ID, ES.Nombre AS EMPRESA, ES.Contacto AS CONTACTO1, ES.Contacto2 AS CONTACTO2', false);
+            $this->db->select('ES.ID, ES.Nombre AS Empresa, ES.Contacto AS Contacto1, ES.Contacto2 AS Contacto2', false);
             $this->db->from('empresassupervisoras AS ES');
             $query = $this->db->get();
             /*

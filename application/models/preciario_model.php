@@ -47,7 +47,7 @@ class preciario_model extends CI_Model {
     
     public function getPreciariosByCliente($Cliente_ID) {
         try {
-            $this->db->select('P.ID as ID, P.Nombre as PRECIARIO', false);
+            $this->db->select('P.ID as ID, P.Nombre as Preciario', false);
             $this->db->from('preciarios AS P');
             $this->db->where('P.Cliente_ID', $Cliente_ID);
             $query = $this->db->get();
@@ -65,7 +65,7 @@ class preciario_model extends CI_Model {
 
     public function getConceptosXPreciarioID($ID) {
         try {
-            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS CLAVE, PC.Descripcion AS "DESCRIPCIÓN", PC.Unidad AS UNIDAD, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS PRECIO, PC.Moneda AS MONEDA', false);
+            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clava, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS PRECIO, PC.Moneda AS Moneda', false);
             $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
             $query = $this->db->get();
@@ -101,7 +101,7 @@ class preciario_model extends CI_Model {
 
     public function getConceptoByClaveXDescripcion($ID, $CLAVE, $DESCRIPCION) {
         try { 
-            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS CLAVE, PC.Descripcion AS "DESCRIPCIÓN", PC.Unidad AS UNIDAD, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS COSTO, PC.Moneda AS MONEDA', false);
+            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, PC.Moneda AS Moneda', false);
             $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID); 
             if ($CLAVE !== '') {
@@ -125,7 +125,7 @@ class preciario_model extends CI_Model {
 
     public function getCategoriasXPreciarioID($ID) {
         try {
-            $this->db->select('PC.ID,CONCAT(PC.Clave," - ",PC.Descripcion) AS CATEGORIA', false);
+            $this->db->select('PC.ID,CONCAT(PC.Clave," - ",PC.Descripcion) AS Categoria', false);
             $this->db->from('preciariocategorias AS PC');
             $this->db->where('PC.Preciario_ID', $ID);
             $query = $this->db->get();
@@ -143,7 +143,7 @@ class preciario_model extends CI_Model {
 
     public function getSubCategoriasXCategoriaIDXPreciarioID($ID, $IDC) {
         try {
-            $this->db->select('PSC.ID,CONCAT(PSC.Clave," - ",PSC.Descripcion) AS SUBCATEGORIA', false);
+            $this->db->select('PSC.ID,CONCAT(PSC.Clave," - ",PSC.Descripcion) AS Subcategoria', false);
             $this->db->from('preciariosubcategorias AS PSC');
             if (isset($ID) && $ID !== '') {
                 $this->db->where('PSC.Preciario_ID', $ID);
@@ -166,7 +166,7 @@ class preciario_model extends CI_Model {
 
     public function getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID($ID, $IDC, $IDSC) {
         try {
-            $this->db->select('PSSC.ID,CONCAT(PSSC.Clave," - ",PSSC.Descripcion) AS SUBSUBCATEGORIA', false);
+            $this->db->select('PSSC.ID,CONCAT(PSSC.Clave," - ",PSSC.Descripcion) AS SubSubCategoria', false);
             $this->db->from('preciariosubsubcategoria AS PSSC');
             if (isset($ID) && $ID !== '') {
                 $this->db->where('PSSC.Preciario_ID', $ID);
@@ -192,7 +192,7 @@ class preciario_model extends CI_Model {
 
     public function getCategoriasByPreciarioID($ID) {
         try {
-            $this->db->select('PC.ID, PC.Clave AS CLAVE, PC.Descripcion AS DESCRIPCION, '
+            $this->db->select('PC.ID, PC.Clave AS Clave, PC.Descripcion AS "Descripción", '
                     . '(SELECT COUNT(*) FROM preciariosubcategorias AS PSC WHERE PSC.Preciario_ID = PC.Preciario_ID AND PSC.PreciarioCategoria_ID = PC.ID) AS NSUB', false);
             $this->db->from('preciariocategorias AS PC');
             $this->db->where('PC.Preciario_ID', $ID);
@@ -211,7 +211,7 @@ class preciario_model extends CI_Model {
 
     public function getSubCategoriasByCategoriaIDPreciarioID($ID, $IDC) {
         try {
-            $this->db->select("PSC.ID, PSC.Clave AS CLAVE, PSC.Descripcion AS DESCRIPCION, "
+            $this->db->select("PSC.ID, PSC.Clave AS Clave, PSC.Descripcion AS \"Descripción\", "
                     . "(SELECT COUNT(*) FROM preciariosubsubcategoria AS PSSC WHERE PSSC.Preciario_ID = PSC.Preciario_ID AND PSSC.PreciarioCategoria_ID = PSC.ID) AS NSUB,"
                     . "(SELECT COUNT(*) FROM preciarioconceptos AS PC "
                     . "WHERE PC.Preciarios_ID = PSC.Preciario_ID "
@@ -234,7 +234,7 @@ class preciario_model extends CI_Model {
 
     public function getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID($ID, $IDC, $IDSC) {
         try {
-            $this->db->select("PSSC.ID, PSSC.Clave AS CLAVE, PSSC.Descripcion AS DESCRIPCION, "
+            $this->db->select("PSSC.ID, PSSC.Clave AS Clave, PSSC.Descripcion AS \"Descripción\", "
                     . "(SELECT COUNT(*) FROM preciarioconceptos AS PC "
                     . "WHERE PC.Preciarios_ID = $ID "
                     . "AND PC.PreciarioCategorias_ID = $IDC "
@@ -268,9 +268,9 @@ class preciario_model extends CI_Model {
                     . "CONCAT('<span class=\"label label-danger\">',"
                     . "PC.Clave"
                     . ",'</span>')"
-                    . " AS CLAVE, "
-                    . "PC.Descripcion AS DESCRIPCION, PC.Unidad AS UNIDAD, "
-                    . "CONCAT('<span class=\"label label-success\">',\"$\",FORMAT(PC.Costo,2),'</span>') AS COSTO, PC.Moneda AS MONEDA", false);
+                    . " AS Clave, "
+                    . "PC.Descripcion AS \"Descripción\", PC.Unidad AS Unidad, "
+                    . "CONCAT('<span class=\"label label-success\">',\"$\",FORMAT(PC.Costo,2),'</span>') AS Costo, PC.Moneda AS Moneda", false);
             $this->db->from('preciarioconceptos AS PC');
             if ($ID !== NULL && $ID !== '') {
                 $this->db->where('PC.Preciarios_ID', $ID);
@@ -299,7 +299,7 @@ class preciario_model extends CI_Model {
 
     public function getClientes() {
         try {
-            $this->db->select('C.ID, C.Nombre AS CLIENTE', false);
+            $this->db->select('C.ID, C.Nombre AS Cliente', false);
             $this->db->from('Clientes AS C');
             $query = $this->db->get();
             /*

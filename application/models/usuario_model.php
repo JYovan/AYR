@@ -34,7 +34,7 @@ class usuario_model extends CI_Model {
             $this->db->from('usuarios AS U');
             $this->db->where('U.Usuario', $USUARIO);
             $this->db->where('U.Contrasena', $CONTRASENA);
-            $this->db->where_in('U.Estatus', 'ACTIVO');
+            $this->db->where_in('U.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -74,7 +74,7 @@ class usuario_model extends CI_Model {
     }
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'Inactivo'); 
             $this->db->where('ID', $ID);
             $this->db->update("usuarios");
 //            print $str = $this->db->last_query();
@@ -88,7 +88,7 @@ class usuario_model extends CI_Model {
             $this->db->select('U.*', false);
             $this->db->from('usuarios AS U');
             $this->db->where('U.ID', $ID);
-            $this->db->where_in('U.Estatus', 'ACTIVO');
+            $this->db->where_in('U.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

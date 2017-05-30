@@ -28,7 +28,7 @@ class cliente_model extends CI_Model {
 
     public function getClientes() {
         try {
-            $this->db->select('C.ID, C.Nombre AS CLIENTE', false);
+            $this->db->select('C.ID, C.Nombre AS Cliente', false);
             $this->db->from('Clientes AS C');
             $query = $this->db->get();
             /*
@@ -45,7 +45,7 @@ class cliente_model extends CI_Model {
     
     public function getContratistas() {
         try {
-            $this->db->select('E.ID, E.Nombre AS CONTRATISTA', false);
+            $this->db->select('E.ID, E.Nombre AS Contratista', false);
             $this->db->from('empresas AS E');
 //            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
@@ -65,7 +65,7 @@ class cliente_model extends CI_Model {
             $this->db->select('C.*', false);    
             $this->db->from('clientes AS C');
             $this->db->where('C.ID', $ID);
-            $this->db->where_in('C.Estatus', 'ACTIVO');
+            $this->db->where_in('C.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

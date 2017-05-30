@@ -28,7 +28,7 @@ class codigoppta_model extends CI_Model {
 
     public function getCodigosPPTA() {
         try {
-            $this->db->select('CP.ID, CP.Codigo AS CODIGO, CP.Dias AS DIAS', false);
+            $this->db->select('CP.ID, CP.Codigo AS Código, CP.Dias AS Dias', false);
             $this->db->from('codigosppta AS CP');
             $query = $this->db->get();
             /*

@@ -57,17 +57,18 @@
                             <label for="">Contraseña*</label>    
                             <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
                         </div>
+
                         <div class="col-6 col-md-12">
                             <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="ACTIVO">Activo</option> 
-                                <option value="INACTIVO">Inactivo</option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
-                        <div class="col-md-12">
-                            <h3>Datos Personales</h3>
-                        </div>
+
+                    
+                        
                         <div class="col-md-6">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
@@ -78,20 +79,24 @@
                         </div>
                         <div class="col-md-6">
                             <label for="">Tipo Acceso*</label>
-                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
                                 <option value=""></option> 
-                                <option value="ADMINISTRADOR">Adminitrador</option> 
-                                <option value=">COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                                <option value="ADMINISTRADOR">Administrador</option> 
+                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
                                 <option value="RESIDENTE">Residente</option> 
                                 <option value="INVITADO">Invitado</option> 
                             </select>
                         </div>
+
+
                         <div class="col-md-6">
                             <label for="">Empresa*</label>
-                            <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
                                 <option value=""></option> 
                             </select>
                         </div>
+
+
 
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
@@ -120,9 +125,11 @@
             <form id="frmEditar">
                 <div class="modal-body">
                     <fieldset>
+
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
+
                         <div class="col-6 col-md-6">
                             <label for="">Usuario*</label>    
                             <input type="text" class="form-control" id="Usuario" name="Usuario" required >
@@ -135,13 +142,11 @@
                             <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required>
                                 <option value=""></option> 
-                                <option value="ACTIVO">Activo</option> 
-                                <option value="INACTIVO">Inactivo</option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
-                        <div class="col-md-12">
-                            <h3>Datos Personales</h3>
-                        </div>
+                      
                         <div class="col-md-6">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
@@ -153,9 +158,9 @@
                         <div class="col-md-6">
                             <label for="">Tipo de Acceso*</label>
                             <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
-                                 <option value=""></option> 
-                                <option value="ADMINISTRADOR">Adminitrador</option> 
-                                <option value=">COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                                <option value=""></option> 
+                                <option value="ADMINISTRADOR">Administrador</option> 
+                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
                                 <option value="RESIDENTE">Residente</option> 
                                 <option value="INVITADO">Invitado</option> 
                             </select>
@@ -176,10 +181,10 @@
                 </div>
             </form>
             <div class="modal-footer">
-               
+
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
-              
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -257,18 +262,22 @@
 
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'has-error',
+                errorClass: 'errorClass',
                 rules: {
                     Usuario: 'required',
                     Contrasena: 'required',
                     Nombre: 'required',
                     Apellidos: 'required',
-                    Estatus: 'required'
+                    Estatus: 'required',
+                    Empresa_ID: 'required',
+                    TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
 
+                    console.log(element);
                     var elem = $(element);
                     elem.addClass(errorClass);
+
 
                 },
                 unhighlight: function (element, errorClass, validClass) {
@@ -281,9 +290,6 @@
             $('select').on('change', function () {
                 $(this).valid();
             });
-
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
 
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
@@ -322,23 +328,29 @@
 
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'has-error',
+                errorClass: 'errorClass',
                 rules: {
                     Usuario: 'required',
                     Contrasena: 'required',
                     Nombre: 'required',
                     Apellidos: 'required',
-                    Estatus: 'required'
+                    Estatus: 'required',
+                    Empresa_ID: 'required',
+                    TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
 
+                    console.log(element);
                     var elem = $(element);
                     elem.addClass(errorClass);
+
+
 
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
+
                 }
 
             });
@@ -502,7 +514,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.NOMBRE + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
             });
             mdlNuevo.find("#Empresa_ID").html(options);
             mdlEditar.find("#Empresa_ID").html(options);

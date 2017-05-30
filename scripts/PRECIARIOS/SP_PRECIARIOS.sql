@@ -6,13 +6,13 @@ USE `ayr`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_PRECIARIOS`()
 BEGIN 
 	 SELECT 
-     P.ID, P.Nombre AS NOMBRE, P.Tipo AS TIPO, P.FechaCreacion AS "FECHA DE CREACIÓN", 
+     P.ID, P.Nombre AS Nombre, P.Tipo AS Tipo, P.FechaCreacion AS "Fecha de Creación", 
      (CASE 
-     WHEN P.Cliente_ID IS NULL THEN "NO ESPECÍFICA"
+     WHEN P.Cliente_ID IS NULL THEN "No especifica"
      ELSE (SELECT C.Nombre FROM Clientes AS C WHERE C.ID = P.Cliente_ID)
-     END) AS CLIENTE
+     END) AS Cliente
      FROM preciarios AS P
-     WHERE P.Estatus IN('ACTIVO');
+     WHERE P.Estatus IN('Activo');
 END$$
 
 DELIMITER ;	

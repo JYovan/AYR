@@ -30,7 +30,7 @@ class empresa_model extends CI_Model {
 
     public function getEmpresas() {
         try {
-            $this->db->select('E.ID, E.Nombre AS NOMBRE', false);
+            $this->db->select('E.ID, E.Nombre AS Nombre', false);
             $this->db->from('empresas AS E');
 //            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
@@ -51,7 +51,7 @@ class empresa_model extends CI_Model {
             $this->db->select('E.*', false);
             $this->db->from('empresas AS E');
             $this->db->where('E.ID', $ID);
-            $this->db->where_in('E.Estatus', 'ACTIVO');
+            $this->db->where_in('E.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -91,7 +91,7 @@ class empresa_model extends CI_Model {
     
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'Inactivo'); 
             $this->db->where('ID', $ID);
             $this->db->update("empresas");
 //            print $str = $this->db->last_query();

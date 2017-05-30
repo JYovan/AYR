@@ -17,19 +17,19 @@ class trabajo_model extends CI_Model {
     public function getRecords() {
         try {
             $this->db->select("T.ID, T.Movimiento,"
-                    . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'FOLIO', "
+                    . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'Folio', "
                     . "(CASE WHEN  T.Situacion ='AUTORIZADO' THEN CONCAT('<span class=\'label label-success\'>','AUTORIZADO','</span>') "
                     . "WHEN  T.Situacion ='SIN AUTORIZAR' THEN CONCAT('<span class=\'label label-danger\'>','SIN AUTORIZAR','</span>')"
-                    . "ELSE CONCAT('<span class=\'label label-warning\'>','PENDIENTE','</span>') END) AS ESTATUS ,"
-                    . "T.FechaCreacion as 'FECHA DE CREACIÓN' ,"
-                    . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS ATENDIDO ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS ADJUNTO ,"
-                    . "Ct.Nombre as 'CLIENTE', "
-                    . "concat(S.CR,' ',S.Nombre) as 'SUCURSAL' ,"
-                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'CLASIFICACIÓN', "
+                    . "ELSE CONCAT('<span class=\'label label-warning\'>','PENDIENTE','</span>') END) AS Estatus ,"
+                    . "T.FechaCreacion as 'Fecha Creación' ,"
+                    . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS Atendido ,"
+                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
+                    . "Ct.Nombre as 'Cliente', "
+                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'Clasificación', "
                     . "S.Region ,"
-                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'CUADRILLA', "
-                    . "concat(u.nombre,' ',u.apellidos)as 'USUARIO' "
+                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'Cuadrilla', "
+                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -75,7 +75,7 @@ class trabajo_model extends CI_Model {
 
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO');
+            $this->db->set('Estatus', 'Inactivo');
             $this->db->where('ID', $ID);
             $this->db->update("trabajos");
 //            print $str = $this->db->last_query();
