@@ -6,7 +6,7 @@
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="col-md-12" align="right">
+                <div class="col-md-12 dt-buttons" align="right">
 
 
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
