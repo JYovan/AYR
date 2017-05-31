@@ -30,7 +30,7 @@
 
 .cursor-hand{
  color: #000;   
-    
+ font-size: 17px !important;
 }
 
 /*Estilo select2*/
@@ -274,7 +274,7 @@ table thead tr{
 
 .table tfoot th{
     color: #ffffff !important; 
-    background-color: #009688 !important;
+    background-color: #eeeeee !important;
  
 }
 

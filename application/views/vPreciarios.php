@@ -1,7 +1,10 @@
 
 <div  class="col-md-12">
     <div id="pnlPreciario" class="panel panel-default">
-        <div class="panel-heading">PRECIARIOS</div>
+        <div class="panel-heading ">
+            <div class="cursor-hand" >Preciarios</div>
+
+        </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
@@ -19,10 +22,11 @@
 <!--PANELES-->
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlNuevo" class="panel panel-default hide">
+    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
         <div class="panel-heading" >
             <div class="panel-heading row">
                 <div class="col-md-8"> 
+
                     <div class="cursor-hand" >Nuevo preciario</div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
@@ -223,11 +227,11 @@
                     </ul>
                 </div>
                 <div class="col-md-12"></div>
-                        <div class="col-md-12">
-                            <span>
-                                <br>
-                            </span>
-                        </div>
+                <div class="col-md-12">
+                    <span>
+                        <br>
+                    </span>
+                </div>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active in" id="Conceptos">
                         <div class="col-md-12">
@@ -671,7 +675,7 @@
         btnCancelarEditar.click(function () {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
-             btnRefrescar.trigger('click');
+            btnRefrescar.trigger('click');
         });
 
         btnCancelar.click(function () {
@@ -1126,12 +1130,12 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnArchivo.click(function () { 
+        btnArchivo.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "POR FAVOR ESPERE..."
-            }); 
-            Archivo.change(function () { 
+            });
+            Archivo.change(function () {
                 if (Archivo[0].files[0] !== undefined) {
 
                     var extension = getExt(Archivo[0].files[0].name);
@@ -1148,11 +1152,11 @@
                             onProcesarLibroXLS(wb);
                         };
                         if (Archivo[0].files[0] !== undefined && Archivo[0].files[0] !== null) {
-                            reader.readAsArrayBuffer(Archivo[0].files[0]);  
-                            }
-                            HoldOn.close();
-                        } else {
-                            HoldOn.close();
+                            reader.readAsArrayBuffer(Archivo[0].files[0]);
+                        }
+                        HoldOn.close();
+                    } else {
+                        HoldOn.close();
                         is_filled = false;
                     }
                 } else {
@@ -1165,8 +1169,8 @@
                     HoldOn.close();
                 } else {
                     HoldOn.close();
-                } 
-                });
+                }
+            });
             Archivo.trigger('click');
 
         });
@@ -1176,7 +1180,7 @@
         getClientes();
 
     });
-var is_filled = false;
+    var is_filled = false;
     function getClientes() {
         HoldOn.open({
             theme: 'sk-bounce',

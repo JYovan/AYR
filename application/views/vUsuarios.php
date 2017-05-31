@@ -1,6 +1,8 @@
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading">Usuarios</div>
+        <div class="panel-heading">
+            <div class="cursor-hand" >Usuarios</div>
+        </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
@@ -67,8 +69,8 @@
                             </select>
                         </div>
 
-                    
-                        
+
+
                         <div class="col-md-6">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
@@ -146,7 +148,7 @@
                                 <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
-                      
+
                         <div class="col-md-6">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>

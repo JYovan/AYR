@@ -1,6 +1,9 @@
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading">CLIENTES</div>
+        <div class="panel-heading">
+             <div class="cursor-hand" >Clientes</div>
+        
+        </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
