@@ -362,3 +362,10 @@ div.dt-buttons > .btn{
        padding: 8px 10px;
    
 }
+
+/*
+Separacion de los botones de herramientas de tablas
+.btn, .input-group-btn .btn {
+       padding: 8px 10px;
+   
+}*/

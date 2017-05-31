@@ -5,7 +5,7 @@
               <div class="cursor-hand" >Trabajos</div>
         
         </div>
-        <div class="panel-body">
+        <div class="panel-body dt-buttons">
             <fieldset>
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
