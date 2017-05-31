@@ -1,8 +1,8 @@
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-             <div class="cursor-hand" >Clientes</div>
-        
+            <div class="cursor-hand" >Clientes</div>
+
         </div>
         <div class="panel-body">
             <fieldset>
@@ -33,11 +33,7 @@
     </div>
 </div>
 
-
-
 <!--Confirmacion-->
-
-
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -58,13 +54,12 @@
 </div>
 
 <!--MODALES-->
-
 <div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVO CLIENTE</h4>
+                <h4 class="modal-title">Nuevo Cliente</h4>
             </div>
             <form id="frmNuevo">
                 <div class="modal-body">
@@ -72,55 +67,55 @@
 
 
                         <div class="col-md-12">
-                            <label for="">NOMBRE*</label>
+                            <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="">NOMBRE CORTO</label>
+                            <label for="">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CALLE</label>
-                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                            <label for="">Calle</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
                         </div>
 
                         <div class="col-md-4">
-                            <label for="">No EXTERIOR</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                            <label for="">No Exterior</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">No INTERIOR</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
+                            <label for="">No Interior</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CÓDIGO POSTAL</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                            <label for="">Código Postal</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">COLONIA</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                            <label for="">Colonia</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CIUDAD</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                            <label for="">Ciudad</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">ESTADO</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                            <label for="">Estado</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 1</label>
+                            <label for="">Contacto 1</label>
                             <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 2</label>
+                            <label for="">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 3</label>
+                            <label for="">Contacto 3</label>
                             <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
                         </div>
                         <div class="col-6 col-md-6">
@@ -141,7 +136,7 @@
                 </div>
             </form>
             <div class="modal-footer">
-                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
@@ -155,7 +150,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR CLIENTE</h4>
+                <h4 class="modal-title">Editar Cliente</h4>
             </div>
             <form id="frmEditar">
                 <div class="modal-body">
@@ -164,52 +159,52 @@
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
                         <div class="col-md-12">
-                            <label for="">NOMBRE*</label>
+                            <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="">NOMBRE CORTO</label>
+                            <label for="">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">CALLE</label>
-                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                            <label for="">Calle</label>
+                            <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">No EXTERIOR</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                            <label for="">No Exterior</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">No INTERIOR</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" required>
+                            <label for="">No Interior</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CÓDIGO POSTAL</label>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                            <label for="">Código Postal</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">COLONIA</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                            <label for="">Colonia</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CIUDAD</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                            <label for="">Ciudad</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">ESTADO</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                            <label for="">Estado</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 1</label>
+                            <label for="">Contacto 1</label>
                             <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 2</label>
+                            <label for="">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                         </div>
                         <div class="col-md-4">
-                            <label for="">CONTACTO 3</label>
+                            <label for="">Contacto 3</label>
                             <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
                         </div>
                         <div class="col-6 col-md-6">
@@ -224,7 +219,7 @@
                             <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-1x">
                                 </span> 
-                                SELECCIONA LA IMAGEN,LOGO O IDENTIDAD DEL CLIENTE
+                                MODIFICAR LA IMAGEN,LOGO O IDENTIDAD DEL CLIENTE
                             </button>
                             <br>
                         </div>
@@ -233,7 +228,7 @@
                 </div>
             </form>
             <div class="modal-footer">
-    <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
@@ -249,9 +244,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">NUEVA SUCURSAL</h4>
+                <h4 class="modal-title">Nueva Sucursal</h4>
             </div>
-            <form id="frmNuevo">
+            <form id="frmNuevoSuc">
                 <div class="modal-body">
                     <fieldset> 
                         <div class="col-6 col-md-12">      
@@ -278,7 +273,7 @@
                                     </select>
                                 </div>   
                                 <div class="col-md-12">
-                                    <label for="">SUCURSAL*</label>
+                                    <label for="">Sucursal*</label>
                                     <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
                                 </div> 
                                 <div class="col-md-4">
@@ -286,41 +281,41 @@
                                     <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CALLE*</label>
+                                    <label for="">Calle*</label>
                                     <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NO EXTERIOR*</label>
+                                    <label for="">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NO INTERIOR</label>
+                                    <label for="">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-12">
-                                    <label for="">ENTRE CALLES</label>
-                                    <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" required>
+                                    <label for="">Entre Calles</label>
+                                    <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" >
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">CÓDIGO POSTAL*</label>
-                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                                    <label for="">Código Postal</label>
+                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">COLONIA*</label>
-                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                                    <label for="">Colonia</label>
+                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CIUDAD*</label>
-                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                                    <label for="">Ciudad</label>
+                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">ESTADO*</label>
-                                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                                    <label for="">Estado</label>
+                                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">REGIÓN*</label>
-                                    <select id="Region" name="Region" class="form-control">
+                                    <label for="">Region*</label>
+                                    <select id="Region" name="Region" class="form-control" required="">
                                         <option value=""></option> 
                                         <option value="BAJÍO">BAJÍO</option> 
                                         <option value="METROPOLITANA NORTE">METROPOLITANA NORTE</option> 
@@ -332,21 +327,21 @@
                                         <option value="SURESTE">SURESTE</option> 
                                     </select>
                                 </div> 
-                                 <div class="col-md-3">
-                                <label for="">CONTRATISTA*</label> 
-                                <select id="Empresa_ID" name="Empresa_ID" class="form-control">
-                                    <option value=""></option> 
-                                </select>
-                            </div> 
-                            
-                            <div class="col-md-6">
-                                <label for="">CONTACTO 1</label>
-                                <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
-                            </div> 
-                            <div class="col-md-6">
-                                <label for="">CONTACTO 2</label>
-                                <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
-                            </div>
+                                <div class="col-md-4">
+                                    <label for="">Contratista*</label> 
+                                    <select id="Empresa_ID" name="Empresa_ID" class="form-control" required="">
+                                        <option value=""></option> 
+                                    </select>
+                                </div> 
+
+                                <div class="col-md-6">
+                                    <label for="">Contacto 1</label>
+                                    <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                                </div> 
+                                <div class="col-md-6">
+                                    <label for="">Contacto 2</label>
+                                    <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                                </div>
                             </div> 
 
 
@@ -356,7 +351,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label for="">TIPO DE OBRA</label>
+                                    <label for="">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
                                         <option value=""></option> 
                                         <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -367,11 +362,11 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                <label for="">CONTRATO</label>
-                                <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
+                                    <label for="">Contrato</label>
+                                    <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">TIPO DE CONCEPTO</label>
+                                    <label for="">Tipo de Concepto</label>
                                     <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                         <option value=""></option> 
                                         <option value="ADICIONAL">ADICIONAL</option>  
@@ -379,45 +374,45 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">EMPRESA SUPERVISORA</label>
+                                    <label for="">Empresa Supervisora</label>
                                     <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                         <option value=""></option> 
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">SUPERFICIE</label>
+                                    <label for="">Superficie</label>
                                     <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">FECHA DE INICIO</label>
+                                    <label for="">Fecha Inicio</label>
                                     <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">FECHA FINAL</label>
+                                    <label for="">Fecha Fin</label>
                                     <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">DIAS</label>
+                                    <label for="">Días</label>
                                     <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">NÚMERO DE SEMANAS</label>
+                                    <label for="">Número de Semanas</label>
                                     <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">PROVEEDOR DE ENERGÍA</label>
+                                    <label for="">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-                               
-                                
+
+
                                 <div class="col-md-3">
-                                    <label for="">COORDINADOR</label>
+                                    <label for="">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                                 </div> 
-                                
-                                
+
+
                                 <div class="col-md-3">
-                                    <label for="">SUPERVISOR</label>
+                                    <label for="">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                                 </div> 
 
@@ -425,109 +420,107 @@
                             </div>  
 
                             <div role="tabpanel" class="tab-pane fade" id="Firmas">
-                                <div class="col-6 col-md-12">
-                                    <br>
-                                </div>
+
 
                                 <div class="col-md-12" align="center">
-                                    <hr>
-                                    <h3>FIRMAS DE MATENIMIENTO</h3>
-                                    <hr>
+
+                                    <h3>Firmas de Mantenimiento</h3>
+
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
-                                    <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
+                                    <label for="">Nombre</label>
+                                    <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
 
 
                                 <div class="col-md-12" align="center">
-                                    <hr>
-                                    <h3>FIRMAS DE OBRA</h3>
-                                    <hr>
+
+                                    <h3>Firmas de Obra</h3>
+
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                                 </div> 
 
                             </div>
 
-                            
-                            
-                            
+
+                        </div>
+
                             <div class="col-6 col-md-6">
                                 <h6>Los campos con * son obligatorios</h6>    
 
@@ -549,11 +542,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR SUCURSAL</h4>
+                <h4 class="modal-title">Editar Sucursal</h4>
             </div>
-            <form id="frmEditar">
+            <form id="frmEditarSuc">
                 <div class="modal-body">
-                     <fieldset> 
+                    <fieldset> 
                         <div class="col-6 col-md-12">      
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -578,10 +571,10 @@
                                     </select>
                                 </div>   
                                 <div class="col-md-4 hide">
-                                    <input type="text" id="ID" name="ID" class="form-control" placeholder="" required>
+                                    <input type="text" id="ID" name="ID" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-12">
-                                    <label for="">SUCURSAL*</label>
+                                    <label for="">Sucursal*</label>
                                     <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
                                 </div> 
                                 <div class="col-md-4">
@@ -589,41 +582,41 @@
                                     <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CALLE*</label>
+                                    <label for="">Calle*</label>
                                     <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NO EXTERIOR*</label>
+                                    <label for="">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NO INTERIOR</label>
+                                    <label for="">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-12">
-                                    <label for="">ENTRE CALLES</label>
-                                    <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" required>
+                                    <label for="">Entre Calles</label>
+                                    <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" >
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">CÓDIGO POSTAL*</label>
-                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" required>
+                                    <label for="">Código Postal</label>
+                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">COLONIA*</label>
-                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" required>
+                                    <label for="">Colonia</label>
+                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CIUDAD*</label>
-                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" required>
+                                    <label for="">Ciudad</label>
+                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">ESTADO*</label>
-                                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" required>
+                                    <label for="">Estado</label>
+                                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">REGIÓN*</label>
-                                    <select id="Region" name="Region" class="form-control">
+                                    <label for="">Region*</label>
+                                    <select id="Region" name="Region" class="form-control" required="">
                                         <option value=""></option> 
                                         <option value="BAJÍO">BAJÍO</option> 
                                         <option value="METROPOLITANA NORTE">METROPOLITANA NORTE</option> 
@@ -635,21 +628,21 @@
                                         <option value="SURESTE">SURESTE</option> 
                                     </select>
                                 </div> 
-                                 <div class="col-md-3">
-                                <label for="">CONTRATISTA*</label> 
-                                <select id="Empresa_ID" name="Empresa_ID" class="form-control">
-                                    <option value=""></option> 
-                                </select>
-                            </div> 
-                           
-                            <div class="col-md-6">
-                                <label for="">CONTACTO 1</label>
-                                <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
-                            </div> 
-                            <div class="col-md-6">
-                                <label for="">CONTACTO 2</label>
-                                <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
-                            </div>
+                                <div class="col-md-4">
+                                    <label for="">Contratista*</label> 
+                                    <select id="Empresa_ID" name="Empresa_ID" class="form-control" required="">
+                                        <option value=""></option> 
+                                    </select>
+                                </div> 
+
+                                <div class="col-md-6">
+                                    <label for="">Contacto 1</label>
+                                    <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                                </div> 
+                                <div class="col-md-6">
+                                    <label for="">Contacto 2</label>
+                                    <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                                </div>
                             </div> 
 
 
@@ -659,7 +652,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label for="">TIPO DE OBRA</label>
+                                    <label for="">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
                                         <option value=""></option> 
                                         <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -670,11 +663,11 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                <label for="">CONTRATO</label>
-                                <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
+                                    <label for="">Contrato</label>
+                                    <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">TIPO DE CONCEPTO</label>
+                                    <label for="">Tipo de Concepto</label>
                                     <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                         <option value=""></option> 
                                         <option value="ADICIONAL">ADICIONAL</option>  
@@ -682,154 +675,149 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">EMPRESA SUPERVISORA</label>
+                                    <label for="">Empresa Supervisora</label>
                                     <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                         <option value=""></option> 
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">SUPERFICIE</label>
+                                    <label for="">Superficie</label>
                                     <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">FECHA DE INICIO</label>
+                                    <label for="">Fecha Inicio</label>
                                     <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">FECHA FINAL</label>
+                                    <label for="">Fecha Fin</label>
                                     <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">DIAS</label>
+                                    <label for="">Días</label>
                                     <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">NÚMERO DE SEMANAS</label>
+                                    <label for="">Número de Semanas</label>
                                     <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">PROVEEDOR DE ENERGÍA</label>
+                                    <label for="">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-                               
+
                                 <div class="col-md-3">
-                                    <label for="">COORDINADOR</label>
+                                    <label for="">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                                 </div> 
-                                
-                                
+
+
                                 <div class="col-md-3">
-                                    <label for="">SUPERVISOR</label>
+                                    <label for="">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                                 </div> 
-                             
+
 
                             </div>  
 
                             <div role="tabpanel" class="tab-pane fade" id="EditarFirmas">
-                                <div class="col-6 col-md-12">
-                                    <br>
-                                </div>
+
 
                                 <div class="col-md-12" align="center">
-                                    <hr>
-                                    <h3>FIRMAS DE MATENIMIENTO</h3>
-                                    <hr>
+
+                                    <h3>Firmas de Mantenimiento</h3>
+
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
 
 
                                 <div class="col-md-12" align="center">
-                                    <hr>
-                                    <h3>FIRMAS DE OBRA</h3>
-                                    <hr>
+
+                                    <h3>Firmas de Obra</h3>
+
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">NOMBRE</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">APELLIDOS</label>
+                                    <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
                                 </div> 
 
                                 <div class="col-md-4">
-                                    <label for="">PUESTO</label>
+                                    <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                                 </div> 
 
                             </div>
-
-                            
-                            
-                            
+                        </div>    
                             <div class="col-6 col-md-6">
                                 <h6>Los campos con * son obligatorios</h6>    
 
@@ -874,28 +862,20 @@
     var master_url = base_url + 'index.php/CtrlClientes/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
-
     var btnEditar = $("#btnEditar");
     var mdlEditar = $("#mdlEditar");
-
     var Archivo = mdlNuevo.find("#RutaLogo");
     var btnArchivo = mdlNuevo.find("#btnArchivo");
     var VistaPrevia = mdlNuevo.find("#VistaPrevia");
-
     var btnGuardar = mdlNuevo.find("#btnGuardar");
-
     var ModificarArchivo = mdlEditar.find("#RutaLogo");
     var btnModificarArchivo = mdlEditar.find("#btnArchivo");
     var ModificarVistaPrevia = mdlEditar.find("#VistaPrevia");
     var btnModificar = mdlEditar.find("#btnModificar");
-
     var btnRefrescar = $("#btnRefrescar");
-
     var btnEliminar = $("#btnEliminar");
-
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
     var btnNuevaSucursal = $("#btnNuevaSucursal");
     var mdlNuevaSucursal = $("#mdlNuevaSucursal");
     var btnCancelarSucursal = mdlNuevaSucursal.find("#btnCancelarSucursal");
@@ -970,30 +950,66 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
+//**------------------------------------------ SUCURSALES AC
         btnModificarSucursal.click(function () {
 
-            var frm = new FormData(mdlEditarSucursal.find("#frmEditar")[0]);
-            $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/onModificar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                btnVerSucursales.trigger('click');
-                mdlEditarSucursal.modal('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+
+            $.validator.setDefaults({
+                ignore: []
             });
 
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
 
 
+            $('#frmEditarSuc').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Nombre: 'required',
+                    CR: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+            
+        
+            
+            if ($('#frmEditarSuc').valid()) {
+                var frm = new FormData(mdlEditarSucursal.find("#frmEditarSuc")[0]);
+                $.ajax({
+                    url: base_url + 'index.php/CtrlSucursal/onModificar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    btnVerSucursales.trigger('click');
+                    mdlEditarSucursal.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA SUCURSAL', 'success');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
 
 
         });
@@ -1001,43 +1017,78 @@
         btnGuardarSucursal.click(function () {
 
 
-
-            var frm = new FormData(mdlNuevaSucursal.find("#frmNuevo")[0]);
-            $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/onAgregar',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                btnVerSucursales.trigger('click');
-                mdlNuevaSucursal.modal('hide');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
-                console.log(data, x, jq);
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            $.validator.setDefaults({
+                ignore: []
             });
+
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+
+            $('#frmNuevoSuc').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+               
+                },
+                highlight: function (element, errorClass, validClass) {
+
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+
+            });
+            //Regresa si es valido para los select2
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+            console.log($('#frmNuevoSuc').valid());
+            //Si es verdadero que hacer
+            if ($('#frmNuevoSuc').valid()) {
+                var frm = new FormData(mdlNuevaSucursal.find("#frmNuevoSuc")[0]);
+                $.ajax({
+                    url: base_url + 'index.php/CtrlSucursal/onAgregar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    btnVerSucursales.trigger('click');
+                    mdlNuevaSucursal.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
+                    console.log(data, x, jq);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
 
 
 
         });
 
+//**------------------------------------------
         btnCancelarSucursal.click(function () {
             mdlNuevaSucursal.modal('hide');
         });
 
         btnNuevaSucursal.click(function (e) {
-             mdlNuevaSucursal.find(".nav-tabs li").removeClass("active");
+            mdlNuevaSucursal.find(".nav-tabs li").removeClass("active");
             $(mdlNuevaSucursal.find(".nav-tabs li")[0]).addClass("active");
-            
-             mdlNuevaSucursal.find("#DatosGenerales").addClass("active in");
+
+            mdlNuevaSucursal.find("#DatosGenerales").addClass("active in");
             mdlNuevaSucursal.find("#InformacionObra").removeClass("active in");
             mdlNuevaSucursal.find("#Firmas").removeClass("active in");
-            
-            
+
+
             mdlNuevaSucursal.find("#Cliente_ID").select2("val", cliente_id);
             mdlNuevaSucursal.modal('show');
         });
@@ -1088,7 +1139,6 @@
             btnConfirmarEliminar.removeClass("hide");
             getRecords();
         });
-
 
         btnModificar.click(function () {
             $.validator.setDefaults({
@@ -1171,10 +1221,11 @@
                 }).done(function (data, x, jq) {
 
                     console.log(data);
-                    btnEditar.find("input").val("");
+                    mdlEditar.find("input").val("");
                     var cliente = data[0];
                     mdlEditar.find("#ID").val(cliente.ID);
                     mdlEditar.find("#Nombre").val(cliente.Nombre);
+                    mdlEditar.find("#NombreCorto").val(cliente.NombreCorto);
                     mdlEditar.find("#Calle").val(cliente.Calle);
                     mdlEditar.find("#NoExterior").val(cliente.NoExterior);
                     mdlEditar.find("#NoInterior").val(cliente.NoInterior);
@@ -1311,7 +1362,6 @@
             Archivo.trigger('click');
         });
 
-
         btnModificarArchivo.click(function () {
             ModificarArchivo.change(function () {
                 HoldOn.open({
@@ -1349,8 +1399,6 @@
         });
 
         btnNuevo.click(function () {
-         
-
             //Muestra el modal
             mdlNuevo.modal('show');
             //Limpia los campos
@@ -1380,7 +1428,7 @@
             $("#tblRegistros").html(getTable('tbllClientes', data));
             $('#tbllClientes tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
             });
             var tblSelected = $('#tbllClientes').DataTable(tableOptions);
@@ -1402,6 +1450,7 @@
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
                 cliente_id = parseInt(dtm[0]);
+                temp=parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
             $('#tbllClientes tbody').on('dblclick', 'tr', function () {
@@ -1428,61 +1477,7 @@
     }
 
     var cliente_id = 0;
-    function getSucursalesByCliente(IDX) {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: base_url + 'index.php/CtrlSucursal/getSucursalesByCliente',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            console.log(data);
-            $("#tblDetalleSucursales").html(getTable('tblDetalleSucursalesModal', data));
-            $('#tblDetalleSucursalesModal tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
-            });
-            var tblSelected = $('#tblDetalleSucursalesModal').DataTable(tableOptions);
-            $('#tblDetalleSucursalesModal tbody').on('click', 'tr', function () {
-                $("#tblDetalleSucursalesModal").find("tr").removeClass("success");
-                $("#tblDetalleSucursalesModal").find("tr").removeClass("warning");
-//                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
+
 
     function getSucursalesByClienteID(IDX) {
         temp = 0;
@@ -1502,7 +1497,7 @@
             $("#tblRegistros").html(getTable('tblSucursales', data));
             $('#tblSucursales tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                $(this).html('<label for=""></label><input type="text" placeholder="Buscar por ' + title + '" class="form-control" />');
             });
             var tblSelected = $('#tblSucursales').DataTable(tableOptions);
             $('#tblSucursales tbody').on('click', 'tr', function () {
@@ -1516,14 +1511,18 @@
                 } else {
                     selected.splice(index, 1);
                 }
+
                 $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-                getSucursalByID(temp);
+                $('#tblSucursales tbody').on('dblclick', 'tr', function () {
+
+                    var dtm = tblSelected.row(this).data();
+                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                    console.log(dtm);
+                    console.log(dtm[0]);
+                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                    temp = parseInt(dtm[0]);
+                    getSucursalByID(temp);
+                });
             });
             // Apply the search
             tblSelected.columns().every(function () {
@@ -1556,7 +1555,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CONTRATISTA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Contratista + '</option>';
             });
             mdlNuevaSucursal.find("#Empresa_ID").html(options);
             mdlEditarSucursal.find("#Empresa_ID").html(options);
@@ -1579,7 +1578,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.EMPRESA + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Empresa + '</option>';
             });
             mdlNuevaSucursal.find("#EmpresaSupervisora_ID").html(options);
             mdlEditarSucursal.find("#EmpresaSupervisora_ID").html(options);
@@ -1604,7 +1603,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CLIENTE + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             mdlNuevaSucursal.find("#Cliente_ID").html(options);
             mdlEditarSucursal.find("#Cliente_ID").html(options);
@@ -1615,75 +1614,12 @@
         });
     }
 
-    function getSucursales() {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: base_url + 'index.php/CtrlSucursal/getSucursales',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            console.log(data);
-            $("#tblRegistros").html(getTable('tblSucursales', data));
-            $('#tblSucursales tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
-            });
-            var tblSelected = $('#tblSucursales').DataTable(tableOptions);
-            $('#tblSucursales tbody').on('click', 'tr', function () {
-                $("#tblSucursales").find("tr").removeClass("success");
-                $("#tblSucursales").find("tr").removeClass("warning");
-//                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblSucursales tbody').on('dblclick', 'tr', function () {
-                $("#tblSucursales").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
-                
-                temp = parseInt(dtm[0]);
-                
-                getSucursalByID(temp);
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
     function getSucursalByID(IDX) {
-     mdlEditarSucursal.find(".nav-tabs li").removeClass("active");
-     $(mdlEditarSucursal.find(".nav-tabs li")[0]).addClass("active");
-     mdlEditarSucursal.find("#EditarDatosGenerales").addClass("active in");
-            mdlEditarSucursal.find("#EditarInformacionObra").removeClass("active in");
-            mdlEditarSucursal.find("#EditarFirmas").removeClass("active in");
+        mdlEditarSucursal.find(".nav-tabs li").removeClass("active");
+        $(mdlEditarSucursal.find(".nav-tabs li")[0]).addClass("active");
+        mdlEditarSucursal.find("#EditarDatosGenerales").addClass("active in");
+        mdlEditarSucursal.find("#EditarInformacionObra").removeClass("active in");
+        mdlEditarSucursal.find("#EditarFirmas").removeClass("active in");
 
         console.log(IDX);
         if (IDX !== 0 && IDX !== undefined && IDX > 0) {

@@ -166,7 +166,7 @@ class CtrlPreciarios extends CI_Controller {
             $DATA = array(
                 'Nombre' => (isset($Nombre) && $Nombre !== NULL && $Nombre !== '') ? $Nombre : 'NO ESPECÍFICA',
                 'Tipo' => (isset($Tipo) && $Tipo !== NULL && $Tipo !== '') ? $Tipo : 'NO ESPECÍFICA',
-                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion . " " . Date('h:i:s') : '',
+                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion : '',
                 'Cliente_ID' => (isset($Cliente_ID) && $Cliente_ID !== NULL && $Cliente_ID !== '') ? $Cliente_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== NULL && $Estatus !== '') ? $Estatus : NULL
             );
@@ -256,7 +256,7 @@ class CtrlPreciarios extends CI_Controller {
             $DATA = array(
                 'Nombre' => (isset($Nombre) && $Nombre !== NULL && $Nombre !== '') ? $Nombre : 'NO ESPECÍFICA',
                 'Tipo' => (isset($Tipo) && $Tipo !== NULL && $Tipo !== '') ? $Tipo : 'NO ESPECÍFICA',
-                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion . " " . Date('h:i:s') : '',
+                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion  : '',
                 'Cliente_ID' => (isset($Cliente_ID) && $Cliente_ID !== NULL && $Cliente_ID !== '') ? $Cliente_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== NULL && $Estatus !== '') ? $Estatus : NULL
             );

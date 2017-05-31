@@ -126,7 +126,7 @@
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
                     <button type="button" class="btn btn-raised btn-default" id="btnCancelarEditar">CANCELAR</button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnEditar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
 
                 </div>
             </div>
@@ -177,21 +177,6 @@
                         </select>
                     </div>
 
-
-                    <div class="col-md-12">
-                        <h3>Conceptos</h3>
-                    </div>
-
-                    <div class="col-md-12 dt-buttons" align="right"> 
-                        <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
-                        <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
-                        <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
-                    </div> 
-                    <div class="col-md-12">
-                        <br>
-                    </div> 
-                    <div id="PreciarioEspecifico" class="col-md-12">
-                    </div>
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -200,6 +185,40 @@
         </div>
     </div>
 </div>
+
+
+<!--PANEL DETALLE-->
+<div class="col-6 col-md-12"> 
+    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleConceptos">
+
+        <div class="panel-heading" >
+
+            <div class="panel-heading row">
+                <div class="col-md-8"> 
+                    <div class="cursor-hand" >Conceptos </div>
+                </div> 
+
+            </div>
+        </div>
+        <div class="panel-body"> 
+          
+
+            <div class="col-md-12 dt-buttons" align="right"> 
+                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
+                <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
+                <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
+            </div> 
+            <div class="col-md-12">
+                <br>
+            </div> 
+            <div id="PreciarioEspecifico" class="col-md-12">
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 
 
 <!--EDITAR--> 
@@ -257,7 +276,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Unidad</label>
-                            <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: PZA">
+                            <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
                         </div>
                         <div class="col-md-4">
                             <label for="">Categoría</label>
@@ -405,7 +424,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="">Unidad</label>
-                        <input type="text" id="Unidad" name="Unidad" class="form-control" required="" placeholder="EJ: PZA">
+                        <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
                     </div>
                     <div class="col-md-4">
                         <label for="">Categoría</label>
@@ -462,6 +481,25 @@
 
 </div>
 
+<div id="mdlConfirmarEliminarConcepto" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnConfirmarEliminarConcepto">ACEPTAR</button>
+        </div>
+    </div>
+
+</div>
+
 
 <!--SCRIPT-->
 <script>
@@ -471,48 +509,50 @@
     var pnlNuevo = $("#pnlNuevo");
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
+    var btnCancelarEditar = $("#btnCancelarEditar");
     var btnRefrescar = $("#btnRefrescar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
-
     var mdlConfirmar = $("#mdlConfirmar");
     var btnEliminar = $("#btnEliminar");
-
     var btnEditar = $("#btnEditar");
     var pnlEditar = $("#pnlEditar");
-    var btnModificar = pnlEditar.find("#btnEditar");
-    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico");
+    var btnModificar = pnlEditar.find("#btnGuardarEditar");
+    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico"); 
     var mdlEditarConcepto = $("#mdlEditarConcepto");
+    var mdlConfirmarEliminarConcepto = $("#mdlConfirmarEliminarConcepto");
+    var btnConfirmarEliminarConcepto = $("#btnConfirmarEliminarConcepto");
     var btnModificarConcepto = mdlEditarConcepto.find("#btnModificarConcepto");
-    var btnRefrescarConceptos = pnlEditar.find("#btnRefrescarConceptos");
-    var btnEliminarConcepto = pnlEditar.find("#btnEliminarConcepto");
-    var btnBuscarConcepto = pnlEditar.find("#btnBuscarConcepto");
+    var btnRefrescarConceptos = $("#btnRefrescarConceptos");
+    var btnEliminarConcepto = $("#btnEliminarConcepto");
     var btnCancelarModificacion = mdlEditarConcepto.find("#btnCancelarModificacion");
-    var btnNuevoConcepto = pnlEditar.find("#btnNuevoConcepto");
+    var btnNuevoConcepto = $("#btnNuevoConcepto");
     var mdlNuevoConcepto = $("#mdlNuevoConcepto");
+    
+    
     var btnGuardarConcepto = mdlNuevoConcepto.find("#btnGuardarConcepto");
     var btnCancelarConcepto = mdlNuevoConcepto.find("#btnCancelarConcepto");
     var btnNuevaCategoria = mdlNuevoConcepto.find("#btnNuevaCategoria");
     var btnGuardarCategoria = mdlNuevoConcepto.find("#btnGuardarCategoria");
     var btnGuardarSubCategoria = mdlNuevoConcepto.find("#btnGuardarSubCategoria");
     var btnGuardarSubSubCategoria = mdlNuevoConcepto.find("#btnGuardarSubSubCategoria");
-    var pnlConceptos = pnlEditar.find("#pnlConceptos");
     var btnCancelarCategoria = mdlNuevoConcepto.find("#btnCancelarCategoria");
-
-    var btnNuevaSubCategoria = pnlEditar.find("#btnNuevaSubCategoria");
-    var mdlNuevaSubCategoria = pnlEditar.find("#mdlNuevaSubCategoria");
     var btnCancelarSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubCategoria");
-
-    var btnNuevaSubSubCategoria = pnlEditar.find("#btnNuevaSubSubCategoria");
-    var mdlNuevaSubSubCategoria = pnlEditar.find("#mdlNuevaSubSubCategoria");
     var btnCancelarSubSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubSubCategoria");
 
-    var btnCancelarEditar = pnlEditar.find("#btnCancelarEditar");
+    var pnlConceptos = pnlEditar.find("#pnlConceptos");
+    
+    
+
 
     //Variables de controles para subir archivo
     var Archivo = pnlNuevo.find("#RutaArchivo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
 
+
+//Variables de conceptos detalle
+    /*Detalle*/
+    var pnlDetalleConceptos = $("#pnlDetalleConceptos");
 
     $(document).ready(function () {
 
@@ -675,6 +715,7 @@
         btnCancelarEditar.click(function () {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
+            pnlDetalleConceptos.addClass("hide");
             btnRefrescar.trigger('click');
         });
 
@@ -683,6 +724,7 @@
             pnlNuevo.addClass("hide");
 
         });
+        
         btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -716,12 +758,8 @@
             });
         });
 
-        btnNuevaSubSubCategoria.click(function () {
-            mdlNuevaSubSubCategoria.removeClass("hide");
-        });
-        btnNuevaSubCategoria.click(function () {
-            mdlNuevaSubCategoria.removeClass("hide");
-        });
+    
+       
         btnNuevaCategoria.click(function () {
             mdlNuevaCategoria.removeClass("hide");
         });
@@ -781,6 +819,7 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
+        
         btnNuevoConcepto.click(function () {
 
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
@@ -805,10 +844,6 @@
             mdlNuevoConcepto.modal('show');
             btnCancelarConcepto.removeClass("hide");
             btnGuardarConcepto.removeClass("hide");
-        });
-
-        btnBuscarConcepto.click(function () {
-            getConceptoByClaveXDescripcion(pnlEditar.find("#ID").val());
         });
 
         btnCancelarModificacion.click(function () {
@@ -875,8 +910,20 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
+        //Evento clic del boton confirmar borrar un concepto
         btnEliminarConcepto.click(function () {
+
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                //Muestra el modal
+                mdlConfirmarEliminarConcepto.modal('show');
+
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        });
+
+//Confirma la eliminacion del concepto
+        btnConfirmarEliminarConcepto.click(function () {
             console.log('ELIMINANDO...' + temp);
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -893,6 +940,7 @@
                     console.log(data);
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
                     btnRefrescarConceptos.trigger('click');
+                    mdlConfirmarEliminarConcepto.modal('hide');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1059,6 +1107,7 @@
                 }).done(function (data, x, jq) {
                     pnlPreciario.removeClass('hide');
                     pnlEditar.addClass('hide');
+                    pnlDetalleConceptos.addClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
@@ -1121,6 +1170,7 @@
 
                     pnlPreciario.addClass('hide');
                     pnlEditar.addClass("animated slideInLeft").removeClass('hide');
+                    pnlDetalleConceptos.removeClass("hide");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1264,252 +1314,7 @@
             HoldOn.close();
         });
     }
-
-    function getCategoriasByPreciarioID(IDX) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO..."
-        });
-        $.ajax({
-            url: master_url + 'getCategoriasByPreciarioID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            console.log(data, x, jq);
-
-            var categoriax = '';
-            $.each(data, function (k, v) {
-                categoriax += '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
-                categoriax += '<div class="panel panel-default">';
-                categoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + IDX + v.ID + '" onclick="getSubCategoriasByCategoriaIDPreciarioID(this, ' + IDX + ',' + v.ID + ', \'' + v.Clave + '\')">';
-                categoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + IDX + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
-                categoriax += '<div class="row">';
-                categoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
-                categoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
-                categoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span></div>';
-                categoriax += '</div>';
-                categoriax += '</a>';
-                categoriax += '</div>';
-                categoriax += '<div id="collapse' + IDX + v.ID + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + IDX + v.ID + '">';
-                categoriax += '<div class="panel-body" id="SubCategoria' + IDX + v.ID + '">';
-
-                categoriax += '</div>';
-                categoriax += '</div>';
-                categoriax += '</div> ';
-            });
-            pnlEditar.find("#VistaPrevia").html(categoriax);
-
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function getSubCategoriasByCategoriaIDPreciarioID(e, ID, IDC, CLAVEX) {
-
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO..."
-        });
-        $.ajax({
-            url: master_url + 'getSubCategoriasByCategoriaIDPreciarioID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: ID,
-                IDC: IDC
-            }
-        }).done(function (data, x, jq) {
-            console.log(data, x, jq);
-            var subcategoriax = '';
-            $.each(data, function (k, v) {
-                subcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + v.ID + '" role="tablist" aria-multiselectable="true">';
-                subcategoriax += '<div class="panel panel-default">';
-
-                subcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + v.ID + '" onclick="getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(' + ID + ',' + IDC + ',' + v.ID + ',\'' + v.Clave + '\')">';
-                subcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + v.ID + '" href="#collapse' + ID + IDC + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
-                subcategoriax += '<div class="row">';
-                subcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
-                subcategoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
-                subcategoriax += '<div class="col-md-4" align="right"><span class="badge" align="left">' + v.NSUB + '</span><span class="badge-success" align="left">' + v.NCON + '</span></div>';
-                subcategoriax += '</div>';
-                subcategoriax += '</a>';
-                subcategoriax += '</div>';
-                subcategoriax += '<div id="collapse' + ID + IDC + v.ID + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + ID + IDC + v.ID + '">';
-                subcategoriax += '<div class="panel-body" id="SubSubCategoria' + ID + IDC + v.ID + '">';
-
-                subcategoriax += '<div id="SubCategoriaConceptos' + ID + IDC + v.ID + '">';
-
-                subcategoriax += '</div>';
-                subcategoriax += '<div id="SubSubCategorias' + ID + IDC + v.ID + '">';
-                subcategoriax += '</div>';
-                subcategoriax += '</div>';
-                subcategoriax += '</div> ';
-                subcategoriax += '</div>';
-                getConceptosBySubCategoriaIDCategoriaIDPreciarioID('SubCategoriaConceptos' + ID + IDC + v.ID, ID, IDC, v.ID, '');
-            });
-            pnlEditar.find("#SubCategoria" + ID + IDC).html(subcategoriax);
-
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID(ID, IDC, IDSC, CLAVE) {
-        console.log(ID, IDC, IDSC, CLAVE);
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO..."
-        });
-        $.ajax({
-            url: master_url + 'getSubSubCategoriasBySubCategoriaIDCategoriaIDPreciarioID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: ID,
-                IDC: IDC,
-                IDSC: IDSC
-            }
-        }).done(function (data, x, jq) {
-            console.log(data);
-
-            var subsubcategoriax = '';
-            $.each(data, function (k, v) {
-                subsubcategoriax += '<div class="panel-group" id="accordion' + ID + IDC + IDSC + v.ID + '" role="tablist" aria-multiselectable="true">';
-                subsubcategoriax += '<div class="panel panel-default">';
-                if (v.NSUB > 0) {
-                    subsubcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + IDSC + v.ID + '" onclick="getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(\'Conceptos' + ID + IDC + IDSC + v.ID + '\',' + ID + ',' + IDC + ',' + IDSC + ',' + v.ID + ',\'' + v.Clave + '\')">';
-                } else {
-                    subsubcategoriax += '<div class="panel-heading panel-default-list" role="tab" id="' + ID + IDC + IDSC + v.ID + '">';
-                }
-//                subsubcategoriax += '<div class="panel-heading" role="tab" id="' + ID + IDC + IDSC + v.ID + '">';
-
-                subsubcategoriax += '<a role="button" data-toggle="collapse" data-parent="#accordion' + ID + IDC + IDSC + v.ID + '" href="#collapse' + ID + IDC + IDSC + v.ID + '" aria-expanded="true" aria-controls="collapseOne">';
-                subsubcategoriax += '<div class="row">';
-                subsubcategoriax += '<div class="col-md-4" align="left"><span class="badge" align="left">' + v.Clave + '</span></div>';
-                subsubcategoriax += '<div class="col-md-4" align="center">' + v.Descripcion + '</div>';
-                subsubcategoriax += '<div class="col-md-4" align="right"><span class="badge-success">' + v.NCON + '</span></div>';
-                subsubcategoriax += '</div>';
-                subsubcategoriax += '</a>';
-                subsubcategoriax += '</div>';
-
-                subsubcategoriax += '<div id="collapse' + ID + IDC + IDSC + v.ID + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="' + ID + IDC + IDSC + v.ID + '">';
-
-                subsubcategoriax += '<div class="panel-body" id="Conceptos' + ID + IDC + IDSC + v.ID + '">';
-                subsubcategoriax += '</div>';
-
-                subsubcategoriax += '</div>';
-
-                subsubcategoriax += '</div> ';
-                subsubcategoriax += '</div>';
-            });
-            pnlEditar.find("#SubSubCategorias" + ID + IDC + IDSC).html(subsubcategoriax);
-
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function getConceptosBySubCategoriaIDCategoriaIDPreciarioID(CONTAINER, ID, IDC, IDSC, IDSSC) {
-        if (!pnlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "CARGANDO..."
-            });
-            $.ajax({
-                url: master_url + 'getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID',
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    ID: ID,
-                    IDC: IDC,
-                    IDSC: IDSC,
-                    IDSSC: IDSSC
-                }
-            }).done(function (data, x, jq) {
-                console.log(data, x, jq);
-                var table_name = "tblConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID" + ID + IDC + IDSC;
-                pnlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
-                pnlEditar.find('#' + table_name + ' tfoot th').each(function () {
-                    var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-                });
-                var tblSelected = pnlEditar.find("#" + table_name).DataTable(tableOptions);
-//                // Apply the search
-                tblSelected.columns().every(function () {
-                    var that = this;
-                    $('input', this.footer()).on('keyup change', function () {
-                        if (that.search() !== this.value) {
-                            that.search(this.value).draw();
-                        }
-                    });
-                });
-
-                tblSelected.columns.adjust().draw();
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-            });
-        }
-    }
-
-    function getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID(CONTAINER, ID, IDC, IDSC, IDSSC, CLAVE) {
-        if (!pnlEditar.find("#collapse" + ID + IDC + IDSC + IDSSC).hasClass("in")) {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "CARGANDO..."
-            });
-            $.ajax({
-                url: master_url + 'getConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID',
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    ID: ID,
-                    IDC: IDC,
-                    IDSC: IDSC,
-                    IDSSC: IDSSC
-                }
-            }).done(function (data, x, jq) {
-                var table_name = "tblConceptosBySubSubCategoriaIDSubCategoriaIDCategoriaIDPreciarioID" + ID;
-                pnlEditar.find("#" + CONTAINER).html(getTable(table_name, data));
-                pnlEditar.find('#' + table_name + ' tfoot th').each(function () {
-                    var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-                });
-                var tblSelected = pnlEditar.find("#" + table_name).DataTable(tableOptions);
-//                // Apply the search
-                tblSelected.columns().every(function () {
-                    var that = this;
-                    $('input', this.footer()).on('keyup change', function () {
-                        if (that.search() !== this.value) {
-                            that.search(this.value).draw();
-                        }
-                    });
-                });
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-        }
-    }
-
-    function onEditarCategoria(e, IDX, CLAVE, DESCRIPCION) {
-        $(e).parent().find("div").removeClass("hide");
-        console.log(IDX, CLAVE, DESCRIPCION);
-    }
-
-
+    
     function getCategorias(IDX) {
         console.log('Categorias')
         HoldOn.open({
@@ -1686,96 +1491,7 @@
             HoldOn.close();
         });
     }
-    function getConceptoByClaveXDescripcion(IDX) {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "BUSCANDO DATOS..."
-        });
-        $.ajax({
-            url: master_url + 'getConceptoByClaveXDescripcion',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX,
-                CLAVE: (pnlEditar.find("#ClaveConcepto").val() !== '') ? pnlEditar.find("#ClaveConcepto").val() : '',
-                DESCRIPCION: (pnlEditar.find("#DescripcionConcepto").val() !== '') ? pnlEditar.find("#DescripcionConcepto").val() : ''
-            }
-        }).done(function (data, x, jq) {
-            $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
-            $('#tblConceptosXPreciarioID tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            });
-            var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("success");
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-//                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function () {
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-                $.ajax({
-                    url: master_url + 'getConceptoByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    console.log(data);
-                    var concepto = data[0];
-                    mdlEditarConcepto.removeClass("hide");
-                    mdlEditarConcepto.find("#IDConcepto").val(concepto.ID);
-                    mdlEditarConcepto.find("#Clave").val(concepto.Clave);
-                    mdlEditarConcepto.find("#Costo").val(concepto.Costo);
-                    mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
-                    mdlEditarConcepto.find("#Moneda").val(concepto.Moneda);
-                    mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
-                    mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
-                    mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
-                    mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
-                    btnModificarConcepto.removeClass("hide");
-                    btnCancelarModificacion.removeClass("hide");
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
+   
 </script>
 
 <script>
