@@ -273,7 +273,7 @@ table thead tr{
 }
 
 .table tfoot th{
-    color: #ffffff !important; 
+    color: #000 !important; 
     background-color: #eeeeee !important;
  
 }
@@ -313,11 +313,11 @@ table thead tr{
 
 /*Inputs tablas automaticas*/
 table tfoot th input[type="text"]{
-    color: #fff !important;
+    color: #000 !important;
     font-weight: normal;
 }
 table tfoot th input[type="text"]:focus{
-    color: #fff !important;
+    color: #000 !important;
      font-weight: normal;
 }
 
@@ -357,4 +357,8 @@ table tfoot th input[type="text"]:focus{
      color: rgb(221,44,0);
     font-size: 12px;
 }
-
+/*Separacion de los botones de herramientas de tablas*/
+div.dt-buttons > .btn{
+       padding: 8px 10px;
+   
+}
