@@ -1,7 +1,10 @@
 
 <div class="col-md-12" id="MenuTablero">
     <div class="panel panel-default animated">
-        <div class="panel-heading">TRABAJOS</div>
+        <div class="panel-heading">
+              <div class="cursor-hand" >Trabajos</div>
+        
+        </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12" align="right">
@@ -46,7 +49,7 @@
 
             <div class="panel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >NUEVO TRABAJO </div>
+                    <div class="cursor-hand" >Nuevo Trabajo </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
 
@@ -81,7 +84,7 @@
 
 
                             <div class="col-6 col-md-6">
-                                <label for="">MOVIMIENTO*</label>
+                                <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option> 
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option> 
@@ -92,25 +95,25 @@
                             </div>
 
                             <div class=" col-6 col-md-3">
-                                <label for="">MOV ID</label>
+                                <label for="">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA DE CREACION*</label>
+                                <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLIENTE*</label>
+                                <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">SUCURSAL*</label>
+                                <label for="">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
@@ -118,14 +121,14 @@
 
 
                             <div class="col-6 col-md-6">
-                                <label for="">PRECIARIO*</label>
+                                <label for="">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLASIFICACIÓN</label>
+                                <label for="">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="CERRAJERÍA">CERRAJERÍA</option> 
@@ -137,7 +140,7 @@
 
                             <div class="col-6 col-md-3">
                                 <div class="togglebutton">
-                                    <label for="">ESTA COMPLETADO?</label>
+                                    <label for="">Esta completado?</label>
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
@@ -148,7 +151,7 @@
 
                             <div class="col-6 col-md-3">
 
-                                <label for="">SITUACION*</label>
+                                <label for="">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="PENDIENTE">PENDIENTE</option>
@@ -159,7 +162,7 @@
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CUADRILLA</label>
+                                <label for="">Cuadrilla</label>
                                 <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
@@ -178,11 +181,11 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FOLIO</label>
+                                <label for="">Folio</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA ATENCIÓN</label>
+                                <label for="">Fecha Atención</label>
                                 <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div>
                             <div class="col-6 col-md-3">
@@ -193,21 +196,21 @@
                             </div>
 
                             <div class="col-6 col-md-3">
-                                <label for="">DIAS</label>
+                                <label for="">Días</label>
                                 <input type="text" id="Dias" name="Dias" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
                             <div class=" col-6 col-md-12">
-                                <label for="">SOLICITANTE</label>
+                                <label for="">Solicitante</label>
                                 <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">TRABAJO SOLICITADO</label>
+                                <label for="">Trabajo Solicitado</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">TRABAJO REQUERIDO</label>
+                                <label for="">Trabajo Requerido</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
                             </div>
 
@@ -215,11 +218,11 @@
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
-                                        <label for="">FECHA ORIGEN</label>
+                                        <label for="">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                     </div> 
                                     <div class="col-6 col-md-3">
-                                        <label for="">HORA ORIGEN</label>
+                                        <label for="">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
 
                                     </div>
@@ -228,20 +231,20 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA VISITA</label>
+                                <label for="">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
                             <div class="col-6 col-md-3">
-                                <label for="">HORA VISITA</label>
+                                <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
 
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA FIN VISITA</label>
+                                <label for="">Fecha Fin Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
                             <div class="col-6 col-md-3">
-                                <label for="">HORA FIN VISITA</label>
+                                <label for="">Hora Fin Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
 
                             </div>
@@ -262,7 +265,7 @@
 
                                     <div class="col-6 col-md-3">
                                         <div class="togglebutton">
-                                            <label for="">IMPACTO EN EL PLAZO</label>
+                                            <label for="">Impacto en el Plazo</label>
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
@@ -272,12 +275,12 @@
                                     </div>
 
                                     <div class=" col-6 col-md-3">
-                                        <label for="">DIAS DE IMPACTO</label>
+                                        <label for="">Días de Impacto</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
                                     </div>
 
                                     <div class="col-6 col-md-6">
-                                        <label for="">CAUSA DEL TRABAJO</label>
+                                        <label for="">Causa del trabajo</label>
                                         <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
@@ -298,7 +301,7 @@
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLAVE ORIGEN</label>
+                                <label for="">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
                                     <option value=""></option>
                                     <option value="CONTR">CONTR - CONTRATISTA</option>
@@ -310,20 +313,20 @@
                                 </select>
                             </div>
                             <div class=" col-6 col-md-6">
-                                <label for="">(EN CASO DE SER OTROS) ESPECIFICA</label>
+                                <label for="">(En caso de otros) Especifica</label>
                                 <input type="text" id="OrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">ORIGEN DEL TRABAJO</label>
+                                <label for="">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">RIESGO DEL TRABAJO</label>
+                                <label for="">Riesgo del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-12">
-                                <label for="">ALCANCE DEL TRABAJO</label>
+                                <label for="">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
                             </div>
 
@@ -337,7 +340,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="">PUEDE SUBIR UN PDF, EXCEL, IMAGEN (JPG.PNG) O ARCHIVO DE AUTOCAD</label>
+                                <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
                             <div class="col-md-12" align="center">
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
@@ -364,7 +367,7 @@
 
                         <div class="col-6 col-md-3">
 
-                            <label for="">ESTATUS</label>
+                            <label for="">Estatus</label>
                             <input type="text" id="Estatus" name="Estatus" class="form-control"  placeholder="SIN GUARDAR" readonly="">
 
                         </div>
@@ -392,7 +395,7 @@
 
             <div class="panel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >CONCEPTOS </div>
+                    <div class="cursor-hand" >Conceptos </div>
                 </div> 
 
             </div>
@@ -411,7 +414,7 @@
 
             <div class="panel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >EDITAR TRABAJO </div>
+                    <div class="cursor-hand" >Editar Trabajo </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
 
@@ -446,7 +449,7 @@
 
 
                             <div class="col-6 col-md-6">
-                                <label for="">MOVIMIENTO*</label>
+                                <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option> 
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option> 
@@ -457,25 +460,25 @@
                             </div>
 
                             <div class=" col-6 col-md-3">
-                                <label for="">MOV ID</label>
+                                <label for="">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA DE CREACION*</label>
+                                <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLIENTE*</label>
+                                <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">SUCURSAL*</label>
+                                <label for="">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
@@ -483,14 +486,14 @@
 
 
                             <div class="col-6 col-md-6">
-                                <label for="">PRECIARIO*</label>
+                                <label for="">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                     <option value=""></option> 
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLASIFICACIÓN</label>
+                                <label for="">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="CERRAJERÍA">CERRAJERÍA</option> 
@@ -500,20 +503,22 @@
                             </div>
 
 
-                            <div class="col-6 col-md-3">
-                                <label for="">ESTA COMPLETADO?</label>
-                                <spam><br></spam>
-                                <spam><br></spam>
-                                <label class="switch">
-                                    <input type="checkbox" id="Atendido" name="Atendido"  class="form-control">
-
-                                    <div class="slider round"></div>
-                                </label>
+                             <div class="col-6 col-md-3">
+                                <div class="togglebutton">
+                                    <label for="">Esta completado?</label>
+                                    <spam><br></spam>
+                                    <spam><br></spam>
+                                    <label>
+                                        <input type="checkbox" id="Atendido" name="Atendido" > 
+                                    </label>
+                                </div>
                             </div>
+                            
+                            
 
                             <div class="col-6 col-md-3">
 
-                                <label for="">SITUACION*</label>
+                                <label for="">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="PENDIENTE">PENDIENTE</option>
@@ -524,7 +529,7 @@
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CUADRILLA</label>
+                                <label for="">Cuadrilla</label>
                                 <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
@@ -543,11 +548,11 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FOLIO</label>
+                                <label for="">Folio</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA ATENCIÓN</label>
+                                <label for="">Fecha Atención</label>
                                 <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div>
                             <div class="col-6 col-md-3">
@@ -558,21 +563,21 @@
                             </div>
 
                             <div class="col-6 col-md-3">
-                                <label for="">DIAS</label>
+                                <label for="">Días</label>
                                 <input type="text" id="Dias" name="Dias" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
                             <div class=" col-6 col-md-12">
-                                <label for="">SOLICITANTE</label>
+                                <label for="">Solicitante</label>
                                 <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">TRABAJO SOLICITADO</label>
+                                <label for="">Trabajo Solicitado</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">TRABAJO REQUERIDO</label>
+                                <label for="">Trabajo Requerido</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
                             </div>
 
@@ -580,11 +585,11 @@
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
-                                        <label for="">FECHA ORIGEN</label>
+                                        <label for="">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                     </div> 
                                     <div class="col-6 col-md-3">
-                                        <label for="">HORA ORIGEN</label>
+                                        <label for="">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
 
                                     </div>
@@ -593,20 +598,20 @@
 
 
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA VISITA</label>
+                                <label for="">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
                             <div class="col-6 col-md-3">
-                                <label for="">HORA VISITA</label>
+                                <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
 
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">FECHA FIN VISITA</label>
+                                <label for="">Fecha FIN Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div> 
                             <div class="col-6 col-md-3">
-                                <label for="">HORA FIN VISITA</label>
+                                <label for="">Hora FIN Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
 
                             </div>
@@ -625,7 +630,7 @@
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
                                         <div class="togglebutton">
-                                            <label for="">IMPACTO EN EL PLAZO</label>
+                                            <label for="">Impacto en el Plazo</label>
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
@@ -634,12 +639,12 @@
                                         </div>
                                     </div>
                                     <div class=" col-6 col-md-3">
-                                        <label for="">DIAS DE IMPACTO</label>
+                                        <label for="">Días de Impacto</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
                                     </div>
 
                                     <div class="col-6 col-md-6">
-                                        <label for="">CAUSA DEL TRABAJO</label>
+                                        <label for="">Causa del trabajo</label>
                                         <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
@@ -660,7 +665,7 @@
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">CLAVE ORIGEN</label>
+                                <label for="">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
                                     <option value=""></option>
                                     <option value="CONTR">CONTR - CONTRATISTA</option>
@@ -672,20 +677,20 @@
                                 </select>
                             </div>
                             <div class=" col-6 col-md-6">
-                                <label for="">(EN CASO DE SER OTROS) ESPECIFICA</label>
+                                <label for="">(En caso de otros) Especifica</label>
                                 <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
                             </div>
 
                             <div class="col-6 col-md-6">
-                                <label for="">ORIGEN DEL TRABAJO</label>
+                                <label for="">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">RIESGO DEL TRABAJO</label>
+                                <label for="">Riesgo del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
                             </div>
                             <div class="col-6 col-md-12">
-                                <label for="">ALCANCE DEL TRABAJO</label>
+                                <label for="">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
                             </div>
 
@@ -699,7 +704,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="">PUEDE SUBIR UN PDF, EXCEL, IMAGEN (JPG.PNG) O ARCHIVO DE AUTOCAD</label>
+                                <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
                             <div class="col-md-12" align="center">
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
@@ -726,8 +731,8 @@
 
                         <div class="col-6 col-md-3">
 
-                            <label for="">ESTATUS</label>
-                            <input type="text" id="Estatus" name="Estatus" class="form-control"  placeholder="SIN GUARDAR" readonly="">
+                            <label for="">Estatus</label>
+                            <input type="text" id="Estatus" name="Estatus" class="form-control"   readonly="">
 
                         </div>
 
