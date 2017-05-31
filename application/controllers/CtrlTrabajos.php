@@ -29,9 +29,7 @@ class CtrlTrabajos extends CI_Controller {
             $this->load->view('vFooter');
         }
     }
-    
-    
-    
+
     public function getRecords() {
         try {
             $data = $this->trabajo_model->getRecords();
@@ -40,8 +38,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function getTrabajoByID() {
+
+    public function getTrabajoByID() {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getTrabajoByID($ID);
@@ -50,10 +48,29 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function onAgregar() {
+
+    public function getConceptosXPreciarioID() {
         try {
-           $ID = $this->trabajo_model->onAgregar($this->input->post());
+            extract($this->input->post());
+            $data = $this->trabajo_model->getConceptosXPreciarioID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function getConceptoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getConceptoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregar() {
+        try {
+            $ID = $this->trabajo_model->onAgregar($this->input->post());
             print "ID: " . $ID;
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
@@ -74,25 +91,22 @@ class CtrlTrabajos extends CI_Controller {
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
-            
-            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onModificar() {
+
+    public function onModificar() {
         try {
             extract($this->input->post());
-            
+
             $this->trabajo_model->onModificar($ID, $this->input->post());
-  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onEliminar() {
+
+    public function onEliminar() {
         try {
             extract($this->input->post());
             $this->trabajo_model->onEliminar($ID);
@@ -100,7 +114,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
@@ -109,7 +123,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getSucursalesByCliente() {
         try {
             extract($this->input->post());
@@ -119,8 +133,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getPreciariosByCliente() {
+
+    public function getPreciariosByCliente() {
         try {
             extract($this->input->post());
             $data = $this->preciario_model->getPreciariosByCliente($Cliente_ID);
@@ -129,8 +143,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
     public function getSucursalByID() {
         try {
             extract($this->input->post());
@@ -140,8 +153,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getPreciarioByID() {
+
+    public function getPreciarioByID() {
         try {
             extract($this->input->post());
             $data = $this->preciario_model->getPreciarioByID($ID);
@@ -150,8 +163,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getCodigosPPTA() {
+
+    public function getCodigosPPTA() {
         try {
             extract($this->input->post());
             $data = $this->codigoppta_model->getCodigosPPTA();
@@ -160,8 +173,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getCuadrillas() {
+
+    public function getCuadrillas() {
         try {
             extract($this->input->post());
             $data = $this->cuadrilla_model->getCuadrillas();
@@ -170,8 +183,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getCodigoPPTAbyID() {
+
+    public function getCodigoPPTAbyID() {
         try {
             extract($this->input->post());
             $data = $this->codigoppta_model->getCodigoPPTAByID($ID);
@@ -180,9 +193,5 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-    
-    
 
 }

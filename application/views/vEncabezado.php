@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -27,7 +27,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Control de Trabajo A&R</title>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="<?php print base_url(); ?>js/jquery-3.2.1.min.js"></script> 
+        <script src="<?php print base_url(); ?>js/jquery-3.2.1.min.js"></script>
 
         <!--DataTables Plugin-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.css">
@@ -41,15 +41,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 
-
-
-
         <!-- Validacion forms -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/additional-methods.min.js">
         <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
 
-
-   
         <!--Third Party-->
         <!--Pace loading and performance for web applications-->
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
@@ -62,54 +57,56 @@
         <script src="<?php print base_url(); ?>js/HoldOn.min.js"></script>
 
         <!--Notifiers-->
-        <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>   
-        <!--Date picker--> 
-        <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/> 
+        <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
+        <!--Date picker-->
+        <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/>
         <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
 
-         <!--Time picker--> 
-        <link href="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/> 
+        <!--Time picker-->
+        <link href="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
         <script src="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.js"></script>
 
-        
+        <!--jQuery Number Format-->
+        <script src="<?php echo base_url(); ?>js/jnumber/jquery.number.min.js"></script>
+
         <!--JS XLXS API-->
 
         <script src="<?php echo base_url(); ?>js/js-xlsx/dist/cpexcel.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
-        
-        <script src="<?php print base_url(); ?>js/bootstrap.min.js"></script> 
-        <script src="<?php print base_url(); ?>js/material.min.js"></script> 
-        <script src="<?php print base_url(); ?>js/ripples.min.js"></script> 
+
+        <script src="<?php print base_url(); ?>js/bootstrap.min.js"></script>
+        <script src="<?php print base_url(); ?>js/material.min.js"></script>
+        <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
 
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" /> 
+        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
 
     </head>
-    
-   
-           
-   
-        
-   
-    
+
+
+
+
+
+
+
     <script>
         var base_url = "<?php print base_url(); ?>";
-        
-    
-        
-        $(function () {
+
+
+
+        $(function() {
             $(".btn").addClass("animated shake");
 //            $("table.display").DataTable(tableOptions);
             $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
-            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
+            $('a[data-toggle="collapse"]').on('shown.bs.tab', function(e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
             $("select").select2({
@@ -117,15 +114,15 @@
                 allowClear: true
             });
 
-            $('.modal').on('shown.bs.modal', function (e) {
+            $('.modal').on('shown.bs.modal', function(e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
 //            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
 //                $(this).datepicker('hide');
 //            });
-            
-          $('[data-provide="datepicker"]').datepicker({
-   
+
+            $('[data-provide="datepicker"]').datepicker({
+
                 todayBtn: true,
                 autoclose: true,
                 todayHighlight: true
@@ -154,12 +151,11 @@
                 }
             });
         }
-        
-        
-       
-  
+
+
+
+
 
     </script>
-    
 
-    
+
