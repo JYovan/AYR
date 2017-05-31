@@ -140,7 +140,7 @@
 
                             <div class="col-6 col-md-3">
                                 <div class="togglebutton">
-                                    <label for="">Esta completado?</label>
+                                    <label for="">Esta Completado?</label>
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
