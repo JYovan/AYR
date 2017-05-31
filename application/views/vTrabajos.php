@@ -1384,7 +1384,7 @@
             var options = '<option></option>';
             $.each(data, function (k, v) {
 
-                options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.SUCURSAL + '</option>';
+                options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
 
             });
 
@@ -1416,7 +1416,7 @@
             var options = '<option></option>';
             $.each(data, function (k, v) {
 
-                options += '<option value="' + v.ID + '">' + v.PRECIARIO + '</option>';
+                options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
