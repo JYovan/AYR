@@ -2,8 +2,8 @@
 <div class="col-md-12" id="MenuTablero">
     <div class="panel panel-default animated">
         <div class="panel-heading">
-              <div class="cursor-hand" >Trabajos</div>
-        
+            <div class="cursor-hand" >Trabajos</div>
+
         </div>
         <div class="panel-body">
             <fieldset>
@@ -42,15 +42,15 @@
 
 
 <!--PANEL NUEVO-->
-<div class="col-6 col-md-12"> 
+<div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlNuevoTrabajo">
 
         <div class="panel-heading" >
 
             <div class="panel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div class="cursor-hand" >Nuevo Trabajo </div>
-                </div> 
+                </div>
                 <div class="col-md-4 panel-title" align="right">
 
                     <button type="button" class="btn btn-raised btn-default" id="btnCancelar">REGRESAR</button>
@@ -62,8 +62,8 @@
         <div class="panel-body">
             <form id="frmNuevo">
 
-                <fieldset>       
-                    <div class="col-6 col-md-12">      
+                <fieldset>
+                    <div class="col-6 col-md-12">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Datos Generales</a></li>
@@ -86,11 +86,11 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
-                                    <option value=""></option> 
-                                    <option value="LEVANTAMIENTO">LEVANTAMIENTO</option> 
-                                    <option value="COTIZACIÓN">COTIZACIÓN</option> 
-                                    <option value="PRESUPUESTO">PRESUPUESTO</option> 
-                                    <option value="ESTIMACIÓN">ESTIMACIÓN</option> 
+                                    <option value=""></option>
+                                    <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
+                                    <option value="COTIZACIÓN">COTIZACIÓN</option>
+                                    <option value="PRESUPUESTO">PRESUPUESTO</option>
+                                    <option value="ESTIMACIÓN">ESTIMACIÓN</option>
                                 </select>
                             </div>
 
@@ -103,19 +103,19 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
 
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
                                 <label for="">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
@@ -123,7 +123,7 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
@@ -131,9 +131,9 @@
                                 <label for="">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
-                                    <option value="CERRAJERÍA">CERRAJERÍA</option> 
-                                    <option value="MOBILIARIO">MOBILIARIO</option> 
-                                    <option value="INMUEBLE">INMUEBLE</option> 
+                                    <option value="CERRAJERÍA">CERRAJERÍA</option>
+                                    <option value="MOBILIARIO">MOBILIARIO</option>
+                                    <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
 
@@ -144,7 +144,7 @@
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
-                                        <input type="checkbox" id="Atendido" name="Atendido" > 
+                                        <input type="checkbox" id="Atendido" name="Atendido" >
                                     </label>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                     <div class="col-6 col-md-3">
                                         <label for="">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                                    </div> 
+                                    </div>
                                     <div class="col-6 col-md-3">
                                         <label for="">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
@@ -233,7 +233,7 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
@@ -242,7 +242,7 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Fin Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Fin Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
@@ -269,7 +269,7 @@
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
-                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 
+                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" >
                                             </label>
                                         </div>
                                     </div>
@@ -288,11 +288,11 @@
                                             <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
                                             <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
                                             <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
-                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option> 
+                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
                                             <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
-                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option> 
+                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
                                             <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
-                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option> 
+                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
 
                                         </select>
@@ -347,13 +347,13 @@
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x">
-                                    </span> 
+                                    </span>
                                     SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
 
                             <div class="col-md-12 hide">
-                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" > 
+                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
 
                         </div>
@@ -374,7 +374,7 @@
 
 
                         <div class="col-6 col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>    
+                            <h6>Los campos con * son obligatorios</h6>
                         </div>
                     </div>
                 </fieldset>
@@ -388,34 +388,88 @@
 
 
 <!--PANEL DETALLE-->
-<div class="col-6 col-md-12"> 
+<div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
-
         <div class="panel-heading" >
-
             <div class="panel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div class="cursor-hand" >Conceptos </div>
-                </div> 
-
+                </div>
             </div>
         </div>
-        <div class="panel-body"> 
+        <div class="panel-body">
+            <fieldset>
+                <div class="col-md-12" align="right">
+                    <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
+                    <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                </div>
+                <div class="col-md-12" id="Conceptos" align="center">
+                    <table  id="tblConceptosXTrabajo" class="table table-striped table-hover" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="hide">ID</th>
+                                <th class="hide">PreciarioConcepto_ID</th>
+                                <th class="hide">Renglon</th>
+                                <th>Clave</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Unidad</th>
+                                <th>Precio</th>
+                                <th>Importe</th>
+                                <th>Moneda</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
         </div>
     </div>
-
 </div>
 
+<!--MODAL DETALLE - NUEVO CONCEPTO-->
+<div id="mdlTrabajoNuevoConcepto" class="modal animated fadeInUp">
+    <div class="modal-dialog super-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">SELECCIONE UN CONCEPTO</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <div class="col-md-12" align="right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="chkMultiple" value="ON"> MULTIPLE
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="col-md-12" id="ConceptosXPreciarioID">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <!--PANEL EDITAR-->
-<div class="col-6 col-md-12"> 
+<div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlEditarTrabajo">
 
         <div class="panel-heading" >
 
             <div class="panel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div class="cursor-hand" >Editar Trabajo </div>
-                </div> 
+                </div>
                 <div class="col-md-4 panel-title" align="right">
 
                     <button type="button" class="btn btn-raised btn-default" id="btnCancelarModificar">REGRESAR</button>
@@ -427,8 +481,8 @@
         <div class="panel-body">
             <form id="frmEditar">
 
-                <fieldset>       
-                    <div class="col-6 col-md-12">      
+                <fieldset>
+                    <div class="col-6 col-md-12">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#EditarDatos" aria-controls="EditarDatos" role="tab" data-toggle="tab">Datos Generales</a></li>
@@ -451,11 +505,11 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
-                                    <option value=""></option> 
-                                    <option value="LEVANTAMIENTO">LEVANTAMIENTO</option> 
-                                    <option value="COTIZACIÓN">COTIZACIÓN</option> 
-                                    <option value="PRESUPUESTO">PRESUPUESTO</option> 
-                                    <option value="ESTIMACIÓN">ESTIMACIÓN</option> 
+                                    <option value=""></option>
+                                    <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
+                                    <option value="COTIZACIÓN">COTIZACIÓN</option>
+                                    <option value="PRESUPUESTO">PRESUPUESTO</option>
+                                    <option value="ESTIMACIÓN">ESTIMACIÓN</option>
                                 </select>
                             </div>
 
@@ -468,19 +522,19 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
 
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
                             <div class="col-6 col-md-6">
                                 <label for="">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
@@ -488,7 +542,7 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
-                                    <option value=""></option> 
+                                    <option value=""></option>
                                 </select>
                             </div>
 
@@ -496,25 +550,25 @@
                                 <label for="">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
-                                    <option value="CERRAJERÍA">CERRAJERÍA</option> 
-                                    <option value="MOBILIARIO">MOBILIARIO</option> 
-                                    <option value="INMUEBLE">INMUEBLE</option> 
+                                    <option value="CERRAJERÍA">CERRAJERÍA</option>
+                                    <option value="MOBILIARIO">MOBILIARIO</option>
+                                    <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
 
 
-                             <div class="col-6 col-md-3">
+                            <div class="col-6 col-md-3">
                                 <div class="togglebutton">
                                     <label for="">Esta completado?</label>
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
-                                        <input type="checkbox" id="Atendido" name="Atendido" > 
+                                        <input type="checkbox" id="Atendido" name="Atendido" >
                                     </label>
                                 </div>
                             </div>
-                            
-                            
+
+
 
                             <div class="col-6 col-md-3">
 
@@ -587,7 +641,7 @@
                                     <div class="col-6 col-md-3">
                                         <label for="">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                                    </div> 
+                                    </div>
                                     <div class="col-6 col-md-3">
                                         <label for="">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
@@ -600,7 +654,7 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
@@ -609,7 +663,7 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha FIN Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                            </div> 
+                            </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Hora FIN Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
@@ -634,7 +688,7 @@
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
-                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" > 
+                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" >
                                             </label>
                                         </div>
                                     </div>
@@ -652,11 +706,11 @@
                                             <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
                                             <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
                                             <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
-                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option> 
+                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
                                             <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
-                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option> 
+                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
                                             <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
-                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option> 
+                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
 
                                         </select>
@@ -711,13 +765,13 @@
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x">
-                                    </span> 
+                                    </span>
                                     SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
 
                             <div class="col-md-12 hide">
-                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" > 
+                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
 
                         </div>
@@ -738,7 +792,7 @@
 
 
                         <div class="col-6 col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>    
+                            <h6>Los campos con * son obligatorios</h6>
                         </div>
                     </div>
                 </fieldset>
@@ -771,14 +825,29 @@
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
 
-    /*Detalle*/
     var pnlDetalleNuevoTrabajo = $("#pnlDetalleNuevoTrabajo");
+    var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
+    var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
+    var tblConceptosXTrabajo = pnlDetalleNuevoTrabajo.find("#tblConceptosXTrabajo");
+    var mdlTrabajoNuevoConcepto = $("#mdlTrabajoNuevoConcepto");
+    var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
+    /*Detalle*/
 
     var currentDate = new Date();
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        btnRefrescar.click(function () {
+        btnNuevoConcepto.click(function() {
+            var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
+            if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+                getConceptosXPreciarioID(Preciario_ID);
+                mdlTrabajoNuevoConcepto.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+            }
+        });
+
+        btnRefrescar.click(function() {
             getRecords();
             getClientes();
             getCodigosPPTA();
@@ -787,7 +856,7 @@
         });
 
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.click(function () {
+        btnConfirmarEliminar.click(function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -798,7 +867,7 @@
         });
 
 
-        btnEliminar.click(function () {
+        btnEliminar.click(function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -810,14 +879,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                     getRecords();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -826,7 +895,7 @@
         });
 
 
-        btnEditar.click(function () {
+        btnEditar.click(function() {
 
 
 
@@ -852,7 +921,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
 
                     pnlEditarTrabajo.find("input").val("");
 
@@ -865,20 +934,20 @@
                         data: {
                             ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
 
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
                     $.ajax({
@@ -888,19 +957,19 @@
                         data: {
                             Cliente_ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
 
@@ -974,9 +1043,9 @@
                     menuTablero.addClass("hide");
                     pnlEditarTrabajo.removeClass("hide");
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -984,7 +1053,7 @@
             }
         });
 
-        btnModificar.click(function () {
+        btnModificar.click(function() {
 
             $.validator.setDefaults({
                 ignore: []
@@ -1005,20 +1074,20 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
 
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
@@ -1053,13 +1122,13 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
 
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
 
@@ -1069,7 +1138,7 @@
 
         });
 
-        btnGuardar.click(function () {
+        btnGuardar.click(function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1090,20 +1159,20 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
 
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
@@ -1136,20 +1205,20 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
 
                     btnRefrescar.trigger('click');
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
         });
 
-        btnCancelar.click(function () {
+        btnCancelar.click(function() {
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
@@ -1160,7 +1229,7 @@
 
         });
 
-        btnCancelarModificar.click(function () {
+        btnCancelarModificar.click(function() {
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -1169,7 +1238,7 @@
             btnRefrescar.trigger('click');
         });
 
-        btnNuevo.click(function () {
+        btnNuevo.click(function() {
 
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
@@ -1197,7 +1266,7 @@
         });
 
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
@@ -1207,7 +1276,7 @@
         });
 
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+        pnlEditarTrabajo.find("#Cliente_ID").change(function() {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
@@ -1217,20 +1286,20 @@
         });
 
         //Trae dias de ppta
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
 
         //Trae dias de ppta
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
 
 
-        btnArchivo.click(function () {
-            Archivo.change(function () {
+        btnArchivo.click(function() {
+            Archivo.change(function() {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -1238,7 +1307,7 @@
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -1251,7 +1320,7 @@
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             VistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                         };
@@ -1284,16 +1353,16 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function () {
+            $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
+            $('#tblTrabajos tbody').on('click', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1313,7 +1382,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblTrabajos tbody').on('dblclick', 'tr', function () {
+            $('#tblTrabajos tbody').on('dblclick', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -1321,22 +1390,22 @@
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
 
-    $('#Encabezado a').click(function (e) {
+    $('#Encabezado a').click(function(e) {
         e.preventDefault();
         $(this).tab('show');
     });
@@ -1351,17 +1420,17 @@
             url: master_url + 'getClientes',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
             pnlEditarTrabajo.find("#Cliente_ID").html(options);
             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1378,11 +1447,11 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
 
@@ -1391,9 +1460,9 @@
 
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1410,19 +1479,19 @@
             data: {
                 Cliente_ID: Cliente_ID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1439,13 +1508,13 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1462,13 +1531,13 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1482,17 +1551,17 @@
             url: master_url + 'getCodigosPPTA',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
 
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1506,19 +1575,19 @@
             url: master_url + 'getCuadrillas',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
 
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1535,16 +1604,16 @@
             data: {
                 ID: CodigoID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1553,14 +1622,153 @@
         $(e).parent().parent("#VistaPrevia").html("");
     }
 
+    function getConceptosXPreciarioID(IDX) {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'getConceptosXPreciarioID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+            mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
+
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
+                var title = $(this).text();
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+            });
+            var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
+                mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
+                mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                temp = parseInt(dtm[0]);
+            });
+            //DB CLICK FOR EDIT
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
+                mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
+                $(this).addClass('warning');
+                var dtm = tblSelected.row(this).data();
+                temp = parseInt(dtm[0]);
+                $.ajax({
+                    url: master_url + 'getConceptoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log('EDITANDO CONCEPTO ');
+                    console.log(data);
+                    var nrow = parseInt(tblConceptosXTrabajo.find("tbody tr").length) + 1;
+                    console.log('NUMERO DE FILAS: ' + tblConceptosXTrabajo.find("tbody tr").length);
+
+                    var concepto = data[0];
+                    var row = '<tr>';
+                    row += '<td class="hide">';
+                    row += 0;
+                    row += '</td>';
+                    row += '<td class="hide">';
+                    row += concepto.ID;
+                    row += '</td>';
+                    row += '<td class="hide">';
+                    row += (parseInt(tblConceptosXTrabajo.find("tbody tr").length) === 0) ? 1 : nrow;
+                    row += '</td>';
+                    row += '<td><span class="label label-warning">';
+                    row += concepto.Clave;
+                    row += '</span></td>';
+                    row += '<td>';
+                    row += concepto.Descripcion;
+                    row += '</td>';
+                    row += '<td>';
+                    row += '<input id="tdCantidad" type="number" class="form-control" placeholder="0" min="1" onchange="onCalcularPrecio(this)">';
+                    row += '</td>';
+                    row += '<td>';
+                    row += concepto.Unidad;
+                    row += '</td>';
+                    row += '<td class="hide">';
+                    row += concepto.Costo;
+                    row += '</td>';
+                    row += '<td>$';
+                    row += concepto.Precio;
+                    row += '</td>';
+                    row += '<td class="hide">';
+                    row += 0;
+                    row += '</td>';
+                    row += '<td><span class="label label-success">$ ';
+                    row += 0;
+                    row += '</span></td>';
+                    row += '<td>';
+                    row += concepto.Moneda;
+                    row += '</td>';
+                    row += '<td>';
+                    row += '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarConcepto(this)"><span class="fa fa-minus fa-2x"></span></button>';
+                    row += '</td>';
+                    row += '</tr>';
+
+                    tblConceptosXTrabajo.find("tbody").append(row);
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, AGREGADO', 'success');
+                    if (!mdlTrabajoNuevoConcepto.find("#chkMultiple").is(":checked")) {
+                        mdlTrabajoNuevoConcepto.modal('hide');
+                    }
+                }).fail(function(x, y, z) {
+                    console.log(x, y, z);
+                }).always(function() {
+                    HoldOn.close();
+                });
+            });
+            // Apply the search
+            tblSelected.columns().every(function() {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+        }).fail(function(x, y, z) {
+            console.log(x, y, z);
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
+
+    function onCalcularPrecio(evt) {
+        var row = $(evt).parent().parent().find("td");
+        var cantidad = parseFloat($(evt).val());
+        console.log('CANTIDAD: ' + cantidad);
+        var precio = parseFloat($(row[7]).text());
+        console.log('PRECIO: ' + precio);
+        var importe = cantidad * precio;
+        console.log('IMPORTE: ' + $.number(importe, 2, '.', ', '));
+        $(row[9]).html(importe);
+        $(row[10]).html('<span class="label label-success">$' + $.number(importe, 2, '.', ', ') + '</span>');
+
+    }
+    function onEliminarConcepto(evt) {
+        $(evt).parent().parent().remove();
+    }
 </script>
 <style>
 
     .super-fullscreen {
-        width: 90% !important; 
-        overflow: auto;
+        width: 90% !important;
     }
     .super-fullscreen {
-        width: 90% !important; 
-    } 
+        width: 90% !important;
+    }
 </style>
