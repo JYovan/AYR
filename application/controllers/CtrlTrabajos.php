@@ -58,6 +58,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getConceptoByID() {
         try {
             extract($this->input->post());
@@ -70,27 +71,30 @@ class CtrlTrabajos extends CI_Controller {
 
     public function onAgregar() {
         try {
+            /* TRABAJO */
             $ID = $this->trabajo_model->onAgregar($this->input->post());
             print "ID: " . $ID;
-            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
-            $master_url = $URL_DOC . '/';
-            if (isset($_FILES["Adjunto"]["name"])) {
-                if (!file_exists($URL_DOC)) {
-                    mkdir($URL_DOC, 0777, true);
-                }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
-                }
-                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
-                    $DATA = array(
-                        'Adjunto' => ($img)
-                    );
-                    $this->trabajo_model->onModificar($ID, $DATA);
-                } else {
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
-                }
-            }
+//            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
+//            $master_url = $URL_DOC . '/';
+//            if (isset($_FILES["Adjunto"]["name"])) {
+//                if (!file_exists($URL_DOC)) {
+//                    mkdir($URL_DOC, 0777, true);
+//                }
+//                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+//                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+//                }
+//                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+//                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+//                    $DATA = array(
+//                        'Adjunto' => ($img)
+//                    );
+//                    $this->trabajo_model->onModificar($ID, $DATA);
+//                } else {
+//                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+//                }
+//            }
+
+            /* TRABAJO DETALLE */
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -99,7 +103,6 @@ class CtrlTrabajos extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
-
             $this->trabajo_model->onModificar($ID, $this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
