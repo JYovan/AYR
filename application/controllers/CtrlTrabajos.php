@@ -72,29 +72,90 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregar() {
         try {
             /* TRABAJO */
-            $ID = $this->trabajo_model->onAgregar($this->input->post());
+            extract($this->input->post());
+            $data = array(
+                'Movimiento' => $Movimiento,
+                'FechaCreacion' => $FechaCreacion,
+                'Cliente_ID' => $Cliente_ID,
+                'Sucursal_ID' => $Sucursal_ID,
+                'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : NULL,
+                'Clasificacion' => (isset($Clasificacion) && $Clasificacion !== '') ? $Clasificacion : NULL,
+                'Atendido' => (isset($Atendido) && $Atendido !== '') ? $Atendido : NULL,
+                'Cuadrilla_ID' => (isset($Cuadrilla_ID) && $Cuadrilla_ID !== '') ? $Cuadrilla_ID : NULL,
+                'FolioCliente' => (isset($FolioCliente) && $FolioCliente !== '') ? $FolioCliente : NULL,
+                'FechaAtencion' => (isset($FechaAtencion) && $FechaAtencion !== '') ? $FechaAtencion : NULL,
+                'Codigoppta_ID' => (isset($Codigoppta_ID) && $Codigoppta_ID !== '') ? $Codigoppta_ID : NULL,
+                'Solicitante' => (isset($Solicitante) && $Solicitante !== '') ? $Solicitante : NULL,
+                'TrabajoSolicitado' => (isset($TrabajoSolicitado) && $TrabajoSolicitado !== '') ? $TrabajoSolicitado : NULL,
+                'TrabajoRequerido' => (isset($TrabajoRequerido) && $TrabajoRequerido !== '') ? $TrabajoRequerido : NULL,
+                'FechaOrigen' => (isset($FechaOrigen) && $FechaOrigen !== '') ? $FechaOrigen : NULL,
+                'HoraOrigen' => (isset($HoraOrigen) && $HoraOrigen !== '') ? $HoraOrigen : NULL,
+                'FechaLlegada' => (isset($FechaLlegada) && $FechaLlegada !== '') ? $FechaLlegada : NULL,
+                'HoraLlegada' => (isset($HoraLlegada) && $HoraLlegada !== '') ? $HoraLlegada : NULL,
+                'FechaSalida' => (isset($FechaSalida) && $FechaSalida !== '') ? $FechaSalida : NULL,
+                'HoraSalida' => (isset($HoraSalida) && $HoraSalida !== '') ? $HoraSalida : NULL,
+                'ImpactoEnPlazo' => (isset($ImpactoEnPlazo) && $ImpactoEnPlazo !== '') ? $ImpactoEnPlazo : NULL,
+                'DiasImpacto' => (isset($DiasImpacto) && $DiasImpacto !== '') ? $DiasImpacto : NULL,
+                'CausaTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
+                'ClaveOrigenTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
+                'EspecificaOrigenTrabajo' => (isset($EspecificaOrigenTrabajo) && $EspecificaOrigenTrabajo !== '') ? $EspecificaOrigenTrabajo : NULL,
+                'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : NULL,
+                'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : NULL,
+                'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : NULL,
+                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
+                'Estatus' => 'ACTIVO',
+                'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL
+            );
+            $ID = $this->trabajo_model->onAgregar($data);
             print "ID: " . $ID;
-//            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
-//            $master_url = $URL_DOC . '/';
-//            if (isset($_FILES["Adjunto"]["name"])) {
-//                if (!file_exists($URL_DOC)) {
-//                    mkdir($URL_DOC, 0777, true);
-//                }
-//                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-//                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
-//                }
-//                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
-//                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
-//                    $DATA = array(
-//                        'Adjunto' => ($img)
-//                    );
-//                    $this->trabajo_model->onModificar($ID, $DATA);
-//                } else {
-//                    echo "NO SE PUDO SUBIR EL ARCHIVO";
-//                }
-//            }
+            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["Adjunto"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                    $DATA = array(
+                        'Adjunto' => ($img)
+                    );
+                    $this->trabajo_model->onModificar($ID, $DATA);
+                } else {
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
 
             /* TRABAJO DETALLE */
+
+            $CONCEPTOSX = json_decode($this->input->post("CONCEPTOS"));
+            print "\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
+
+            print "\n";
+            foreach ($CONCEPTOSX as $k => $v) {
+                if ($v->Cantidad !== '' && $v->Cantidad !== 0) {
+                    $data = array(
+                        'Trabajo_ID' => $ID,
+                        'PreciarioConcepto_ID' => $v->PreciarioConcepto_ID,
+                        'Renglon' => $v->Renglon,
+                        'Cantidad' => $v->Cantidad,
+                        'Unidad' => $v->Unidad,
+                        'Precio' => $v->Precio,
+                        'Importe' => $v->Importe,
+                        'IntExt' => $v->IntExt,
+                        'Moneda' => $v->Moneda
+                    );
+                    print "\n";
+                    print_r($data);
+                    $IDD = $this->trabajo_model->onAgregarDetalle($data);
+                    print "\n";
+                }
+            }
+            print "\n";
+            print "\n";
+            print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  END CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

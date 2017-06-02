@@ -57,3 +57,38 @@ ADD CONSTRAINT `fk_Sucursales_EmpresasSupervisoras1`
 
 ALTER TABLE `ayr`.`sucursales` 
 ADD COLUMN `EntreCalles` VARCHAR(150) NULL AFTER `NoInterior`;
+
+
+/*TRABAJOS DETALLE - GENERADOR (FOTOS) (01/06/2017)*/
+CREATE TABLE `ayr`.`trabajodetallefotos` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `IdTrabajo` INT(12) NULL,
+  `IdTrabajoDetalle` INT(12) NULL,
+  `Url` VARCHAR(945) NULL,
+  `Observaciones` VARCHAR(945) NULL,
+  `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO',
+  `Registro` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID`));
+  
+/*TRABAJOS DETALLE - GENERADOR (CROQUIS) (01/06/2017)*/
+CREATE TABLE `ayr`.`trabajodetalleCroquis` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `IdTrabajo` INT(12) NULL,
+  `IdTrabajoDetalle` INT(12) NULL,
+  `Url` VARCHAR(945) NULL,
+  `Observaciones` VARCHAR(945) NULL,
+  `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO',
+  `Registro` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID`));
+  
+/*TRABAJOS DETALLE - GENERADOR (FACTURAS) (01/06/2017)*/
+CREATE TABLE `ayr`.`trabajodetalleFacturas` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `IdTrabajo` INT(12) NULL,
+  `IdTrabajoDetalle` INT(12) NULL,
+  `Url` VARCHAR(945) NULL,
+  `Observaciones` VARCHAR(945) NULL,
+  `Estatus` VARCHAR(45) NOT NULL DEFAULT 'ACTIVO',
+  `Registro` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID`));
+

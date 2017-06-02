@@ -63,6 +63,76 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onAgregarDetalle($array) {
+        try {
+            $this->db->insert("trabajosdetalle", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleGenerador($array) {
+        try {
+            $this->db->insert("generadortrabajosdetalle", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleFotos($array) {
+        try {
+            $this->db->insert("trabajodetallefotos", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleFacturas($array) {
+        try {
+            $this->db->insert("trabajodetallefacturas", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleCroquis($array) {
+        try {
+            $this->db->insert("trabajodetallecroquis", $array);
+            print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);

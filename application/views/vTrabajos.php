@@ -405,7 +405,7 @@
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
                 </div>
-                <div class="col-md-12" id="Conceptos" align="center">
+                <div class="col-md-12 table-responsive" id="Conceptos" align="center">
                     <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
                         <thead>
                             <tr>
@@ -420,9 +420,9 @@
                                 <th class="col-md-2">Precio</th>
                                 <th class="col-md-2">Importe</th>
                                 <th>Moneda</th>
-                                <th>Generador Object</th>
+                                <th class="hide">Generador Object</th>
                                 <th>Generador</th>
-                                <th>Estatus</th>
+                                <th class="hide">Estatus</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -475,10 +475,11 @@
             </div>
             <div class="modal-body">
                 <fieldset>
-                    <div class="col-md-12 hide">
+                    <div class="col-md-12 ">
                         <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control hide">
                         <textarea id="Generador" name="Generador" rows="4" cols="20" class="hide">
                         </textarea>
+                        <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <label for="">Area</label>
@@ -888,7 +889,6 @@
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
     var pnlDetalleNuevoTrabajo = $("#pnlDetalleNuevoTrabajo");
     var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
     var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
@@ -899,7 +899,6 @@
     var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
     var btnGuardarGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar");
     var currentDate = new Date();
-
     $(document).ready(function() {
 
         btnGuardarGeneradorXConcepto.on("click", function() {
@@ -915,36 +914,51 @@
             nuevo_generador["Ancho"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val();
             nuevo_generador["Alto"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val();
             nuevo_generador["Cantidad"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val();
-
-            console.log('* * * * * * * * * * GENERADOR * * * * * * * * * * ');
-            console.log(JSON.stringify(nuevo_generador));
-            console.log('* * * * * * * * * * END GENERADOR * * * * * * * * * * ');
-
             if (generador_string.length > 0) {
-                Generador.push(mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val());
+//                var jsonx = $.parseJSON('{"Concepto_ID":"14209","Area":"asdqw","Eje":"asd","EntreEje1":"tuyfu","EntreEje2":"qew","Largo":"5","Ancho":"5","Alto":"5","Cantidad":"5"},{"Concepto_ID":"14209","Area":"tyrfcvy","Eje":"ytc","EntreEje1":"y","EntreEje2":"cy","Largo":"3","Ancho":"3","Alto":"3","Cantidad":"3"}');
+//                console.log((jsonx));
+//                console.log(JSON.parse(jsonx)); /*CONVIERTE EN OBJETO*/
+//
+//                var jsonx_parse = JSON.parse(jsonx);
+//                jsonx_parse.push(JSON.stringify(nuevo_generador));
+                Generador.push(generador_string);
                 Generador.push(JSON.stringify(nuevo_generador));
                 console.log('* * * * * * * * * * * * * * * * GENERADOR CON OBJETO PREVIO * * * * *');
                 console.log(Generador);
             } else {
-                Generador = JSON.stringify(nuevo_generador);
+                Generador.push(JSON.stringify(nuevo_generador));
                 console.log('* * * * * * * * * * * * * * * * GENERADOR SIN OBJETO PREVIO * * * * *');
                 console.log(Generador);
             }
 
             $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
+                var xCantidad = 0;
+//                $.each(Generador, function(k, v) {
+//                    var xGenerador = JSON.parse(v);
+//                    console.log(xGenerador);
+//                    xCantidad += parseFloat(xGenerador.Cantidad);
+//                    console.log(xCantidad);
+//                });
                 if (row_status === 'ACTIVO') {
+                    xCantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() : 0) + parseFloat(mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val()));
+                    $(this).find("td").eq(6).text(xCantidad);
+                    var Precio = parseFloat($(this).find("td").eq(8).text());
+                    var Total = xCantidad * Precio;
+                    $(this).find("td").eq(10).text(Total);
+                    $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                     $(this).find("td").eq(13).text(Generador);
                     mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
                     return false;
                 }
             });
-
+            getImporteTotal();
         });
 
         btnNuevoConcepto.on("click", function() {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
             if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+
                 getConceptosXPreciarioID(Preciario_ID);
                 mdlTrabajoNuevoConcepto.modal('show');
             } else {
@@ -957,9 +971,7 @@
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
-
         });
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.on("click", function() {
 
@@ -970,7 +982,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
 
         btnEliminar.on("click", function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -999,21 +1010,13 @@
             }
         });
 
-
         btnEditar.on("click", function() {
-
-
-
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-
-
             pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
             pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -1029,9 +1032,7 @@
                 }).done(function(data, x, jq) {
 
                     pnlEditarTrabajo.find("input").val("");
-
                     var trabajo = data[0];
-
                     $.ajax({
                         url: master_url + 'getSucursalesByCliente',
                         type: "POST",
@@ -1046,7 +1047,6 @@
                         $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
-
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
@@ -1077,15 +1077,12 @@
                     }).always(function() {
                         HoldOn.close();
                     });
-
-
                     //trae los catalogos
 //                    getSucursalesbyCliente(trabajo.Cliente_ID);
 //                    getPreciariosbyCliente(trabajo.Cliente_ID);
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-
                     //traer valores seleccionados de los catalogos de la bd
 //                    getSucursalByID(trabajo.Sucursal_ID);
 //                    getPreciarioByID(trabajo.Preciario_ID);
@@ -1095,7 +1092,6 @@
                     pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                     pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                     pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-
                     pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
                     if (trabajo.Atendido === 'Si') {
                         pnlEditarTrabajo.find("#Atendido").prop('checked', true);
@@ -1126,8 +1122,6 @@
                     pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
                     pnlEditarTrabajo.find("#Estatus").val(trabajo.Estatus);
                     pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-
-
                     if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                         var ext = getExt(trabajo.Adjunto);
                         console.log(ext);
@@ -1147,7 +1141,6 @@
 
                     menuTablero.addClass("hide");
                     pnlEditarTrabajo.removeClass("hide");
-
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
@@ -1166,7 +1159,6 @@
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1183,7 +1175,6 @@
 
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
@@ -1195,12 +1186,10 @@
             $('select').on('change', function() {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
 
                 var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
-
                 //  Para los checkbox
                 if ($("#Atendido").is(':checked')) {
                     frm.delete('Atendido');
@@ -1219,7 +1208,6 @@
                 }
 
                 frm.delete('Dias');
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -1229,15 +1217,12 @@
                     data: frm
                 }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
-
                     console.log(data, x, jq);
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
                     HoldOn.close();
                 });
-
-
             }
 
 
@@ -1247,11 +1232,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1268,7 +1251,6 @@
 
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
@@ -1280,10 +1262,29 @@
             $('select').on('change', function() {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
+                var trabajo_detalle = [];
+                var concepto = {};
+//                var conceptos = {};
+                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function(key, value) {
+                    var row = $(this).find("td");
+                    console.log(row);
+                    concepto = {
+                        PreciarioConcepto_ID: row.eq(1).text(),
+                        Renglon: row.eq(2).text(),
+                        Cantidad: row.eq(6).text(),
+                        Unidad: row.eq(7).text(),
+                        Precio: row.eq(8).text(),
+                        Importe: row.eq(10).text(),
+                        IntExt: row.eq(4).find("#IntExt").val(),
+                        Moneda: row.eq(12).text(),
+                        Generador: row.eq(13).text()
+                    };
+                    trabajo_detalle.push(concepto);
+                });
+                frm.append('CONCEPTOS', JSON.stringify(trabajo_detalle));
 //                Para los checkbox
                 if ($("#Atendido").is(':checked')) {
                     frm.delete('Atendido');
@@ -1302,7 +1303,7 @@
                 }
                 frm.append('Estatus', 'ACTIVO');
                 frm.delete('Dias');
-
+                /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -1312,8 +1313,7 @@
                     data: frm
                 }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
-
-                    btnRefrescar.trigger('click');
+//                    btnRefrescar.trigger('click');
                     console.log(data, x, jq);
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
@@ -1331,9 +1331,7 @@
             pnlDetalleNuevoTrabajo.addClass("hide");
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
-
         });
-
         btnCancelarModificar.on("click", function() {
 
 
@@ -1342,67 +1340,46 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-
         btnNuevo.on("click", function() {
 
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
-
-
             pnlNuevoTrabajo.find("#Datos").addClass("active in");
             pnlNuevoTrabajo.find("#Datos2").removeClass("active in");
             pnlNuevoTrabajo.find("#Datos3").removeClass("active in");
             pnlNuevoTrabajo.find("#Datos4").removeClass("active in");
-
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
             pnlNuevoTrabajo.find("input").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
-
-
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             //Trae el usuario logeado quien estará registrando el movimiento
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
-
             /*DETALLE*/
             pnlDetalleNuevoTrabajo.removeClass("hide");
-
-
         });
-
         /*Funcion que trae los catalogos en base al cliente*/
         pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-
-
         });
-
         /*Funcion que trae los catalogos en base al cliente*/
         pnlEditarTrabajo.find("#Cliente_ID").change(function() {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-
-
         });
-
         //Trae dias de ppta
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-
-
         //Trae dias de ppta
         pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-
-
-
         btnArchivo.on("click", function() {
             Archivo.change(function() {
                 HoldOn.open({
@@ -1438,14 +1415,11 @@
             });
             Archivo.trigger('click');
         });
-
         getClientes();
         getCodigosPPTA();
         getRecords();
         getCuadrillas();
-
     });
-
     /*----------------------------METODOS DEL CONTROLADOR PARA TRAER DATOS----------------*/
 
     function getRecords() {
@@ -1464,7 +1438,6 @@
             $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
-
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
             $('#tblTrabajos tbody').on('click', 'tr', function() {
@@ -1514,7 +1487,6 @@
         e.preventDefault();
         $(this).tab('show');
     });
-
     /*Traer catálogos para el encabezado*/
     function getClientes() {
         HoldOn.open({
@@ -1559,10 +1531,7 @@
             $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
-
             });
-
-
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
         }).fail(function(x, y, z) {
@@ -1616,7 +1585,6 @@
         }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
-
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
@@ -1639,7 +1607,6 @@
         }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
-
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
@@ -1661,7 +1628,6 @@
             $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
-
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
         }).fail(function(x, y, z) {
@@ -1682,12 +1648,10 @@
             dataType: "JSON"
         }).done(function(data, x, jq) {
             console.log(data);
-
             var options = '<option></option>';
             $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
-
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
         }).fail(function(x, y, z) {
@@ -1742,7 +1706,6 @@
             }
         }).done(function(data, x, jq) {
             mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-
             mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
@@ -1781,7 +1744,6 @@
                     console.log(data);
                     var nrow = parseInt(tblConceptosXTrabajo.find("tbody tr").length) + 1;
                     console.log('NUMERO DE FILAS: ' + tblConceptosXTrabajo.find("tbody tr").length);
-
                     var concepto = data[0];
                     var row = '<tr>';
                     row += '<td class="hide">';
@@ -1799,15 +1761,15 @@
                     row += '<td>';
                     row += '<select id="IntExt" class="form-control">';
                     row += '<option></option>';
-                    row += '<option>Interior</option>';
-                    row += '<option>Exterior</option>';
+                    row += '<option value="Interior">Interior</option>';
+                    row += '<option value="Exterior">Exterior</option>';
                     row += '</select>';
                     row += '</td>';
                     row += '<td>';
                     row += concepto.Descripcion;
                     row += '</td>';
                     row += '<td>';
-                    row += '<input id="tdCantidad" type="number" class="form-control" placeholder="0" min="1" onchange="onCalcularPrecio(this)">';
+                    row += '';
                     row += '</td>';
                     row += '<td>';
                     row += concepto.Unidad;
@@ -1816,7 +1778,7 @@
                     row += concepto.Costo;
                     row += '</td>';
                     row += '<td>$';
-                    row += concepto.Precio;
+                    row += concepto.Precio; /*8*/
                     row += '</td>';
                     row += '<td class="hide">';
                     row += 0;
@@ -1827,14 +1789,14 @@
                     row += '<td>';
                     row += concepto.Moneda;
                     row += '</td>';
-                    row += '<td>';
+                    row += '<td class="hide">';
                     row += '</td>';
                     row += '<td>';
-                    row += '<button type="button" class="btn btn-raised btn-info" onclick="onGeneradorXConcepto(this)"><span class="fa fa-gear fa-lg"></span></button>';
+                    row += '<button type="button" class="btn btn-raised btn-info btn-sm" onclick="onGeneradorXConcepto(this)"><span class="fa fa-gear fa-lg"></span></button>';
                     row += '</td>';
-                    row += '<td>INACTIVO</td>';
+                    row += '<td class="hide">INACTIVO</td>';
                     row += '<td>';
-                    row += '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarConcepto(this)"><span class="fa fa-minus fa-lg"></span></button>';
+                    row += '<button type="button" class="btn btn-raised btn-danger btn-sm" onclick="onEliminarConcepto(this)"><span class="fa fa-minus fa-lg"></span></button>';
                     row += '</td>';
                     row += '</tr>';
                     if (tblConceptosXTrabajo.hasClass("hide")) {
@@ -1877,6 +1839,43 @@
         console.log('IMPORTE: ' + $.number(importe, 2, '.', ', '));
         row.eq(10).html(importe);
         row.eq(11).html('<span class="label label-success">$' + $.number(importe, 2, '.', ', ') + '</span>');
+        /*IMPORTE TOTAL*/
+        var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
+        var total = 0.0;
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
+            total += parseFloat($(this).find("td").eq(10).text());
+            console.log(total);
+//            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
+            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
+        });
+        ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
+    }
+    function onEliminarConcepto(evt) {
+        onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
+        $(evt).parent().parent().remove();
+        getImporteTotal();
+    }
+
+    function onGeneradorXConcepto(evt) {
+        var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
+        var row = $(evt).parent().parent().find("td");
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+            $(this).find("td").eq(15).text('INACTIVO');
+        });
+        row.eq(15).text('ACTIVO');
+        var xCantidad = row.eq(6).text();
+
+        mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val(row.eq(1).text());
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val(xCantidad);
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val(row.eq(13).text());
+        mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
+        console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
+        console.log(row);
+        console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
+    }
+    function getImporteTotal() {
 
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
@@ -1889,27 +1888,7 @@
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
         ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
-
-    }
-    function onEliminarConcepto(evt) {
-        $(evt).parent().parent().remove();
-    }
-
-    function onGeneradorXConcepto(evt) {
-        var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
-        var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-            $(this).find("td").eq(15).text('INACTIVO');
-        });
-        row.eq(15).text('ACTIVO');
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val(row.eq(1).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val(row.eq(13).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
-
-
-        console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
-        console.log(row);
-        console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
+        onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
 </script>
 <style>
