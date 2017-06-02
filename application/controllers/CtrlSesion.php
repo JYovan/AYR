@@ -95,7 +95,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetTextColor(162, 162, 162);
         $pdf->Cell(200, 5, utf8_decode("FIN­049A Notificación De Items Adicionales Y/O Fuera De Catálogo De Precios Unitarios (Posible Orden De Cambio)"), 0, 0, 'R');
         $pdf->SetTextColor(0, 0, 0);
-       
+
         //Texto del segundo recuadro
 
         $pdf->SetFont('Arial', '', 8);
@@ -113,52 +113,268 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetY(30);
         $pdf->SetX(5);
         $pdf->Cell(200, 5, utf8_decode("Notificación De Items Adicionales (Posible Orden De Cambio)"), 1, 1, 'C', true);
-        
-        /*PRIMER PARTE ENCABEZADO*/
+
+        /* PRIMER PARTE ENCABEZADO */
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetY(37);
         $pdf->SetX(125);
         $pdf->Cell(30, 5, utf8_decode("FECHA:"), 0, 1, 'R');
-        
+
         $pdf->SetY(37);
         $pdf->SetX(155);
         $pdf->Cell(50, 5, utf8_decode("#FECHA"), 'B', 1, 'C');
-        
-        $pdf->SetFillColor(82,245,237);
+
+        $pdf->SetFillColor(82, 245, 237);
         $pdf->SetY(43);
         $pdf->SetX(125);
-        $pdf->Cell(30, 5, utf8_decode("TIPO DE CONCEPTO:"), 0, 1, 'R',true);
-        
+        $pdf->Cell(30, 5, utf8_decode("TIPO DE CONCEPTO:"), 0, 1, 'R', true);
+
         $pdf->SetY(43);
         $pdf->SetX(155);
-        $pdf->Cell(50, 5, utf8_decode("#TIPO CONCEPTO"), 'B', 1, 'C',true);
-       
-         /*SEGUNDA PARTE ENCABEZADO*/
+        $pdf->Cell(50, 5, utf8_decode("#TIPO CONCEPTO"), 'B', 1, 'C', true);
+
+        /* SEGUNDA PARTE ENCABEZADO */
         $pdf->SetFont('Arial', '', 6);
         $pdf->SetY(50);
         $pdf->SetX(5);
-        $pdf->Cell(20, 5, utf8_decode("CR & SUCURSAL:"), 1, 1, 'R');
+        $pdf->Cell(20, 5, utf8_decode("CR & SUCURSAL:"), 0, 1, 'R');
         $pdf->SetY(50);
         $pdf->SetX(25);
         $pdf->Cell(55, 5, utf8_decode("#CR + #SUCURSAL"), 'B', 1, 'C');
-        
+
         $pdf->SetY(50);
         $pdf->SetX(80);
-        $pdf->Cell(30, 5, utf8_decode("EMPRESA CONTRATISTA:"), 1, 1, 'R');
+        $pdf->Cell(30, 5, utf8_decode("EMPRESA CONTRATISTA:"), 0, 1, 'R');
         $pdf->SetY(50);
         $pdf->SetX(110);
-        $pdf->Cell(40, 5, utf8_decode("#EMPRESA CONTRATISTA"), 'B', 1, 'C');
-        
+        $pdf->Cell(45, 5, utf8_decode("#EMPRESA CONTRATISTA"), 'B', 1, 'C');
+
         $pdf->SetY(50);
-        $pdf->SetX(150);
-        $pdf->Cell(30, 5, utf8_decode("EMPRESA CONTRATISTA:"), 1, 1, 'R');
+        $pdf->SetX(155);
+        $pdf->Cell(20, 5, utf8_decode("INICIO DE OBRA:"), 0, 1, 'R');
         $pdf->SetY(50);
+        $pdf->SetX(175);
+        $pdf->Cell(30, 5, utf8_decode("#FECHA INICIO"), 'B', 1, 'C');
+
+
+        $pdf->SetY(55);
+        $pdf->SetX(5);
+        $pdf->Cell(20, 5, utf8_decode("TIPO DE OBRA:"), 0, 1, 'R');
+        $pdf->SetY(55);
+        $pdf->SetX(25);
+        $pdf->Cell(55, 5, utf8_decode("#TIPO OBRA"), 'B', 1, 'C');
+
+        $pdf->SetY(55);
+        $pdf->SetX(80);
+        $pdf->Cell(30, 5, utf8_decode("GERENCIA DE PROY:"), 0, 1, 'R');
+        $pdf->SetY(55);
+        $pdf->SetX(110);
+        $pdf->Cell(45, 5, utf8_decode("#EMPRESA SUPERVISORA"), 'B', 1, 'C');
+
+        $pdf->SetY(55);
+        $pdf->SetX(155);
+        $pdf->Cell(20, 5, utf8_decode("FIN DE OBRA:"), 0, 1, 'R');
+        $pdf->SetY(55);
+        $pdf->SetX(175);
+        $pdf->Cell(30, 5, utf8_decode("#FECHA FIN"), 'B', 1, 'C');
+
+
+
+
+        $pdf->SetY(62);
+        $pdf->SetX(5);
+        $pdf->Cell(20, 5, utf8_decode("ORIGEN PCO:"), 0, 1, 'R');
+        $pdf->SetY(62);
+        $pdf->SetX(25);
+        $pdf->Cell(10, 5, utf8_decode("CONTR"), 1, 1, 'C');
+        $pdf->SetY(62);
+        $pdf->SetX(35);
+        $pdf->Cell(6, 5, utf8_decode("GdP"), 1, 1, 'C');
+        $pdf->SetY(62);
+        $pdf->SetX(41);
+        $pdf->Cell(8, 5, utf8_decode("BBVA"), 1, 1, 'C');
+        $pdf->SetY(62);
+        $pdf->SetX(49);
+        $pdf->Cell(8, 5, utf8_decode("OTRO"), 1, 1, 'C');
+        $pdf->SetY(62);
+        $pdf->SetX(57);
+        $pdf->Cell(23, 5, '', 'B', 1, 'C');
+
+
+        $pdf->SetY(60);
+        $pdf->SetX(80);
+        $pdf->Cell(30, 5, utf8_decode("CONTRATO:"), 0, 1, 'R');
+        $pdf->SetY(60);
+        $pdf->SetX(110);
+        $pdf->Cell(45, 5, utf8_decode("#CONTRATO"), 'B', 1, 'C');
+
+        $pdf->SetY(60);
+        $pdf->SetX(155);
+        $pdf->Cell(20, 5, utf8_decode("FOLIO:"), 0, 1, 'R');
+        $pdf->SetY(60);
+        $pdf->SetX(175);
+        $pdf->Cell(30, 5, utf8_decode("#FOLIO"), 'B', 1, 'C');
+
+        /* TERCERA PARTE */
+        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->SetY(72);
+        $pdf->SetX(4);
+        $pdf->Cell(20, 5, utf8_decode("ORIGEN:"), 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 6);
+        $pdf->SetY(77);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 30, '', 1, 1, 'L');
+        $pdf->SetY(78);
+        $pdf->SetX(5);
+        $pdf->MultiCell(200, 3, utf8_decode("#DECRIPCION ORIGEN"), 0, 'L');
+
+        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->SetY(110);
+        $pdf->SetX(4);
+        $pdf->Cell(20, 5, utf8_decode("RIESGO:"), 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 6);
+        $pdf->SetY(115);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 30, '', 1, 1, 'L');
+        $pdf->SetY(116);
+        $pdf->SetX(5);
+        $pdf->MultiCell(200, 3, utf8_decode("#DECRIPCION RIESGO"), 0, 'L');
+
+        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->SetY(148);
+        $pdf->SetX(4);
+        $pdf->Cell(20, 5, utf8_decode("DESCRIPCIÓN DE ALCANCE:"), 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 6);
+        $pdf->SetY(153);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 30, '', 1, 1, 'L');
+        $pdf->SetY(154);
+        $pdf->SetX(5);
+        $pdf->MultiCell(200, 3, utf8_decode("#DESCRIPCIÓN DE ALCANCE:"), 0, 'L');
+
+        /* SECCION PRE FOOTER */
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetY(187);
+        $pdf->SetX(5);
+        $pdf->Cell(30, 5, utf8_decode("IMPACTO EN PLAZO"), 0, 1, 'l');
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetY(187);
+        $pdf->SetX(35);
+        $pdf->Cell(20, 5, utf8_decode("SI"), 1, 1, 'C');
+        $pdf->SetY(187);
+        $pdf->SetX(55);
+        $pdf->Cell(20, 5, utf8_decode("NO"), 1, 1, 'C');
+        $pdf->SetY(187);
+        $pdf->SetX(75);
+        $pdf->Cell(15, 5, utf8_decode("#DIAS"), 'B', 1, 'C');
+        $pdf->SetY(187);
+        $pdf->SetX(90);
+        $pdf->Cell(10, 5, utf8_decode("DIAS"), 0, 1, 'C');
+       
+
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetY(187);
+        $pdf->SetX(110);
+        $pdf->Cell(30, 5, utf8_decode("IMPACTO EN COSTO"), 0, 1, 'l');
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetY(187);
+        $pdf->SetX(140);
+        $pdf->Cell(20, 5, utf8_decode("SI"), 1, 1, 'C');
+        $pdf->SetY(187);
+        $pdf->SetX(160);
+        $pdf->Cell(20, 5, utf8_decode("NO"), 1, 1, 'C');
+        $pdf->SetY(187);
         $pdf->SetX(180);
-        $pdf->Cell(40, 5, utf8_decode("#EMPRESA CONTRATISTA"), 'B', 1, 'C');
-        
+        $pdf->Cell(25, 5, utf8_decode("#COSTO"), 'B', 1, 'C');
+        $pdf->SetY(187);
+        $pdf->SetX(195);
+      
+
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetY(195);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 5, utf8_decode("Notas Importantes"), 0, 1, 'l');
+
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetY(200);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 3, utf8_decode("1. El Contratista Esta Obligado A Integrar Su PCO Y/O Orden De Cambio Acorde A Lo Establecido En Su Contrato"), 0, 1, 'L');
+        $pdf->SetY(203);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 3, utf8_decode("2. En Caso De Aprobación Se Requiere Firma Del Representante Del Cliente, Caso Contrario, Cruzar Con Una Linea El Nombre"), 0, 1, 'L');
+        $pdf->SetY(206);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 3, utf8_decode("3. Entiéndase De Que La No Aprobación Indicara La No Ejecución De Los Trabajos"), 0, 1, 'L');
+        $pdf->SetY(209);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 3, utf8_decode("4. Este Costo Es Un Estimado Inicial Que Sera Sujeto Al Proceso Contractual De Revision, Asimismo Se Validara La Procedencia Como ODC Según Alcances "), 0, 1, 'L');
+        $pdf->SetY(212);
+        $pdf->SetX(8);
+        $pdf->Cell(200, 3, utf8_decode("Previamente Contratados"), 0, 1, 'L');
+
+        /* FIRMAS PRIMER BLOQUE */
+        /* FIRMA 1 */
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->Rect(5, 220, 63, 25);
+        $pdf->SetY(220);
+        $pdf->SetX(5);
+        $pdf->Cell(63, 5, utf8_decode("VALIDA:"), 0, 1, 'C');
+        $pdf->SetY(240);
+        $pdf->SetX(5);
+        $pdf->Cell(63, 5, utf8_decode("Supervisión Gerencia De Proyectos"), 'T', 1, 'C');
+        /* FIRMA 2 */
+        $pdf->Rect(73, 220, 63, 25);
+        $pdf->SetY(220);
+        $pdf->SetX(73);
+        $pdf->Cell(63, 5, utf8_decode("VALIDA:"), 0, 1, 'C');
+        $pdf->SetY(240);
+        $pdf->SetX(73);
+        $pdf->Cell(63, 5, utf8_decode("Costos De Gerencia De Proyectos"), 'T', 1, 'C');
+        /* FIRMA 3 */
+        $pdf->Rect(141, 220, 64, 25);
+        $pdf->SetY(220);
+        $pdf->SetX(141);
+        $pdf->Cell(63, 5, utf8_decode("AUTORIZA:"), 0, 1, 'C');
+        $pdf->SetY(240);
+        $pdf->SetX(141);
+        $pdf->Cell(63, 5, utf8_decode("Subdirector De Construcción BBVA Bancomer"), 'T', 1, 'C');
+        /* FIRMAS SEGUNDO BLOQUE */
+        /* FIRMA 1 */
+        $pdf->Rect(5, 250, 63, 25);
+        $pdf->SetY(250);
+        $pdf->SetX(5);
+        $pdf->Cell(63, 5, utf8_decode("AUTORIZA:"), 0, 1, 'C');
+        $pdf->SetY(270);
+        $pdf->SetX(5);
+        $pdf->Cell(63, 5, utf8_decode("Director De Construcción BBVA Bancomer"), 'T', 1, 'C');
+        /* FIRMA 2 */
+        $pdf->Rect(73, 250, 63, 25);
+        $pdf->SetY(270);
+        $pdf->SetX(73);
+        $pdf->Cell(63, 5, utf8_decode(""), 'T', 1, 'C');
+        /* FIRMA 3 */
+        $pdf->Rect(141, 250, 64, 25);
+        $pdf->SetY(250);
+        $pdf->SetX(141);
+        $pdf->Cell(63, 5, utf8_decode("AUTORIZA:"), 0, 1, 'C');
+        $pdf->SetY(270);
+        $pdf->SetX(141);
+        $pdf->Cell(63, 5, utf8_decode("Director De PMO Ulises"), 'T', 1, 'C');
 
 
 
+        /* PIE DE PAGINA */
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetY(280);
+        $pdf->SetX(5);
+        $pdf->Cell(90, 4, utf8_decode("INMUEBLES: Actitud, Eficiecia Y Calidad A Tu Servicio"), 1, 1, 'L');
+        $pdf->SetY(280);
+        $pdf->SetX(95);
+        $pdf->SetFillColor(82, 245, 237);
+        $pdf->Cell(20, 4, utf8_decode("Versión 1"), 1, 1, 'C', true);
+        $pdf->SetY(280);
+        $pdf->SetX(115);
+        $pdf->Cell(90, 4, utf8_decode("Pag. 1    "), 1, 1, 'R');
 
 
         /* FIN CUERPO */
