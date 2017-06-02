@@ -95,6 +95,13 @@
 
     </div><!-- /.container-fluid -->
 </nav>
+
+<button onclick="onReporteFotografico()">FOTOGRAFICO</button>
+<button onclick="onReporteCroquis()">CROQUIS</button>
+<button onclick="onReporteGenerador()">GENERADOR</button>
+<button onclick="onReportePresupuestoBBVA()">PRESUPUESTO BBVA</button>
+<button onclick="onReporteFin49()">FIN 49</button>
+
 <script>
     $(document).ready(function () {
 
@@ -104,13 +111,54 @@
         });
         setTimeout(HoldOn.close(), 1500);
     });
-    function onReport() {
+    
+       function onReporteFin49() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
         });
         $.ajax({
-            url: base_url + 'index.php/ctrlSesion/onReport',
+            url: base_url + 'index.php/ctrlSesion/onReporteFin49',
+            type: "POST"
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+    
+      function onReportePresupuestoBBVA() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlSesion/onReportePresupuestoBBVA',
+            type: "POST"
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+    
+    function onReporteFotografico() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlSesion/onReporteFotografico',
             type: "POST"
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
@@ -122,4 +170,44 @@
             HoldOn.close();
         });
     }
+    
+     function onReporteCroquis() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlSesion/onReporteCroquis',
+            type: "POST"
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+     function onReporteGenerador() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlSesion/onReporteGenerador',
+            type: "POST"
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+    
 </script>

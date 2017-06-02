@@ -80,7 +80,13 @@
                                 <option value=""></option> 
                             </select>
                         </div>
+                        
+                        
+                         <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
 
+                        </div>
+                        
                         <div class="col-md-12">
                             <br>
                             <div class="alert alert-dismissible alert-warning">
@@ -90,8 +96,9 @@
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div> 
                         </div>
-
-
+                        
+                        
+                        
                         <div class="col-md-12" align="center">
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
@@ -106,10 +113,7 @@
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
+                       
 
                     </fieldset>
                 </div>

@@ -117,9 +117,11 @@
             $('.modal').on('shown.bs.modal', function(e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
-//            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
-//                $(this).datepicker('hide');
-//            });
+            
+            //Esto se hace para que ejecute el validador de campos
+            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
+               $(this).valid();
+            });
 
             $('[data-provide="datepicker"]').datepicker({
 
