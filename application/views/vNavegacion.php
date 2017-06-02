@@ -23,13 +23,7 @@
                 
                 <li>
                     <a href="<?php print base_url() ?>index.php/CtrlTrabajos/"  >Trabajos</a>
-                    <!--                    <ul class="dropdown-menu">
-                                            <li><a href="#">LEVANTAMIENTO</a></li> 
-                                            <li><a href="#">COTIZACIÓN</a></li> 
-                                            <li><a href="#">PRESUPUESTO</a></li> 
-                                            <li><a href="#">ESTIMACIÓN</a></li> 
-                                            <li onclick="onReport()">REPORTE FOTOGRAFICO</li> 
-                                        </ul>-->
+
                 </li> 
 
 
@@ -101,9 +95,9 @@
 <button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
 <button onclick="onReportePresupuestoBBVA()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
 <button onclick="onReporteFin49()" class="btn btn-raised"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
-<button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
 <button onclick="onReporteResumenPartidas()" class="btn btn-raised"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
 <button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>
+<button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
 
 
 </div>
@@ -117,6 +111,27 @@
         });
         setTimeout(HoldOn.close(), 1500);
     });
+    
+    
+    function onReporteResumenPartidas() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlSesion/onReporteResumenPartidas',
+            type: "POST"
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
     
        function onReporteFin49() {
         HoldOn.open({
