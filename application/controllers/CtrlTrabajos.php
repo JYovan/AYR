@@ -131,9 +131,7 @@ class CtrlTrabajos extends CI_Controller {
             /* TRABAJO DETALLE */
 
             $CONCEPTOSX = json_decode($this->input->post("CONCEPTOS"));
-            print "\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
 
-            print "\n";
             foreach ($CONCEPTOSX as $k => $v) {
                 if ($v->Cantidad !== '' && $v->Cantidad !== 0) {
                     $data = array(
@@ -147,9 +145,35 @@ class CtrlTrabajos extends CI_Controller {
                         'IntExt' => $v->IntExt,
                         'Moneda' => $v->Moneda
                     );
-                    print "\n";
-                    print_r($data);
                     $IDD = $this->trabajo_model->onAgregarDetalle($data);
+
+                    /* GENERADOR */
+
+                    print "\n\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * JSON GENERADOR ****************\n";
+//                    print $v->Generador;
+                    $GENERADORX = json_decode("[" . $v->Generador . "]", true);
+//                    var_dump($GENERADORX);
+                    print "\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * END JSON GENERADOR ****************\n\n";
+                    print "\n NUM. " . count($GENERADORX) . " REGISTROS\n";
+                    foreach ($GENERADORX as $k => $vg) {
+                        print $vg["Concepto_ID"] . "\n";
+                        if ($vg["Cantidad"] !== '' && $vg["Cantidad"] !== 0) {
+                            $data = array(
+                                'IdTrabajoDetalle' => $IDD,
+                                'Concepto_ID' => $vg["Concepto_ID"],
+                                'Area' => $vg["Area"],
+                                'Eje' => $vg["Eje"],
+                                'EntreEje1' => $vg["EntreEje1"],
+                                'EntreEje2' => $vg["EntreEje2"],
+                                'Largo' => $vg["Largo"],
+                                'Ancho' => $vg["Ancho"],
+                                'Alto' => $vg["Alto"],
+                                'Cantidad' => $vg["Cantidad"],
+                                'Total' => $v->Cantidad
+                            );
+                            $IDDG = $this->trabajo_model->onAgregarDetalleGenerador($data);
+                        }
+                    }
                     print "\n";
                 }
             }

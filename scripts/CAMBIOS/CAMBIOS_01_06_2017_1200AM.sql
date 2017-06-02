@@ -92,3 +92,7 @@ CREATE TABLE `ayr`.`trabajodetalleFacturas` (
   `Registro` VARCHAR(45) NULL,
   PRIMARY KEY (`ID`));
 
+
+ALTER TABLE `ayr`.`generadortrabajosdetalle` 
+ADD COLUMN `IdTrabajoDetalle` INT(25) NULL AFTER `Total`;
+

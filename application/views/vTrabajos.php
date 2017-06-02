@@ -475,11 +475,11 @@
             </div>
             <div class="modal-body">
                 <fieldset>
-                    <div class="col-md-12 ">
+                    <div class="col-md-12 hide">
                         <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control hide">
                         <textarea id="Generador" name="Generador" rows="4" cols="20" class="hide">
                         </textarea>
-                        <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control">
+                        <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control hide">
                     </div>
                     <div class="col-md-12">
                         <label for="">Area</label>
@@ -1263,7 +1263,7 @@
                 $(this).valid();
             });
             //Si es verdadero que hacer
-            if ($('#frmNuevo').valid()) {
+            if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
                 var trabajo_detalle = [];
                 var concepto = {};
