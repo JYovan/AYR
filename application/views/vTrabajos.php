@@ -915,12 +915,6 @@
             nuevo_generador["Alto"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val();
             nuevo_generador["Cantidad"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val();
             if (generador_string.length > 0) {
-//                var jsonx = $.parseJSON('{"Concepto_ID":"14209","Area":"asdqw","Eje":"asd","EntreEje1":"tuyfu","EntreEje2":"qew","Largo":"5","Ancho":"5","Alto":"5","Cantidad":"5"},{"Concepto_ID":"14209","Area":"tyrfcvy","Eje":"ytc","EntreEje1":"y","EntreEje2":"cy","Largo":"3","Ancho":"3","Alto":"3","Cantidad":"3"}');
-//                console.log((jsonx));
-//                console.log(JSON.parse(jsonx)); /*CONVIERTE EN OBJETO*/
-//
-//                var jsonx_parse = JSON.parse(jsonx);
-//                jsonx_parse.push(JSON.stringify(nuevo_generador));
                 Generador.push(generador_string);
                 Generador.push(JSON.stringify(nuevo_generador));
                 console.log('* * * * * * * * * * * * * * * * GENERADOR CON OBJETO PREVIO * * * * *');
@@ -934,12 +928,6 @@
             $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
                 var xCantidad = 0;
-//                $.each(Generador, function(k, v) {
-//                    var xGenerador = JSON.parse(v);
-//                    console.log(xGenerador);
-//                    xCantidad += parseFloat(xGenerador.Cantidad);
-//                    console.log(xCantidad);
-//                });
                 if (row_status === 'ACTIVO') {
                     xCantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() : 0) + parseFloat(mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val()));
                     $(this).find("td").eq(6).text(xCantidad);
@@ -1341,7 +1329,10 @@
             btnRefrescar.trigger('click');
         });
         btnNuevo.on("click", function() {
-
+            $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
+                $(this).remove();
+            });
+            tblConceptosXTrabajo.addClass("hide");
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
             pnlNuevoTrabajo.find("#Datos").addClass("active in");
@@ -1732,6 +1723,7 @@
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
+
                 $.ajax({
                     url: master_url + 'getConceptoByID',
                     type: "POST",
@@ -1740,78 +1732,93 @@
                         ID: temp
                     }
                 }).done(function(data, x, jq) {
-                    console.log('EDITANDO CONCEPTO ');
-                    console.log(data);
-                    var nrow = parseInt(tblConceptosXTrabajo.find("tbody tr").length) + 1;
-                    console.log('NUMERO DE FILAS: ' + tblConceptosXTrabajo.find("tbody tr").length);
-                    var concepto = data[0];
-                    var row = '<tr>';
-                    row += '<td class="hide">';
-                    row += 0;
-                    row += '</td>';
-                    row += '<td class="hide">';
-                    row += concepto.ID;
-                    row += '</td>';
-                    row += '<td class="hide">';
-                    row += (parseInt(tblConceptosXTrabajo.find("tbody tr").length) === 0) ? 1 : nrow;
-                    row += '</td>';
-                    row += '<td><span class="label label-warning">';
-                    row += concepto.Clave;
-                    row += '</span></td>';
-                    row += '<td>';
-                    row += '<select id="IntExt" class="form-control">';
-                    row += '<option></option>';
-                    row += '<option value="Interior">Interior</option>';
-                    row += '<option value="Exterior">Exterior</option>';
-                    row += '</select>';
-                    row += '</td>';
-                    row += '<td>';
-                    row += concepto.Descripcion;
-                    row += '</td>';
-                    row += '<td>';
-                    row += '';
-                    row += '</td>';
-                    row += '<td>';
-                    row += concepto.Unidad;
-                    row += '</td>';
-                    row += '<td class="hide">';
-                    row += concepto.Costo;
-                    row += '</td>';
-                    row += '<td>$';
-                    row += concepto.Precio; /*8*/
-                    row += '</td>';
-                    row += '<td class="hide">';
-                    row += 0;
-                    row += '</td>';
-                    row += '<td><span class="label label-success">$ ';
-                    row += 0;
-                    row += '</span></td>';
-                    row += '<td>';
-                    row += concepto.Moneda;
-                    row += '</td>';
-                    row += '<td class="hide">';
-                    row += '</td>';
-                    row += '<td>';
-                    row += '<span class="fa fa-gear fa-2x customButtonDetalleGenerador" onclick="onGeneradorXConcepto(this)"></span>';
-                    row += '</td>';
-                    row += '<td class="hide">INACTIVO</td>';
-                    row += '<td>';
-                    row += '<span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
-                    row += '</td>';
-                    row += '</tr>';
-                    if (tblConceptosXTrabajo.hasClass("hide")) {
-                        tblConceptosXTrabajo.removeClass("hide");
+                    var has_id = true;
+                    console.log('AGREGANDO.. CONCEPTO ');
+                    if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
+                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+                            var row_status = $(this).find("td").eq(1).text();
+                            if (parseInt(row_status) === parseInt(temp)) {
+                                has_id = false;
+                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
+                                return false;
+                            }
+                        });
                     }
-                    tblConceptosXTrabajo.find("tbody").append(row);
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, AGREGADO', 'success');
-                    if (!mdlTrabajoNuevoConcepto.find("#chkMultiple").is(":checked")) {
-                        mdlTrabajoNuevoConcepto.modal('hide');
+                    if (has_id) {
+                        console.log('EDITANDO CONCEPTO ');
+                        console.log(data);
+                        var nrow = parseInt(tblConceptosXTrabajo.find("tbody tr").length) + 1;
+                        console.log('NUMERO DE FILAS: ' + tblConceptosXTrabajo.find("tbody tr").length);
+                        var concepto = data[0];
+                        var row = '<tr>';
+                        row += '<td class="hide">';
+                        row += 0;
+                        row += '</td>';
+                        row += '<td class="hide">';
+                        row += concepto.ID;
+                        row += '</td>';
+                        row += '<td class="hide">';
+                        row += (parseInt(tblConceptosXTrabajo.find("tbody tr").length) === 0) ? 1 : nrow;
+                        row += '</td>';
+                        row += '<td><span class="label label-warning">';
+                        row += concepto.Clave;
+                        row += '</span></td>';
+                        row += '<td>';
+                        row += '<select id="IntExt" class="form-control">';
+                        row += '<option></option>';
+                        row += '<option value="Interior">Interior</option>';
+                        row += '<option value="Exterior">Exterior</option>';
+                        row += '</select>';
+                        row += '</td>';
+                        row += '<td>';
+                        row += concepto.Descripcion;
+                        row += '</td>';
+                        row += '<td>';
+                        row += '';
+                        row += '</td>';
+                        row += '<td>';
+                        row += concepto.Unidad;
+                        row += '</td>';
+                        row += '<td class="hide">';
+                        row += concepto.Costo;
+                        row += '</td>';
+                        row += '<td>$';
+                        row += concepto.Precio; /*8*/
+                        row += '</td>';
+                        row += '<td class="hide">';
+                        row += 0;
+                        row += '</td>';
+                        row += '<td><span class="label label-success">$ ';
+                        row += 0;
+                        row += '</span></td>';
+                        row += '<td>';
+                        row += concepto.Moneda;
+                        row += '</td>';
+                        row += '<td class="hide">';
+                        row += '</td>';
+                        row += '<td>';
+                        row += '<span class="fa fa-gear fa-2x customButtonDetalleGenerador" onclick="onGeneradorXConcepto(this)"></span>';
+                        row += '</td>';
+                        row += '<td class="hide">INACTIVO</td>';
+                        row += '<td>';
+                        row += '<span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
+                        row += '</td>';
+                        row += '</tr>';
+                        if (tblConceptosXTrabajo.hasClass("hide")) {
+                            tblConceptosXTrabajo.removeClass("hide");
+                        }
+                        tblConceptosXTrabajo.find("tbody").append(row);
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, AGREGADO', 'success');
+                        if (!mdlTrabajoNuevoConcepto.find("#chkMultiple").is(":checked")) {
+                            mdlTrabajoNuevoConcepto.modal('hide');
+                        }
                     }
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
                     HoldOn.close();
                 });
+
             });
             // Apply the search
             tblSelected.columns().every(function() {
