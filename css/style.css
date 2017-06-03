@@ -359,11 +359,34 @@ table tfoot th input[type="text"]:focus{
 }
 /*Separacion de los botones de herramientas de tablas*/
 div.dt-buttons > .btn{
-       padding: 8px 10px;
+       padding: 4px 10px;
+       margin: 1px 1px;
+   
+}
+
+div.dt-Detalle > div.dt-buttons >  .btn {
+       padding: 0px 2px;
+        margin: 0px 0px;
    
 }
 /*Mayusculas en unidades /Preciarios*/
 .CustomUppercase
 {
     text-transform:uppercase;
+}
+
+.customButtonDetalleEliminar{
+    color:#EB0C0C;
+}
+.customButtonDetalleEliminar:hover{
+    
+    color: #000;
+}
+
+.customButtonDetalleGenerador{
+    color: #555353;
+}
+
+.customButtonDetalleGenerador:hover{
+    color: #111111;
 }

@@ -396,7 +396,7 @@
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
                 <div id="ImporteTotal" class="col-md-4" align="right">
-                    <h5 class="text-success">$ 0.0</h5>
+                    <h4 class="text-success">$ 0.0</h4>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="chkMultiple" value="ON"> MULTIPLE
+                                <input type="checkbox" id="chkMultiple" value="ON"> VARIOS
                             </label>
                         </div>
                     </div>
@@ -1437,7 +1437,7 @@
             $("#tblRegistros").html(getTable('tblTrabajos', data));
             $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
             $('#tblTrabajos tbody').on('click', 'tr', function() {
@@ -1792,11 +1792,11 @@
                     row += '<td class="hide">';
                     row += '</td>';
                     row += '<td>';
-                    row += '<button type="button" class="btn btn-raised btn-info btn-sm" onclick="onGeneradorXConcepto(this)"><span class="fa fa-gear fa-lg"></span></button>';
+                    row += '<span class="fa fa-gear fa-2x customButtonDetalleGenerador" onclick="onGeneradorXConcepto(this)"></span>';
                     row += '</td>';
                     row += '<td class="hide">INACTIVO</td>';
                     row += '<td>';
-                    row += '<button type="button" class="btn btn-raised btn-danger btn-sm" onclick="onEliminarConcepto(this)"><span class="fa fa-minus fa-lg"></span></button>';
+                    row += '<span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
                     row += '</td>';
                     row += '</tr>';
                     if (tblConceptosXTrabajo.hasClass("hide")) {
@@ -1888,7 +1888,7 @@
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
         ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
-        onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
+        //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
 </script>
 <style>

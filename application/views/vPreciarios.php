@@ -552,7 +552,8 @@
     var Archivo = pnlNuevo.find("#RutaArchivo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
-
+    
+    var currentDate = new Date();
 
 //Variables de conceptos detalle
     /*Detalle*/
@@ -1127,6 +1128,7 @@
             tblConceptos.html("");
             pnlNuevo.find("select").select2("val", "");
             pnlNuevo.find("input").val("");
+            pnlNuevo.find("#FechaCreacion").datepicker("setDate", currentDate);
             pnlNuevo.removeClass('hide');
             pnlPreciario.addClass("hide");
         });

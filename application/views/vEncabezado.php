@@ -120,7 +120,7 @@
             
             //Esto se hace para que ejecute el validador de campos
             $('[data-provide="datepicker"]').on('changeDate', function (ev) {
-               $(this).valid();
+//               $(this).valid();
             });
 
             $('[data-provide="datepicker"]').datepicker({
