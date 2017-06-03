@@ -82,7 +82,7 @@ CREATE TABLE `ayr`.`trabajodetalleCroquis` (
   PRIMARY KEY (`ID`));
   
 /*TRABAJOS DETALLE - GENERADOR (FACTURAS) (01/06/2017)*/
-CREATE TABLE `ayr`.`trabajodetalleFacturas` (
+CREATE TABLE `ayr`.`trabajodetalleAnexos` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `IdTrabajo` INT(12) NULL,
   `IdTrabajoDetalle` INT(12) NULL,

@@ -169,7 +169,7 @@ class CtrlTrabajos extends CI_Controller {
                                 'Ancho' => $vg["Ancho"],
                                 'Alto' => $vg["Alto"],
                                 'Cantidad' => $vg["Cantidad"],
-                                'Total' => $v->Cantidad
+                                'Total' => (($vg["Largo"] !== 0 && $vg["Largo"] !== "0") ? $vg["Largo"] : 1) * (($vg["Ancho"] !== 0 && $vg["Ancho"] !== "0") ? $vg["Ancho"] : 1) * (($vg["Alto"] !== 0 && $vg["Alto"] !== "0") ? $vg["Alto"] : 1) * (($vg["Cantidad"] !== 0 && $vg["Cantidad"] !== "0") ? $vg["Cantidad"] : 1)
                             );
                             $IDDG = $this->trabajo_model->onAgregarDetalleGenerador($data);
                         }

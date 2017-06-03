@@ -910,10 +910,10 @@
             nuevo_generador["Eje"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
             nuevo_generador["EntreEje1"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
             nuevo_generador["EntreEje2"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
-            nuevo_generador["Largo"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val();
-            nuevo_generador["Ancho"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val();
-            nuevo_generador["Alto"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val();
-            nuevo_generador["Cantidad"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val();
+            nuevo_generador["Largo"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
+            nuevo_generador["Ancho"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
+            nuevo_generador["Alto"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
+            nuevo_generador["Cantidad"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0);
             if (generador_string.length > 0) {
                 Generador.push(generador_string);
                 Generador.push(JSON.stringify(nuevo_generador));
@@ -927,10 +927,22 @@
 
             $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
-                var xCantidad = 0;
                 if (row_status === 'ACTIVO') {
-                    xCantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() : 0) + parseFloat(mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val()));
+                    /*EVALUAR LA CANTIDAD*/
+                    var xCantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() : 0));
+                    var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 1);
+                    var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 1);
+                    var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 1);
+                    var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
+                    console.log('**********************DATOS A EVALUAR**************************')
+                    console.log(xCantidad, Largo, Ancho, Alto, Cantidad);
+                    console.log('**********************END  DATOS A EVALUAR**************************')
+                    xCantidad = xCantidad + (Largo * Ancho * Alto * ((Cantidad === 0) ? 1 : Cantidad));
+                    console.log('CANTIDAD FINAL : ' + xCantidad);
                     $(this).find("td").eq(6).text(xCantidad);
+
+                    /*FIN DE LA EVALUACIÓN*/
+
                     var Precio = parseFloat($(this).find("td").eq(8).text());
                     var Total = xCantidad * Precio;
                     $(this).find("td").eq(10).text(Total);
@@ -1896,6 +1908,10 @@
         });
         ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
         //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
+    }
+
+    function getGenerador() {
+
     }
 </script>
 <style>
