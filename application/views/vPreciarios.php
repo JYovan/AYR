@@ -204,9 +204,9 @@
 <div class="col-6 col-md-12"> 
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleConceptos">
 
-        <div class="panel-heading" >
+        <div class="Custompanel-heading" >
 
-            <div class="panel-heading row">
+            <div class="Custompanel-heading row">
                 <div class="col-md-8"> 
                     <div class="cursor-hand" >Conceptos </div>
                 </div> 
