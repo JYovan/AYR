@@ -25,15 +25,15 @@
     <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
 
                     <div class="cursor-hand" >
-                         <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
                         </button>
                         Nuevo preciario
                     </div>
-                </div> 
+                </div>
                 <div class="col-md-4 panel-title" align="right">
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
 
@@ -47,7 +47,7 @@
 
 
                         <div class="col-6 col-md-12">
-                            <label for="">Nombre*</label>    
+                            <label for="">Nombre*</label>
                             <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                         </div>
 
@@ -55,24 +55,24 @@
                         <div class="col-md-6">
                             <label for="">Fecha de Creación*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
-                        </div>  
+                        </div>
 
 
                         <div class="col-6 col-md-6">
                             <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" >
-                                <option value=""></option> 
-                                <option value="Activo">Activo</option> 
-                                <option value="Inactivo">Inactivo</option> 
+                                <option value=""></option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
                             </select>
                         </div>
 
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" >
-                                <option value=""></option> 
-                                <option value="MANTENIMIENTO">Mantenimiento</option> 
-                                <option value="OBRA">Obra</option> 
+                                <option value=""></option>
+                                <option value="MANTENIMIENTO">Mantenimiento</option>
+                                <option value="OBRA">Obra</option>
                             </select>
                         </div>
 
@@ -81,13 +81,13 @@
                         <div class="col-md-6">
                             <label for="">CLIENTE*</label>
                             <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
                         </div>
 
 
                         <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
+                            <h6>Los campos con * son obligatorios</h6>
 
                         </div>
 
@@ -98,7 +98,7 @@
                                 <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
                                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
-                            </div> 
+                            </div>
                         </div>
 
 
@@ -107,11 +107,11 @@
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
-                                </span> 
+                                </span>
                                 Seleccionar Archivo
                             </button>
                             <br>
-                        </div> 
+                        </div>
                         <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
                         <div class="col-md-12 hide">
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
@@ -129,14 +129,14 @@
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading">
             <div class="Custompanel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div class="cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
                         </button>
-                        Editar Preciario 
+                        Editar Preciario
                     </div>
-                </div> 
+                </div>
                 <div class="col-md-4 panel-title" align="right">
 
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
@@ -145,39 +145,39 @@
             </div>
         </div>
         <div class="panel-body">
-            <form id="frmEditar"> 
-                <fieldset> 
+            <form id="frmEditar">
+                <fieldset>
 
                     <div class="col-md-12 hide">
-                        <label for="">ID*</label>    
+                        <label for="">ID*</label>
                         <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
 
                     <div class="col-md-12">
-                        <label for="">Nombre*</label>    
+                        <label for="">Nombre*</label>
                         <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                     </div>
 
                     <div class="col-md-6">
                         <label for="">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
-                    </div>  
+                    </div>
 
                     <div class="col-6 col-md-6">
                         <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" >
-                            <option value=""></option> 
-                            <option value="Activo">Activo</option> 
-                            <option value="Inactivo">Inactivo</option> 
+                            <option value=""></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
                         </select>
                     </div>
 
                     <div class="col-6 col-md-6">
                         <label for="">Tipo*</label>
                         <select id="Tipo" name="Tipo" class="form-control" >
-                            <option value=""></option> 
-                            <option value="MANTENIMIENTO">Mantenimiento</option> 
-                            <option value="OBRA">Obra</option> 
+                            <option value=""></option>
+                            <option value="MANTENIMIENTO">Mantenimiento</option>
+                            <option value="OBRA">Obra</option>
                         </select>
                     </div>
 
@@ -186,14 +186,14 @@
                     <div class="col-md-6">
                         <label for="">Cliente*</label>
                         <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                            <option value=""></option> 
+                            <option value=""></option>
                         </select>
                     </div>
 
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
-                </fieldset> 
+                </fieldset>
             </form>
         </div>
     </div>
@@ -201,29 +201,29 @@
 
 
 <!--PANEL DETALLE-->
-<div class="col-6 col-md-12"> 
+<div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleConceptos">
 
         <div class="Custompanel-heading" >
 
             <div class="Custompanel-heading row">
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div class="cursor-hand" >Conceptos </div>
-                </div> 
+                </div>
 
             </div>
         </div>
-        <div class="panel-body"> 
+        <div class="panel-body">
 
 
-            <div class="col-md-12 dt-buttons" align="right"> 
-                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
-                <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button> 
-                <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button> 
-            </div> 
+            <div class="col-md-12 dt-buttons" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
+                <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+            </div>
             <div class="col-md-12">
                 <br>
-            </div> 
+            </div>
             <div id="PreciarioEspecifico" class="col-md-12">
             </div>
 
@@ -234,7 +234,7 @@
 
 
 
-<!--EDITAR--> 
+<!--EDITAR-->
 
 
 <div id="mdlNuevoConcepto" class="modal fade" tabindex="-1" role="dialog">
@@ -249,7 +249,7 @@
             <div class="col-md-12 hide">
                 <input type="text" class="form-control hide" id="ID" name="ID">
             </div>
-            <div id="pnlConceptos" class="col-md-12" >   
+            <div id="pnlConceptos" class="col-md-12" >
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#Conceptos" data-toggle="tab">Conceptos</a></li>
@@ -294,21 +294,21 @@
                         <div class="col-md-4">
                             <label for="">Categoría</label>
                             <select id="Categoria" name="Categoria" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="">Sub Categoría</label>
                             <select id="SubCategoria" name="SubCategoria" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="">Sub Sub Categoría</label>
                             <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
-                        </div>  
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="Categorias">
                         <div class="" id="mdlNuevaCategoria">
@@ -319,13 +319,13 @@
                                         <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
 
                             <div class="col-md-12">
                                 <label for="">Descripción</label>
                                 <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="SubCategorias">
 
@@ -345,7 +345,7 @@
                         <div class="col-md-12">
                             <label for="">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>
@@ -365,28 +365,28 @@
                         <div class="col-md-12">
                             <label for="">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
-                        </div>       
+                        </div>
                         <div class="col-md-12">
                             <label for="">Sub Categoría</label>
                             <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
-                                <option value=""></option> 
+                                <option value=""></option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <br>
-                    </div> 
+                    </div>
 
                 </div>
             </div>
         </div>
 
-        <div class="modal-footer" > 
+        <div class="modal-footer" >
             <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
-            <button type="button" class="btn btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>  
+            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
             <!--BOTONES CATEGORIA-->
             <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
             <button type="button" class="btn btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
@@ -398,7 +398,7 @@
             <br>
             <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
             <button type="button" class="btn btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
-        </div> 
+        </div>
     </div>
 </div>
 
@@ -411,8 +411,8 @@
             <h4 class="modal-title">Editar</h4>
         </div>
         <div class="modal-body">
-            <form id="frmEditar"> 
-                <fieldset>  
+            <form id="frmEditar">
+                <fieldset>
                     <div class="col-md-12 hide">
                         <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
                     </div>
@@ -442,33 +442,33 @@
                     <div class="col-md-4">
                         <label for="">Categoría</label>
                         <select id="Categoria" name="Categoria" class="form-control">
-                            <option value=""></option> 
+                            <option value=""></option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="">Sub Categoría</label>
                         <select id="SubCategoria" name="SubCategoria" class="form-control">
-                            <option value=""></option> 
+                            <option value=""></option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="">Sub Sub Categoría</label>
                         <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                            <option value=""></option> 
+                            <option value=""></option>
                         </select>
-                    </div>  
+                    </div>
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
-                </fieldset> 
+                </fieldset>
             </form>
         </div>
 
-        <div class="modal-footer"> 
+        <div class="modal-footer">
             <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button> 
-            <button type="button" class="btn btn-primary" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button> 
-        </div> 
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
+        </div>
     </div>
 </div>
 
@@ -568,9 +568,9 @@
     /*Detalle*/
     var pnlDetalleConceptos = $("#pnlDetalleConceptos");
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        btnGuardarSubSubCategoria.click(function () {
+        btnGuardarSubSubCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val();
             var Categoria = mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val();
@@ -591,7 +591,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUBSUB CATEGORIA', 'success');
                     console.log(data, x, jq);
                     mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val("");
@@ -599,9 +599,9 @@
                     mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
                     mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").select2("val", "");
                     getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -609,7 +609,7 @@
             }
         });
 
-        btnGuardarSubCategoria.click(function () {
+        btnGuardarSubCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val();
             var Categoria = mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val();
             if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
@@ -626,16 +626,16 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUB CATEGORIA', 'success');
                     console.log(data, x, jq);
                     mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val("");
                     mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val("");
                     mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
                     getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -643,7 +643,7 @@
             }
         });
 
-        btnGuardarCategoria.click(function () {
+        btnGuardarCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#Categorias").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val();
             if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
@@ -659,15 +659,15 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA CATEGORIA', 'success');
                     console.log(data, x, jq);
                     mdlNuevoConcepto.find("#Categorias").find("#Clave").val("");
                     mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val("");
                     getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -675,7 +675,7 @@
             }
         });
 
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href"); // activated tab
 
             switch (target) {
@@ -726,69 +726,69 @@
             }
         });
 
-        btnCancelarEditar.click(function () {
+        btnCancelarEditar.click(function() {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
             pnlDetalleConceptos.addClass("hide");
             btnRefrescar.trigger('click');
         });
 
-        btnCancelar.click(function () {
+        btnCancelar.click(function() {
             pnlPreciario.removeClass("hide");
             pnlNuevo.addClass("hide");
 
         });
 
-        btnCancelarSubSubCategoria.click(function () {
+        btnCancelarSubSubCategoria.click(function() {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#SubSubCategorias").find("input"), function (k, v) {
+            $.each(pnlConceptos.find("#SubSubCategorias").find("input"), function(k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function (k, v) {
+            $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function(k, v) {
                 $(v).select2("val", "");
             });
         });
 
-        btnCancelarSubCategoria.click(function () {
+        btnCancelarSubCategoria.click(function() {
             pnlConceptos.find("#SubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#SubCategorias").find("input"), function (k, v) {
+            $.each(pnlConceptos.find("#SubCategorias").find("input"), function(k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#SubCategorias").find("select"), function (k, v) {
+            $.each(pnlConceptos.find("#SubCategorias").find("select"), function(k, v) {
                 $(v).select2("val", "");
             });
         });
 
-        btnCancelarCategoria.click(function () {
+        btnCancelarCategoria.click(function() {
             pnlConceptos.find("#Categorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#Categorias").find("input"), function (k, v) {
+            $.each(pnlConceptos.find("#Categorias").find("input"), function(k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#Categorias").find("select"), function (k, v) {
+            $.each(pnlConceptos.find("#Categorias").find("select"), function(k, v) {
                 $(v).select2("val", "");
             });
         });
 
 
 
-        btnNuevaCategoria.click(function () {
+        btnNuevaCategoria.click(function() {
             mdlNuevaCategoria.removeClass("hide");
         });
-        btnCancelarConcepto.click(function () {
+        btnCancelarConcepto.click(function() {
             pnlConceptos.find("#Conceptos").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#Conceptos").find("input"), function (k, v) {
+            $.each(pnlConceptos.find("#Conceptos").find("input"), function(k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#Conceptos").find("select"), function (k, v) {
+            $.each(pnlConceptos.find("#Conceptos").find("select"), function(k, v) {
                 $(v).select2("val", "");
             });
         });
 
-        btnGuardarConcepto.click(function () {
+        btnGuardarConcepto.click(function() {
 
             var Clave = mdlNuevoConcepto.find("#Conceptos").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val();
@@ -818,15 +818,15 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
                     console.log(data, x, jq);
                     btnRefrescarConceptos.trigger('click');
                     mdlNuevoConcepto.modal("hide");
                     HoldOn.close();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -834,7 +834,7 @@
             }
         });
 
-        btnNuevoConcepto.click(function () {
+        btnNuevoConcepto.click(function() {
 
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
             $(mdlNuevoConcepto.find(".nav-tabs li")[0]).addClass("active");
@@ -860,7 +860,7 @@
             btnGuardarConcepto.removeClass("hide");
         });
 
-        btnCancelarModificacion.click(function () {
+        btnCancelarModificacion.click(function() {
             mdlEditarConcepto.find("#IDConcepto").val("");
             mdlEditarConcepto.find("#Clave").val("");
             mdlEditarConcepto.find("#Descripcion").val("");
@@ -873,11 +873,11 @@
             mdlEditarConcepto.modal('hide');
         });
 
-        btnRefrescarConceptos.click(function () {
+        btnRefrescarConceptos.click(function() {
             getConceptosXPreciarioID(pnlEditar.find("#ID").val());
         });
 
-        btnModificarConcepto.click(function () {
+        btnModificarConcepto.click(function() {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
@@ -899,23 +899,23 @@
                 contentType: false,
                 processData: false,
                 data: frm
-            }).done(function (data, x, jq) {
+            }).done(function(data, x, jq) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CONCEPTO', 'success');
                 console.log(data, x, jq);
                 btnRefrescarConceptos.trigger('click');
                 mdlEditarConcepto.modal("hide");
-            }).fail(function (x, y, z) {
+            }).fail(function(x, y, z) {
                 console.log(x, y, z);
-            }).always(function () {
+            }).always(function() {
                 HoldOn.close();
             });
         });
 
-        mdlEditarConcepto.find("#Categoria").change(function () {
+        mdlEditarConcepto.find("#Categoria").change(function() {
             getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
         });
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.click(function () {
+        btnConfirmarEliminar.click(function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -925,7 +925,7 @@
             }
         });
         //Evento clic del boton confirmar borrar un concepto
-        btnEliminarConcepto.click(function () {
+        btnEliminarConcepto.click(function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -937,7 +937,7 @@
         });
 
 //Confirma la eliminacion del concepto
-        btnConfirmarEliminarConcepto.click(function () {
+        btnConfirmarEliminarConcepto.click(function() {
             console.log('ELIMINANDO...' + temp);
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -950,21 +950,21 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
                     btnRefrescarConceptos.trigger('click');
                     mdlConfirmarEliminarConcepto.modal('hide');
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnEliminar.click(function () {
+        btnEliminar.click(function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -976,14 +976,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
                     getRecords();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -991,11 +991,11 @@
             }
         });
 
-        btnRefrescar.click(function () {
+        btnRefrescar.click(function() {
             getRecords();
         });
 
-        btnGuardar.click(function () {
+        btnGuardar.click(function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1015,20 +1015,20 @@
                     Cliente_ID: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
 
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
@@ -1048,15 +1048,15 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     pnlNuevo.addClass('hide');
                     pnlPreciario.removeClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
 
@@ -1067,7 +1067,7 @@
 
         });
 
-        btnModificar.click(function () {
+        btnModificar.click(function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1087,20 +1087,20 @@
                     Cliente_ID: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
 
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
@@ -1118,22 +1118,22 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     pnlPreciario.removeClass('hide');
                     pnlEditar.addClass('hide');
                     pnlDetalleConceptos.addClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
         });
 
-        btnNuevo.click(function () {
+        btnNuevo.click(function() {
             tblConceptos.html("");
             pnlNuevo.find("select").select2("val", "");
             pnlNuevo.find("input").val("");
@@ -1142,12 +1142,12 @@
             pnlPreciario.addClass("hide");
         });
 
-        btnEditar.click(function () {
+        btnEditar.click(function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
+//                HoldOn.open({
+//                    theme: "sk-bounce",
+//                    message: "CARGANDO DATOS..."
+//                });
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
                     type: "POST",
@@ -1155,7 +1155,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     var preciario = data[0];
 //                    mdlEditarConcepto.find("#Descripcion").val("");
@@ -1178,7 +1178,7 @@
 //                    mdlEditarConcepto.find("#Unidad").val("");
 //                    mdlEditarConcepto.find("#Categoria").select2("val", "");
 //                    mdlEditarConcepto.find("#SubCategoria").select2("val", "");
-//                    mdlEditarConcepto.find("#SubSubCategoria").select2("val", ""); 
+//                    mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
 //                    getCategoriasByPreciarioID(preciario.ID);
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
@@ -1186,28 +1186,28 @@
                     pnlPreciario.addClass('hide');
                     pnlEditar.addClass("animated slideInLeft").removeClass('hide');
                     pnlDetalleConceptos.removeClass("hide");
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
+                }).always(function() {
+//                    HoldOn.close();
                 });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnArchivo.click(function () {
+        btnArchivo.click(function() {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "POR FAVOR ESPERE..."
             });
-            Archivo.change(function () {
+            Archivo.change(function() {
                 if (Archivo[0].files[0] !== undefined) {
 
                     var extension = getExt(Archivo[0].files[0].name);
                     console.log('EXTENSION ' + extension);
                     if (extension === "xlsx" || extension === "xls" || extension === "csv") {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             console.log("onload", new Date());
                             var data = e.target.result;
                             var wb;
@@ -1228,7 +1228,7 @@
                     HoldOn.close();
                 }
             });
-            $("html").focusin(function () {
+            $("html").focusin(function() {
                 if (Archivo[0].files[0] !== undefined && is_filled) {
                     is_filled = false;
                     HoldOn.close();
@@ -1255,16 +1255,16 @@
             url: master_url + 'getClientes',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevo.find("#Cliente_ID").html(options);
             pnlEditar.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1279,15 +1279,15 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblEmpresas', data));
-            $('#tblEmpresas tfoot th').each(function () {
+            $('#tblEmpresas tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
-            $('#tblEmpresas tbody').on('click', 'tr', function () {
+            $('#tblEmpresas tbody').on('click', 'tr', function() {
                 $("#tblEmpresas").find("tr").removeClass("success");
                 $("#tblEmpresas").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1307,7 +1307,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblEmpresas tbody').on('dblclick', 'tr', function () {
+            $('#tblEmpresas tbody').on('dblclick', 'tr', function() {
                 $("#tblEmpresas").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -1315,17 +1315,17 @@
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1343,9 +1343,9 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Categoria + '</option>';
             });
             mdlEditarConcepto.find("#Categoria").html(options);
@@ -1354,9 +1354,9 @@
             mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
             getSubCategorias(IDX, '');
             getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(IDX, '', '');
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1374,18 +1374,18 @@
                 ID: ID,
                 IDC: IDC
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubCategoria").select2("val", "");
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Subcategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1404,17 +1404,17 @@
                 IDC: IDC,
                 IDSC: IDSC
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.SubSubCategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubSubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategoria").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1432,14 +1432,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
-            $('#tblConceptosXPreciarioID tfoot th').each(function () {
+            $('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
+            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1459,7 +1459,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function () {
+            $('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -1471,7 +1471,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log('EDITANDO CONCEPTO ');
                     console.log(data);
                     var concepto = data[0];
@@ -1485,25 +1485,25 @@
                     mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
                     mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
                     mdlEditarConcepto.modal('show');
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
+        }).always(function() {
+//            HoldOn.close();
         });
     }
 
@@ -1536,7 +1536,7 @@
         var sheet = "HOJAN";
         var i = 1;
         var result = {};
-        workbook.SheetNames.forEach(function (sheetName) {
+        workbook.SheetNames.forEach(function(sheetName) {
             var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]);
             if (roa.length > 0) {
                 sheet = sheet + "" + i;
@@ -1549,7 +1549,7 @@
 
     function to_csv(workbook) {
         var result = [];
-        workbook.SheetNames.forEach(function (sheetName) {
+        workbook.SheetNames.forEach(function(sheetName) {
             var csv = X.utils.sheet_to_csv(workbook.Sheets[sheetName]);
             if (csv.length > 0) {
                 result.push("SHEET: " + sheetName);
@@ -1563,7 +1563,7 @@
     var tblConceptos = pnlNuevo.find("#VistaPrevia");
     function to_html(workbook) {
         tblConceptos.html("");
-        workbook.SheetNames.forEach(function (sheetName) {
+        workbook.SheetNames.forEach(function(sheetName) {
             var htmlstr = X.write(workbook, {sheet: sheetName, type: 'binary', bookType: 'html'});
             tblConceptos.append(htmlstr);
             tblConceptos.find("table").addClass("table table-bordered table-striped table-hover display row-border hover order-column");
