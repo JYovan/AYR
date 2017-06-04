@@ -18,9 +18,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse" id="">
             <ul class="nav navbar-nav">
-                
-                
-                
+
+
+
                 <li>
                     <a href="<?php print base_url() ?>index.php/CtrlTrabajos/"  >Trabajos</a>
 
@@ -75,7 +75,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="">Cambiar Contraseña</a></li> 
                         <li><a href="">Reportar un problema</a></li>
-                         <li class="divider"></li>
+                        <li class="divider"></li>
                         <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" >Salir</a></li> 
 
                     </ul>
@@ -89,7 +89,7 @@
 
     </div><!-- /.container-fluid -->
 </nav>
-<div id="reportes" class="dt-buttons">
+<!--<div id="reportes" class="dt-buttons">
 <button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
 <button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
@@ -98,9 +98,7 @@
 <button onclick="onReporteResumenPartidas()" class="btn btn-raised"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
 <button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>
 <button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
-
-
-</div>
+</div>-->
 
 <script>
     $(document).ready(function () {
@@ -111,8 +109,8 @@
         });
         setTimeout(HoldOn.close(), 1500);
     });
-    
-    
+
+
     function onReporteResumenPartidas() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -131,9 +129,9 @@
             HoldOn.close();
         });
     }
-    
-    
-       function onReporteFin49() {
+
+
+    function onReporteFin49() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -151,9 +149,9 @@
             HoldOn.close();
         });
     }
-    
-    
-      function onReportePresupuestoBBVA() {
+
+
+    function onReportePresupuestoBBVA() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -171,8 +169,8 @@
             HoldOn.close();
         });
     }
-    
-    
+
+
     function onReporteFotografico() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -191,8 +189,8 @@
             HoldOn.close();
         });
     }
-    
-     function onReporteCroquis() {
+
+    function onReporteCroquis() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -210,8 +208,8 @@
             HoldOn.close();
         });
     }
-    
-     function onReporteGenerador() {
+
+    function onReporteGenerador() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -229,6 +227,6 @@
             HoldOn.close();
         });
     }
-    
-    
+
+
 </script>

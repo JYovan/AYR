@@ -23,14 +23,18 @@
 <div class="col-md-12">
     <!--GUARDAR-->
     <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
-        <div class="panel-heading" >
-            <div class="panel-heading row">
+        <div class="Custompanel-heading" >
+            <div class="Custompanel-heading row">
                 <div class="col-md-8"> 
 
-                    <div class="cursor-hand" >Nuevo preciario</div>
+                    <div class="cursor-hand" >
+                         <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Nuevo preciario
+                    </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-raised btn-default" id="btnCancelar">CANCELAR</button>
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
 
                 </div>
@@ -80,13 +84,13 @@
                                 <option value=""></option> 
                             </select>
                         </div>
-                        
-                        
-                         <div class="col-6 col-md-6">
+
+
+                        <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
 
                         </div>
-                        
+
                         <div class="col-md-12">
                             <br>
                             <div class="alert alert-dismissible alert-warning">
@@ -96,9 +100,9 @@
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div> 
                         </div>
-                        
-                        
-                        
+
+
+
                         <div class="col-md-12" align="center">
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
@@ -113,7 +117,7 @@
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
-                       
+
 
                     </fieldset>
                 </div>
@@ -123,13 +127,18 @@
 
     <!--EDITAR-->
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
-        <div class="panel-heading">
-            <div class="panel-heading row">
+        <div class="Custompanel-heading">
+            <div class="Custompanel-heading row">
                 <div class="col-md-8"> 
-                    <div class="cursor-hand" >Editar Preciario </div>
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Editar Preciario 
+                    </div>
                 </div> 
                 <div class="col-md-4 panel-title" align="right">
-                    <button type="button" class="btn btn-raised btn-default" id="btnCancelarEditar">CANCELAR</button>
+
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
 
                 </div>
@@ -205,7 +214,7 @@
             </div>
         </div>
         <div class="panel-body"> 
-          
+
 
             <div class="col-md-12 dt-buttons" align="right"> 
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button> 
@@ -521,7 +530,7 @@
     var btnEditar = $("#btnEditar");
     var pnlEditar = $("#pnlEditar");
     var btnModificar = pnlEditar.find("#btnGuardarEditar");
-    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico"); 
+    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico");
     var mdlEditarConcepto = $("#mdlEditarConcepto");
     var mdlConfirmarEliminarConcepto = $("#mdlConfirmarEliminarConcepto");
     var btnConfirmarEliminarConcepto = $("#btnConfirmarEliminarConcepto");
@@ -531,8 +540,8 @@
     var btnCancelarModificacion = mdlEditarConcepto.find("#btnCancelarModificacion");
     var btnNuevoConcepto = $("#btnNuevoConcepto");
     var mdlNuevoConcepto = $("#mdlNuevoConcepto");
-    
-    
+
+
     var btnGuardarConcepto = mdlNuevoConcepto.find("#btnGuardarConcepto");
     var btnCancelarConcepto = mdlNuevoConcepto.find("#btnCancelarConcepto");
     var btnNuevaCategoria = mdlNuevoConcepto.find("#btnNuevaCategoria");
@@ -544,15 +553,15 @@
     var btnCancelarSubSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubSubCategoria");
 
     var pnlConceptos = pnlEditar.find("#pnlConceptos");
-    
-    
+
+
 
 
     //Variables de controles para subir archivo
     var Archivo = pnlNuevo.find("#RutaArchivo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
-    
+
     var currentDate = new Date();
 
 //Variables de conceptos detalle
@@ -729,7 +738,7 @@
             pnlNuevo.addClass("hide");
 
         });
-        
+
         btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -763,8 +772,8 @@
             });
         });
 
-    
-       
+
+
         btnNuevaCategoria.click(function () {
             mdlNuevaCategoria.removeClass("hide");
         });
@@ -824,7 +833,7 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-        
+
         btnNuevoConcepto.click(function () {
 
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
@@ -1320,7 +1329,7 @@
             HoldOn.close();
         });
     }
-    
+
     function getCategorias(IDX) {
         console.log('Categorias')
         HoldOn.open({
@@ -1497,7 +1506,7 @@
             HoldOn.close();
         });
     }
-   
+
 </script>
 
 <script>

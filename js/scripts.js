@@ -23,7 +23,7 @@ var tableOptions = {
     buttons: [
         {
             extend: 'copyHtml5',
-            text: '<span data-tooltip="Copiar Registros"><spam class="fa fa-clipboard fa-2x"></spam></spam>',
+            text: '<span data-tooltip="Copiar Registros"><spam class="fa fa-clipboard CustomIconsForDataTable"></spam></spam>',
             message: 'COPIADO',
             exportOptions: {
                 modifier: {
@@ -34,7 +34,7 @@ var tableOptions = {
         },
         {
             extend: 'excelHtml5',
-            text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o fa-2x"></span></span>',
+            text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
             exportOptions: {
                 columns: ':visible'
             }
@@ -52,7 +52,7 @@ var tableOptions = {
 //        },
         {
             extend: 'pdfHtml5',
-            text: '<span  data-tooltip="Exportar a PDF"><span class="fa fa-file-pdf-o fa-2x"></span></span>',
+            text: '<span  data-tooltip="Exportar a PDF"><span class="fa fa-file-pdf-o CustomIconsForDataTable"></span></span>',
             orientation: 'landscape',
             pageSize: 'LEGAL',
             exportOptions: {
@@ -84,7 +84,7 @@ var tableOptions = {
 //        },
         {
             extend: 'colvis',
-            text: '<span  data-tooltip="Columnas"><span class="fa fa-columns fa-2x"></span></span>',
+            text: '<span  data-tooltip="Columnas"><span class="fa fa-columns CustomIconsForDataTable"></span></span>',
             exportOptions: {
                 modifier: {
                     page: 'current'
