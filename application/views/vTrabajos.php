@@ -50,11 +50,11 @@
 
             <div class="Custompanel-heading row">
                 <div class="col-md-5">
-                    <div class="cursor-hand" > 
+                    <div class="cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
                         </button>
-                        Nuevo Trabajo 
+                        Nuevo Trabajo
                     </div>
                 </div>
 
@@ -546,6 +546,9 @@
                         <label for="">Cantidad</label>
                         <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                     </div>
+                    <div class="col-md-12 table-responsive" id="GeneradorXConcepto" align="center">
+
+                    </div>
                 </fieldset>
             </div>
             <div class="modal-footer">
@@ -567,7 +570,7 @@
             <div class="Custompanel-heading row">
 
                 <div class="col-md-5">
-                    <div class="cursor-hand" > 
+                    <div class="cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelarModificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
                         </button>
@@ -959,25 +962,15 @@
     /*Detalle*/
     var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
     var btnGuardarGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar");
-
+    var GeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#GeneradorXConcepto");
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
 
 
     var currentDate = new Date();
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-//        tBtnConcluir.on("click", function () {
-//            if (!$(this).is(':checked')) {
-//                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-//            }
-//
-//        });
-
-
-
-
-        btnGuardarGeneradorXConcepto.on("click", function () {
+        btnGuardarGeneradorXConcepto.on("click", function() {
             var generador_string = mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val();
             var Generador = [];
             var nuevo_generador = {};
@@ -991,17 +984,23 @@
             nuevo_generador["Alto"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
             nuevo_generador["Cantidad"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0);
             if (generador_string.length > 0) {
+
                 Generador.push(generador_string);
                 Generador.push(JSON.stringify(nuevo_generador));
                 console.log('* * * * * * * * * * * * * * * * GENERADOR CON OBJETO PREVIO * * * * *');
-                console.log(Generador);
+
+                console.log(JSON.parse("[" + Generador + "]"));
+                var Generador_con_objetos = JSON.parse("[" + Generador + "]");
+                console.log(Generador_con_objetos);
+
+                console.log('* * * * * * * * * * * * * * * * END GENERADOR CON OBJETO PREVIO * * * * *');
             } else {
                 Generador.push(JSON.stringify(nuevo_generador));
                 console.log('* * * * * * * * * * * * * * * * GENERADOR SIN OBJETO PREVIO * * * * *');
                 console.log(Generador);
             }
 
-            $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+            $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
                 if (row_status === 'ACTIVO') {
                     /*EVALUAR LA CANTIDAD*/
@@ -1031,7 +1030,7 @@
             getImporteTotal();
         });
 
-        btnNuevoConcepto.on("click", function () {
+        btnNuevoConcepto.on("click", function() {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
             if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
 
@@ -1042,14 +1041,14 @@
             }
         });
 
-        btnRefrescar.on("click", function () {
+        btnRefrescar.on("click", function() {
             getRecords();
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
         });
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function () {
+        btnConfirmarEliminar.on("click", function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -1059,7 +1058,7 @@
             }
         });
 
-        btnEliminar.on("click", function () {
+        btnEliminar.on("click", function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -1071,14 +1070,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                     getRecords();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -1086,7 +1085,7 @@
             }
         });
 
-        btnEditar.on("click", function () {
+        btnEditar.on("click", function() {
 
 
             if (tBtnEditarConcluir.is(':checked')) {
@@ -1097,7 +1096,7 @@
                 btnModificar.removeClass('hide');
             }
 
-            tBtnEditarConcluir.on("click", function () {
+            tBtnEditarConcluir.on("click", function() {
                 if (!$(this).is(':checked')) {
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                     btnModificar.removeClass('hide');
@@ -1125,7 +1124,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
 
                     pnlEditarTrabajo.find("input").val("");
                     var trabajo = data[0];
@@ -1136,19 +1135,19 @@
                         data: {
                             ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
                     $.ajax({
@@ -1158,19 +1157,19 @@
                         data: {
                             Cliente_ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
                     //trae los catalogos
@@ -1237,9 +1236,9 @@
 
                     menuTablero.addClass("hide");
                     pnlEditarTrabajo.removeClass("hide");
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -1247,7 +1246,7 @@
             }
         });
 
-        btnModificar.on("click", function () {
+        btnModificar.on("click", function() {
 
             $.validator.setDefaults({
                 ignore: []
@@ -1267,19 +1266,19 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -1311,7 +1310,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
 
 
@@ -1323,9 +1322,9 @@
                     }
 
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
@@ -1333,7 +1332,7 @@
 
         });
 
-        btnGuardar.on("click", function () {
+        btnGuardar.on("click", function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1352,19 +1351,19 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -1373,7 +1372,7 @@
                 var trabajo_detalle = [];
                 var concepto = {};
 //                var conceptos = {};
-                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function (key, value) {
+                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function(key, value) {
                     var row = $(this).find("td");
                     console.log(row);
                     concepto = {
@@ -1416,7 +1415,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
 
                     if (tBtnConcluir.is(':checked')) {
                         btnGuardar.addClass('hide');
@@ -1428,15 +1427,15 @@
                     btnCancelar.trigger('click');
 
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
         });
 
-        btnCancelar.on("click", function () {
+        btnCancelar.on("click", function() {
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
@@ -1445,7 +1444,7 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-        btnCancelarModificar.on("click", function () {
+        btnCancelarModificar.on("click", function() {
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -1453,9 +1452,9 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-        btnNuevo.on("click", function () {
+        btnNuevo.on("click", function() {
 
-            $.each(tblConceptosXTrabajo.find("tbody tr"), function () {
+            $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
                 $(this).remove();
             });
             tblConceptosXTrabajo.addClass("hide");
@@ -1476,29 +1475,29 @@
             pnlDetalleNuevoTrabajo.removeClass("hide");
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+        pnlEditarTrabajo.find("#Cliente_ID").change(function() {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-        btnArchivo.on("click", function () {
-            Archivo.change(function () {
+        btnArchivo.on("click", function() {
+            Archivo.change(function() {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -1506,7 +1505,7 @@
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -1519,7 +1518,7 @@
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             VistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                         };
@@ -1549,15 +1548,15 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function () {
+            $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
+            $('#tblTrabajos tbody').on('click', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1577,7 +1576,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblTrabajos tbody').on('dblclick', 'tr', function () {
+            $('#tblTrabajos tbody').on('dblclick', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -1585,22 +1584,22 @@
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
 
-    $('#Encabezado a').on("click", function (e) {
+    $('#Encabezado a').on("click", function(e) {
         e.preventDefault();
         $(this).tab('show');
     });
@@ -1614,17 +1613,17 @@
             url: master_url + 'getClientes',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
             pnlEditarTrabajo.find("#Cliente_ID").html(options);
             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1641,19 +1640,19 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
             });
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1670,19 +1669,19 @@
             data: {
                 Cliente_ID: Cliente_ID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1699,12 +1698,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1721,12 +1720,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1740,16 +1739,16 @@
             url: master_url + 'getCodigosPPTA',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1763,17 +1762,17 @@
             url: master_url + 'getCuadrillas',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1790,16 +1789,16 @@
             data: {
                 ID: CodigoID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1821,14 +1820,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1844,7 +1843,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -1857,11 +1856,11 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     var has_id = true;
                     console.log('AGREGANDO.. CONCEPTO ');
                     if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                             var row_status = $(this).find("td").eq(1).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
@@ -1939,25 +1938,25 @@
                             mdlTrabajoNuevoConcepto.modal('hide');
                         }
                     }
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
 
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -1975,7 +1974,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -1993,7 +1992,7 @@
     function onGeneradorXConcepto(evt) {
         var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
@@ -2003,7 +2002,101 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val(row.eq(1).text());
         mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val(xCantidad);
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val(row.eq(13).text());
+
+        var Generadores = JSON.parse("[" + row.eq(13).text() + "]");
+        console.log('************************************GENERADORES ENCONTRADOS****************');
+        console.log(Generadores);
+
+        /*CREAR TABLA DE GENERADORES*/
+        var tblGeneradores = '<table  id="tblGeneradores" class="table table-striped table-hover" width="100%">' +
+                '<thead>' +
+                '<tr>' +
+                '<th class="hide">Renglon</th>' +
+                '<th class="hide">Concepto_ID</th>' +
+                '<th >Area</th>' +
+                '<th>Eje</th>' +
+                '<th class="col-md-3">Localización eje 1</th>' +
+                '<th class="col-md-3">Localización eje 2</th>' +
+                '<th class="col-md-1">Largo</th>' +
+                '<th>Ancho</th>' +
+                '<th class="col-md-2">Alto</th>' +
+                '<th class="col-md-2">Cantidad</th>' +
+                '<th>Total</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>';
+
+        $.each(Generadores, function(k, v) {
+            console.log(k, v);
+            tblGeneradores += "<tr>";
+            /*RENGLON*/
+            tblGeneradores += "<td class='hide'>";
+            tblGeneradores += row.eq(2).text();
+            tblGeneradores += "</td>";
+            /*CONCEPTO_ID*/
+            tblGeneradores += "<td class='hide'>";
+            tblGeneradores += v.Concepto_ID;
+            tblGeneradores += "</td>";
+            /*AREA*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Area;
+            tblGeneradores += "</td>";
+
+            /*EJE*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Eje;
+            tblGeneradores += "</td>";
+            /*EntreEje1*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.EntreEje1;
+            tblGeneradores += "</td>";
+            /*EntreEje2*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.EntreEje2;
+            tblGeneradores += "</td>";
+
+            /*Largo*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Largo;
+            tblGeneradores += "</td>";
+            /*Ancho*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Ancho;
+            tblGeneradores += "</td>";
+            /*Alto*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Alto;
+            tblGeneradores += "</td>";
+
+            /*Cantidad*/
+            tblGeneradores += "<td>";
+            tblGeneradores += v.Cantidad;
+            tblGeneradores += "</td>";
+            /*Total*/
+            var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) > 0) ? v.Largo : 1);
+            var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) > 0) ? v.Ancho : 1);
+            var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) > 0) ? v.Alto : 1);
+            var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) > 0) ? v.Cantidad : 1);
+            tblGeneradores += "<td>";
+            tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
+            tblGeneradores += "</td>";
+
+            tblGeneradores += "</tr>";
+        });
+        tblGeneradores += '</tbody>' +
+                '</table>';
+        GeneradorXConcepto.html(tblGeneradores);
+
+        var DataTableGeneradores = GeneradorXConcepto.find("#tblGeneradores");
+        if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
+
+            DataTableGeneradores.destroy();
+            DataTableGeneradores.DataTable(tableOptions);
+        } else {
+            DataTableGeneradores.DataTable(tableOptions);
+        }
         mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
         console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
         console.log(row);
         console.log('* * * * * * * * * *  ROW * * * * * * * * * * ');
@@ -2013,7 +2106,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
