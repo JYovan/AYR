@@ -1144,10 +1144,7 @@
 
         btnEditar.click(function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
-//                HoldOn.open({
-//                    theme: "sk-bounce",
-//                    message: "CARGANDO DATOS..."
-//                });
+
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
                     type: "POST",
@@ -1158,7 +1155,7 @@
                 }).done(function(data, x, jq) {
                     console.log(data);
                     var preciario = data[0];
-//                    mdlEditarConcepto.find("#Descripcion").val("");
+
                     pnlEditar.find("#ID").val(preciario.ID);
                     pnlEditar.find("#Nombre").val(preciario.Nombre);
                     pnlEditar.find("#Tipo").val(preciario.Tipo);
@@ -1168,18 +1165,7 @@
                     pnlEditar.find("#Tipo").select2("val", preciario.Tipo);
                     pnlEditar.find("#PreciarioEspecifico").html("");
 
-//
-//                    mdlEditarConcepto.addClass("hide");
-//                    mdlEditarConcepto.find("#IDConcepto").val("");
-//                    mdlEditarConcepto.find("#Clave").val("");
-//                    mdlEditarConcepto.find("#Descripcion").val("");
-//                    mdlEditarConcepto.find("#Costo").val("");
-//                    mdlEditarConcepto.find("#Moneda").val("");
-//                    mdlEditarConcepto.find("#Unidad").val("");
-//                    mdlEditarConcepto.find("#Categoria").select2("val", "");
-//                    mdlEditarConcepto.find("#SubCategoria").select2("val", "");
-//                    mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
-//                    getCategoriasByPreciarioID(preciario.ID);
+
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
 
@@ -1189,7 +1175,7 @@
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
-//                    HoldOn.close();
+                
                 });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
@@ -1331,11 +1317,8 @@
     }
 
     function getCategorias(IDX) {
-        console.log('Categorias')
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+   
+    
         $.ajax({
             url: master_url + 'getCategoriasXPreciarioID',
             type: "POST",
@@ -1357,15 +1340,12 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-            HoldOn.close();
+       
         });
     }
 
     function getSubCategorias(ID, IDC) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+      
         $.ajax({
             url: master_url + 'getSubCategoriasXCategoriaIDXPreciarioID',
             type: "POST",
@@ -1386,15 +1366,12 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-            HoldOn.close();
+        
         });
     }
 
     function getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(ID, IDC, IDSC) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+    
         $.ajax({
             url: master_url + 'getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID',
             type: "POST",
@@ -1415,7 +1392,7 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-            HoldOn.close();
+       
         });
     }
 
@@ -1503,7 +1480,7 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-//            HoldOn.close();
+            HoldOn.close();
         });
     }
 
