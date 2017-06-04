@@ -263,7 +263,7 @@
 
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorClass',
+                errorClass: 'errorForms',
                 rules: {
                     Usuario: 'required',
                     Contrasena: 'required',
