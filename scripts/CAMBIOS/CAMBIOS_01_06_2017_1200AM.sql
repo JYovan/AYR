@@ -96,3 +96,4 @@ CREATE TABLE `ayr`.`trabajodetalleAnexos` (
 ALTER TABLE `ayr`.`generadortrabajosdetalle` 
 ADD COLUMN `IdTrabajoDetalle` INT(25) NULL AFTER `Total`;
 
+

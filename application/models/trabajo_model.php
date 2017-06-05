@@ -12,6 +12,7 @@ class trabajo_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        date_default_timezone_set('America/Mexico_City');
     }
 
     public function getRecords() {
@@ -42,6 +43,27 @@ class trabajo_model extends CI_Model {
              */
             $str = $this->db->last_query();
 //        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoDetalleByID($IDX) {
+        try {
+            $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
+                    . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
+                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda', false);
+            $this->db->from("trabajosdetalle AS TD");
+            $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
+            $this->db->where("TD.Trabajo_ID", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -105,15 +127,35 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onAgregarDetalleFacturas($array) {
+    public function onModificarDetalleFoto($ID, $DATA) {
         try {
-            $this->db->insert("trabajodetallefacturas", $array);
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetallefotos", $DATA);
+            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleAnexos($array) {
+        try {
+            $this->db->insert("trabajodetalleanexos", $array);
             print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
             return $LastIdInserted;
 //           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarDetalleAnexo($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetalleanexos", $DATA);
+            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -128,6 +170,16 @@ class trabajo_model extends CI_Model {
             $LastIdInserted = $row['LAST_INSERT_ID()'];
             return $LastIdInserted;
 //           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarDetalleCroquis($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetallecroquis", $DATA);
+            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
