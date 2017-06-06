@@ -384,6 +384,7 @@ div.dt-EncabezadoControles> .btn{
 
 .customButtonDetalleEliminar{
     color:#EB0C0C;
+     font-size: 19px !important;
 }
 .customButtonDetalleEliminar:hover{
 
@@ -392,6 +393,7 @@ div.dt-EncabezadoControles> .btn{
 
 .customButtonDetalleGenerador{
     color: #555353;
+      font-size: 18px !important;
 }
 
 .customButtonDetalleGenerador:hover{
