@@ -64,6 +64,10 @@ class CtrlEmpresas extends CI_Controller {
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
                 } else {
+                    $DATA = array(
+                        'RutaLogo' => (NULL)
+                    );
+                     $this->empresa_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -107,6 +111,10 @@ class CtrlEmpresas extends CI_Controller {
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
                 } else {
+                     $DATA = array(
+                        'RutaLogo' => (NULL)
+                    );
+                     $this->empresa_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }

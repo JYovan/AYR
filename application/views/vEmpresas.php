@@ -268,6 +268,8 @@
     var ModificarArchivo = mdlEditar.find("#RutaLogo");
     var btnModificarArchivo = mdlEditar.find("#btnArchivo");
     var ModificarVistaPrevia = mdlEditar.find("#VistaPrevia");
+    
+    
     var btnModificar = mdlEditar.find("#btnModificar");
 
     var btnRefrescar = $("#btnRefrescar");
@@ -521,10 +523,10 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         console.log(Archivo[0].files[0]);
-                        var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
+                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
                                         <p>' + Archivo[0].files[0].name + '</p>\n\
-                                    </div>';
+                                    </div></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
@@ -533,8 +535,8 @@
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
                         readerpdf.onload = function (e) {
-                            VistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
-                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
                         readerpdf.readAsDataURL(Archivo[0].files[0]);
                     } else {
@@ -558,10 +560,10 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         console.log(ModificarArchivo[0].files[0]);
-                        var preview = '<img src="' + reader.result + '" class="img-responsive" >\n\
+                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
                                         <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
-                                    </div>';
+                                    </div></div>';
                         ModificarVistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(ModificarArchivo[0].files[0]);
@@ -570,8 +572,8 @@
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
                         readerpdf.onload = function (e) {
-                            ModificarVistaPrevia.html('<hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
-                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            ModificarVistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
                         readerpdf.readAsDataURL(ModificarArchivo[0].files[0]);
                     } else {
@@ -658,5 +660,9 @@
 
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
+         $('#RutaLogo').trigger('blur');
+          $('#RutaLogo').on('blur', function (e) {
+                $('#RutaLogo').val('');
+            });
     }
 </script>

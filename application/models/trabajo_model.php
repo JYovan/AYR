@@ -19,10 +19,10 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select("T.ID, T.Movimiento,"
                     . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'Folio', "
-                    . "(CASE WHEN  T.Situacion ='AUTORIZADO' THEN CONCAT('<span class=\'label label-success\'>','AUTORIZADO','</span>') "
-                    . "WHEN  T.Situacion ='SIN AUTORIZAR' THEN CONCAT('<span class=\'label label-danger\'>','SIN AUTORIZAR','</span>')"
-                    . "ELSE CONCAT('<span class=\'label label-warning\'>','PENDIENTE','</span>') END) AS Estatus ,"
-                    . "T.FechaCreacion as 'Fecha Creación' ,"
+                    . "(CASE WHEN  T.Estatus ='Concluido' THEN CONCAT('<span class=\'label label-success\'>','CONCLUIDO','</span>') "
+                    . "WHEN  T.Estatus ='Borrador' THEN CONCAT('<span class=\'label label-default\'>','BORRADOR','</span>')"
+                    . "ELSE CONCAT('<span class=\'label label-danger\'>','Cancelado','</span>') END) AS Estatus ,"
+                    . "T.FechaCreacion as 'Fecha' ,"
                     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS Atendido ,"
                     . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
@@ -35,7 +35,7 @@ class trabajo_model extends CI_Model {
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
                     . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID  "
-                    . "INNER JOIN USUARIOs U ON U.ID = T.Usuario_ID WHERE T.ESTATUS='ACTIVO' ", false);
+                    . "INNER JOIN USUARIOs U ON U.ID = T.Usuario_ID WHERE T.ESTATUS in ('Borrador','Concluido') ", false);
 
             $query = $this->db->get();
             /*
@@ -251,7 +251,7 @@ class trabajo_model extends CI_Model {
 
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'Inactivo');
+            $this->db->set('Estatus', 'Cancelado');
             $this->db->where('ID', $ID);
             $this->db->update("trabajos");
 //            print $str = $this->db->last_query();

@@ -365,14 +365,14 @@ div.dt-buttons > .btn{
 }
 
 div.dt-EncabezadoControles {
-    padding: 4px 0px;
+        padding: 0px 0px;
 
 
 }
 
 div.dt-EncabezadoControles> .btn{
-    padding: 4px 15px;
-    margin: 10px 1px;
+    padding: 10px 15px;
+    margin: 14px 1px;
 
 
 }

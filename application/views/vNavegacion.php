@@ -89,7 +89,7 @@
 
     </div><!-- /.container-fluid -->
 </nav>
-<div id="reportes" class="dt-buttons">
+<!--<div id="reportes" class="dt-buttons">
 <button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
 <button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
@@ -98,7 +98,7 @@
 <button onclick="onReporteResumenPartidas()" class="btn btn-raised"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
 <button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
 <button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>
-</div>
+</div>-->
 
 <script>
     $(document).ready(function () {

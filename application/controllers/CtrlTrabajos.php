@@ -134,7 +134,7 @@ class CtrlTrabajos extends CI_Controller {
                 'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : NULL,
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : NULL,
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
-                'Estatus' => 'ACTIVO',
+                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
                 'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL
             );
             $ID = $this->trabajo_model->onAgregar($data);
@@ -155,6 +155,10 @@ class CtrlTrabajos extends CI_Controller {
                     );
                     $this->trabajo_model->onModificar($ID, $DATA);
                 } else {
+                     $DATA = array(
+                        'Adjunto' => (NULL)
+                    );
+                    $this->trabajo_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -354,6 +358,35 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $this->trabajo_model->onModificar($ID, $this->input->post());
+            
+             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
+            $master_url = $URL_DOC . '/';
+            
+            var_dump($this->input->post());
+            
+            if (isset($_FILES["Adjunto"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                    $DATA = array(
+                        'Adjunto' => ($img)
+                    );
+                    $this->trabajo_model->onModificar($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Adjunto' => (NULL)
+                    );
+                     $this->trabajo_model->onModificar($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+            
+            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

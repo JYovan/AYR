@@ -116,6 +116,10 @@ class CtrlClientes extends CI_Controller {
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
                 } else {
+                     $DATA = array(
+                        'RutaLogo' => (NULL)
+                    );
+                     $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -160,6 +164,10 @@ class CtrlClientes extends CI_Controller {
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
                 } else {
+                    $DATA = array(
+                        'RutaLogo' => (NULL)
+                    );
+                     $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }

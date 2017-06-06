@@ -65,13 +65,294 @@ class CtrlSesion extends CI_Controller {
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
 
-    
+    public function onReportePresupuesto() {
+        // Creación del objeto de la clase heredada 
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        
 
-   
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        $pdf->SetAutoPageBreak(false, 300);
+        $pdf->SetLineWidth(0.4);
+
+        $pdf->Image(base_url() . 'img/watermark.png', 10, 95);
+
+        /* ENCABEZADO */
+        // Logo
+        $pdf->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
+        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
+
+        $pdf->SetX(10);
+        $pdf->SetY(5);
+        // Movernos a la iquierda
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Cell(50, 5, utf8_decode("A&R Construcciones Sa de Cv"), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 4);
+        $pdf->SetX(18);
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 3);
+        $pdf->SetX(18);
+        $pdf->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 3);
+        $pdf->SetX(18);
+        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 3);
+        $pdf->SetX(18);
+        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
+
+        /* INICIO CUERPO */
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 10);
+        $pdf->SetX(100);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(20, 5, utf8_decode("PRESUPUESTO"), 0, 0, 'L');
+        $pdf->SetY($CurrentY + 7);
+        $pdf->SetX(185);
+        $pdf->SetFont('Arial', 'B', 7.5);
+        $pdf->Cell(20, 5, utf8_decode("#FOLIO"), 0, 0, 'C');
+
+        /* DATS GENERALES */
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 8);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(80, 4, utf8_decode("#CLIENTE"), 0, 0, 'L');
+        $pdf->SetY($CurrentY + 8);
+        $pdf->SetX(140);
+        $pdf->Cell(60, 4, utf8_decode("#MUNICIPIO, #ESTADO"), 0, 0, 'R');
+
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 4);
+        $pdf->SetX(10);
+        $pdf->Cell(20, 4, utf8_decode("SUCURSAL: "), 0, 0, 'L');
+        $pdf->SetX(30);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(100, 4, utf8_decode("#SUCURSAL "), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 4);
+        $pdf->SetX(10);
+        $pdf->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
+        $pdf->SetX(30);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(100, 4, utf8_decode("#OBRA "), 0, 0, 'L');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 4);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE: #"), 0, 0, 'L');
+
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 10);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', '', 7.5);
+        $pdf->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : SOLICITA REVISION Y REPARACION DE LA PUERTA DE   ACCESO AL AREA DE AUTOSERVICIO ESTA COLGADA A CAUSA DE LAS VISAGRAS EN LA SUCURSAL MERCADO INDEPENDENCIA CR 1221 UBICADA EN LAZARO CARDENAS NO. 526 NO. ­­, VENTURA PUENTE, MICHOACAN"), 0, 'J');
+
+        /* ENCABEZADO DETALLE */
+
+
+        $borders = 0;
+        $bottom = 0;
+        $pdf->SetLineWidth(0.4);
+        $page = 1;
+        for ($i = 1; $i <= 1; $i++) {
+            if ($bottom == 290) {
+                $pdf->AddPage();
+                $borders = 0;
+                $bottom = 0;
+                $page += 1;
+            }
+            if ($borders == 0) {
+
+                /* DETALLE  */
+                if ($page == 1) {
+
+              
+
+                    /* ENCABEZADO TITULOS */
+                    $pdf->SetFont('Arial', 'B', 6.5);
+                    $CurrentY = $pdf->GetY()+10;
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(10);
+                    $pdf->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(25);
+                    $pdf->Cell(105, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(130);
+                    $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(145);
+                    $pdf->Cell(20, 5, utf8_decode("VOLUMEN"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(165);
+                    $pdf->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(185);
+                    $pdf->Cell(20, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
+                    
+                   
+                    /* CATEGORIAS */
+                     $CurrentY = $pdf->GetY();
+                     $pdf->SetY($CurrentY);
+                    $pdf->SetX(10);
+                    $pdf->Cell(15, 5, utf8_decode("#CLAVE"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(25);
+                    $pdf->Cell(105, 5, utf8_decode("CATEGORIA"), 1, 1, 'L');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(130);
+                    $pdf->Cell(15, 5, utf8_decode(""), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(145);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(165);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(185);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C');
+                    
+                    /* CONCEPTOS */
+                    $pdf->SetFont('Arial', '', 6.5);
+                     $CurrentY = $pdf->GetY();
+                     $pdf->SetY($CurrentY);
+                    $pdf->SetX(10);
+                    $pdf->Cell(15, 5, utf8_decode("#CLAVE"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(25);
+                    $pdf->MultiCell(105, 5, utf8_decode("#CONCEPTOCONCEPTOCONCEPTO"), 1,  'J');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(130);
+                    $pdf->Cell(15, 5, utf8_decode("#UNIDAD"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(145);
+                    $pdf->Cell(20, 5, utf8_decode("#VOLUMEN"), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(165);
+                    $pdf->Cell(20, 5, utf8_decode("#P.U."), 1, 1, 'C');
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(185);
+                    $pdf->Cell(20, 5, utf8_decode("#IMPORTE"), 1, 1, 'C');
+                    
+                    
+                     /* SUBTOTALES */
+                    $pdf->SetFont('Arial', 'B', 6.5);
+                    $pdf->SetFillColor(160,160,160);
+                     $CurrentY = $pdf->GetY();
+                     $pdf->SetY($CurrentY);
+                    $pdf->SetX(10);
+                    $pdf->Cell(15, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(25);
+                    $pdf->MultiCell(105, 5, utf8_decode("SUBTOTAL:"), 1,  'J',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(130);
+                    $pdf->Cell(15, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(145);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(165);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(185);
+                    $pdf->Cell(20, 5, utf8_decode("#SUBTOTAL"), 1, 1, 'C',true);
+                    
+                    
+                    //TOTALES
+                         $pdf->SetFont('Arial', 'B', 6.5);
+                    $pdf->SetFillColor(160,160,160);
+                     $CurrentY = $pdf->GetY();
+                     $pdf->SetY($CurrentY);
+                    $pdf->SetX(10);
+                    $pdf->Cell(15, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(25);
+                    $pdf->MultiCell(105, 5, utf8_decode("TOTAL GENERAL:"), 1,  'J',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(130);
+                    $pdf->Cell(15, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(145);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(165);
+                    $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C',true);
+                    $pdf->SetY($CurrentY);
+                    $pdf->SetX(185);
+                    $pdf->Cell(20, 5, utf8_decode("#TOTAL GENERAL"), 1, 1, 'C',true);
+                   
+                    
+                    
+                    
+                    
+                    
+                }
+
+
+                $borders = 1;
+            }
+            /* AUMENTAR EL TAMAÑO */
+            $bottom += 10;
+        }
+
+        /* Leyenda */
+        $pdf->SetY(232);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', '', 6.5);
+        $pdf->MultiCell(190, 3, utf8_decode("EL IMPORTE DE ESTE PRESUPUESTO NO INCLUYE 16% IVA. VIGENCIA VÁLIDA POR 30 DÍAS A PARTIR DE LA FECHA DE GENERACIÓN DEL PRESUPUESTO SIN OTRO PARTICULAR DE MOMENTO Y EN ESPERA DE VERNOS FAVORECIDOS CON SU PREFERENCIA, QUEDO A SUS APRECIABLES ORDENES."), 0, 'C');
+
+        /* Firma */
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 15);
+        $pdf->SetX(73);
+        $pdf->SetFont('Arial', 'B', 7.5);
+        $pdf->cell(70, 5, utf8_decode("Ing. Victor Ayala Ruiz"), 'T', 0, 'C');
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 3);
+        $pdf->SetX(73);
+        $pdf->SetFont('Arial', '', 7.5);
+        $pdf->cell(70, 5, utf8_decode("A & R Construcciones Sa de Cv"), 0, 0, 'C');
+
+        /* Barra Footer */
+        $CurrentY = $pdf->GetY();
+        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, $CurrentY + 2, 210, 6);
+
+        $CurrentY = $pdf->GetY();
+        $pdf->SetY($CurrentY + 4);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->MultiCell(60, 3, utf8_decode("
+Justo Sierra No. 2150
+Col. Americana
+CP. 44600
+Guadalajara, Jalisco, MÉXICO"), 0, 'L');
+
+
+        $pdf->SetY($CurrentY + 6);
+        $pdf->SetX(175);
+        $pdf->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
+
+
+        /* FIN CUERPO */
+        if (!file_exists('uploads/Reportes')) {
+            mkdir('uploads/Reportes', 0777, true);
+        }
+        $file_name = "PRESUPUESTO";
+        $url = 'uploads/Reportes/' . $file_name . '.pdf';
+
+        $pdf->Output($url);
+        print base_url() . $url;
+    }
 
     public function onReporteResumenPartidas() {
         // Creación del objeto de la clase heredada 
-           $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
         $pdf->AliasNbPages();
         $pdf->AddPage();
@@ -139,7 +420,7 @@ class CtrlSesion extends CI_Controller {
 
         /* SEGUNDA PARTE ENCABEZADO */
         $CurrenY = $pdf->GetY();
-        $pdf->SetY($CurrenY );
+        $pdf->SetY($CurrenY);
         $pdf->SetX(15);
         $pdf->Cell(55, 5, utf8_decode("SUCURSAL BANCARIA (INTERIORES) "), 0, 1, 'L');
         $pdf->SetFont('Arial', '', 8);
@@ -158,7 +439,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("ALBAÑILERIA"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-       $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -208,7 +489,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("LIMPIEZA"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-       $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -258,7 +539,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("SIN CLAVE"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-       $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -293,7 +574,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("ALBAÑILERIA"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-      $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -303,7 +584,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("ACABADOS"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-       $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -323,7 +604,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(55, 5, utf8_decode("INFRAESTRUCUTRA"), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
-       $pdf->SetX(110);
+        $pdf->SetX(110);
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
 
@@ -416,10 +697,6 @@ class CtrlSesion extends CI_Controller {
 
 
 
-
-
-
-
         /* FIN CUERPO */
         if (!file_exists('uploads/Reportes')) {
             mkdir('uploads/Reportes', 0777, true);
@@ -433,7 +710,7 @@ class CtrlSesion extends CI_Controller {
 
     public function onReporteFin49() {
         // Creación del objeto de la clase heredada 
-           $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
         $pdf->AliasNbPages();
         $pdf->AddPage();
@@ -458,7 +735,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetY(5);
         // Movernos a la derecha
         $pdf->SetX(5);
-        $pdf->SetTextColor(167,167,167);
+        $pdf->SetTextColor(167, 167, 167);
         $pdf->Cell(205, 5, utf8_decode("FIN­049A Notificación De Items Adicionales Y/O Fuera De Catálogo De Precios Unitarios (Posible Orden De Cambio)"), 0, 0, 'R');
         $pdf->SetTextColor(0, 0, 0);
 
@@ -475,7 +752,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->Ln(5);
 
         /* CUERPO */
-        $pdf->SetFillColor(208,225,248);
+        $pdf->SetFillColor(208, 225, 248);
         $pdf->SetY(30);
         $pdf->SetX(5);
         $pdf->SetFont('Arial', 'B', 8);
@@ -491,7 +768,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->SetX(155);
         $pdf->Cell(55, 5, utf8_decode("#FECHA"), 'B', 1, 'C');
 
-        $pdf->SetFillColor(169,244,251);
+        $pdf->SetFillColor(169, 244, 251);
         $pdf->SetY(43);
         $pdf->SetX(125);
         $pdf->Cell(30, 5, utf8_decode("TIPO DE CONCEPTO:"), 0, 1, 'R', true);
@@ -737,7 +1014,7 @@ class CtrlSesion extends CI_Controller {
         $pdf->Cell(92, 4, utf8_decode("INMUEBLES: Actitud, Eficiecia Y Calidad A Tu Servicio"), 1, 1, 'L');
         $pdf->SetY(270);
         $pdf->SetX(97);
-        $pdf->SetFillColor(169,244,251);
+        $pdf->SetFillColor(169, 244, 251);
         $pdf->Cell(23, 4, utf8_decode("Versión 1"), 1, 1, 'C', true);
         $pdf->SetY(270);
         $pdf->SetX(120);
@@ -755,15 +1032,9 @@ class CtrlSesion extends CI_Controller {
         print base_url() . $url;
     }
 
-    
-    
-    
-    
-    
-    
     public function onReportePresupuestoBBVA() {
         // Creación del objeto de la clase heredada 
-          $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
         $pdf->AliasNbPages();
         $pdf->AddPage();
@@ -986,173 +1257,10 @@ class CtrlSesion extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
-    
-    public function onReportePresupuesto() {
-        // Creación del objeto de la clase heredada 
-        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
-
-        $pdf->AliasNbPages();
-        $pdf->AddPage();
-        $pdf->SetAutoPageBreak(false, 300);
-        $pdf->SetLineWidth(0.4);
-
-        $pdf->Image(base_url() . 'img/watermark.png', 10, 95);
-
-        /* ENCABEZADO */
-        // Logo
-        $pdf->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
-        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
-
-        $pdf->SetX(10);
-        $pdf->SetY(5);
-        // Movernos a la iquierda
-        $pdf->SetFont('Arial', 'B', 11);
-        $pdf->Cell(50, 5, utf8_decode("A&R Construcciones Sa de Cv"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(18);
-        $pdf->SetFont('Arial', 'B', 7);
-        $pdf->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
-
-        /* INICIO CUERPO */
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 10);
-        $pdf->SetX(100);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(20, 5, utf8_decode("PRESUPUESTO"), 0, 0, 'L');
-        $pdf->SetY($CurrentY + 7);
-        $pdf->SetX(185);
-        $pdf->SetFont('Arial', 'B', 7.5);
-        $pdf->Cell(20, 5, utf8_decode("#FOLIO"), 0, 0, 'C');
-
-        /* DATS GENERALES */
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 8);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 4, utf8_decode("#CLIENTE"), 0, 0, 'L');
-        $pdf->SetY($CurrentY + 8);
-        $pdf->SetX(140);
-        $pdf->Cell(60, 4, utf8_decode("#MUNICIPIO, #ESTADO"), 0, 0, 'R');
-
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->Cell(20, 4, utf8_decode("SUCURSAL: "), 0, 0, 'L');
-        $pdf->SetX(30);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(100, 4, utf8_decode("#SUCURSAL "), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
-        $pdf->SetX(30);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(100, 4, utf8_decode("#OBRA "), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE: #"), 0, 0, 'L');
-
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 5);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', '', 7.5);
-        $pdf->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : SOLICITA REVISION Y REPARACION DE LA PUERTA DE   ACCESO AL AREA DE AUTOSERVICIO ESTA COLGADA A CAUSA DE LAS VISAGRAS EN LA SUCURSAL MERCADO INDEPENDENCIA CR 1221 UBICADA EN LAZARO CARDENAS NO. 526 NO. ­­, VENTURA PUENTE, MICHOACAN"), 0, 'J');
-
-        /* ENCABEZADO DETALLE */
-
-
-        $borders = 0;
-        $bottom = 0;
-        $pdf->SetLineWidth(0.4);
-        $page = 1;
-        for ($i = 1; $i <= 1; $i++) {
-            if ($bottom == 290) {
-                $pdf->AddPage();
-                $borders = 0;
-                $bottom = 0;
-                $page += 1;
-            }
-            if ($borders == 0) {
-
-                /* DETALLE  */
-                if ($page == 1) {
-                    
-                }
-
-
-                $borders = 1;
-            }
-            /* AUMENTAR EL TAMAÑO */
-            $bottom += 10;
-        }
-
-        /* Leyenda */
-        $pdf->SetY(232);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', '', 6.5);
-        $pdf->MultiCell(190, 3, utf8_decode("EL IMPORTE DE ESTE PRESUPUESTO NO INCLUYE 16% IVA. VIGENCIA VÁLIDA POR 30 DÍAS A PARTIR DE LA FECHA DE GENERACIÓN DEL PRESUPUESTO SIN OTRO PARTICULAR DE MOMENTO Y EN ESPERA DE VERNOS FAVORECIDOS CON SU PREFERENCIA, QUEDO A SUS APRECIABLES ORDENES."), 0, 'C');
-
-        /* Firma */
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 15);
-        $pdf->SetX(73);
-        $pdf->SetFont('Arial', 'B', 7.5);
-        $pdf->cell(70, 5, utf8_decode("Ing. Victor Ayala Ruiz"), 'T', 0, 'C');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(73);
-        $pdf->SetFont('Arial', '', 7.5);
-        $pdf->cell(70, 5, utf8_decode("A & R Construcciones Sa de Cv"), 0, 0, 'C');
-
-        /* Barra Footer */
-        $CurrentY = $pdf->GetY();
-        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, $CurrentY + 2, 210, 6);
-
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 7);
-        $pdf->MultiCell(60, 3, utf8_decode("
-Justo Sierra No. 2150
-Col. Americana
-CP. 44600
-Guadalajara, Jalisco, MÉXICO"), 0, 'L');
-
-
-        $pdf->SetY($CurrentY + 6);
-        $pdf->SetX(175);
-        $pdf->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
-
-
-        /* FIN CUERPO */
-        if (!file_exists('uploads/Reportes')) {
-            mkdir('uploads/Reportes', 0777, true);
-        }
-        $file_name = "PRESUPUESTO";
-        $url = 'uploads/Reportes/' . $file_name . '.pdf';
-
-        $pdf->Output($url);
-        print base_url() . $url;
-    }
 
     public function onReporteFotografico() {
 
-  // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada 
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
         $pdf->AliasNbPages();
@@ -1570,7 +1678,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
 
 
 
-               
+
                 /* DETALLE GENERADOR */
                 if ($page == 1) {
                     /* LINEA VERTICAL EJE ABAJO DE LOCALIZACION DETALLE */
@@ -1646,7 +1754,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
                 $pdf->Cell(15, 5, utf8_decode("FIRMAS DE CONFORMIDAD"), 0, 1, 'L');
                 $pdf->SetFont('Arial', '', 8);
 
-                 /* ELABORÓ */
+                /* ELABORÓ */
                 $pdf->SetFont('Arial', '', 8);
                 $pdf->SetY(183);
                 $pdf->SetX(5);
@@ -1695,8 +1803,8 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->Output($url);
         print base_url() . $url;
     }
-    
-     public function onReporteCroquis() {
+
+    public function onReporteCroquis() {
         // Creación del objeto de la clase heredada 
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
@@ -1848,7 +1956,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
                 }
                 /* FIN DETALLE IMAGENES */
                 /* FIRMAS */
-                  /* ELABORÓ */
+                /* ELABORÓ */
                 $pdf->SetFont('Arial', '', 8);
                 $pdf->SetY(183);
                 $pdf->SetX(5);
@@ -1900,5 +2008,10 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
 }
 
 class PDF extends FPDF {
-    
+     function SetAlpha($alpha, $bm='Normal')
+    {
+        // set alpha for stroking (CA) and non-stroking (ca) operations
+        $gs = $this->AddExtGState(array('ca'=>$alpha, 'CA'=>$alpha, 'BM'=>'/'.$bm));
+        $this->SetExtGState($gs);
+    }
 }
