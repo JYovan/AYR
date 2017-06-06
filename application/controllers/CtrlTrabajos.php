@@ -70,6 +70,36 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function getTrabajoFotosDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoFotosDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoCroquisDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoCroquisDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoAnexosDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoAnexosDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onAgregar() {
         try {
             /* TRABAJO */
@@ -180,6 +210,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE FOTOS */
                     $FOTOX = json_decode("[" . $this->input->post("JSONFOTOS")[$v->Renglon - 1] . "]");
+                    var_dump($FOTOX);
                     foreach ($FOTOX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -198,8 +229,7 @@ class CtrlTrabajos extends CI_Controller {
                         print "\nTOTAL DE FOTOS: $total";
 
                         for ($i = 0; $i < $total; $i++) {
-                            if (isset($_FILES["FOTOS"]["name"][$i]) && $_FILES["FOTOS"]["name"][$i] === $vgf->Foto) {
-
+                            if ($_FILES["FOTOS"]["name"][$i] === $vgf->Foto) {
                                 if (!file_exists($URL_DOC)) {
                                     mkdir($URL_DOC, 0777, true);
                                 }
@@ -210,7 +240,7 @@ class CtrlTrabajos extends CI_Controller {
                                     );
                                     $this->trabajo_model->onModificarDetalleFoto($IDDGF, $DATA);
                                 } else {
-                                    echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO";
+                                    echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO: " . $img;
                                 }
                             }
                         }
@@ -220,6 +250,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE CROQUIS */
                     $CROQUISX = json_decode("[" . $this->input->post("JSONCROQUIS")[$v->Renglon - 1] . "]");
+                    var_dump($CROQUISX);
                     foreach ($CROQUISX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -260,6 +291,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE ANEXOS */
                     $ANEXOSX = json_decode("[" . $this->input->post("JSONANEXOS")[$v->Renglon - 1] . "]");
+                    var_dump($ANEXOSX);
                     foreach ($ANEXOSX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -331,6 +363,15 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $this->trabajo_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarFotoXConcepto() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarFotoXConcepto($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

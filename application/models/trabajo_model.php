@@ -71,6 +71,60 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getTrabajoFotosDetalleByID($IDX) {
+        try {
+            $this->db->select('TDF.*', false);
+            $this->db->from("trabajodetallefotos AS TDF");
+            $this->db->where("TDF.IdTrabajoDetalle", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoCroquisDetalleByID($IDX) {
+        try {
+            $this->db->select('TDC.*', false);
+            $this->db->from("trabajodetallecroquis AS TDC");
+            $this->db->where("TDC.IdTrabajoDetalle", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoAnexosDetalleByID($IDX) {
+        try {
+            $this->db->select('TDA.*', false);
+            $this->db->from("trabajodetalleanexos AS TDA");
+            $this->db->where("TDA.IdTrabajoDetalle", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onAgregar($array) {
         try {
             $this->db->insert("trabajos", $array);
@@ -200,6 +254,16 @@ class trabajo_model extends CI_Model {
             $this->db->set('Estatus', 'Inactivo');
             $this->db->where('ID', $ID);
             $this->db->update("trabajos");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarFotoXConcepto($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetallefotos');
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

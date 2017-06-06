@@ -57,12 +57,6 @@
                         Nuevo Trabajo
                     </div>
                 </div>
-
-
-
-
-
-
                 <div class="col-md-7 panel-title"  >
                     <div class="col-md-4 dt-EncabezadoControles " align="right">
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
@@ -88,8 +82,6 @@
                         <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <div class="panel-body">
@@ -114,8 +106,6 @@
                             <div class="col-6 col-md-12">
                                 <br>
                             </div>
-
-
                             <div class="col-6 col-md-6">
                                 <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
@@ -126,13 +116,10 @@
                                     <option value="ESTIMACIÓN">ESTIMACIÓN</option>
                                 </select>
                             </div>
-
                             <div class=" col-6 col-md-3">
                                 <label for="">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                             </div>
-
-
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
@@ -1055,6 +1042,7 @@
             <fieldset>
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                    <button type="button" class="btn btn-default" id="btnAdjuntosXConcepto"><span class="fa fa-eye fa-1x" ></span><br>ADJUNTOS</button>
                 </div>
                 <div class="col-md-12 table-responsive" id="Conceptos" align="center">
                     <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
@@ -1088,6 +1076,46 @@
         </div>
     </div>
 </div>
+
+<div class="modal animated fadeInUp" id="mdlAdjuntosXConceptoID">
+    <div class="modal-dialog super-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Adjuntos</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <div class="col-md-12 hide">
+                        <input type="text" id="ID" name="ID" class="form-control">
+                        <input type="text" id="IDC" name="IDC" class="form-control">
+                    </div>
+                </fieldset>
+                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                    <li class="active"><a href="#Fotos" data-toggle="tab">Fotos</a></li>
+                    <li><a href="#Croquis" data-toggle="tab">Croquis</a></li>
+                    <li><a href="#Anexos" data-toggle="tab">Anexos</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="Fotos">
+                        <h1>NO EXISTEN FOTOS</h1>
+                    </div>
+                    <div class="tab-pane fade" id="Croquis">
+                        <h1>NO EXISTEN CROQUIS</h1>
+                    </div>
+                    <div class="tab-pane fade" id="Anexos">
+                        <h1>NO EXISTEN ANEXOS</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!--SCRIPT-->
 <script>
@@ -1124,66 +1152,255 @@
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
     var pnlDetalleEditarTrabajo = $("#pnlDetalleEditarTrabajo");
-    var Conceptos = pnlDetalleEditarTrabajo.find("#Conceptos");
-
+    var btnAdjuntosXConcepto = pnlDetalleEditarTrabajo.find("#btnAdjuntosXConcepto");
+    var mdlAdjuntosXConceptoID = $("#mdlAdjuntosXConceptoID");
     var currentDate = new Date();
+
     $(document).ready(function() {
 
-        btnGuardarGeneradorXConcepto.on("click", function() {
-            var generador_string = mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val();
-            var Generador = [];
-            var nuevo_generador = {};
-            nuevo_generador["Concepto_ID"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
-            nuevo_generador["Area"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
-            nuevo_generador["Eje"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
-            nuevo_generador["EntreEje1"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
-            nuevo_generador["EntreEje2"] = mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
-            nuevo_generador["Largo"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
-            nuevo_generador["Ancho"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
-            nuevo_generador["Alto"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
-            nuevo_generador["Cantidad"] = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0);
-            if (generador_string.length > 0) {
+        btnAdjuntosXConcepto.on("click", function() {
+            if (temp !== undefined && temp !== '' && temp !== 0 && temp > 0) {
+                HoldOn.open({
+                    theme: 'sk-bounce',
+                    message: 'CARGANDO...'
+                });
+                $.ajax({
+                    url: master_url + 'getTrabajoFotosDetalleByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
+                    console.log(data);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                    mdlAdjuntosXConceptoID.find("#Fotos").html("");
+                    mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
+                    mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
+                    $.each(data, function(k, v) {
+                        console.log(v);
+                        console.log(base_url + v.Url);
+                        var picthumbnail = '<div class="col-md-4">';
+                        picthumbnail += '<div class="thumbnail">' +
+                                '<a href="' + base_url + v.Url + '" target="_blank">' +
+                                '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
+                                '</a>' +
+                                '<div class="caption" align="center">' +
+                                '<p>' + v.Observaciones + '</p>' +
+                                '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
+                                '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
+                                '</div>' +
+                                '</div>';
+                        mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
+                    });
 
-                Generador.push(generador_string);
-                Generador.push(JSON.stringify(nuevo_generador));
-                console.log('* * * * * * * * * * * * * * * * GENERADOR CON OBJETO PREVIO * * * * *');
+                }).fail(function(x, y, z) {
+                    console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
+                    console.log(x, y, z);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                }).always(function() {
 
-                console.log(JSON.parse("[" + Generador + "]"));
-                var Generador_con_objetos = JSON.parse("[" + Generador + "]");
-                console.log(Generador_con_objetos);
+                });
+                $.ajax({
+                    url: master_url + 'getTrabajoCroquisDetalleByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
+                    console.log(data);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                    mdlAdjuntosXConceptoID.find("#Croquis").html("");
+                    $.each(data, function(k, v) {
+                        console.log(v);
+                        console.log(base_url + v.Url);
+                        mdlAdjuntosXConceptoID.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a>');
+                    });
 
-                console.log('* * * * * * * * * * * * * * * * END GENERADOR CON OBJETO PREVIO * * * * *');
+                }).fail(function(x, y, z) {
+                    console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
+                    console.log(x, y, z);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                }).always(function() {
+
+                });
+                $.ajax({
+                    url: master_url + 'getTrabajoAnexosDetalleByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
+                    console.log(data);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                    mdlAdjuntosXConceptoID.find("#Anexos").html("");
+                    $.each(data, function(k, v) {
+                        console.log(v);
+                        console.log(base_url + v.Url);
+                        var url_file = base_url + v.Url;
+                        if (url_file !== null && url_file !== undefined && url_file !== '') {
+                            var ext = getExt(url_file);
+                            console.log(ext);
+                            if (ext === "gif" || ext === "jpg" || ext === "png") {
+                                mdlAdjuntosXConceptoID.find("#Anexos").append('<a href="' + url_file + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a>');
+                            }
+                            if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                                mdlAdjuntosXConceptoID.find("#Anexos").append('<hr> <embed src="' + url_file + '" type="application/pdf" width="100%" height="800px"' +
+                                        ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            }
+                            if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                                mdlAdjuntosXConceptoID.find("#Anexos").append('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                            }
+                        } else {
+                            mdlAdjuntosXConceptoID.find("#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
+                        }
+                    });
+
+                }).fail(function(x, y, z) {
+                    console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
+                    console.log(x, y, z);
+                    console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+                }).always(function() {
+                    HoldOn.close();
+                });
+                mdlAdjuntosXConceptoID.find("#ID").val(temp);
+                mdlAdjuntosXConceptoID.modal('show');
             } else {
-                Generador.push(JSON.stringify(nuevo_generador));
-                console.log('* * * * * * * * * * * * * * * * GENERADOR SIN OBJETO PREVIO * * * * *');
-                console.log(Generador);
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CONCEPTO', 'danger');
             }
+        });
 
+        btnGuardarGeneradorXConcepto.on("click", function() {
+            var Generador = [];
             $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
                 if (row_status === 'ACTIVO') {
                     /*EVALUAR LA CANTIDAD*/
-                    var xCantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val() : 0));
                     var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 1);
                     var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 1);
                     var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 1);
                     var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-                    console.log('**********************DATOS A EVALUAR**************************')
-                    console.log(xCantidad, Largo, Ancho, Alto, Cantidad);
-                    console.log('**********************END  DATOS A EVALUAR**************************')
-                    xCantidad = xCantidad + (Largo * Ancho * Alto * ((Cantidad === 0) ? 1 : Cantidad));
-                    console.log('CANTIDAD FINAL : ' + xCantidad);
-                    $(this).find("td").eq(6).text(xCantidad);
+//                    console.log('**********************DATOS A EVALUAR**************************')
+                    /*EVALUAR LOS CAMPOS*/
+                    if ((Largo !== '' && Largo !== 0 && Largo > 1) ||
+                            (Ancho !== '' && Ancho !== 0 && Ancho > 1) ||
+                            (Alto !== '' && Alto !== 0 && Alto > 1) ||
+                            (Cantidad !== '' && Cantidad !== 0 && Cantidad > 1)) {
+//                        /*FIN DE LA EVALUACIÓN*/
+                        /*ELIMINAR GENERADORES*/
+                        if (GeneradorXConcepto.find())
+                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                                var row = $(v).find("td");
+                                if (row.eq(0).text() === "No existen datos en la tabla.") {
+                                    $(this).remove();
+                                }
+                            });
+                        var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
 
-                    /*FIN DE LA EVALUACIÓN*/
+                        var new_row = '<tr role="row" class="even">';
+                        new_row += '<td class="hide sorting_1">1</td>';
+                        new_row += '<td class="hide">';
+                        new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
+                        new_row += '</td><td>';
+                        new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
+                        new_row += '</td><td>';
+                        new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
+                        new_row += '</td><td>';
+                        new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
+                        new_row += '</td><td>';
+                        new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
+                        new_row += '</td><td>';
+                        new_row += parseFloat((Largo !== '') ? Largo : 0);
+                        new_row += '</td><td>';
+                        new_row += parseFloat((Ancho !== '') ? Ancho : 0);
+                        new_row += '</td><td>';
+                        new_row += parseFloat((Alto !== '') ? Alto : 0);
+                        new_row += '</td><td>';
+                        new_row += parseFloat((Cantidad !== '') ? Cantidad : 0);
+                        new_row += '</td>';
+                        new_row += '<td>';
+                        new_row += subtotal;
+                        new_row += '</td>';
+                        new_row += '<td><span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td></tr>';
+                        GeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
 
-                    var Precio = parseFloat($(this).find("td").eq(8).text());
-                    var Total = xCantidad * Precio;
-                    $(this).find("td").eq(10).text(Total);
-                    $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                    $(this).find("td").eq(13).text(Generador);
-                    mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                    return false;
+                        /*AGREGAR NUEVO GENERADOR*/
+                        Generador = [];
+                        var xCantidad = 0;
+                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            var row = $(v).find("td");
+                            console.log(v);
+                            console.log(row);
+                            var nuevo_generador = {};
+                            nuevo_generador["Concepto_ID"] = row.eq(1).text();
+                            nuevo_generador["Area"] = row.eq(2).text();
+                            nuevo_generador["Eje"] = row.eq(3).text();
+                            nuevo_generador["EntreEje1"] = row.eq(4).text();
+                            nuevo_generador["EntreEje2"] = row.eq(5).text();
+                            nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(6).text()) !== '') ? parseFloat(row.eq(6).text()) : 0);
+                            nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
+                            nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
+                            nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
+                            Generador.push(JSON.stringify(nuevo_generador));
+                            var tdLargo = parseFloat(row.eq(6).text());
+                            var tdAncho = parseFloat(row.eq(6).text());
+                            var tdAlto = parseFloat(row.eq(6).text());
+                            var tdCantidad = parseFloat(row.eq(6).text());
+                            var subtotal = ((tdLargo !== 0 && tdLargo !== "0") ? tdLargo : 1) * ((tdAncho !== 0 && tdAncho !== "0") ? tdAncho : 1) * ((tdAlto !== 0 && tdAlto !== "0") ? tdAlto : 1) * ((tdCantidad !== 0 && tdCantidad !== "0") ? tdCantidad : 1);
+                            xCantidad += parseFloat(subtotal);
+
+                        });
+                        $(this).find("td").eq(6).text(xCantidad);
+                        /*FIN DE LA EVALUACIÓN*/
+                        var Precio = parseFloat($(this).find("td").eq(8).text());
+                        var Total = xCantidad * Precio;
+                        $(this).find("td").eq(10).text(Total);
+                        $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
+                        $(this).find("td").eq(13).text(Generador);
+
+                        mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                        return false;
+                    } else {
+
+                        Generador = [];
+                        var xCantidad = 0;
+                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            var row = $(v).find("td");
+                            console.log(v);
+                            console.log(row);
+                            var nuevo_generador = {};
+                            nuevo_generador["Concepto_ID"] = row.eq(1).text();
+                            nuevo_generador["Area"] = row.eq(2).text();
+                            nuevo_generador["Eje"] = row.eq(3).text();
+                            nuevo_generador["EntreEje1"] = row.eq(4).text();
+                            nuevo_generador["EntreEje2"] = row.eq(5).text();
+                            nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(6).text()) !== '') ? parseFloat(row.eq(6).text()) : 0);
+                            nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
+                            nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
+                            nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
+                            Generador.push(JSON.stringify(nuevo_generador));
+                            var tdLargo = parseFloat(row.eq(6).text());
+                            var tdAncho = parseFloat(row.eq(6).text());
+                            var tdAlto = parseFloat(row.eq(6).text());
+                            var tdCantidad = parseFloat(row.eq(6).text());
+                            var subtotal = ((tdLargo !== 0 && tdLargo !== "0") ? tdLargo : 1) * ((tdAncho !== 0 && tdAncho !== "0") ? tdAncho : 1) * ((tdAlto !== 0 && tdAlto !== "0") ? tdAlto : 1) * ((tdCantidad !== 0 && tdCantidad !== "0") ? tdCantidad : 1);
+                            xCantidad += parseFloat(subtotal);
+
+                        });
+                        $(this).find("td").eq(6).text(xCantidad);
+                        /*FIN DE LA EVALUACIÓN*/
+                        var Precio = parseFloat($(this).find("td").eq(8).text());
+                        var Total = xCantidad * Precio;
+                        $(this).find("td").eq(10).text(Total);
+                        $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
+                        $(this).find("td").eq(13).text(Generador);
+                        mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                    }
                 }
             });
             getImporteTotal();
@@ -1620,7 +1837,6 @@
                     }
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
                     btnCancelar.trigger('click');
-
                     console.log(data, x, jq);
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
@@ -2213,21 +2429,7 @@
     function onEliminarGenerador(evt) {
         onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $(evt).parent().parent().remove();
-        /**/
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-            var row_status = $(this).find("td").eq(15).text();
-            if (row_status === 'ACTIVO') {
-
-                var nuevo_generador = JSON.parse("[" + row.eq(13).text() + "]");
-
-                $.each(nuevo_generador, function(k, v) {
-                    console.log(k, v);
-
-                });
-                $(this).find("td").eq(13).text(nuevo_generador);
-                return false;
-            }
-        });
+        /*RECALCULAR EL TOTAL*/
         getImporteTotal();
     }
 
@@ -2571,7 +2773,9 @@
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
-                btnEditar.trigger("click");
+                /*MODAL*/
+                console.log('MODAL OPEN')
+                btnAdjuntosXConcepto.trigger('click');
             });
             // Apply the search
             tblSelected.columns().every(function() {
@@ -2589,6 +2793,72 @@
         });
     }
 
+    function onReloadFotosXConcepto(IDX) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO FOTOS..."
+        });
+        $.ajax({
+            url: master_url + 'getTrabajoFotosDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+            console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
+            console.log(data);
+            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+            mdlAdjuntosXConceptoID.find("#Fotos").html("");
+            mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
+            mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
+            $.each(data, function(k, v) {
+                console.log(v);
+                console.log(base_url + v.Url);
+                var picthumbnail = '<div class="col-md-4">';
+                picthumbnail += '<div class="thumbnail">' +
+                        '<a href="' + base_url + v.Url + '" target="_blank">' +
+                        '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
+                        '</a>' +
+                        '<div class="caption" align="center">' +
+                        '<p>' + v.Observaciones + '</p>' +
+                        '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
+                        '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
+                        '</div>' +
+                        '</div>';
+                mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
+            });
+
+        }).fail(function(x, y, z) {
+            console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
+            console.log(x, y, z);
+            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
+    function onEliminarFotoXConcepto(IDX, IDTD) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "ELIMINANDO..."
+        });
+        $.ajax({
+            url: master_url + 'onEliminarFotoXConcepto',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO, ELIMINADA', 'success');
+            onReloadFotosXConcepto(IDTD);
+        }).fail(function(x, y, z) {
+            console.log("* * * * * * * * * * * * * FAIL ELIMINAR FOTO* * * * * * * * * * * * * * * ");
+            console.log(x, y, z);
+            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
 </script>
 <style>
 
