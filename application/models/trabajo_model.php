@@ -55,7 +55,11 @@ class trabajo_model extends CI_Model {
             $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
                     . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda,'
-                    . 'CONCAT("<button class=\"btn btn-raised btn-default\" onclick=\"onEliminar(\"><span class=\"\"></span></button>") AS Eliminar', false);
+                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradorXConceptoID(TD.ID)\"></span>") AS Generador, '
+                    . 'CONCAT("<span class=\"fa fa-camera 2x\" onclick=\"getFotosXConceptoID(TD.ID)\"></span>") AS Fotos, '
+                    . 'CONCAT("<span class=\"fa fa-map 2x\" onclick=\"getCroquisXConceptoID(TD.ID)\"></span>") AS Croquis, '
+                    . 'CONCAT("<span class=\"fa fa-paperclip 2x\" onclick=\"getAnexosXConceptoID(TD.ID)\"></span>") AS Anexos, '
+                    . 'CONCAT("<span class=\"fa fa-minus 2x\" onclick=\"onEliminarDetalle(TD.ID)\"></span>") AS Eliminar', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
