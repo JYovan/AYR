@@ -54,7 +54,8 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
                     . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
-                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda', false);
+                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda,'
+                    . 'CONCAT("<button class=\"btn btn-raised btn-default\" onclick=\"onEliminar(\"><span class=\"\"></span></button>") AS Eliminar', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
