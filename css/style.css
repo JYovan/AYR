@@ -30,7 +30,7 @@
 
 .cursor-hand{
     color: #000;
-    font-size: 17px !important;
+    font-size: 17.5px !important;
 }
 
 /*Estilo select2*/
@@ -426,4 +426,9 @@ div.dt-EncabezadoControles> .btn{
 
 .has-items{
     color: #4caf50 !important;
+}
+
+
+.panel.panel-default>.panel-heading, .panel>.panel-heading {
+    background-color: #fff !important;
 }

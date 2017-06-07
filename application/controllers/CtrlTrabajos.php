@@ -135,10 +135,11 @@ class CtrlTrabajos extends CI_Controller {
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : NULL,
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
-                'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL
+                'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL,
+                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL
             );
             $ID = $this->trabajo_model->onAgregar($data);
-            print "ID: " . $ID;
+            print $ID;
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
             if (isset($_FILES["Adjunto"]["name"])) {
@@ -155,11 +156,11 @@ class CtrlTrabajos extends CI_Controller {
                     );
                     $this->trabajo_model->onModificar($ID, $DATA);
                 } else {
-                     $DATA = array(
+                    $DATA = array(
                         'Adjunto' => (NULL)
                     );
                     $this->trabajo_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                    // echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
 
@@ -185,14 +186,14 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* GENERADOR */
 
-                    print "\n\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * JSON GENERADOR ****************\n";
+                    //                 print "\n\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * JSON GENERADOR ****************\n";
 //                    print $v->Generador;
                     $GENERADORX = json_decode("[" . $v->Generador . "]", true);
 //                    var_dump($GENERADORX);
-                    print "\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * END JSON GENERADOR ****************\n\n";
-                    print "\n NUM. " . count($GENERADORX) . " REGISTROS\n";
+                    //                print "\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * END JSON GENERADOR ****************\n\n";
+                    //               print "\n NUM. " . count($GENERADORX) . " REGISTROS\n";
                     foreach ($GENERADORX as $k => $vg) {
-                        print $vg["Concepto_ID"] . "\n";
+                        //               print $vg["Concepto_ID"] . "\n";
                         $subtotal = (($vg["Largo"] !== 0 && $vg["Largo"] !== "0") ? $vg["Largo"] : 1) * (($vg["Ancho"] !== 0 && $vg["Ancho"] !== "0") ? $vg["Ancho"] : 1) * (($vg["Alto"] !== 0 && $vg["Alto"] !== "0") ? $vg["Alto"] : 1) * (($vg["Cantidad"] !== 0 && $vg["Cantidad"] !== "0") ? $vg["Cantidad"] : 1);
                         if ($subtotal !== '' && $subtotal !== 0) {
                             $data = array(
@@ -214,7 +215,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE FOTOS */
                     $FOTOX = json_decode("[" . $this->input->post("JSONFOTOS")[$v->Renglon - 1] . "]");
-                    var_dump($FOTOX);
+                  //  var_dump($FOTOX);
                     foreach ($FOTOX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -230,7 +231,7 @@ class CtrlTrabajos extends CI_Controller {
                         $URL_DOC = "uploads/Trabajos/Fotos/T$ID/TD$IDD";
                         $master_url = $URL_DOC . '/';
                         $total = count($_FILES['FOTOS']['name']);
-                        print "\nTOTAL DE FOTOS: $total";
+                        //               print "\nTOTAL DE FOTOS: $total";
 
                         for ($i = 0; $i < $total; $i++) {
                             if ($_FILES["FOTOS"]["name"][$i] === $vgf->Foto) {
@@ -244,7 +245,7 @@ class CtrlTrabajos extends CI_Controller {
                                     );
                                     $this->trabajo_model->onModificarDetalleFoto($IDDGF, $DATA);
                                 } else {
-                                    echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO: " . $img;
+                                    //             echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO: " . $img;
                                 }
                             }
                         }
@@ -254,7 +255,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE CROQUIS */
                     $CROQUISX = json_decode("[" . $this->input->post("JSONCROQUIS")[$v->Renglon - 1] . "]");
-                    var_dump($CROQUISX);
+                 //   var_dump($CROQUISX);
                     foreach ($CROQUISX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -270,7 +271,7 @@ class CtrlTrabajos extends CI_Controller {
                         $URL_DOC = "uploads/Trabajos/Croquis/T$ID/TD$IDD";
                         $master_url = $URL_DOC . '/';
                         $total = count($_FILES['CROQUIS']['name']);
-                        print "\nTOTAL DE CROQUIS: $total";
+                        //         print "\nTOTAL DE CROQUIS: $total";
 
                         for ($i = 0; $i < $total; $i++) {
                             //Get the temp file path
@@ -295,7 +296,7 @@ class CtrlTrabajos extends CI_Controller {
 
                     /* DETALLE ANEXOS */
                     $ANEXOSX = json_decode("[" . $this->input->post("JSONANEXOS")[$v->Renglon - 1] . "]");
-                    var_dump($ANEXOSX);
+             //       var_dump($ANEXOSX);
                     foreach ($ANEXOSX[0] as $k => $vgf) {
 //                        var_dump($vgf);
                         $data = array(
@@ -311,7 +312,7 @@ class CtrlTrabajos extends CI_Controller {
                         $URL_DOC = "uploads/Trabajos/Anexos/T$ID/TD$IDD";
                         $master_url = $URL_DOC . '/';
                         $total = count($_FILES['ANEXOS']['name']);
-                        print "\nTOTAL DE ANEXOS: $total";
+                        //      print "\nTOTAL DE ANEXOS: $total";
 
                         for ($i = 0; $i < $total; $i++) {
                             //Get the temp file path
@@ -327,18 +328,18 @@ class CtrlTrabajos extends CI_Controller {
                                     );
                                     $this->trabajo_model->onModificarDetalleAnexo($IDDGA, $DATA);
                                 } else {
-                                    echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Anexo\n";
+                                    //             echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Anexo\n";
                                 }
                             }
                         }
                     }
                     /* FIN DETALLE ANEXOS */
-                    print "\n";
+                    //    print "\n";
                 }
             }
-            print "\n";
-            print "\n";
-            print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  END CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
+            //    print "\n";
+            //    print "\n";
+            //    print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  END CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -358,12 +359,12 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $this->trabajo_model->onModificar($ID, $this->input->post());
-            
-             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
+
+            $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
-            
+
             var_dump($this->input->post());
-            
+
             if (isset($_FILES["Adjunto"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -381,12 +382,10 @@ class CtrlTrabajos extends CI_Controller {
                     $DATA = array(
                         'Adjunto' => (NULL)
                     );
-                     $this->trabajo_model->onModificar($ID, $DATA);
+                    $this->trabajo_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
-            
-            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

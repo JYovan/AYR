@@ -360,7 +360,7 @@
 
                         </div>
 
-                        <!--                                PANEL DE ARCHVIO ADJUNTO-->
+                        <!-- PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos4">
 
                             <div class="col-md-12">
@@ -406,10 +406,10 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
-                <div id="ImporteTotal" class="col-md-4" align="right">
+                <div id="ImporteTotal" class="col-md-6" align="right">
                     <h4 class="text-success">$ 0.0</h4>
                 </div>
             </div>
@@ -482,8 +482,8 @@
 </div>
 
 <!--MODAL DETALLE - NUEVO GENERADOR POR CONCEPTO-->
-<div id="mdlTrabajoNuevoGeneradorPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog medium-fullscreen">
+<div id="mdlTrabajoNuevoGeneradorPorConcepto" class="modal animated bounceInDown ">
+    <div class="modal-dialog super-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -497,7 +497,7 @@
                 <div id="pnlGenerador" class="tab-content">
                     <div class="tab-pane fade active in" id="Generadores">
                         <fieldset>
-                            <div class="col-md-12 table-responsive" id="GeneradorXConcepto" align="center">
+                            <div class="col-md-12 table-responsive" id="GeneradorXConcepto" >
                             </div>
                             <div id="GeneradorImporteTotal" class="col-md-12" align="right">
                                 <h4 class="text-success">TOTAL $ 0.0</h4>
@@ -512,55 +512,61 @@
                             <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control hide">
                         </div>
                         <div class="col-md-12">
+                            <br>
+                        </div>
+                        <div class="col-md-5">
                             <label for="">Area</label>
                             <input type="text" id="Area" name="Area" class="form-control">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-3">
                             <label for="">Eje</label>
                             <input type="text" id="Eje" name="Eje" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <label for="">Localización eje 1</label>
+                        <div class="col-md-2">
+                            <label for="">Entre Eje 1</label>
                             <input type="text" id="EntreEje1" name="EntreEje1" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <label for="">Localización eje 2</label>
+                        <div class="col-md-2">
+                            <label for="">Entre Eje 2</label>
                             <input type="text" id="EntreEje2" name="EntreEje2" class="form-control">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <label for="">Largo</label>
                             <input type="number" id="Largo" min="0" name="Largo" class="form-control">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <label for="">Ancho</label>
                             <input type="number" id="Ancho" min="0" name="Ancho" class="form-control">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <label for="">Alto</label>
                             <input type="number" id="Alto" min="0" name="Alto" class="form-control">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-2">
                             <label for="">Cantidad</label>
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                         </div>
-                        <div class="col-md-12">
+                        
+                         <div class="modal-footer">
+             
                             <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                            <button type="button" class="btn btn-default hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
+                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
+
+                            <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+                            <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
-                <button type="button" class="btn btn-primary" id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
-            </div>
+           
         </div>
     </div>
 </div>
 
 <!--MODAL DETALLE - FOTOS POR CONCEPTO-->
 <div id="mdlTrabajoNuevoFotosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog medium-fullscreen">
+    <div class="modal-dialog super-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -586,7 +592,7 @@
 
 <!--MODAL DETALLE - NUEVOS CROQUIS POR CONCEPTO-->
 <div id="mdlTrabajoNuevoCroquisPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog medium-fullscreen">
+    <div class="modal-dialog super-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -625,7 +631,7 @@
 
 <!--MODAL DETALLE - NUEVOS ANEXOS POR CONCEPTO-->
 <div id="mdlTrabajoNuevoAnexosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog medium-fullscreen">
+    <div class="modal-dialog super-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -710,7 +716,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 " align="right">
-                        <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                        <button type="button" class="btn btn-raised btn-primary" id="btnModificarTrabajo">GUARDAR</button>
                     </div>
 
 
@@ -1035,10 +1041,10 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
-                <div id="ImporteTotal" class="col-md-4" align="right">
+                <div id="ImporteTotal" class="col-md-6" align="right">
                     <h4 class="text-success">$ 0.0</h4>
                 </div>
             </div>
@@ -1130,7 +1136,7 @@
     var btnCancelar = $("#btnCancelar");
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
-    var btnModificar = $("#btnModificar");
+    var btnModificar = $("#btnModificarTrabajo");
     var btnEditar = $("#btnEditar");
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
     var pnlEditarTrabajo = $("#pnlEditarTrabajo");
@@ -1169,6 +1175,8 @@
 
     var btnCancelarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelar");
     var btnMoficarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar");
+    
+   
 
     $(document).ready(function() {
 
@@ -1395,12 +1403,21 @@
                             });
                             $(this).find("td").eq(6).text(tt);
                             /*FIN DE LA EVALUACIÓN*/
+                            
                             var Precio = parseFloat($(this).find("td").eq(8).text());
                             var Total = tt * Precio;
                             $(this).find("td").eq(10).text(Total);
                             $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                             $(this).find("td").eq(13).text(Generador);
-                            mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                            getGeneradorImporteTotal();
+                          //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                          //Nos regresamos a la pestaña de generadores
+                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
+                          mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
+                          
                             return false;
                         } else {
                             Generador = [];
@@ -1426,12 +1443,20 @@
                             });
                             $(this).find("td").eq(6).text(tt);
                             /*FIN DE LA EVALUACIÓN*/
+                            getGeneradorImporteTotal();
                             var Precio = parseFloat($(this).find("td").eq(8).text());
                             var Total = tt * Precio;
                             $(this).find("td").eq(10).text(Total);
                             $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                             $(this).find("td").eq(13).text(Generador);
-                            mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                           // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                           
+                            //Nos regresamos a la pestaña de generadores
+                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
                             return false;
                         }
                     }
@@ -1475,11 +1500,18 @@
                             $(this).find("td").eq(10).text(Total);
                             $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                             $(this).find("td").eq(13).text(Generador);
-                            console.log(' * * * ROW CONCEPTO * * * ')
-                            console.log($(this).find("td"))
-                            console.log(' * * * ROW CONCEPTO * * * ')
+                            console.log(' * * * ROW CONCEPTO * * * ');
+                            console.log($(this).find("td"));
+                            console.log(' * * * ROW CONCEPTO * * * ');
+                            getGeneradorImporteTotal();
                             getImporteTotal();
-                            mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                          //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                           //Nos regresamos a la pestaña de generadores
+                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
                         }
                     });
                     console.log('* * * * * * * END RECREANDO EL GENERADOR *********')
@@ -1487,8 +1519,7 @@
                     mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
                 }
             }
-        }
-        );
+        });
 
         btnNuevoConcepto.on("click", function() {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
@@ -1544,6 +1575,7 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
+        
 
         btnEditar.on("click", function() {
 
@@ -1713,7 +1745,7 @@
 
         btnModificar.on("click", function() {
 
-            $.validator.setDefaults({
+         $.validator.setDefaults({
                 ignore: []
             });
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
@@ -1802,7 +1834,6 @@
                     HoldOn.close();
                 });
             }
-
 
         });
 
@@ -1929,6 +1960,10 @@
                 }
 
                 frm.delete('Dias');
+                
+                //Agregar Importe total
+                frm.append('Importe', ImporteTotalGlobal);
+                          
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -1938,10 +1973,13 @@
                     processData: false,
                     data: frm
                 }).done(function(data, x, jq) {
-
+                    
+                    
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
-                    btnCancelar.trigger('click');
-                    console.log(data, x, jq);
+         
+                  despuesDeGuardar(data);
+                    //  btnCancelar.trigger('click');
+                   
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
@@ -2162,6 +2200,182 @@
         e.preventDefault();
         $(this).tab('show');
     });
+    
+    
+    /*Para despues de insertar pro primera vez se cargue el panel de editar*/
+
+    function despuesDeGuardar(IDTrabajo){
+         temp=IDTrabajo;
+         pnlNuevoTrabajo.addClass("hide");
+         pnlDetalleNuevoTrabajo.addClass("hide");
+        
+         pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
+            pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'getTrabajoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log('despues de');
+                    console.log(data);
+                    pnlEditarTrabajo.find("input").val("");
+
+                    var trabajo = data[0];
+                    
+                    $.ajax({
+                        url: master_url + 'getSucursalesByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function(data, x, jq) {
+
+
+                        var options = '<option></option>';
+                        $.each(data, function(k, v) {
+
+                            options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
+                        });
+                        pnlEditarTrabajo.find("#Sucursal_ID").html(options);
+                        pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
+                    }).fail(function(x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function() {
+                        HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getPreciariosByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            Cliente_ID: trabajo.Cliente_ID
+                        }
+                    }).done(function(data, x, jq) {
+
+
+                        var options = '<option></option>';
+                        $.each(data, function(k, v) {
+
+                            options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
+                        });
+                        pnlEditarTrabajo.find("#Preciario_ID").html(options);
+                        pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
+                    }).fail(function(x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function() {
+                        HoldOn.close();
+                    });
+
+                    //trae los días
+                    getCodigoPPTAbyID(trabajo.Codigoppta_ID);
+
+                    tBtnEditarConcluir.on("click", function() {
+                        if (!$(this).is(':checked')) {
+                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                            btnModificar.removeClass('hide');
+                        }
+
+                    });
+
+                    pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
+                    pnlEditarTrabajo.find("#ID").val(trabajo.ID);
+                    pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                    pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
+                    pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                    if (trabajo.Atendido === 'Si') {
+                        pnlEditarTrabajo.find("#Atendido").prop('checked', true);
+                    }
+                    pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
+                    pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
+                    pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                    pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
+                    pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
+                    pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                    pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                    pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                    pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                    pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                    pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                    pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
+                    pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                    if (trabajo.ImpactoEnPlazo === 'Si') {
+                        pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
+                    }
+                    pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                    pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
+                    pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
+                    pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                    pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                    pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
+
+                    //Control de estatus
+                    if (trabajo.Estatus === 'Concluido') {
+                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.prop('checked', true);
+                        btnModificar.addClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    } else if (trabajo.Estatus === 'Cancelado') {
+                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.addClass('hide');
+                        btnModificar.addClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    } else {
+                        $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.prop('checked', false);
+                        btnModificar.removeClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                    }
+
+
+                    pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
+
+                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                        var ext = getExt(trabajo.Adjunto);
+                        console.log(ext);
+                        if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
+                        }
+                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        }
+                        if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                            pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                        }
+                    } else {
+                        pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                    }
+
+
+                    menuTablero.addClass("hide");
+                    pnlEditarTrabajo.removeClass("hide");
+                    pnlDetalleEditarTrabajo.removeClass("hide");
+                    getTrabajoDetalleByID(trabajo.ID);
+                }).fail(function(x, y, z) {
+                    console.log(x, y, z);
+                }).always(function() {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        }
+
+    
     /*Traer catálogos para el encabezado*/
     function getClientes() {
         HoldOn.open({
@@ -2610,8 +2824,8 @@
                 '<th>Eliminar</th>' +
                 '<th >Area</th>' +
                 '<th>Eje</th>' +
-                '<th class="col-md-3">Localización eje 1</th>' +
-                '<th class="col-md-3">Localización eje 2</th>' +
+                '<th class="col-md-3">Entre Eje 1</th>' +
+                '<th class="col-md-3">Entre Eje 2</th>' +
                 '<th class="col-md-1">Largo</th>' +
                 '<th>Ancho</th>' +
                 '<th class="col-md-2">Alto</th>' +
@@ -2634,7 +2848,9 @@
             tblGeneradores += "<td class='hide'>";
             tblGeneradores += v.Concepto_ID;
             tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-minus fa-2x customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
+            tblGeneradores += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
+            
+            
             /*AREA*/
             tblGeneradores += "<td>";
             tblGeneradores += v.Area;
@@ -2678,7 +2894,7 @@
             tblGeneradores += "<td>";
             tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
             tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-pencil fa-2x\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
+             tblGeneradores += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
             tblGeneradores += "<td class=\"hide\">ACTIVO</td>";
             tblGeneradores += "</tr>";
         });
@@ -2711,19 +2927,22 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaFotos");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaCroquis");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaAnexos");
-
+        
+        getGeneradorImporteTotal();
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-        getGeneradorImporteTotal();
+        
         mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
 
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
     }
+    
+    var ImporteTotalGlobal=0;
 
     function getImporteTotal() {
 
@@ -2734,10 +2953,11 @@
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
+            ImporteTotalGlobal=total;
             //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
-        ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
+        ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <h4 class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</h4>');
         //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
 
@@ -2749,8 +2969,9 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
             total += parseFloat(row.eq(11).text());
+           // ImporteTotalGlobal=total;
         });
-        GeneradorImporteTotal.html('<strong class="text-muted">TOTAL:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
+        GeneradorImporteTotal.html('<strong class="text-muted">TOTAL:</strong> <h4 class="text-success">' + $.number(total, 6, '.', ', ') + '</h4>');
     }
 
     function onFotosXConcepto(evt) {
@@ -3035,7 +3256,9 @@
             HoldOn.close();
         });
     }
+    
     var generador_nuevo_editable = false;
+    
     function onEditarGeneradorNuevo(evt) {
         var row = $(evt).parent().parent().find("td");
         console.log('********************EDITANDO GENERADOR*************');
@@ -3049,8 +3272,12 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val(row.eq(10).text());
 
         console.log('******************** END EDITANDO GENERADOR*************');
-
+        
+        //oculta botones de nuevo
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
+        $("#btnCancelarNuevoGenerador").addClass("hide");
+        
+        
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(1).addClass("active");
@@ -3082,12 +3309,22 @@
         getGeneradorImporteTotal();
     }
 
+    
+     function onCancelarAgregarNuevoGenerador(evt) {
+         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
+         
+     }
+
     function onCancelarModificarNuevoGenerador(evt) {
 
         console.log('* * * * * TARGET ng CANCELANDO* * * * ');
 
         console.log('* * * * * END TARGET ng CANCELANDO* * * * ');
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
+        $("#btnCancelarNuevoGenerador").removeClass("hide");
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
@@ -3107,7 +3344,10 @@
 
         generador_nuevo_editable = false;
     }
-    function onModificarNuevoGenerador() {
+    
+
+function onModificarNuevoGenerador() {
+    var cantidadTotalEditada=0;
         if (generador_nuevo_editable) {
             console.log('********************MODIFICANDO GENERADOR*************');
             mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
@@ -3132,12 +3372,23 @@
                     var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
                     row.eq(11).text(subtotal);
                     row.eq(13).text("ACTIVO");
+                    //Calcular la cantidad editada acumulada
+                    cantidadTotalEditada += parseFloat(subtotal);
+                    
+                    getGeneradorImporteTotal();
+                    getImporteTotal();
                     return false;
                 }
             });
             getGeneradorImporteTotal();
+            getImporteTotal();
             console.log('******************** END MODIFICANDO GENERADOR*************');
         }
+        //Poner la cantidad editada en la columna de cantidad
+         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+              $(this).find("td").eq(6).text(cantidadTotalEditada);
+             
+         });
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
@@ -3155,15 +3406,20 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
+        $("#btnCancelarNuevoGenerador").addClass("hide");
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
+        
+        
+        getGeneradorImporteTotal();
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
-        getGeneradorImporteTotal();
+       
+        
     }
 </script>
 <style>

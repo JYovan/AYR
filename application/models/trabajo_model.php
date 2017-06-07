@@ -27,6 +27,7 @@ class trabajo_model extends CI_Model {
                     . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "CONCAT('<strong>$',FORMAT(T.Importe,2),'</strong>') AS Importe,"
                     . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'Clasificación', "
                     . "S.Region ,"
                     . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'Cuadrilla', "
@@ -133,7 +134,7 @@ class trabajo_model extends CI_Model {
     public function onAgregar($array) {
         try {
             $this->db->insert("trabajos", $array);
-            print $str = $this->db->last_query();
+         //   print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -147,7 +148,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalle($array) {
         try {
             $this->db->insert("trabajosdetalle", $array);
-            print $str = $this->db->last_query();
+        //    print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -161,7 +162,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleGenerador($array) {
         try {
             $this->db->insert("generadortrabajosdetalle", $array);
-            print $str = $this->db->last_query();
+      //      print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -175,7 +176,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleFotos($array) {
         try {
             $this->db->insert("trabajodetallefotos", $array);
-            print $str = $this->db->last_query();
+       //     print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -199,7 +200,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleAnexos($array) {
         try {
             $this->db->insert("trabajodetalleanexos", $array);
-            print $str = $this->db->last_query();
+        //    print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -214,7 +215,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetalleanexos", $DATA);
-            print $str = $this->db->last_query();
+      //      print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -223,7 +224,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleCroquis($array) {
         try {
             $this->db->insert("trabajodetallecroquis", $array);
-            print $str = $this->db->last_query();
+    //        print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -238,7 +239,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetallecroquis", $DATA);
-            print $str = $this->db->last_query();
+      //      print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -248,7 +249,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajos", $DATA);
-            print $str = $this->db->last_query();
+        //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
