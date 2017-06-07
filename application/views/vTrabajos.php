@@ -1080,7 +1080,7 @@
                         <input type="text" id="IDC" name="IDC" class="form-control">
                     </div>
                 </fieldset>
-                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                <ul class="nav nav-tabs" style="">
                     <li class="active"><a href="#Fotos" data-toggle="tab">Fotos</a></li>
                     <li><a href="#Croquis" data-toggle="tab">Croquis</a></li>
                     <li><a href="#Anexos" data-toggle="tab">Anexos</a></li>
@@ -1119,15 +1119,15 @@
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
     var pnlEditarTrabajo = $("#pnlEditarTrabajo");
     var menuTablero = $('#MenuTablero');
-    
+
     var Archivo = $("#Adjunto");
     var btnArchivo = $("#btnArchivo");
     var VistaPrevia = $("#VistaPrevia");
-    
+
     var ModificarArchivo = pnlEditarTrabajo.find("#Adjunto");
     var btnModificarArchivo = pnlEditarTrabajo.find("#btnArchivo");
     var ModificarVistaPrevia = pnlEditarTrabajo.find("#VistaPrevia");
-    
+
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
@@ -1151,10 +1151,10 @@
     var mdlAdjuntosXConceptoID = $("#mdlAdjuntosXConceptoID");
     var currentDate = new Date();
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
 
-        btnAdjuntosXConcepto.on("click", function () {
+        btnAdjuntosXConcepto.on("click", function() {
             if (temp !== undefined && temp !== '' && temp !== 0 && temp > 0) {
                 HoldOn.open({
                     theme: 'sk-bounce',
@@ -1167,14 +1167,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Fotos").html("");
                     mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
                     mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var picthumbnail = '<div class="col-md-4">';
@@ -1191,11 +1191,11 @@
                         mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
 
                 });
                 $.ajax({
@@ -1205,22 +1205,22 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Croquis").html("");
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         mdlAdjuntosXConceptoID.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a>');
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
 
                 });
                 $.ajax({
@@ -1230,12 +1230,12 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Anexos").html("");
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var url_file = base_url + v.Url;
@@ -1257,11 +1257,11 @@
                         }
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
                 mdlAdjuntosXConceptoID.find("#ID").val(temp);
@@ -1271,9 +1271,9 @@
             }
         });
 
-        btnGuardarGeneradorXConcepto.on("click", function () {
+        btnGuardarGeneradorXConcepto.on("click", function() {
             var Generador = [];
-            $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+            $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                 var row_status = $(this).find("td").eq(15).text();
                 if (row_status === 'ACTIVO') {
                     /*EVALUAR LA CANTIDAD*/
@@ -1290,7 +1290,7 @@
 //                        /*FIN DE LA EVALUACIÓN*/
                         /*ELIMINAR GENERADORES*/
                         if (GeneradorXConcepto.find())
-                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                                 var row = $(v).find("td");
                                 if (row.eq(0).text() === "No existen datos en la tabla.") {
                                     $(this).remove();
@@ -1328,7 +1328,7 @@
                         /*AGREGAR NUEVO GENERADOR*/
                         Generador = [];
                         var xCantidad = 0;
-                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                             var row = $(v).find("td");
                             console.log(v);
                             console.log(row);
@@ -1365,7 +1365,7 @@
 
                         Generador = [];
                         var xCantidad = 0;
-                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+                        GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                             var row = $(v).find("td");
                             console.log(v);
                             console.log(row);
@@ -1402,7 +1402,7 @@
             getImporteTotal();
         });
 
-        btnNuevoConcepto.on("click", function () {
+        btnNuevoConcepto.on("click", function() {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
             if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
 
@@ -1413,14 +1413,14 @@
             }
         });
 
-        btnRefrescar.on("click", function () {
+        btnRefrescar.on("click", function() {
             getRecords();
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
         });
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function () {
+        btnConfirmarEliminar.on("click", function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -1430,7 +1430,7 @@
             }
         });
 
-        btnEliminar.on("click", function () {
+        btnEliminar.on("click", function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -1442,14 +1442,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                     getRecords();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -1457,7 +1457,7 @@
             }
         });
 
-        btnEditar.on("click", function () {
+        btnEditar.on("click", function() {
 
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
@@ -1477,10 +1477,10 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
 
                     pnlEditarTrabajo.find("input").val("");
-                 
+
                     var trabajo = data[0];
                     $.ajax({
                         url: master_url + 'getSucursalesByCliente',
@@ -1489,19 +1489,19 @@
                         data: {
                             ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
                     $.ajax({
@@ -1511,26 +1511,26 @@
                         data: {
                             Cliente_ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                    tBtnEditarConcluir.on("click", function () {
+                    tBtnEditarConcluir.on("click", function() {
                         if (!$(this).is(':checked')) {
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                             btnModificar.removeClass('hide');
@@ -1577,8 +1577,7 @@
                         tBtnEditarConcluir.prop('checked', true);
                         btnModificar.addClass('hide');
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    }
-                    else if (trabajo.Estatus === 'Cancelado') {
+                    } else if (trabajo.Estatus === 'Cancelado') {
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
                         tBtnEditarConcluir.addClass('hide');
                         btnModificar.addClass('hide');
@@ -1592,8 +1591,8 @@
 
 
                     pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-                    
-                        if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+
+                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                         var ext = getExt(trabajo.Adjunto);
                         console.log(ext);
                         if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
@@ -1614,9 +1613,9 @@
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajo.removeClass("hide");
                     getTrabajoDetalleByID(trabajo.ID);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -1624,7 +1623,7 @@
             }
         });
 
-        btnModificar.on("click", function () {
+        btnModificar.on("click", function() {
 
             $.validator.setDefaults({
                 ignore: []
@@ -1644,19 +1643,19 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -1687,8 +1686,8 @@
                 }
 
                 frm.delete('Dias');
-                
-                
+
+
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -1696,7 +1695,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
 
 
@@ -1709,9 +1708,9 @@
                     }
 
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
@@ -1719,7 +1718,7 @@
 
         });
 
-        btnGuardar.on("click", function () {
+        btnGuardar.on("click", function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1738,30 +1737,30 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
             //Si es verdadero que hacer
             if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
 
-                
+
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
                 var trabajo_detalle = [];
                 var concepto = {};
 
-                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function (key, value) {
+                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function(key, value) {
                     var row = $(this).find("td");
                     console.log(row);
                     concepto = {
@@ -1777,7 +1776,7 @@
                     };
                     /*CREAR JSON DE LAS FOTOS POR CADA RENGLON*/
                     var json_fotos = [];
-                    jQuery.each($(this).find("#Fotos")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Fotos")[0].files, function(i, file) {
                         json_fotos.push({
                             Renglon: row.eq(2).text(),
                             Foto: file.name
@@ -1788,7 +1787,7 @@
 
                     /*CREAR JSON DE LOS CROQUIS POR CADA RENGLON*/
                     var json_croquis = [];
-                    jQuery.each($(this).find("#Croquis")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Croquis")[0].files, function(i, file) {
                         json_croquis.push({
                             Renglon: row.eq(2).text(),
                             Croquis: file.name
@@ -1799,7 +1798,7 @@
 
                     /*CREAR JSON DE LOS ANEXOS POR CADA RENGLON*/
                     var json_anexos = [];
-                    jQuery.each($(this).find("#Anexos")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Anexos")[0].files, function(i, file) {
                         json_anexos.push({
                             Renglon: row.eq(2).text(),
                             Anexo: file.name
@@ -1821,7 +1820,7 @@
                 } else {
 
                     frm.append('Estatus', 'Borrador');
-                   // $(".spanEstatus").text('Borrador');
+                    // $(".spanEstatus").text('Borrador');
                 }
 
 
@@ -1850,21 +1849,21 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
                     btnCancelar.trigger('click');
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
 
         });
 
-        btnCancelar.on("click", function () {
+        btnCancelar.on("click", function() {
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
@@ -1873,7 +1872,7 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-        btnCancelarModificar.on("click", function () {
+        btnCancelarModificar.on("click", function() {
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -1882,9 +1881,9 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-        btnNuevo.on("click", function () {
+        btnNuevo.on("click", function() {
 
-            $.each(tblConceptosXTrabajo.find("tbody tr"), function () {
+            $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
                 $(this).remove();
             });
             tblConceptosXTrabajo.addClass("hide");
@@ -1905,33 +1904,33 @@
             pnlDetalleNuevoTrabajo.removeClass("hide");
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+        pnlEditarTrabajo.find("#Cliente_ID").change(function() {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-        
-        
-        
-        
-        btnArchivo.on("click", function () {
-            Archivo.change(function () {
+
+
+
+
+        btnArchivo.on("click", function() {
+            Archivo.change(function() {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -1939,7 +1938,7 @@
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -1952,7 +1951,7 @@
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -1965,9 +1964,9 @@
             });
             Archivo.trigger('click');
         });
- 
-        btnModificarArchivo.on("click", function () {
-            ModificarArchivo.change(function () {
+
+        btnModificarArchivo.on("click", function() {
+            ModificarArchivo.change(function() {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -1975,7 +1974,7 @@
                 var imageType = /image.*/;
                 if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(ModificarArchivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -1988,7 +1987,7 @@
                     if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             ModificarVistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -2001,8 +2000,8 @@
             });
             ModificarArchivo.trigger('click');
         });
-        
-        
+
+
         getClientes();
         getCodigosPPTA();
         getRecords();
@@ -2020,15 +2019,15 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function () {
+            $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
+            $('#tblTrabajos tbody').on('click', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2048,7 +2047,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblTrabajos tbody').on('dblclick', 'tr', function () {
+            $('#tblTrabajos tbody').on('dblclick', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -2056,22 +2055,22 @@
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
 
-    $('#Encabezado a').on("click", function (e) {
+    $('#Encabezado a').on("click", function(e) {
         e.preventDefault();
         $(this).tab('show');
     });
@@ -2085,17 +2084,17 @@
             url: master_url + 'getClientes',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
             pnlEditarTrabajo.find("#Cliente_ID").html(options);
             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2112,19 +2111,19 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
             });
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2141,19 +2140,19 @@
             data: {
                 Cliente_ID: Cliente_ID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2170,12 +2169,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2192,12 +2191,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2211,16 +2210,16 @@
             url: master_url + 'getCodigosPPTA',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2234,17 +2233,17 @@
             url: master_url + 'getCuadrillas',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2261,29 +2260,29 @@
             data: {
                 ID: CodigoID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
 
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
-  
-       
+
+
         $('#Adjunto').trigger('blur');
-          $('#Adjunto').on('blur', function (e) {
-                $('#Adjunto').val('');
-            });
-          
+        $('#Adjunto').on('blur', function(e) {
+            $('#Adjunto').val('');
+        });
+
     }
 
     function getConceptosXPreciarioID(IDX) {
@@ -2299,14 +2298,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2322,7 +2321,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -2335,11 +2334,11 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     var has_id = true;
                     console.log('AGREGANDO.. CONCEPTO ');
                     if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                             var row_status = $(this).find("td").eq(1).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
@@ -2418,7 +2417,7 @@
                         row += '<span class="fa fa-map fa-2x customButtonDetalleGenerador" onclick="onCroquisXConcepto(this)"></span>';
                         row += '</td>';
                         row += '<td class="hide">';
-                        row += ' <input type="file" class="btn btn-primary" id="Croquis" name="Croquis">';
+                        row += ' <input type="file" class="btn btn-primary" id="Croquis" name="Croquis[]" multiple="multiple">';
                         row += '</td>';
 
                         /*ANEXOS*/
@@ -2443,25 +2442,25 @@
                             mdlTrabajoNuevoConcepto.modal('hide');
                         }
                     }
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
 
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2479,7 +2478,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -2503,7 +2502,7 @@
     function onGeneradorXConcepto(evt) {
         var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
@@ -2538,7 +2537,7 @@
                 '</thead>' +
                 '<tbody>';
 
-        $.each(Generadores, function (k, v) {
+        $.each(Generadores, function(k, v) {
             console.log(k, v);
             tblGeneradores += "<tr>";
             /*RENGLON*/
@@ -2603,7 +2602,7 @@
         if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
             var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-            DataTableGeneradores.find('tbody').on('click', 'tr', function () {
+            DataTableGeneradores.find('tbody').on('click', 'tr', function() {
                 DataTableGeneradores.find("tr").removeClass("success");
                 DataTableGeneradores.find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2635,7 +2634,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -2650,16 +2649,16 @@
         var btnFotos;
         var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaFotos.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnFotos = $(this).find("#Fotos");
-                $.each(btnFotos[0].files, function (k, v) {
+                $.each(btnFotos[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -2671,19 +2670,19 @@
         console.log('FOTOS');
         var btnFotos;
         var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnFotos = $(this).find("#Fotos");
 
-                btnFotos.change(function () {
+                btnFotos.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaFotos.html("");
                     console.log(btnFotos[0].files);
                     console.log(btnFotos[0].files.length);
-                    $.each(btnFotos[0].files, function (k, v) {
+                    $.each(btnFotos[0].files, function(k, v) {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             console.log(this);
                             VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -2700,16 +2699,16 @@
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaCroquis.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnCroquis = $(this).find("#Croquis");
-                $.each(btnCroquis[0].files, function (k, v) {
+                $.each(btnCroquis[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -2721,21 +2720,21 @@
         console.log('CROQUIS');
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             console.log(row_status);
             if (row_status === 'ACTIVO') {
                 console.log('CROQUIS ACTIVO');
                 btnCroquis = $(this).find("#Croquis");
 
-                btnCroquis.change(function () {
+                btnCroquis.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaCroquis.html("");
                     console.log(btnCroquis[0].files);
-                    $.each(btnCroquis[0].files, function (k, v) {
+                    $.each(btnCroquis[0].files, function(k, v) {
                         console.log(v.name);
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             console.log(this);
                             VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -2754,16 +2753,16 @@
         var btnAnexos;
         var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaAnexos.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnAnexos = $(this).find("#Anexos");
-                $.each(btnAnexos[0].files, function (k, v) {
+                $.each(btnAnexos[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -2775,15 +2774,15 @@
         console.log('ANEXOS');
         var btnAnexos;
         var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnAnexos = $(this).find("#Anexos");
-                btnAnexos.change(function () {
+                btnAnexos.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaAnexos.html("");
                     console.log(btnAnexos[0].files);
-                    $.each(btnAnexos[0].files, function (k, v) {
+                    $.each(btnAnexos[0].files, function(k, v) {
                         console.log(v.name);
                         VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
                     });
@@ -2807,15 +2806,15 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             pnlDetalleEditarTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function() {
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2835,7 +2834,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('dblclick', 'tr', function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('dblclick', 'tr', function() {
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -2845,17 +2844,17 @@
                 btnAdjuntosXConcepto.trigger('click');
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2872,14 +2871,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlAdjuntosXConceptoID.find("#Fotos").html("");
             mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
             mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 var picthumbnail = '<div class="col-md-4">';
@@ -2896,11 +2895,11 @@
                 mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
             });
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2915,14 +2914,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO, ELIMINADA', 'success');
             onReloadFotosXConcepto(IDTD);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ELIMINAR FOTO* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
