@@ -536,7 +536,6 @@
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                         </div>
 
-<<<<<<< HEAD
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
@@ -545,26 +544,11 @@
                             <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
                             <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
 
-                        </div>
-=======
-
->>>>>>> origin/master
+                        </div> 
 
                     </div>
                 </div>
-            </div>
-<<<<<<< HEAD
-
-=======
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
-
-                <button type="button" class="btn btn-default hide" id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                <button type="button" class="btn btn-primary hide" id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
-            </div>
->>>>>>> origin/master
+            </div> 
         </div>
     </div>
 </div>
@@ -1180,15 +1164,12 @@
 
     var btnCancelarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelar");
     var btnMoficarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar");
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
 
 
 
-<<<<<<< HEAD
+    $(document).ready(function() {
+
+
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function(e) {
             if (e.which === 13) {
                 if (!btnGuardarGeneradorXConcepto.hasClass("hide")) {
@@ -1202,11 +1183,6 @@
             }
         });
         mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-=======
-    $(document).ready(function () {
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
->>>>>>> origin/master
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#Generadores":
@@ -1218,7 +1194,7 @@
                         console.log(target);
                         console.log('* * * * * END TARGET * * * * ');
 
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+                        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                             var row = $(v).find("td");
                             if (row.eq(13).text() === "EDITANDO") {
                                 row.eq(13).text("ACTIVO");
@@ -1233,7 +1209,7 @@
             }
         });
 
-        btnAdjuntosXConcepto.on("click", function () {
+        btnAdjuntosXConcepto.on("click", function() {
             if (temp !== undefined && temp !== '' && temp !== 0 && temp > 0) {
                 HoldOn.open({
                     theme: 'sk-bounce',
@@ -1246,14 +1222,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Fotos").html("");
                     mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
                     mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var picthumbnail = '<div class="col-md-4">';
@@ -1269,11 +1245,11 @@
                         mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
 
                 });
                 $.ajax({
@@ -1283,22 +1259,22 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Croquis").html("");
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         mdlAdjuntosXConceptoID.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a>');
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
 
                 });
                 $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
@@ -1307,12 +1283,12 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Anexos").html("");
-                    $.each(data, function (k, v) {
+                    $.each(data, function(k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var url_file = base_url + v.Url;
@@ -1334,11 +1310,11 @@
                         }
                     });
 
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
                 mdlAdjuntosXConceptoID.find("#ID").val(temp);
@@ -1348,7 +1324,6 @@
             }
         });
 
-<<<<<<< HEAD
         btnGuardarGeneradorXConcepto.on("click", function() {
             var Generador = [];
             if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
@@ -1373,91 +1348,11 @@
                             /*ELIMINAR GENERADORES*/
                             if (GeneradorXConcepto.find())
                                 GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
-=======
-        btnGuardarGeneradorXConcepto.on("click", function () {
-            //Detecta si esta en el primer panel para cerrar el modal despues de guardar 
-            if (mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).hasClass('active')) {
-
-                var Generador = [];
-                if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== 0) &&
-                        pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                    $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                        var row_status = $(this).find("td").eq(15).text();
-                        if (row_status === 'ACTIVO') {
-                            /*EVALUAR LA CANTIDAD*/
-                            var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
-                            var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
-                            var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
-                            var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-//                    console.log('**********************DATOS A EVALUAR**************************')
-                            /*EVALUAR LOS CAMPOS*/
-                            if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && Largo !== '' && Largo !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && (Ancho !== '' && Ancho !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && (Alto !== '' && Alto !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && (Cantidad !== '' && Cantidad !== undefined)) {
-//                        /*FIN DE LA EVALUACIÓN*/
-                                /*ELIMINAR GENERADORES*/
-                                if (GeneradorXConcepto.find())
-                                    GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                        var row = $(v).find("td");
-                                        if (row.eq(0).text() === "No existen datos en la tabla.") {
-                                            $(this).remove();
-                                        }
-                                    });
-                                var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
-                                var new_row = '<tr role="row" class="even">';
-                                new_row += '<td class="hide sorting_1">1</td>';
-                                new_row += '<td class="hide">';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
-                                new_row += '</td>'
-                                new_row += '<td><span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td>';
-                                new_row += '<td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Largo !== '') ? Largo : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Ancho !== '') ? Ancho : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Alto !== '') ? Alto : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Cantidad !== '') ? Cantidad : 0);
-                                new_row += '</td>';
-                                new_row += '<td>';
-                                new_row += subtotal;
-                                new_row += '</td>';
-                                new_row += '</tr>';
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
-                                /*AGREGAR NUEVO GENERADOR*/
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
->>>>>>> origin/master
                                     var row = $(v).find("td");
-                                    console.log(v);
-                                    console.log(row);
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(1).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
+                                    if (row.eq(0).text() === "No existen datos en la tabla.") {
+                                        $(this).remove();
+                                    }
                                 });
-<<<<<<< HEAD
                             var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
                             var new_row = '<tr role="row" class="even">';
                             new_row += '<td class="hide sorting_1">1</td>';
@@ -1565,126 +1460,8 @@
                             mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
                             return false;
-=======
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                getGeneradorImporteTotal();
-                                //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-
-                                return false;
-                            } else {
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    console.log('GENERADOR NUEVO ');
-                                    console.log(row);
-                                    console.log(nuevo_generador);
-                                    console.log('END GENERADOR NUEVO');
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
-                                });
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-                                getGeneradorImporteTotal();
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                                return false;
-                            }
->>>>>>> origin/master
                         }
-                    });
-                    getImporteTotal();
-                } else {
-                    if (GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
-                        console.log('* * * * * * * RECREANDO EL GENERADOR *********')
-
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                            var row_status = $(this).find("td").eq(15).text();
-                            if (row_status === 'ACTIVO') {
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    console.log('GENERADOR NUEVO ');
-                                    console.log(row);
-                                    console.log(nuevo_generador);
-                                    console.log('END GENERADOR NUEVO');
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
-                                });
-                                console.log(' * * * GENERADOR CREADO * * * ')
-                                console.log(Generador)
-                                console.log(' * * * GENERADOR CREADO * * * ')
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                console.log(' * * * ROW CONCEPTO * * * ');
-                                console.log($(this).find("td"));
-                                console.log(' * * * ROW CONCEPTO * * * ');
-                                getGeneradorImporteTotal();
-                                getImporteTotal();
-                                //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                            }
-                        });
-                        console.log('* * * * * * * END RECREANDO EL GENERADOR *********')
-                    } else {
-                        mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
                     }
-<<<<<<< HEAD
                 });
                 getImporteTotal();
             } else {
@@ -1736,216 +1513,16 @@
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-=======
-
-                }
-                mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-            } else {
-                var Generador = [];
-                if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0 ||
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== 0) &&
-                        pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                    $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                        var row_status = $(this).find("td").eq(15).text();
-                        if (row_status === 'ACTIVO') {
-                            /*EVALUAR LA CANTIDAD*/
-                            var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
-                            var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
-                            var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
-                            var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-//                    console.log('**********************DATOS A EVALUAR**************************')
-                            /*EVALUAR LOS CAMPOS*/
-                            if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && Largo !== '' && Largo !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && (Ancho !== '' && Ancho !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && (Alto !== '' && Alto !== undefined) ||
-                                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && (Cantidad !== '' && Cantidad !== undefined)) {
-//                        /*FIN DE LA EVALUACIÓN*/
-                                /*ELIMINAR GENERADORES*/
-                                if (GeneradorXConcepto.find())
-                                    GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                        var row = $(v).find("td");
-                                        if (row.eq(0).text() === "No existen datos en la tabla.") {
-                                            $(this).remove();
-                                        }
-                                    });
-                                var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
-                                var new_row = '<tr role="row" class="even">';
-                                new_row += '<td class="hide sorting_1">1</td>';
-                                new_row += '<td class="hide">';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
-                                new_row += '</td>'
-                                new_row += '<td><span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td>';
-                                new_row += '<td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
-                                new_row += '</td><td>';
-                                new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Largo !== '') ? Largo : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Ancho !== '') ? Ancho : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Alto !== '') ? Alto : 0);
-                                new_row += '</td><td>';
-                                new_row += parseFloat((Cantidad !== '') ? Cantidad : 0);
-                                new_row += '</td>';
-                                new_row += '<td>';
-                                new_row += subtotal;
-                                new_row += '</td>';
-                                new_row += '</tr>';
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
-                                /*AGREGAR NUEVO GENERADOR*/
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    console.log(v);
-                                    console.log(row);
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(1).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
-                                });
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                getGeneradorImporteTotal();
-                                //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-
-                                return false;
-                            } else {
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    console.log('GENERADOR NUEVO ');
-                                    console.log(row);
-                                    console.log(nuevo_generador);
-                                    console.log('END GENERADOR NUEVO');
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
-                                });
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-                                getGeneradorImporteTotal();
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                                return false;
-                            }
->>>>>>> origin/master
                         }
                     });
-                    getImporteTotal();
+                    console.log('* * * * * * * END RECREANDO EL GENERADOR *********')
                 } else {
-                    if (GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
-                        console.log('* * * * * * * RECREANDO EL GENERADOR *********')
-
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                            var row_status = $(this).find("td").eq(15).text();
-                            if (row_status === 'ACTIVO') {
-                                Generador = [];
-                                var tt = 0;
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    var nuevo_generador = {};
-                                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                    nuevo_generador["Area"] = row.eq(3).text();
-                                    nuevo_generador["Eje"] = row.eq(4).text();
-                                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                    console.log('GENERADOR NUEVO ');
-                                    console.log(row);
-                                    console.log(nuevo_generador);
-                                    console.log('END GENERADOR NUEVO');
-                                    Generador.push(JSON.stringify(nuevo_generador));
-                                    tt += parseFloat(row.eq(11).text());
-                                });
-                                console.log(' * * * GENERADOR CREADO * * * ')
-                                console.log(Generador)
-                                console.log(' * * * GENERADOR CREADO * * * ')
-                                $(this).find("td").eq(6).text(tt);
-                                /*FIN DE LA EVALUACIÓN*/
-                                var Precio = parseFloat($(this).find("td").eq(8).text());
-                                var Total = tt * Precio;
-                                $(this).find("td").eq(10).text(Total);
-                                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                                $(this).find("td").eq(13).text(Generador);
-                                console.log(' * * * ROW CONCEPTO * * * ');
-                                console.log($(this).find("td"));
-                                console.log(' * * * ROW CONCEPTO * * * ');
-                                getGeneradorImporteTotal();
-                                getImporteTotal();
-                                //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                                //Nos regresamos a la pestaña de generadores
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                            }
-                        });
-                        console.log('* * * * * * * END RECREANDO EL GENERADOR *********')
-                    } else {
-                        mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                    }
+                    mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
                 }
-
             }
-
-
-
         });
 
-        btnNuevoConcepto.on("click", function () {
+        btnNuevoConcepto.on("click", function() {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
             if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
 
@@ -1956,7 +1533,7 @@
             }
         });
 
-        btnRefrescar.on("click", function () {
+        btnRefrescar.on("click", function() {
             getRecords();
             getClientes();
             getCodigosPPTA();
@@ -1964,7 +1541,7 @@
         });
 
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function () {
+        btnConfirmarEliminar.on("click", function() {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -1974,7 +1551,7 @@
             }
         });
 
-        btnEliminar.on("click", function () {
+        btnEliminar.on("click", function() {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -1986,14 +1563,14 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                     getRecords();
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -2001,8 +1578,7 @@
             }
         });
 
-
-        btnEditar.on("click", function () {
+        btnEditar.on("click", function() {
 
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
@@ -2022,12 +1598,7 @@
                     data: {
                         ID: temp
                     }
-<<<<<<< HEAD
                 }).done(function(data, x, jq) {
-=======
-                }).done(function (data, x, jq) {
-
->>>>>>> origin/master
                     pnlEditarTrabajo.find("input").val("");
 
                     var trabajo = data[0];
@@ -2038,19 +1609,19 @@
                         data: {
                             ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
                     $.ajax({
@@ -2060,26 +1631,26 @@
                         data: {
                             Cliente_ID: trabajo.Cliente_ID
                         }
-                    }).done(function (data, x, jq) {
+                    }).done(function(data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function (k, v) {
+                        $.each(data, function(k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function (x, y, z) {
+                    }).fail(function(x, y, z) {
                         console.log(x, y, z);
-                    }).always(function () {
+                    }).always(function() {
                         HoldOn.close();
                     });
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                    tBtnEditarConcluir.on("click", function () {
+                    tBtnEditarConcluir.on("click", function() {
                         if (!$(this).is(':checked')) {
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                             btnModificar.removeClass('hide');
@@ -2162,9 +1733,9 @@
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajo.removeClass("hide");
                     getTrabajoDetalleByID(trabajo.ID);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             } else {
@@ -2172,7 +1743,7 @@
             }
         });
 
-        btnModificar.on("click", function () {
+        btnModificar.on("click", function() {
 
             $.validator.setDefaults({
                 ignore: []
@@ -2192,19 +1763,19 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -2244,7 +1815,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
 
 
@@ -2257,16 +1828,16 @@
                     }
 
                     console.log(data, x, jq);
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
 
         });
 
-        btnGuardar.on("click", function () {
+        btnGuardar.on("click", function() {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -2285,18 +1856,18 @@
                     Situacion: 'required'
 
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function(element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function () {
+            $('select').on('change', function() {
                 $(this).valid();
             });
 
@@ -2308,7 +1879,7 @@
                 var trabajo_detalle = [];
                 var concepto = {};
 
-                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function (key, value) {
+                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function(key, value) {
                     var row = $(this).find("td");
                     console.log(row);
                     concepto = {
@@ -2324,7 +1895,7 @@
                     };
                     /*CREAR JSON DE LAS FOTOS POR CADA RENGLON*/
                     var json_fotos = [];
-                    jQuery.each($(this).find("#Fotos")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Fotos")[0].files, function(i, file) {
                         json_fotos.push({
                             Renglon: row.eq(2).text(),
                             Foto: file.name
@@ -2335,7 +1906,7 @@
 
                     /*CREAR JSON DE LOS CROQUIS POR CADA RENGLON*/
                     var json_croquis = [];
-                    jQuery.each($(this).find("#Croquis")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Croquis")[0].files, function(i, file) {
                         json_croquis.push({
                             Renglon: row.eq(2).text(),
                             Croquis: file.name
@@ -2346,7 +1917,7 @@
 
                     /*CREAR JSON DE LOS ANEXOS POR CADA RENGLON*/
                     var json_anexos = [];
-                    jQuery.each($(this).find("#Anexos")[0].files, function (i, file) {
+                    jQuery.each($(this).find("#Anexos")[0].files, function(i, file) {
                         json_anexos.push({
                             Renglon: row.eq(2).text(),
                             Anexo: file.name
@@ -2391,10 +1962,6 @@
 
                 //Agregar Importe total
                 frm.append('Importe', ImporteTotalGlobal);
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -2403,11 +1970,7 @@
                     contentType: false,
                     processData: false,
                     data: frm
-<<<<<<< HEAD
                 }).done(function(data, x, jq) {
-=======
-                }).done(function (data, x, jq) {
->>>>>>> origin/master
 
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
@@ -2415,20 +1978,16 @@
                     despuesDeGuardar(data);
                     //  btnCancelar.trigger('click');
 
-<<<<<<< HEAD
                 }).fail(function(x, y, z) {
-=======
-                }).fail(function (x, y, z) {
->>>>>>> origin/master
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
             }
 
         });
 
-        btnCancelar.on("click", function () {
+        btnCancelar.on("click", function() {
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
@@ -2437,12 +1996,8 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-<<<<<<< HEAD
 
         btnCancelarModificar.on("click", function() {
-=======
-        btnCancelarModificar.on("click", function () {
->>>>>>> origin/master
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -2450,14 +2005,10 @@
             pnlDetalleEditarTrabajo.addClass("hide");
             //  menuTablero.removeClass("hide");             btnRefrescar.trigger('click');
         });
-<<<<<<< HEAD
 
         btnNuevo.on("click", function() {
-=======
-        btnNuevo.on("click", function () {
->>>>>>> origin/master
 
-            $.each(tblConceptosXTrabajo.find("tbody tr"), function () {
+            $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
                 $(this).remove();
             });
             tblConceptosXTrabajo.addClass("hide");
@@ -2473,44 +2024,36 @@
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             //Trae el usuario logeado quien estará registrando el movimiento
-            pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
+            pnlNuevoTrabajo.find("#Usuario_ID").val("2");
             /*DETALLE*/
             pnlDetalleNuevoTrabajo.removeClass("hide");
         });
 
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+        pnlEditarTrabajo.find("#Cliente_ID").change(function() {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
-<<<<<<< HEAD
         btnArchivo.on("click", function() {
             Archivo.change(function() {
-=======
-
-
-
-        btnArchivo.on("click", function () {
-            Archivo.change(function () {
->>>>>>> origin/master
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -2518,7 +2061,7 @@
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -2531,7 +2074,7 @@
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -2545,8 +2088,8 @@
             Archivo.trigger('click');
         });
 
-        btnModificarArchivo.on("click", function () {
-            ModificarArchivo.change(function () {
+        btnModificarArchivo.on("click", function() {
+            ModificarArchivo.change(function() {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -2554,7 +2097,7 @@
                 var imageType = /image.*/;
                 if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         console.log(ModificarArchivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -2567,7 +2110,7 @@
                     if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
+                        readerpdf.onload = function(e) {
                             ModificarVistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -2598,15 +2141,15 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function () {
+            $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
+            $('#tblTrabajos tbody').on('click', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2626,7 +2169,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblTrabajos tbody').on('dblclick', 'tr', function () {
+            $('#tblTrabajos tbody').on('dblclick', 'tr', function() {
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -2634,22 +2177,22 @@
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
 
-    $('#Encabezado a').on("click", function (e) {
+    $('#Encabezado a').on("click", function(e) {
         e.preventDefault();
         $(this).tab('show');
     });
@@ -2680,11 +2223,7 @@
                 data: {
                     ID: temp
                 }
-<<<<<<< HEAD
             }).done(function(data, x, jq) {
-=======
-            }).done(function (data, x, jq) {
->>>>>>> origin/master
                 console.log('despues de');
                 console.log(data);
                 pnlEditarTrabajo.find("input").val("");
@@ -2698,7 +2237,6 @@
                     data: {
                         ID: trabajo.Cliente_ID
                     }
-<<<<<<< HEAD
                 }).done(function(data, x, jq) {
 
 
@@ -2725,60 +2263,21 @@
 
                     var options = '<option></option>';
                     $.each(data, function(k, v) {
-=======
-                }).done(function (data, x, jq) {
-
-
-                    var options = '<option></option>';
-                    $.each(data, function (k, v) {
-
-                        options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
-                    });
-                    pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-                    pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-                $.ajax({
-                    url: master_url + 'getPreciariosByCliente',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        Cliente_ID: trabajo.Cliente_ID
-                    }
-                }).done(function (data, x, jq) {
-
-
-                    var options = '<option></option>';
-                    $.each(data, function (k, v) {
->>>>>>> origin/master
 
                         options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                     });
                     pnlEditarTrabajo.find("#Preciario_ID").html(options);
                     pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-<<<<<<< HEAD
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
-=======
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
->>>>>>> origin/master
                     HoldOn.close();
                 });
 
                 //trae los días
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-<<<<<<< HEAD
                 tBtnEditarConcluir.on("click", function() {
-=======
-                tBtnEditarConcluir.on("click", function () {
->>>>>>> origin/master
                     if (!$(this).is(':checked')) {
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                         btnModificar.removeClass('hide');
@@ -2861,15 +2360,9 @@
                 pnlEditarTrabajo.removeClass("hide");
                 pnlDetalleEditarTrabajo.removeClass("hide");
                 getTrabajoDetalleByID(trabajo.ID);
-<<<<<<< HEAD
             }).fail(function(x, y, z) {
                 console.log(x, y, z);
             }).always(function() {
-=======
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
->>>>>>> origin/master
                 HoldOn.close();
             });
         } else {
@@ -2886,29 +2379,17 @@
         });
         $.ajax({
             url: master_url + 'getClientes',
-<<<<<<< HEAD
             type: "POST", dataType: "JSON"
         }).done(function(data, x, jq) {
-=======
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
->>>>>>> origin/master
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-<<<<<<< HEAD
             pnlEditarTrabajo.find("#Cliente_ID").html(options);             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
         }).fail(function(x, y, z) {
-=======
-            pnlEditarTrabajo.find("#Cliente_ID").html(options);
-            //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-        }).fail(function (x, y, z) {
->>>>>>> origin/master
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2925,19 +2406,19 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
             });
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2954,19 +2435,19 @@
             data: {
                 Cliente_ID: Cliente_ID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -2983,12 +2464,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3005,12 +2486,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3021,23 +2502,17 @@
             message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getCodigosPPTA',
-<<<<<<< HEAD
             type: "POST", dataType: "JSON"
         }).done(function(data, x, jq) {
-=======
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
->>>>>>> origin/master
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3049,22 +2524,17 @@
         });
         $.ajax({url: master_url + 'getCuadrillas',
             type: "POST",
-<<<<<<< HEAD
             dataType: "JSON"}).done(function(data, x, jq) {
-=======
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
->>>>>>> origin/master
             console.log(data);
             var options = '<option></option>';
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3081,16 +2551,16 @@
             data: {
                 ID: CodigoID
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3100,7 +2570,7 @@
 
 
         $('#Adjunto').trigger('blur');
-        $('#Adjunto').on('blur', function (e) {
+        $('#Adjunto').on('blur', function(e) {
             $('#Adjunto').val('');
         });
 
@@ -3119,14 +2589,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3142,7 +2612,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function () {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -3155,11 +2625,11 @@
                     data: {
                         ID: temp
                     }
-                }).done(function (data, x, jq) {
+                }).done(function(data, x, jq) {
                     var has_id = true;
                     console.log('AGREGANDO.. CONCEPTO ');
                     if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                             var row_status = $(this).find("td").eq(1).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
@@ -3263,25 +2733,25 @@
                             mdlTrabajoNuevoConcepto.modal('hide');
                         }
                     }
-                }).fail(function (x, y, z) {
+                }).fail(function(x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function() {
                     HoldOn.close();
                 });
 
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3299,7 +2769,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -3313,15 +2783,12 @@
         onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $(evt).parent().parent().remove();
         getImporteTotal();
-
-
-
     }
 
     function onGeneradorXConcepto(evt) {
         var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
@@ -3359,7 +2826,7 @@
                 '</thead>' +
                 '<tbody>';
 
-        $.each(Generadores, function (k, v) {
+        $.each(Generadores, function(k, v) {
             console.log(k, v);
             tblGeneradores += "<tr>";
             /*RENGLON*/
@@ -3428,7 +2895,7 @@
         if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
             var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-            GeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function () {
+            GeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function() {
                 DataTableGeneradores.find("tr").removeClass("success");
                 DataTableGeneradores.find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3458,11 +2925,6 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
 
         mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
-
-        btnGuardarGeneradorXConcepto.removeClass('hide');
-        $("#btnCancelarNuevoGenerador").removeClass("hide");
-
-
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
 
         btnCancelarNuevoGenerador.addClass("hide");
@@ -3476,7 +2938,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -3493,7 +2955,7 @@
         /*GENERADOR IMPORTE TOTAL*/
         var GeneradorImporteTotal = mdlTrabajoNuevoGeneradorPorConcepto.find("#GeneradorImporteTotal");
         var total = 0.0;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
             total += parseFloat(row.eq(11).text());
             // ImporteTotalGlobal=total;
@@ -3505,16 +2967,16 @@
         var btnFotos;
         var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaFotos.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnFotos = $(this).find("#Fotos");
-                $.each(btnFotos[0].files, function (k, v) {
+                $.each(btnFotos[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -3527,19 +2989,19 @@
         console.log('FOTOS');
         var btnFotos;
         var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnFotos = $(this).find("#Fotos");
 
-                btnFotos.change(function () {
+                btnFotos.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaFotos.html("");
                     console.log(btnFotos[0].files);
                     console.log(btnFotos[0].files.length);
-                    $.each(btnFotos[0].files, function (k, v) {
+                    $.each(btnFotos[0].files, function(k, v) {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             console.log(this);
                             VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -3555,16 +3017,16 @@
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaCroquis.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnCroquis = $(this).find("#Croquis");
-                $.each(btnCroquis[0].files, function (k, v) {
+                $.each(btnCroquis[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -3577,21 +3039,21 @@
         console.log('CROQUIS');
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             console.log(row_status);
             if (row_status === 'ACTIVO') {
                 console.log('CROQUIS ACTIVO');
                 btnCroquis = $(this).find("#Croquis");
 
-                btnCroquis.change(function () {
+                btnCroquis.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaCroquis.html("");
                     console.log(btnCroquis[0].files);
-                    $.each(btnCroquis[0].files, function (k, v) {
+                    $.each(btnCroquis[0].files, function(k, v) {
                         console.log(v.name);
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             console.log(this);
                             VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -3608,16 +3070,16 @@
         var btnAnexos;
         var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
         VistaPreviaAnexos.html("");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnAnexos = $(this).find("#Anexos");
-                $.each(btnAnexos[0].files, function (k, v) {
+                $.each(btnAnexos[0].files, function(k, v) {
                     console.log(v.name);
                     VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
                 });
@@ -3630,15 +3092,15 @@
         console.log('ANEXOS');
         var btnAnexos;
         var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnAnexos = $(this).find("#Anexos");
-                btnAnexos.change(function () {
+                btnAnexos.change(function() {
                     var imageType = /image.*/;
                     VistaPreviaAnexos.html("");
                     console.log(btnAnexos[0].files);
-                    $.each(btnAnexos[0].files, function (k, v) {
+                    $.each(btnAnexos[0].files, function(k, v) {
                         console.log(v.name);
                         VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
                     });
@@ -3662,15 +3124,15 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log(data);
             pnlDetalleEditarTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function() {
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3690,7 +3152,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('dblclick', 'tr', function () {
+            pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('dblclick', 'tr', function() {
                 pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -3700,17 +3162,17 @@
                 btnAdjuntosXConcepto.trigger('click');
             });
             // Apply the search
-            tblSelected.columns().every(function () {
+            tblSelected.columns().every(function() {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function () {
+                $('input', this.footer()).on('keyup change', function() {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3727,14 +3189,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlAdjuntosXConceptoID.find("#Fotos").html("");
             mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
             mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
-            $.each(data, function (k, v) {
+            $.each(data, function(k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 var picthumbnail = '<div class="col-md-4">';
@@ -3750,11 +3212,11 @@
                 mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
             });
 
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3770,14 +3232,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function (data, x, jq) {
+        }).done(function(data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO, ELIMINADA', 'success');
             onReloadFotosXConcepto(IDTD);
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ELIMINAR FOTO* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
     }
@@ -3800,11 +3262,7 @@
 
         //oculta botones de nuevo
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
-<<<<<<< HEAD
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelarNuevoGenerador").addClass("hide");
-=======
-        $("#btnCancelarNuevoGenerador").addClass("hide");
->>>>>>> origin/master
 
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
@@ -3821,13 +3279,9 @@
     }
 
     function onEliminarGenerador(evt) {
-<<<<<<< HEAD
 
         onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-=======
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
->>>>>>> origin/master
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 var row = $(evt).parent().parent();
@@ -3897,7 +3351,7 @@
         var cantidadTotalEditada = 0;
         if (generador_nuevo_editable) {
             console.log('********************MODIFICANDO GENERADOR*************');
-            mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+            mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                 var row = $(v).find("td");
                 if (row.eq(13).text() === "EDITANDO") {
                     console.log(v);
@@ -3920,14 +3374,10 @@
                     row.eq(11).text(subtotal);
                     row.eq(13).text("ACTIVO");
 
-<<<<<<< HEAD
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                         var row = $(v).find("td");
                         cantidadTotalEditada += parseFloat(row.eq(11).text());
                     });
-=======
-
->>>>>>> origin/master
                     getGeneradorImporteTotal();
                     getImporteTotal();
                     return false;
@@ -3940,18 +3390,14 @@
         getGeneradorImporteTotal();
         getImporteTotal();
         //Poner la cantidad editada en la columna de cantidad
-<<<<<<< HEAD
         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             if ($(this).find("td").eq(15).text() === "ACTIVO") {
                 $(this).find("td").eq(6).text(cantidadTotalEditada);
                 return false;
             }
         });
-=======
->>>>>>> origin/master
 
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
             if (row.eq(13).text() === "EDITANDO") {
                 row.eq(13).text("ACTIVO");
@@ -3971,16 +3417,11 @@
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         getGeneradorImporteTotal();
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-<<<<<<< HEAD
 
 
     }
@@ -4025,12 +3466,6 @@
         /*RECALCULAR EL TOTAL*/
         getImporteTotal();
         getGeneradorImporteTotal();
-=======
-        btnCancelarNuevoGenerador.addClass("hide");
-        btnMoficarNuevoGenerador.addClass("hide");
-
-
->>>>>>> origin/master
     }
 </script>
 <style>
