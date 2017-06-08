@@ -73,8 +73,6 @@
                         <br>
                         <span class="label label-default spanEstatus " >SIN GUARDAR</span>
                     </div>
-
-
                 </div>
                 <div class="col-md-4 panel-title"  >
                     <div class="col-md-6 " align="right">
@@ -88,12 +86,7 @@
                     <div class="col-md-6 " align="right">
                         <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                     </div>
-
-
                 </div>
-
-
-
             </div>
         </div>
         <div class="panel-body">
@@ -199,10 +192,6 @@
                                     <option value=""></option>
                                 </select>
                             </div>
-
-
-
-
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
 
@@ -546,20 +535,21 @@
                             <label for="">Cantidad</label>
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                         </div>
-                        
-                         <div class="modal-footer">
-             
-                            <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
 
-                            <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
+                            <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+
                             <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
+                            <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -1175,11 +1165,24 @@
 
     var btnCancelarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelar");
     var btnMoficarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar");
-    
-   
+
+
 
     $(document).ready(function() {
 
+
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function(e) {
+            if (e.which === 13) {
+                if (!btnGuardarGeneradorXConcepto.hasClass("hide")) {
+                    console.log('ESTA GUARDANDO');
+                    mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").trigger('click');
+                }
+                if (!btnMoficarNuevoGenerador.hasClass("hide")) {
+                    console.log('ESTA EDITANDO');
+                    mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar").trigger('click');
+                }
+            }
+        });
         mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href");
             switch (target) {
@@ -1201,6 +1204,8 @@
                     }
                     break;
                 case "#NuevoGenerador":
+
+                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
                     break;
             }
         });
@@ -1230,8 +1235,7 @@
                         console.log(base_url + v.Url);
                         var picthumbnail = '<div class="col-md-4">';
                         picthumbnail += '<div class="thumbnail">' +
-                                '<a href="' + base_url + v.Url + '" target="_blank">' +
-                                '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
+                                '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
                                 '</a>' +
                                 '<div class="caption" align="center">' +
                                 '<p>' + v.Observaciones + '</p>' +
@@ -1274,8 +1278,7 @@
                 }).always(function() {
 
                 });
-                $.ajax({
-                    url: master_url + 'getTrabajoAnexosDetalleByID',
+                $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
                     type: "POST",
                     dataType: "JSON",
                     data: {
@@ -1337,13 +1340,12 @@
                         var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
                         var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
                         var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-//                    console.log('**********************DATOS A EVALUAR**************************')
+                        //                    console.log('**********************DATOS A EVALUAR**************************')
                         /*EVALUAR LOS CAMPOS*/
                         if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && Largo !== '' && Largo !== undefined) ||
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && (Ancho !== '' && Ancho !== undefined) ||
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && (Alto !== '' && Alto !== undefined) ||
+                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && (Ancho !== '' && Ancho !== undefined) || mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && (Alto !== '' && Alto !== undefined) ||
                                 mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && (Cantidad !== '' && Cantidad !== undefined)) {
-//                        /*FIN DE LA EVALUACIÓN*/
+                            //                        /*FIN DE LA EVALUACIÓN*/
                             /*ELIMINAR GENERADORES*/
                             if (GeneradorXConcepto.find())
                                 GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
@@ -1379,6 +1381,9 @@
                             new_row += '<td>';
                             new_row += subtotal;
                             new_row += '</td>';
+
+                            new_row += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
+                            new_row += "<td class=\"hide\">ACTIVO</td>";
                             new_row += '</tr>';
                             GeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
                             /*AGREGAR NUEVO GENERADOR*/
@@ -1401,23 +1406,22 @@
                                 Generador.push(JSON.stringify(nuevo_generador));
                                 tt += parseFloat(row.eq(11).text());
                             });
-                            $(this).find("td").eq(6).text(tt);
-                            /*FIN DE LA EVALUACIÓN*/
-                            
+                            $(this).find("td").eq(6).text(tt);                             /*FIN DE LA EVALUACIÓN*/
+
                             var Precio = parseFloat($(this).find("td").eq(8).text());
                             var Total = tt * Precio;
                             $(this).find("td").eq(10).text(Total);
                             $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                             $(this).find("td").eq(13).text(Generador);
                             getGeneradorImporteTotal();
-                          //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                          //Nos regresamos a la pestaña de generadores
-                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                            //Nos regresamos a la pestaña de generadores
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                          mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                          
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
+
                             return false;
                         } else {
                             Generador = [];
@@ -1442,17 +1446,16 @@
                                 tt += parseFloat(row.eq(11).text());
                             });
                             $(this).find("td").eq(6).text(tt);
-                            /*FIN DE LA EVALUACIÓN*/
-                            getGeneradorImporteTotal();
+                            /*FIN DE LA EVALUACIÓN*/                             getGeneradorImporteTotal();
                             var Precio = parseFloat($(this).find("td").eq(8).text());
                             var Total = tt * Precio;
                             $(this).find("td").eq(10).text(Total);
                             $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
                             $(this).find("td").eq(13).text(Generador);
-                           // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                           
+                            // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+
                             //Nos regresamos a la pestaña de generadores
-                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
@@ -1464,8 +1467,7 @@
                 getImporteTotal();
             } else {
                 if (GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
-                    console.log('* * * * * * * RECREANDO EL GENERADOR *********')
-
+                    console.log('* * * * * * * RECREANDO EL GENERADOR *********');
                     $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                         var row_status = $(this).find("td").eq(15).text();
                         if (row_status === 'ACTIVO') {
@@ -1505,9 +1507,9 @@
                             console.log(' * * * ROW CONCEPTO * * * ');
                             getGeneradorImporteTotal();
                             getImporteTotal();
-                          //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                           //Nos regresamos a la pestaña de generadores
-                             mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+                            //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
+                            //Nos regresamos a la pestaña de generadores
+                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                             mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
@@ -1538,6 +1540,7 @@
             getCodigosPPTA();
             getCuadrillas();
         });
+
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.on("click", function() {
 
@@ -1575,7 +1578,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
 
         btnEditar.on("click", function() {
 
@@ -1598,7 +1600,6 @@
                         ID: temp
                     }
                 }).done(function(data, x, jq) {
-
                     pnlEditarTrabajo.find("input").val("");
 
                     var trabajo = data[0];
@@ -1745,7 +1746,7 @@
 
         btnModificar.on("click", function() {
 
-         $.validator.setDefaults({
+            $.validator.setDefaults({
                 ignore: []
             });
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
@@ -1931,7 +1932,6 @@
                 });
                 frm.append('CONCEPTOS', JSON.stringify(trabajo_detalle));
                 //                Para los checkbox
-
                 if (tBtnConcluir.is(':checked')) {
 
                     frm.append('Estatus', 'Concluido');
@@ -1960,10 +1960,9 @@
                 }
 
                 frm.delete('Dias');
-                
+
                 //Agregar Importe total
                 frm.append('Importe', ImporteTotalGlobal);
-                          
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -1973,13 +1972,13 @@
                     processData: false,
                     data: frm
                 }).done(function(data, x, jq) {
-                    
-                    
+
+
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
-         
-                  despuesDeGuardar(data);
+
+                    despuesDeGuardar(data);
                     //  btnCancelar.trigger('click');
-                   
+
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
@@ -1998,15 +1997,16 @@
             //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
+
         btnCancelarModificar.on("click", function() {
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajo.addClass("hide");
-            //  menuTablero.removeClass("hide");
-            btnRefrescar.trigger('click');
+            //  menuTablero.removeClass("hide");             btnRefrescar.trigger('click');
         });
+
         btnNuevo.on("click", function() {
 
             $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
@@ -2029,6 +2029,7 @@
             /*DETALLE*/
             pnlDetalleNuevoTrabajo.removeClass("hide");
         });
+
         /*Funcion que trae los catalogos en base al cliente*/
         pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
@@ -2052,9 +2053,6 @@
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
-
-
-
         btnArchivo.on("click", function() {
             Archivo.change(function() {
                 HoldOn.open({
@@ -2068,8 +2066,8 @@
                         console.log(Archivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
-                                        <p>' + Archivo[0].files[0].name + '</p>\n\
-                                    </div></div>';
+                                    <p>' + Archivo[0].files[0].name + '</p>\n\
+                                </div></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
@@ -2104,8 +2102,8 @@
                         console.log(ModificarArchivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
-                                        <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
-                                    </div></div>';
+                                    <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
+                                </div></div>';
                         ModificarVistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(ModificarArchivo[0].files[0]);
@@ -2126,7 +2124,6 @@
             });
             ModificarArchivo.trigger('click');
         });
-
 
         getClientes();
         getCodigosPPTA();
@@ -2200,182 +2197,181 @@
         e.preventDefault();
         $(this).tab('show');
     });
-    
-    
+
+
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
 
-    function despuesDeGuardar(IDTrabajo){
-         temp=IDTrabajo;
-         pnlNuevoTrabajo.addClass("hide");
-         pnlDetalleNuevoTrabajo.addClass("hide");
-        
-         pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
-            $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-            pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
-            pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
-            pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
-            pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
+    function despuesDeGuardar(IDTrabajo) {
+        temp = IDTrabajo;
+        pnlNuevoTrabajo.addClass("hide");
+        pnlDetalleNuevoTrabajo.addClass("hide");
+
+        pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
+        $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+        pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
+        pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
+        pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
+        pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
+        if (temp !== 0 && temp !== undefined && temp > 0) {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "CARGANDO DATOS..."
+            });
+            $.ajax({
+                url: master_url + 'getTrabajoByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: temp
+                }
+            }).done(function(data, x, jq) {
+                console.log('despues de');
+                console.log(data);
+                pnlEditarTrabajo.find("input").val("");
+
+                var trabajo = data[0];
+
                 $.ajax({
-                    url: master_url + 'getTrabajoByID',
+                    url: master_url + 'getSucursalesByCliente',
                     type: "POST",
                     dataType: "JSON",
                     data: {
-                        ID: temp
+                        ID: trabajo.Cliente_ID
                     }
                 }).done(function(data, x, jq) {
-                    console.log('despues de');
-                    console.log(data);
-                    pnlEditarTrabajo.find("input").val("");
-
-                    var trabajo = data[0];
-                    
-                    $.ajax({
-                        url: master_url + 'getSucursalesByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: trabajo.Cliente_ID
-                        }
-                    }).done(function(data, x, jq) {
 
 
-                        var options = '<option></option>';
-                        $.each(data, function(k, v) {
-
-                            options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
-                        });
-                        pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-                        pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function(x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function() {
-                        HoldOn.close();
+                    var options = '<option></option>';
+                    $.each(data, function(k, v) {
+                        options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                     });
-                    $.ajax({
-                        url: master_url + 'getPreciariosByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            Cliente_ID: trabajo.Cliente_ID
-                        }
-                    }).done(function(data, x, jq) {
-
-
-                        var options = '<option></option>';
-                        $.each(data, function(k, v) {
-
-                            options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
-                        });
-                        pnlEditarTrabajo.find("#Preciario_ID").html(options);
-                        pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function(x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function() {
-                        HoldOn.close();
-                    });
-
-                    //trae los días
-                    getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-
-                    tBtnEditarConcluir.on("click", function() {
-                        if (!$(this).is(':checked')) {
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                            btnModificar.removeClass('hide');
-                        }
-
-                    });
-
-                    pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
-                    pnlEditarTrabajo.find("#ID").val(trabajo.ID);
-                    pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
-                    pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-                    pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
-                    if (trabajo.Atendido === 'Si') {
-                        pnlEditarTrabajo.find("#Atendido").prop('checked', true);
-                    }
-                    pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
-                    pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
-                    pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
-                    pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
-                    pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
-                    pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
-                    pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
-                    pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
-                    pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
-                    pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
-                    pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
-                    pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
-                    pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
-                    if (trabajo.ImpactoEnPlazo === 'Si') {
-                        pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
-                    }
-                    pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
-                    pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
-                    pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
-                    pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
-                    pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
-                    pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
-                    pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
-                    pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-
-                    //Control de estatus
-                    if (trabajo.Estatus === 'Concluido') {
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.prop('checked', true);
-                        btnModificar.addClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    } else if (trabajo.Estatus === 'Cancelado') {
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.addClass('hide');
-                        btnModificar.addClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    } else {
-                        $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.prop('checked', false);
-                        btnModificar.removeClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                    }
-
-
-                    pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-
-                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
-                        var ext = getExt(trabajo.Adjunto);
-                        console.log(ext);
-                        if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
-                        }
-                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                            pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-                        }
-                        if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                            pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
-                        }
-                    } else {
-                        pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
-                    }
-
-
-                    menuTablero.addClass("hide");
-                    pnlEditarTrabajo.removeClass("hide");
-                    pnlDetalleEditarTrabajo.removeClass("hide");
-                    getTrabajoDetalleByID(trabajo.ID);
+                    pnlEditarTrabajo.find("#Sucursal_ID").html(options);
+                    pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
                     HoldOn.close();
                 });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-        }
+                $.ajax({
+                    url: master_url + 'getPreciariosByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        Cliente_ID: trabajo.Cliente_ID
+                    }
+                }).done(function(data, x, jq) {
 
-    
+
+                    var options = '<option></option>';
+                    $.each(data, function(k, v) {
+
+                        options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
+                    });
+                    pnlEditarTrabajo.find("#Preciario_ID").html(options);
+                    pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
+                }).fail(function(x, y, z) {
+                    console.log(x, y, z);
+                }).always(function() {
+                    HoldOn.close();
+                });
+
+                //trae los días
+                getCodigoPPTAbyID(trabajo.Codigoppta_ID);
+
+                tBtnEditarConcluir.on("click", function() {
+                    if (!$(this).is(':checked')) {
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                        btnModificar.removeClass('hide');
+                    }
+
+                });
+
+                pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
+                pnlEditarTrabajo.find("#ID").val(trabajo.ID);
+                pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
+                pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                if (trabajo.Atendido === 'Si') {
+                    pnlEditarTrabajo.find("#Atendido").prop('checked', true);
+                }
+                pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
+                pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
+                pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
+                pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
+                pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
+                pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                if (trabajo.ImpactoEnPlazo === 'Si') {
+                    pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
+                }
+                pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
+                pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
+                pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
+
+                //Control de estatus
+                if (trabajo.Estatus === 'Concluido') {
+                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
+                    tBtnEditarConcluir.prop('checked', true);
+                    btnModificar.addClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                } else if (trabajo.Estatus === 'Cancelado') {
+                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
+                    tBtnEditarConcluir.addClass('hide');
+                    btnModificar.addClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                } else {
+                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
+                    tBtnEditarConcluir.prop('checked', false);
+                    btnModificar.removeClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                }
+
+
+                pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
+
+                if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                    var ext = getExt(trabajo.Adjunto);
+                    console.log(ext);
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
+                    }
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                    }
+                    if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                        pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                    }
+                } else {
+                    pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                }
+
+
+                menuTablero.addClass("hide");
+                pnlEditarTrabajo.removeClass("hide");
+                pnlDetalleEditarTrabajo.removeClass("hide");
+                getTrabajoDetalleByID(trabajo.ID);
+            }).fail(function(x, y, z) {
+                console.log(x, y, z);
+            }).always(function() {
+                HoldOn.close();
+            });
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+        }
+    }
+
+
     /*Traer catálogos para el encabezado*/
     function getClientes() {
         HoldOn.open({
@@ -2384,16 +2380,14 @@
         });
         $.ajax({
             url: master_url + 'getClientes',
-            type: "POST",
-            dataType: "JSON"
+            type: "POST", dataType: "JSON"
         }).done(function(data, x, jq) {
             var options = '<option></option>';
             $.each(data, function(k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-            pnlEditarTrabajo.find("#Cliente_ID").html(options);
-            //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
+            pnlEditarTrabajo.find("#Cliente_ID").html(options);             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
@@ -2506,12 +2500,10 @@
     function getCodigosPPTA() {
         HoldOn.open({
             theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+            message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getCodigosPPTA',
-            type: "POST",
-            dataType: "JSON"
+            type: "POST", dataType: "JSON"
         }).done(function(data, x, jq) {
             var options = '<option></option>';
             $.each(data, function(k, v) {
@@ -2531,11 +2523,9 @@
             theme: 'sk-bounce',
             message: 'ESPERE...'
         });
-        $.ajax({
-            url: master_url + 'getCuadrillas',
+        $.ajax({url: master_url + 'getCuadrillas',
             type: "POST",
-            dataType: "JSON"
-        }).done(function(data, x, jq) {
+            dataType: "JSON"}).done(function(data, x, jq) {
             console.log(data);
             var options = '<option></option>';
             $.each(data, function(k, v) {
@@ -2849,8 +2839,8 @@
             tblGeneradores += v.Concepto_ID;
             tblGeneradores += "</td>";
             tblGeneradores += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
-            
-            
+
+
             /*AREA*/
             tblGeneradores += "<td>";
             tblGeneradores += v.Area;
@@ -2894,7 +2884,7 @@
             tblGeneradores += "<td>";
             tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
             tblGeneradores += "</td>";
-             tblGeneradores += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
+            tblGeneradores += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
             tblGeneradores += "<td class=\"hide\">ACTIVO</td>";
             tblGeneradores += "</tr>";
         });
@@ -2927,22 +2917,22 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaFotos");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaCroquis");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaAnexos");
-        
+
         getGeneradorImporteTotal();
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-        
+
         mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
 
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
     }
-    
-    var ImporteTotalGlobal=0;
+
+    var ImporteTotalGlobal = 0;
 
     function getImporteTotal() {
 
@@ -2953,7 +2943,7 @@
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
-            ImporteTotalGlobal=total;
+            ImporteTotalGlobal = total;
             //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
@@ -2969,9 +2959,9 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
             total += parseFloat(row.eq(11).text());
-           // ImporteTotalGlobal=total;
+            // ImporteTotalGlobal=total;
         });
-        GeneradorImporteTotal.html('<strong class="text-muted">TOTAL:</strong> <h4 class="text-success">' + $.number(total, 6, '.', ', ') + '</h4>');
+        GeneradorImporteTotal.html('<strong class="text-muted">TOTAL: <h4 class="text-success">' + $.number(total, 6, '.', ', ') + '</h4></strong> ');
     }
 
     function onFotosXConcepto(evt) {
@@ -3024,7 +3014,6 @@
             }
         });
     }
-
     function onCroquisXConcepto(evt) {
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
@@ -3215,8 +3204,7 @@
                 picthumbnail += '<div class="thumbnail">' +
                         '<a href="' + base_url + v.Url + '" target="_blank">' +
                         '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
-                        '</a>' +
-                        '<div class="caption" align="center">' +
+                        '</a>' + '<div class="caption" align="center">' +
                         '<p>' + v.Observaciones + '</p>' +
                         '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
                         '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
@@ -3256,9 +3244,9 @@
             HoldOn.close();
         });
     }
-    
+
     var generador_nuevo_editable = false;
-    
+
     function onEditarGeneradorNuevo(evt) {
         var row = $(evt).parent().parent().find("td");
         console.log('********************EDITANDO GENERADOR*************');
@@ -3272,12 +3260,12 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val(row.eq(10).text());
 
         console.log('******************** END EDITANDO GENERADOR*************');
-        
+
         //oculta botones de nuevo
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
-        $("#btnCancelarNuevoGenerador").addClass("hide");
-        
-        
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelarNuevoGenerador").addClass("hide");
+
+
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(1).addClass("active");
@@ -3292,6 +3280,8 @@
     }
 
     function onEliminarGenerador(evt) {
+
+        onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
@@ -3302,21 +3292,33 @@
             }
         });
 
-        onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $(evt).parent().parent().remove();
-        /*RECALCULAR EL TOTAL*/
-        getImporteTotal();
-        getGeneradorImporteTotal();
+
+        var cantidad_total_generador = 0;
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+            var row = $(v).find("td");
+            cantidad_total_generador += parseFloat(row.eq(11).text());
+        });
+        console.log('* * * * * * * * * * * * * * * * * * * * CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
+        console.log(cantidad_total_generador);
+        console.log('* * * * * * * * * * * * * * * * * * * * END CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+            if ($(this).find("td").eq(15).text() === "ACTIVO") {
+                $(this).find("td").eq(6).text(cantidad_total_generador);
+                return false;
+            }
+        });
+        setRecrearGenerador();
     }
 
-    
-     function onCancelarAgregarNuevoGenerador(evt) {
-         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+
+    function onCancelarAgregarNuevoGenerador(evt) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-         
-     }
+
+    }
 
     function onCancelarModificarNuevoGenerador(evt) {
 
@@ -3344,10 +3346,10 @@
 
         generador_nuevo_editable = false;
     }
-    
 
-function onModificarNuevoGenerador() {
-    var cantidadTotalEditada=0;
+
+    function onModificarNuevoGenerador() {
+        var cantidadTotalEditada = 0;
         if (generador_nuevo_editable) {
             console.log('********************MODIFICANDO GENERADOR*************');
             mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
@@ -3372,23 +3374,29 @@ function onModificarNuevoGenerador() {
                     var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
                     row.eq(11).text(subtotal);
                     row.eq(13).text("ACTIVO");
-                    //Calcular la cantidad editada acumulada
-                    cantidadTotalEditada += parseFloat(subtotal);
-                    
+
+                    mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                        var row = $(v).find("td");
+                        cantidadTotalEditada += parseFloat(row.eq(11).text());
+                    });
                     getGeneradorImporteTotal();
                     getImporteTotal();
                     return false;
                 }
             });
-            getGeneradorImporteTotal();
-            getImporteTotal();
+            setRecrearGenerador();
             console.log('******************** END MODIFICANDO GENERADOR*************');
         }
+
+        getGeneradorImporteTotal();
+        getImporteTotal();
         //Poner la cantidad editada en la columna de cantidad
-         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-              $(this).find("td").eq(6).text(cantidadTotalEditada);
-             
-         });
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+            if ($(this).find("td").eq(15).text() === "ACTIVO") {
+                $(this).find("td").eq(6).text(cantidadTotalEditada);
+                return false;
+            }
+        });
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
             var row = $(v).find("td");
@@ -3406,20 +3414,59 @@ function onModificarNuevoGenerador() {
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
-        $("#btnCancelarNuevoGenerador").addClass("hide");
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelarNuevoGenerador").removeClass("hide");
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
-        
-        
+
         getGeneradorImporteTotal();
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-        btnCancelarNuevoGenerador.addClass("hide");
-        btnMoficarNuevoGenerador.addClass("hide");
-       
-        
+
+
+    }
+    function setRecrearGenerador() {
+        var Generador = [];
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+            var row_status = $(this).find("td").eq(15).text();
+            if (row_status === 'ACTIVO') {
+                Generador = [];
+                var tt = 0;
+                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                    var row = $(v).find("td");
+                    var nuevo_generador = {};
+                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
+                    nuevo_generador["Area"] = row.eq(3).text();
+                    nuevo_generador["Eje"] = row.eq(4).text();
+                    nuevo_generador["EntreEje1"] = row.eq(5).text();
+                    nuevo_generador["EntreEje2"] = row.eq(6).text();
+                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
+                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
+                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
+                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
+                    console.log('GENERADOR NUEVO ');
+                    console.log(row);
+                    console.log(nuevo_generador);
+                    console.log('END GENERADOR NUEVO');
+                    Generador.push(JSON.stringify(nuevo_generador));
+                    tt += parseFloat(row.eq(11).text());
+                });
+                console.log(' * * * GENERADOR CREADO * * * ')
+                console.log(Generador)
+                console.log(' * * * GENERADOR CREADO * * * ')
+                $(this).find("td").eq(6).text(tt);
+                /*FIN DE LA EVALUACIÓN*/
+                var Precio = parseFloat($(this).find("td").eq(8).text());
+                var Total = tt * Precio;
+                $(this).find("td").eq(10).text(Total);
+                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
+                $(this).find("td").eq(13).text(Generador);
+            }
+        });
+        /*RECALCULAR EL TOTAL*/
+        getImporteTotal();
+        getGeneradorImporteTotal();
     }
 </script>
 <style>
