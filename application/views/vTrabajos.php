@@ -33,9 +33,14 @@
         <div class="modal-body">
             Selecciona el reporte que deseas imprimir
 
-
+            <div class="col-md-12">
+                <br>
+            </div>
             <div id="reportes" class="dt-buttons">
                 <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
+                <button onclick="onReporteResumenPartidas()" class="btn btn-default"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
+                <button onclick="onReportePresupuestoBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
+
             </div>
         </div>
 
@@ -432,7 +437,7 @@
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="Conceptos" align="center">
+                <div class="col-md-12 table-responsive" id="Conceptos" >
                     <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
                         <thead>
                             <tr>
@@ -1067,7 +1072,7 @@
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
                     <button type="button" class="btn btn-default" id="btnAdjuntosXConcepto"><span class="fa fa-eye fa-1x" ></span><br>ADJUNTOS</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="Conceptos" align="center">
+                <div class="col-md-12 table-responsive" id="Conceptos" >
                     <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
                         <thead>
                             <tr>
@@ -1924,7 +1929,7 @@
                     frm.append('Atendido', 'No');
                 }
 
-                if ($("#ImpactoEnPlazo").is(':checked')) {
+                if (tbtnImpactoEnElPlazo.is(':checked')) {
                     frm.delete('ImpactoEnPlazo');
                     frm.append('ImpactoEnPlazo', 'Si');
                 } else {
@@ -1948,9 +1953,10 @@
                     processData: false,
                     data: frm
                 }).done(function(data, x, jq) {
+                    
+                    
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
-
-
+                    
                     if (tBtnEditarConcluir.is(':checked')) {
                         btnModificar.addClass('hide');
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
@@ -1958,7 +1964,7 @@
                     } else {
                         $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
                     }
-
+                    
                     console.log(data, x, jq);
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
@@ -2125,7 +2131,6 @@
             pnlNuevoTrabajo.addClass("hide");
             //Detalle
             pnlDetalleNuevoTrabajo.addClass("hide");
-            //  menuTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
 
@@ -2135,7 +2140,7 @@
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajo.addClass("hide");
-            //  menuTablero.removeClass("hide");             btnRefrescar.trigger('click');
+             btnRefrescar.trigger('click');          
         });
 
         btnNuevo.on("click", function() {
@@ -3600,29 +3605,8 @@
         getGeneradorImporteTotal();
     }
 
-    //--------------------------------Reportes----------------------------------
-    function onReporteFin49() {
-
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
-            type: "POST",
-            data: {
-                ID: temp
-            }
-        }).done(function(data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function(x, y, z) {
-            console.log(x, y, z);
-        }).always(function() {
-            HoldOn.close();
-        });
-    }
+/********************EDICION********************************************
+    
 
     /*FUNCIONES DE EDICION EN EL GENERADOR*/
     function onEliminarConceptoXDetalle(evt, IDX) {
@@ -3862,6 +3846,80 @@
         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
     }
+    
+    
+    
+    //***************************************REPORTES*****************************************
+        //--------------------------------Reportes----------------------------------
+    function onReporteFin49() {
+
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
+            type: "POST",
+            data: {
+                ID: temp
+            }
+        }).done(function(data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function(x, y, z) {
+            console.log(x, y, z);
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
+    
+    
+       function onReporteResumenPartidas() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteResumenPartidas',
+            type: "POST",
+             data: {
+                        ID:temp
+                    }
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+      function onReportePresupuestoBBVA() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuestoBBVA',
+            type: "POST",
+             data: {
+                ID: temp
+            }
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
+    
 </script>
 <style>
 

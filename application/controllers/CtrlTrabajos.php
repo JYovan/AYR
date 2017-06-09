@@ -500,6 +500,22 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    /* FUNCIONES DE EDICION */
+
+    public function onEliminarConceptoXDetalle() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarConcepto($ID);
+            $this->trabajo_model->onEliminarGeneradoresXConcepto($ID);
+            $this->trabajo_model->onEliminarFotosXConcepto($ID);
+            $this->trabajo_model->onEliminarCroquisXConcepto($ID);
+            $this->trabajo_model->onEliminarAnexosXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
 
@@ -673,7 +689,7 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->Cell(20, 5, utf8_decode("FOLIO:"), 0, 1, 'R');
             $pdf->SetY(60);
             $pdf->SetX(175);
-            $pdf->Cell(35, 5, utf8_decode($trabajo[0]->FolioCliente), 'B', 1, 'C');
+            $pdf->Cell(35, 5,utf8_decode($trabajo[0]->CR).'-'. utf8_decode($trabajo[0]->FolioCliente), 'B', 1, 'C');
 
             /* TERCERA PARTE */
             $pdf->SetFont('Arial', 'B', 8);
@@ -870,20 +886,785 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
-    /* FUNCIONES DE EDICION */
+    public function onReporteResumenPartidas() {
 
-    public function onEliminarConceptoXDetalle() {
-        try {
-            extract($this->input->post());
-            $this->trabajo_model->onEliminarConcepto($ID);
-            $this->trabajo_model->onEliminarGeneradoresXConcepto($ID);
-            $this->trabajo_model->onEliminarFotosXConcepto($ID);
-            $this->trabajo_model->onEliminarCroquisXConcepto($ID);
-            $this->trabajo_model->onEliminarAnexosXConcepto($ID);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+        $ID = $_POST['ID'];
+        $trabajo = $this->trabajo_model->getResumenPartidas($ID);
+        $datos = $trabajo[0];
+
+        // Creación del objeto de la clase heredada 
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        $pdf->SetAutoPageBreak(false, 300);
+        $pdf->SetLineWidth(0.4);
+
+
+        /* ENCABEZADO */
+
+        $pdf->Image(base_url() . $datos->LogoEmpresa, 5, 5, 35);
+        // LogoCliente
+        $pdf->Image(base_url() . $datos->LogoCliente, 155, 5, 55);
+
+        /* Titulo */
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->SetY(5);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 5, utf8_decode($datos->Cliente), 0, 1, 'C');
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(5);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(200, 5, utf8_decode("ADMNISTRACIÓN DE INMUEBLES"), 0, 1, 'C');
+
+        /* PRIMEROS TITULOS */
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(50);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(20, 5, utf8_decode("OBRA:"), 0, 1, 'L');
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(70);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(75, 5, utf8_decode($datos->TrabajoSolicitado), 'B', 1, 'L');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(50);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(20, 5, utf8_decode("EMPRESA:"), 0, 1, 'L');
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(70);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(75, 5, utf8_decode($datos->Empresa), 'B', 1, 'L');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(50);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(20, 5, utf8_decode("FECHA:"), 0, 1, 'L');
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(70);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(75, 5, utf8_decode($datos->FechaCreacion), 'B', 1, 'L');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 4);
+        $pdf->SetX(5);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(200, 5, utf8_decode("RESUMEN DE PARTIDAS"), 0, 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(5);
+        $pdf->Cell(200, 5, utf8_decode('CR: ' . $datos->CR . ' - ' . $datos->Sucursal), 0, 1, 'C');
+
+        /* SEGUNDA PARTE ENCABEZADO */
+
+        //Traemos los valores totalizados
+        $PreliminaresInt = '';
+        $AlbañileriaInt = '';
+        $AcabadosInt = '';
+        $CanceleriaInt = '';
+        $HerrerriaInt = '';
+        $SuministrosInt = '';
+        $LimpiezaInt = '';
+        $InstHidroSanitariaInt = '';
+        $InsElectricaInt = '';
+        $AireAconInt = '';
+        $InfraesctructuraInt = '';
+        $VariosInt = '';
+
+        $totalInteriores = 0;
+
+
+        $PreliminaresExt = '';
+        $AlbañileriaExt = '';
+        $AcabadosExt = '';
+        $HerrerriaExt = '';
+        ;
+        $InfraesctructuraExt = '';
+        $VariosExt = '';
+
+        $totalExteriores = 0;
+
+        $GranTotal = 0;
+
+        foreach ($trabajo as $i => $datoNuevo) {
+            if ($datoNuevo->IntExt == "Interior") {
+
+
+
+                if ($datoNuevo->Categoria == "PRELIMINARES") {
+                    $PreliminaresInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "ALBAÑILERÍA") {
+                    $AlbañileriaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "ACABADOS") {
+                    $AcabadosInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "CANCELERÍA ALUMINIO Y CRISTAL") {
+                    $CanceleriaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "HERRERÍA Y ESTRUCTURA METÁLICA") {
+                    $HerrerriaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "SUMINISTROS DEL CLIENTE Y COLOCACIONES") {
+                    $SuministrosInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "LIMPIEZA") {
+                    $LimpiezaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "INSTALACIÓN HIDROSANITARIA") {
+                    $InstHidroSanitariaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "INSTALACIÓN ELÉCTRICA") {
+                    $InsElectricaInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "AIRE ACONDICIONADO") {
+                    $AireAconInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "INFRAESTRUCTURA") {
+                    $InfraesctructuraInt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else {
+                    $VariosInt += $datoNuevo->ImporteRenglon;
+                }
+                //Calcula el total de interiores
+                $totalInteriores += $datoNuevo->ImporteRenglon;
+            }
+
+            if ($datoNuevo->IntExt == "Exterior") {
+
+                if ($datoNuevo->Categoria == "PRELIMINARES") {
+                    $PreliminaresExt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "ALBAÑILERÍA") {
+                    $AlbañileriaExt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "ACABADOS") {
+                    $AcabadosExt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "HERRERÍA Y ESTRUCTURA METÁLICA") {
+                    $HerrerriaExt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else if ($datoNuevo->Categoria == "INFRAESTRUCTURA") {
+                    $InfraesctructuraExt = '$' . number_format($datoNuevo->ImporteRenglon, 2);
+                } else {
+                    $VariosExt += $datoNuevo->ImporteRenglon;
+                }
+                //Calcula el total de exteriores
+                $totalExteriores += $datoNuevo->ImporteRenglon;
+            }
+            //Calculamos el gran total
+            $GranTotal = $totalInteriores + $totalExteriores;
         }
+        //Despues de todo el for verificaos que no vengan vacios los campos de varios para formatearlos
+        if(!$VariosInt==''){
+            $VariosInt = '$' . number_format((float)$VariosInt,2);
+        }
+         if(!$VariosExt==''){
+             $VariosExt = '$' . number_format((float)$VariosExt,2);
+        }
+        
+    
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(15);
+        $pdf->Cell(55, 5, utf8_decode("SUCURSAL BANCARIA (INTERIORES) "), 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 8);
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->Cell(55, 5, utf8_decode("PRELIMINARES  "), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $PreliminaresInt, 'B', 1, 'C');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("ALBAÑILERIA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $AlbañileriaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("ACABADOS"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $AcabadosInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("CANCELERIA ALUMINIO Y CRISTAL"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $CanceleriaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("HERRERIA Y ESTRUCTURA METALICA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $HerrerriaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("SUMINISTROS DEL CLIENTE Y COLOCACIONES"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $SuministrosInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("LIMPIEZA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $LimpiezaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("INSTALACIÓN HIDROSANITARIA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $InstHidroSanitariaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("INSTALACIÓN ELECTRICA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $InsElectricaInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("AIRE ACONDICIONADO"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $AireAconInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, 'INFRAESTRUCTURA', 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $InfraesctructuraInt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("SIN CLAVE"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $VariosInt, 'B', 1, 'C');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 5);
+        $pdf->SetX(15);
+        $pdf->Cell(55, 5, utf8_decode("TOTAL SUCURSAL BANCARIA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 5);
+        $pdf->SetX(110);
+        $pdf->Cell(95, 5, '$' . number_format($totalInteriores, 2), 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 8);
+        $pdf->SetX(15);
+        $pdf->Cell(55, 5, utf8_decode("OBRAS EXTERIORES"), 0, 1, 'L');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("PRELIMINARES"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $PreliminaresExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("ALBAÑILERIA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $AlbañileriaExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("ACABADOS"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $AcabadosExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("HERRERIA Y ESTRUCTURA METALICA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $HerrerriaExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("INFRAESTRUCUTRA"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $InfraesctructuraExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("VARIOS"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, $VariosExt, 'B', 1, 'C');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 5);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(55, 5, utf8_decode("TOTAL DE OBRAS EXTERIORES"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 5);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, '$' . number_format($totalExteriores, 2), 'B', 1, 'C');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 10);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(55, 5, utf8_decode("GRAN TOTAL"), 0, 1, 'L');
+        $pdf->SetY($CurrenY + 10);
+        $pdf->SetX(110);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(95, 5, '$' . number_format($GranTotal, 2), 'B', 1, 'C');
+
+
+
+        /* PIE DE PAGINA FIRMAS */
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 10);
+        $pdf->SetX(10);
+        $pdf->Cell(55, 5, utf8_decode("FIRMAS DE CONFORMIDAD"), 0, 1, 'L');
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(10);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("EMPRESA"), 0, 1, 'L');
+
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(120);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(55, 5, utf8_decode("BANCO"), 0, 1, 'L');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(80, 5, utf8_decode($datos->Empresa), 0, 1, 'C');
+
+        $pdf->SetY($CurrenY + 2);
+        $pdf->SetX(120);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(80, 5, utf8_decode($datos->Cliente), 0, 1, 'C');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY + 10);
+        $pdf->SetX(15);
+        $pdf->Cell(80, 5, utf8_decode(""), 'B', 1, 'C');
+
+        $pdf->SetY($CurrenY + 10);
+        $pdf->SetX(120);
+        $pdf->Cell(80, 5, utf8_decode(""), 'B', 1, 'C');
+
+
+        $CurrenY = $pdf->GetY();
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->Cell(80, 5, utf8_decode($datos->ContactoEmpresa), 0, 1, 'C');
+        $pdf->SetY($CurrenY);
+        $pdf->SetX(120);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->Cell(80, 5, utf8_decode($datos->FirmaBanco), 0, 1, 'C');
+
+
+        /* FIN CUERPO */
+        $path = 'uploads/Reportes/' . $ID;
+        // print $path;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file_name = "RESUMEN DE PARTIDAS";
+        $url = $path . '/' . $file_name . '.pdf';
+
+
+
+        $pdf->Output($url);
+        print base_url() . $url;
     }
+    
+    
+    public function onReportePresupuestoBBVA() {
+
+        $ID = $_POST['ID'];
+        $trabajo = $this->trabajo_model->getPresupuestoBBVA($ID);
+        $datosEncabezado = $trabajo[0];
+
+
+        // Creación del objeto de la clase heredada 
+        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        $pdf->SetAutoPageBreak(false, 5);
+
+        /* ENCABEZADO */
+
+        // Arial bold 15
+        $pdf->SetFont('Arial', 'B', 9);
+        // Título
+        $pdf->SetY(5);
+        // Movernos a la derecha
+        $pdf->SetX(25);
+        $pdf->Cell(165, 5, utf8_decode("PRESUPUESTO DE CONCILIACÓN DE PRECIOS UNITARIOS DE CONCEPTOS FUERA DE PROYECTO"), 0, 0, 'C');
+        $pdf->SetFont('Arial', 'B', 8);
+        /* CUERPO */
+
+        $CURRENT_Y = $pdf->GetY();
+        $pdf->SetY(15);
+        $pdf->SetLineWidth(0.4);
+
+
+        /* INICIA  EN LA ESQUINA DE EMPRESA */
+        $pdf->Rect(145, 15, 65, 20);
+
+        /* SEGUNDO RECUADRO */
+        $pdf->Rect(5, 22, 205, 13);
+        /**/
+        $pdf->SetY(40);
+        $pdf->SetX(5);
+        $pdf->SetFillColor(169, 208, 255);
+        $pdf->Cell(205, 5, '', 1, 1, 'C', true);
+
+        $pdf->SetY(35);
+        $pdf->SetX(5);
+        $pdf->SetFillColor(255, 252, 76);
+        $pdf->Cell(205, 5, utf8_decode("IMPORTE CONTRATADO"), 1, 1, 'C', true);
+
+        /* TITULOS */
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->SetY(16);
+        $pdf->SetX(145);
+        $pdf->Cell(65, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+
+        /* ENCABEZADO TITULOS */
+        $pdf->SetY(40);
+        $pdf->SetX(5);
+        $pdf->Cell(15, 5, utf8_decode("CÓDIGO"), 1, 1, 'C');
+        $pdf->SetY(40);
+        $pdf->SetX(20);
+        $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
+        $pdf->SetY(40);
+        $pdf->SetX(130);
+        $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
+        $pdf->SetY(40);
+        $pdf->SetX(145);
+        $pdf->Cell(20, 5, utf8_decode("CANTIDAD"), 1, 1, 'C');
+        $pdf->SetY(40);
+        $pdf->SetX(165);
+        $pdf->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
+        $pdf->SetY(40);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
+
+        /* DATOS */
+        $pdf->SetY(23);
+        $pdf->SetX(5);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(140, 10, "CR: " . $datosEncabezado->CR . " - " . $datosEncabezado->Sucursal . " - " . $datosEncabezado->FolioCliente, 0, 1, 'C');
+
+
+        $pdf->SetY(23);
+        $pdf->SetX(145);
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(65, 10, $datosEncabezado->Empresa, 0, 1, 'C');
+
+        /* DETALLE  */
+        $Y = 45;
+        $top = 0;
+        $page = 1;
+        $page_size = 234;
+
+        $ImporteTotal = 0;
+
+
+        foreach ($trabajo as $key => $value) {
+
+            $top += 10;
+
+            $pdf->SetFont('Arial', '', 7);
+            $Ancho = $pdf->GetStringWidth(utf8_decode($value->Concepto));
+            $numero_lineas = $Ancho / (103 ); //El ancho de multicell -5 de la altura
+            $numero_lineas = ceil($numero_lineas);
+            $AlturaLinea = 4;
+            $AlturaCelda = $numero_lineas * $AlturaLinea;
+            $AlturaCelda = ceil($AlturaCelda);
+
+            /* DETALLE DATOS */
+
+            $pdf->SetY($Y);
+            $pdf->SetX(5);
+            $pdf->cell(15, $AlturaCelda, utf8_decode($value->Clave), 1, 0, 'C');
+
+            $pdf->SetY($Y);
+            $pdf->SetX(20);
+            $pdf->MultiCell(110, 4, utf8_decode($value->Concepto), 1, 'L', false);
+
+            $H = $pdf->GetY();
+
+            $pdf->SetY($Y);
+            $pdf->SetX(130);
+            $pdf->cell(15, $AlturaCelda, utf8_decode($value->Unidad), 1, 0, 'C');
+            $pdf->SetY($Y);
+            $pdf->SetX(145);
+            $pdf->cell(20, $AlturaCelda, utf8_decode($value->Cantidad), 1, 0, 'C');
+            $pdf->SetY($Y);
+            $pdf->SetX(165);
+            $pdf->cell(20, $AlturaCelda, "$ " . number_format($value->Precio, 2), 1, 0, 'C');
+            $pdf->SetY($Y);
+            $pdf->SetX(185);
+            $pdf->cell(25, $AlturaCelda, "$ " . number_format($value->ImporteRenglon, 2), 1, 0, 'C');
+
+            $Y = $H;
+
+            $top += $AlturaCelda;
+
+            if ($top > $page_size) {
+                $pdf->AddPage();
+
+                /* ENCABEZADO */
+
+                // Arial bold 15
+                $pdf->SetFont('Arial', 'B', 9);
+                // Título
+                $pdf->SetY(5);
+                // Movernos a la derecha
+                $pdf->SetX(25);
+                $pdf->Cell(165, 5, utf8_decode("PRESUPUESTO DE CONCILIACÓN DE PRECIOS UNITARIOS DE CONCEPTOS FUERA DE PROYECTO"), 0, 0, 'C');
+                $pdf->SetFont('Arial', 'B', 8);
+                /* CUERPO */
+
+                $CURRENT_Y = $pdf->GetY();
+                $pdf->SetY(15);
+                $pdf->SetLineWidth(0.4);
+
+
+                /* INICIA  EN LA ESQUINA DE EMPRESA */
+                $pdf->Rect(145, 15, 65, 20);
+
+                /* SEGUNDO RECUADRO */
+                $pdf->Rect(5, 22, 205, 13);
+                /**/
+                $pdf->SetY(40);
+                $pdf->SetX(5);
+                $pdf->SetFillColor(169, 208, 255);
+                $pdf->Cell(205, 5, '', 1, 1, 'C', true);
+
+                $pdf->SetY(35);
+                $pdf->SetX(5);
+                $pdf->SetFillColor(255, 252, 76);
+                $pdf->Cell(205, 5, utf8_decode("IMPORTE CONTRATADO"), 1, 1, 'C', true);
+
+                /* TITULOS */
+                $pdf->SetFont('Arial', 'B', 8);
+                $pdf->SetY(16);
+                $pdf->SetX(145);
+                $pdf->Cell(65, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+
+                /* ENCABEZADO TITULOS */
+                $pdf->SetY(40);
+                $pdf->SetX(5);
+                $pdf->Cell(15, 5, utf8_decode("CÓDIGO"), 1, 1, 'C');
+                $pdf->SetY(40);
+                $pdf->SetX(20);
+                $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
+                $pdf->SetY(40);
+                $pdf->SetX(130);
+                $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
+                $pdf->SetY(40);
+                $pdf->SetX(145);
+                $pdf->Cell(20, 5, utf8_decode("CANTIDAD"), 1, 1, 'C');
+                $pdf->SetY(40);
+                $pdf->SetX(165);
+                $pdf->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
+                $pdf->SetY(40);
+                $pdf->SetX(185);
+                $pdf->Cell(25, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
+                /* DATOS */
+                $pdf->SetY(23);
+                $pdf->SetX(5);
+                $pdf->SetFont('Arial', 'B', 8);
+                $pdf->Cell(140, 10, "CR: " . $datosEncabezado->CR . " - " . $datosEncabezado->Sucursal . " - " . $datosEncabezado->FolioCliente, 0, 1, 'C');
+
+                $pdf->SetY(23);
+                $pdf->SetX(145);
+                $pdf->SetFont('Arial', 'B', 8);
+                $pdf->Cell(65, 10, $datosEncabezado->Empresa, 0, 1, 'C');
+
+                $Y = 45;
+                $top = 0;
+                $page = 2;
+                $page_size = 234;
+            } else {
+                
+            }
+            $ImporteTotal += $value->ImporteRenglon;
+        }
+
+        /* FINAL DEL DETALLE */
+        $pdf->SetFillColor(255, 252, 76);
+        $pdf->SetY($Y);
+        $pdf->SetX(5);
+        $pdf->Cell(15, 5, "", 1, 1, 'C', true);
+        $pdf->SetY($Y);
+        $pdf->SetX(20);
+        $pdf->Cell(110, 5, "TOTAL DE PRESUPUESTO ADICIONALES", 1, 1, 'L', true);
+        $pdf->SetY($Y);
+        $pdf->SetX(130);
+        $pdf->Cell(15, 5, "", 1, 1, 'C', true);
+        $pdf->SetY($Y);
+        $pdf->SetX(145);
+        $pdf->Cell(20, 5, "", 1, 1, 'C', true);
+        $pdf->SetY($Y);
+        $pdf->SetX(165);
+        $pdf->Cell(20, 5, " ", 1, 1, 'C', true);
+        $pdf->SetY($Y);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'C', true);
+
+
+        $Y = $pdf->GetY();
+        /* TOTALES TITULOS */
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(85);
+        $pdf->Cell(85, 5, "Importe Contratado=", 0, 1, 'R');
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, utf8_decode("$0.00"), 1, 1, 'R');
+
+
+        $Y = $pdf->GetY();
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(85);
+        $pdf->SetTextColor(255, 38, 38);
+        $pdf->Cell(85, 5, "Deductivas=", 0, 1, 'R');
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, utf8_decode("$0.00"), 1, 1, 'R');
+
+        $Y = $pdf->GetY();
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(85);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell(85, 5,utf8_decode('Items fuera de catálogo=') , 0, 1, 'R');
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'R');
+
+        $Y = $pdf->GetY();
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(85);
+        $pdf->SetTextColor(255, 38, 38);
+        $pdf->Cell(85, 5, utf8_decode("Penalización por incumplimiento de fechas contractuales="), 0, 1, 'R');
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, utf8_decode("$0.00"), 1, 1, 'R');
+
+        $Y = $pdf->GetY();
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(85);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell(85, 5, "Subtotal=", 0, 1, 'R');
+        $pdf->SetY($Y + 10);
+        $pdf->SetX(185);
+        $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'R');
+
+
+
+
+        /* FIRMAS */
+
+        /* ELABORÓ */
+        $Y = $pdf->GetY();
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->SetY($Y + 30);
+        $pdf->SetX(10);
+        $pdf->Cell(90, 5, utf8_decode($datosEncabezado->Empresa), 'T', 1, 'C');
+
+
+        /* REVISÓ */
+
+        $pdf->SetY($Y + 30);
+        $pdf->SetX(120);
+        $pdf->Cell(90, 5, utf8_decode($datosEncabezado->Supervisora), 'T', 1, 'C');
+
+
+           /* FIN CUERPO */
+        $path = 'uploads/Reportes/' . $ID;
+        // print $path;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file_name = "REPORTE_PRESUPUESTOBBVA";
+        $url = $path . '/' . $file_name . '.pdf';
+
+
+        $pdf->Output($url);
+        print base_url() . $url;
+    }
+    
 
 }
 

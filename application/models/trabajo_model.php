@@ -349,7 +349,62 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    /* Reportes */
+  
+
+    public function onEliminarConcepto($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajosdetalle');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarGeneradoresXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('generadortrabajosdetalle');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarFotosXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetallefotos');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarCroquisXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetallecroquis');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarAnexosXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetalleanexos');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    
+    
+      /* Reportes */
 
     public function getFin49ByID($ID) {
         try {
@@ -409,55 +464,39 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
-    public function onEliminarConcepto($ID) {
+    
+    
+     public function getPresupuestoBBVA($ID) {
         try {
-            $this->db->where('ID', $ID);
-            $this->db->delete('trabajosdetalle');
-//            print $str = $this->db->last_query();
+            $this->db->query("set sql_mode=''");
+            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
+                                PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,ES.Nombre AS Supervisora
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
+                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                INNER JOIN empresassupervisoras ES ON ES.ID = S.empresasupervisora_id
+                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', 'Borrador', 'Concluido');
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-
-    public function onEliminarGeneradoresXConcepto($ID) {
-        try {
-            $this->db->where('IdTrabajoDetalle', $ID);
-            $this->db->delete('generadortrabajosdetalle');
-//            print $str = $this->db->last_query();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onEliminarFotosXConcepto($ID) {
-        try {
-            $this->db->where('IdTrabajoDetalle', $ID);
-            $this->db->delete('trabajodetallefotos');
-//            print $str = $this->db->last_query();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onEliminarCroquisXConcepto($ID) {
-        try {
-            $this->db->where('IdTrabajoDetalle', $ID);
-            $this->db->delete('trabajodetallecroquis');
-//            print $str = $this->db->last_query();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onEliminarAnexosXConcepto($ID) {
-        try {
-            $this->db->where('IdTrabajoDetalle', $ID);
-            $this->db->delete('trabajodetalleanexos');
-//            print $str = $this->db->last_query();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
+    
+    
 
 }

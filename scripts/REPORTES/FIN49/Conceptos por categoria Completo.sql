@@ -1,7 +1,8 @@
+
 SELECT T.Movimiento,T.FechaCreacion,T.FolioCliente,T.Importe,
 CTE.Nombre,S.CR,S.Nombre, E.Nombre,E.RutaLogo,CTE.RutaLogo,
-TD.IntExt,TD.Importe AS ImporteRenglon,
-T.PRECIARIO_ID,PC.Clave,PCAT.Descripcion AS Categoria
+T.PRECIARIO_ID,PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+PCAT.Descripcion AS Categoria
 FROM TRABAJOS T
 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
 INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID

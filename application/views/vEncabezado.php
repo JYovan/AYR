@@ -81,7 +81,7 @@
         <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
 
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
+        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
 
     </head>

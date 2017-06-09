@@ -35,13 +35,13 @@
 
 /*Estilo select2*/
 .select2-drop-active {
-    border: 1px solid #009688;
+    border: 1px solid #3f51b5;
     border-top: 0;
 }
 
 .select2-results .select2-highlighted {
 
-    background-color: #009688 !important;
+    background-color: #3f51b5 !important;
     color: #fff;
 }
 
@@ -70,16 +70,16 @@
 
 /*Estilo datepicker*/
 .datepicker table tr td.day:hover, .datepicker table tr td.day.focused {
-    background-color: #009688 !important;
-
+    background-color: #3f51b5 !important;
+    color: #fff;
     cursor: pointer;
 }
 
 /*Hover fechas*/
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:focus, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td.active, .open .dropdown-toggle.datepicker table tr td.active:hover, .open .dropdown-toggle.datepicker table tr td.active.disabled, .open .dropdown-toggle.datepicker table tr td.active.disabled:hover {
     color: #ffffff;
-    background-color: #009688;
-    border-color: #009688;
+    background-color: #3f51b5;
+    border-color: #3f51b5;
 }
 
 .datepicker table tr td.today:hover:hover {
@@ -91,7 +91,7 @@
 
 /*Modales*/
 .modal-header{
-    background-image: linear-gradient(#009688, #009688 60%, #009688) !important;
+    background-image: linear-gradient(#3f51b5, #3f51b5 60%, #3f51b5) !important;
 
 }
 
@@ -137,8 +137,8 @@
     z-index: 3;
     color: #fff;
     cursor: default;
-    background-color: #009688;
-    border-color: #009688;
+    background-color: #3f51b5;
+    border-color: #3f51b5;
 }
 
 /*Focus y active en tab paneles*/
@@ -147,7 +147,7 @@
     border: 0;
     -webkit-box-shadow: inset 0 -3px 0 #fff !important;
     box-shadow: inset 0 -3px 0 #fff !important;
-    color: #12EDD7 !important;
+   color: #aeb9f8 !important;
 }
 
 .nav-tabs>li>a:hover, .nav-tabs>li>a:focus:hover {
@@ -174,7 +174,7 @@
     content: attr(data-tooltip);
     display: none;
     position: absolute;
-    background: #009688;
+    background: #3f51b5;
     color: #fff;
     margin-left: 30px;
     margin-top: -25px;
@@ -279,8 +279,9 @@ table thead tr{
 }
 
 .table tr:hover{
-    color: #ffffff !important;
-    background-color: #CECFD2 !important;
+   /* color: #ffffff !important;*/
+   
+    background-color: #dbdbdb!important;
 }
 
 .table tfoot tr th{
@@ -292,7 +293,7 @@ table thead tr{
 .table-hover>tbody>tr:hover>.success,
 .table-hover>tbody>tr>td.success:hover,
 .table-hover>tbody>tr>th.success:hover {
-    background-color: #6D6F76;
+    background-color: #8f9091;
 }
 
 .table>thead>tr>td.success,
@@ -307,7 +308,7 @@ table thead tr{
 .table>thead>tr.success>th,
 .table>tbody>tr.success>th,
 .table>tfoot>tr.success>th {
-    background-color: #009688;
+    background-color: #3f51b5;
     color: #FFF;
 }
 
@@ -324,10 +325,10 @@ table tfoot th input[type="text"]:focus{
 
 .form-control:focus {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#009688), to(#009688)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
-    background-image: -webkit-linear-gradient(#009688, #009688), -webkit-linear-gradient(#D2D2D2, #D2D2D2) !important;
-    background-image: -o-linear-gradient(#009688, #009688), -o-linear-gradient(#D2D2D2, #D2D2D2) !important;
-    background-image: linear-gradient(#009688, #009688), linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3f51b5), to(#3f51b5)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+    background-image: -webkit-linear-gradient(#3f51b5, #3f51b5), -webkit-linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-image: -o-linear-gradient(#3f51b5, #3f51b5), -o-linear-gradient(#D2D2D2, #D2D2D2) !important;
+    background-image: linear-gradient(#3f51b5, #3f51b5), linear-gradient(#D2D2D2, #D2D2D2) !important;
     -webkit-background-size: 0 2px, 100% 1px;
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
@@ -348,7 +349,7 @@ table tfoot th input[type="text"]:focus{
 /*Menu de tablas para seleccionar columnas*/
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
 
-    background-color: #009688;
+    background-color: #3f51b5;
 
 }
 /*Clase para errores de validacion*/
