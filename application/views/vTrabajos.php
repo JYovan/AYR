@@ -86,7 +86,7 @@
                         Nuevo Trabajo
                     </div>
                 </div>
-                <div class="col-md-3 panel-title"  >
+                <div class="col-md-5 panel-title"  >
                     <div class="col-md-7 dt-EncabezadoControles " align="center">
                         <button type="button" class="btn btn-default CustomColorIcon"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
                             <span class="fa fa-clone" ></span>
@@ -694,7 +694,7 @@
 
             <div class="Custompanel-heading row">
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelarModificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
@@ -703,8 +703,8 @@
                     </div>
                 </div>
 
-
-                <div class="col-md-3 panel-title"  >
+                
+                <div class="col-md-4 panel-title"  >
                     <div class="col-md-7 dt-EncabezadoControles " align="center">
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
                             <span class="fa fa-clone" ></span>
