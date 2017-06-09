@@ -729,7 +729,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
-                                    <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" required>
+                                    <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" >
                                 </div> 
                                 <div class="col-md-4">
                                     <label for="">Apellidos</label>

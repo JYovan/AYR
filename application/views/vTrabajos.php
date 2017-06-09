@@ -21,6 +21,30 @@
     </div>
 </div>
 
+
+<!--Reportes-->
+<div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">IMPRIMIR REPORTES</h4>
+        </div>
+        <div class="modal-body">
+           Selecciona el reporte que deseas imprimir
+           
+           
+            <div id="reportes" class="dt-buttons">
+            <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
 <!--Confirmacion-->
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
@@ -59,13 +83,13 @@
                 </div>
                 <div class="col-md-3 panel-title"  >
                     <div class="col-md-7 dt-EncabezadoControles " align="center">
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
+                        <button type="button" class="btn btn-default CustomColorIcon"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
                             <span class="fa fa-clone" ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes">
+                        <button type="button" class="btn btn-default CustomColorIcon"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)">
                             <span class="fa fa-print " ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
+                        <button type="button" class="btn btn-default CustomColorIcon"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
                             <span class="fa fa-download"></span>
                         </button>
                     </div>
@@ -395,11 +419,11 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
-                <div id="ImporteTotal" class="col-md-6" align="right">
-                    <h4 class="text-success">$ 0.0</h4>
+                <div id="ImporteTotal" class="col-md-7" align="right">
+                    <span class="text-success spanTotalesDetalle">$ 0.0</span>
                 </div>
             </div>
         </div>
@@ -489,7 +513,7 @@
                             <div class="col-md-12 table-responsive" id="GeneradorXConcepto" >
                             </div>
                             <div id="GeneradorImporteTotal" class="col-md-12" align="right">
-                                <h4 class="text-success">TOTAL $ 0.0</h4>
+                                <span class="text-success spanTotalesDetalle">0.0</span>
                             </div>
                         </fieldset>
                     </div>
@@ -678,13 +702,13 @@
 
                 <div class="col-md-3 panel-title"  >
                     <div class="col-md-7 dt-EncabezadoControles " align="center">
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
+                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
                             <span class="fa fa-clone" ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes">
+                        <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnReportes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
+                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
                             <span class="fa fa-download"></span>
                         </button>
                     </div>
@@ -1148,6 +1172,11 @@
     var tblConceptosXTrabajo = pnlDetalleNuevoTrabajo.find("#tblConceptosXTrabajo");
     var mdlTrabajoNuevoConcepto = $("#mdlTrabajoNuevoConcepto");
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
+    
+    //Toggle Button Editar Atendido Impacto
+    var tbtnAtendido =  pnlEditarTrabajo.find("#Atendido");
+    var tbtnImpactoEnElPlazo =  pnlEditarTrabajo.find("#ImpactoEnPlazo");
+    
     /*Detalle*/
     var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
     var mdlTrabajoNuevoFotosPorConcepto = $("#mdlTrabajoNuevoFotosPorConcepto");
@@ -1165,9 +1194,16 @@
     var btnCancelarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelar");
     var btnMoficarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar");
 
-
+    //Reportes
+    var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
+    var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
 
     $(document).ready(function() {
+        
+        btnImprimirReportesEditarTrabajo.on("click", function() {
+            mdlReportesEditarTrabajo.modal('show');
+        });
+       
 
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function(e) {
@@ -1182,13 +1218,14 @@
                 }
             }
         });
+        
         mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#Generadores":
                     if (generador_nuevo_editable) {
                         console.log('SE CANCELO LA EDICION');
-                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
+                      //  onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
                         btnCancelarNuevoGenerador.trigger('click');
                         console.log('* * * * * TARGET * * * * ');
                         console.log(target);
@@ -1602,6 +1639,7 @@
                     pnlEditarTrabajo.find("input").val("");
 
                     var trabajo = data[0];
+                    
                     $.ajax({
                         url: master_url + 'getSucursalesByCliente',
                         type: "POST",
@@ -1745,6 +1783,7 @@
 
         btnModificar.on("click", function() {
 
+        
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1789,7 +1828,7 @@
                     frm.append('Estatus', 'Borrador');
                 }
 
-                if ($("#Atendido").is(':checked')) {
+                if (tbtnAtendido.is(':checked')) {
                     frm.delete('Atendido');
                     frm.append('Atendido', 'Si');
                 } else {
@@ -1804,6 +1843,11 @@
                     frm.delete('ImpactoEnPlazo');
                     frm.append('ImpactoEnPlazo', 'No');
                 }
+                
+                //Solo para debuggear el formulario de la clase FormData
+//                for (var pair of frm.entries()) {
+//                    console.log(pair[0]+ ', ' + pair[1]); 
+//                }
 
                 frm.delete('Dias');
 
@@ -2728,7 +2772,7 @@
                             tblConceptosXTrabajo.removeClass("hide");
                         }
                         tblConceptosXTrabajo.find("tbody").append(row);
-                        onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, AGREGADO', 'success');
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL CONCEPTO', 'success');
                         if (!mdlTrabajoNuevoConcepto.find("#chkMultiple").is(":checked")) {
                             mdlTrabajoNuevoConcepto.modal('hide');
                         }
@@ -2776,11 +2820,11 @@
             //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
-        ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <strong class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</strong>');
+        ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong> <span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
     }
 
     function onEliminarConcepto(evt) {
-        onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
+        //onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $(evt).parent().parent().remove();
         getImporteTotal();
     }
@@ -2946,7 +2990,7 @@
             //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
-        ImporteTotal.html('<strong class="text-muted">Importe total:</strong> <h4 class="text-success">$ ' + $.number(total, 6, '.', ', ') + '</h4>');
+        ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
         //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
 
@@ -2960,7 +3004,7 @@
             total += parseFloat(row.eq(11).text());
             // ImporteTotalGlobal=total;
         });
-        GeneradorImporteTotal.html('<strong class="text-muted">TOTAL: <h4 class="text-success">' + $.number(total, 6, '.', ', ') + '</h4></strong> ');
+        GeneradorImporteTotal.html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(total, 6, '.', ', ') + '</span> ');
     }
 
     function onFotosXConcepto(evt) {
@@ -3280,7 +3324,7 @@
 
     function onEliminarGenerador(evt) {
 
-        onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
+      //  onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
@@ -3467,7 +3511,37 @@
         getImporteTotal();
         getGeneradorImporteTotal();
     }
+    
+    //--------------------------------Reportes----------------------------------
+      function onReporteFin49() {
+
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
+            type: "POST",
+            data: {
+                        ID:temp
+                    }
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }  
+    
+    
 </script>
+
+
+
+
 <style>
 
     .super-fullscreen {

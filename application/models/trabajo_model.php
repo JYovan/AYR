@@ -134,7 +134,7 @@ class trabajo_model extends CI_Model {
     public function onAgregar($array) {
         try {
             $this->db->insert("trabajos", $array);
-         //   print $str = $this->db->last_query();
+            //   print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -148,7 +148,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalle($array) {
         try {
             $this->db->insert("trabajosdetalle", $array);
-        //    print $str = $this->db->last_query();
+            //    print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -162,7 +162,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleGenerador($array) {
         try {
             $this->db->insert("generadortrabajosdetalle", $array);
-      //      print $str = $this->db->last_query();
+            //      print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -176,7 +176,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleFotos($array) {
         try {
             $this->db->insert("trabajodetallefotos", $array);
-       //     print $str = $this->db->last_query();
+            //     print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -200,7 +200,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleAnexos($array) {
         try {
             $this->db->insert("trabajodetalleanexos", $array);
-        //    print $str = $this->db->last_query();
+            //    print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -215,7 +215,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetalleanexos", $DATA);
-      //      print $str = $this->db->last_query();
+            //      print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -224,7 +224,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleCroquis($array) {
         try {
             $this->db->insert("trabajodetallecroquis", $array);
-    //        print $str = $this->db->last_query();
+            //        print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -239,7 +239,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetallecroquis", $DATA);
-      //      print $str = $this->db->last_query();
+            //      print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -249,7 +249,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajos", $DATA);
-        //    print $str = $this->db->last_query();
+            //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -324,6 +324,66 @@ class trabajo_model extends CI_Model {
              */
             $str = $this->db->last_query();
 //        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    /* Reportes */
+
+    public function getFin49ByID($ID) {
+        try {
+            $this->db->select('T.Movimiento,T.FechaCreacion,T.FolioCliente,T.ImpactoEnPlazo,T.DiasImpacto,T.CausaTrabajo,T.ClaveOrigenTrabajo,
+                                T.EspecificaOrigenTrabajo,T.DescripcionOrigenTrabajo,T.DescripcionRiesgoTrabajo,T.DescripcionAlcanceTrabajo,T.Importe,
+                                CTE.Nombre AS NombreCliente,CTE.NombreCorto,S.CR,S.Nombre AS NombreSucursal,S.TipoConcepto,S.TipoObra,S.Contrato,
+                                S.FechaInicio,S.FechaFin, E.Nombre AS Empresa, ES.Nombre AS EmpresaSupervisora,CTE.RutaLogo
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                LEFT JOIN empresassupervisoras ES ON ES.ID = S.EmpresaSupervisora_ID
+                                LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus','Borrador', 'Concluido');
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+     //   print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    public function getResumenPartidas($ID) {
+        try {
+            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, 
+                                E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CONCAT(E.ContactoNombre," ",E.ContactoApellidos) AS ContactoEmpresa,
+                                CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS FirmaBanco,                                
+                                CTE.RutaLogo AS LogoCliente,
+                                TD.IntExt,TD.Importe AS ImporteRenglon, PCAT.Descripcion AS Categoria
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
+                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus','Borrador', 'Concluido');
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+     //   print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {

@@ -89,16 +89,16 @@
 
     </div><!-- /.container-fluid -->
 </nav>
-<!--<div id="reportes" class="dt-buttons">
-<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
+<div id="reportes" class="dt-buttons">
+<!--<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
-<button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
-<button onclick="onReportePresupuestoBBVA()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
-<button onclick="onReporteFin49()" class="btn btn-raised"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
+<button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>-->
+<!--<button onclick="onReportePresupuestoBBVA()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>-->
+<!--<button onclick="onReporteFin49()" class="btn btn-raised"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>-->
 <button onclick="onReporteResumenPartidas()" class="btn btn-raised"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
 <button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
-<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>
-</div>-->
+<!--<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>-->
+</div>
 
 <script>
     $(document).ready(function () {
@@ -130,13 +130,17 @@
     }
 
     function onReporteResumenPartidas() {
+     var temp=53;
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
         });
         $.ajax({
             url: base_url + 'index.php/ctrlSesion/onReporteResumenPartidas',
-            type: "POST"
+            type: "POST",
+             data: {
+                        ID:temp
+                    }
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
             console.log(data);
@@ -149,13 +153,17 @@
     }
 
     function onReporteFin49() {
+    var temp=51;
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
         });
         $.ajax({
             url: base_url + 'index.php/ctrlSesion/onReporteFin49',
-            type: "POST"
+            type: "POST",
+            data: {
+                        ID:temp
+                    }
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
             console.log(data);
