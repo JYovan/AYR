@@ -357,6 +357,16 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function getGeneradoresDetalleXConcepto() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getGeneradoresDetalleXConcepto($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificar() {
         try {
             extract($this->input->post());
@@ -503,7 +513,7 @@ class CtrlTrabajos extends CI_Controller {
 
 
             // $trabajo[0]->Movimiento;
-            // Creación del objeto de la clase heredada 
+            // Creación del objeto de la clase heredada
             $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
             $pdf->AliasNbPages();
@@ -860,10 +870,23 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
- 
+    /* FUNCIONES DE EDICION */
+
+    public function onEliminarConceptoXDetalle() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarConcepto($ID);
+            $this->trabajo_model->onEliminarGeneradoresXConcepto($ID);
+            $this->trabajo_model->onEliminarFotosXConcepto($ID);
+            $this->trabajo_model->onEliminarCroquisXConcepto($ID);
+            $this->trabajo_model->onEliminarAnexosXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }
 
 class PDF extends FPDF {
-    
+
 }

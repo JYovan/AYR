@@ -31,11 +31,11 @@
             <h4 class="modal-title">IMPRIMIR REPORTES</h4>
         </div>
         <div class="modal-body">
-           Selecciona el reporte que deseas imprimir
-           
-           
+            Selecciona el reporte que deseas imprimir
+
+
             <div id="reportes" class="dt-buttons">
-            <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
+                <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49</button>
             </div>
         </div>
 
@@ -510,7 +510,7 @@
                 <div id="pnlGenerador" class="tab-content">
                     <div class="tab-pane fade active in" id="Generadores">
                         <fieldset>
-                            <div class="col-md-12 table-responsive" id="GeneradorXConcepto" >
+                            <div class="col-md-12 table-responsive" id="NuevoGeneradorXConcepto" >
                             </div>
                             <div id="GeneradorImporteTotal" class="col-md-12" align="right">
                                 <span class="text-success spanTotalesDetalle">0.0</span>
@@ -568,11 +568,11 @@
                             <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
                             <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
 
-                        </div> 
+                        </div>
 
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -640,7 +640,6 @@
         </div>
     </div>
 </div>
-
 
 <!--MODAL DETALLE - NUEVOS ANEXOS POR CONCEPTO-->
 <div id="mdlTrabajoNuevoAnexosPorConcepto" class="modal animated bounceInDown">
@@ -1101,6 +1100,7 @@
     </div>
 </div>
 
+<!--MODAL EDITAR - VER ARCHIVOS ADJUNTOS-->
 <div class="modal animated fadeInUp" id="mdlAdjuntosXConceptoID">
     <div class="modal-dialog super-fullscreen">
         <div class="modal-content">
@@ -1140,6 +1140,89 @@
 </div>
 
 
+<!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO-->
+<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal animated bounceInDown ">
+    <div class="modal-dialog super-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">GENERADOR</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" style="">
+                    <li class="active"><a href="#EditarGeneradores" data-toggle="tab">Generador</a></li>
+                    <li><a href="#EditarGenerador" data-toggle="tab">Agregar</a></li>
+                </ul>
+                <div id="pnlGenerador" class="tab-content">
+                    <div class="tab-pane fade active in" id="EditarGeneradores">
+                        <fieldset>
+                            <div class="col-md-12" id="tblEditarGeneradorXConcepto"></div>
+                            <div id="GeneradorImporteTotal" class="col-md-12" align="right">
+                                <span class="text-success spanTotalesDetalle">0.0</span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="tab-pane fade" id="EditarGenerador">
+                        <div class="col-md-12 hide">
+                            <input type="text" id="IDT" name="IDT" class="form-control hide">
+                            <input type="text" id="IDG" name="IDG" class="form-control hide">
+                            <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control hide">
+                            <textarea id="Generador" name="Generador" rows="4" cols="20" class="hide">
+                            </textarea>
+                            <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control hide">
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="">Area</label>
+                            <input type="text" id="Area" name="Area" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Eje</label>
+                            <input type="text" id="Eje" name="Eje" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Entre Eje 1</label>
+                            <input type="text" id="EntreEje1" name="EntreEje1" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Entre Eje 2</label>
+                            <input type="text" id="EntreEje2" name="EntreEje2" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Largo</label>
+                            <input type="number" id="Largo" min="0" name="Largo" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Ancho</label>
+                            <input type="number" id="Ancho" min="0" name="Ancho" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Alto</label>
+                            <input type="number" id="Alto" min="0" name="Alto" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Cantidad</label>
+                            <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarGeneradorXID(this);"><span class="fa fa-check"></span><br>MODIFICAR</button>
+                            <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarGeneradorXID(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+
+                            <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
+                            <button type="button" class="btn btn-default " id="btnCancelarEditarGenerador" onclick="onCancelarEditarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--SCRIPT-->
 <script>
@@ -1172,18 +1255,18 @@
     var tblConceptosXTrabajo = pnlDetalleNuevoTrabajo.find("#tblConceptosXTrabajo");
     var mdlTrabajoNuevoConcepto = $("#mdlTrabajoNuevoConcepto");
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
-    
+
     //Toggle Button Editar Atendido Impacto
-    var tbtnAtendido =  pnlEditarTrabajo.find("#Atendido");
-    var tbtnImpactoEnElPlazo =  pnlEditarTrabajo.find("#ImpactoEnPlazo");
-    
+    var tbtnAtendido = pnlEditarTrabajo.find("#Atendido");
+    var tbtnImpactoEnElPlazo = pnlEditarTrabajo.find("#ImpactoEnPlazo");
+
     /*Detalle*/
     var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
     var mdlTrabajoNuevoFotosPorConcepto = $("#mdlTrabajoNuevoFotosPorConcepto");
     var mdlTrabajoNuevoCroquisPorConcepto = $("#mdlTrabajoNuevoCroquisPorConcepto");
     var mdlTrabajoNuevoAnexosPorConcepto = $("#mdlTrabajoNuevoAnexosPorConcepto");
-    var btnGuardarGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar");
-    var GeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#GeneradorXConcepto");
+    var btnGuardarNuevoGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar");
+    var NuevoGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#NuevoGeneradorXConcepto");
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
     var pnlDetalleEditarTrabajo = $("#pnlDetalleEditarTrabajo");
@@ -1198,17 +1281,22 @@
     var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
 
+    /*EDICION*/
+    var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
+    var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
+    var EditarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradorXConcepto");
+    var btnCancelarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
+    var btnMoficarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar");
+
     $(document).ready(function() {
-        
+
         btnImprimirReportesEditarTrabajo.on("click", function() {
             mdlReportesEditarTrabajo.modal('show');
         });
-       
-
 
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function(e) {
             if (e.which === 13) {
-                if (!btnGuardarGeneradorXConcepto.hasClass("hide")) {
+                if (!btnGuardarNuevoGeneradorXConcepto.hasClass("hide")) {
                     console.log('ESTA GUARDANDO');
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").trigger('click');
                 }
@@ -1218,14 +1306,14 @@
                 }
             }
         });
-        
+
         mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#Generadores":
                     if (generador_nuevo_editable) {
                         console.log('SE CANCELO LA EDICION');
-                      //  onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
+                        //  onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
                         btnCancelarNuevoGenerador.trigger('click');
                         console.log('* * * * * TARGET * * * * ');
                         console.log(target);
@@ -1361,7 +1449,7 @@
             }
         });
 
-        btnGuardarGeneradorXConcepto.on("click", function() {
+        btnGuardarNuevoGeneradorXConcepto.on("click", function() {
             var Generador = [];
             if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
@@ -1383,8 +1471,8 @@
                                 mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && (Cantidad !== '' && Cantidad !== undefined)) {
                             //                        /*FIN DE LA EVALUACIÓN*/
                             /*ELIMINAR GENERADORES*/
-                            if (GeneradorXConcepto.find())
-                                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            if (NuevoGeneradorXConcepto.find())
+                                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                                     var row = $(v).find("td");
                                     if (row.eq(0).text() === "No existen datos en la tabla.") {
                                         $(this).remove();
@@ -1421,11 +1509,11 @@
                             new_row += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
                             new_row += "<td class=\"hide\">ACTIVO</td>";
                             new_row += '</tr>';
-                            GeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
                             /*AGREGAR NUEVO GENERADOR*/
                             Generador = [];
                             var tt = 0;
-                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                                 var row = $(v).find("td");
                                 console.log(v);
                                 console.log(row);
@@ -1462,7 +1550,7 @@
                         } else {
                             Generador = [];
                             var tt = 0;
-                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                                 var row = $(v).find("td");
                                 var nuevo_generador = {};
                                 nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -1502,14 +1590,14 @@
                 });
                 getImporteTotal();
             } else {
-                if (GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
+                if (NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
                     console.log('* * * * * * * RECREANDO EL GENERADOR *********');
                     $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
                         var row_status = $(this).find("td").eq(15).text();
                         if (row_status === 'ACTIVO') {
                             Generador = [];
                             var tt = 0;
-                            GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                                 var row = $(v).find("td");
                                 var nuevo_generador = {};
                                 nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -1639,7 +1727,7 @@
                     pnlEditarTrabajo.find("input").val("");
 
                     var trabajo = data[0];
-                    
+
                     $.ajax({
                         url: master_url + 'getSucursalesByCliente',
                         type: "POST",
@@ -1783,7 +1871,7 @@
 
         btnModificar.on("click", function() {
 
-        
+
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1843,10 +1931,10 @@
                     frm.delete('ImpactoEnPlazo');
                     frm.append('ImpactoEnPlazo', 'No');
                 }
-                
+
                 //Solo para debuggear el formulario de la clase FormData
 //                for (var pair of frm.entries()) {
-//                    console.log(pair[0]+ ', ' + pair[1]); 
+//                    console.log(pair[0]+ ', ' + pair[1]);
 //                }
 
                 frm.delete('Dias');
@@ -2933,13 +3021,13 @@
         });
         tblGeneradores += '</tbody>' +
                 '</table>';
-        GeneradorXConcepto.html(tblGeneradores);
+        NuevoGeneradorXConcepto.html(tblGeneradores);
 
-        var DataTableGeneradores = GeneradorXConcepto.find("#tblGeneradores");
+        var DataTableGeneradores = NuevoGeneradorXConcepto.find("#tblGeneradores");
         if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
             var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-            GeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function() {
+            NuevoGeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function() {
                 DataTableGeneradores.find("tr").removeClass("success");
                 DataTableGeneradores.find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3324,7 +3412,7 @@
 
     function onEliminarGenerador(evt) {
 
-      //  onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
+        //  onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
         $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
@@ -3476,7 +3564,7 @@
             if (row_status === 'ACTIVO') {
                 Generador = [];
                 var tt = 0;
-                GeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
                     var row = $(v).find("td");
                     var nuevo_generador = {};
                     nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -3511,9 +3599,9 @@
         getImporteTotal();
         getGeneradorImporteTotal();
     }
-    
+
     //--------------------------------Reportes----------------------------------
-      function onReporteFin49() {
+    function onReporteFin49() {
 
         HoldOn.open({
             theme: 'sk-bounce',
@@ -3523,25 +3611,258 @@
             url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
             type: "POST",
             data: {
-                        ID:temp
-                    }
-        }).done(function (data, x, jq) {
+                ID: temp
+            }
+        }).done(function(data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
             console.log(data);
             window.open(data, '_blank');
-        }).fail(function (x, y, z) {
+        }).fail(function(x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
+        }).always(function() {
             HoldOn.close();
         });
-    }  
-    
-    
+    }
+
+    /*FUNCIONES DE EDICION EN EL GENERADOR*/
+    function onEliminarConceptoXDetalle(evt, IDX) {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ELIMINANDO...'
+        });
+        $.ajax({
+            url: master_url + 'onEliminarConceptoXDetalle',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+
+            var row = $(evt).parent().parent().find("td");
+            console.log('* * * * * * * * * * * * FILA (EDICION)* * * * * * * * * * * * * * ');
+            $.each(row, function(k, v) {
+                console.log(k, v);
+            });
+            console.log('* * * * * * * * * * * * END FILA (EDICION)* * * * * * * * * * * * * * ');
+            $(evt).parent().parent().remove();
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
+        }).fail(function(x, y, z) {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
+
+    function getGeneradoresDetalleXConcepto(IDX) {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'getGeneradoresDetalleXConcepto',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+            console.log(data);
+
+            /*CREAR TABLA DE GENERADORES*/
+            var tblGeneradoresDetalleXConcepto = '<br><table  id="tblGeneradoresDetalleXConcepto" class="table table-striped table-hover" width="100%">' +
+                    '<thead>' +
+                    '<tr>' +
+                    '<th class="hide">IDT</th>' +
+                    '<th class="hide">IDG</th>' +
+                    '<th class="hide">Concepto_ID</th>' +
+                    '<th>Eliminar</th>' +
+                    '<th >Area</th>' +
+                    '<th>Eje</th>' +
+                    '<th class="col-md-3">Entre Eje 1</th>' +
+                    '<th class="col-md-3">Entre Eje 2</th>' +
+                    '<th class="col-md-1">Largo</th>' +
+                    '<th>Ancho</th>' +
+                    '<th class="col-md-2">Alto</th>' +
+                    '<th class="col-md-2">Cantidad</th>' +
+                    '<th>Total</th>' +
+                    '<th>Editar</th>' +
+                    '<th class="hide">Estatus</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
+            console.log('* * * * * * * * * * START READ GENERADOR X CONCEPTO * * * * * * * * * * ');
+            $.each(data, function(k, v) {
+                console.log(k, v);
+                tblGeneradoresDetalleXConcepto += "<tr>";
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
+                tblGeneradoresDetalleXConcepto += v.TRABAJOID;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*RENGLON*/
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
+                tblGeneradoresDetalleXConcepto += v.ID;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*CONCEPTO_ID*/
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
+                tblGeneradoresDetalleXConcepto += v.Concepto_ID;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + ")\"></span></td>";
+
+                /*AREA*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Area;
+                tblGeneradoresDetalleXConcepto += "</td>";
+
+                /*EJE*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Eje;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*EntreEje1*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.EntreEje1;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*EntreEje2*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.EntreEje2;
+                tblGeneradoresDetalleXConcepto += "</td>";
+
+                /*Largo*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Largo;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*Ancho*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Ancho;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*Alto*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Alto;
+                tblGeneradoresDetalleXConcepto += "</td>";
+
+                /*Cantidad*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.Cantidad;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*Total*/
+                var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) > 0) ? v.Largo : 1);
+                var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) > 0) ? v.Ancho : 1);
+                var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) > 0) ? v.Alto : 1);
+                var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) > 0) ? v.Cantidad : 1);
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
+                tblGeneradoresDetalleXConcepto += "</td>";
+                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorXID(this," + v.ID + ")\"></span></td>";
+                tblGeneradoresDetalleXConcepto += "<td class=\"hide\">ACTIVO</td>";
+                tblGeneradoresDetalleXConcepto += "</tr>";
+            });
+            console.log('* * * * * * * * * * END READ GENERADOR X CONCEPTO * * * * * * * * * * ');
+            tblGeneradoresDetalleXConcepto += '</tbody></table>';
+            mdlTrabajoEditarGeneradorPorConcepto.find("#tblEditarGeneradorXConcepto").html(tblGeneradoresDetalleXConcepto);
+
+
+            var DataTableGeneradores = mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto");
+            if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
+
+                var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
+                mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function() {
+                    DataTableGeneradores.find("tr").removeClass("success");
+                    DataTableGeneradores.find("tr").removeClass("warning");
+                    //                console.log(this)
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblDataTableGeneradores.row(this).data();
+                    console.log(dtm);
+                });
+            } else {
+                DataTableGeneradores.DataTable(tableOptions);
+            }
+            mdlTrabajoEditarGeneradorPorConcepto.modal('show');
+        }).fail(function(x, y, z) {
+            console.log(x, y, z);
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
+
+    function onEditarGeneradorXID(evt, IDX) {
+
+        var row = $(evt).parent().parent().find("td");
+        console.log('********************EDITANDO GENERADOR*************');
+        console.log(row)
+        mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(row.eq(0).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val(row.eq(1).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val(row.eq(2).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val(row.eq(4).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val(row.eq(5).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val(row.eq(6).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val(row.eq(7).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val(row.eq(8).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val(row.eq(9).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val(row.eq(10).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val(row.eq(11).text());
+
+        console.log('******************** END EDITANDO GENERADOR*************');
+
+        mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").addClass("hide");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(1).addClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGenerador").addClass("active in");
+        btnCancelarEditarGenerador.removeClass("hide");
+        btnMoficarEditarGenerador.removeClass("hide");
+    }
+
+
+    function onModificarGeneradorXID(evt) {
+
+        mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
+        getGeneradoresDetalleXConcepto(mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val());
+        getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
+    }
+
+    function onCancelarModificarGeneradorXID(evt) {
+
+        mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
+        btnCancelarEditarGenerador.removeClass("hide");
+        btnCancelarNuevoGenerador.addClass("hide");
+        btnMoficarNuevoGenerador.addClass("hide");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
+
+        mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
+        getGeneradorImporteTotal();
+    }
+
+
+    function onCancelarEditarAgregarNuevoGenerador(evt) {
+        mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
+    }
 </script>
-
-
-
-
 <style>
 
     .super-fullscreen {
