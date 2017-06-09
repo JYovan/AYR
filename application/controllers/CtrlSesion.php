@@ -349,6 +349,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         
         $ID = $_POST['ID'];
         $trabajo = $this->trabajo_model->getResumenPartidas($ID);
+        $datos= $trabajo[0];
         
         // Creación del objeto de la clase heredada 
         $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
@@ -358,17 +359,18 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetAutoPageBreak(false, 300);
         $pdf->SetLineWidth(0.4);
 
+   
         /* ENCABEZADO */
 
-        $pdf->Image(base_url() . $trabajo[0]->LogoEmpresa, 5, 5, 35);
+        $pdf->Image(base_url() . $datos->LogoEmpresa, 5, 5, 35);
         // LogoCliente
-        $pdf->Image(base_url() . $trabajo[0]->LogoCliente, 155, 5, 55);
+        $pdf->Image(base_url() . $datos->LogoCliente, 155, 5, 55);
 
         /* Titulo */
         $pdf->SetFont('Arial', 'B', 8);
         $pdf->SetY(5);
         $pdf->SetX(5);
-        $pdf->Cell(200, 5, utf8_decode($trabajo[0]->Cliente), 0, 1, 'C');
+        $pdf->Cell(200, 5, utf8_decode($datos->Cliente), 0, 1, 'C');
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
         $pdf->SetX(5);
@@ -384,7 +386,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetY($CurrenY);
         $pdf->SetX(70);
         $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(75, 5, utf8_decode($trabajo[0]->TrabajoSolicitado), 'B', 1, 'L');
+        $pdf->Cell(75, 5, utf8_decode($datos->TrabajoSolicitado), 'B', 1, 'L');
 
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
@@ -394,7 +396,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetY($CurrenY);
         $pdf->SetX(70);
         $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(75, 5, utf8_decode($trabajo[0]->Empresa), 'B', 1, 'L');
+        $pdf->Cell(75, 5, utf8_decode($datos->Empresa), 'B', 1, 'L');
 
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
@@ -404,7 +406,7 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetY($CurrenY);
         $pdf->SetX(70);
         $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(75, 5, utf8_decode($trabajo[0]->FechaCreacion), 'B', 1, 'L');
+        $pdf->Cell(75, 5, utf8_decode($datos->FechaCreacion), 'B', 1, 'L');
 
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY + 4);
@@ -415,9 +417,10 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
         $pdf->SetX(5);
-        $pdf->Cell(200, 5, utf8_decode('CR: '.$trabajo[0]->CR .' - '.$trabajo[0]->Sucursal), 0, 1, 'C');
+        $pdf->Cell(200, 5, utf8_decode('CR: '.$datos->CR .' - '.$datos->Sucursal), 0, 1, 'C');
 
         /* SEGUNDA PARTE ENCABEZADO */
+        
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
         $pdf->SetX(15);
@@ -429,8 +432,17 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->Cell(55, 5, utf8_decode("PRELIMINARES  "), 0, 1, 'L');
         $pdf->SetY($CurrenY + 2);
         $pdf->SetX(110);
+        
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(95, 5, utf8_decode(""), 'B', 1, 'C');
+        foreach ($trabajo as $i => $datoNuevo) {
+           
+        
+        if($datoNuevo->IntExt === "Interior" && $datoNuevo->Categoria === "PRELIMINARES"){
+            $pdf->Cell(95, 5, utf8_decode($datoNuevo->ImporteRenglon), 'B', 1, 'C');
+        }
+        
+        
+        }
 
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY + 2);
@@ -666,12 +678,12 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetY($CurrenY + 2);
         $pdf->SetX(15);
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 5, utf8_decode($trabajo[0]->Empresa), 0, 1, 'C');
+        $pdf->Cell(80, 5, utf8_decode($datos->Empresa), 0, 1, 'C');
 
         $pdf->SetY($CurrenY + 2);
         $pdf->SetX(120);
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 5, utf8_decode($trabajo[0]->Cliente), 0, 1, 'C');
+        $pdf->Cell(80, 5, utf8_decode($datos->Cliente), 0, 1, 'C');
 
 
         $CurrenY = $pdf->GetY();
@@ -688,11 +700,11 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $pdf->SetY($CurrenY);
         $pdf->SetX(15);
         $pdf->SetFont('Arial', '', 7);
-        $pdf->Cell(80, 5, utf8_decode($trabajo[0]->ContactoEmpresa), 0, 1, 'C');
+        $pdf->Cell(80, 5, utf8_decode($datos->ContactoEmpresa), 0, 1, 'C');
         $pdf->SetY($CurrenY);
         $pdf->SetX(120);
         $pdf->SetFont('Arial', '', 7);
-        $pdf->Cell(80, 5, utf8_decode($trabajo[0]->FirmaBanco), 0, 1, 'C');
+        $pdf->Cell(80, 5, utf8_decode($datos->FirmaBanco), 0, 1, 'C');
 
 
          /* FIN CUERPO */

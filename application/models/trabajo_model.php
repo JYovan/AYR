@@ -362,12 +362,13 @@ class trabajo_model extends CI_Model {
     
     public function getResumenPartidas($ID) {
         try {
-            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
+            $this->db->query("set sql_mode=''");
+            $this->db->select(' T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, 
                                 E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CONCAT(E.ContactoNombre," ",E.ContactoApellidos) AS ContactoEmpresa,
                                 CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS FirmaBanco,                                
                                 CTE.RutaLogo AS LogoCliente,
-                                TD.IntExt,TD.Importe AS ImporteRenglon, PCAT.Descripcion AS Categoria
+                                TD.IntExt,SUM(TD.Importe) AS ImporteRenglon, PCAT.Descripcion AS Categoria
                                 FROM TRABAJOS T
                                 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
                                 INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
@@ -378,12 +379,13 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus','Borrador', 'Concluido');
             $this->db->where('T.ID', $ID);
+            $this->db->group_by(array('TD.IntExt','PCAT.Descripcion'));
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-     //   print $str;
+      //  print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
