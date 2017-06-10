@@ -131,7 +131,7 @@ var tableOptions = {
             }
         }
     },
-    "autoWidth": false,
+    "autoWidth": true,
     colReorder: true, 
     "displayLength": 30,
     "bLengthChange": false,
@@ -139,16 +139,17 @@ var tableOptions = {
     "scrollY": 400,
     "scrollX": true,
     "scrollCollapse": true,
-    "aaSorting": [[0, 'desc']],
-    "columnDefs": [
-        {"width": "20%", "targets": [0]}
-    ]
+    "aaSorting": [[0, 'desc']]
+//    ,
+//    "columnDefs": [
+//        {"width": "20%", "targets": [0]}
+//    ]
 };
 function getTable(tblname, data) {
     var column = '';
     var i = 0;
     var div = "<div class=\" \">";
-    div = "<table id=\"" + tblname + "\" class=\"table table-striped table-hover \" cellspacing=\"10\" width=\"100%\">";
+    div = "<table id=\"" + tblname + "\" class=\"table table-striped table-hover \"  width=\"100%\">";
     //Create header
     div += "<thead>";
     div += "<tr class=\"\" >";
