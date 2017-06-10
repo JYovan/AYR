@@ -4,14 +4,11 @@
 
 <div class="col-md-4 ">
     <div class="panel panel-primary animated bounceInUp form-group margin-top-100 ">
-        <div class="panel-heading">
+        <div class="panel-headingLogin">
             <h3 class="panel-title">Acceso</h3>
         </div>
         <form id="frmIngresar" class="form-horizontal">
             <div class="panel-body">
-
-
-
                 <div class="col-md-12"  align="center">
                     <img src="<?php print base_url(); ?>img/logo.png" class="img-responsive" width="148" height="143">
                     <br><br>

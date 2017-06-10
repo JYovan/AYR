@@ -146,7 +146,7 @@
                 </div>
                 <div class="col-md-3 panel-title" align="right">
                     <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
-                        <button type="button" class="btn btn-default CustomColorIconCatalogos" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                        <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
                     </div>
                     <div class="col-md-9" align="right">
                         <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
