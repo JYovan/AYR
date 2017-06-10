@@ -21,17 +21,17 @@ var selected = [];
 var tableOptions = {
     "dom": 'Bfrtip',
     buttons: [
-        {
-            extend: 'copyHtml5',
-            text: '<span data-tooltip="Copiar Registros"><spam class="fa fa-clipboard CustomIconsForDataTable"></spam></spam>',
-            message: 'COPIADO',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                },
-                columns: ':visible'
-            }
-        },
+//        {
+//            extend: 'copyHtml5',
+//            text: '<span data-tooltip="Copiar Registros"><spam class="fa fa-clipboard CustomIconsForDataTable"></spam></spam>',
+//            message: 'COPIADO',
+//            exportOptions: {
+//                modifier: {
+//                    page: 'current'
+//                },
+//                columns: ':visible'
+//            }
+//        },
         {
             extend: 'excelHtml5',
             text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
@@ -50,15 +50,15 @@ var tableOptions = {
 //                columns: ':visible'
 //            }
 //        },
-        {
-            extend: 'pdfHtml5',
-            text: '<span  data-tooltip="Exportar a PDF"><span class="fa fa-file-pdf-o CustomIconsForDataTable"></span></span>',
-            orientation: 'landscape',
-            pageSize: 'LEGAL',
-            exportOptions: {
-                columns: ':visible'
-            }
-        },
+//        {
+//            extend: 'pdfHtml5',
+//            text: '<span  data-tooltip="Exportar a PDF"><span class="fa fa-file-pdf-o CustomIconsForDataTable"></span></span>',
+//            orientation: 'landscape',
+//            pageSize: 'LEGAL',
+//            exportOptions: {
+//                columns: ':visible'
+//            }
+//        },
 //        {
 //            extend: 'print',
 //            customize: function (win) {

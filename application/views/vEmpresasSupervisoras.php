@@ -1,16 +1,16 @@
 <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-default" id="pnlTablero">
         <div class="panel-heading">
-             <div class="cursor-hand" >Empresas Supervisoras</div>
-        
+            <div class="cursor-hand" >Empresas Supervisoras</div>
+
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>   
             </fieldset>
@@ -44,118 +44,149 @@
 <!--MODALES-->
 
 <!--NUEVO-->
+<div class="col-md-12">
+    <!--GUARDAR-->
+    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading" >
+            <div class="Custompanel-heading row">
+                <div class="col-md-9">
 
-<div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nueva Empresa Supervisora</h4>
-            </div>
-            <form id="frmNuevo">
-                <div class="modal-body">
-                    <fieldset>
-                       
-                        <div class="col-md-12 hide">
-                            <input type="text" id="ID" name="ID" class="form-control">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Nombre* </label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Descripción</label>    
-                            <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Contacto 1</label>
-                            <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Contacto 2</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
-                    </fieldset>
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Nueva Empresa Supervisora
+                    </div>
                 </div>
-            </form>
-            <div class="modal-footer">
-                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                <div class="col-md-3 panel-title " >
+
+                    <div class="col-md-12" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                    </div>
+
+
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+        <div class="panel-body">
+            <form id="frmNuevo">
+                <fieldset>
+
+                    <div class="col-md-12 hide">
+                        <input type="text" id="ID" name="ID" class="form-control">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">Nombre* </label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">Descripción</label>    
+                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Contacto 1</label>
+                        <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Contacto 2</label>
+                        <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>    
+
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+</div>       
 
 
 <!--EDITAR-->
+<div class="col-md-12">
 
-<div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Editar Empresa Supervisora</h4>
-            </div>
-            <form id="frmEditar">
-                <div class="modal-body">
-                    <fieldset>
-                      
-                        <div class="col-md-12 hide">
-                            <input type="text" id="ID" name="ID" class="form-control">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Nombre* </label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Descripción</label>    
-                            <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
-                        </div>
+    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading " >
+            <div class="Custompanel-heading row">
+                <div class="col-md-9">
 
-                        <div class="col-md-6">
-                            <label for="">Contacto 1</label>
-                            <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Contacto 2</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
-                    </fieldset>
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Editar Empresa Supervisora
+                    </div>
                 </div>
-            </form>
-            <div class="modal-footer">
-                   <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                <div class="col-md-3 panel-title" align="right">
+                    <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
+                        <button type="button" class="btn btn-default CustomColorIconCatalogos" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                    </div>
+                    <div class="col-md-9" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                    </div>
+
+
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+        <div class="panel-body">
+
+            <form id="frmEditar">
+
+                <fieldset>
+
+                    <div class="col-md-12 hide">
+                        <input type="text" id="ID" name="ID" class="form-control">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">Nombre* </label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">Descripción</label>    
+                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Contacto 1</label>
+                        <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Contacto 2</label>
+                        <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>    
+
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+</div>            
 
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlEmpresasSupervisoras/';
 
     var btnNuevo = $("#btnNuevo");
-    var mdlNuevo = $("#mdlNuevo");
+    var pnlNuevo = $("#pnlNuevo");
+    var pnlTablero = $("#pnlTablero");
 
     var btnEditar = $("#btnEditar");
-    var mdlEditar = $("#mdlEditar");
+    var pnlEditar = $("#pnlEditar");
 
     //Boton que guarda los datos del formulario
-    var btnGuardar = mdlNuevo.find("#btnGuardar");
+    var btnGuardar = pnlNuevo.find("#btnGuardar");
+    var btnCancelar = pnlNuevo.find("#btnCancelar");
     //Boton que actualiza los datos del formulario
-    var btnModificar = mdlEditar.find("#btnModificar");
+    var btnModificar = pnlEditar.find("#btnModificar");
+    var btnCancelarModificar = pnlEditar.find("#btnCancelar");
     //Botones del tablero que actualizan y eliminan registros
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
@@ -166,10 +197,25 @@
     $(document).ready(function () {
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
-            //Muestra el modal
-            mdlNuevo.modal('show');
-            //Limpia los campos
-            mdlNuevo.find("input").val("");
+
+            pnlTablero.addClass("hide");
+            pnlNuevo.removeClass('hide');
+            pnlNuevo.find("input").val("");
+            pnlNuevo.find("select").val(null).trigger("change");
+        });
+
+        btnCancelar.click(function () {
+            pnlTablero.removeClass("hide");
+            pnlNuevo.addClass('hide');
+            btnRefrescar.trigger('click');
+
+        });
+
+        btnCancelarModificar.click(function () {
+            pnlEditar.addClass("hide");
+            pnlTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
+
         });
 
         //Actualiza los datos
@@ -197,10 +243,11 @@
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
                     $.each(data[0], function (k, v) {
-                        mdlEditar.find("#" + k).val(v);
-                        mdlEditar.find("#" + k).select2("val", v);
+                        pnlEditar.find("#" + k).val(v);
+                        pnlEditar.find("#" + k).select2("val", v);
                     });
-                    mdlEditar.modal('show');
+                    pnlEditar.removeClass("hide");
+                    pnlTablero.addClass("hide");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -239,7 +286,9 @@
                     console.log(temp);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EMPRESA ELIMINADA', 'danger');
-                    getRecords();
+                    pnlEditar.addClass("hide");
+                    pnlTablero.removeClass("hide");
+                    btnRefrescar.trigger('click');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -293,7 +342,7 @@
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
 
-                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
 
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -305,8 +354,9 @@
                 }).done(function (data, x, jq) {
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
-                    getRecords();
-                    mdlNuevo.modal('hide');
+                    pnlTablero.removeClass("hide");
+                    pnlNuevo.addClass('hide');
+                    btnRefrescar.trigger('click');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -317,8 +367,6 @@
             }
 
         });
-
-
 
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
@@ -359,7 +407,7 @@
 
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
-                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
 
                 $.ajax({
                     url: master_url + 'onModificar',
@@ -370,8 +418,9 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA EMPRESA', 'success');
-                    getRecords();
-                    mdlEditar.modal('hide');
+                    pnlTablero.removeClass("hide");
+                    pnlEditar.addClass('hide');
+                    btnRefrescar.trigger('click');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -431,7 +480,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblEmpresasSupervisoras tbody').on('dblclick', 'tr', function () {
+            $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {
                 $("#tblEmpresasSupervisoras").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();

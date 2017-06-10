@@ -9,9 +9,9 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
@@ -129,7 +129,7 @@
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading">
             <div class="Custompanel-heading row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
@@ -137,11 +137,19 @@
                         Editar Preciario
                     </div>
                 </div>
-                <div class="col-md-4 panel-title" align="right">
+                
+                <div class="col-md-3 panel-title" align="right">
+                    <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
+                        <button type="button" class="btn btn-default CustomColorIconCatalogos" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                    </div>
+                    <div class="col-md-9" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
+                    </div>
 
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
 
                 </div>
+                
+                
             </div>
         </div>
         <div class="panel-body">
@@ -219,7 +227,7 @@
             <div class="col-md-12 dt-buttons" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                 <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                <button type="button" class="btn btn-default" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                <button type="button" class="btn btn-default hide" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
             </div>
             <div class="col-md-12">
                 <br>
@@ -736,7 +744,7 @@
         btnCancelar.click(function() {
             pnlPreciario.removeClass("hide");
             pnlNuevo.addClass("hide");
-
+             btnRefrescar.trigger('click')
         });
 
         btnCancelarSubSubCategoria.click(function() {
@@ -772,11 +780,10 @@
             });
         });
 
-
-
         btnNuevaCategoria.click(function() {
             mdlNuevaCategoria.removeClass("hide");
         });
+        
         btnCancelarConcepto.click(function() {
             pnlConceptos.find("#Conceptos").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -916,14 +923,16 @@
         });
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function() {
-
-            if (temp !== 0 && temp !== undefined && temp > 0) {
+           
+            if (tempID !== 0 && tempID !== undefined && tempID > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
+        
+        
         //Evento clic del boton confirmar borrar un concepto
         btnEliminarConcepto.click(function() {
 
@@ -964,8 +973,9 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
+        
         btnEliminar.click(function() {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
+        
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "ELIMINANDO DATOS..."
@@ -974,21 +984,24 @@
                     url: master_url + 'onEliminar',
                     type: "POST",
                     data: {
-                        ID: temp
+                        ID: tempID
                     }
                 }).done(function(data, x, jq) {
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
+                     pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
+                    pnlEditar.addClass("hide");
+                    pnlDetalleConceptos.addClass("hide");
+                    btnRefrescar.trigger('click');
+                    
                     getRecords();
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
                     HoldOn.close();
                 });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
+            
         });
 
         btnRefrescar.click(function() {
@@ -1143,14 +1156,16 @@
         });
 
         btnEditar.click(function() {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
+            
+           
+            if (tempID !== 0 && tempID !== undefined && tempID > 0) {
 
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
                     type: "POST",
                     dataType: "JSON",
                     data: {
-                        ID: temp
+                        ID: tempID
                     }
                 }).done(function(data, x, jq) {
                     console.log(data);
@@ -1256,7 +1271,7 @@
     }
 
     function getRecords() {
-        temp = 0;
+        tempID = 0;
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
@@ -1290,16 +1305,17 @@
                 console.log(dtm);
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblEmpresas tbody').on('dblclick', 'tr', function() {
-                $("#tblEmpresas").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
+                tempID = parseInt(dtm[0]);    
                 btnEditar.trigger("click");
             });
+            //DB CLICK FOR EDIT
+//            $('#tblEmpresas tbody').on('click', 'tr', function() {
+//                $("#tblEmpresas").find("tr").removeClass("warning");
+//                $(this).addClass('warning');
+//                var dtm = tblSelected.row(this).data();
+//                tempID = parseInt(dtm[0]);
+//                btnEditar.trigger("click");
+//            });
             // Apply the search
             tblSelected.columns().every(function() {
                 var that = this;
@@ -1436,7 +1452,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblConceptosXPreciarioID tbody').on('dblclick', 'tr', function() {
+            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();

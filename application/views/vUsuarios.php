@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-default" id="pnlTablero">
         <div class="panel-heading">
             <div class="cursor-hand" >Usuarios</div>
         </div>
@@ -7,9 +7,8 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
@@ -40,94 +39,126 @@
 
 </div>
 <!--MODALES-->
+<div class="col-md-12">
+    <!--GUARDAR-->
+    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading" >
+            <div class="Custompanel-heading row">
+                <div class="col-md-9">
 
-<div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nuevo Usuario</h4>
-            </div>
-            <form id="frmNuevo">
-                <div class="modal-body">
-                    <fieldset>
-                        <div class="col-6 col-md-6">
-                            <label for="">Usuario*</label>    
-                            <input type="text" class="form-control" id="Usuario" name="Usuario" required >
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Contraseña*</label>    
-                            <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
-                        </div>
-
-                        <div class="col-6 col-md-12">
-                            <label for="">Estatus*</label>
-                            <select id="Estatus" name="Estatus" class="form-control" required>
-                                <option value=""></option> 
-                                <option value="Activo">Activo</option> 
-                                <option value="Inactivo">Inactivo</option> 
-                            </select>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <label for="">Nombre*</label>
-                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Apellidos*</label>
-                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Tipo Acceso*</label>
-                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
-                                <option value=""></option> 
-                                <option value="ADMINISTRADOR">Administrador</option> 
-                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                                <option value="RESIDENTE">Residente</option> 
-                                <option value="INVITADO">Invitado</option> 
-                            </select>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="">Empresa*</label>
-                            <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
-                                <option value=""></option> 
-                            </select>
-                        </div>
-
-
-
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
-                    </fieldset>
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Nuevo Usuario
+                    </div>
                 </div>
+                <div class="col-md-3 panel-title " >
+                     
+                    <div class="col-md-12" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form id="frmNuevo">
+                <fieldset>
+                    <div class="col-6 col-md-6">
+                        <label for="">Usuario*</label>    
+                        <input type="text" class="form-control" id="Usuario" name="Usuario" required >
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">Contraseña*</label>    
+                        <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
+                    </div>
+
+                    <div class="col-6 col-md-12">
+                        <label for="">Estatus*</label>
+                        <select id="Estatus" name="Estatus" class="form-control" required>
+                            <option value=""></option> 
+                            <option value="Activo">Activo</option> 
+                            <option value="Inactivo">Inactivo</option> 
+                        </select>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label for="">Nombre*</label>
+                        <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Apellidos*</label>
+                        <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Tipo Acceso*</label>
+                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
+                            <option value=""></option> 
+                            <option value="ADMINISTRADOR">Administrador</option> 
+                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                            <option value="RESIDENTE">Residente</option> 
+                            <option value="INVITADO">Invitado</option> 
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="">Empresa*</label>
+                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
+                            <option value=""></option> 
+                        </select>
+                    </div>
+
+
+
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>    
+
+                    </div>
+
+                </fieldset>
             </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="col-md-12">
+    <!--GUARDAR-->
+    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading " >
+            <div class="Custompanel-heading row">
+                <div class="col-md-9">
+
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Editar Usuario
+                    </div>
+                </div>
+                <div class="col-md-3 panel-title" align="right">
+                    <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
+                        <button type="button" class="btn btn-default CustomColorIconCatalogos" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                    </div>
+                    <div class="col-md-9" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                    </div>
+                    
+
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-<div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Editar Usuario</h4>
-            </div>
+        </div>
+        <div class="panel-body">
             <form id="frmEditar">
-                <div class="modal-body">
                     <fieldset>
-
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
@@ -180,29 +211,30 @@
                         </div>
 
                     </fieldset>
-                </div>
             </form>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
-
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
 
 
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlUsuario/';
+
+    var pnlNuevo = $("#pnlNuevo");
+    var pnlTablero = $("#pnlTablero");
     var btnNuevo = $("#btnNuevo");
-    var mdlNuevo = $("#mdlNuevo");
-    var btnGuardar = mdlNuevo.find("#btnGuardar");
+
+    var btnGuardar = pnlNuevo.find("#btnGuardar");
+    var btnCancelar = pnlNuevo.find("#btnCancelar");
+
+
 
     var btnEditar = $("#btnEditar");
-    var mdlEditar = $("#mdlEditar");
-    var btnModificar = mdlEditar.find("#btnModificar");
+    var pnlEditar = $("#pnlEditar");
+
+    var btnModificar = pnlEditar.find("#btnModificar");
+    var btnCancelarModificar = pnlEditar.find("#btnCancelar");
 
     var btnRefrescar = $("#btnRefrescar");
 
@@ -239,7 +271,11 @@
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'USUARIO ELIMINADO', 'danger');
-                    getRecords();
+                    
+                    pnlEditar.addClass("hide");
+                    pnlTablero.removeClass("hide");
+                    btnRefrescar.trigger('click');
+
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -295,7 +331,7 @@
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
 
-                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
 
                 $.ajax({
                     url: master_url + 'onModificar',
@@ -306,8 +342,12 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN USUARIO', 'success');
-                    getRecords();
-                    mdlEditar.modal('hide');
+                    
+    
+                    btnRefrescar.trigger('click');
+                    pnlEditar.addClass('hide');
+                    pnlTablero.removeClass('hide');
+                    
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -361,12 +401,11 @@
             });
 
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
 
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
 
-                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -377,7 +416,8 @@
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO USUARIO', 'success');
                     getRecords();
-                    mdlNuevo.modal('hide');
+                    pnlTablero.removeClass("hide");
+                    pnlNuevo.addClass('hide');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -396,13 +436,29 @@
         });
 
         btnNuevo.click(function () {
+            pnlTablero.addClass("hide");
+            pnlNuevo.removeClass('hide');
+            pnlNuevo.find("input").val("");
+            pnlNuevo.find("select").val(null).trigger("change");
 
-            mdlNuevo.modal('show');
-            mdlNuevo.find("input").val("");
-            mdlNuevo.find("select").val(null).trigger("change");
+        });
+
+        btnCancelar.click(function () {
+            pnlTablero.removeClass("hide");
+            pnlNuevo.addClass('hide');
+            btnRefrescar.trigger('click');
+
+        });
+
+        btnCancelarModificar.click(function () {
+            pnlEditar.addClass("hide");
+            pnlTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
+
         });
 
         btnEditar.click(function () {
+
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -421,10 +477,11 @@
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
                     $.each(data[0], function (k, v) {
-                        mdlEditar.find("#" + k).val(v);
-                        mdlEditar.find("#" + k).select2("val", v);
+                        pnlEditar.find("#" + k).val(v);
+                        pnlEditar.find("#" + k).select2("val", v);
                     });
-                    mdlEditar.modal('show');
+                    pnlTablero.addClass("hide");
+                    pnlEditar.removeClass('hide');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -454,7 +511,7 @@
             $("#tblRegistros").html(getTable('tblUsuarios', data));
             $('#tblUsuarios tfoot th').each(function () {
                 var title = $(this).text();
-              //   $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
+                //   $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
                 //  $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" /></div>');
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
 
@@ -480,7 +537,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblUsuarios tbody').on('dblclick', 'tr', function () {
+            $('#tblUsuarios tbody').on('click', 'tr', function () {
                 $("#tblUsuarios").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -517,8 +574,8 @@
             $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
             });
-            mdlNuevo.find("#Empresa_ID").html(options);
-            mdlEditar.find("#Empresa_ID").html(options);
+            pnlNuevo.find("#Empresa_ID").html(options);
+            pnlEditar.find("#Empresa_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {

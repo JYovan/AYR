@@ -30,7 +30,7 @@
 
 .cursor-hand{
     color: #000;
-    font-size: 17.5px !important;
+    font-size: 17px !important;
 }
 
 /*Estilo select2*/
@@ -377,6 +377,12 @@ div.dt-EncabezadoControles> .btn{
 
 
 }
+
+div.dt-EncabezadoControlEliminar> .btn {
+    padding: 2px 11px;
+    margin: 14px 1px;
+}
+
 /*Mayusculas en unidades /Preciarios*/
 .CustomUppercase
 {
@@ -408,8 +414,13 @@ div.dt-EncabezadoControles> .btn{
 
 
 .CustomColorIcon {
-    color: rgba(0,0,0,0.54) !important;
-    font-size: 18px !important;
+    /*color: rgba(0,0,0,0.54) !important;*/
+    font-size: 17px !important;
+}
+
+.CustomColorIconCatalogos {
+   /* color: rgba(0,0,0,0.54) !important;*/
+    font-size: 20px !important;
 }
 
 .CustomIconsForDataTable {
