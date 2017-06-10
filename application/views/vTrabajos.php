@@ -63,7 +63,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" >REGRESAR</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
