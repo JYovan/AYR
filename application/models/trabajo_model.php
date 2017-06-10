@@ -56,7 +56,7 @@ class trabajo_model extends CI_Model {
             $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
                     . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda,'
-                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradoresDetalleXConcepto(",TD.ID,")\"></span>") AS Generador, '
+                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",this)\"></span>") AS Generador, '
                     . 'CONCAT("<span class=\"fa fa-camera 2x\" onclick=\"getFotosXConceptoID(",TD.ID,")\"></span>") AS Fotos, '
                     . 'CONCAT("<span class=\"fa fa-map 2x\" onclick=\"getCroquisXConceptoID(",TD.ID,")\"></span>") AS Croquis, '
                     . 'CONCAT("<span class=\"fa fa-paperclip 2x\" onclick=\"getAnexosXConceptoID(",TD.ID,")\"></span>") AS Anexos, '
@@ -77,9 +77,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getGeneradoresDetalleXConcepto($IDX) {
+    public function getGeneradoresDetalleXConceptoID($IDX) {
         try {
-            $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*', false);
+            $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*, (SELECT TD.Precio FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS Precio', false);
             $this->db->from("generadortrabajosdetalle AS GD");
             $this->db->where("GD.IdTrabajoDetalle", $IDX);
             $query = $this->db->get();
@@ -273,11 +273,31 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onModificarGenerador($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("generadortrabajosdetalle", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminar($ID) {
         try {
             $this->db->set('Estatus', 'Cancelado');
             $this->db->where('ID', $ID);
             $this->db->update("trabajos");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarGeneradorEditar($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete("generadortrabajosdetalle");
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -349,8 +369,6 @@ class trabajo_model extends CI_Model {
         }
     }
 
-  
-
     public function onEliminarConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -400,11 +418,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-    
-    
-      /* Reportes */
+
+    /* Reportes */
 
     public function getFin49ByID($ID) {
         try {
@@ -464,9 +479,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function getPresupuestoBBVA($ID) {
+
+    public function getPresupuestoBBVA($ID) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
@@ -474,9 +488,9 @@ class trabajo_model extends CI_Model {
                                 PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
                                 PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,ES.Nombre AS Supervisora
                                 FROM TRABAJOS T
-                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID 
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
                                 INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
-                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
                                 INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
                                 INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
                                 INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
@@ -496,7 +510,15 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
+    public function onModificarGeneradorCantidadEImporte($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajosdetalle", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }

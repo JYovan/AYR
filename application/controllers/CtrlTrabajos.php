@@ -357,10 +357,10 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
-    public function getGeneradoresDetalleXConcepto() {
+    public function getGeneradoresDetalleXConceptoID() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getGeneradoresDetalleXConcepto($ID);
+            $data = $this->trabajo_model->getGeneradoresDetalleXConceptoID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -403,10 +403,52 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function onModificarGenerador() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Area' => (isset($Area) && $Area !== '') ? $Area : NULL,
+                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : NULL,
+                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : NULL,
+                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : NULL,
+                'Largo' => (isset($Largo) && $Largo !== '') ? $Largo : NULL,
+                'Ancho' => (isset($Ancho) && $Ancho !== '') ? $Ancho : NULL,
+                'Alto' => (isset($Alto) && $Alto !== '') ? $Alto : NULL,
+                'Cantidad' => (isset($Cantidad) && $Cantidad !== '') ? $Cantidad : NULL,
+                'Total' => (isset($Total) && $Total !== '') ? $Total : NULL
+            );
+            $this->trabajo_model->onModificarGenerador($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarGeneradorCantidadEImporte() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Cantidad' => (isset($Cantidad) && $Cantidad !== '') ? $Cantidad : NULL,
+                'Importe' => (isset($Importe) && $Importe !== '') ? $Importe : NULL
+            );
+            $this->trabajo_model->onModificarGeneradorCantidadEImporte($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminar() {
         try {
             extract($this->input->post());
             $this->trabajo_model->onEliminar($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarGeneradorEditar() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarGeneradorEditar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -514,8 +556,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
 
@@ -689,7 +730,7 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->Cell(20, 5, utf8_decode("FOLIO:"), 0, 1, 'R');
             $pdf->SetY(60);
             $pdf->SetX(175);
-            $pdf->Cell(35, 5,utf8_decode($trabajo[0]->CR).'-'. utf8_decode($trabajo[0]->FolioCliente), 'B', 1, 'C');
+            $pdf->Cell(35, 5, utf8_decode($trabajo[0]->CR) . '-' . utf8_decode($trabajo[0]->FolioCliente), 'B', 1, 'C');
 
             /* TERCERA PARTE */
             $pdf->SetFont('Arial', 'B', 8);
@@ -892,7 +933,7 @@ class CtrlTrabajos extends CI_Controller {
         $trabajo = $this->trabajo_model->getResumenPartidas($ID);
         $datos = $trabajo[0];
 
-        // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada
         $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
         $pdf->AliasNbPages();
@@ -1047,14 +1088,14 @@ class CtrlTrabajos extends CI_Controller {
             $GranTotal = $totalInteriores + $totalExteriores;
         }
         //Despues de todo el for verificaos que no vengan vacios los campos de varios para formatearlos
-        if(!$VariosInt==''){
-            $VariosInt = '$' . number_format((float)$VariosInt,2);
+        if (!$VariosInt == '') {
+            $VariosInt = '$' . number_format((float) $VariosInt, 2);
         }
-         if(!$VariosExt==''){
-             $VariosExt = '$' . number_format((float)$VariosExt,2);
+        if (!$VariosExt == '') {
+            $VariosExt = '$' . number_format((float) $VariosExt, 2);
         }
-        
-    
+
+
 
         $CurrenY = $pdf->GetY();
         $pdf->SetY($CurrenY);
@@ -1345,8 +1386,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
-    
-    
+
     public function onReportePresupuestoBBVA() {
 
         $ID = $_POST['ID'];
@@ -1354,8 +1394,8 @@ class CtrlTrabajos extends CI_Controller {
         $datosEncabezado = $trabajo[0];
 
 
-        // Creación del objeto de la clase heredada 
-        $pdf = new PDFResumen('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */),$datosEncabezado);
+        // Creación del objeto de la clase heredada
+        $pdf = new PDFResumen('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */), $datosEncabezado);
         $pdf->AliasNbPages();
         $pdf->AddPage();
         $pdf->SetAutoPageBreak(false, 5);
@@ -1558,7 +1598,7 @@ class CtrlTrabajos extends CI_Controller {
                 $page = 2;
                 $page_size = 234;
             } else {
-                
+
             }
             $ImporteTotal += $value->ImporteRenglon;
         }
@@ -1608,7 +1648,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->SetY($Y + 10);
         $pdf->SetX(85);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell(85, 5,utf8_decode('Items fuera de catálogo=') , 0, 1, 'R');
+        $pdf->Cell(85, 5, utf8_decode('Items fuera de catálogo='), 0, 1, 'R');
         $pdf->SetY($Y + 10);
         $pdf->SetX(185);
         $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'R');
@@ -1651,7 +1691,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Cell(90, 5, utf8_decode($datosEncabezado->Supervisora), 'T', 1, 'C');
 
 
-           /* FIN CUERPO */
+        /* FIN CUERPO */
         $path = 'uploads/Reportes/' . $ID;
         // print $path;
         if (!file_exists($path)) {
@@ -1664,12 +1704,9 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
-    
 
 }
 
 class PDF extends FPDF {
 
 }
-
-
