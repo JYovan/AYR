@@ -1,16 +1,16 @@
 <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-default" id="pnlTablero">
         <div class="panel-heading">
-            
-             <div class="cursor-hand" >Empresas</div>
+
+            <div class="cursor-hand" >Empresas</div>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
@@ -45,232 +45,257 @@
 <!--MODALES-->
 
 <!--NUEVO-->
+<div class="col-md-12">
+    <!--GUARDAR-->
+    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading" >
+            <div class="Custompanel-heading row">
+                <div class="col-md-9">
 
-<div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nueva Empresa</h4>
-            </div>
-            <form id="frmNuevo">
-                <div class="modal-body">
-                    <fieldset>
-
-                        <div class="col-6 col-md-6">
-                            <label for="">Nombre*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" >
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">RFC*</label>    
-                            <input type="text" class="form-control" id="Rfc" name="Rfc" >
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Contacto Nombre</label>
-                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Contacto Apellidos</label>
-                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
-                        </div>
-
-                   
-
-                        <div class="col-md-6">
-                            <label for="">Dirección</label>
-                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="">N°</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">N° Int.</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Código Postal</label>
-                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="">Colonia</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="">Ciudad</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Estado</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <span> <br></span>
-                        </div>
-
-                        <div class="col-md-12" align="center">
-                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                            <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
-                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-1x">
-                                </span> 
-                                Selecciona el logo de la empresa
-                            </button>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
-                    </fieldset>
+                    <div class="cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Nueva Empresa
+                    </div>
                 </div>
-            </form>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                <div class="col-md-3 panel-title " >
+                    <div class="col-md-12" align="right">
+                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                    </div>
+                </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+        <div class="panel-body">
+
+            <form id="frmNuevo">
+                <fieldset>
+
+                    <div class="col-6 col-md-6">
+                        <label for="">Nombre*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" >
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="">RFC*</label>    
+                        <input type="text" class="form-control" id="Rfc" name="Rfc" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Contacto Nombre</label>
+                        <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Contacto Apellidos</label>
+                        <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label for="">Dirección</label>
+                        <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="">N°</label>
+                        <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
+
+                    </div>
+                    <div class="col-md-3">
+                        <label for="">N° Int.</label>
+                        <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Código Postal</label>
+                        <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="">Colonia</label>
+                        <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="">Ciudad</label>
+                        <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Estado</label>
+                        <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <span> <br></span>
+                    </div>
+
+                    <div class="col-md-12" align="center">
+                        <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                        <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                        <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                            <span class="fa fa-upload fa-1x">
+                            </span> 
+                            Selecciona el logo de la empresa
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>    
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>      
 
 
 <!--EDITAR-->
-<div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">EDITAR EMPRESA</h4>
-            </div>
-            <form id="frmEditar">
-                <div class="modal-body">
-                    <fieldset>
-                        <div class="col-md-12 hide">
-                            <input type="text" id="ID" name="ID" class="form-control">
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">Nombre*</label>    
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" >
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="">RFC*</label>    
-                            <input type="text" class="form-control" id="Rfc" name="Rfc" >
-                        </div>
 
+<div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+    <div class="Custompanel-heading " >
+        <div class="Custompanel-heading row">
+            <div class="col-md-9">
 
-                        <div class="col-md-6">
-                            <label for="">Contacto Nombre</label>
-                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Contacto Apellidos</label>
-                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
-                        </div>
-
-                   
-
-                        <div class="col-md-6">
-                            <label for="">Dirección</label>
-                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="">N°</label>
-                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">N° Int.</label>
-                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Código Postal</label>
-                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="">Colonia</label>
-                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="">Ciudad</label>
-                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="">Estado</label>
-                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <span> <br></span>
-                        </div>
-
-                        <div class="col-md-12" align="center">
-                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                            <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
-                            <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-1x">
-                                </span> 
-                                Modificar el logo de la empresa
-                            </button>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>    
-
-                        </div>
-                    </fieldset>
+                <div class="cursor-hand" >
+                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                    </button>
+                    Editar Empresa
                 </div>
-            </form>
-            <div class="modal-footer">
-                   <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+            <div class="col-md-3 panel-title" align="right">
+                <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
+                    <button type="button" class="btn btn-default CustomColorIconCatalogos" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                </div>
+                <div class="col-md-9" align="right">
+                    <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                </div>
 
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form id="frmEditar">
+            <fieldset>
+                <div class="col-md-12 hide">
+                    <input type="text" id="ID" name="ID" class="form-control">
+                </div>
+                <div class="col-6 col-md-6">
+                    <label for="">Nombre*</label>    
+                    <input type="text" class="form-control" id="Nombre" name="Nombre" >
+                </div>
+                <div class="col-6 col-md-6">
+                    <label for="">RFC*</label>    
+                    <input type="text" class="form-control" id="Rfc" name="Rfc" >
+                </div>
+
+
+                <div class="col-md-6">
+                    <label for="">Contacto Nombre</label>
+                    <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="">Contacto Apellidos</label>
+                    <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <label for="">Dirección</label>
+                    <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
+
+                </div>
+
+                <div class="col-md-3">
+                    <label for="">N°</label>
+                    <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
+
+                </div>
+                <div class="col-md-3">
+                    <label for="">N° Int.</label>
+                    <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
+
+                </div>
+
+                <div class="col-md-6">
+                    <label for="">Código Postal</label>
+                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                </div>
+
+
+                <div class="col-md-6">
+                    <label for="">Colonia</label>
+                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                </div>
+
+
+                <div class="col-md-6">
+                    <label for="">Ciudad</label>
+                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="">Estado</label>
+                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                </div>
+
+
+                <div class="col-md-12">
+                    <span> <br></span>
+                </div>
+
+                <div class="col-md-12" align="center">
+                    <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                    <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                    <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                        <span class="fa fa-upload fa-1x">
+                        </span> 
+                        Modificar el logo de la empresa
+                    </button>
+                </div>
+                <div class="col-6 col-md-6">
+                    <h6>Los campos con * son obligatorios</h6>    
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+</div>      
 
 <!--SCRIPT-->
 
 <script>
     var master_url = base_url + 'index.php/CtrlEmpresas/';
-    var btnNuevo = $("#btnNuevo");
-    var mdlNuevo = $("#mdlNuevo");
+      var btnNuevo = $("#btnNuevo");
+    var pnlNuevo = $("#pnlNuevo");
+    var pnlTablero = $("#pnlTablero");
 
-    var btnEditar = $("#btnEditar");
-    var mdlEditar = $("#mdlEditar");
+     var btnEditar = $("#btnEditar");
+     var pnlEditar = $("#pnlEditar");
 
-    var Archivo = mdlNuevo.find("#RutaLogo");
-    var btnArchivo = mdlNuevo.find("#btnArchivo");
-    var VistaPrevia = mdlNuevo.find("#VistaPrevia");
+    var Archivo = pnlNuevo.find("#RutaLogo");
+    var btnArchivo = pnlNuevo.find("#btnArchivo");
+    var VistaPrevia = pnlNuevo.find("#VistaPrevia");
 
-    var btnGuardar = mdlNuevo.find("#btnGuardar");
+    //Boton que guarda los datos del formulario
+    var btnGuardar = pnlNuevo.find("#btnGuardar");
+    var btnCancelar = pnlNuevo.find("#btnCancelar");
 
-    var ModificarArchivo = mdlEditar.find("#RutaLogo");
-    var btnModificarArchivo = mdlEditar.find("#btnArchivo");
-    var ModificarVistaPrevia = mdlEditar.find("#VistaPrevia");
-    
-    
-    var btnModificar = mdlEditar.find("#btnModificar");
+    var ModificarArchivo = pnlEditar.find("#RutaLogo");
+    var btnModificarArchivo = pnlEditar.find("#btnArchivo");
+    var ModificarVistaPrevia = pnlEditar.find("#VistaPrevia");
+
+
+      var btnModificar = pnlEditar.find("#btnModificar");
+    var btnCancelarModificar = pnlEditar.find("#btnCancelar");
 
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
@@ -279,6 +304,29 @@
     var mdlConfirmar = $("#mdlConfirmar");
 
     $(document).ready(function () {
+        
+        
+         btnNuevo.click(function () {
+
+            pnlTablero.addClass("hide");
+            pnlNuevo.removeClass('hide');
+            pnlNuevo.find("input").val("");
+            pnlNuevo.find("select").val(null).trigger("change");
+        });
+
+        btnCancelar.click(function () {
+            pnlTablero.removeClass("hide");
+            pnlNuevo.addClass('hide');
+            btnRefrescar.trigger('click');
+
+        });
+
+        btnCancelarModificar.click(function () {
+            pnlEditar.addClass("hide");
+            pnlTablero.removeClass("hide");
+            btnRefrescar.trigger('click');
+
+        });
 
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
@@ -307,6 +355,8 @@
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EMPRESA ELIMINADA', 'danger');
+                    pnlEditar.addClass("hide");
+                    pnlTablero.removeClass("hide");
                     getRecords();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -337,8 +387,8 @@
                 errorClass: 'errorForms',
                 rules: {
                     Nombre: 'required',
-                     Rfc: 'required'
-                     
+                    Rfc: 'required'
+
                 },
                 highlight: function (element, errorClass, validClass) {
 
@@ -363,7 +413,7 @@
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
 
-                var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
+                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
 
                 $.ajax({
                     url: master_url + 'onModificar',
@@ -375,7 +425,8 @@
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA EMPRESA', 'success');
                     getRecords();
-                    mdlEditar.modal('hide');
+                    pnlEditar.addClass("hide");
+                    pnlTablero.removeClass("hide");
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -409,35 +460,37 @@
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
                     var empresa = data[0];
-                    mdlEditar.find("#ID").val(empresa.ID);
-                    mdlEditar.find("#Nombre").val(empresa.Nombre);
-                    mdlEditar.find("#Rfc").val(empresa.Rfc);
-                    mdlEditar.find("#NoInterior").val(empresa.NoInterior);
-                    mdlEditar.find("#NoExterior").val(empresa.NoExterior);
-                    mdlEditar.find("#Estado").val(empresa.Estado);
-                    mdlEditar.find("#Direccion").val(empresa.Direccion);
-                    mdlEditar.find("#ContactoNombre").val(empresa.ContactoNombre);
-                    mdlEditar.find("#ContactoApellidos").val(empresa.ContactoApellidos);
-                    mdlEditar.find("#Colonia").val(empresa.Colonia);
-                    mdlEditar.find("#CodigoPostal").val(empresa.CodigoPostal);
-                    mdlEditar.find("#Ciudad").val(empresa.Ciudad);
+                    pnlEditar.find("#ID").val(empresa.ID);
+                    pnlEditar.find("#Nombre").val(empresa.Nombre);
+                    pnlEditar.find("#Rfc").val(empresa.Rfc);
+                    pnlEditar.find("#NoInterior").val(empresa.NoInterior);
+                    pnlEditar.find("#NoExterior").val(empresa.NoExterior);
+                    pnlEditar.find("#Estado").val(empresa.Estado);
+                    pnlEditar.find("#Direccion").val(empresa.Direccion);
+                    pnlEditar.find("#ContactoNombre").val(empresa.ContactoNombre);
+                    pnlEditar.find("#ContactoApellidos").val(empresa.ContactoApellidos);
+                    pnlEditar.find("#Colonia").val(empresa.Colonia);
+                    pnlEditar.find("#CodigoPostal").val(empresa.CodigoPostal);
+                    pnlEditar.find("#Ciudad").val(empresa.Ciudad);
                     if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
                         var ext = getExt(empresa.RutaLogo);
                         console.log(ext);
                         if (ext === "gif" || ext === "jpg" || ext === "png") {
-                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class ="img-responsive"/>');
+                            pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class ="img-responsive"/>');
                         }
                         if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                            mdlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                         }
                         if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                            mdlEditar.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                            pnlEditar.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
                         }
                     } else {
-                        mdlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                        pnlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                     }
 
-                    mdlEditar.modal('show');
+                   
+                    pnlEditar.removeClass("hide");
+                    pnlTablero.addClass("hide");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -462,8 +515,8 @@
                 errorElement: 'span',
                 errorClass: 'errorForms',
                 rules: {
-                     Nombre: 'required',
-                     Rfc: 'required'
+                    Nombre: 'required',
+                    Rfc: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
 
@@ -487,7 +540,7 @@
 
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-                var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
+                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -498,7 +551,8 @@
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
                     getRecords();
-                    mdlNuevo.modal('hide');
+                    pnlNuevo.addClass("hide");
+                    pnlTablero.removeClass("hide");
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -548,7 +602,6 @@
             Archivo.trigger('click');
         });
 
-
         btnModificarArchivo.click(function () {
             ModificarArchivo.change(function () {
                 HoldOn.open({
@@ -585,11 +638,7 @@
             ModificarArchivo.trigger('click');
         });
 
-        btnNuevo.click(function () {
-            mdlNuevo.find("input").val("");
-            mdlNuevo.modal('show');
-            mdlNuevo.find("select").val(null).trigger("change");
-        });
+       
         /*CALLS*/
         getRecords();
     });
@@ -635,7 +684,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            $('#tblEmpresas tbody').on('dblclick', 'tr', function () {
+            $('#tblEmpresas tbody').on('click', 'tr', function () {
                 $("#tblEmpresas").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -660,9 +709,9 @@
 
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
-         $('#RutaLogo').trigger('blur');
-          $('#RutaLogo').on('blur', function (e) {
-                $('#RutaLogo').val('');
-            });
+        $('#RutaLogo').trigger('blur');
+        $('#RutaLogo').on('blur', function (e) {
+            $('#RutaLogo').val('');
+        });
     }
 </script>

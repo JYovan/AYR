@@ -165,12 +165,12 @@
     var pnlTablero = $("#pnlTablero");
 
     var btnEditar = $("#btnEditar");
-    var mdlEditar = $("#mdlEditar");
+     var pnlEditar = $("#pnlEditar");
     //Boton que guarda los datos del formulario
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
     //Boton que actualiza los datos del formulario
-    var pnlEditar = $("#pnlEditar");
+   
     var btnModificar = pnlEditar.find("#btnModificar");
     var btnCancelarModificar = pnlEditar.find("#btnCancelar");
     //Botones del tablero que actualizan y eliminan registros

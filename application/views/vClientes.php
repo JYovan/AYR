@@ -1513,7 +1513,7 @@
                 }
 
                 $(this).addClass('success');
-                $('#tblSucursales tbody').on('dblclick', 'tr', function () {
+                $('#tblSucursales tbody').on('click', 'tr', function () {
 
                     var dtm = tblSelected.row(this).data();
                     console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
