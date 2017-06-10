@@ -1355,7 +1355,7 @@ class CtrlTrabajos extends CI_Controller {
 
 
         // Creación del objeto de la clase heredada 
-        $pdf = new PDF('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+        $pdf = new PDFResumen('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */),$datosEncabezado);
         $pdf->AliasNbPages();
         $pdf->AddPage();
         $pdf->SetAutoPageBreak(false, 5);
@@ -1460,7 +1460,7 @@ class CtrlTrabajos extends CI_Controller {
 
             $pdf->SetY($Y);
             $pdf->SetX(20);
-            $pdf->MultiCell(110, 4, utf8_decode($value->Concepto), 1, 'L', false);
+            $pdf->MultiCell(110, 4, utf8_decode($value->Concepto), 1, 'P', false);
 
             $H = $pdf->GetY();
 
@@ -1671,3 +1671,5 @@ class CtrlTrabajos extends CI_Controller {
 class PDF extends FPDF {
 
 }
+
+
