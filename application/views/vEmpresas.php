@@ -49,21 +49,19 @@
     <!--GUARDAR-->
     <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-9">
-
-                    <div class="cursor-hand" >
+             <div class="Custompanel-heading clearfix">
+                 <div class="panel-title pull-left cursor-hand" >
                         <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                             <span class="fa fa-arrow-left CustomColorIcon" ></span>
                         </button>
                         Nueva Empresa
                     </div>
+ 
+                <div class="input-group pull-right">
+                    
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                 </div>
-                <div class="col-md-3 panel-title " >
-                    <div class="col-md-12" align="right">
-                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
-                    </div>
-                </div>
+    
             </div>
         </div>
         <div class="panel-body">
@@ -158,27 +156,18 @@
 
 <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
     <div class="Custompanel-heading " >
-        <div class="Custompanel-heading row">
-            <div class="col-md-9">
-
-                <div class="cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Editar Empresa
-                </div>
+        <div class="Custompanel-heading clearfix">
+                   <div class="panel-title pull-left cursor-hand" >
+                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                        </button>
+                        Editar Empresa
+                    </div>
+                 <div class="input-group pull-right">
+                         <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                        <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                 </div>
             </div>
-            <div class="col-md-3 panel-title" align="right">
-                <div class="col-md-3 dt-EncabezadoControlEliminar" align="right">
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                </div>
-                <div class="col-md-9" align="right">
-                    <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
-                </div>
-
-
-            </div>
-        </div>
     </div>
     <div class="panel-body">
         <form id="frmEditar">

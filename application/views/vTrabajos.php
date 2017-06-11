@@ -193,14 +193,14 @@
                                 </select>
                             </div>
 
-
+							<input type="text" id="Atendido" name="Atendido" class="form-control hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
                                 <div class="togglebutton">
                                     <label for="">Esta Completado?</label>
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
-                                        <input type="checkbox" id="Atendido" name="Atendido" >
+                                        <input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" >
                                     </label>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
 
                             <div class="col-6 col-md-3">
                                 <label for="">Días</label>
-                                <input type="text" id="Dias" name="Dias" class="form-control" readonly="" placeholder="" >
+                                <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
@@ -310,14 +310,14 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
-
+									<input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control hide" readonly="" placeholder="" >
                                     <div class="col-6 col-md-3">
                                         <div class="togglebutton">
                                             <label for="">Impacto en el Plazo</label>
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
-                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" >
+                                                <input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" >
                                             </label>
                                         </div>
                                     </div>
@@ -781,7 +781,7 @@
                                 <label for="">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                             </div>
-
+                            
 
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
@@ -819,7 +819,11 @@
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
-
+                            
+                            
+                      
+                           <input type="text" id="Atendido" name="Atendido" class="form-control hide" readonly="" placeholder="" >
+                            
 
                             <div class="col-6 col-md-3">
                                 <div class="togglebutton">
@@ -827,13 +831,12 @@
                                     <spam><br></spam>
                                     <spam><br></spam>
                                     <label>
-                                        <input type="checkbox" id="Atendido" name="Atendido" >
+                                        <input type="checkbox" id="EditarAtendido" name="" >
                                     </label>
                                 </div>
                             </div>
 
-
-
+                           
                             <div class="col-6 col-md-3">
 
                                 <label for="">Situación*</label>
@@ -882,7 +885,7 @@
 
                             <div class="col-6 col-md-3">
                                 <label for="">Días</label>
-                                <input type="text" id="Dias" name="Dias" class="form-control" readonly="" placeholder="" >
+                                <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
                             </div>
 
 
@@ -944,6 +947,7 @@
                             <div class="col-6 col-md-12">
                                 <br>
                             </div>
+							<input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
@@ -952,7 +956,7 @@
                                             <spam><br></spam>
                                             <spam><br></spam>
                                             <label>
-                                                <input type="checkbox" id="ImpactoEnPlazo" name="ImpactoEnPlazo" >
+                                                <input type="checkbox" id="EditarImpactoEnPlazo" name="" >
                                             </label>
                                         </div>
                                     </div>
@@ -1264,8 +1268,13 @@
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
 
     //Toggle Button Editar Atendido Impacto
-    var tbtnAtendido = pnlEditarTrabajo.find("#Atendido");
-    var tbtnImpactoEnElPlazo = pnlEditarTrabajo.find("#ImpactoEnPlazo");
+    var tbtnEditarAtendido = pnlEditarTrabajo.find("#EditarAtendido");
+    var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
+	
+	//Toggle Button  Atendido Impacto
+    var tbtnNuevoAtendido = pnlEditarTrabajo.find("#NuevoAtendido");
+    var tbtnNuevoImpactoEnPlazo = pnlEditarTrabajo.find("#NuevoImpactoEnPlazo");
+	
 
     /*Detalle*/
     var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
@@ -1743,6 +1752,49 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
+        
+          //Funcion que cambia el valor cuando el toggle button cambia
+         tbtnEditarAtendido.change(function() {
+                if(this.checked) {
+               
+                  pnlEditarTrabajo.find("#Atendido").val('Si');
+                }
+                else{
+                    pnlEditarTrabajo.find("#Atendido").val('No');
+                }
+            });
+			
+			  tbtnEditarImpactoEnPlazo.change(function() {
+                if(this.checked) {
+               
+                  pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                }
+                else{
+                    pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
+                }
+            });
+			
+			//Eventos del toggle para nuevo
+			  tbtnNuevoAtendido.change(function() {
+                if(this.checked) {
+               
+                  pnlNuevoTrabajo.find("#Atendido").val('Si');
+                }
+                else{
+                    pnlNuevoTrabajo.find("#Atendido").val('No');
+                }
+            });
+			
+			  tbtnNuevoImpactoEnPlazo.change(function() {
+                if(this.checked) {
+               
+                  pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('Si');
+                }
+                else{
+                    pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
+                }
+            });
+        
 
         btnEditar.on("click", function () {
 
@@ -1832,8 +1884,15 @@
                     pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
                     pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
                     if (trabajo.Atendido === 'Si') {
-                        pnlEditarTrabajo.find("#Atendido").prop('checked', true);
+                        pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
+                         pnlEditarTrabajo.find("#Atendido").val('Si');
                     }
+					
+					 if (trabajo.Atendido === 'No') {
+                        pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
+                         pnlEditarTrabajo.find("#Atendido").val('No');
+                    }
+					
                     pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
                     pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
                     pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
@@ -1848,7 +1907,12 @@
                     pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
                     pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
                     if (trabajo.ImpactoEnPlazo === 'Si') {
-                        pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
+                        pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
+						 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                    }
+					if (trabajo.ImpactoEnPlazo === 'No') {
+                        pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
+						 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
                     }
                     pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
                     pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
@@ -1961,29 +2025,10 @@
                     frm.append('Estatus', 'Borrador');
                 }
 
-                if (tbtnAtendido.is(':checked')) {
-                    frm.delete('Atendido');
-                    frm.append('Atendido', 'Si');
-                } else {
-                    frm.delete('Atendido');
-                    frm.append('Atendido', 'No');
-                }
-
-                if (tbtnImpactoEnElPlazo.is(':checked')) {
-                    frm.delete('ImpactoEnPlazo');
-                    frm.append('ImpactoEnPlazo', 'Si');
-                } else {
-                    frm.delete('ImpactoEnPlazo');
-                    frm.append('ImpactoEnPlazo', 'No');
-                }
-
-                //Solo para debuggear el formulario de la clase FormData
+	  //Solo para debuggear el formulario de la clase FormData
 //                for (var pair of frm.entries()) {
 //                    console.log(pair[0]+ ', ' + pair[1]);
 //                }
-
-                frm.delete('Dias');
-
 
                 $.ajax({
                     url: master_url + 'onModificar',
@@ -2122,23 +2167,7 @@
                 }
 
 
-                if ($("#Atendido").is(':checked')) {
-                    frm.delete('Atendido');
-                    frm.append('Atendido', 'Si');
-                } else {
-                    frm.delete('Atendido');
-                    frm.append('Atendido', 'No');
-                }
-
-                if ($("#ImpactoEnPlazo").is(':checked')) {
-                    frm.delete('ImpactoEnPlazo');
-                    frm.append('ImpactoEnPlazo', 'Si');
-                } else {
-                    frm.delete('ImpactoEnPlazo');
-                    frm.append('ImpactoEnPlazo', 'No');
-                }
-
-                frm.delete('Dias');
+                
 
                 //Agregar Importe total
                 frm.append('Importe', ImporteTotalGlobal);
@@ -2154,7 +2183,7 @@
 
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
-
+//Funcion que regarga el panel de editar con el nuevo registro
                     despuesDeGuardar(data);
                     //  btnCancelar.trigger('click');
 
@@ -2202,8 +2231,12 @@
             pnlNuevoTrabajo.find("input").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
+			
+			//Inicializamos Boleanos en No
+			pnlNuevoTrabajo.find("#Atendido").val('No');
+			 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             //Trae el usuario logeado quien estará registrando el movimiento
-            pnlNuevoTrabajo.find("#Usuario_ID").val("2");
+            pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID');?>");
             /*DETALLE*/
             pnlDetalleNuevoTrabajo.removeClass("hide");
         });
