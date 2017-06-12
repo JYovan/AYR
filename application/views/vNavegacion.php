@@ -93,7 +93,6 @@
 <!--<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
 <button onclick="onReporteGenerador()" class="btn btn-raised"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>-->
-<!--<button onclick="onReportePresupuesto()" class="btn btn-raised"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>-->
 <!--<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>-->
 </div>
 
@@ -104,34 +103,10 @@
             theme: 'sk-bounce',
             message: 'CARGANDO...'
         });
-        setTimeout(HoldOn.close(), 1500);
+        setTimeout(HoldOn.close(), 1000);
     });
 
-     function onReportePresupuesto() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlSesion/onReportePresupuesto',
-            type: "POST"
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
- 
-
-  
-
-  
-
+   
     function onReporteFotografico() {
         HoldOn.open({
             theme: 'sk-bounce',

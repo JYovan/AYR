@@ -53,14 +53,17 @@ class trabajo_model extends CI_Model {
 
     public function getTrabajoDetalleByID($IDX) {
         try {
-            $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
-                    . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
-                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda,'
-                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
-                    . 'CONCAT("<span class=\"fa fa-camera 2x\" onclick=\"getFotosXConceptoID(",TD.ID,")\"></span>") AS Fotos, '
-                    . 'CONCAT("<span class=\"fa fa-map 2x\" onclick=\"getCroquisXConceptoID(",TD.ID,")\"></span>") AS Croquis, '
-                    . 'CONCAT("<span class=\"fa fa-paperclip 2x\" onclick=\"getAnexosXConceptoID(",TD.ID,")\"></span>") AS Anexos, '
-                    . 'CONCAT("<span class=\"fa fa-minus 2x\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar', false);
+            $this->db->select('CONCAT("<span class=\"hide\">",TD.ID,"</span>") AS "-",'
+                    . 'CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS Clave, TD.IntExt AS "Int/Ext" , '
+                    . 'CONCAT("<textarea class=\"form-control CustomDetalleDescripcion\" rows=\"5\" readonly=\"\">",PC.Descripcion,"</textarea>") AS Descripcion, '
+                    . 'TD.Cantidad, TD.Unidad, '
+                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
+                    . 'CONCAT("<span class=\"hide\">",TD.Moneda,"</span>") AS ".",'
+                    . 'CONCAT("<span class=\"fa fa-cog customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,")\"></span>") AS Fotos, '
+                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,")\"></span>") AS Croquis, '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,")\"></span>") AS Anexos, '
+                    . 'CONCAT("<span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
@@ -79,7 +82,7 @@ class trabajo_model extends CI_Model {
 
     public function getGeneradoresDetalleXConceptoID($IDX) {
         try {
-            $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*, (SELECT TD.Precio FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS Precio', false);
+            $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*, (SELECT TD.Precio FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS Precio,(SELECT TD.Cantidad FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS CantidadTotal', false);
             $this->db->from("generadortrabajosdetalle AS GD");
             $this->db->where("GD.IdTrabajoDetalle", $IDX);
             $query = $this->db->get();
@@ -455,100 +458,9 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
-    /* Reportes */
-
-    public function getFin49ByID($ID) {
-        try {
-            $this->db->select('T.Movimiento,T.FechaCreacion,T.FolioCliente,T.ImpactoEnPlazo,T.DiasImpacto,T.CausaTrabajo,T.ClaveOrigenTrabajo,
-                                T.EspecificaOrigenTrabajo,T.DescripcionOrigenTrabajo,T.DescripcionRiesgoTrabajo,T.DescripcionAlcanceTrabajo,T.Importe,
-                                CTE.Nombre AS NombreCliente,CTE.NombreCorto,S.CR,S.Nombre AS NombreSucursal,S.TipoConcepto,S.TipoObra,S.Contrato,
-                                S.FechaInicio,S.FechaFin, E.Nombre AS Empresa, ES.Nombre AS EmpresaSupervisora,CTE.RutaLogo
-                                FROM TRABAJOS T
-                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
-                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
-                                LEFT JOIN empresassupervisoras ES ON ES.ID = S.EmpresaSupervisora_ID
-                                LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', 'Borrador', 'Concluido');
-            $this->db->where('T.ID', $ID);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            //   print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getResumenPartidas($ID) {
-        try {
-            $this->db->query("set sql_mode=''");
-            $this->db->select(' T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
-                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal,
-                                E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CONCAT(E.ContactoNombre," ",E.ContactoApellidos) AS ContactoEmpresa,
-                                CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS FirmaBanco,
-                                CTE.RutaLogo AS LogoCliente,
-                                TD.IntExt,SUM(TD.Importe) AS ImporteRenglon, PCAT.Descripcion AS Categoria
-                                FROM TRABAJOS T
-                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
-                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
-                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
-                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
-                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
-                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
-                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', 'Borrador', 'Concluido');
-            $this->db->where('T.ID', $ID);
-            $this->db->group_by(array('TD.IntExt', 'PCAT.Descripcion'));
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            //  print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getPresupuestoBBVA($ID) {
-        try {
-            $this->db->query("set sql_mode=''");
-            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
-                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
-                                PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
-                                PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,ES.Nombre AS Supervisora
-                                FROM TRABAJOS T
-                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
-                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
-                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
-                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
-                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
-                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
-                                INNER JOIN empresassupervisoras ES ON ES.ID = S.empresasupervisora_id
-                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', 'Borrador', 'Concluido');
-            $this->db->where('T.ID', $ID);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            //  print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onModificarConceptoCantidadEImporte($ID, $DATA) {
+    
+    
+       public function onModificarConceptoCantidadEImporte($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajosdetalle", $DATA);
@@ -598,5 +510,165 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
+    /*************************** Reportes------------------------------ */
+    
+    
+      public function getCategoriasPresupuesto($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select("T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
+                                PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,SUM(TD.Importe) AS ImporteRenglon,
+                                PCAT.Descripcion AS Categoria,PCAT.Clave AS ClaveCategoria, PC.Descripcion AS Concepto,S.Region,S.Ciudad,S.Estado,S.Calle,S.NoExterior,S.NoInterior,S.Colonia
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                INNER JOIN empresas E ON E.id = S.Empresa_ID", false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+             $this->db->order_by(' T.ID', 'desc'); 
+            $this->db->group_by(array('PCAT.Descripcion'));
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+     public function getPresupuesto($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
+                                PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                PCAT.Descripcion AS Categoria,PCAT.Clave AS ClaveCategoria, PC.Descripcion AS Concepto,S.Region,S.Ciudad,S.Estado,S.Calle,S.NoExterior,S.NoInterior,S.Colonia
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    
+
+    public function getFin49ByID($ID) {
+        try {
+            $this->db->select('T.Movimiento,T.FechaCreacion,T.FolioCliente,T.ImpactoEnPlazo,T.DiasImpacto,T.CausaTrabajo,T.ClaveOrigenTrabajo,
+                                T.EspecificaOrigenTrabajo,T.DescripcionOrigenTrabajo,T.DescripcionRiesgoTrabajo,T.DescripcionAlcanceTrabajo,T.Importe,
+                                CTE.Nombre AS NombreCliente,CTE.NombreCorto,S.CR,S.Nombre AS NombreSucursal,S.TipoConcepto,S.TipoObra,S.Contrato,
+                                S.FechaInicio,S.FechaFin, E.Nombre AS Empresa, ES.Nombre AS EmpresaSupervisora,CTE.RutaLogo
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                LEFT JOIN empresassupervisoras ES ON ES.ID = S.EmpresaSupervisora_ID
+                                LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //   print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getResumenPartidas($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select(' T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal,
+                                E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CONCAT(E.ContactoNombre," ",E.ContactoApellidos) AS ContactoEmpresa,
+                                CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS FirmaBanco,
+                                CTE.RutaLogo AS LogoCliente,
+                                TD.IntExt,SUM(TD.Importe) AS ImporteRenglon, PCAT.Descripcion AS Categoria
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+                                INNER JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->group_by(array('TD.IntExt', 'PCAT.Descripcion'));
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getPresupuestoBBVA($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
+                                CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
+                                PC.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,ES.Nombre AS Supervisora
+                                FROM TRABAJOS T
+                                INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
+                                INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
+                                INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+                                LEFT JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+                                LEFT JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+                                LEFT JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+                                LEFT JOIN empresassupervisoras ES ON ES.ID = S.empresasupervisora_id
+                                LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+             // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+ 
 
 }

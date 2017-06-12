@@ -136,7 +136,7 @@ var tableOptions = {
     "displayLength": 30,
     "bLengthChange": false,
     "deferRender": true,
-    "scrollY": 400,
+    "scrollY": 600,
     "scrollX": true,
     "scrollCollapse": true,
     "aaSorting": [[0, 'desc']]
@@ -161,7 +161,7 @@ function getTable(tblname, data) {
     //Create Rows
     div += "<tbody>";
     $.each(data, function (key, value) {
-        div += "<tr data-toggle='tooltip' title='Haga doble clic para editar' >";
+        div += "<tr data-toggle='tooltip' title='Haga clic para editar' >";
         $.each(value, function (key, value) {
             div += "<td>" + value + "</td>";
         });
