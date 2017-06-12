@@ -56,7 +56,7 @@ class trabajo_model extends CI_Model {
             $this->db->select('TD.ID, CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS CLAVE, TD.IntExt AS "Int/Ext" , '
                     . 'PC.Descripcion AS Descripcion, TD.Cantidad, TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, TD.Moneda,'
-                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",this)\"></span>") AS Generador, '
+                    . 'CONCAT("<span class=\"fa fa-cog 2x\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
                     . 'CONCAT("<span class=\"fa fa-camera 2x\" onclick=\"getFotosXConceptoID(",TD.ID,")\"></span>") AS Fotos, '
                     . 'CONCAT("<span class=\"fa fa-map 2x\" onclick=\"getCroquisXConceptoID(",TD.ID,")\"></span>") AS Croquis, '
                     . 'CONCAT("<span class=\"fa fa-paperclip 2x\" onclick=\"getAnexosXConceptoID(",TD.ID,")\"></span>") AS Anexos, '
@@ -180,7 +180,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleGenerador($array) {
         try {
             $this->db->insert("generadortrabajosdetalle", $array);
-            //      print $str = $this->db->last_query();
+            print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -369,6 +369,43 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getConceptoByIDSinFormato($ID) {
+        try {
+            $this->db->select('PC.*', false);
+            $this->db->from('preciarioconceptos AS PC');
+            $this->db->where('PC.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getPrecioPorConceptoID($ID, $IDCO) {
+        try {
+            $this->db->select('TD.Precio', false);
+            $this->db->from('trabajosdetalle AS TD');
+            $this->db->where('TD.ID', $ID);
+            $this->db->where('TD.PreciarioConcepto_ID', $IDCO);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminarConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -511,10 +548,51 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onModificarGeneradorCantidadEImporte($ID, $DATA) {
+    public function onModificarConceptoCantidadEImporte($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajosdetalle", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarImportePorTrabajo($ID) {
+        try {
+            $this->db->set('Importe', '(SELECT SUM(TD.Importe) AS "IMPORTE_TOTAL_TRABAJO" FROM trabajosdetalle AS TD WHERE TD.Trabajo_ID = ' . $ID . ')', FALSE);
+            $this->db->where('ID', $ID);
+            $this->db->update('trabajos');
+            $this->db->select('CONCAT("$",FORMAT(SUM(TD.Importe),2)) AS "IMPORTE_TOTAL_TRABAJO"', false);
+            $this->db->from('trabajosdetalle AS TD');
+            $this->db->where('TD.Trabajo_ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getImporteTotalDelTrabajoByID($ID) {
+        try {
+            $this->db->select('CONCAT("$",FORMAT(SUM(TD.Importe),2)) AS "IMPORTE_TOTAL_TRABAJO"', false);
+            $this->db->from('trabajosdetalle AS TD');
+            $this->db->where('TD.Trabajo_ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
             //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

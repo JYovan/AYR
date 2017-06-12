@@ -403,6 +403,28 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function onAgregarGenerador() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Concepto_ID' => (isset($Concepto_ID) && $Concepto_ID !== '') ? $Concepto_ID : NULL,
+                'IdTrabajoDetalle' => (isset($IdTrabajoDetalle) && $IdTrabajoDetalle !== '') ? $IdTrabajoDetalle : NULL,
+                'Area' => (isset($Area) && $Area !== '') ? $Area : "NA",
+                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : "NA",
+                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : "NA",
+                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : "NA",
+                'Largo' => (isset($Largo) && $Largo !== '') ? $Largo : "",
+                'Ancho' => (isset($Ancho) && $Ancho !== '') ? $Ancho : "",
+                'Alto' => (isset($Alto) && $Alto !== '') ? $Alto : "",
+                'Cantidad' => (isset($Cantidad) && $Cantidad !== '') ? $Cantidad : "",
+                'Total' => (isset($Total) && $Total !== '') ? $Total : ""
+            );
+            $this->trabajo_model->onAgregarDetalleGenerador($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificarGenerador() {
         try {
             extract($this->input->post());
@@ -423,14 +445,23 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
-    public function onModificarGeneradorCantidadEImporte() {
+    public function onModificarConceptoCantidadEImporte() {
         try {
             extract($this->input->post());
             $data = array(
                 'Cantidad' => (isset($Cantidad) && $Cantidad !== '') ? $Cantidad : NULL,
                 'Importe' => (isset($Importe) && $Importe !== '') ? $Importe : NULL
             );
-            $this->trabajo_model->onModificarGeneradorCantidadEImporte($ID, $data);
+            $this->trabajo_model->onModificarConceptoCantidadEImporte($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarImportePorTrabajo() {
+        try {
+            extract($this->input->post());
+            print json_encode($this->trabajo_model->onModificarImportePorTrabajo($ID));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -552,6 +583,56 @@ class CtrlTrabajos extends CI_Controller {
             $this->trabajo_model->onEliminarFotosXConcepto($ID);
             $this->trabajo_model->onEliminarCroquisXConcepto($ID);
             $this->trabajo_model->onEliminarAnexosXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getPrecioPorConceptoID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getPrecioPorConceptoID($ID, $IDCO);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getConceptoByIDSinFormato() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getConceptoByIDSinFormato($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getImporteTotalDelTrabajoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getImporteTotalDelTrabajoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Trabajo_ID' => $Trabajo_ID,
+                'PreciarioConcepto_ID' => $PreciarioConcepto_ID,
+                'Renglon' => $Renglon,
+                'Cantidad' => 0,
+                'Unidad' => (isset($Unidad)) ? $Unidad : "",
+                'Precio' => (isset($Precio)) ? $Precio : "",
+                'Importe' => (isset($Importe)) ? $Importe : "",
+                'IntExt' => (isset($IntExt)) ? $IntExt : "",
+                'Moneda' => (isset($Moneda)) ? $Moneda : ""
+            );
+            $ID = $this->trabajo_model->onAgregarDetalle($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
