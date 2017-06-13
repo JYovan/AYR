@@ -458,6 +458,18 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function onChangeIntExtByDetalleID() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IntExt' => (isset($IntExt) && $IntExt !== '') ? $IntExt : NULL,
+            );
+            $this->trabajo_model->onChangeIntExtByDetalleID($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificarImportePorTrabajo() {
         try {
             extract($this->input->post());
@@ -489,6 +501,24 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $this->trabajo_model->onEliminarFotoXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarAnexoXConcepto() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarAnexoXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarCroquisXID() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarCroquisXID($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -638,6 +668,132 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function onAgregarFotosEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleFotos($data);
+            /* CREAR DIRECTORIO DE ANEXO */
+            $URL_DOC = "uploads/Trabajos/Fotos/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+
+
+            if (isset($_FILES["FOTO"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["FOTO"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["FOTO"]["name"];
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarCroquisEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleCroquis($data);
+            /* CREAR DIRECTORIO DE ANEXO */
+            $URL_DOC = "uploads/Trabajos/Croquis/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+
+
+            if (isset($_FILES["CROQUIS"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["CROQUIS"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["CROQUIS"]["name"];
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleCroquis($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleCroquis($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarAnexosEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleAnexos($data);
+            /* CREAR DIRECTORIO DE ANEXO */
+            $URL_DOC = "uploads/Trabajos/Anexos/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+
+
+            if (isset($_FILES["ANEXOS"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["ANEXOS"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["ANEXOS"]["name"];
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleAnexo($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleAnexo($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
 
@@ -650,7 +806,7 @@ class CtrlTrabajos extends CI_Controller {
 
         $encabezado = $trabajo[0];
 
-        // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada
         $pdf = new PDFC('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
 
 
@@ -809,7 +965,7 @@ class CtrlTrabajos extends CI_Controller {
 
 
                 if ($valueConceptos->Categoria == $value->Categoria) {
-                    
+
                     $CurrentY = $pdf->GetY();
                     $pdf->SetY($CurrentY);
                     $pdf->SetX(10);
@@ -823,7 +979,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->Cell(15, $AlturaCeldaConcepto, utf8_decode($valueConceptos->Unidad), 1, 1, 'C');
                     $pdf->SetY($CurrentY);
                     $pdf->SetX(150);
-                    $pdf->Cell(15, $AlturaCeldaConcepto, number_format($valueConceptos->Cantidad,2), 1, 1, 'C');
+                    $pdf->Cell(15, $AlturaCeldaConcepto, number_format($valueConceptos->Cantidad, 2), 1, 1, 'C');
                     $pdf->SetY($CurrentY);
                     $pdf->SetX(165);
                     $pdf->Cell(20, $AlturaCeldaConcepto, '$' . number_format($valueConceptos->Precio, 2), 1, 1, 'C');
@@ -1015,7 +1171,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
-    
+
     public function onReporteFin49() {
         //conexion a bd
         try {
@@ -1400,7 +1556,7 @@ class CtrlTrabajos extends CI_Controller {
 
         /* ENCABEZADO */
 
-       $pdf->Image(base_url() .  utf8_decode($datos->LogoEmpresa), 5, 5, 35);
+        $pdf->Image(base_url() . utf8_decode($datos->LogoEmpresa), 5, 5, 35);
         // LogoCliente
         $pdf->Image(base_url() . utf8_decode($datos->LogoCliente), 155, 5, 55);
 
@@ -2081,7 +2237,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'C', true);
 
 
-      
+
         /* TOTALES TITULOS */
         $pdf->SetY(192);
         $pdf->SetX(85);
@@ -2091,7 +2247,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Cell(25, 5, utf8_decode("$0.00"), 1, 1, 'R');
 
 
-     
+
         $pdf->SetY(202);
         $pdf->SetX(85);
         $pdf->SetTextColor(255, 38, 38);
@@ -2108,7 +2264,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->SetX(185);
         $pdf->Cell(25, 5, "$ " . number_format($ImporteTotal, 2), 1, 1, 'R');
 
-        
+
         $pdf->SetY(222);
         $pdf->SetX(85);
         $pdf->SetTextColor(255, 38, 38);
@@ -2132,7 +2288,7 @@ class CtrlTrabajos extends CI_Controller {
         /* FIRMAS */
 
         /* ELABORÓ */
-    
+
         $pdf->SetFont('Arial', '', 8);
         $pdf->SetY(262);
         $pdf->SetX(10);
@@ -2167,9 +2323,9 @@ class PDF extends FPDF {
 }
 
 class PDFC extends FPDF {
-    function Footer()
-{
-    /* Leyenda */
+
+    function Footer() {
+        /* Leyenda */
         $this->SetY(232);
         $this->SetX(10);
         $this->SetFont('Arial', '', 6.5);
@@ -2205,5 +2361,6 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $this->SetY($CurrentY + 6);
         $this->SetX(175);
         $this->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
-}
+    }
+
 }

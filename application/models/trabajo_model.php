@@ -54,15 +54,23 @@ class trabajo_model extends CI_Model {
     public function getTrabajoDetalleByID($IDX) {
         try {
             $this->db->select('CONCAT("<span class=\"hide\">",TD.ID,"</span>") AS "-",'
-                    . 'CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS Clave, TD.IntExt AS "Int/Ext" , '
+                    . 'CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS Clave, '
+                    . '(CASE '
+                    . 'WHEN TD.IntExt = "" THEN '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"\"></option><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'WHEN TD.IntExt = "Interior" THEN '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\"  onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'WHEN TD.IntExt = "Exterior" THEN '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
+                    . ' END) AS "Int/Ext",'
                     . 'CONCAT("<textarea class=\"form-control CustomDetalleDescripcion\" rows=\"5\" readonly=\"\">",PC.Descripcion,"</textarea>") AS Descripcion, '
                     . 'TD.Cantidad, TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
                     . 'CONCAT("<span class=\"hide\">",TD.Moneda,"</span>") AS ".",'
-                    . 'CONCAT("<span class=\"fa fa-cog customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,")\"></span>") AS Fotos, '
-                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,")\"></span>") AS Croquis, '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,")\"></span>") AS Anexos, '
+                    . 'CONCAT("<span class=\"fa fa-gears customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Fotos, '
+                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Croquis, '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
@@ -103,6 +111,7 @@ class trabajo_model extends CI_Model {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
             $this->db->where("TDF.IdTrabajoDetalle", $IDX);
+            $this->db->order_by('TDF.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -203,6 +212,15 @@ class trabajo_model extends CI_Model {
             $LastIdInserted = $row['LAST_INSERT_ID()'];
             return $LastIdInserted;
 //           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onChangeIntExtByDetalleID($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajosdetalle", $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -312,6 +330,26 @@ class trabajo_model extends CI_Model {
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetallefotos');
 //            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarAnexoXConcepto($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetalleanexos');
+            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarCroquisXID($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetallecroquis');
+            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -458,9 +496,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-       public function onModificarConceptoCantidadEImporte($ID, $DATA) {
+
+    public function onModificarConceptoCantidadEImporte($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajosdetalle", $DATA);
@@ -511,10 +548,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    /*************************** Reportes------------------------------ */
-    
-    
-      public function getCategoriasPresupuesto($ID) {
+    /*     * ************************* Reportes------------------------------ */
+
+    public function getCategoriasPresupuesto($ID) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select("T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,
@@ -531,7 +567,7 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID", false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
-             $this->db->order_by(' T.ID', 'desc'); 
+            $this->db->order_by(' T.ID', 'desc');
             $this->db->group_by(array('PCAT.Descripcion'));
             $query = $this->db->get();
             /*
@@ -546,7 +582,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-     public function getPresupuesto($ID) {
+    public function getPresupuesto($ID) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,
@@ -575,9 +611,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-    
 
     public function getFin49ByID($ID) {
         try {
@@ -661,14 +694,12 @@ class trabajo_model extends CI_Model {
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-             // print $str;
+            // print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-
- 
 
 }
