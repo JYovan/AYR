@@ -41,7 +41,7 @@
                 <button onclick="onReporteResumenPartidas()" class="btn btn-default"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
                 <button onclick="onReportePresupuestoBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
                 <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
-
+                <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
             </div>
         </div>
 
@@ -448,10 +448,10 @@
                                 <th class="hide">PreciarioConcepto_ID</th>
                                 <th class="hide">Renglon</th>
                                 <th>Clave</th>
-                                <th class="col-md-1" align="center">Int/Ext</th>
+                                <th class="col-md-3" align="center">Int/Ext</th>
                                 <th class="col-md-3" align="center">Descripcion</th>
                                 <th class="col-md-2" align="center">Cantidad</th>
-                                <th class="col-md-2" align="center">Unidad</th>
+                                <th class="col-md-1" align="center">Unidad</th>
                                 <th class="col-md-2" align="center">Precio</th>
                                 <th class="col-md-2" align="center">Importe</th>
                                 <th class="hide">Moneda</th>
@@ -1012,8 +1012,8 @@
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
                     <button type="button" class="btn btn-default" id="btnAdjuntosXConcepto"><span class="fa fa-eye fa-1x" ></span><br>ADJUNTOS</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="Conceptos" >
-                    <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
+                <div class="col-md-12 table-responsive " id="Conceptos" >
+                    <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide " width="100%">
                         <thead>
                             <tr>
                                 <th class="hide">ID</th>
@@ -1337,8 +1337,8 @@
     var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
 
     //Toggle Button  Atendido Impacto
-    var tbtnNuevoAtendido = pnlEditarTrabajo.find("#NuevoAtendido");
-    var tbtnNuevoImpactoEnPlazo = pnlEditarTrabajo.find("#NuevoImpactoEnPlazo");
+    var tbtnNuevoAtendido = pnlNuevoTrabajo.find("#NuevoAtendido");
+    var tbtnNuevoImpactoEnPlazo = pnlNuevoTrabajo.find("#NuevoImpactoEnPlazo");
 
 
     /*Detalle*/
@@ -1394,12 +1394,12 @@
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
     var VistaPreviaAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#VistaPreviaAnexos");
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         /**FUNCIONES DE EDICION**/
 
         /*ANEXOS POR CONCEPTO EDITAR*/
-        EditarAnexosPorConcepto.change(function() {
+        EditarAnexosPorConcepto.change(function () {
             HoldOn.open({
                 theme: 'sk-cube',
                 message: 'CARGANDO ANEXOS...'
@@ -1414,10 +1414,10 @@
 //            }
             var img = "";
             var nimg = 0;
-            $.each(EditarAnexosPorConcepto[0].files, function(k, file) {
+            $.each(EditarAnexosPorConcepto[0].files, function (k, file) {
                 console.log(file.name);
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     img = "";
                     if (nimg === 3) {
                         img += '<div class="col-md-12" align="center"><br><hr><br></div>';
@@ -1445,17 +1445,17 @@
                         contentType: false,
                         processData: false,
                         data: frm
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
                         onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXOS ' + file.name, 'success');
                         console.log('* * * LOG ANEXO * * *');
                         console.log(data, x, jq);
                         console.log('* * * FIN LOG ANEXO * * *');
                         VistaPreviaAnexosPorConcepto.html("");
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
                         console.log(x, y, z);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
 
@@ -1467,7 +1467,7 @@
 
 
         /*CROQUIS POR CONCEPTO EDITAR*/
-        EditarCroquisPorConcepto.change(function() {
+        EditarCroquisPorConcepto.change(function () {
             HoldOn.open({
                 theme: 'sk-cube',
                 message: 'CARGANDO FOTOS...'
@@ -1482,10 +1482,10 @@
 //            }
             var img = "";
             var nimg = 0;
-            $.each(EditarCroquisPorConcepto[0].files, function(k, file) {
+            $.each(EditarCroquisPorConcepto[0].files, function (k, file) {
                 console.log(file.name);
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     img = "";
                     if (nimg === 3) {
                         img += '<div class="col-md-12" align="center"><br><hr><br></div>';
@@ -1513,17 +1513,17 @@
                         contentType: false,
                         processData: false,
                         data: frm
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
                         onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'CROQUIS ' + file.name, 'success');
                         console.log('* * * LOG FOTO * * *');
                         console.log(data, x, jq);
                         console.log('* * * FIN LOG FOTO * * *');
                         VistaPreviaCroquisPorConcepto.html("");
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                         console.log(x, y, z);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
 
@@ -1535,7 +1535,7 @@
 
 
         /*FOTOS POR CONCEPTO EDITAR*/
-        EditarFotosPorConcepto.change(function() {
+        EditarFotosPorConcepto.change(function () {
             HoldOn.open({
                 theme: 'sk-cube',
                 message: 'CARGANDO FOTOS...'
@@ -1550,10 +1550,10 @@
 //            }
             var img = "";
             var nimg = 0;
-            $.each(EditarFotosPorConcepto[0].files, function(k, file) {
+            $.each(EditarFotosPorConcepto[0].files, function (k, file) {
                 console.log(file.name);
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     img = "";
                     if (nimg === 3) {
                         img += '<div class="col-md-12" align="center"><br><hr><br></div>';
@@ -1581,7 +1581,7 @@
                         contentType: false,
                         processData: false,
                         data: frm
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
                         onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO ' + file.name, 'success');
                         console.log('* * * LOG FOTO * * *');
@@ -1589,10 +1589,10 @@
                         console.log('* * * FIN LOG FOTO * * *');
                         VistaPreviaFotosPorConcepto.html("");
 
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                         console.log(x, y, z);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
 
@@ -1603,28 +1603,30 @@
         });
 
 
-        btnMoficarEditarGenerador.on('click', function() {
+        btnMoficarEditarGenerador.on('click', function () {
             onModificarGeneradorXID();
         });
-
-        btnGuardarModificarGeneradorXConcepto.on('click', function() {
+        /***** Modificar Concepto ****/
+        btnGuardarModificarGeneradorXConcepto.on('click', function () {
             if (mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== 0) {
                 var frm = new FormData();
                 /*Total*/
-                var generador_largo = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val()) > 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() : 1);
-                var generador_ancho = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val()) > 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() : 1);
-                var generador_alto = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val()) > 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() : 1);
-                var generador_cantidad = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val()) > 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() : 1);
+                var generador_largo = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() : 1);
+                var generador_ancho = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() : 1);
+                var generador_alto = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() : 1);
+                var generador_cantidad = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() : 1);
                 var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
                 frm.append('Concepto_ID', mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
+
                 frm.append('Area', mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val());
                 frm.append('Eje', mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val());
                 frm.append('EntreEje1', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val());
                 frm.append('EntreEje2', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val());
+
                 frm.append('Largo', mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val());
                 frm.append('Ancho', mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val());
                 frm.append('Alto', mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val());
@@ -1642,7 +1644,7 @@
                         contentType: false,
                         processData: false,
                         data: frm
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
                         console.log(data);
                         mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
@@ -1659,10 +1661,10 @@
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val("");
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR', 'danger');
                         console.log(total_generador);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
                 } else {
@@ -1674,7 +1676,7 @@
             }
         });
 
-        mdlTrabajoEditarGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        mdlTrabajoEditarGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#EditarGeneradores":
@@ -1687,6 +1689,7 @@
 
                     break;
                 case "#EditarGenerador":
+
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Area").focus();
                     break;
             }
@@ -1695,11 +1698,11 @@
         /**FIN FUNCIONES DE EDICION **/
 
         /*FUNCIONES DE NUEVO*/
-        btnImprimirReportesEditarTrabajo.on("click", function() {
+        btnImprimirReportesEditarTrabajo.on("click", function () {
             mdlReportesEditarTrabajo.modal('show');
         });
 
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function(e) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function (e) {
             if (e.which === 13) {
                 if (!btnGuardarNuevoGeneradorXConcepto.hasClass("hide")) {
                     console.log('ESTA GUARDANDO');
@@ -1712,7 +1715,7 @@
             }
         });
 
-        mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#Generadores":
@@ -1724,7 +1727,7 @@
                         console.log(target);
                         console.log('* * * * * END TARGET * * * * ');
 
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                             var row = $(v).find("td");
                             if (row.eq(13).text() === "EDITANDO") {
                                 row.eq(13).text("ACTIVO");
@@ -1739,7 +1742,7 @@
             }
         });
 
-        btnAdjuntosXConcepto.on("click", function() {
+        btnAdjuntosXConcepto.on("click", function () {
             if (tempDetalle !== undefined && tempDetalle !== '' && tempDetalle !== 0 && tempDetalle > 0) {
                 HoldOn.open({
                     theme: 'sk-bounce',
@@ -1752,14 +1755,14 @@
                     data: {
                         ID: tempDetalle
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Fotos").html("");
                     mdlAdjuntosXConceptoID.find("#Fotos").append("<fieldset></fieldset>");
                     mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append('<div class="col-md-12" id="VistaPreviaCompletaXFoto"></div>');
-                    $.each(data, function(k, v) {
+                    $.each(data, function (k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var picthumbnail = '<div class="col-md-4">';
@@ -1775,11 +1778,11 @@
                         mdlAdjuntosXConceptoID.find("#Fotos > fieldset").append(picthumbnail);
                     });
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function() {
+                }).always(function () {
 
                 });
                 $.ajax({
@@ -1789,22 +1792,22 @@
                     data: {
                         ID: tempDetalle
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Croquis").html("");
-                    $.each(data, function(k, v) {
+                    $.each(data, function (k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         mdlAdjuntosXConceptoID.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a>');
                     });
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function() {
+                }).always(function () {
 
                 });
                 $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
@@ -1813,12 +1816,12 @@
                     data: {
                         ID: tempDetalle
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
                     console.log(data);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                     mdlAdjuntosXConceptoID.find("#Anexos").html("");
-                    $.each(data, function(k, v) {
+                    $.each(data, function (k, v) {
                         console.log(v);
                         console.log(base_url + v.Url);
                         var url_file = base_url + v.Url;
@@ -1840,11 +1843,11 @@
                         }
                     });
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
                     console.log(x, y, z);
                     console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
                 mdlAdjuntosXConceptoID.find("#ID").val(tempDetalle);
@@ -1854,14 +1857,15 @@
             }
         });
 
-        btnGuardarNuevoGeneradorXConcepto.on("click", function() {
+        /***** Modificar Concepto ****/
+        btnGuardarNuevoGeneradorXConcepto.on("click", function () {
             var Generador = [];
             if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0 ||
                     mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== 0) &&
                     pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+                $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
                     var row_status = $(this).find("td").eq(15).text();
                     if (row_status === 'ACTIVO') {
                         /*EVALUAR LA CANTIDAD*/
@@ -1877,7 +1881,7 @@
                             //                        /*FIN DE LA EVALUACIÓN*/
                             /*ELIMINAR GENERADORES*/
                             if (NuevoGeneradorXConcepto.find())
-                                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                                     var row = $(v).find("td");
                                     if (row.eq(0).text() === "No existen datos en la tabla.") {
                                         $(this).remove();
@@ -1918,7 +1922,7 @@
                             /*AGREGAR NUEVO GENERADOR*/
                             Generador = [];
                             var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                                 var row = $(v).find("td");
                                 console.log(v);
                                 console.log(row);
@@ -1955,7 +1959,7 @@
                         } else {
                             Generador = [];
                             var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                                 var row = $(v).find("td");
                                 var nuevo_generador = {};
                                 nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -1998,12 +2002,12 @@
             } else {
                 if (NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
                     console.log('* * * * * * * RECREANDO EL GENERADOR *********');
-                    $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+                    $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
                         var row_status = $(this).find("td").eq(15).text();
                         if (row_status === 'ACTIVO') {
                             Generador = [];
                             var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                                 var row = $(v).find("td");
                                 var nuevo_generador = {};
                                 nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -2053,7 +2057,7 @@
             }
         });
 
-        btnNuevoConcepto.on("click", function() {
+        btnNuevoConcepto.on("click", function () {
             var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
             if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
 
@@ -2064,7 +2068,7 @@
             }
         });
 
-        btnRefrescar.on("click", function() {
+        btnRefrescar.on("click", function () {
             getRecords();
             getClientes();
             getCodigosPPTA();
@@ -2072,7 +2076,7 @@
         });
 
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function() {
+        btnConfirmarEliminar.on("click", function () {
 
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
@@ -2082,7 +2086,7 @@
             }
         });
 
-        btnEliminar.on("click", function() {
+        btnEliminar.on("click", function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -2094,7 +2098,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log(data);
 
                     mdlConfirmar.modal('hide');
@@ -2108,9 +2112,9 @@
                     getRecords();
                     btnRefrescar.trigger('click');
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             } else {
@@ -2119,7 +2123,7 @@
         });
 
         //Funcion que cambia el valor cuando el toggle button cambia
-        tbtnEditarAtendido.change(function() {
+        tbtnEditarAtendido.change(function () {
             if (this.checked) {
 
                 pnlEditarTrabajo.find("#Atendido").val('Si');
@@ -2128,7 +2132,7 @@
             }
         });
 
-        tbtnEditarImpactoEnPlazo.change(function() {
+        tbtnEditarImpactoEnPlazo.change(function () {
             if (this.checked) {
 
                 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
@@ -2138,16 +2142,17 @@
         });
 
         //Eventos del toggle para nuevo
-        tbtnNuevoAtendido.change(function() {
+        tbtnNuevoAtendido.change(function () {
             if (this.checked) {
 
                 pnlNuevoTrabajo.find("#Atendido").val('Si');
             } else {
+            
                 pnlNuevoTrabajo.find("#Atendido").val('No');
             }
         });
 
-        tbtnNuevoImpactoEnPlazo.change(function() {
+        tbtnNuevoImpactoEnPlazo.change(function () {
             if (this.checked) {
 
                 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('Si');
@@ -2157,7 +2162,7 @@
         });
 
 
-        btnEditar.on("click", function() {
+        btnEditar.on("click", function () {
             tempDetalle = 0;
 
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
@@ -2178,7 +2183,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     pnlEditarTrabajo.find("input").val("");
 
                     var trabajo = data[0];
@@ -2190,19 +2195,19 @@
                         data: {
                             ID: trabajo.Cliente_ID
                         }
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function(k, v) {
+                        $.each(data, function (k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                         pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         console.log(x, y, z);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
                     $.ajax({
@@ -2212,26 +2217,26 @@
                         data: {
                             Cliente_ID: trabajo.Cliente_ID
                         }
-                    }).done(function(data, x, jq) {
+                    }).done(function (data, x, jq) {
 
 
                         var options = '<option></option>';
-                        $.each(data, function(k, v) {
+                        $.each(data, function (k, v) {
 
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
                         pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                    }).fail(function(x, y, z) {
+                    }).fail(function (x, y, z) {
                         console.log(x, y, z);
-                    }).always(function() {
+                    }).always(function () {
                         HoldOn.close();
                     });
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                    tBtnEditarConcluir.on("click", function() {
+                    tBtnEditarConcluir.on("click", function () {
                         if (!$(this).is(':checked')) {
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                             btnConfirmarEliminar.attr("disabled", false);
@@ -2284,29 +2289,6 @@
                     pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
                     pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
                     pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-
-                    //Control de estatus
-                    if (trabajo.Estatus === 'Concluido') {
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.prop('checked', true);
-                        btnModificar.addClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                        btnConfirmarEliminar.attr("disabled", true);
-                    } else if (trabajo.Estatus === 'Cancelado') {
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.addClass('hide');
-                        btnModificar.addClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                        btnConfirmarEliminar.attr("disabled", true);
-                    } else {
-                        $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
-                        tBtnEditarConcluir.prop('checked', false);
-                        btnModificar.removeClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                        btnConfirmarEliminar.attr("disabled", false);
-                    }
-
-
                     pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
 
                     if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
@@ -2328,10 +2310,45 @@
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajo.removeClass("hide");
                     getTrabajoDetalleByID(trabajo.ID);
+                    
+                    
+                    
+                    //Control de estatus
+                    if (trabajo.Estatus === 'Concluido') {
+                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.prop('checked', true);
+                        btnModificar.addClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                        btnConfirmarEliminar.attr("disabled", true);
+                        pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                       pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+               
+                    } else if (trabajo.Estatus === 'Cancelado') {
+                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.addClass('hide');
+                        btnModificar.addClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                        btnConfirmarEliminar.attr("disabled", true);
+                        pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    } else {
+                        
+                        $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
+                        tBtnEditarConcluir.prop('checked', false);
+                        btnModificar.removeClass('hide');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                        btnConfirmarEliminar.attr("disabled", false);
+                          pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                        pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                    }
+                    
+                    
+                    
+                    
                     getImporteTotalDelTrabajoByID(trabajo.ID);
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             } else {
@@ -2339,7 +2356,7 @@
             }
         });
 
-        btnModificar.on("click", function() {
+        btnModificar.on("click", function () {
 
 
             $.validator.setDefaults({
@@ -2360,19 +2377,19 @@
                     Situacion: 'required'
 
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
 
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function() {
+            $('select').on('change', function () {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -2398,32 +2415,36 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
 
 
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL TRABAJO', 'success');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
 
                     if (tBtnEditarConcluir.is(':checked')) {
                         btnModificar.addClass('hide');
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                         btnConfirmarEliminar.attr("disabled", true);
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
+                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
                     } else {
                         btnConfirmarEliminar.attr("disabled", false);
                         $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
+        pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
                     }
 
                     console.log(data, x, jq);
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             }
 
         });
 
-        btnGuardar.on("click", function() {
+        btnGuardar.on("click", function () {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -2442,18 +2463,18 @@
                     Situacion: 'required'
 
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
 
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function() {
+            $('select').on('change', function () {
                 $(this).valid();
             });
 
@@ -2462,10 +2483,16 @@
 
 
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
+                
+                 for (var pair of frm.entries()) {
+                    console.log(pair[0]+ ', ' + pair[1]);
+                }
+                
+                
                 var trabajo_detalle = [];
                 var concepto = {};
 
-                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function(key, value) {
+                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function (key, value) {
                     var row = $(this).find("td");
                     console.log(row);
                     concepto = {
@@ -2481,7 +2508,7 @@
                     };
                     /*CREAR JSON DE LAS FOTOS POR CADA RENGLON*/
                     var json_fotos = [];
-                    jQuery.each($(this).find("#Fotos")[0].files, function(i, file) {
+                    jQuery.each($(this).find("#Fotos")[0].files, function (i, file) {
                         json_fotos.push({
                             Renglon: row.eq(2).text(),
                             Foto: file.name
@@ -2492,7 +2519,7 @@
 
                     /*CREAR JSON DE LOS CROQUIS POR CADA RENGLON*/
                     var json_croquis = [];
-                    jQuery.each($(this).find("#Croquis")[0].files, function(i, file) {
+                    jQuery.each($(this).find("#Croquis")[0].files, function (i, file) {
                         json_croquis.push({
                             Renglon: row.eq(2).text(),
                             Croquis: file.name
@@ -2503,7 +2530,7 @@
 
                     /*CREAR JSON DE LOS ANEXOS POR CADA RENGLON*/
                     var json_anexos = [];
-                    jQuery.each($(this).find("#Anexos")[0].files, function(i, file) {
+                    jQuery.each($(this).find("#Anexos")[0].files, function (i, file) {
                         json_anexos.push({
                             Renglon: row.eq(2).text(),
                             Anexo: file.name
@@ -2526,10 +2553,6 @@
                     frm.append('Estatus', 'Borrador');
                     // $(".spanEstatus").text('Borrador');
                 }
-
-
-
-
                 //Agregar Importe total
                 frm.append('Importe', ImporteTotalGlobal);
                 /*DESCOMENTAR PARA AGREGAR*/
@@ -2540,24 +2563,25 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
 
 
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO TRABAJO', 'success');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
 //Funcion que regarga el panel de editar con el nuevo registro
+
                     despuesDeGuardar(data);
                     //  btnCancelar.trigger('click');
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             }
 
         });
 
-        btnCancelar.on("click", function() {
+        btnCancelar.on("click", function () {
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
@@ -2566,7 +2590,7 @@
             btnRefrescar.trigger('click');
         });
 
-        btnCancelarModificar.on("click", function() {
+        btnCancelarModificar.on("click", function () {
 
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -2575,9 +2599,9 @@
             btnRefrescar.trigger('click');
         });
 
-        btnNuevo.on("click", function() {
+        btnNuevo.on("click", function () {
 
-            $.each(tblConceptosXTrabajo.find("tbody tr"), function() {
+            $.each(tblConceptosXTrabajo.find("tbody tr"), function () {
                 $(this).remove();
             });
             tblConceptosXTrabajo.addClass("hide");
@@ -2603,30 +2627,30 @@
         });
 
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function() {
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function() {
+        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function() {
+        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
         //Trae dias de ppta
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function() {
+        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
 
-        btnArchivo.on("click", function() {
-            Archivo.change(function() {
+        btnArchivo.on("click", function () {
+            Archivo.change(function () {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -2634,7 +2658,7 @@
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -2647,7 +2671,7 @@
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function(e) {
+                        readerpdf.onload = function (e) {
                             VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -2661,8 +2685,8 @@
             Archivo.trigger('click');
         });
 
-        btnModificarArchivo.on("click", function() {
-            ModificarArchivo.change(function() {
+        btnModificarArchivo.on("click", function () {
+            ModificarArchivo.change(function () {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "POR FAVOR ESPERE..."
@@ -2670,7 +2694,7 @@
                 var imageType = /image.*/;
                 if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         console.log(ModificarArchivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
                                     <div class="caption">\n\
@@ -2683,7 +2707,7 @@
                     if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match('application/pdf')) {
                         console.log('ES UN PDF');
                         var readerpdf = new FileReader();
-                        readerpdf.onload = function(e) {
+                        readerpdf.onload = function (e) {
                             ModificarVistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
@@ -2714,14 +2738,14 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function() {
+            $('#tblTrabajos tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function() {
+            $('#tblTrabajos tbody').on('click', 'tr', function () {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -2743,22 +2767,22 @@
             });
 
             // Apply the search
-            tblSelected.columns().every(function() {
+            tblSelected.columns().every(function () {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function() {
+                $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
 
-    $('#Encabezado a').on("click", function(e) {
+    $('#Encabezado a').on("click", function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
@@ -2769,6 +2793,7 @@
     function despuesDeGuardar(IDTrabajo) {
 
         IdMovimiento = IDTrabajo;
+
         pnlNuevoTrabajo.addClass("hide");
         pnlDetalleNuevoTrabajo.addClass("hide");
 
@@ -2790,9 +2815,8 @@
                 data: {
                     ID: IdMovimiento
                 }
-            }).done(function(data, x, jq) {
-                console.log('despues de');
-                console.log(data);
+            }).done(function (data, x, jq) {
+
                 pnlEditarTrabajo.find("input").val("");
 
                 var trabajo = data[0];
@@ -2804,18 +2828,18 @@
                     data: {
                         ID: trabajo.Cliente_ID
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
 
 
                     var options = '<option></option>';
-                    $.each(data, function(k, v) {
+                    $.each(data, function (k, v) {
                         options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                     });
                     pnlEditarTrabajo.find("#Sucursal_ID").html(options);
                     pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
                 $.ajax({
@@ -2825,26 +2849,26 @@
                     data: {
                         Cliente_ID: trabajo.Cliente_ID
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
 
 
                     var options = '<option></option>';
-                    $.each(data, function(k, v) {
+                    $.each(data, function (k, v) {
 
                         options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                     });
                     pnlEditarTrabajo.find("#Preciario_ID").html(options);
                     pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
 
                 //trae los días
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                tBtnEditarConcluir.on("click", function() {
+                tBtnEditarConcluir.on("click", function () {
                     if (!$(this).is(':checked')) {
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                         btnModificar.removeClass('hide');
@@ -2857,9 +2881,15 @@
                 pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                 pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
                 pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
-                if (trabajo.Atendido === 'Si') {
-                    pnlEditarTrabajo.find("#Atendido").prop('checked', true);
-                }
+                  if (trabajo.Atendido === 'Si') {
+                        pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
+                        pnlEditarTrabajo.find("#Atendido").val('Si');
+                    }
+
+                    if (trabajo.Atendido === 'No') {
+                        pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
+                        pnlEditarTrabajo.find("#Atendido").val('No');
+                    }
                 pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
                 pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
                 pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
@@ -2873,9 +2903,14 @@
                 pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
                 pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
                 pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
-                if (trabajo.ImpactoEnPlazo === 'Si') {
-                    pnlEditarTrabajo.find("#ImpactoEnPlazo").prop('checked', true);
-                }
+                 if (trabajo.ImpactoEnPlazo === 'Si') {
+                        pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
+                        pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                    }
+                    if (trabajo.ImpactoEnPlazo === 'No') {
+                        pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
+                        pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
+                    }
                 pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
                 pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
                 pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
@@ -2892,16 +2927,22 @@
                     tBtnEditarConcluir.prop('checked', true);
                     btnModificar.addClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                     pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
                 } else if (trabajo.Estatus === 'Cancelado') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
                     tBtnEditarConcluir.addClass('hide');
                     btnModificar.addClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                     pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
                 } else {
                     $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', false);
                     btnModificar.removeClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                         pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
                 }
 
 
@@ -2931,9 +2972,9 @@
                 //Setea el importe total
                 pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$' + parseFloat(trabajo.Importe) + '</span>');
                 getTrabajoDetalleByID(trabajo.ID);
-            }).fail(function(x, y, z) {
+            }).fail(function (x, y, z) {
                 console.log(x, y, z);
-            }).always(function() {
+            }).always(function () {
                 HoldOn.close();
             });
         } else {
@@ -2951,16 +2992,16 @@
         $.ajax({
             url: master_url + 'getClientes',
             type: "POST", dataType: "JSON"
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevoTrabajo.find("#Cliente_ID").html(options);
             pnlEditarTrabajo.find("#Cliente_ID").html(options);             //  pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -2977,19 +3018,19 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
             });
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
             pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3006,19 +3047,19 @@
             data: {
                 Cliente_ID: Cliente_ID
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
 
 
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
 
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
             pnlEditarTrabajo.find("#Preciario_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3035,12 +3076,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
 
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3057,12 +3098,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
 
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3074,16 +3115,16 @@
         $.ajax({
             url: master_url + 'getCodigosPPTA',
             type: "POST", dataType: "JSON"
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Código + '</option>';
             });
             pnlNuevoTrabajo.find("#Codigoppta_ID").html(options);
             pnlEditarTrabajo.find("#Codigoppta_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3095,16 +3136,16 @@
         });
         $.ajax({url: master_url + 'getCuadrillas',
             type: "POST",
-            dataType: "JSON"}).done(function(data, x, jq) {
+            dataType: "JSON"}).done(function (data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cuadrilla + '</option>';
             });
             pnlNuevoTrabajo.find("#Cuadrilla_ID").html(options);
             pnlEditarTrabajo.find("#Cuadrilla_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3121,16 +3162,16 @@
             data: {
                 ID: CodigoID
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
 
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3140,7 +3181,7 @@
 
 
         $('#Adjunto').trigger('blur');
-        $('#Adjunto').on('blur', function(e) {
+        $('#Adjunto').on('blur', function (e) {
             $('#Adjunto').val('');
         });
 
@@ -3159,14 +3200,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function() {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
+            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3188,11 +3229,11 @@
                     data: {
                         ID: temp
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     var has_id = true;
                     console.log('AGREGANDO.. CONCEPTO ');
                     if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
                             var row_status = $(this).find("td").eq(1).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
@@ -3254,7 +3295,7 @@
                         row += '<td class="hide">';
                         row += '</td>';
                         row += '<td>';
-                        row += '<span class="fa fa-gears fa-3x customButtonDetalleGenerador mx-auto" onclick="onGeneradorXConcepto(this)"></span>';
+                        row += '<span class="fa fa-calculator fa-3x customButtonDetalleGenerador mx-auto" onclick="onGeneradorXConcepto(this)"></span>';
                         row += '</td>';
                         row += '<td class="hide">INACTIVO</td>';
 
@@ -3297,26 +3338,26 @@
                         }
 
                     }
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
 
             });
 
             // Apply the search
-            tblSelected.columns().every(function() {
+            tblSelected.columns().every(function () {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function() {
+                $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3334,7 +3375,7 @@
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -3353,7 +3394,7 @@
     function onGeneradorXConcepto(evt) {
         var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
         var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             $(this).find("td").eq(15).text('INACTIVO');
         });
         row.eq(15).text('ACTIVO');
@@ -3391,7 +3432,7 @@
                 '</thead>' +
                 '<tbody>';
 
-        $.each(Generadores, function(k, v) {
+        $.each(Generadores, function (k, v) {
             console.log(k, v);
             tblGeneradores += "<tr>";
             /*RENGLON*/
@@ -3441,10 +3482,10 @@
             tblGeneradores += v.Cantidad;
             tblGeneradores += "</td>";
             /*Total*/
-            var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) > 0) ? v.Largo : 1);
-            var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) > 0) ? v.Ancho : 1);
-            var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) > 0) ? v.Alto : 1);
-            var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) > 0) ? v.Cantidad : 1);
+            var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) !== 0) ? v.Largo : 1);
+            var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) !== 0) ? v.Ancho : 1);
+            var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) !== 0) ? v.Alto : 1);
+            var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) !== 0) ? v.Cantidad : 1);
             tblGeneradores += "<td>";
             tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
             tblGeneradores += "</td>";
@@ -3460,7 +3501,7 @@
         if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
             var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-            NuevoGeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function() {
+            NuevoGeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function () {
                 DataTableGeneradores.find("tr").removeClass("success");
                 DataTableGeneradores.find("tr").removeClass("warning");
                 //                console.log(this)
@@ -3502,8 +3543,11 @@
 
         /*IMPORTE TOTAL*/
         var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
+        var ImporteTotalE = pnlDetalleEditarTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+
+//        Recalcula en nuevo
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
             console.log(total);
@@ -3511,16 +3555,30 @@
             //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
             console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
+
+//        Recalcula en nuevo
+        $.each(pnlDetalleEditarTrabajo.find("tbody tr"), function () {
+            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
+            total += parseFloat($(this).find("td").eq(10).text());
+            console.log(total);
+            ImporteTotalGlobal = total;
+            //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
+            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
+        });
+
+
         ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
+        ImporteTotalE.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
+
+
         //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
-
 
     function getGeneradorImporteTotal() {
         /*GENERADOR IMPORTE TOTAL*/
         var GeneradorImporteTotal = mdlTrabajoNuevoGeneradorPorConcepto.find("#GeneradorImporteTotal");
         var total = 0.0;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
             var row = $(v).find("td");
             total += parseFloat(row.eq(11).text());
             // ImporteTotalGlobal=total;
@@ -3558,19 +3616,19 @@
         console.log('FOTOS');
         var btnFotos;
         var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnFotos = $(this).find("#Fotos");
 
-                btnFotos.change(function() {
+                btnFotos.change(function () {
                     var imageType = /image.*/;
                     VistaPreviaFotos.html("");
                     console.log(btnFotos[0].files);
                     console.log(btnFotos[0].files.length);
-                    $.each(btnFotos[0].files, function(k, v) {
+                    $.each(btnFotos[0].files, function (k, v) {
                         var reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             console.log(this);
                             VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -3613,21 +3671,21 @@
         console.log('CROQUIS');
         var btnCroquis;
         var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             var row_status = $(this).find("td").eq(15).text();
             console.log(row_status);
             if (row_status === 'ACTIVO') {
                 console.log('CROQUIS ACTIVO');
                 btnCroquis = $(this).find("#Croquis");
 
-                btnCroquis.change(function() {
+                btnCroquis.change(function () {
                     var imageType = /image.*/;
                     VistaPreviaCroquis.html("");
                     console.log(btnCroquis[0].files);
-                    $.each(btnCroquis[0].files, function(k, v) {
+                    $.each(btnCroquis[0].files, function (k, v) {
                         console.log(v.name);
                         var reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             console.log(this);
                             VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
                         };
@@ -3671,15 +3729,15 @@
         console.log('ANEXOS');
         var btnAnexos;
         var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 btnAnexos = $(this).find("#Anexos");
-                btnAnexos.change(function() {
+                btnAnexos.change(function () {
                     var imageType = /image.*/;
                     VistaPreviaAnexos.html("");
                     console.log(btnAnexos[0].files);
-                    $.each(btnAnexos[0].files, function(k, v) {
+                    $.each(btnAnexos[0].files, function (k, v) {
                         console.log(v.name);
                         VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
                     });
@@ -3699,18 +3757,22 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data);
             if (data.length > 0) {
                 pnlDetalleEditarTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
-                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
+                
+                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function () {
                     var title = $(this).text();
                     $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
                 });
                 var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
-                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function() {
+                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
                     pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
                     pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
+                    
+                    
+                  
                     //                console.log(this)
                     var id = this.id;
                     var index = $.inArray(id, selected);
@@ -3733,18 +3795,18 @@
                 });
 
                 // Apply the search
-                tblSelected.columns().every(function() {
+                tblSelected.columns().every(function () {
                     var that = this;
-                    $('input', this.footer()).on('keyup change', function() {
+                    $('input', this.footer()).on('keyup change', function () {
                         if (that.search() !== this.value) {
                             that.search(this.value).draw();
                         }
                     });
                 });
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3762,7 +3824,7 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
             console.log(data);
             if (data.length > 0) {
@@ -3771,7 +3833,7 @@
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
-                $.each(data, function(k, v) {
+                $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 3) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
@@ -3795,11 +3857,11 @@
             } else {
                 VistaPreviaFotosPorConcepto.html("");
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3815,14 +3877,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO, ELIMINADA', 'success');
             onReloadFotosXConcepto(IDTD);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ELIMINAR FOTO* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -3864,7 +3926,7 @@
     function onEliminarGenerador(evt) {
 
         //  onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 var row = $(evt).parent().parent();
@@ -3877,14 +3939,14 @@
         $(evt).parent().parent().remove();
 
         var cantidad_total_generador = 0;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
             var row = $(v).find("td");
             cantidad_total_generador += parseFloat(row.eq(11).text());
         });
         console.log('* * * * * * * * * * * * * * * * * * * * CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
         console.log(cantidad_total_generador);
         console.log('* * * * * * * * * * * * * * * * * * * * END CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             if ($(this).find("td").eq(15).text() === "ACTIVO") {
                 $(this).find("td").eq(6).text(cantidad_total_generador);
                 return false;
@@ -3893,12 +3955,13 @@
         setRecrearGenerador();
     }
 
-
     function onCancelarAgregarNuevoGenerador(evt) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
+
 
     }
 
@@ -3924,6 +3987,8 @@
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val("");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val("");
+
+
         getGeneradorImporteTotal();
 
         generador_nuevo_editable = false;
@@ -3934,7 +3999,7 @@
         var cantidadTotalEditada = 0;
         if (generador_nuevo_editable) {
             console.log('********************MODIFICANDO GENERADOR*************');
-            mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+            mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                 var row = $(v).find("td");
                 if (row.eq(13).text() === "EDITANDO") {
                     console.log(v);
@@ -3957,7 +4022,7 @@
                     row.eq(11).text(subtotal);
                     row.eq(13).text("ACTIVO");
 
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                    mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                         var row = $(v).find("td");
                         cantidadTotalEditada += parseFloat(row.eq(11).text());
                     });
@@ -3973,14 +4038,14 @@
         getGeneradorImporteTotal();
         getImporteTotal();
         //Poner la cantidad editada en la columna de cantidad
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             if ($(this).find("td").eq(15).text() === "ACTIVO") {
                 $(this).find("td").eq(6).text(cantidadTotalEditada);
                 return false;
             }
         });
 
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
             var row = $(v).find("td");
             if (row.eq(13).text() === "EDITANDO") {
                 row.eq(13).text("ACTIVO");
@@ -4000,22 +4065,25 @@
         btnCancelarNuevoGenerador.addClass("hide");
         btnMoficarNuevoGenerador.addClass("hide");
 
-        getGeneradorImporteTotal();
+
         mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
 
+        getGeneradorImporteTotal();
+
 
     }
+
     function setRecrearGenerador() {
         var Generador = [];
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
+        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
             var row_status = $(this).find("td").eq(15).text();
             if (row_status === 'ACTIVO') {
                 Generador = [];
                 var tt = 0;
-                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function(k, v) {
+                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
                     var row = $(v).find("td");
                     var nuevo_generador = {};
                     nuevo_generador["Concepto_ID"] = row.eq(2).text();
@@ -4065,18 +4133,19 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var row = $(evt).parent().parent().find("td");
             console.log('* * * * * * * * * * * * FILA (EDICION)* * * * * * * * * * * * * * ');
-            $.each(row, function(k, v) {
+            $.each(row, function (k, v) {
                 console.log(k, v);
             });
             console.log('* * * * * * * * * * * * END FILA (EDICION)* * * * * * * * * * * * * * ');
             $(evt).parent().parent().remove();
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
-        }).fail(function(x, y, z) {
+            getImporteTotal();
+            // onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
+        }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4094,7 +4163,7 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data);
             /*CREAR TABLA DE GENERADORES*/
             var tblGeneradoresDetalleXConcepto = '<br><table  id="tblGeneradoresDetalleXConcepto" class="table table-striped table-hover" width="100%">' +
@@ -4120,7 +4189,7 @@
                     '</thead>' +
                     '<tbody>';
             console.log('* * * * * * * * * * START READ GENERADOR X CONCEPTO * * * * * * * * * * ');
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 console.log(k, v);
                 tblGeneradoresDetalleXConcepto += "<tr>";
                 tblGeneradoresDetalleXConcepto += "<td class='hide'>";
@@ -4172,10 +4241,10 @@
                 tblGeneradoresDetalleXConcepto += v.Cantidad;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*Total*/
-                var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) > 0) ? v.Largo : 1);
-                var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) > 0) ? v.Ancho : 1);
-                var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) > 0) ? v.Alto : 1);
-                var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) > 0) ? v.Cantidad : 1);
+                var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) !== 0) ? v.Largo : 1);
+                var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) !== 0) ? v.Ancho : 1);
+                var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) !== 0) ? v.Alto : 1);
+                var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) !== 0) ? v.Cantidad : 1);
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
                 tblGeneradoresDetalleXConcepto += "</td>";
@@ -4190,7 +4259,7 @@
             var precio = mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val();
             var nueva_cantidad = 0;
 
-            mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find("tbody tr").each(function(k, v) {
+            mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find("tbody tr").each(function (k, v) {
                 var row = $(v).find("td");
                 nueva_cantidad += parseFloat(row.eq(12).text());
                 console.log(row, precio);
@@ -4216,7 +4285,7 @@
                     Cantidad: nueva_cantidad,
                     Importe: (parseFloat(nueva_cantidad) * parseFloat(precio))
                 }
-            }).done(function(data, x, jq) {
+            }).done(function (data, x, jq) {
                 console.log(data, x, jq);
 
                 getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
@@ -4231,24 +4300,24 @@
                     data: {
                         ID: mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val()
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log(data, x, jq);
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
 
                     }
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
                 console.log('* * * END UPDATE IMPORTE * * * ');
                 /*FIN MODIFICAR EL IMPORTE DEL TRABAJO*/
 
-            }).fail(function(x, y, z) {
+            }).fail(function (x, y, z) {
                 console.log(x, y, z);
-            }).always(function() {
+            }).always(function () {
                 HoldOn.close();
             });
 
@@ -4256,7 +4325,7 @@
             if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
                 var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-                mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function() {
+                mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function () {
                     DataTableGeneradores.find("tr").removeClass("success");
                     DataTableGeneradores.find("tr").removeClass("warning");
                     //                console.log(this)
@@ -4274,9 +4343,9 @@
             } else {
                 DataTableGeneradores.DataTable(tableOptions);
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4294,7 +4363,7 @@
             data: {
                 ID: IDTD
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data);
             mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(IDT);/*ID DEL TRABAJO*/
             mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(IDTD);/*ID DEL TRABAJODETALLE*/
@@ -4326,7 +4395,7 @@
                     '<tbody>';
             console.log('* * * * * * * * * * START READ GENERADOR X CONCEPTO * * * * * * * * * * ');
             if (data.length > 0) {
-                $.each(data, function(k, v) {
+                $.each(data, function (k, v) {
                     console.log(k, v);
                     tblGeneradoresDetalleXConcepto += "<tr>";
                     tblGeneradoresDetalleXConcepto += "<td class='hide'>";
@@ -4378,10 +4447,10 @@
                     tblGeneradoresDetalleXConcepto += v.Cantidad;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*Total*/
-                    var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) > 0) ? v.Largo : 1);
-                    var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) > 0) ? v.Ancho : 1);
-                    var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) > 0) ? v.Alto : 1);
-                    var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) > 0) ? v.Cantidad : 1);
+                    var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) !== 0) ? v.Largo : 1);
+                    var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) !== 0) ? v.Ancho : 1);
+                    var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) !== 0) ? v.Alto : 1);
+                    var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) !== 0) ? v.Cantidad : 1);
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
                     tblGeneradoresDetalleXConcepto += "</td>";
@@ -4402,15 +4471,15 @@
                         ID: IDTD,
                         IDCO: IDCO
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log('* * * * * * * * * * * * * * * * * * * * PRECIO * * * * * * * * * * * * * * * * * * * * * * ');
                     console.log(data);
                     var dtm = data[0];
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(dtm.Precio);
                     console.log('* * * * * * * * * * * * * * * * * * * * END PRECIO * * * * * * * * * * * * * * * * * * * * * * ');
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             }
@@ -4423,7 +4492,7 @@
             if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
 
                 var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-                mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function() {
+                mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function () {
                     DataTableGeneradores.find("tr").removeClass("success");
                     DataTableGeneradores.find("tr").removeClass("warning");
                     //                console.log(this)
@@ -4449,9 +4518,9 @@
 
 
             mdlTrabajoEditarGeneradorPorConcepto.modal('show');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4520,17 +4589,35 @@
                 contentType: false,
                 processData: false,
                 data: frm
-            }).done(function(data, x, jq) {
+            }).done(function (data, x, jq) {
                 console.log(data);
                 mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                 mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
                 mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
-                //    onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
+
+
+
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
+
+                mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar").addClass("hide");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar").addClass("hide");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
+                mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").removeClass("hide");
+
                 getReloadGeneradoresDetalleXConcepto(mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
-            }).fail(function(x, y, z) {
+            }).fail(function (x, y, z) {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL MODIFICAR', 'danger');
-            }).always(function() {
+            }).always(function () {
                 HoldOn.close();
             });
         } else {
@@ -4601,13 +4688,13 @@
             data: {
                 ID: IdMovimiento
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
             console.log(data);
             window.open(data, '_blank');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4624,13 +4711,13 @@
             data: {
                 ID: IdMovimiento
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
             console.log(data);
             window.open(data, '_blank');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4648,13 +4735,13 @@
             data: {
                 ID: IdMovimiento
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
             console.log(data);
             window.open(data, '_blank');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4673,13 +4760,36 @@
             data: {
                 ID: IdMovimiento
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO, GENERADO', 'success');
             console.log(data);
             window.open(data, '_blank');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+
+    function onReporteGenerador() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteGenerador',
+            type: "POST",
+            data: {
+                ID: IdMovimiento
+            }
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
+            console.log(data);
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4694,14 +4804,14 @@
             data: {
                 ID: IDG
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR, ELIMINADO', 'success');
             console.log(data);
             getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
             getReloadGeneradoresDetalleXConcepto(mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -4720,14 +4830,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tfoot th').each(function() {
+            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
+            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 //                console.log(this)
@@ -4743,7 +4853,7 @@
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
-            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
+            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
@@ -4756,7 +4866,7 @@
                     data: {
                         ID: temp
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log('* * * * * ** AGREGANDO CONCEPTO * * * * * * * * ');
                     console.log(data);
 
@@ -4771,10 +4881,13 @@
                     }
                     /**AQUI FALTA VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
                     var has_id = true;
-                    console.log('AGREGANDO.. CONCEPTO ');
+                    console.log('AGREGANDO.. CONCEPTO PNL EDITAR DETALLE ');
+                    
+                    
                     if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
-                        $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function() {
-                            var row_status = $(this).find("td").eq(0).text();
+                        $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
+                            var row_status = $(this).find("td").eq(14).text();
+                        
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
                                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
@@ -4782,6 +4895,8 @@
                             }
                         });
                     }
+                    
+                    
                     if (has_id) {
                         $.ajax({
                             url: master_url + 'getConceptoByIDSinFormato',
@@ -4790,7 +4905,7 @@
                             data: {
                                 ID: parseInt(dtm[0])
                             }
-                        }).done(function(data, x, jq) {
+                        }).done(function (data, x, jq) {
                             console.log(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
 
                             if (data[0] !== undefined && data.length > 0) {
@@ -4809,20 +4924,20 @@
                                     contentType: false,
                                     processData: false,
                                     data: frm
-                                }).done(function(data, x, jq) {
+                                }).done(function (data, x, jq) {
 
                                     getTrabajoDetalleByID(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
-                                }).fail(function(x, y, z) {
+                                }).fail(function (x, y, z) {
                                     console.log(x, y, z);
-                                }).always(function() {
+                                }).always(function () {
                                     HoldOn.close();
                                 });
                             } else {
                                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL CONCEPTO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                             }
-                        }).fail(function(x, y, z) {
+                        }).fail(function (x, y, z) {
                             console.log(x, y, z);
-                        }).always(function() {
+                        }).always(function () {
                             HoldOn.close();
                         });
                         if (!mdlTrabajoNuevoConceptoEditar.find("#chkMultiple").is(":checked")) {
@@ -4830,30 +4945,30 @@
                         }
                     }
 
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
 
             });
             // Apply the search
-            tblSelected.columns().every(function() {
+            tblSelected.columns().every(function () {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function() {
+                $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
 
-    btnNuevoConceptoEditar.on("click", function() {
+    btnNuevoConceptoEditar.on("click", function () {
         var Preciario_ID = pnlEditarTrabajo.find("#Preciario_ID").val();
         if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
             getConceptosXPreciarioIDEditar(Preciario_ID);
@@ -4881,7 +4996,7 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
             console.log(data);
             if (data.length > 0) {
@@ -4890,7 +5005,7 @@
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
-                $.each(data, function(k, v) {
+                $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 3) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
@@ -4914,11 +5029,11 @@
             } else {
                 VistaPreviaFotosPorConcepto.html("");
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarFotosPorConcepto.modal('show');
@@ -4941,22 +5056,22 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
             });
 
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarCroquisPorConcepto.modal('show');
@@ -4976,12 +5091,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 var url_file = base_url + v.Url;
@@ -5003,11 +5118,11 @@
                 }
             });
 
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarAnexosPorConcepto.modal('show');
@@ -5025,7 +5140,7 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data, x, jq);
             if (data !== undefined && data.length > 0 && data[0] !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== null) {
                 var dtm = data[0];
@@ -5033,9 +5148,9 @@
             } else {
                 pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ 0.0</span>');
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
         console.log('* * *FIN OBTENER IMPORTE * * * ');
@@ -5056,12 +5171,12 @@
                 ID: IDX,
                 IntExt: IntExt
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data);
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, MODIFICADO', 'success');
-        }).fail(function(x, y, z) {
+            //  onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, MODIFICADO', 'success');
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -5090,22 +5205,22 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
             });
 
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -5122,12 +5237,12 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
             console.log(data);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").html("");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 console.log(v);
                 console.log(base_url + v.Url);
                 var url_file = base_url + v.Url;
@@ -5149,11 +5264,11 @@
                 }
             });
 
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -5169,14 +5284,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'CROQUIS, ELIMINADO', 'success');
             onReloadCroquisXConcepto(IDTD);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ELIMINAR CROQUIS* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -5191,14 +5306,14 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
             onReloadAnexosXConcepto(IDTD);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log("* * * * * * * * * * * * * FAIL ELIMINAR ANEXO* * * * * * * * * * * * * * * ");
             console.log(x, y, z);
             console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }

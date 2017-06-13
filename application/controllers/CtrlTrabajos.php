@@ -113,7 +113,7 @@ class CtrlTrabajos extends CI_Controller {
                 'Sucursal_ID' => $Sucursal_ID,
                 'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : NULL,
                 'Clasificacion' => (isset($Clasificacion) && $Clasificacion !== '') ? $Clasificacion : NULL,
-                'Atendido' => (isset($Atendido) && $Atendido !== '') ? $Atendido : NULL,
+                'Atendido' => (isset($Atendido) && $Atendido !== '') ? $Atendido : "No",
                 'Cuadrilla_ID' => (isset($Cuadrilla_ID) && $Cuadrilla_ID !== '') ? $Cuadrilla_ID : NULL,
                 'FolioCliente' => (isset($FolioCliente) && $FolioCliente !== '') ? $FolioCliente : NULL,
                 'FechaAtencion' => (isset($FechaAtencion) && $FechaAtencion !== '') ? $FechaAtencion : NULL,
@@ -127,7 +127,7 @@ class CtrlTrabajos extends CI_Controller {
                 'HoraLlegada' => (isset($HoraLlegada) && $HoraLlegada !== '') ? $HoraLlegada : NULL,
                 'FechaSalida' => (isset($FechaSalida) && $FechaSalida !== '') ? $FechaSalida : NULL,
                 'HoraSalida' => (isset($HoraSalida) && $HoraSalida !== '') ? $HoraSalida : NULL,
-                'ImpactoEnPlazo' => (isset($ImpactoEnPlazo) && $ImpactoEnPlazo !== '') ? $ImpactoEnPlazo : NULL,
+                'ImpactoEnPlazo' => (isset($ImpactoEnPlazo) && $ImpactoEnPlazo !== '') ? $ImpactoEnPlazo : 'No',
                 'DiasImpacto' => (isset($DiasImpacto) && $DiasImpacto !== '') ? $DiasImpacto : NULL,
                 'CausaTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
                 'ClaveOrigenTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
@@ -201,10 +201,13 @@ class CtrlTrabajos extends CI_Controller {
                             $data = array(
                                 'IdTrabajoDetalle' => $IDD,
                                 'Concepto_ID' => $vg["Concepto_ID"],
-                                'Area' => $vg["Area"],
-                                'Eje' => $vg["Eje"],
-                                'EntreEje1' => $vg["EntreEje1"],
-                                'EntreEje2' => $vg["EntreEje2"],
+                                'Area' => (isset($vg["Area"]) && $vg["Area"] !== '' || $vg["Area"] !== NULL) ? $vg["Area"] : '',
+                                'Eje' => (isset($vg["Eje"]) && $vg["Eje"] !== '' || $vg["Eje"] !== NULL) ? $vg["Eje"] : '',
+                                'EntreEje1' => (isset($vg["EntreEje1"]) && $vg["EntreEje1"] !== '' || $vg["EntreEje1"] !== NULL) ? $vg["EntreEje1"] : '',
+                                'EntreEje2' => (isset($vg["EntreEje2"]) && $vg["EntreEje2"] !== '' || $vg["EntreEje2"] !== NULL) ? $vg["EntreEje2"] : '',
+                                // 'Eje' => $vg["Eje"],
+                                //  'EntreEje1' => $vg["EntreEje1"],
+                                //  'EntreEje2' => $vg["EntreEje2"],
                                 'Largo' => $vg["Largo"],
                                 'Ancho' => $vg["Ancho"],
                                 'Alto' => $vg["Alto"],
@@ -289,7 +292,7 @@ class CtrlTrabajos extends CI_Controller {
                                     );
                                     $this->trabajo_model->onModificarDetalleCroquis($IDDGC, $DATA);
                                 } else {
-                                    echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Croquis\n";
+                                    //  echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Croquis\n";
                                 }
                             }
                         }
@@ -409,10 +412,10 @@ class CtrlTrabajos extends CI_Controller {
             $data = array(
                 'Concepto_ID' => (isset($Concepto_ID) && $Concepto_ID !== '') ? $Concepto_ID : NULL,
                 'IdTrabajoDetalle' => (isset($IdTrabajoDetalle) && $IdTrabajoDetalle !== '') ? $IdTrabajoDetalle : NULL,
-                'Area' => (isset($Area) && $Area !== '') ? $Area : "NA",
-                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : "NA",
-                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : "NA",
-                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : "NA",
+                'Area' => (isset($Area) && $Area !== '') ? $Area : "",
+                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : "",
+                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : "",
+                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : "",
                 'Largo' => (isset($Largo) && $Largo !== '') ? $Largo : "",
                 'Ancho' => (isset($Ancho) && $Ancho !== '') ? $Ancho : "",
                 'Alto' => (isset($Alto) && $Alto !== '') ? $Alto : "",
@@ -429,10 +432,10 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = array(
-                'Area' => (isset($Area) && $Area !== '') ? $Area : NULL,
-                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : NULL,
-                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : NULL,
-                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : NULL,
+                'Area' => (isset($Area) && $Area !== '') ? $Area : '',
+                'Eje' => (isset($Eje) && $Eje !== '') ? $Eje : '',
+                'EntreEje1' => (isset($EntreEje1) && $EntreEje1 !== '') ? $EntreEje1 : '',
+                'EntreEje2' => (isset($EntreEje2) && $EntreEje2 !== '') ? $EntreEje2 : '',
                 'Largo' => (isset($Largo) && $Largo !== '') ? $Largo : NULL,
                 'Ancho' => (isset($Ancho) && $Ancho !== '') ? $Ancho : NULL,
                 'Alto' => (isset($Alto) && $Alto !== '') ? $Alto : NULL,
@@ -2210,7 +2213,7 @@ class CtrlTrabajos extends CI_Controller {
                 $page = 2;
                 $page_size = 234;
             } else {
-
+                
             }
             $ImporteTotal += $value->ImporteRenglon;
         }
@@ -2316,10 +2319,546 @@ class CtrlTrabajos extends CI_Controller {
         print base_url() . $url;
     }
 
+    public function onReporteGenerador() {
+
+        // Creación del objeto de la clase heredada 
+        $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+
+        $ID = $_POST['ID'];
+        $Concepto = $this->trabajo_model->getConceptosReportesGenericos($ID);
+        $Detalle = $this->trabajo_model->getDetalleGenerador($ID);
+
+
+        $pdf->AliasNbPages();
+        //ENCABEZADOS CONCEPTOS
+        foreach ($Concepto as $i => $datoConcepto) {
+
+            $pdf->AddPage();
+            $pdf->SetAutoPageBreak(false, 300);
+
+
+
+            /* ENCABEZADO */
+            // Logo
+            $pdf->Image(base_url() . utf8_decode($datoConcepto->LogoCliente), 5, 5, 64);
+            // Arial bold 15
+            $pdf->SetFont('Arial', 'B', 9);
+            // Título
+            $pdf->SetY(5);
+            // Movernos a la derecha
+            $pdf->Cell(75);
+            $pdf->Cell(125, 25, utf8_decode("NUMEROS GENERADORES"), 0, 0, 'C');
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(1);
+            $pdf->SetX(225);
+            $pdf->Cell(50, 15, utf8_decode("Dirección de Administración de"), 0, 0, 'R');
+            $pdf->Ln(5);
+            $pdf->SetY(4);
+            $pdf->SetX(225.5);
+            $pdf->Cell(50, 15, utf8_decode("InmueblesGestión de Calidad"), 0, 0, 'R');
+            $pdf->Ln(5);
+            $pdf->SetY(7);
+            $pdf->SetX(225);
+            $pdf->Cell(50, 15, utf8_decode("InmueblesSubdirección de Inmovilizado"), 0, 0, 'R');
+            /* CUERPO */
+
+            $CURRENT_Y = $pdf->GetY();
+            $pdf->SetY(25);
+            $borders = 0;
+            $bottom = 0;
+            $pdf->SetLineWidth(0.4);
+            $page = 1;
+
+            /* INICIA  EN LA ESQUINA DE EMPRESA */
+            $pdf->Rect(164, 25, 110, 22);
+
+            /* INICIA EN LA ESQUINA DE OBRA */
+            $pdf->Rect(5, 32, 269, 15);
+
+            /* INICIA EN LA ESQUINA DE CLAVE */
+            $pdf->Rect(5, 49.5, 269, 19);
+
+            /* INICIA EN LA ESQUINA CONTENEDOR PRINCIPAL */
+            $pdf->Rect(5, 71, 269, 105);
+
+
+
+            /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
+            $pdf->Line(45, 32, 45, 47);
+
+            /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
+            $pdf->Line(214, 25, 214, 47);
+
+            /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
+            $pdf->Line(5, 38, 274, 38);
+
+            /* LINEA VERTICAL DELANTE DE CLAVE */
+            $pdf->Line(45, 49.5, 45, 68);
+            /* LINEA VERTICAL  DE PARTIDA */
+            $pdf->Line(90, 49.5, 90, 68);
+
+            /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
+            $pdf->Line(5, 56, 274, 56);
+
+            /* TITULOS */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(33);
+            $pdf->SetX(20);
+            $pdf->Cell(55, 5, "OBRA: ", 0, 1);
+            $pdf->SetY(39);
+            $pdf->SetX(15);
+            $pdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
+            $pdf->SetY(26);
+            $pdf->SetX(163);
+            $pdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+            $pdf->SetY(33);
+            $pdf->SetX(163);
+            $pdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
+            $pdf->SetY(33);
+            $pdf->SetX(216);
+            $pdf->Cell(55, 5, utf8_decode("HOJA "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(15);
+            $pdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(60);
+            $pdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(164);
+            $pdf->Cell(15, 5, utf8_decode("CONCEPTO"), 0, 1, 'C');
+
+
+            /* DATOS */
+            $pdf->SetY(33);
+            $pdf->SetX(46);
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell(115, 5, utf8_decode($datoConcepto->CR . ' - ' . $datoConcepto->Sucursal), 0, 1);
+            $pdf->SetY(26);
+            $pdf->SetX(214);
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->Cell(60, 5, utf8_decode($datoConcepto->Empresa), 0, 1, 'C');
+            $pdf->SetY(38.5);
+            $pdf->SetX(46);
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->MultiCell(115, 4, utf8_decode($datoConcepto->Direccion), 0, 1);
+            $pdf->SetY(40);
+            $pdf->SetX(164);
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->Cell(50, 5, utf8_decode($datoConcepto->Unidad), 0, 1, 'C');
+            $pdf->SetY(40);
+            $pdf->SetX(219);
+            $pdf->Cell(0, 5, $pdf->PageNo() . ' DE {nb}', 0, 0, 'C');
+            $pdf->SetY(58);
+            $pdf->SetX(5);
+            $pdf->Cell(40, 5, utf8_decode($datoConcepto->Clave), 0, 1, 'C');
+            $pdf->SetY(58);
+            $pdf->SetX(45);
+            $pdf->MultiCell(45, 5, utf8_decode($datoConcepto->Categoria), 0, 'C');
+            $pdf->SetY(56.5);
+            $pdf->SetX(90);
+            $pdf->SetFont('Arial', '', 5.5);
+            $pdf->MultiCell(184, 1.9, utf8_decode($datoConcepto->Concepto), 0, 'J');
+
+            /* ENCABEZADO DETALLE GENERADOR */
+            $pdf->SetFont('Arial', 'B', 8);
+            /* LINEA VERTICAL DESPUES DE LOCALIZACION */
+            $pdf->Line(45, 176, 45, 71);
+            /* LINEA VERTICAL EJE Y ENTRE EJE ABAJO DE LOCALIZACION */
+            $pdf->Line(18, 81, 18, 76);
+            /* LINEA VERTICAL DESPUES DE AREA */
+            $pdf->Line(90, 176, 90, 71);
+            /* LINEA VERTICAL DESPUES DE LARGO */
+            $pdf->Line(105, 176, 105, 71);
+            /* LINEA VERTICAL DESPUES DE ANCHO */
+            $pdf->Line(120, 176, 120, 71);
+            /* LINEA VERTICAL DESPUES DE ALTO */
+            $pdf->Line(135, 176, 135, 71);
+            /* LINEA VERTICAL DESPUES DE CANTIDAD */
+            $pdf->Line(155, 176, 155, 71);
+            /* LINEA VERTICAL DESPUES DE TOTAL */
+            $pdf->Line(175, 176, 175, 71);
+            /* LINEA VERTICAL DESPUES DE CORRECCION SUPERVISION */
+            $pdf->Line(200, 176, 200, 71);
+            /* LINEA VERTICAL DESPUES DE VOBO BANCOMER */
+            $pdf->Line(230, 176, 230, 71);
+            /* LINEA HORIZONTAL DE ENCABEZADO LOCALIZACION  */
+            $pdf->Line(5, 76, 45, 76);
+            /* LINEA HORIZONTAL DE ENCABEZADO COMPLETA */
+            $pdf->Line(5, 81, 274, 81);
+
+            /* TITULOS ENCABEZADO */
+            $pdf->SetY(71);
+            $pdf->SetX(5);
+            $pdf->SetFont('Arial', 'B', 7);
+            $pdf->Cell(40, 5, utf8_decode("LOCALIZACIÓN"), 1, 1, 'C');
+            $pdf->SetY(76);
+            $pdf->SetX(5);
+            $pdf->Cell(13, 5, utf8_decode("EJE"), 0, 1, 'C');
+            $pdf->SetY(76);
+            $pdf->SetX(18);
+            $pdf->Cell(27, 5, utf8_decode("ENTRE EJE"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(45);
+            $pdf->Cell(45, 5, utf8_decode("AREA"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(90);
+            $pdf->Cell(15, 5, utf8_decode("LARGO"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(105);
+            $pdf->Cell(15, 5, utf8_decode("ANCHO"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(120);
+            $pdf->Cell(15, 5, utf8_decode("ALTO"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(137);
+            $pdf->Cell(15, 5, utf8_decode("CANTIDAD"), 0, 1, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(157);
+            $pdf->Cell(15, 5, utf8_decode("TOTAL"), 0, 1, 'C');
+            $pdf->SetY(71.5);
+            $pdf->SetX(175);
+            $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN BBVA BANCOMER"), 0, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(202);
+            $pdf->MultiCell(25, 3, utf8_decode("VoBo BBVA BANCOMER"), 0, 'C');
+            $pdf->SetY(73);
+            $pdf->SetX(230);
+            $pdf->MultiCell(44, 5, utf8_decode("CONFORMIDAD EMPRESA "), 0, 'C');
+
+
+
+            $Y = 81;
+            $registros = 0;
+            /* DETALLE GENERADOR */
+            foreach ($Detalle as $k => $datoDetalle) {
+
+                if ($datoDetalle->Concepto_ID == $datoConcepto->ConceptoId) {
+                    /* DATOS DETALLE */
+
+                    $pdf->SetFont('Arial', '', 7);
+                    $pdf->SetY($Y);
+                    $pdf->SetX(5);
+                    $pdf->Cell(13, 5, utf8_decode($datoDetalle->Eje), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(18);
+                    $pdf->Cell(13, 5, utf8_decode($datoDetalle->EntreEje1), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(31);
+                    $pdf->Cell(14, 5, utf8_decode($datoDetalle->EntreEje2), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(45);
+                    $pdf->Cell(45, 5, utf8_decode($datoDetalle->Area), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(90);
+                    $pdf->Cell(15, 5, number_format($datoDetalle->Largo, 3), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(105);
+                    $pdf->Cell(15, 5, number_format($datoDetalle->Ancho, 3), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(120);
+                    $pdf->Cell(15, 5, number_format($datoDetalle->Alto, 3), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(135);
+                    $pdf->Cell(20, 5, number_format($datoDetalle->Cantidad, 3), 0, 1, 'C');
+                    $pdf->SetY($Y);
+                    $pdf->SetX(155);
+                    $pdf->Cell(20, 5, number_format($datoDetalle->Total, 3), 0, 1, 'C');
+
+                    /* LINEA SEPARADOR DETALLE RENGLON */
+                    $pdf->Line(5, $Y + 5, 274, $Y + 5);
+                    /* LINEA VERTICAL EJE ABAJO DE LOCALIZACION DETALLE */
+                    $pdf->Line(18, $Y + 5, 18, $Y);
+                    /* LINEA VERTICAL ENTRE EJE ABAJO DE LOCALIZACION DETALLE */
+                    $pdf->Line(31, $Y + 5, 31, $Y);
+
+                    $Y += 5;
+                    $registros ++;
+
+                    if ($registros >= 19) {
+
+                        $pdf->AddPage();
+
+
+                        /* ENCABEZADO */
+                        // Logo
+                        $pdf->Image(base_url() . utf8_decode($datoConcepto->LogoCliente), 5, 5, 64);
+                        // Arial bold 15
+                        $pdf->SetFont('Arial', 'B', 9);
+                        // Título
+                        $pdf->SetY(5);
+                        // Movernos a la derecha
+                        $pdf->Cell(75);
+                        $pdf->Cell(125, 25, utf8_decode("NUMEROS GENERADORES"), 0, 0, 'C');
+                        $pdf->SetFont('Arial', 'B', 8);
+                        $pdf->SetY(1);
+                        $pdf->SetX(225);
+                        $pdf->Cell(50, 15, utf8_decode("Dirección de Administración de"), 0, 0, 'R');
+                        $pdf->Ln(5);
+                        $pdf->SetY(4);
+                        $pdf->SetX(225.5);
+                        $pdf->Cell(50, 15, utf8_decode("InmueblesGestión de Calidad"), 0, 0, 'R');
+                        $pdf->Ln(5);
+                        $pdf->SetY(7);
+                        $pdf->SetX(225);
+                        $pdf->Cell(50, 15, utf8_decode("InmueblesSubdirección de Inmovilizado"), 0, 0, 'R');
+                        /* CUERPO */
+
+                        $CURRENT_Y = $pdf->GetY();
+                        $pdf->SetY(25);
+                        $borders = 0;
+                        $bottom = 0;
+                        $pdf->SetLineWidth(0.4);
+                        $page = 1;
+
+                        /* INICIA  EN LA ESQUINA DE EMPRESA */
+                        $pdf->Rect(164, 25, 110, 22);
+
+                        /* INICIA EN LA ESQUINA DE OBRA */
+                        $pdf->Rect(5, 32, 269, 15);
+
+                        /* INICIA EN LA ESQUINA DE CLAVE */
+                        $pdf->Rect(5, 49.5, 269, 19);
+
+                        /* INICIA EN LA ESQUINA CONTENEDOR PRINCIPAL */
+                        $pdf->Rect(5, 71, 269, 105);
+
+
+
+                        /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
+                        $pdf->Line(45, 32, 45, 47);
+
+                        /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
+                        $pdf->Line(214, 25, 214, 47);
+
+                        /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
+                        $pdf->Line(5, 38, 274, 38);
+
+                        /* LINEA VERTICAL DELANTE DE CLAVE */
+                        $pdf->Line(45, 49.5, 45, 68);
+                        /* LINEA VERTICAL  DE PARTIDA */
+                        $pdf->Line(90, 49.5, 90, 68);
+
+                        /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
+                        $pdf->Line(5, 56, 274, 56);
+
+                        /* TITULOS */
+                        $pdf->SetFont('Arial', 'B', 8);
+                        $pdf->SetY(33);
+                        $pdf->SetX(20);
+                        $pdf->Cell(55, 5, "OBRA: ", 0, 1);
+                        $pdf->SetY(39);
+                        $pdf->SetX(15);
+                        $pdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
+                        $pdf->SetY(26);
+                        $pdf->SetX(163);
+                        $pdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+                        $pdf->SetY(33);
+                        $pdf->SetX(163);
+                        $pdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
+                        $pdf->SetY(33);
+                        $pdf->SetX(216);
+                        $pdf->Cell(55, 5, utf8_decode("HOJA "), 0, 1, 'C');
+                        $pdf->SetY(51);
+                        $pdf->SetX(15);
+                        $pdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
+                        $pdf->SetY(51);
+                        $pdf->SetX(60);
+                        $pdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
+                        $pdf->SetY(51);
+                        $pdf->SetX(164);
+                        $pdf->Cell(15, 5, utf8_decode("CONCEPTO"), 0, 1, 'C');
+
+
+                        /* DATOS */
+                        $pdf->SetY(33);
+                        $pdf->SetX(46);
+                        $pdf->SetFont('Arial', '', 7);
+                        $pdf->Cell(115, 5, utf8_decode($datoConcepto->CR . ' - ' . $datoConcepto->Sucursal), 0, 1);
+                        $pdf->SetY(26);
+                        $pdf->SetX(214);
+                        $pdf->SetFont('Arial', 'B', 8);
+                        $pdf->Cell(60, 5, utf8_decode($datoConcepto->Empresa), 0, 1, 'C');
+                        $pdf->SetY(38.5);
+                        $pdf->SetX(46);
+                        $pdf->SetFont('Arial', '', 7);
+                        $pdf->MultiCell(115, 4, utf8_decode($datoConcepto->Direccion), 0, 1);
+                        $pdf->SetY(40);
+                        $pdf->SetX(164);
+                        $pdf->SetFont('Arial', '', 8);
+                        $pdf->Cell(50, 5, utf8_decode($datoConcepto->Unidad), 0, 1, 'C');
+                        $pdf->SetY(40);
+                        $pdf->SetX(219);
+                        $pdf->Cell(0, 5, $pdf->PageNo() . ' DE {nb}', 0, 0, 'C');
+                        $pdf->SetY(58);
+                        $pdf->SetX(5);
+                        $pdf->Cell(40, 5, utf8_decode($datoConcepto->Clave), 0, 1, 'C');
+                        $pdf->SetY(58);
+                        $pdf->SetX(45);
+                        $pdf->MultiCell(45, 5, utf8_decode($datoConcepto->Categoria), 0, 'C');
+                        $pdf->SetY(56.5);
+                        $pdf->SetX(90);
+                        $pdf->SetFont('Arial', '', 5.5);
+                        $pdf->MultiCell(184, 1.9, utf8_decode($datoConcepto->Concepto), 0, 'J');
+
+                        /* ENCABEZADO DETALLE GENERADOR */
+                        $pdf->SetFont('Arial', 'B', 8);
+                        /* LINEA VERTICAL DESPUES DE LOCALIZACION */
+                        $pdf->Line(45, 176, 45, 71);
+                        /* LINEA VERTICAL EJE Y ENTRE EJE ABAJO DE LOCALIZACION */
+                        $pdf->Line(18, 81, 18, 76);
+                        /* LINEA VERTICAL DESPUES DE AREA */
+                        $pdf->Line(90, 176, 90, 71);
+                        /* LINEA VERTICAL DESPUES DE LARGO */
+                        $pdf->Line(105, 176, 105, 71);
+                        /* LINEA VERTICAL DESPUES DE ANCHO */
+                        $pdf->Line(120, 176, 120, 71);
+                        /* LINEA VERTICAL DESPUES DE ALTO */
+                        $pdf->Line(135, 176, 135, 71);
+                        /* LINEA VERTICAL DESPUES DE CANTIDAD */
+                        $pdf->Line(155, 176, 155, 71);
+                        /* LINEA VERTICAL DESPUES DE TOTAL */
+                        $pdf->Line(175, 176, 175, 71);
+                        /* LINEA VERTICAL DESPUES DE CORRECCION SUPERVISION */
+                        $pdf->Line(200, 176, 200, 71);
+                        /* LINEA VERTICAL DESPUES DE VOBO BANCOMER */
+                        $pdf->Line(230, 176, 230, 71);
+                        /* LINEA HORIZONTAL DE ENCABEZADO LOCALIZACION  */
+                        $pdf->Line(5, 76, 45, 76);
+                        /* LINEA HORIZONTAL DE ENCABEZADO COMPLETA */
+                        $pdf->Line(5, 81, 274, 81);
+
+                        /* TITULOS ENCABEZADO */
+                        $pdf->SetY(71);
+                        $pdf->SetX(5);
+                        $pdf->SetFont('Arial', 'B', 7);
+                        $pdf->Cell(40, 5, utf8_decode("LOCALIZACIÓN"), 1, 1, 'C');
+                        $pdf->SetY(76);
+                        $pdf->SetX(5);
+                        $pdf->Cell(13, 5, utf8_decode("EJE"), 0, 1, 'C');
+                        $pdf->SetY(76);
+                        $pdf->SetX(18);
+                        $pdf->Cell(27, 5, utf8_decode("ENTRE EJE"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(45);
+                        $pdf->Cell(45, 5, utf8_decode("AREA"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(90);
+                        $pdf->Cell(15, 5, utf8_decode("LARGO"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(105);
+                        $pdf->Cell(15, 5, utf8_decode("ANCHO"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(120);
+                        $pdf->Cell(15, 5, utf8_decode("ALTO"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(137);
+                        $pdf->Cell(15, 5, utf8_decode("CANTIDAD"), 0, 1, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(157);
+                        $pdf->Cell(15, 5, utf8_decode("TOTAL"), 0, 1, 'C');
+                        $pdf->SetY(71.5);
+                        $pdf->SetX(175);
+                        $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN BBVA BANCOMER"), 0, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(202);
+                        $pdf->MultiCell(25, 3, utf8_decode("VoBo BBVA BANCOMER"), 0, 'C');
+                        $pdf->SetY(73);
+                        $pdf->SetX(230);
+                        $pdf->MultiCell(44, 5, utf8_decode("CONFORMIDAD EMPRESA "), 0, 'C');
+
+
+
+                        $Y = 81;
+                        $pdf->SetY($Y);
+                        $registros = 0;
+                    }
+                }
+            }
+            /* FIN DETALLE  */
+
+
+            /* TOTALES */
+            /* Etiqueta Total */
+            $pdf->Rect(135, 176, 20, 5);
+            /* Importe Total */
+            $pdf->Rect(155, 176, 20, 5);
+            /* Total Unidad */
+            $pdf->Rect(175, 176, 25, 5);
+
+            $pdf->SetFont('Arial', 'B', 7);
+            $pdf->SetY(176);
+            $pdf->SetX(135);
+            $pdf->Cell(20, 5, utf8_decode("TOTAL:"), 0, 1, 'C');
+
+
+            $pdf->SetY(176);
+            $pdf->SetX(155);
+            $pdf->Cell(20, 5, number_format($datoConcepto->Cantidad, 3), 0, 1, 'C');
+
+
+            $pdf->SetY(176);
+            $pdf->SetX(175);
+            $pdf->Cell(25, 5, utf8_decode($datoConcepto->Unidad), 0, 1, 'C');
+
+
+            /* FIN DETALLE IMAGENES */
+            /* FIRMAS */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(177);
+            $pdf->SetX(5);
+            $pdf->Cell(15, 5, utf8_decode("FIRMAS DE CONFORMIDAD"), 0, 1, 'L');
+            $pdf->SetFont('Arial', '', 8);
+
+            /* ELABORÓ */
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetY(183);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
+
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
+
+            /* REVISÓ */
+            $pdf->SetY(183);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL REVISÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
+
+            /* AUTORIZO */
+            $pdf->SetY(183);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL AUTORIZÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
+        }
+
+        /* FIN CUERPO */
+        $path = 'uploads/Reportes/' . $ID;
+        // print $path;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file_name = "NUMEROS GENERADORES";
+        $url = $path . '/' . $file_name . '.pdf';
+
+
+        $pdf->Output($url);
+        print base_url() . $url;
+    }
+
 }
 
 class PDF extends FPDF {
-
+    
 }
 
 class PDFC extends FPDF {
