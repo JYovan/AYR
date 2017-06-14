@@ -777,11 +777,20 @@ left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID  ', false
       public function getDetalleCroquis($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select(' TDC.IdTrabajoDetalle,TDC.Url,TDC.Observaciones,pc.ID as PreciarioConcepto_ID
+            $this->db->select('TDC.IdTrabajoDetalle,TDC.Url,TDC.Observaciones,pc.ID as PreciarioConcepto_ID,
+CTE.Nombre AS Cliente, S.CR, S.Nombre
+AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
+TD.Unidad, TD.Cantidad, PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
+CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
+ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion
 FROM TRABAJOS T 
 INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
 left join trabajodetallecroquis TDC ON TDC.IdTrabajoDetalle = TD.ID
-left join preciarioconceptos pc on pc.id = td.preciarioconcepto_id', false);
+left join preciarioconceptos pc on pc.id = td.preciarioconcepto_id
+INNER JOIN clientes CTE ON CTE.ID = T.Cliente_ID
+INNER JOIN sucursales S ON S.ID = T.Sucursal_ID
+left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();

@@ -2883,6 +2883,242 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+    
+    
+      public function onReporteCroquis() {
+        // Creación del objeto de la clase heredada
+        $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+
+        $pdf->AliasNbPages();
+
+        $ID = $_POST['ID'];
+        $Concepto = $this->trabajo_model->getDetalleCroquis($ID);
+        //$Detalle = $this->trabajo_model->getDetalleCroquis($ID);
+
+        foreach ($Concepto as $i => $datoConcepto) {
+
+            $pdf->AddPage();
+            $pdf->SetAutoPageBreak(false, 300);
+
+            /* ENCABEZADO */
+            // Logo
+            $pdf->Image(base_url() . utf8_decode($datoConcepto->LogoCliente), 5, 5, 64);
+            // Arial bold 15
+            $pdf->SetFont('Arial', 'B', 9);
+            // Título
+            $pdf->SetY(5);
+            // Movernos a la derecha
+            $pdf->Cell(75);
+            $pdf->Cell(125, 25, utf8_decode("REPORTE CROQUIS"), 0, 0, 'C');
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(1);
+            $pdf->SetX(225);
+
+
+
+            $pdf->Cell(50, 15, utf8_decode("Dirección de Administración de"), 0, 0, 'R');
+            $pdf->Ln(5);
+            $pdf->SetY(4);
+            $pdf->SetX(225.5);
+            $pdf->Cell(50, 15, utf8_decode("InmueblesGestión de Calidad"), 0, 0, 'R');
+            $pdf->Ln(5);
+            $pdf->SetY(7);
+            $pdf->SetX(225);
+            $pdf->Cell(50, 15, utf8_decode("InmueblesSubdirección de Inmovilizado"), 0, 0, 'R');
+            /* CUERPO */
+
+            $pdf->SetY(25);
+            $pdf->SetLineWidth(0.4);
+
+
+            /* INICIA  EN LA ESQUINA DE EMPRESA */
+            $pdf->Rect(164, 25, 110, 22);
+
+            /* INICIA EN LA ESQUINA DE OBRA */
+            $pdf->Rect(5, 32, 269, 15);
+
+            /* INICIA EN LA ESQUINA DE CLAVE */
+            $pdf->Rect(5, 49.5, 269, 19);
+
+            /* INICIA EN LA ESQUINA CONTENEDOR PRINCIPAL */
+            $pdf->Rect(5, 71, 269, 105);
+
+
+
+
+            /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
+            $pdf->Line(45, 32, 45, 47);
+
+            /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
+            $pdf->Line(214, 25, 214, 47);
+
+            /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
+            $pdf->Line(5, 38, 274, 38);
+
+            /* LINEA VERTICAL DELANTE DE CLAVE */
+            $pdf->Line(45, 49.5, 45, 68);
+            /* LINEA VERTICAL  DE PARTIDA */
+            $pdf->Line(90, 49.5, 90, 68);
+
+            /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
+            $pdf->Line(5, 56, 274, 56);
+
+            /* TITULOS */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(33);
+            $pdf->SetX(20);
+            $pdf->Cell(55, 5, "OBRA: ", 0, 1);
+            $pdf->SetY(39);
+            $pdf->SetX(15);
+            $pdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
+            $pdf->SetY(26);
+            $pdf->SetX(163);
+            $pdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+            $pdf->SetY(33);
+            $pdf->SetX(163);
+            $pdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
+            $pdf->SetY(33);
+            $pdf->SetX(216);
+            $pdf->Cell(55, 5, utf8_decode("HOJA "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(15);
+            $pdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(60);
+            $pdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
+            $pdf->SetY(51);
+            $pdf->SetX(164);
+            $pdf->Cell(15, 5, utf8_decode("CONCEPTO"), 0, 1, 'C');
+
+
+            /* DATOS */
+            $pdf->SetY(33);
+            $pdf->SetX(46);
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell(115, 5, utf8_decode($datoConcepto->CR . ' - ' . $datoConcepto->Sucursal), 0, 1);
+            $pdf->SetY(26);
+            $pdf->SetX(214);
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->Cell(60, 5, utf8_decode($datoConcepto->Empresa), 0, 1, 'C');
+            $pdf->SetY(38.5);
+            $pdf->SetX(46);
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->MultiCell(115, 4, utf8_decode($datoConcepto->Direccion), 0, 1);
+            $pdf->SetY(40);
+            $pdf->SetX(164);
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->Cell(50, 5, utf8_decode($datoConcepto->Unidad), 0, 1, 'C');
+            $pdf->SetY(40);
+            $pdf->SetX(219);
+            $pdf->Cell(0, 5, $pdf->PageNo() . ' DE {nb}', 0, 0, 'C');
+            $pdf->SetY(58);
+            $pdf->SetX(5);
+            $pdf->Cell(40, 5, utf8_decode($datoConcepto->Clave), 0, 1, 'C');
+            $pdf->SetY(58);
+            $pdf->SetX(45);
+            $pdf->MultiCell(45, 5, utf8_decode($datoConcepto->Categoria), 0, 'C');
+            $pdf->SetY(56.5);
+            $pdf->SetX(90);
+            $pdf->SetFont('Arial', '', 5.5);
+            $pdf->MultiCell(184, 1.9, utf8_decode($datoConcepto->Concepto), 0, 'J');
+
+            /* DETALLE GENERADOR */
+
+
+            /* ENCIERRA LA PALABRA croquis o anexo */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->Rect(5, 71, 40, 6);
+
+            $pdf->SetY(71);
+            $pdf->SetX(5);
+            $pdf->Cell(35, 6, utf8_decode("CROQUIS O ANEXO "), 0, 1, 'L');
+
+            /* DETALLE IMAGENES */
+
+            $pdf->Image(base_url() . utf8_decode($datoConcepto->Url), 45, 79, 185, 94);
+
+            /* FIN DETALLE IMAGENES */
+
+            /* FIRMAS */
+            /* ELABORÓ */
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetY(183);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
+
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
+
+            /* REVISÓ */
+            $pdf->SetY(183);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL REVISÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
+
+            /* AUTORIZO */
+            $pdf->SetY(183);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL AUTORIZÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
+
+            /* FIRMAS */
+            /* ELABORÓ */
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetY(183);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
+
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(5);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
+
+            /* REVISÓ */
+            $pdf->SetY(183);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL REVISÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(100);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
+
+            /* AUTORIZO */
+            $pdf->SetY(183);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
+            /* LINEA HORIZONTAL AUTORIZÓ */
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetY(203);
+            $pdf->SetX(195);
+            $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
+        }
+
+
+        /* FIN CUERPO */
+        /* FIN CUERPO */
+        $path = 'uploads/Reportes/' . $ID;
+        // print $path;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file_name = "REPORTE CROQUIS";
+        $url = $path . '/' . $file_name . '.pdf';
+
+        $pdf->Output($url);
+        print base_url() . $url;
+    }
+    
 
 }
 
