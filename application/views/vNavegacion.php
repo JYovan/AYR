@@ -91,7 +91,7 @@
 </nav>
 <div id="reportes" class="dt-buttons">
     
-    <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
+<!--    <button onclick="onReporteCroquis()" class="btn btn-raised"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>-->
 <!--<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <!--<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>-->
 </div>
@@ -135,7 +135,7 @@
             url: base_url + 'index.php/ctrlSesion/onReporteCroquis',
             type: "POST",
             data:{
-                ID:73
+                ID:76
             }
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');

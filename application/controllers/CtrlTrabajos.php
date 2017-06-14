@@ -141,7 +141,7 @@ class CtrlTrabajos extends CI_Controller {
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL
             );
             $ID = $this->trabajo_model->onAgregar($data);
-            print $ID;
+            
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
             if (isset($_FILES["Adjunto"]["name"])) {
@@ -172,12 +172,14 @@ class CtrlTrabajos extends CI_Controller {
             $CONCEPTOSX = json_decode($this->input->post("CONCEPTOS"));
 
             foreach ($CONCEPTOSX as $k => $v) {
-                if ($v->Cantidad !== '' && $v->Cantidad !== 0) {
+                
+                        
+                        
                     $data = array(
                         'Trabajo_ID' => $ID,
                         'PreciarioConcepto_ID' => $v->PreciarioConcepto_ID,
                         'Renglon' => $v->Renglon,
-                        'Cantidad' => $v->Cantidad,
+                        'Cantidad' => ($v->Cantidad !== '' && $v->Cantidad !== 0) ?  $v->Cantidad : 0,
                         'Unidad' => $v->Unidad,
                         'Precio' => $v->Precio,
                         'Importe' => $v->Importe,
@@ -218,130 +220,132 @@ class CtrlTrabajos extends CI_Controller {
                         }
                     }
 
-                    /* DETALLE FOTOS */
-                    $FOTOX = json_decode("[" . $this->input->post("JSONFOTOS")[$v->Renglon - 1] . "]");
-                    //  var_dump($FOTOX);
-                    foreach ($FOTOX[0] as $k => $vgf) {
-//                        var_dump($vgf);
-                        $data = array(
-                            'IdTrabajo' => $ID,
-                            'IdTrabajoDetalle' => $IDD,
-                            'Observaciones' => $vgf->Foto,
-                            'Renglon' => $v->Renglon,
-                            'Estatus' => "ACTIVO",
-                            'Registro' => Date('d/m/y h:i:s a')
-                        );
-                        $IDDGF = $this->trabajo_model->onAgregarDetalleFotos($data);
-                        /* CREAR DIRECTORIO DE ANEXO */
-                        $URL_DOC = "uploads/Trabajos/Fotos/T$ID/TD$IDD";
-                        $master_url = $URL_DOC . '/';
-                        $total = count($_FILES['FOTOS']['name']);
-                        //               print "\nTOTAL DE FOTOS: $total";
-
-                        for ($i = 0; $i < $total; $i++) {
-                            if ($_FILES["FOTOS"]["name"][$i] === $vgf->Foto) {
-                                if (!file_exists($URL_DOC)) {
-                                    mkdir($URL_DOC, 0777, true);
-                                }
-                                if (move_uploaded_file($_FILES["FOTOS"]["tmp_name"][$i], $URL_DOC . '/' . utf8_decode($vgf->Foto))) {
-                                    $img = $master_url . $vgf->Foto;
-                                    $DATA = array(
-                                        'Url' => ($img)
-                                    );
-                                    $this->trabajo_model->onModificarDetalleFoto($IDDGF, $DATA);
-                                } else {
-                                    //             echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO: " . $img;
-                                }
-                            }
-                        }
-                    }
-                    /* FIN DETALLE FOTOS */
-
-
-                    /* DETALLE CROQUIS */
-                    $CROQUISX = json_decode("[" . $this->input->post("JSONCROQUIS")[$v->Renglon - 1] . "]");
-                    //   var_dump($CROQUISX);
-                    foreach ($CROQUISX[0] as $k => $vgf) {
-//                        var_dump($vgf);
-                        $data = array(
-                            'IdTrabajo' => $ID,
-                            'IdTrabajoDetalle' => $IDD,
-                            'Observaciones' => $vgf->Croquis,
-                            'Renglon' => $v->Renglon,
-                            'Estatus' => "ACTIVO",
-                            'Registro' => Date('d/m/y h:i:s a')
-                        );
-                        $IDDGC = $this->trabajo_model->onAgregarDetalleCroquis($data);
-                        /* CREAR DIRECTORIO DEL CROQUIS */
-                        $URL_DOC = "uploads/Trabajos/Croquis/T$ID/TD$IDD";
-                        $master_url = $URL_DOC . '/';
-                        $total = count($_FILES['CROQUIS']['name']);
-                        //         print "\nTOTAL DE CROQUIS: $total";
-
-                        for ($i = 0; $i < $total; $i++) {
-                            //Get the temp file path
-                            if (isset($_FILES["CROQUIS"]["name"][$i]) && $_FILES["CROQUIS"]["name"][$i] === $vgf->Croquis) {
-
-                                if (!file_exists($URL_DOC)) {
-                                    mkdir($URL_DOC, 0777, true);
-                                }
-                                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"][$i], $URL_DOC . '/' . ($vgf->Croquis))) {
-                                    $img = $master_url . $vgf->Croquis;
-                                    $DATA = array(
-                                        'Url' => ($img)
-                                    );
-                                    $this->trabajo_model->onModificarDetalleCroquis($IDDGC, $DATA);
-                                } else {
-                                    //  echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Croquis\n";
-                                }
-                            }
-                        }
-                    }
-                    /* FIN DETALLE CROQUIS */
-
-                    /* DETALLE ANEXOS */
-                    $ANEXOSX = json_decode("[" . $this->input->post("JSONANEXOS")[$v->Renglon - 1] . "]");
-                    //       var_dump($ANEXOSX);
-                    foreach ($ANEXOSX[0] as $k => $vgf) {
-//                        var_dump($vgf);
-                        $data = array(
-                            'IdTrabajo' => $ID,
-                            'IdTrabajoDetalle' => $IDD,
-                            'Observaciones' => $vgf->Anexo,
-                            'Renglon' => $v->Renglon,
-                            'Estatus' => "ACTIVO",
-                            'Registro' => Date('d/m/y h:i:s a')
-                        );
-                        $IDDGA = $this->trabajo_model->onAgregarDetalleAnexos($data);
-                        /* CREAR DIRECTORIO DE FOTO */
-                        $URL_DOC = "uploads/Trabajos/Anexos/T$ID/TD$IDD";
-                        $master_url = $URL_DOC . '/';
-                        $total = count($_FILES['ANEXOS']['name']);
-                        //      print "\nTOTAL DE ANEXOS: $total";
-
-                        for ($i = 0; $i < $total; $i++) {
-                            //Get the temp file path
-                            if (isset($_FILES["ANEXOS"]["name"][$i]) && $_FILES["ANEXOS"]["name"][$i] === $vgf->Anexo) {
-
-                                if (!file_exists($URL_DOC)) {
-                                    mkdir($URL_DOC, 0777, true);
-                                }
-                                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"][$i], $URL_DOC . '/' . ($vgf->Anexo))) {
-                                    $img = $master_url . $vgf->Anexo;
-                                    $DATA = array(
-                                        'Url' => ($img)
-                                    );
-                                    $this->trabajo_model->onModificarDetalleAnexo($IDDGA, $DATA);
-                                } else {
-                                    //             echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Anexo\n";
-                                }
-                            }
-                        }
-                    }
+//                    /* DETALLE FOTOS */
+//                    $FOTOX = json_decode("[" . $this->input->post("JSONFOTOS")[$v->Renglon - 1] . "]");
+//                    //  var_dump($FOTOX);
+//                    foreach ($FOTOX[0] as $k => $vgf) {
+////                        var_dump($vgf);
+//                        $data = array(
+//                            'IdTrabajo' => $ID,
+//                            'IdTrabajoDetalle' => $IDD,
+//                            'Observaciones' => $vgf->Foto,
+//                            'Renglon' => $v->Renglon,
+//                            'Estatus' => "ACTIVO",
+//                            'Registro' => Date('d/m/y h:i:s a')
+//                        );
+//                        $IDDGF = $this->trabajo_model->onAgregarDetalleFotos($data);
+//                        /* CREAR DIRECTORIO DE ANEXO */
+//                        $URL_DOC = "uploads/Trabajos/Fotos/T$ID/TD$IDD";
+//                        $master_url = $URL_DOC . '/';
+//                        $total = count($_FILES['FOTOS']['name']);
+//                        //               print "\nTOTAL DE FOTOS: $total";
+//
+//                        for ($i = 0; $i < $total; $i++) {
+//                            if ($_FILES["FOTOS"]["name"][$i] === $vgf->Foto) {
+//                                if (!file_exists($URL_DOC)) {
+//                                    mkdir($URL_DOC, 0777, true);
+//                                }
+//                                if (move_uploaded_file($_FILES["FOTOS"]["tmp_name"][$i], $URL_DOC . '/' . utf8_decode($vgf->Foto))) {
+//                                    $img = $master_url . $vgf->Foto;
+//                                    $DATA = array(
+//                                        'Url' => ($img)
+//                                    );
+//                                    $this->trabajo_model->onModificarDetalleFoto($IDDGF, $DATA);
+//                                } else {
+//                                    //             echo "\nERROR:\nNO SE PUDO SUBIR LA FOTO: " . $img;
+//                                }
+//                            }
+//                        }
+//                    }
+//                    /* FIN DETALLE FOTOS */
+//
+//
+//                    /* DETALLE CROQUIS */
+//                    $CROQUISX = json_decode("[" . $this->input->post("JSONCROQUIS")[$v->Renglon - 1] . "]");
+//                    //   var_dump($CROQUISX);
+//                    foreach ($CROQUISX[0] as $k => $vgf) {
+////                        var_dump($vgf);
+//                        $data = array(
+//                            'IdTrabajo' => $ID,
+//                            'IdTrabajoDetalle' => $IDD,
+//                            'Observaciones' => $vgf->Croquis,
+//                            'Renglon' => $v->Renglon,
+//                            'Estatus' => "ACTIVO",
+//                            'Registro' => Date('d/m/y h:i:s a')
+//                        );
+//                        $IDDGC = $this->trabajo_model->onAgregarDetalleCroquis($data);
+//                        /* CREAR DIRECTORIO DEL CROQUIS */
+//                        $URL_DOC = "uploads/Trabajos/Croquis/T$ID/TD$IDD";
+//                        $master_url = $URL_DOC . '/';
+//                        $total = count($_FILES['CROQUIS']['name']);
+//                        //         print "\nTOTAL DE CROQUIS: $total";
+//
+//                        for ($i = 0; $i < $total; $i++) {
+//                            //Get the temp file path
+//                            if (isset($_FILES["CROQUIS"]["name"][$i]) && $_FILES["CROQUIS"]["name"][$i] === $vgf->Croquis) {
+//
+//                                if (!file_exists($URL_DOC)) {
+//                                    mkdir($URL_DOC, 0777, true);
+//                                }
+//                                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"][$i], $URL_DOC . '/' . ($vgf->Croquis))) {
+//                                    $img = $master_url . $vgf->Croquis;
+//                                    $DATA = array(
+//                                        'Url' => ($img)
+//                                    );
+//                                    $this->trabajo_model->onModificarDetalleCroquis($IDDGC, $DATA);
+//                                } else {
+//                                    //  echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Croquis\n";
+//                                }
+//                            }
+//                        }
+//                    }
+//                    /* FIN DETALLE CROQUIS */
+//
+//                    /* DETALLE ANEXOS */
+//                    $ANEXOSX = json_decode("[" . $this->input->post("JSONANEXOS")[$v->Renglon - 1] . "]");
+//                    //       var_dump($ANEXOSX);
+//                    foreach ($ANEXOSX[0] as $k => $vgf) {
+////                        var_dump($vgf);
+//                        $data = array(
+//                            'IdTrabajo' => $ID,
+//                            'IdTrabajoDetalle' => $IDD,
+//                            'Observaciones' => $vgf->Anexo,
+//                            'Renglon' => $v->Renglon,
+//                            'Estatus' => "ACTIVO",
+//                            'Registro' => Date('d/m/y h:i:s a')
+//                        );
+//                        $IDDGA = $this->trabajo_model->onAgregarDetalleAnexos($data);
+//                        /* CREAR DIRECTORIO DE FOTO */
+//                        $URL_DOC = "uploads/Trabajos/Anexos/T$ID/TD$IDD";
+//                        $master_url = $URL_DOC . '/';
+//                        $total = count($_FILES['ANEXOS']['name']);
+//                        //      print "\nTOTAL DE ANEXOS: $total";
+//
+//                        for ($i = 0; $i < $total; $i++) {
+//                            //Get the temp file path
+//                            if (isset($_FILES["ANEXOS"]["name"][$i]) && $_FILES["ANEXOS"]["name"][$i] === $vgf->Anexo) {
+//
+//                                if (!file_exists($URL_DOC)) {
+//                                    mkdir($URL_DOC, 0777, true);
+//                                }
+//                                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"][$i], $URL_DOC . '/' . ($vgf->Anexo))) {
+//                                    $img = $master_url . $vgf->Anexo;
+//                                    $DATA = array(
+//                                        'Url' => ($img)
+//                                    );
+//                                    $this->trabajo_model->onModificarDetalleAnexo($IDDGA, $DATA);
+//                                } else {
+//                                    //             echo "\nERROR:\nNO SE PUDO SUBIR EL ANEXO: $vgf->Anexo\n";
+//                                }
+//                            }
+//                        }
+//                    }
                     /* FIN DETALLE ANEXOS */
                     //    print "\n";
-                }
+                
             }
+            
+            echo $ID;
             //    print "\n";
             //    print "\n";
             //    print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  END CONCEPTOS * * * * * * * * * * * * * * * * * * * * * * * * \n";
@@ -686,16 +690,30 @@ class CtrlTrabajos extends CI_Controller {
             $URL_DOC = "uploads/Trabajos/Fotos/T$IdTrabajo/TD$IdTrabajoDetalle";
             $master_url = $URL_DOC . '/';
 
-
+            
+                    
             if (isset($_FILES["FOTO"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
                 }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                if (!file_exists(utf8_decode($URL_DOC . '/' ))) {
+                    mkdir(utf8_decode($URL_DOC . '/' ), 0777, true);
+                    
+                    
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["FOTO"]["name"];
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC  . '/' . ($_FILES["FOTO"]["name"]))) {
+                    $img = $master_url . '/' . $_FILES["FOTO"]["name"];
+                    
+                     $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image']	= $img;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width']	= 1080;
+                    $config['height'] = 720;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+                    
+                    
                     $DATA = array(
                         'Url' => ($img)
                     );
@@ -733,11 +751,19 @@ class CtrlTrabajos extends CI_Controller {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
                 }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                if (!file_exists(utf8_decode($URL_DOC . '/' ))) {
+                    mkdir(utf8_decode($URL_DOC . '/' ), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["CROQUIS"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["CROQUIS"]["name"];
+                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . ($_FILES["CROQUIS"]["name"]))) {
+                    $img = $master_url . '/' . $_FILES["CROQUIS"]["name"];
+                     $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image']	=  $img;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width']	= 1080;
+                    $config['height'] = 720;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img)
                     );
@@ -780,6 +806,9 @@ class CtrlTrabajos extends CI_Controller {
                 }
                 if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . ($_FILES["ANEXOS"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["ANEXOS"]["name"];
+                    
+                    
+                    
                     $DATA = array(
                         'Url' => ($img)
                     );

@@ -69,7 +69,7 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\"hide\">",TD.Moneda,"</span>") AS ".",'
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> (",(SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID),")") '
+                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> ") '
                     . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
                     . 'END) AS Generador, '
                     . '(CASE '
@@ -759,6 +759,29 @@ GTD.Area,GTD.Eje,GTD.EntreEje1,GTD.EntreEje2,GTD.Largo,GTD.Ancho,GTD.Alto,GTD.Ca
 FROM TRABAJOS T
 INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
 left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID  ', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+      public function getDetalleCroquis($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select(' TDC.IdTrabajoDetalle,TDC.Url,TDC.Observaciones,pc.ID as PreciarioConcepto_ID
+FROM TRABAJOS T 
+INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
+left join trabajodetallecroquis TDC ON TDC.IdTrabajoDetalle = TD.ID
+left join preciarioconceptos pc on pc.id = td.preciarioconcepto_id', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();

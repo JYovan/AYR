@@ -94,7 +94,7 @@
 
     <script>
         var base_url = "<?php print base_url(); ?>";
-
+        
 
 
         $(function() {
