@@ -53,7 +53,7 @@ class trabajo_model extends CI_Model {
 
     public function getTrabajoDetalleByID($IDX) {
         try {
-            $this->db->select('CONCAT("<span class=\"hide\">",TD.ID,"</span>") AS "-",'
+            $this->db->select('TD.ID AS ID,'
                     . 'CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS Clave, '
                     . '(CASE '
                     . 'WHEN TD.IntExt = "" THEN '
@@ -67,12 +67,28 @@ class trabajo_model extends CI_Model {
                     . 'TD.Cantidad, TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
                     . 'CONCAT("<span class=\"hide\">",TD.Moneda,"</span>") AS ".",'
-                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") AS Generador, '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Fotos, '
-                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Croquis, '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") AS Anexos, '
+                    . '(CASE '
+                    . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> (",(SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
+                    . 'END) AS Generador, '
+                    . '(CASE '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID),")")'
+                    . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'END) AS Fotos, '
+                    . '(CASE '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID)> 0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador has-items\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'END) AS Croquis, '
+                    . '(CASE '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'END) AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
-                    . 'TD.PreciarioConcepto_ID AS "_"', false);
+                    . 'TD.PreciarioConcepto_ID AS "PCID"', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
@@ -193,7 +209,7 @@ class trabajo_model extends CI_Model {
     public function onAgregarDetalleGenerador($array) {
         try {
             $this->db->insert("generadortrabajosdetalle", $array);
-         //   print $str = $this->db->last_query();
+            //   print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -231,7 +247,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetallefotos", $DATA);
-        //    print $str = $this->db->last_query();
+            //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -340,7 +356,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetalleanexos');
-           // print $str = $this->db->last_query();
+            // print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -350,7 +366,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetallecroquis');
-        //    print $str = $this->db->last_query();
+            //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -706,18 +722,18 @@ class trabajo_model extends CI_Model {
     public function getConceptosReportesGenericos($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select('T.FechaCreacion, T.FolioCliente, T.Importe, CTE.Nombre AS Cliente, S.CR, S.Nombre 
-AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave, 
-TD.Unidad, TD.Cantidad, TD.Precio,PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId, 
+            $this->db->select('T.FechaCreacion, T.FolioCliente, T.Importe, CTE.Nombre AS Cliente, S.CR, S.Nombre
+AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
+TD.Unidad, TD.Cantidad, TD.Precio,PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
 CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
 ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion
-FROM TRABAJOS T 
-INNER JOIN clientes CTE ON CTE.ID = T.Cliente_ID 
-INNER JOIN sucursales S ON S.ID = T.Sucursal_ID 
-INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
-left JOIN preciarios PRE ON PRE.ID = T.Preciario_ID 
-left JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID 
-left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID 
+FROM TRABAJOS T
+INNER JOIN clientes CTE ON CTE.ID = T.Cliente_ID
+INNER JOIN sucursales S ON S.ID = T.Sucursal_ID
+INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+left JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+left JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
 left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
@@ -740,8 +756,8 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->query("set sql_mode=''");
             $this->db->select('GTD.Concepto_ID,
 GTD.Area,GTD.Eje,GTD.EntreEje1,GTD.EntreEje2,GTD.Largo,GTD.Ancho,GTD.Alto,GTD.Cantidad,GTD.Total
-FROM TRABAJOS T 
-INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID 
+FROM TRABAJOS T
+INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
 left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID  ', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);

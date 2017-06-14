@@ -41,9 +41,6 @@ class CtrlSesion extends CI_Controller {
                 );
                 $this->session->mark_as_temp('LOGGED', 28800);
                 $this->session->set_userdata($newdata);
-
-
-
                 print 1;
             } else {
                 print 'ACCESO DENEGADO';
@@ -68,7 +65,7 @@ class CtrlSesion extends CI_Controller {
 
     public function onReporteFotografico() {
 
-        // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
         $pdf->AliasNbPages();
@@ -277,7 +274,7 @@ class CtrlSesion extends CI_Controller {
     }
 
     public function onReporteCroquis() {
-        // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
         $pdf->AliasNbPages();
@@ -477,12 +474,10 @@ class CtrlSesion extends CI_Controller {
         print base_url() . $url;
     }
 
-   
-
 }
 
 class PDF extends FPDF {
-    
+
 }
 
 class PDFC extends FPDF {
