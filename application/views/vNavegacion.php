@@ -92,7 +92,7 @@
 <div id="reportes" class="dt-buttons">
     
   
-<!--<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
+<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button><!--
 <!--<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>-->
 </div>
 
@@ -114,7 +114,10 @@
         });
         $.ajax({
             url: base_url + 'index.php/ctrlSesion/onReporteFotografico',
-            type: "POST"
+            type: "POST",
+            data:{
+                ID:76
+            }
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
             console.log(data);
