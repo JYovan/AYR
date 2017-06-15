@@ -43,7 +43,7 @@
                 <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
                 <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
                 <button onclick="onReporteCroquis()" class="btn btn-default"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
-                <button onclick="onReporteFotografico()" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>FOTOS</button>
+                <button onclick="onReporteFotografico()" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS</button>
             </div>
         </div>
     </div>
@@ -434,7 +434,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel-body">
+<!--        <div class="panel-body">-->
             <fieldset>
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
@@ -468,7 +468,7 @@
                     </table>
                 </div>
             </fieldset>
-        </div>
+<!--        </div>-->
     </div>
 </div>
 
@@ -1005,7 +1005,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel-body">
+<!--        <div class="panel-body">-->
             <fieldset>
                 <div class="col-md-12" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
@@ -1039,7 +1039,7 @@
                     </table>
                 </div>
             </fieldset>
-        </div>
+<!--        </div>-->
     </div>
 </div>
 
@@ -1395,7 +1395,6 @@
     $(document).ready(function() {
 
         /**FUNCIONES DE EDICION**/
-
         /*ANEXOS POR CONCEPTO EDITAR*/
         EditarAnexosPorConcepto.change(function() {
             HoldOn.open({
@@ -1464,7 +1463,6 @@
             HoldOn.close();
         });
 
-
         /*CROQUIS POR CONCEPTO EDITAR*/
         EditarCroquisPorConcepto.change(function() {
             HoldOn.open({
@@ -1532,7 +1530,6 @@
             HoldOn.close();
         });
 
-        /*Resize*/
         /*FOTOS POR CONCEPTO EDITAR*/
         EditarFotosPorConcepto.change(function() {
             HoldOn.open({
@@ -1599,7 +1596,6 @@
             });
             HoldOn.close();
         });
-
 
         btnMoficarEditarGenerador.on('click', function() {
             onModificarGeneradorXID();
@@ -1694,7 +1690,6 @@
         });
 
         /**FIN FUNCIONES DE EDICION **/
-
         /*FUNCIONES DE NUEVO*/
         btnImprimirReportesEditarTrabajo.on("click", function() {
             mdlReportesEditarTrabajo.modal('show');
@@ -1740,7 +1735,6 @@
             }
         });
 
-
         /***** Modificar Concepto ****/
         btnGuardarNuevoGeneradorXConcepto.on("click", function() {
             var Generador = [];
@@ -1777,7 +1771,7 @@
                             new_row += '<td class="hide">';
                             new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
                             new_row += '</td>';
-                            new_row += '<td><span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td>';
+                            new_row += '<td><span class="fa fa-times fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td>';
                             new_row += '<td>';
                             new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
                             new_row += '</td><td>';
@@ -1799,7 +1793,7 @@
                             new_row += subtotal;
                             new_row += '</td>';
 
-                            new_row += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
+                            new_row += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
                             new_row += "<td class=\"hide\">ACTIVO</td>";
                             new_row += '</tr>';
                             NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
@@ -2626,7 +2620,7 @@
             $("#tblRegistros").html(getTable('tblTrabajos', data));
             $('#tblTrabajos tfoot th').each(function() {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
             $('#tblTrabajos tbody').on('click', 'tr', function() {
@@ -3209,7 +3203,7 @@
 
                         /*ELIMINAR*/
                         row += '<td align="center">';
-                        row += '<span class="fa fa-minus fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
+                        row += '<span class="fa fa-times fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
                         row += '</td>';
                         row += '</tr>';
                         if (tblConceptosXTrabajo.hasClass("hide")) {
@@ -3300,7 +3294,7 @@
                 '<tr>' +
                 '<th class="hide">Renglon</th>' +
                 '<th class="hide">Concepto_ID</th>' +
-                '<th>Eliminar</th>' +
+                '<th></th>' +
                 '<th >Area</th>' +
                 '<th>Eje</th>' +
                 '<th class="col-md-3">Entre Eje 1</th>' +
@@ -3310,7 +3304,7 @@
                 '<th class="col-md-2">Alto</th>' +
                 '<th class="col-md-2">Cantidad</th>' +
                 '<th>Total</th>' +
-                '<th>Editar</th>' +
+                '<th></th>' +
                 '<th class="hide">Estatus</th>' +
                 '</tr>' +
                 '</thead>' +
@@ -3327,7 +3321,7 @@
             tblGeneradores += "<td class='hide'>";
             tblGeneradores += v.Concepto_ID;
             tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
+            tblGeneradores += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
 
 
             /*AREA*/
@@ -3373,7 +3367,7 @@
             tblGeneradores += "<td>";
             tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
             tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
+            tblGeneradores += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
             tblGeneradores += "<td class=\"hide\">ACTIVO</td>";
             tblGeneradores += "</tr>";
         });
@@ -4097,7 +4091,7 @@
                     '<th class="hide">IDT</th>' +
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
-                    '<th>Eliminar</th>' +
+                    '<th></th>' +
                     '<th >Area</th>' +
                     '<th>Eje</th>' +
                     '<th class="col-md-3">Entre Eje 1</th>' +
@@ -4107,7 +4101,7 @@
                     '<th class="col-md-2">Alto</th>' +
                     '<th class="col-md-2">Cantidad</th>' +
                     '<th>Total</th>' +
-                    '<th>Editar</th>' +
+                    '<th></th>' +
                     '<th class="hide">Estatus</th>' +
                     '<th class="hide">Precio</th>' +
                     '</tr>' +
@@ -4128,7 +4122,7 @@
                 tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                 tblGeneradoresDetalleXConcepto += v.IdTrabajoDetalle;
                 tblGeneradoresDetalleXConcepto += "</td>";
-                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
+                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
 
                 /*AREA*/
                 tblGeneradoresDetalleXConcepto += "<td>";
@@ -4173,7 +4167,7 @@
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
                 tblGeneradoresDetalleXConcepto += "</td>";
-                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorXID(this," + v.ID + ")\"></span></td>";
+                tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorXID(this," + v.ID + ")\"></span></td>";
                 tblGeneradoresDetalleXConcepto += "<td class=\"hide\">ACTIVO</td>";
                 tblGeneradoresDetalleXConcepto += "<td class=\"hide\">" + v.Precio + "</td>";
                 tblGeneradoresDetalleXConcepto += "</tr>";
@@ -4302,7 +4296,7 @@
                     '<th class="hide">IDT</th>' +
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
-                    '<th>Eliminar</th>' +
+                    '<th></th>' +
                     '<th >Area</th>' +
                     '<th>Eje</th>' +
                     '<th class="col-md-3">Entre Eje 1</th>' +
@@ -4312,7 +4306,7 @@
                     '<th class="col-md-2">Alto</th>' +
                     '<th class="col-md-2">Cantidad</th>' +
                     '<th>Total</th>' +
-                    '<th>Editar</th>' +
+                    '<th></th>' +
                     '<th class="hide">Estatus</th>' +
                     '<th class="hide">Precio</th>' +
                     '</tr>' +
@@ -4334,7 +4328,7 @@
                     tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                     tblGeneradoresDetalleXConcepto += v.IdTrabajoDetalle;
                     tblGeneradoresDetalleXConcepto += "</td>";
-                    tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
+                    tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
 
                     /*AREA*/
                     tblGeneradoresDetalleXConcepto += "<td>";
@@ -4379,7 +4373,7 @@
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
                     tblGeneradoresDetalleXConcepto += "</td>";
-                    tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-pencil customButtonDetalleGenerador\" onclick=\"onEditarGeneradorXID(this," + v.ID + ")\"></span></td>";
+                    tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorXID(this," + v.ID + ")\"></span></td>";
                     tblGeneradoresDetalleXConcepto += "<td class=\"hide\">ACTIVO</td>";
                     tblGeneradoresDetalleXConcepto += "<td class=\"hide\">" + v.Precio + "</td>";
                     tblGeneradoresDetalleXConcepto += "</tr>";
@@ -4523,7 +4517,7 @@
 
 
 
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
+              //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
 
                 mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");

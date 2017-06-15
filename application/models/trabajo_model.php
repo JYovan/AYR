@@ -28,9 +28,9 @@ class trabajo_model extends CI_Model {
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
                     . "CONCAT('<strong>$',FORMAT(T.Importe,2),'</strong>') AS Importe,"
-                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'Clasificación', "
-                    . "S.Region ,"
-                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'Cuadrilla', "
+//                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'Clasificación', "
+//                    . "S.Region ,"
+//                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'Cuadrilla', "
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
@@ -87,7 +87,7 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID),")") '
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
-                    . 'CONCAT("<span class=\"fa fa-minus customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
+                    . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
                     . 'TD.PreciarioConcepto_ID AS "PCID"', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
@@ -902,6 +902,7 @@ left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
 left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
+            $this->db->where('TDC.Url is NOT NULL', NULL, FALSE);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -934,6 +935,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
+            $this->db->where('TDF.Url is NOT NULL', NULL, FALSE);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

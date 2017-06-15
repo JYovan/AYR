@@ -97,3 +97,26 @@ ALTER TABLE `ayr`.`generadortrabajosdetalle`
 ADD COLUMN `IdTrabajoDetalle` INT(25) NULL AFTER `Total`;
 
 
+/*Entregas Encbezado*/
+CREATE TABLE `entregas` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  
+`Movimiento` varchar(45) DEFAULT NULL,
+ 
+`FechaCreacion` varchar(45) DEFAULT NULL,
+  
+`NoEntrega` varchar(45) DEFAULT NULL,
+  
+`Estatus` varchar(45) DEFAULT 'Activo',
+  
+`Cliente_ID` int(11) DEFAULT NULL,
+  
+`Clasificacion` varchar(45) DEFAULT NULL,
+  
+`Importe` decimal(14,6) DEFAULT NULL,
+  
+`Usuario_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) 
+
+

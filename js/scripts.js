@@ -133,10 +133,10 @@ var tableOptions = {
     },
     "autoWidth": true,
     colReorder: true, 
-    "displayLength": 30,
+    "displayLength": 10,
     "bLengthChange": false,
     "deferRender": true,
-    "scrollY": 600,
+    "scrollY": false,
     "scrollX": true,
     "scrollCollapse": true,
     "aaSorting": [[0, 'desc']]

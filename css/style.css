@@ -294,6 +294,11 @@ table thead tr{
     cursor: pointer;
 }
 
+table thead th{
+    color: rgba(0,0,0,.54) !important;
+    font-size: 12px !important;
+}
+
 .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #FFF;
 }
@@ -539,5 +544,14 @@ div.dt-EncabezadoControlEliminar> .btn {
     background-color: #fff;
       display: none;
 
+}
+
+
+.checkbox label, .radio label, label {
+    font-size: 13px !important;
+    line-height: 1.42857143;
+    /* color: #bdbdbd; */
+    font-weight: 400;
+    color: rgba(0,0,0,0.45) !important;
 }
 

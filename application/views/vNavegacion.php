@@ -31,7 +31,7 @@
 
                     <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Control<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Control de Entregas</a></li>
+                         <li><a href="<?php print base_url() ?>index.php/CtrlEntregas/">Control de Entregas</a></li> 
                         <li><a href="#">Control de Prefacturas</a></li>  
                     </ul>
                 </li>
@@ -92,7 +92,7 @@
 <div id="reportes" class="dt-buttons">
     
   
-<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button><!--
+<!--<button onclick="onReporteFotografico()" class="btn btn-raised"><span class="fa fa-camera fa-1x"></span><br>FOTOGRAFICO</button>
 <!--<button onclick="onReporteEstimacion()" class="btn btn-raised"><span class="fa fa-money fa-1x"></span><br>ESTIMACIÓN</button>-->
 </div>
 
