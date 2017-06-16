@@ -1521,7 +1521,7 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-                    HoldOn.close();
+                 
                 });
 
 //                };
@@ -1588,7 +1588,7 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-                    HoldOn.close();
+                    
                 });
 
 //                };
@@ -2038,8 +2038,16 @@
                 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             }
         });
+            
+        tBtnEditarConcluir.on("click", function() {
+                    if (!$(this).is(':checked')) {
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                         btnConfirmarEliminar.attr("disabled", false);
+                        btnModificar.removeClass('hide');
+                    }
 
-
+                });    
+        
         btnEditar.on("click", function() {
             tempDetalle = 0;
 
@@ -2113,15 +2121,6 @@
 
                     //trae los días
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-
-                    tBtnEditarConcluir.on("click", function() {
-                        if (!$(this).is(':checked')) {
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                            btnConfirmarEliminar.attr("disabled", false);
-                            btnModificar.removeClass('hide');
-                        }
-
-                    });
 
                     pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                     pnlEditarTrabajo.find("#ID").val(trabajo.ID);
@@ -2746,13 +2745,7 @@
                 //trae los días
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                tBtnEditarConcluir.on("click", function() {
-                    if (!$(this).is(':checked')) {
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                        btnModificar.removeClass('hide');
-                    }
-
-                });
+                
 
                 pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);

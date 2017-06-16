@@ -673,6 +673,34 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
+    
+    public function getTrabajosControlByClienteXClasificacion($ID,$IDC){
+          try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select(' T.Movimiento,T.FolioCliente ,S.Nombre,S.region,'
+                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe '
+                    . 'FROM Trabajos T '
+                    . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
+            $this->db->where_in('T.Estatus', array('Concluido'));
+            $this->db->where('T.Cliente_ID', $ID);
+            $this->db->where('T.Clasificacion', $IDC);
+            $this->db->group_by(array('T.Sucursal_ID'));
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //  print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        
+    } 
+    
 
     /*     * ************************* Reportes------------------------------ */
 
