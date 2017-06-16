@@ -3646,10 +3646,10 @@
                     td.eq(8).addClass("hide");
                     td.eq(14).addClass("hide");
                 });
-                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
-                    var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-                });
+//                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
+//                    var title = $(this).text();
+//                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+//                });
                 var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
                 pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function() {
                     pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
@@ -3670,14 +3670,14 @@
                 });
 
                 // Apply the search
-                tblSelected.columns().every(function() {
-                    var that = this;
-                    $('input', this.footer()).on('keyup change', function() {
-                        if (that.search() !== this.value) {
-                            that.search(this.value).draw();
-                        }
-                    });
-                });
+//                tblSelected.columns().every(function() {
+//                    var that = this;
+//                    $('input', this.footer()).on('keyup change', function() {
+//                        if (that.search() !== this.value) {
+//                            that.search(this.value).draw();
+//                        }
+//                    });
+//                });
             } else {
                 pnlDetalleEditarTrabajo.find("#Conceptos").html("");
             }

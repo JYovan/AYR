@@ -45,6 +45,28 @@ class CtrlEntregas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+      public function getTrabajoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajosControlByClienteXClasificacion() {
+        try {
+            extract($this->input->post());
+           
+            
+            $data = $this->trabajo_model->getTrabajosControlByClienteXClasificacion($Cliente_ID,$Clasificacion);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onAgregar() {
         try {
@@ -68,6 +90,29 @@ class CtrlEntregas extends CI_Controller {
         }
     }
     
+    public function onAgregarDetalleEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Entrega_ID' => $Entrega_ID,
+                'Trabajo_ID' => $Trabajo_ID,
+                'Renglon' => $Renglon
+            );
+            $ID = $this->entregas_model->onAgregarDetalle($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+       public function getEntregaDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->entregas_model->getDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     
     public function onModificar() {
         try {

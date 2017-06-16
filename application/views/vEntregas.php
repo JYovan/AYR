@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="col-6 col-md-6">
-                        <label for="">Clasificación*</label>
+                        <label for="">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
                             <option value="CERRAJERÍA">CERRAJERÍA</option>
@@ -135,12 +135,12 @@
             </div>
         </div>
         <!--<div class="panel-body">-->
-            <fieldset>
-                <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                </div>
-            </fieldset>
-<!--        </div>-->
+        <fieldset>
+            <div class="col-md-12" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaNuevo"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+            </div>
+        </fieldset>
+        <!--        </div>-->
     </div>
 </div>
 
@@ -218,7 +218,7 @@
                     </div>
 
                     <div class="col-6 col-md-6">
-                        <label for="">Clasificación*</label>
+                        <label for="">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
                             <option value="CERRAJERÍA">CERRAJERÍA</option>
@@ -241,6 +241,74 @@
         </div>
     </div>
 </div>
+
+<!--PANEL EDITAR DETALLE-->
+<div class="col-6 col-md-12">
+    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarEntrega">
+        <div class="Custompanel-heading" >
+            <div class="Custompanel-heading row">
+                <div class="col-md-6">
+                    <div class="cursor-hand" >Trabajos </div>
+                </div>
+                <div id="ImporteTotal" class="col-md-6" align="right">
+                    <h4 class="text-success">$ 0.0</h4>
+                </div>
+            </div>
+        </div>
+        <!--        <div class="panel-body">-->
+        <fieldset>
+            <div class="col-md-12" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+            </div>
+            <div class="col-md-12 table-responsive " id="Conceptos" >
+                <table  id="tblRegistrosXDetalleXEntrega" class="table table-striped table-hover hide " width="100%">
+                    <thead>
+                        <tr>
+                            <th class="">ID</th>
+                            <th class="">Entrega</th>
+                            <th class="">Trabajo</th>
+                            <th>Renglon</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <!--        </div>-->
+    </div>
+</div>
+
+
+<!--MODAL DETALLE - NUEVO CONCEPTO-->
+<div id="mdlSeleccionarTrabajosEditar" class="modal animated fadeInUp">
+    <div class="modal-dialog super-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">SELECCIONE UN TRABAJO</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <div class="col-md-12" align="right">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="chkMultiple" value="ON"> VARIOS
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="col-md-12" id="TrabajosXClienteIDXClasificacion">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--MODAL DE CONFIRMACION PARA BORRAR-->
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
@@ -265,43 +333,68 @@
 
 <!--SCRIPT-->
 <script>
-    var menuTablero = $('#MenuTablero');
+
     var master_url = base_url + 'index.php/CtrlEntregas/';
+
+    var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
-    var btnCancelar = $("#btnCancelar");
-    var btnGuardar = $("#btnGuardar");
     var pnlNuevaEntrega = $("#pnlNuevaEntrega");
     var pnlEditarEntrega = $("#pnlEditarEntrega");
-
+    //nuevo
+    var btnCancelar = $("#btnCancelar");
+    var btnGuardar = $("#btnGuardar");
 
     //editar
-
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnModificar = $("#btnModificarEntrega");
 
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
     //Controles de concluir
     var tBtnConcluir = pnlNuevaEntrega.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarEntrega.find("#Concluir");
 
     var currentDate = new Date();
-    
-    
     /***Detalle Nuevo****/
     var pnlDetalleNuevaEntrega = $("#pnlDetalleNuevaEntrega");
-    var btnNuevoConcepto = pnlDetalleNuevaEntrega.find('#btnNuevoConcepto');
-    
+    var btnNuevoRenglonEntregaNuevo = pnlDetalleNuevaEntrega.find('#btnNuevoRenglonEntregaNuevo');
+
+    /*Detalle Editar*/
+    var pnlDetalleEditarEntrega = $("#pnlDetalleEditarEntrega");
+
+
+    var btnNuevoRenglonEntregaEditar = pnlDetalleEditarEntrega.find("#btnNuevoRenglonEntregaEditar");
+    var tblRegistrosXDetalleXEntrega = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
+    var mdlSeleccionarTrabajosEditar = $("#mdlSeleccionarTrabajosEditar");
+    var TrabajosXClienteIDXClasificacion = mdlSeleccionarTrabajosEditar.find("#TrabajosXClienteIDXClasificacion");
+
+
     $(document).ready(function () {
-        
-        btnNuevoConcepto.on("click",function(){
+        //Boton de nuevo en detalle nuevo
+        btnNuevoRenglonEntregaNuevo.on("click", function () {
             onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
         });
-        
+
+        //Boton de neuvo en detalle editar
+        btnNuevoRenglonEntregaEditar.on("click", function () {
+            var Cliente_ID = pnlEditarEntrega.find("#Cliente_ID").val();
+            var Clasificacion = pnlEditarEntrega.find("#Clasificacion").val();
+            if (Cliente_ID !== undefined && Cliente_ID !== '' && Cliente_ID > 0) {
+                if (Clasificacion !== Clasificacion && Clasificacion !== '' && Clasificacion > 0) {
+
+                    Clasificacion = '';
+                }
+
+                getTrabajosControlByClienteXClasificacion(Cliente_ID, Clasificacion);
+                mdlSeleccionarTrabajosEditar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
+            }
+        });
+
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function() {
+        btnConfirmarEliminar.on("click", function () {
 
             if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
                 //Muestra el modal
@@ -310,36 +403,35 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-        btnEliminar.on("click", function() {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminar',
-                    type: "POST",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function(data, x, jq) {
-                    console.log(data);
 
-                    mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ENTREGA ELIMINADA', 'danger');
+        btnEliminar.on("click", function () {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "CARGANDO DATOS..."
+            });
+            $.ajax({
+                url: master_url + 'onEliminar',
+                type: "POST",
+                data: {
+                    ID: temp
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
 
-                    menuTablero.addClass("animated slideInLeft").removeClass("hide");
-                    pnlEditarEntrega.addClass("hide");
-                   // pnlDetalleEditarTrabajo.addClass("hide");
+                mdlConfirmar.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ENTREGA ELIMINADA', 'danger');
 
+                menuTablero.addClass("animated slideInLeft").removeClass("hide");
+                pnlEditarEntrega.addClass("hide");
+                pnlDetalleEditarEntrega.addClass("hide");
 
-                    getRecords();
+                getRecords();
 
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
 
         tBtnEditarConcluir.on("click", function () {
@@ -375,7 +467,7 @@
 
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarEntrega.addClass("hide");
-            // pnlDetalleEditarTrabajo.addClass("hide");
+            pnlDetalleEditarEntrega.addClass("hide");
             getRecords();
         });
 
@@ -393,8 +485,7 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required',
-                    Clasificacion: 'required'
+                    NoEntrega: 'required'
 
                 },
                 highlight: function (element, errorClass, validClass) {
@@ -466,8 +557,7 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required',
-                    Clasificacion: 'required'
+                    NoEntrega: 'required'
 
                 },
                 highlight: function (element, errorClass, validClass) {
@@ -518,13 +608,13 @@
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                         btnConfirmarEliminar.attr("disabled", true);
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
-                        //   pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                        //   pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
                     } else {
                         btnConfirmarEliminar.attr("disabled", false);
                         $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
-                        //   pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                        //   pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                        pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
+                        pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
                     }
 
                     console.log(data, x, jq);
@@ -615,8 +705,8 @@
 
                         menuTablero.addClass("hide");
                         pnlEditarEntrega.removeClass("hide");
-                        //  pnlDetalleEditarTrabajo.removeClass("hide");
-                        //  getTrabajoDetalleByID(trabajo.ID);
+                        pnlDetalleEditarEntrega.removeClass("hide");
+                        getDetalleByID(entrega.ID);
 
                         //Control de estatus
                         if (entrega.Estatus === 'Concluido') {
@@ -625,8 +715,8 @@
                             btnModificar.addClass('hide');
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                             btnConfirmarEliminar.attr("disabled", true);
-                            //    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                            //    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
 
                         } else if (entrega.Estatus === 'Cancelado') {
                             $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
@@ -634,8 +724,8 @@
                             btnModificar.addClass('hide');
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                             btnConfirmarEliminar.attr("disabled", true);
-                            //    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                            //    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
                         } else {
 
                             $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
@@ -643,8 +733,8 @@
                             btnModificar.removeClass('hide');
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                             btnConfirmarEliminar.attr("disabled", false);
-                            //      pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                            //      pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
+                            pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
                         }
                         //   getImporteTotalDelTrabajoByID(trabajo.ID);
                     }).fail(function (x, y, z) {
@@ -675,7 +765,7 @@
     function despuesDeGuardar(IDTrabajo) {
 
         pnlNuevaEntrega.addClass("hide");
-         pnlDetalleNuevaEntrega.addClass('hide');
+        pnlDetalleNuevaEntrega.addClass('hide');
 
         temp = IDTrabajo;
         //Abre al hacer click el movimiento para editar
@@ -713,8 +803,8 @@
 
 
                 pnlEditarEntrega.removeClass("hide");
-                //  pnlDetalleEditarTrabajo.removeClass("hide");
-                //  getTrabajoDetalleByID(trabajo.ID);
+                pnlDetalleEditarEntrega.removeClass("hide");
+                getDetalleByID(entrega.ID);
 
 
 
@@ -725,8 +815,8 @@
                     btnModificar.addClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
-                    //    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
 
                 } else if (entrega.Estatus === 'Cancelado') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
@@ -734,8 +824,8 @@
                     btnModificar.addClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
-                    //    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
                 } else {
 
                     $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
@@ -743,8 +833,8 @@
                     btnModificar.removeClass('hide');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                     btnConfirmarEliminar.attr("disabled", false);
-                    //      pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                    //      pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
+                    pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
                 }
 
 
@@ -783,7 +873,206 @@
             HoldOn.close();
         });
     }
+    /*Trae los movimientos para el detalle*/
+    function getTrabajosControlByClienteXClasificacion(Cliente_ID, Clasificacion) {
+        temp = 0;
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'getTrabajosControlByClienteXClasificacion',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                Cliente_ID: Cliente_ID,
+                Clasificacion: Clasificacion
+            }
+        }).done(function (data, x, jq) {
+  
+            $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
+         
+            var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
+            $('#tblTrabajos tbody').on('click', 'tr', function () {
+                $("#tblTrabajos").find("tr").removeClass("success");
+                $("#tblTrabajos").find("tr").removeClass("warning");
+//                console.log(this)
+                var id = this.id;
+                var index = $.inArray(id, selected);
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+                $(this).addClass('success');
+                var dtm = tblSelected.row(this).data();
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                console.log(dtm);
+                console.log(dtm[0]);
+                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                temp = parseInt(dtm[0]);
+                
+                $.ajax({
+                    url: master_url + 'getTrabajoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: temp
+                    }
+                }).done(function(data, x, jq) {
+                    console.log('* * * * * ** AGREGANDO CONCEPTO * * * * * * * * ');
+                    console.log(data);
 
+                    console.log('* * * * * ** END AGREGANDO CONCEPTO * * * * * * * * ');
+
+
+                    var DataTableConceptos = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
+                    if ($.fn.dataTable.isDataTable(DataTableConceptos)) {
+                        console.log('Datatable')
+                    } else {
+                        console.log('NO Datatable')
+                    }
+                    /**AQUI FALTA VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
+                    var has_id = true;
+                    console.log('AGREGANDO.. CONCEPTO PNL EDITAR DETALLE ');
+
+
+                    if (pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr").length > 0) {
+                        $.each(pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr"), function() {
+                            var row_status = $(this).find("td").eq(0).text();
+
+                            if (parseInt(row_status) === parseInt(temp)) {
+                                has_id = false;
+                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
+                                return false;
+                            }
+                        });
+                    }
+
+
+                    if (has_id) {
+                        $.ajax({
+                            url: master_url + 'getTrabajoByID',
+                            type: "POST",
+                            dataType: "JSON",
+                            data: {
+                                ID: parseInt(dtm[0])
+                            }
+                        }).done(function(data, x, jq) {
+                            console.log(pnlEditarEntrega.find("#ID").val());
+
+                            if (data[0] !== undefined && data.length > 0) {
+                                var dtm = data[0];
+                                var frm = new FormData();
+                                frm.append('Entrega_ID',pnlEditarEntrega.find("#ID").val());
+                                frm.append('Trabajo_ID', dtm.ID);
+                                frm.append('Renglon', pnlDetalleEditarEntrega.find("table tr").length);
+                            
+                                $.ajax({
+                                    url: master_url + 'onAgregarDetalleEditar',
+                                    type: "POST",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    data: frm
+                                }).done(function(data, x, jq) {
+
+                                    getDetalleByID(pnlEditarEntrega.find("#ID").val());
+                                }).fail(function(x, y, z) {
+                                    console.log(x, y, z);
+                                }).always(function() {
+                                    HoldOn.close();
+                                });
+
+                          
+                            } 
+                            else {
+                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
+                            }
+                        }).fail(function(x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function() {
+                            HoldOn.close();
+                        });
+                        if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
+                            mdlSeleccionarTrabajosEditar.modal('hide');
+                        }
+                    }
+
+                }).fail(function(x, y, z) {
+                    console.log(x, y, z);
+                }).always(function() {
+                    HoldOn.close();
+                });
+                
+                
+                
+            });
+    
+
+        }).fail(function (x, y, z) {
+            HoldOn.close();
+             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+
+       /*PANEL EDITAR DETALLE */
+    var tempDetalle = 0;
+    function getDetalleByID(IDX) {
+        $.ajax({
+            url: master_url + 'getEntregaDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function(data, x, jq) {
+            console.log('resultado',data);
+            if (data.length > 0) {
+                pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
+                var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
+                var tfoot = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tfoot th');
+                thead.eq(0).addClass("hide");
+                tfoot.eq(0).addClass("hide");
+            
+                $.each(pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody tr'), function(k, v) {
+                    var td = $(v).find("td");
+                    td.eq(0).addClass("hide");
+                   
+                });
+               
+                var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptions);
+                pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody').on('click', 'tr', function() {
+                    pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("success");
+                    pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("warning");
+                    //                console.log(this)
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    console.log('* * * * * * *  ID ' + dtm[0] + ' * * * * * ');
+                    temp = parseInt(dtm[0]);
+                    tempDetalle = parseInt(dtm[0]);
+                });
+
+              
+            } else {
+                pnlDetalleEditarEntrega.find("#Conceptos").html("");
+            }
+        }).fail(function(x, y, z) {
+            console.log(x, y, z);
+        }).always(function() {
+            HoldOn.close();
+        });
+    }
 
 </script>
 
