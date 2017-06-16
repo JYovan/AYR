@@ -434,41 +434,41 @@
                 </div>
             </div>
         </div>
-<!--        <div class="panel-body">-->
-            <fieldset>
-                <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                </div>
-                <div class="col-md-12 table-responsive" id="Conceptos" >
-                    <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
-                        <thead>
-                            <tr>
-                                <th class="hide">ID</th>
-                                <th class="hide">PreciarioConcepto_ID</th>
-                                <th class="hide">Renglon</th>
-                                <th>Clave</th>
-                                <th class="col-md-3" align="center">Int/Ext</th>
-                                <th class="col-md-3" align="center">Descripcion</th>
-                                <th class="col-md-2" align="center">Cantidad</th>
-                                <th class="col-md-1" align="center">Unidad</th>
-                                <th class="col-md-2" align="center">Precio</th>
-                                <th class="col-md-2" align="center">Importe</th>
-                                <th class="hide">Moneda</th>
-                                <th class="hide">Generador Object</th>
-                                <th class="col-md-2" align="center">Generador</th>
-                                <th class="col-md-2" align="center">Fotos</th>
-                                <th class="col-md-2" align="center">Croquis</th>
-                                <th class="col-md-2" align="center">Anexos</th>
-                                <th class="hide">Estatus</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </fieldset>
-<!--        </div>-->
+        <!--        <div class="panel-body">-->
+        <fieldset>
+            <div class="col-md-12" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+            </div>
+            <div class="col-md-12 table-responsive" id="Conceptos" >
+                <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="hide">ID</th>
+                            <th class="hide">PreciarioConcepto_ID</th>
+                            <th class="hide">Renglon</th>
+                            <th>Clave</th>
+                            <th class="col-md-3" align="center">Int/Ext</th>
+                            <th class="col-md-3" align="center">Descripcion</th>
+                            <th class="col-md-2" align="center">Cantidad</th>
+                            <th class="col-md-1" align="center">Unidad</th>
+                            <th class="col-md-2" align="center">Precio</th>
+                            <th class="col-md-2" align="center">Importe</th>
+                            <th class="hide">Moneda</th>
+                            <th class="hide">Generador Object</th>
+                            <th class="col-md-2" align="center">Generador</th>
+                            <th class="col-md-2" align="center">Fotos</th>
+                            <th class="col-md-2" align="center">Croquis</th>
+                            <th class="col-md-2" align="center">Anexos</th>
+                            <th class="hide">Estatus</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <!--        </div>-->
     </div>
 </div>
 
@@ -1005,41 +1005,41 @@
                 </div>
             </div>
         </div>
-<!--        <div class="panel-body">-->
-            <fieldset>
-                <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                </div>
-                <div class="col-md-12 table-responsive " id="Conceptos" >
-                    <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide " width="100%">
-                        <thead>
-                            <tr>
-                                <th class="hide">ID</th>
-                                <th class="hide">PreciarioConcepto_ID</th>
-                                <th class="hide">Renglon</th>
-                                <th>Clave</th>
-                                <th class="col-md-2" align="center">Int/Ext</th>
-                                <th class="col-md-5" align="center">Descripcion</th>
-                                <th class="col-md-1" align="center">Cantidad</th>
-                                <th>Unidad</th>
-                                <th>Precio</th>
-                                <th class="">Importe</th>
-                                <th class="hide">Moneda</th>
-                                <th class="hide">Generador Object</th>
-                                <th>Generador</th>
-                                <th>Fotos</th>
-                                <th>Croquis</th>
-                                <th>Anexos</th>
-                                <th class="hide">Estatus</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </fieldset>
-<!--        </div>-->
+        <!--        <div class="panel-body">-->
+        <fieldset>
+            <div class="col-md-12" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+            </div>
+            <div class="col-md-12 table-responsive " id="Conceptos" >
+                <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide " width="100%">
+                    <thead>
+                        <tr>
+                            <th class="hide">ID</th>
+                            <th class="hide">PreciarioConcepto_ID</th>
+                            <th class="hide">Renglon</th>
+                            <th>Clave</th>
+                            <th class="col-md-2" align="center">Int/Ext</th>
+                            <th class="col-md-5" align="center">Descripcion</th>
+                            <th class="col-md-1" align="center">Cantidad</th>
+                            <th>Unidad</th>
+                            <th>Precio</th>
+                            <th class="">Importe</th>
+                            <th class="hide">Moneda</th>
+                            <th class="hide">Generador Object</th>
+                            <th>Generador</th>
+                            <th>Fotos</th>
+                            <th>Croquis</th>
+                            <th>Anexos</th>
+                            <th class="hide">Estatus</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <!--        </div>-->
     </div>
 </div>
 
@@ -1521,7 +1521,7 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-                 
+
                 });
 
 //                };
@@ -1588,7 +1588,7 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-                    
+
                 });
 
 //                };
@@ -2038,16 +2038,16 @@
                 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             }
         });
-            
-        tBtnEditarConcluir.on("click", function() {
-                    if (!$(this).is(':checked')) {
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                         btnConfirmarEliminar.attr("disabled", false);
-                        btnModificar.removeClass('hide');
-                    }
 
-                });    
-        
+        tBtnEditarConcluir.on("click", function() {
+            if (!$(this).is(':checked')) {
+                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                btnConfirmarEliminar.attr("disabled", false);
+                btnModificar.removeClass('hide');
+            }
+
+        });
+
         btnEditar.on("click", function() {
             tempDetalle = 0;
 
@@ -2745,7 +2745,7 @@
                 //trae los días
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);
 
-                
+
 
                 pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);
@@ -4510,7 +4510,7 @@
 
 
 
-              //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
+                //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
 
                 mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
@@ -4738,7 +4738,7 @@
             url: master_url + 'onReporteFotografico',
             type: "POST",
             data: {
-                ID: IDMOV
+                ID: pnlEditarTrabajo.find("#ID").val()
             }
         }).done(function(data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');

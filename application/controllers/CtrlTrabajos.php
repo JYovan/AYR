@@ -209,7 +209,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             echo $ID;
-                 } catch (Exception $exc) {
+        } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
@@ -509,7 +509,7 @@ class CtrlTrabajos extends CI_Controller {
             foreach ($data as $key => $croquis) {
                 if (isset($croquis->Url)) {
                     unlink($croquis->Url);
-                    rmdir("uploads/Trabajos/Croquis/T" . $croquis->IdTrabajo . "/TD" . $croquis->IdTrabajoDetalle . "/" );
+                    rmdir("uploads/Trabajos/Croquis/T" . $croquis->IdTrabajo . "/TD" . $croquis->IdTrabajoDetalle . "/");
                 }
             }
             $this->trabajo_model->onEliminarCroquisXConcepto($ID);
@@ -518,7 +518,7 @@ class CtrlTrabajos extends CI_Controller {
             foreach ($data as $key => $anexo) {
                 if (isset($anexo->Url)) {
                     unlink($anexo->Url);
-                    rmdir("uploads/Trabajos/Anexos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/" );
+                    rmdir("uploads/Trabajos/Anexos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/");
                 }
             }
             $this->trabajo_model->onEliminarAnexosXConcepto($ID);
@@ -598,7 +598,7 @@ class CtrlTrabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . ($_FILES["FOTO"]["name"]))) {
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
                     $img = $master_url . $_FILES["FOTO"]["name"];
 
                     $this->load->library('image_lib');
@@ -647,8 +647,8 @@ class CtrlTrabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . ($_FILES["CROQUIS"]["name"]))) {
-                    $img = $master_url  . $_FILES["CROQUIS"]["name"];
+                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["CROQUIS"]["name"]))) {
+                    $img = $master_url . $_FILES["CROQUIS"]["name"];
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
@@ -692,11 +692,11 @@ class CtrlTrabajos extends CI_Controller {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
                 }
-                if (!file_exists(utf8_decode($URL_DOC . '/' ))) {
+                if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"], $URL_DOC . '/' . ($_FILES["ANEXOS"]["name"]))) {
-                    $img = $master_url  . $_FILES["ANEXOS"]["name"];
+                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["ANEXOS"]["name"]))) {
+                    $img = $master_url . $_FILES["ANEXOS"]["name"];
                     $DATA = array(
                         'Url' => ($img)
                     );
@@ -2236,9 +2236,9 @@ class CtrlTrabajos extends CI_Controller {
         print base_url() . $url;
     }
 
-     public function onReporteGenerador() {
+    public function onReporteGenerador() {
 
-        // Creación del objeto de la clase heredada 
+        // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
         $ID = $_POST['ID'];
@@ -2727,22 +2727,18 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->SetX(230);
                         $pdf->MultiCell(44, 5, utf8_decode("CONFORMIDAD EMPRESA "), 0, 'C');
 
-                        
+
 
                         $Y = 81;
                         $pdf->SetY($Y);
                         $registros = 0;
                     }
-                    
-                    
-                    
                 }
-                
             }
             /* FIN DETALLE  */
-            
-            
-             $pdf->SetTextColor(0, 0, 0);
+
+
+            $pdf->SetTextColor(0, 0, 0);
             /* TOTALES */
             /* Etiqueta Total */
             $pdf->Rect(135, 176, 20, 5);
@@ -2767,7 +2763,7 @@ class CtrlTrabajos extends CI_Controller {
                 $pdf->SetTextColor(0, 0, 0);
             }
             $pdf->Cell(20, 5, number_format($datoConcepto->Cantidad, 3), 0, 1, 'C');
-            
+
             $pdf->SetTextColor(0, 0, 0);
             $pdf->SetY(176);
             $pdf->SetX(175);
@@ -2812,7 +2808,6 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->SetY(203);
             $pdf->SetX(195);
             $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
-            
         }
 
         /* FIN CUERPO */
@@ -3064,237 +3059,87 @@ class CtrlTrabajos extends CI_Controller {
     }
 
     public function onReporteFotografico() {
-        // Creación del objeto de la clase heredada
-        $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotos($ID);
+                $pages_added = false;
+                $pdf = new FotosFPDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                $nfotosxconcepto = 0;
+                foreach ($Concepto as $i => $row) {
+                    /* ENCABEZADO */
+                    $pdf->Logo = base_url() . utf8_decode($row->LogoCliente);
+                    $pdf->Cr = $row->CR;
+                    $pdf->Sucursal = $row->Sucursal;
+                    $pdf->Empresa = $row->Empresa;
+                    $pdf->Direccion = $row->Direccion;
+                    $pdf->Unidad = $row->Unidad;
+                    $pdf->Clave = $row->Clave;
+                    $pdf->Categoria = $row->Categoria;
+                    $pdf->Concepto = $row->Concepto;
+                    /* DETALLE IMAGENES */
+                    $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                    $nfotos = count($fotos);
+                    $fnfotos = count($fotos);
+                    $nimg = 0;
+                    $pdf->AliasNbPages();
+                    if (!$pages_added) {
+                        $pdf->AddPage();
+                    }
+                    foreach ($fotos as $key => $foto) {
+                        $nimg += 1;
+//                        $img = base_url() . $foto->Url;
+//                        $pdf->Cell(0, 5, "$row->ID - " . $img . " -  $foto->ID : $nfotos", 0, 1);
+                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                            $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W */, 90/* H */);
+                        } else
+                        if ($nimg == 1 && $nfotos > 1) {
+                            $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W */, 72/* H */);
+                        } else if ($nimg == 1 && $nfotos == 1) {
+                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                            $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W */, 90/* H */);
+                        }
+                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                        if ($nimg == 2 && $fnfotos == 2) {
+                            $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W */, 90/* H */);
+                        } else if ($nimg == 2) {
+                            $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W */, 72/* H */);
+                        } else if ($nimg == 2 && $nfotos == 2) {
+                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                            $pdf->Image($foto->Url, 160/* X */, 80/* Y */, 115/* W */, 90/* H */);
+                        }
 
-        $pdf->AliasNbPages();
+                        if ($nimg == 3) {
+                            $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W */, 72/* H */);
+                        }
+                        $nfotos --;
+                        if ($nimg >= 3) {
+                            $pages_added = true;
+                            $pdf->AddPage();
+                            $nimg = 0;
+                        } else {
+                            $pages_added = false;
+                        }
+                    }
+                    /* FIN DETALLE IMAGENES */
+                }
 
-        $ID = $_POST['ID'];
-        $Concepto = $this->trabajo_model->getDetalleFotos($ID);
-        //$Detalle = $this->trabajo_model->getDetalleCroquis($ID);
+                /* FIN CUERPO */
+                $path = 'uploads/Reportes/' . $ID;
+                // print $path;
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $file_name = "REPORTE FOTOGRAFICO";
+                $url = $path . '/' . $file_name . '.pdf';
 
-        foreach ($Concepto as $i => $row) {
-
-            $pdf->AddPage();
-            $pdf->SetAutoPageBreak(false, 300);
-
-            /* ENCABEZADO */
-            // Logo
-            $pdf->Image(base_url() . utf8_decode($row->LogoCliente), 5, 5, 64);
-            // Arial bold 15
-            $pdf->SetFont('Arial', 'B', 9);
-            // Título
-            $pdf->SetY(5);
-            // Movernos a la derecha
-            $pdf->Cell(75);
-            $pdf->Cell(125, 25, utf8_decode("REPORTE FOTOGRÁFICO"), 0, 0, 'C');
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(1);
-            $pdf->SetX(225);
-
-
-
-            $pdf->Cell(50, 15, utf8_decode("Dirección de Administración de"), 0, 0, 'R');
-            $pdf->Ln(5);
-            $pdf->SetY(4);
-            $pdf->SetX(225.5);
-            $pdf->Cell(50, 15, utf8_decode("InmueblesGestión de Calidad"), 0, 0, 'R');
-            $pdf->Ln(5);
-            $pdf->SetY(7);
-            $pdf->SetX(225);
-            $pdf->Cell(50, 15, utf8_decode("InmueblesSubdirección de Inmovilizado"), 0, 0, 'R');
-            /* CUERPO */
-
-            $pdf->SetY(25);
-            $pdf->SetLineWidth(0.4);
-
-
-            /* INICIA  EN LA ESQUINA DE EMPRESA */
-            $pdf->Rect(164, 25, 110, 22);
-
-            /* INICIA EN LA ESQUINA DE OBRA */
-            $pdf->Rect(5, 32, 269, 15);
-
-            /* INICIA EN LA ESQUINA DE CLAVE */
-            $pdf->Rect(5, 49.5, 269, 19);
-
-            /* INICIA EN LA ESQUINA CONTENEDOR PRINCIPAL */
-            $pdf->Rect(5, 71, 269, 105);
-
-
-
-
-            /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
-            $pdf->Line(45, 32, 45, 47);
-
-            /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
-            $pdf->Line(214, 25, 214, 47);
-
-            /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
-            $pdf->Line(5, 38, 274, 38);
-
-            /* LINEA VERTICAL DELANTE DE CLAVE */
-            $pdf->Line(45, 49.5, 45, 68);
-            /* LINEA VERTICAL  DE PARTIDA */
-            $pdf->Line(90, 49.5, 90, 68);
-
-            /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
-            $pdf->Line(5, 56, 274, 56);
-
-            /* TITULOS */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(33);
-            $pdf->SetX(20);
-            $pdf->Cell(55, 5, "OBRA: ", 0, 1);
-            $pdf->SetY(39);
-            $pdf->SetX(15);
-            $pdf->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
-            $pdf->SetY(26);
-            $pdf->SetX(163);
-            $pdf->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
-            $pdf->SetY(33);
-            $pdf->SetX(163);
-            $pdf->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
-            $pdf->SetY(33);
-            $pdf->SetX(216);
-            $pdf->Cell(55, 5, utf8_decode("HOJA "), 0, 1, 'C');
-            $pdf->SetY(51);
-            $pdf->SetX(15);
-            $pdf->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
-            $pdf->SetY(51);
-            $pdf->SetX(60);
-            $pdf->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
-            $pdf->SetY(51);
-            $pdf->SetX(164);
-            $pdf->Cell(15, 5, utf8_decode("CONCEPTO"), 0, 1, 'C');
-
-
-            /* DATOS */
-            $pdf->SetY(33);
-            $pdf->SetX(46);
-            $pdf->SetFont('Arial', '', 7);
-            $pdf->Cell(115, 5, utf8_decode($row->CR . ' - ' . $row->Sucursal), 0, 1);
-            $pdf->SetY(26);
-            $pdf->SetX(214);
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->Cell(60, 5, utf8_decode($row->Empresa), 0, 1, 'C');
-            $pdf->SetY(38.5);
-            $pdf->SetX(46);
-            $pdf->SetFont('Arial', '', 7);
-            $pdf->MultiCell(115, 4, utf8_decode($row->Direccion), 0, 1);
-            $pdf->SetY(40);
-            $pdf->SetX(164);
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell(50, 5, utf8_decode($row->Unidad), 0, 1, 'C');
-            $pdf->SetY(40);
-            $pdf->SetX(219);
-            $pdf->Cell(0, 5, $pdf->PageNo() . ' DE {nb}', 0, 0, 'C');
-            $pdf->SetY(58);
-            $pdf->SetX(5);
-            $pdf->Cell(40, 5, utf8_decode($row->Clave), 0, 1, 'C');
-            $pdf->SetY(58);
-            $pdf->SetX(45);
-            $pdf->MultiCell(45, 5, utf8_decode($row->Categoria), 0, 'C');
-            $pdf->SetY(56.5);
-            $pdf->SetX(90);
-            $pdf->SetFont('Arial', '', 5.5);
-            $pdf->MultiCell(184, 1.9, utf8_decode($row->Concepto), 0, 'J');
-
-            /* DETALLE GENERADOR */
-
-
-            /* ENCIERRA LA PALABRA croquis o anexo */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->Rect(5, 71, 40, 6);
-
-            $pdf->SetY(71);
-            $pdf->SetX(5);
-            $pdf->Cell(35, 6, utf8_decode("FOTOS "), 0, 1, 'L');
-
-            /* DETALLE IMAGENES */
-            /**/
-            $pdf->Image(base_url() . utf8_decode($row->Url), 45, 79, 185, 94);
-
-            /* FIN DETALLE IMAGENES */
-
-            /* FIRMAS */
-            /* ELABORÓ */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetY(183);
-            $pdf->SetX(5);
-            $pdf->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
-
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(5);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
-
-            /* REVISÓ */
-            $pdf->SetY(183);
-            $pdf->SetX(100);
-            $pdf->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
-            /* LINEA HORIZONTAL REVISÓ */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(100);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
-
-            /* AUTORIZO */
-            $pdf->SetY(183);
-            $pdf->SetX(195);
-            $pdf->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
-            /* LINEA HORIZONTAL AUTORIZÓ */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(195);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
-
-            /* FIRMAS */
-            /* ELABORÓ */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetY(183);
-            $pdf->SetX(5);
-            $pdf->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
-
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(5);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
-
-            /* REVISÓ */
-            $pdf->SetY(183);
-            $pdf->SetX(100);
-            $pdf->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
-            /* LINEA HORIZONTAL REVISÓ */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(100);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
-
-            /* AUTORIZO */
-            $pdf->SetY(183);
-            $pdf->SetX(195);
-            $pdf->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
-            /* LINEA HORIZONTAL AUTORIZÓ */
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetY(203);
-            $pdf->SetX(195);
-            $pdf->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
+                $pdf->Output($url);
+                print base_url() . $url;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
-
-
-        /* FIN CUERPO */
-        /* FIN CUERPO */
-        $path = 'uploads/Reportes/' . $ID;
-        // print $path;
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-        $file_name = "REPORTE FOTOGRAFICO";
-        $url = $path . '/' . $file_name . '.pdf';
-
-        $pdf->Output($url);
-        print base_url() . $url;
     }
 
 }
@@ -3342,6 +3187,288 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $this->SetY($CurrentY + 6);
         $this->SetX(175);
         $this->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
+    }
+
+}
+
+class FotosFPDF extends FPDF {
+
+// Page header
+    function Header() {
+        // Logo
+        $this->Image($this->getLogo(), 5, 5, 64);
+        // Arial bold 15
+        $this->SetFont('Arial', 'B', 9);
+        // Título
+        $this->SetY(5);
+        // Movernos a la derecha
+        $this->Cell(75);
+        $this->Cell(125, 25, utf8_decode("REPORTE FOTOGRÁFICO"), 0, 0, 'C');
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetY(1);
+        $this->SetX(225);
+        $this->Cell(50, 15, utf8_decode("Dirección de Administración de"), 0, 0, 'R');
+        $this->Ln(5);
+        $this->SetY(4);
+        $this->SetX(225.5);
+        $this->Cell(50, 15, utf8_decode("InmueblesGestión de Calidad"), 0, 0, 'R');
+        $this->Ln(5);
+        $this->SetY(7);
+        $this->SetX(225);
+        $this->Cell(50, 15, utf8_decode("InmueblesSubdirección de Inmovilizado"), 0, 0, 'R');
+        /* CUERPO */
+
+        $this->SetY(25);
+        $this->SetLineWidth(0.4);
+        /* INICIA  EN LA ESQUINA DE EMPRESA */
+        $this->Rect(164, 25, 110, 22);
+
+        /* INICIA EN LA ESQUINA DE OBRA */
+        $this->Rect(5, 32, 269, 15);
+
+        /* INICIA EN LA ESQUINA DE CLAVE */
+        $this->Rect(5, 49.5, 269, 19);
+
+        /* INICIA EN LA ESQUINA CONTENEDOR PRINCIPAL */
+        $this->Rect(5, 71, 269, 105);
+
+        /* LINEA VERTICAL DELANTE DE EMPRESA Y UBICACIÓN */
+        $this->Line(45, 32, 45, 47);
+
+        /* LINEA VERTICAL ENTRE EMPRESA, UNIDAD, PZA */
+        $this->Line(214, 25, 214, 47);
+
+        /* LINEA HORIZONTAL DEBAJO DE OBRA, UNIDAD Y ARRIBA DE UBICACIÓN Y PZA */
+        $this->Line(5, 38, 274, 38);
+
+        /* LINEA VERTICAL DELANTE DE CLAVE */
+        $this->Line(45, 49.5, 45, 68);
+        /* LINEA VERTICAL  DE PARTIDA */
+        $this->Line(90, 49.5, 90, 68);
+
+        /* LINEA HORIZONTAL DEBAJO DE CLAVE, PARTIDA Y CONCEPTO */
+        $this->Line(5, 56, 274, 56);
+
+        /* TITULOS */
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetY(33);
+        $this->SetX(20);
+        $this->Cell(55, 5, "OBRA: ", 0, 1);
+        $this->SetY(39);
+        $this->SetX(15);
+        $this->Cell(55, 5, utf8_decode("UBICACIÓN: "), 0, 1);
+        $this->SetY(26);
+        $this->SetX(163);
+        $this->Cell(55, 5, utf8_decode("EMPRESA: "), 0, 1, 'C');
+        $this->SetY(33);
+        $this->SetX(163);
+        $this->Cell(55, 5, utf8_decode("UNIDAD "), 0, 1, 'C');
+        $this->SetY(33);
+        $this->SetX(216);
+        $this->Cell(55, 5, utf8_decode("HOJA "), 0, 1, 'C');
+        $this->SetY(51);
+        $this->SetX(15);
+        $this->Cell(20, 5, utf8_decode("CLAVE "), 0, 1, 'C');
+        $this->SetY(51);
+        $this->SetX(60);
+        $this->Cell(15, 5, utf8_decode("PARTIDA "), 0, 1, 'C');
+        $this->SetY(51);
+        $this->SetX(164);
+        $this->Cell(15, 5, utf8_decode("CONCEPTO"), 0, 1, 'C');
+        /* DATOS */
+        $this->SetY(33);
+        $this->SetX(46);
+        $this->SetFont('Arial', '', 7);
+        $this->Cell(115, 5, utf8_decode($this->getCR() . ' - ' . $this->getSucursal()), 0, 1);
+        $this->SetY(26);
+        $this->SetX(214);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(60, 5, utf8_decode($this->getEmpresa()), 0, 1, 'C');
+        $this->SetY(38.5);
+        $this->SetX(46);
+        $this->SetFont('Arial', '', 7);
+        $this->MultiCell(115, 4, utf8_decode($this->getDireccion()), 0, 1);
+        $this->SetY(40);
+        $this->SetX(164);
+        $this->SetFont('Arial', '', 8);
+        $this->Cell(50, 5, utf8_decode($this->getUnidad()), 0, 1, 'C');
+        $this->SetY(40);
+        $this->SetX(219);
+        $this->Cell(0, 5, $this->PageNo() . ' DE {nb}', 0, 0, 'C');
+        $this->SetY(58);
+        $this->SetX(5);
+        $this->Cell(40, 5, utf8_decode($this->getClave()), 0, 1, 'C');
+        $this->SetY(58);
+        $this->SetX(45);
+        $this->MultiCell(45, 5, utf8_decode($this->getCategoria()), 0, 'C');
+        $this->SetY(56.5);
+        $this->SetX(90);
+        $this->SetFont('Arial', '', 5.5);
+        $this->MultiCell(184, 1.9, utf8_decode($this->getConcepto()), 0, 'J');
+
+        /* DETALLE GENERADOR */
+        /* ENCIERRA LA PALABRA croquis o anexo */
+        $this->SetFont('Arial', 'B', 8);
+        $this->Rect(5, 71, 40, 6);
+
+        $this->SetY(71);
+        $this->SetX(5);
+        $this->Cell(35, 6, utf8_decode("FOTOS "), 0, 1, 'L');
+        $this->Ln(20);
+    }
+
+// Page footer
+    function Footer() {
+
+        /* FIRMAS */
+        /* ELABORÓ */
+        $this->SetFont('Arial', '', 8);
+        $this->SetY(183);
+        $this->SetX(5);
+        $this->Cell(80, 5, utf8_decode("ELABORÓ"), 0, 1, 'C');
+
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetY(203);
+        $this->SetX(5);
+        $this->Cell(80, 5, utf8_decode("#FIRMA1"), 'T', 1, 'C');
+
+        /* REVISÓ */
+        $this->SetY(183);
+        $this->SetX(100);
+        $this->Cell(80, 5, utf8_decode("REVISÓ"), 0, 1, 'C');
+        /* LINEA HORIZONTAL REVISÓ */
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetY(203);
+        $this->SetX(100);
+        $this->Cell(80, 5, utf8_decode("#FIRMA2"), 'T', 1, 'C');
+
+        /* AUTORIZO */
+        $this->SetY(183);
+        $this->SetX(195);
+        $this->Cell(80, 5, utf8_decode("AUTORIZÓ"), 0, 1, 'C');
+        /* LINEA HORIZONTAL AUTORIZÓ */
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetY(203);
+        $this->SetX(195);
+        $this->Cell(80, 5, utf8_decode("#FIRMA3"), 'T', 1, 'C');
+
+        // Position at 1.5 cm from bottom
+        $this->SetY(-15);
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        // Page number
+//        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+    }
+
+    /*  STTER AND GETTER */
+
+    public $Logo = '';
+    public $Empresa = '';
+    public $Obra = '';
+    public $Direccion = '';
+    public $Cr = '';
+    public $Sucursal = '';
+    public $Ubicacion = '';
+    public $Unidad = '';
+    public $Clave = '';
+    public $Partida = '';
+    public $Categoria = '';
+    public $Concepto = '';
+
+    public function setLogo($Logo) {
+        $this->Logo = $Logo;
+    }
+
+    public function getLogo() {
+        return $this->Logo;
+    }
+
+    public function setDireccion($Direccion) {
+        $this->Direccion = $Direccion;
+    }
+
+    public function getDireccion() {
+        return $this->Direccion;
+    }
+
+    public function setObra($Obra) {
+        $this->Obra = $Obra;
+    }
+
+    public function getObra() {
+        return $this->Obra;
+    }
+
+    public function setEmpresa($Empresa) {
+        $this->Empresa = $Empresa;
+    }
+
+    public function getEmpresa() {
+        return $this->Empresa;
+    }
+
+    public function setCr($Cr) {
+        $this->Cr = $Cr;
+    }
+
+    public function getCr() {
+        return $this->Cr;
+    }
+
+    public function setSucursal($Sucursal) {
+        $this->Sucursal = $Sucursal;
+    }
+
+    public function getSucursal() {
+        return $this->Sucursal;
+    }
+
+    public function setUbicacion($Ubicacion) {
+        $this->Ubicacion = $Ubicacion;
+    }
+
+    public function getUbicacion() {
+        return $this->Ubicacion;
+    }
+
+    public function setUnidad($Unidad) {
+        $this->Unidad = $Unidad;
+    }
+
+    public function getUnidad() {
+        return $this->Unidad;
+    }
+
+    public function setClave($Clave) {
+        $this->Clave = $Clave;
+    }
+
+    public function getClave() {
+        return $this->Clave;
+    }
+
+    public function setPartida($Partida) {
+        $this->Partida = $Partida;
+    }
+
+    public function getPartida() {
+        return $this->Partida;
+    }
+
+    public function setCategoria($Categoria) {
+        $this->Categoria = $Categoria;
+    }
+
+    public function getCategoria() {
+        return $this->Categoria;
+    }
+
+    public function setConcepto($Concepto) {
+        $this->Concepto = $Concepto;
+    }
+
+    public function getConcepto() {
+        return $this->Concepto;
     }
 
 }

@@ -92,6 +92,7 @@ class trabajo_model extends CI_Model {
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
+            $this->db->order_by('TD.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -673,11 +674,9 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-    
-    public function getTrabajosControlByClienteXClasificacion($ID,$IDC){
-          try {
+
+    public function getTrabajosControlByClienteXClasificacion($ID, $IDC) {
+        try {
             $this->db->query("set sql_mode=''");
             $this->db->select(' T.Movimiento,T.FolioCliente ,S.Nombre,S.region,'
                     . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe '
@@ -698,9 +697,7 @@ class trabajo_model extends CI_Model {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-        
-    } 
-    
+    }
 
     /*     * ************************* Reportes------------------------------ */
 
@@ -947,29 +944,48 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
     public function getDetalleFotos($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select('TDF.IdTrabajoDetalle,TDF.Url,TDF.Observaciones,pc.ID as PreciarioConcepto_ID,
+            $this->db->select('TD.ID AS ID,pc.ID as PreciarioConcepto_ID,
                                CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
                                TD.Unidad, TD.Cantidad, PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
                                CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
                                ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion', false);
             $this->db->from('Trabajos AS T');
             $this->db->join('trabajosdetalle AS TD', 'TD.Trabajo_ID = T.ID');
-            $this->db->join('trabajodetallefotos AS TDF ', ' TDF.IdTrabajoDetalle = TD.ID', 'left');
             $this->db->join('preciarioconceptos AS pc ', ' pc.id = td.preciarioconcepto_id', 'left');
             $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');
             $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
-            $this->db->join('preciarioconceptos AS pc ', 'pc.id = td.preciarioconcepto_id', 'left');
             $this->db->join('preciariocategorias AS PCAT', 'PCAT.ID = PC.PreciarioCategorias_ID', 'left');
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
-            $this->db->where('TDF.Url is NOT NULL', NULL, FALSE);
+            $this->db->order_by('TD.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
             // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getDetalleFotosXID($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDF.*', false);
+            $this->db->from('trabajodetallefotos AS TDF');
+            $this->db->where('TDF.IdTrabajoDetalle', $ID);
+            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TDF.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str . ";\n";
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
