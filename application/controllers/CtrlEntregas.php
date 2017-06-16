@@ -117,9 +117,21 @@ class CtrlEntregas extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
-            $this->entregas_model->onModificar($ID, $this->input->post());
-
             
+            //var_dump($Estatus);
+            $this->entregas_model->onModificar($ID, $this->input->post());
+            
+            if($Estatus =='Concluido'){
+                
+                $this->trabajo_model->onEntregado($ID);
+            }
+            
+            else{
+                 $this->trabajo_model->onCancelarEntregado($ID);
+                
+            }
+
+         
             }
         catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -135,6 +147,17 @@ class CtrlEntregas extends CI_Controller {
         }
     }
     
+      public function onEliminarTrabajoDetalle() {
+        try {
+            extract($this->input->post());
+            $this->entregas_model->onEliminarTrabajoDetalle($ID);
+
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    
      public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
@@ -143,7 +166,29 @@ class CtrlEntregas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    //MEtodo para cambiar Estatus de los movimientos cuando se concluye la entrega
+   public function onEntregado() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEntregado($ID);
+
+            
+            }
+        catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     
-   
+      public function onCancelarEntregado() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onCancelarEntregado($ID);
+
+            
+            }
+        catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }

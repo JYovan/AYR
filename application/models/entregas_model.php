@@ -23,7 +23,7 @@ class entregas_model extends CI_Model {
                     . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span class=\'label label-success\'>','CONCLUIDO','</span>') "
                     . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span class=\'label label-default\'>','BORRADOR','</span>')"
                     . "ELSE CONCAT('<span class=\'label label-danger\'>','Cancelado','</span>') END) AS Estatus ,"
-                    . "E.FechaCreacion as 'Fecha' ,"
+                    . "CONCAT(' <span class=\'label label-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
                     . "Ct.Nombre as 'Cliente', "
                      . "E.Clasificacion as 'Clasificación', "
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
@@ -93,8 +93,10 @@ class entregas_model extends CI_Model {
     
       public function getDetalleByID($IDX) {
         try {
-            $this->db->select('ED.ID, T.Movimiento,T.FolioCliente AS Folio ,S.Nombre AS Sucursal,
-S.Region,CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe
+            $this->db->select('ED.ID, T.ID T_ID, T.Movimiento,CONCAT("<strong>",T.FolioCliente,"</strong>") AS Folio ,S.Nombre AS Sucursal,
+S.Region,CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
+CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarTrabajoDetalle(this,",ED.ID,")\"></span>") AS Eliminar,
+T.Importe AS ImporteSF
 from entregasdetalle ED
 left join entregas E on  Ed.Entrega_ID = E.ID
 left join trabajos T on t.id = ED.Trabajo_ID
@@ -128,6 +130,16 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
             $this->db->set('Estatus', 'Cancelado');
             $this->db->where('ID', $ID);
             $this->db->update("entregas");
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+      public function onEliminarTrabajoDetalle($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('entregasdetalle');
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

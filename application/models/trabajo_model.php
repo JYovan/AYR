@@ -442,6 +442,29 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onEntregado($ID) {
+        try {
+//            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
+             $this->db->set('T.Estatus', 'Entregado');
+            $this->db->where('T.ID = ED.TID');
+            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = ".$ID.") ED");
+    
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onCancelarEntregado($ID) {
+        try {
+            // $query = $this->db->query("CALL SP_CANCELA_ENTREGADO ('{$ID}')");
+            $this->db->set('T.Estatus', 'Concluido');
+            $this->db->where('T.ID = ED.TID');
+            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = ".$ID.") ED");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onEliminarGeneradorEditar($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -675,23 +698,22 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajosControlByClienteXClasificacion($ID, $IDC) {
+    public function getTrabajosControlByClienteXClasificacion($ID, $Clasificacion) {
         try {
-            $this->db->query("set sql_mode=''");
-            $this->db->select(' T.Movimiento,T.FolioCliente ,S.Nombre,S.region,'
+
+            $this->db->select('T.ID, T.Movimiento,T.FolioCliente AS Folio ,S.Nombre AS Sucursal,S.Region,'
                     . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe '
                     . 'FROM Trabajos T '
                     . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
             $this->db->where_in('T.Estatus', array('Concluido'));
             $this->db->where('T.Cliente_ID', $ID);
-            $this->db->where('T.Clasificacion', $IDC);
-            $this->db->group_by(array('T.Sucursal_ID'));
+            $this->db->like('T.Clasificacion', $Clasificacion);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-            //  print $str;
+            // print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {

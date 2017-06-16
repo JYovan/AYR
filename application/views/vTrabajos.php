@@ -2360,10 +2360,10 @@
 
 
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
-
-                for (var pair of frm.entries()) {
-                    console.log(pair[0] + ', ' + pair[1]);
-                }
+//
+//                for (var pair of frm.entries()) {
+//                    console.log(pair[0] + ', ' + pair[1]);
+//                }
 
 
                 var trabajo_detalle = [];

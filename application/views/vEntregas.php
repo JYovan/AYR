@@ -106,7 +106,7 @@
                         </select>
                     </div>
 
-                    <input type="text" id="Importe" name="Importe"  class="form-control hide" placeholder="" >
+
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
 
 
@@ -227,7 +227,7 @@
                         </select>
                     </div>
 
-                    <input type="text" id="Importe" name="Importe"  class="form-control hide" placeholder="" >
+
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
 
 
@@ -387,7 +387,7 @@
                 }
 
                 getTrabajosControlByClienteXClasificacion(Cliente_ID, Clasificacion);
-                mdlSeleccionarTrabajosEditar.modal('show');
+              
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
             }
@@ -443,6 +443,12 @@
         });
 
         btnNuevo.on('click', function () {
+
+            $.each(tblRegistrosXDetalleXEntrega.find("tbody tr"), function () {
+                $(this).remove();
+            });
+
+
             pnlNuevaEntrega.removeClass('hide');
             pnlDetalleNuevaEntrega.removeClass('hide');
             menuTablero.addClass('hide');
@@ -519,7 +525,7 @@
 //                }
 
                 //Agregar Importe total
-                //frm.append('Importe', ImporteTotalGlobal);
+                frm.append('Importe', 0);
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -586,10 +592,12 @@
                     frm.append('Estatus', 'Borrador');
                 }
 
+                frm.append('Importe', ImporteTotalGlobal);
                 //Solo para debuggear el formulario de la clase FormData
 //                for (var pair of frm.entries()) {
 //                    console.log(pair[0]+ ', ' + pair[1]);
 //                }
+
 
                 $.ajax({
                     url: master_url + 'onModificar',
@@ -736,7 +744,10 @@
                             pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
                             pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
                         }
+
+                        //getImporteTotal();
                         //   getImporteTotalDelTrabajoByID(trabajo.ID);
+
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -838,7 +849,7 @@
                 }
 
 
-
+//               // getImporteTotal();
 
                 //   getImporteTotalDelTrabajoByID(trabajo.ID);
             }).fail(function (x, y, z) {
@@ -889,139 +900,145 @@
                 Clasificacion: Clasificacion
             }
         }).done(function (data, x, jq) {
-  
-            $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
-         
-            var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
-                $("#tblTrabajos").find("tr").removeClass("success");
-                $("#tblTrabajos").find("tr").removeClass("warning");
-//                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
+            console.log('valid', data.length);
+
+            if (data.length > 0) {
+                  mdlSeleccionarTrabajosEditar.modal('show');
                 
-                $.ajax({
-                    url: master_url + 'getTrabajoByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function(data, x, jq) {
-                    console.log('* * * * * ** AGREGANDO CONCEPTO * * * * * * * * ');
-                    console.log(data);
+                $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
 
-                    console.log('* * * * * ** END AGREGANDO CONCEPTO * * * * * * * * ');
+                var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
+                $('#tblTrabajos tbody').on('click', 'tr', function () {
+                    $("#tblTrabajos").find("tr").removeClass("success");
+                    $("#tblTrabajos").find("tr").removeClass("warning");
 
-
-                    var DataTableConceptos = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
-                    if ($.fn.dataTable.isDataTable(DataTableConceptos)) {
-                        console.log('Datatable')
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
                     } else {
-                        console.log('NO Datatable')
+                        selected.splice(index, 1);
                     }
-                    /**AQUI FALTA VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
-                    var has_id = true;
-                    console.log('AGREGANDO.. CONCEPTO PNL EDITAR DETALLE ');
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                    console.log(dtm);
+                    console.log(dtm[0]);
+                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                    temp = parseInt(dtm[0]);
 
-
-                    if (pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr").length > 0) {
-                        $.each(pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr"), function() {
-                            var row_status = $(this).find("td").eq(0).text();
-
-                            if (parseInt(row_status) === parseInt(temp)) {
-                                has_id = false;
-                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
-                                return false;
-                            }
-                        });
-                    }
-
-
-                    if (has_id) {
-                        $.ajax({
-                            url: master_url + 'getTrabajoByID',
-                            type: "POST",
-                            dataType: "JSON",
-                            data: {
-                                ID: parseInt(dtm[0])
-                            }
-                        }).done(function(data, x, jq) {
-                            console.log(pnlEditarEntrega.find("#ID").val());
-
-                            if (data[0] !== undefined && data.length > 0) {
-                                var dtm = data[0];
-                                var frm = new FormData();
-                                frm.append('Entrega_ID',pnlEditarEntrega.find("#ID").val());
-                                frm.append('Trabajo_ID', dtm.ID);
-                                frm.append('Renglon', pnlDetalleEditarEntrega.find("table tr").length);
-                            
-                                $.ajax({
-                                    url: master_url + 'onAgregarDetalleEditar',
-                                    type: "POST",
-                                    cache: false,
-                                    contentType: false,
-                                    processData: false,
-                                    data: frm
-                                }).done(function(data, x, jq) {
-
-                                    getDetalleByID(pnlEditarEntrega.find("#ID").val());
-                                }).fail(function(x, y, z) {
-                                    console.log(x, y, z);
-                                }).always(function() {
-                                    HoldOn.close();
-                                });
-
-                          
-                            } 
-                            else {
-                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
-                            }
-                        }).fail(function(x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function() {
-                            HoldOn.close();
-                        });
-                        if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
-                            mdlSeleccionarTrabajosEditar.modal('hide');
+                    $.ajax({
+                        url: master_url + 'getTrabajoByID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: temp
                         }
-                    }
+                    }).done(function (data, x, jq) {
 
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
+                        /**AQUI  VALIDA QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
+                        var has_id = true;
+                        console.log('AGREGANDO.. CONCEPTO PNL EDITAR DETALLE ');
+
+
+                        if (pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr").length > 0) {
+                            $.each(pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega tbody tr"), function () {
+
+                                var row_status = $(this).find("td").eq(1).text();
+
+                                console.log(row_status);
+                                if (parseInt(row_status) === parseInt(temp)) {
+                                    has_id = false;
+                                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE TRABAJO YA HA SIDO AGREGADO', 'danger');
+                                    return false;
+                                }
+                            });
+                        }
+
+                        if (has_id) {
+                            $.ajax({
+                                url: master_url + 'getTrabajoByID',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: parseInt(dtm[0])
+                                }
+                            }).done(function (data, x, jq) {
+                                console.log(pnlEditarEntrega.find("#ID").val());
+
+                                if (data[0] !== undefined && data.length > 0) {
+                                    var dtm = data[0];
+                                    var frm = new FormData();
+                                    frm.append('Entrega_ID', pnlEditarEntrega.find("#ID").val());
+                                    frm.append('Trabajo_ID', dtm.ID);
+                                    frm.append('Renglon', pnlDetalleEditarEntrega.find("table tr").length);
+
+                                    $.ajax({
+                                        url: master_url + 'onAgregarDetalleEditar',
+                                        type: "POST",
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        data: frm
+                                    }).done(function (data, x, jq) {
+
+                                        getDetalleByID(pnlEditarEntrega.find("#ID").val());
+                                    }).fail(function (x, y, z) {
+                                        console.log(x, y, z);
+                                    }).always(function () {
+                                        HoldOn.close();
+                                    });
+
+
+                                } else {
+                                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
+                                }
+                            }).fail(function (x, y, z) {
+                                 mdlSeleccionarTrabajosEditar.modal('hide');
+                                HoldOn.close();
+                                console.log(x, y, z);
+                            }).always(function () {
+                                HoldOn.close();
+                            });
+                            if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
+                                mdlSeleccionarTrabajosEditar.modal('hide');
+                            }
+                        }
+
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
                 });
-                
-                
-                
-            });
-    
+
+            }
+            else{
+
+                mdlSeleccionarTrabajosEditar.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
+                HoldOn.close();
+            
+            }
+
+
+
 
         }).fail(function (x, y, z) {
-            HoldOn.close();
-             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
         }).always(function () {
             HoldOn.close();
         });
     }
 
 
-       /*PANEL EDITAR DETALLE */
+    /*PANEL EDITAR DETALLE */
     var tempDetalle = 0;
     function getDetalleByID(IDX) {
+        var ImporteTotal = pnlDetalleEditarEntrega.find("#ImporteTotal");
+        var total = 0.0;
+
+
         $.ajax({
             url: master_url + 'getEntregaDetalleByID',
             type: "POST",
@@ -1029,26 +1046,37 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
-            console.log('resultado',data);
+        }).done(function (data, x, jq) {
+
             if (data.length > 0) {
                 pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
                 var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
                 var tfoot = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tfoot th');
                 thead.eq(0).addClass("hide");
                 tfoot.eq(0).addClass("hide");
-            
-                $.each(pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody tr'), function(k, v) {
+                thead.eq(1).addClass("hide");
+                tfoot.eq(1).addClass("hide");
+                thead.eq(8).addClass("hide");
+                tfoot.eq(8).addClass("hide");
+                $.each(pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
-                   
+                    td.eq(1).addClass("hide");
+                    td.eq(8).addClass("hide");
+
+                    total += parseFloat(td.eq(8).text());
+                    ImporteTotalGlobal = total;
+
                 });
-               
+                //Seteamos el importeTotal
+                ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 2, '.', ', ') + '</span>');
+
+
                 var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptions);
-                pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody').on('click', 'tr', function() {
+                pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody').on('click', 'tr', function () {
                     pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("success");
                     pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("warning");
-                    //                console.log(this)
+
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -1063,16 +1091,49 @@
                     tempDetalle = parseInt(dtm[0]);
                 });
 
-              
+
             } else {
                 pnlDetalleEditarEntrega.find("#Conceptos").html("");
             }
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
+
+
+
+    /*FUNCIONES DE EDICION EN EL GENERADOR*/
+    function onEliminarTrabajoDetalle(evt, IDX) {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ELIMINANDO...'
+        });
+        $.ajax({
+            url: master_url + 'onEliminarTrabajoDetalle',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            var row = $(evt).parent().parent().find("td");
+
+            $(evt).parent().parent().remove();
+            getDetalleByID(pnlEditarEntrega.find("#ID").val());
+
+            //onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
+        }).fail(function (x, y, z) {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+
+    var ImporteTotalGlobal = 0;
+
+
 
 </script>
 
