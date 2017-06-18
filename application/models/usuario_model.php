@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
+ * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
  */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -12,6 +12,39 @@ class usuario_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+    }
+
+    public function getRecordsEntrega() {
+        try {
+            $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
+
+            $sqlsrv->select('E.*', false);
+            $sqlsrv->from('entregas AS E');
+            $query = $sqlsrv->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $sqlsrv->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onInsertarEntregas($array) {
+        try {
+            $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
+            $sqlsrv->insert("entregas", $array);
+//            print $str = $sqlsrv->last_query();
+            $query = $sqlsrv->query('SELECT SCOPE_IDENTITY() AS IDL');
+            $row = $query->row_array();
+//            PRINT "\n ID IN MODEL: $LastIdInserted \n";
+            return $row['IDL'];
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
 
     public function getRecords() {
@@ -56,8 +89,6 @@ class usuario_model extends CI_Model {
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
             return $LastIdInserted;
-            
-            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -72,9 +103,10 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'Inactivo'); 
+            $this->db->set('Estatus', 'Inactivo');
             $this->db->where('ID', $ID);
             $this->db->update("usuarios");
 //            print $str = $this->db->last_query();

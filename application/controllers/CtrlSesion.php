@@ -14,10 +14,40 @@ class CtrlSesion extends CI_Controller {
         $this->load->model('trabajo_model');
     }
 
+    public function getRecordsEntrega() {
+        try {
+            $data = $this->usuario_model->getRecordsEntrega();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onInsertarEntregas() {
+        try {
+            extract(filter_input_array(INPUT_POST));
+            $data = array(
+                'Movimiento' => $Movimiento,
+                'FechaCreacion' => $FechaCreacion,
+                'NoEntrega' => $NoEntrega,
+                'Estatus' => 'ACTIVO',
+                'Cliente_ID' => $Cliente_ID,
+                'Clasificacion' => $Clasificacion,
+                'Importe' => $Importe,
+                'Usuario_ID' => 2
+            );
+            $IDX = $this->usuario_model->onInsertarEntregas($data);
+            print "ID: $IDX";
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
+            $this->load->view('vPrincipal');
             $this->load->view('vFooter');
         } else {
             $this->load->view('vEncabezado');
@@ -65,7 +95,7 @@ class CtrlSesion extends CI_Controller {
 
     public function onReporteFotografico() {
 
-         // Creación del objeto de la clase heredada
+        // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
 
         $pdf->AliasNbPages();
@@ -207,10 +237,10 @@ class CtrlSesion extends CI_Controller {
             /* ENCIERRA LA PALABRA croquis o anexo */
             $pdf->SetFont('Arial', 'B', 8);
             /* ENCIERRA LA PALABRA FOTOS */
-                $pdf->Rect(5, 71, 40, 6);
-                 $pdf->SetY(71);
-                $pdf->SetX(5);
-                $pdf->Cell(35, 6, utf8_decode("FOTOS "), 0, 1, 'C');
+            $pdf->Rect(5, 71, 40, 6);
+            $pdf->SetY(71);
+            $pdf->SetX(5);
+            $pdf->Cell(35, 6, utf8_decode("FOTOS "), 0, 1, 'C');
 
             /* DETALLE IMAGENES */
 
@@ -284,26 +314,24 @@ class CtrlSesion extends CI_Controller {
         }
 
 
-      
+
         /* FIN CUERPO */
         $path = 'uploads/Reportes/' . $ID;
         // print $path;
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-        $file_name = "REPORTE_FOTOGRAFICO" ;
+        $file_name = "REPORTE_FOTOGRAFICO";
         $url = $path . '/' . $file_name . '.pdf';
 
         $pdf->Output($url);
         print base_url() . $url;
     }
 
-  
-
 }
 
 class PDF extends FPDF {
-    
+
 }
 
 class PDFC extends FPDF {
