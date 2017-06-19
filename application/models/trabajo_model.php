@@ -978,15 +978,17 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
             $this->db->join('preciariocategorias AS PCAT', 'PCAT.ID = PC.PreciarioCategorias_ID', 'left');
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
+            $this->db->join('trabajodetallefotos AS TDF', 'TDF.IdTrabajoDetalle = TD.ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
+            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->order_by('TD.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-            // print $str;
+           // print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -1015,4 +1017,35 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
+    
+    /*Excel conceptos por entrega (TARIFARIO)*/
+    
+    
+    public function getTarifarioXEntrega($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('pc.Clave,pc.Descripcion,td.Cantidad AS Cantidad,
+pc.Unidad, pc.Costo AS "Precio" , sum(td.Importe) AS Importe , E.Importe AS ImporteTotal
+FROM entregas E
+inner join entregasdetalle ed on ed.Entrega_ID = E.ID
+inner join trabajos t on t.id = ed.Trabajo_ID
+inner join trabajosdetalle td on td.Trabajo_ID = t.ID 
+inner join preciarioconceptos pc on pc.ID = td.PreciarioConcepto_ID', false);
+           // $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('E.ID', $ID);
+            $this->db->group_by(array('td.PreciarioConcepto_ID'));
+            $this->db->order_by('pc.ID', 'ASC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
 }
