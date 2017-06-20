@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://project.ayr.mx/');
+header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlPreciarios extends CI_Controller {

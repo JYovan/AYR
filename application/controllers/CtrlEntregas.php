@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://project.ayr.mx/');
+header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . "/third_party/PHPExcel.php";
@@ -64,7 +64,7 @@ class CtrlEntregas extends CI_Controller {
             extract($this->input->post());
 
 
-            $data = $this->trabajo_model->getTrabajosControlByClienteXClasificacion($Cliente_ID, $Clasificacion);
+            $data = $this->trabajo_model->getTrabajosControlByClienteXClasificacion($Cliente_ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -188,14 +188,10 @@ class CtrlEntregas extends CI_Controller {
 
             $datosGenerales = $fields[0];
             $objPHPExcel = new Excel();
-// Add some data
+
 
             $objPHPExcel->setActiveSheetIndex(0);
             // Field names in the first row
-
-
-
-
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'Clave');
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Concepto');
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'Cantidad');
@@ -206,13 +202,11 @@ class CtrlEntregas extends CI_Controller {
             $row = 2;
 
             foreach ($fields as $key => $value) {
-                
-                $objPHPExcel->getActiveSheet()->getStyle('C'.$row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
-                $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
-                $objPHPExcel->getActiveSheet()->getStyle('F'.$row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
-               
-                
-                
+                //Set number format
+                $objPHPExcel->getActiveSheet()->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+                $objPHPExcel->getActiveSheet()->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                $objPHPExcel->getActiveSheet()->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                // Add some data
                 $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->Clave);
                 $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->Descripcion);
                 $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Cantidad);
@@ -222,7 +216,7 @@ class CtrlEntregas extends CI_Controller {
 
                 $row++;
             }
-
+            //Totales
             $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, 'Total');
             $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $datosGenerales->ImporteTotal);
 
@@ -231,10 +225,78 @@ class CtrlEntregas extends CI_Controller {
             $objPHPExcel->getActiveSheet()->setTitle('Hoja1');
 
 // Save Excel 2007 file
-            $path= 'uploads/Tarifarios/Tarifario de Conceptos.xlsx';
+            $path = 'uploads/Tarifarios/Tarifario de Conceptos.xlsx';
             $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 
-            $objWriter->save(str_replace(__FILE__,$path, __FILE__));
+            $objWriter->save(str_replace(__FILE__, $path, __FILE__));
+
+            print base_url() . $path;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getDesgloseXEntrega() {
+        try {
+            $ID = $_POST["ID"];
+            $fields = $this->trabajo_model->getDesgloseXEntrega($ID);
+
+            $datosGenerales = $fields[0];
+            $objPHPExcel = new Excel();
+
+
+            $objPHPExcel->setActiveSheetIndex(0);
+            // Field names in the first row
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, '#');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'REPORTE');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'NOMBRE DEL SITIO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'CR');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'DIVICIÓN');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'FECHA DE ORIGEN');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, 1, 'CLASIFICACIÓN');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, 1, 'TRABAJO REALIZADO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, 1, 'TRABAJO REQUERIDO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, 1, 'FECHA LLEGADA');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(10, 1, 'FECHA FIN ACTIVIDAD');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(11, 1, 'IMPORTE');
+
+            $row = 2;
+            $contador=1;
+            foreach ($fields as $key => $value) {
+                //Set number format
+                $objPHPExcel->getActiveSheet()->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                // Add some data
+                $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $contador);
+                $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->FolioCliente);
+                $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Sucursal);
+                $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->CR);
+                $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $value->Region);
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->FechaOrigen);
+                $objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $value->Clasificacion);
+                $objPHPExcel->getActiveSheet()->setCellValue('H' . $row, $value->TrabajoSolicitado);
+                $objPHPExcel->getActiveSheet()->setCellValue('I' . $row, $value->TrabajoRequerido);
+                $objPHPExcel->getActiveSheet()->setCellValue('J' . $row, $value->FechaLlegada);
+                $objPHPExcel->getActiveSheet()->setCellValue('K' . $row, $value->FechaSalida);
+                $objPHPExcel->getActiveSheet()->setCellValue('L' . $row, $value->Importe);;
+
+                $row++;
+                $contador++;
+            }
+            $objPHPExcel->getActiveSheet()->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+               
+            //Totales
+            $objPHPExcel->getActiveSheet()->setCellValue('K' . $row, 'Total');
+            $objPHPExcel->getActiveSheet()->setCellValue('L' . $row, $datosGenerales->ImporteTotal);
+
+            $objPHPExcel->setActiveSheetIndex(0);
+// Rename sheet
+            $objPHPExcel->getActiveSheet()->setTitle('Hoja1');
+
+// Save Excel 2007 file
+            $path = 'uploads/Tarifarios/Desglose de Reportes.xlsx';
+            $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+
+            $objWriter->save(str_replace(__FILE__, $path, __FILE__));
 
             print base_url() . $path;
         } catch (Exception $exc) {

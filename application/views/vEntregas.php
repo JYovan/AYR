@@ -16,6 +16,30 @@
     </div>
 </div>
 
+<!--Reportes-->
+<div id="mdlReportesEditarEntrega" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">IMPRIMIR REPORTES</h4>
+        </div>
+        <div class="modal-body">
+            Selecciona el reporte que deseas imprimir
+
+            <div class="col-md-12">
+                <br>
+            </div>
+            <div id="reportes" class="dt-buttons">
+                <button id="btnTarifario" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>TARIFARIO</button>
+                <button id="btnDesglose" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>DESGLOSE DE REPORTES</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <!--PANEL NUEVO-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlNuevaEntrega">
@@ -40,9 +64,7 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)" >
                             <span class="fa fa-print " ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos (Debe guardar el movimiento)">
-                            <span class="fa fa-download"></span>
-                        </button>
+                      
                     </span>
 
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -100,7 +122,6 @@
                         <label for="">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
-                            <option value="CERRAJERÍA">CERRAJERÍA</option>
                             <option value="MOBILIARIO">MOBILIARIO</option>
                             <option value="INMUEBLE">INMUEBLE</option>
                         </select>
@@ -165,9 +186,7 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarEntrega" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
-                        <button class="btn btn-default CustomColorIcon" id="btnTarifario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
-                            <span class="fa fa-download"></span>
-                        </button>
+                       
                     </span>
 
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -221,7 +240,6 @@
                         <label for="">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
-                            <option value="CERRAJERÍA">CERRAJERÍA</option>
                             <option value="MOBILIARIO">MOBILIARIO</option>
                             <option value="INMUEBLE">INMUEBLE</option>
                         </select>
@@ -370,10 +388,22 @@
     var TrabajosXClienteIDXClasificacion = mdlSeleccionarTrabajosEditar.find("#TrabajosXClienteIDXClasificacion");
 
 
-    var btnTarifario = pnlEditarEntrega.find("#btnTarifario");
-
+    
+    
+    var btnImprimirReportesEditarEntrega = pnlEditarEntrega.find("#btnImprimirReportesEditarEntrega");
+    var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
+    
+    var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
+    var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
     $(document).ready(function () {
 
+
+        //Reportes
+         btnImprimirReportesEditarEntrega.on("click", function () {
+             
+            
+             mdlReportesEditarEntrega.modal('show');
+         });
 
         //Tarifario
 
@@ -399,10 +429,33 @@
             }).always(function () {
                 HoldOn.close();
             });
-
-
-
         });
+        
+        
+        btnDesglose.on("click", function () {
+
+            HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ESPERE...'
+            });
+
+            $.ajax({
+                url: master_url + 'getDesgloseXEntrega',
+                type: "POST",
+                data: {
+                    ID: pnlEditarEntrega.find("#ID").val()
+                }
+            }).done(function (data, x, jq) {
+                window.open(data, '_blank');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'DESGLOSE GENERADO', 'success');
+
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+        
 
         //Boton de nuevo en detalle nuevo
         btnNuevoRenglonEntregaNuevo.on("click", function () {
@@ -412,14 +465,10 @@
         //Boton de neuvo en detalle editar
         btnNuevoRenglonEntregaEditar.on("click", function () {
             var Cliente_ID = pnlEditarEntrega.find("#Cliente_ID").val();
-            var Clasificacion = pnlEditarEntrega.find("#Clasificacion").val();
             if (Cliente_ID !== undefined && Cliente_ID !== '' && Cliente_ID > 0) {
-                if (Clasificacion !== Clasificacion && Clasificacion !== '' && Clasificacion > 0) {
+                
 
-                    Clasificacion = '';
-                }
-
-                getTrabajosControlByClienteXClasificacion(Cliente_ID, Clasificacion);
+                getTrabajosControlByClienteXClasificacion(Cliente_ID);
 
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
@@ -915,7 +964,7 @@
         });
     }
     /*Trae los movimientos para el detalle*/
-    function getTrabajosControlByClienteXClasificacion(Cliente_ID, Clasificacion) {
+    function getTrabajosControlByClienteXClasificacion(Cliente_ID) {
         temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
@@ -926,11 +975,9 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                Cliente_ID: Cliente_ID,
-                Clasificacion: Clasificacion
+                Cliente_ID: Cliente_ID
             }
         }).done(function (data, x, jq) {
-           
 
             if (data.length > 0) {
                 mdlSeleccionarTrabajosEditar.modal('show');
@@ -1015,8 +1062,10 @@
                                         HoldOn.close();
                                     });
 
-
-                                } else {
+                                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL TRABAJO', 'success');
+                                } 
+                                
+                                else {
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {

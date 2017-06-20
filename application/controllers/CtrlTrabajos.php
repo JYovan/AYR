@@ -1,9 +1,10 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://project.ayr.mx/');
+header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
+require_once APPPATH . "/third_party/PHPExcel.php";
 
 class CtrlTrabajos extends CI_Controller {
 
@@ -66,6 +67,17 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getConceptoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+    public function getDetalleAbiertoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getDetalleAbiertoByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -223,6 +235,16 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function getTrabajoDetalleAbiertoByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoDetalleAbiertoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getGeneradoresDetalleXConceptoID() {
         try {
@@ -269,7 +291,21 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
+     public function onModificarConceptoAbierto() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onModificarConceptoAbierto($ID, $this->input->post());
 
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+
+    
+    
     public function onAgregarGenerador() {
         try {
             extract($this->input->post());
@@ -341,6 +377,16 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             print json_encode($this->trabajo_model->onModificarImportePorTrabajo($ID));
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+     public function onModificarImportePorTrabajoAbierto() {
+        try {
+            extract($this->input->post());
+            print json_encode($this->trabajo_model->onModificarImportePorTrabajoAbierto($ID));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -526,6 +572,45 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+     public function onEliminarConceptoXDetalleAbierto() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onEliminarConceptoAbierto($ID);
+          
+            $data = $this->trabajo_model->getFotosXTrabajoDetalleID($ID);
+            foreach ($data as $key => $foto) {
+                if (isset($foto->Url)) {
+                    unlink($foto->Url);
+                    rmdir("uploads/Trabajos/Fotos/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarFotosXConcepto($ID);
+
+            $data = $this->trabajo_model->getCroquisXTrabajoDetalleID($ID);
+            foreach ($data as $key => $croquis) {
+                if (isset($croquis->Url)) {
+                    unlink($croquis->Url);
+                    rmdir("uploads/Trabajos/Croquis/T" . $croquis->IdTrabajo . "/TD" . $croquis->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarCroquisXConcepto($ID);
+
+            $data = $this->trabajo_model->getAnexosXTrabajoDetalleID($ID);
+            foreach ($data as $key => $anexo) {
+                if (isset($anexo->Url)) {
+                    unlink($anexo->Url);
+                    rmdir("uploads/Trabajos/Anexos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarAnexosXConcepto($ID);
+          
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
 
     public function getPrecioPorConceptoID() {
         try {
@@ -572,6 +657,28 @@ class CtrlTrabajos extends CI_Controller {
                 'Moneda' => (isset($Moneda)) ? $Moneda : ""
             );
             $ID = $this->trabajo_model->onAgregarDetalle($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
+     public function onAgregarDetalleAbiertoEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Trabajo_ID' => $Trabajo_ID,
+                'Clave' =>(isset($Clave)) ? $Clave : "",
+                'Descripcion' =>(isset($Descripcion)) ? $Descripcion : "",
+                'Cantidad' => (isset($Cantidad)) ? $Cantidad : "",
+                'Unidad' => (isset($Unidad)) ? $Unidad : "",
+                'Moneda' => (isset($Moneda)) ? $Moneda : "",
+                'Precio' => (isset($Precio)) ? $Precio : "",
+                'ImporteAbierto' => (isset($ImporteAbierto)) ? $ImporteAbierto : "",
+                'IntExt' => (isset($IntExt)) ? $IntExt : ""
+                
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleAbierto($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -713,9 +820,404 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
+    
+     public function getTarifarioXMovimiento() {
+        try {
+            $ID = $_POST["ID"];
+            $fields = $this->trabajo_model->getTarifarioXMovimiento($ID);
+
+            $datosGenerales = $fields[0];
+            $objPHPExcel = new Excel();
+
+
+            $objPHPExcel->setActiveSheetIndex(0);
+            // Field names in the first row
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'Clave');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Concepto');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'Cantidad');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'Unidad');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'P.U.');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'Total');
+
+            $row = 2;
+
+            foreach ($fields as $key => $value) {
+                //Set number format
+                $objPHPExcel->getActiveSheet()->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+                $objPHPExcel->getActiveSheet()->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                $objPHPExcel->getActiveSheet()->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                // Add some data
+                $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->Clave);
+                $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->Descripcion);
+                $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Cantidad);
+                $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->Unidad);
+                $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $value->Precio);
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->Importe);
+
+                $row++;
+            }
+            //Totales
+            $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, 'Total');
+            $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $datosGenerales->ImporteTotal);
+
+            $objPHPExcel->setActiveSheetIndex(0);
+// Rename sheet
+            $objPHPExcel->getActiveSheet()->setTitle('Hoja1');
+
+// Save Excel 2007 file
+            $path = 'uploads/Tarifarios/Tarifario de Conceptos.xlsx';
+            $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+
+            $objWriter->save(str_replace(__FILE__, $path, __FILE__));
+
+            print base_url() . $path;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
 
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
+
+    public function onReporteFin49Conceptos() {
+        //conexion a bd
+        try {
+
+            $ID = $_POST['ID'];
+
+            $trabajo = $this->trabajo_model->getFin49ConceptosByID($ID);
+
+
+            // $trabajo[0]->Movimiento;
+            // Creación del objeto de la clase heredada
+            $pdf = new PDFFin49('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+
+            $pdf->AliasNbPages();
+            $pdf->AddPage();
+            $pdf->SetAutoPageBreak(false, 300);
+            $pdf->SetLineWidth(0.4);
+
+            /* ENCABEZADO */
+            /* Primer Recuerdo contenedor */
+            /* INICIA  EN LA ESQUINA */
+            $pdf->Rect(5, 10, 205, 17);
+
+            /* SEGUNDO RECUADRO */
+            $pdf->Rect(6, 11, 63, 15);
+            /* TERCER RECUADRO */
+            $pdf->Rect(70, 11, 139, 15);
+            // Logo
+            $pdf->Image(base_url() . $trabajo[0]->RutaLogo, 10, 12, 48);
+
+            // Arial bold 15
+            $pdf->SetFont('Arial', '', 7);
+            // Título
+            $pdf->SetY(5);
+            // Movernos a la derecha
+            $pdf->SetX(5);
+            $pdf->SetTextColor(167, 167, 167);
+            $pdf->Cell(205, 5, utf8_decode("FIN­049 Autorización De Items Adicionales Y/O Fuera De Catálogo De Precios Unitarios"), 0, 0, 'R');
+            $pdf->SetTextColor(0, 0, 0);
+
+            //Texto del segundo recuadro
+
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetY(10);
+            $pdf->SetX(158);
+            $pdf->Cell(50, 13, utf8_decode("Gestión De Calidad Ulises"), 0, 0, 'R');
+            $pdf->Ln(5);
+            $pdf->SetY(14);
+            $pdf->SetX(158);
+            $pdf->Cell(50, 13, utf8_decode("Dirección De Construcción"), 0, 0, 'R');
+            $pdf->Ln(5);
+
+            /* CUERPO */
+            $pdf->SetFillColor(208, 225, 248);
+            $pdf->SetY(30);
+            $pdf->SetX(5);
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->Cell(205, 5, utf8_decode("Notificación De Items Adicionales Y/O Fuera De Catálogo De Precios Unitarios"), 1, 1, 'C', true);
+
+            /* PRIMER PARTE ENCABEZADO */
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->SetY(37);
+            $pdf->SetX(125);
+            $pdf->Cell(30, 5, utf8_decode("FECHA:"), 0, 1, 'R');
+
+            $pdf->SetY(37);
+            $pdf->SetX(155);
+            $pdf->Cell(55, 5, utf8_decode($trabajo[0]->FechaCreacion), 'B', 1, 'C');
+
+            $pdf->SetFillColor(169, 244, 251);
+            $pdf->SetY(43);
+            $pdf->SetX(125);
+            $pdf->Cell(30, 5, utf8_decode("TIPO DE CONCEPTO:"), 0, 1, 'R', true);
+
+            $pdf->SetY(43);
+            $pdf->SetX(155);
+            $pdf->Cell(55, 5, utf8_decode($trabajo[0]->TipoConcepto), 'B', 1, 'C', true);
+
+            /* SEGUNDA PARTE ENCABEZADO */
+            $pdf->SetFont('Arial', '', 6);
+            $pdf->SetY(50);
+            $pdf->SetX(5);
+            $pdf->Cell(20, 5, utf8_decode("CR & SUCURSAL:"), 0, 1, 'R');
+            $pdf->SetY(50);
+            $pdf->SetX(25);
+            $pdf->Cell(55, 5, utf8_decode($trabajo[0]->CR . ' - ' . $trabajo[0]->NombreSucursal), 'B', 1, 'C');
+
+            $pdf->SetY(50);
+            $pdf->SetX(80);
+            $pdf->Cell(30, 5, utf8_decode("EMPRESA CONTRATISTA:"), 0, 1, 'R');
+            $pdf->SetY(50);
+            $pdf->SetX(110);
+            $pdf->Cell(45, 5, utf8_decode($trabajo[0]->Empresa), 'B', 1, 'C');
+
+            $pdf->SetY(50);
+            $pdf->SetX(155);
+            $pdf->Cell(20, 5, utf8_decode("INICIO DE OBRA:"), 0, 1, 'R');
+            $pdf->SetY(50);
+            $pdf->SetX(175);
+            $pdf->Cell(35, 5, utf8_decode($trabajo[0]->FechaInicio), 'B', 1, 'C');
+
+
+            $pdf->SetY(55);
+            $pdf->SetX(5);
+            $pdf->Cell(20, 5, utf8_decode("TIPO DE OBRA:"), 0, 1, 'R');
+            $pdf->SetY(55);
+            $pdf->SetX(25);
+            $pdf->Cell(55, 5, utf8_decode($trabajo[0]->TipoObra), 'B', 1, 'C');
+
+            $pdf->SetY(55);
+            $pdf->SetX(80);
+            $pdf->Cell(30, 5, utf8_decode("GERENCIA DE PROY:"), 0, 1, 'R');
+            $pdf->SetY(55);
+            $pdf->SetX(110);
+            $pdf->Cell(45, 5, utf8_decode($trabajo[0]->EmpresaSupervisora), 'B', 1, 'C');
+
+            $pdf->SetY(55);
+            $pdf->SetX(155);
+            $pdf->Cell(20, 5, utf8_decode("FIN DE OBRA:"), 0, 1, 'R');
+            $pdf->SetY(55);
+            $pdf->SetX(175);
+            $pdf->Cell(35, 5, utf8_decode($trabajo[0]->FechaFin), 'B', 1, 'C');
+
+
+            /* TERCERA PARTE */
+            $pdf->SetFont('Arial', 'B', 6.5);
+            $pdf->SetY(65);
+            $pdf->SetX(5);
+            $pdf->Cell(20, 5, utf8_decode("A.­ PARTIDA A LA CUAL CORRESPONDE EL CONCEPTO(S):"), 0, 1, 'L');
+
+
+            $pdf->Image(base_url() . 'img/PARTIDAS_FIN49.png', 40, 70, 120);
+
+            $pdf->SetFont('Arial', '', 6.5);
+            $pdf->SetY(125);
+            $pdf->SetX(5);
+            $pdf->Cell(205, 3, utf8_decode("NOTA: UNA VEZ IDENTIFICADO EL CONCEPTO LA SUPERVISION EXTERNA DEBERA PRESENTAR PROPUESTA TECNICA CON CROQUIS Y TRES COTIZACIONES LO
+                                            ANTERIOR "), 0, 1, 'L');
+            $pdf->SetY(128);
+            $pdf->SetX(5);
+            $pdf->Cell(205, 3, utf8_decode("GESTIONADO CON EL CONTRATISTA DE OBRA PARA SU AUTORIZACION"), 0, 1, 'L');
+
+            $pdf->SetFont('Arial', 'B', 6.5);
+            $pdf->SetY(132);
+            $pdf->SetX(5);
+            $pdf->Cell(205, 5, utf8_decode("B.­ INDICAR EL/LOS CONCEPTO(S)::"), 0, 1, 'L');
+
+
+            /* ENCABEZADO DETALLE TITULOS */
+            $pdf->SetFont('Arial', 'B', 7);
+            $pdf->SetFillColor(10, 54, 112);
+            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetY(138);
+            $pdf->SetX(5);
+            $pdf->Cell(25, 5, utf8_decode("PARTIDA"), 1, 1, 'C', true);
+            $pdf->SetY(138);
+            $pdf->SetX(30);
+            $pdf->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C', true);
+            $pdf->SetY(138);
+            $pdf->SetX(45);
+            $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C', true);
+            $pdf->SetY(138);
+            $pdf->SetX(155);
+            $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C', true);
+            $pdf->SetY(138);
+            $pdf->SetX(170);
+            $pdf->Cell(20, 5, utf8_decode("CANTIDAD"), 1, 1, 'C', true);
+            $pdf->SetY(138);
+            $pdf->SetX(190);
+            $pdf->Cell(20, 5, utf8_decode("PRECIO"), 1, 1, 'C', true);
+
+
+            /* DETALLE */
+            $Y = 143;
+            $top = 0;
+            $page_size = 75;
+
+
+            
+            foreach ($trabajo as $key => $value) {
+                
+                $pdf->SetTextColor(0, 0, 0);
+                $pdf->SetFont('Arial', '', 7);
+                $Ancho = $pdf->GetStringWidth(utf8_decode($value->Descripcion));
+                $numero_lineas = $Ancho / (103 ); //El ancho de multicell -5 de la altura
+                $numero_lineas = ceil($numero_lineas);
+                $AlturaLinea = 4;
+                $AlturaCelda = $numero_lineas * $AlturaLinea;
+                $AlturaCelda = ceil($AlturaCelda);
+
+                /* DETALLE DATOS */
+                
+                $pdf->SetY($Y);
+                $pdf->SetX(5);
+                $pdf->cell(25, $AlturaCelda, utf8_decode($value->ClaveCategoria), 1, 0, 'C');
+                
+                $pdf->SetY($Y);
+                $pdf->SetX(30);
+                $pdf->cell(15, $AlturaCelda, utf8_decode($value->Clave), 1, 0, 'C');
+
+                $pdf->SetY($Y);
+                $pdf->SetX(45);
+                $pdf->MultiCell(110, 4, utf8_decode($value->Descripcion), 1, 'P', false);
+
+                $H = $pdf->GetY();
+
+                $pdf->SetY($Y);
+                $pdf->SetX(155);
+                $pdf->cell(15, $AlturaCelda, utf8_decode($value->Unidad), 1, 0, 'C');
+                $pdf->SetY($Y);
+                $pdf->SetX(170);
+                $pdf->cell(20, $AlturaCelda, utf8_decode($value->Cantidad), 1, 0, 'C');
+                $pdf->SetY($Y);
+                $pdf->SetX(190);
+                $pdf->cell(20, $AlturaCelda, "$ " . number_format($value->Precio, 2), 1, 0, 'C');
+              
+
+                $Y = $H;
+                $top += $AlturaCelda;
+
+                if ($top > $page_size) {
+                    $pdf->AddPage();
+
+                    /* ENCABEZADO */
+
+                    $CURRENT_Y = $pdf->GetY();
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetLineWidth(0.4);
+
+
+                    $pdf->SetFont('Arial', 'B', 7);
+                    $pdf->SetFillColor(10, 54, 112);
+                    $pdf->SetTextColor(255, 255, 255);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(5);
+                    $pdf->Cell(25, 5, utf8_decode("PARTIDA"), 1, 1, 'C', true);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(30);
+                    $pdf->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C', true);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(45);
+                    $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C', true);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(155);
+                    $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C', true);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(170);
+                    $pdf->Cell(20, 5, utf8_decode("CANTIDAD"), 1, 1, 'C', true);
+                    $pdf->SetY($CURRENT_Y);
+                    $pdf->SetX(190);
+                    $pdf->Cell(20, 5, utf8_decode("PRECIO"), 1, 1, 'C', true);
+
+                    $Y = 15;
+                    $top = 0;
+                    $page_size = 220;
+                }
+            }
+
+           
+                 /* FIRMAS PRIMER BLOQUE */
+            /* FIRMA 1 */
+            $Y= $pdf->GetY()+30;
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->SetFont('Arial', 'B', 7.5);
+            $pdf->Rect(5, $Y, 63, 25);
+            $pdf->SetY($Y);
+            $pdf->SetX(5);
+            $pdf->Cell(63, 5, utf8_decode(""), 0, 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(5);
+            $pdf->Cell(63, 5, utf8_decode("Empresa Constructora"), 'T', 1, 'C');
+            /* FIRMA 2 */
+            $pdf->Rect(76, $Y, 63, 25);
+            $pdf->SetY($Y);
+            $pdf->SetX(76);
+            $pdf->Cell(63, 5, utf8_decode("SOLICITA:"), 0, 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(76);
+            $pdf->Cell(63, 5, utf8_decode("Gerencia De Proyectos (Supervisor O PM)"), 'T', 1, 'C');
+            /* FIRMA 3 */
+            $pdf->Rect(146, $Y, 64, 25);
+            $pdf->SetY($Y);
+            $pdf->SetX(146);
+            $pdf->Cell(63, 5, utf8_decode("REVISA:"), 0, 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(146);
+            $pdf->Cell(64, 5, utf8_decode("Area De Costos"), 'T', 1, 'C');
+            /* FIRMAS SEGUNDO BLOQUE */
+            
+            $Y= $pdf->GetY()+5;
+            
+            /* FIRMA 1 */
+            $pdf->Rect(5, $Y, 63, 25);
+            $pdf->SetY($Y);
+            $pdf->SetX(5);
+            $pdf->Cell(63, 5, utf8_decode(""), 0, 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(5);
+            $pdf->Cell(63, 5, utf8_decode("Area De Costos"), 'T', 1, 'C');
+            /* FIRMA 2 */
+            $pdf->Rect(76, $Y, 63, 25);
+            $pdf->SetY($Y+20);
+            $pdf->SetX(76);
+            $pdf->Cell(63, 5, utf8_decode(""), 'T', 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(76);
+            $pdf->Cell(63, 5, utf8_decode("Subdirector De Construccion BBVA BANCOMER"), 'T', 1, 'C');
+            /* FIRMA 3 */
+            $pdf->Rect(146, $Y, 64, 25);
+            $pdf->SetY($Y);
+            $pdf->SetX(146);
+            $pdf->Cell(63, 5, utf8_decode("AUTORIZA:"), 0, 1, 'C');
+            $pdf->SetY($Y+20);
+            $pdf->SetX(146);
+            $pdf->Cell(64, 5, utf8_decode("Subdiretor De Gestion Y Admon. Ulises"), 'T', 1, 'C');
+
+          
+
+   
+            /* FIN CUERPO */
+            $path = 'uploads/Reportes/' . $ID;
+            // print $path;
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $file_name = "REPORTE_FIN49_CONCEPTOS";
+            $url = $path . '/' . $file_name . '.pdf';
+
+
+
+            $pdf->Output($url);
+            print base_url() . $url;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onReportePresupuesto() {
 
@@ -2130,7 +2632,7 @@ class CtrlTrabajos extends CI_Controller {
                 $page = 2;
                 $page_size = 234;
             } else {
-
+                
             }
             $ImporteTotal += $value->ImporteRenglon;
         }
@@ -3145,7 +3647,7 @@ class CtrlTrabajos extends CI_Controller {
 }
 
 class PDF extends FPDF {
-
+    
 }
 
 class PDFC extends FPDF {
@@ -3469,6 +3971,33 @@ class FotosFPDF extends FPDF {
 
     public function getConcepto() {
         return $this->Concepto;
+    }
+
+}
+
+class PDFFin49 extends FPDF {
+      function Footer() {
+          
+           /* PIE DE PAGINA */
+            $this->SetFont('Arial', 'B', 7);
+            $this->SetY(270);
+            $this->SetX(5);
+            $this->Cell(92, 4, utf8_decode("INMUEBLES: Actitud, Eficiecia Y Calidad A Tu Servicio"), 1, 1, 'L');
+            $this->SetY(270);
+            $this->SetX(97);
+            $this->SetFillColor(169, 244, 251);
+            $this->Cell(23, 4, utf8_decode("Versión 1"), 1, 1, 'C', true);
+            $this->SetY(270);
+            $this->SetX(120);
+            $this->Cell(90, 4, utf8_decode("Pag. ".$this->PageNo().'     '), 1, 1, 'R');
+      }
+    
+}
+
+class Excel extends PHPExcel {
+
+    public function __construct() {
+        parent::__construct();
     }
 
 }
