@@ -1,9 +1,12 @@
 <?php
+
 header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
 require_once APPPATH . "/third_party/PHPExcel.php";
+
 class CtrlTrabajos extends CI_Controller {
+
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
@@ -15,6 +18,7 @@ class CtrlTrabajos extends CI_Controller {
         $this->load->model('cuadrilla_model');
         $this->load->model('trabajo_model');
     }
+
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
@@ -27,6 +31,7 @@ class CtrlTrabajos extends CI_Controller {
             $this->load->view('vFooter');
         }
     }
+
     public function getRecords() {
         try {
             $data = $this->trabajo_model->getRecords();
@@ -35,6 +40,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoByID() {
         try {
             extract($this->input->post());
@@ -44,6 +50,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getConceptosXPreciarioID() {
         try {
             extract($this->input->post());
@@ -53,6 +60,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getConceptoByID() {
         try {
             extract($this->input->post());
@@ -62,6 +70,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getDetalleAbiertoByID() {
         try {
             extract($this->input->post());
@@ -71,6 +80,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoFotosDetalleByID() {
         try {
             extract($this->input->post());
@@ -80,6 +90,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoFotosDespuesDetalleByID() {
         try {
             extract($this->input->post());
@@ -89,6 +100,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoCroquisDetalleByID() {
         try {
             extract($this->input->post());
@@ -98,6 +110,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoAnexosDetalleByID() {
         try {
             extract($this->input->post());
@@ -107,6 +120,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregar() {
         try {
             /* TRABAJO */
@@ -173,6 +187,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoDetalleByID() {
         try {
             extract($this->input->post());
@@ -182,6 +197,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTrabajoDetalleAbiertoByID() {
         try {
             extract($this->input->post());
@@ -191,6 +207,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getGeneradoresDetalleXConceptoID() {
         try {
             extract($this->input->post());
@@ -200,6 +217,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificar() {
         try {
             extract($this->input->post());
@@ -232,6 +250,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificarConceptoAbierto() {
         try {
             extract($this->input->post());
@@ -240,6 +259,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarGenerador() {
         try {
             extract($this->input->post());
@@ -261,6 +281,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificarGenerador() {
         try {
             extract($this->input->post());
@@ -280,6 +301,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificarConceptoCantidadEImporte() {
         try {
             extract($this->input->post());
@@ -292,6 +314,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onChangeIntExtByDetalleID() {
         try {
             extract($this->input->post());
@@ -303,6 +326,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificarImportePorTrabajo() {
         try {
             extract($this->input->post());
@@ -311,6 +335,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminar() {
         try {
             extract($this->input->post());
@@ -319,6 +344,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminarGeneradorEditar() {
         try {
             extract($this->input->post());
@@ -327,6 +353,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminarFotoXConcepto() {
         try {
             extract($this->input->post());
@@ -341,7 +368,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-     public function onEliminarFotoDespuesXConcepto() {
+
+    public function onEliminarFotoDespuesXConcepto() {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getFotoDespuesXConceptoID($ID);
@@ -355,6 +383,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminarAnexoXConcepto() {
         try {
             extract($this->input->post());
@@ -369,6 +398,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminarCroquisXID() {
         try {
             extract($this->input->post());
@@ -383,6 +413,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
@@ -391,6 +422,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getSucursalesByCliente() {
         try {
             extract($this->input->post());
@@ -400,6 +432,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getPreciariosByCliente() {
         try {
             extract($this->input->post());
@@ -409,6 +442,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getSucursalByID() {
         try {
             extract($this->input->post());
@@ -418,6 +452,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getPreciarioByID() {
         try {
             extract($this->input->post());
@@ -427,6 +462,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getCodigosPPTA() {
         try {
             extract($this->input->post());
@@ -436,6 +472,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getCuadrillas() {
         try {
             extract($this->input->post());
@@ -445,6 +482,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getCodigoPPTAbyID() {
         try {
             extract($this->input->post());
@@ -454,7 +492,9 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     /* FUNCIONES DE EDICION */
+
     public function onEliminarConceptoXDetalle() {
         try {
             extract($this->input->post());
@@ -488,6 +528,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onEliminarConceptoXDetalleAbierto() {
         try {
             extract($this->input->post());
@@ -500,7 +541,6 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosXConcepto($ID);
-
             $data = $this->trabajo_model->getFotosDespuesXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -529,6 +569,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getPrecioPorConceptoID() {
         try {
             extract($this->input->post());
@@ -538,6 +579,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getConceptoByIDSinFormato() {
         try {
             extract($this->input->post());
@@ -547,6 +589,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getImporteTotalDelTrabajoByID() {
         try {
             extract($this->input->post());
@@ -556,6 +599,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarDetalleEditar() {
         try {
             extract($this->input->post());
@@ -575,6 +619,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarDetalleAbiertoEditar() {
         try {
             extract($this->input->post());
@@ -589,6 +634,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarFotosEditar() {
         try {
             extract($this->input->post());
@@ -636,7 +682,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-     public function onAgregarFotosDespuesEditar() {
+
+    public function onAgregarFotosDespuesEditar() {
         try {
             extract($this->input->post());
             $data = array(
@@ -683,6 +730,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarCroquisEditar() {
         try {
             extract($this->input->post());
@@ -730,6 +778,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onAgregarAnexosEditar() {
         try {
             extract($this->input->post());
@@ -769,6 +818,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getTarifarioXMovimiento() {
         try {
             $ID = $_POST["ID"];
@@ -813,7 +863,9 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     /* ____________________________________REPORTES__________________________________________ */
+
     public function onReporteFin49Conceptos() {
         //conexion a bd
         try {
@@ -1088,6 +1140,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onReportePresupuesto() {
         $ID = $_POST['ID'];
         $trabajo = $this->trabajo_model->getPresupuesto($ID);
@@ -1400,6 +1453,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+
     public function onReporteFin49() {
         //conexion a bd
         try {
@@ -1716,6 +1770,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onReporteResumenPartidas() {
         $ID = $_POST['ID'];
         $trabajo = $this->trabajo_model->getResumenPartidas($ID);
@@ -2103,6 +2158,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+
     public function onReportePresupuestoBBVA() {
         $ID = $_POST['ID'];
         $trabajo = $this->trabajo_model->getPresupuestoBBVA($ID);
@@ -2274,7 +2330,7 @@ class CtrlTrabajos extends CI_Controller {
                 $page = 2;
                 $page_size = 234;
             } else {
-
+                
             }
             $ImporteTotal += $value->ImporteRenglon;
         }
@@ -2354,6 +2410,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+
     public function onReporteGenerador() {
         // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -2854,6 +2911,7 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+
     public function onReporteCroquis() {
         // Creación del objeto de la clase heredada
         $pdf = new PDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -3044,266 +3102,258 @@ class CtrlTrabajos extends CI_Controller {
         $pdf->Output($url);
         print base_url() . $url;
     }
+
     public function onReporteFotografico() {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Concepto = $this->trabajo_model->getDetalleFotos($ID);
-                $pages_added = false;
-                $pdf = new FotosFPDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
-                $nfotosxconcepto = 0;
-                foreach ($Concepto as $i => $row) {
-                    /* ENCABEZADO */
-                    $pdf->Logo = base_url() . utf8_decode($row->LogoCliente);
-                    $pdf->Cr = $row->CR;
-                    $pdf->Sucursal = $row->Sucursal;
-                    $pdf->Empresa = $row->Empresa;
-                    $pdf->Direccion = $row->Direccion;
-                    $pdf->Unidad = $row->Unidad;
-                    $pdf->Clave = $row->Clave;
-                    $pdf->Categoria = $row->Categoria;
-                    $pdf->Concepto = $row->Concepto;
-                    /* DETALLE IMAGENES */
-                    $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
-                    $nfotos = count($fotos);
-                    $fnfotos = count($fotos);
-                    $nimg = 0;
-                    $pdf->AliasNbPages();
-                    if (!$pages_added) {
-                        $pdf->AddPage();
-                    }
-                    foreach ($fotos as $key => $foto) {
-                        if ($nimg == 3 ) {
-                            $pages_added = true;
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->Logo = base_url() . utf8_decode($row->LogoCliente);
+                        $pdf->Cr = $row->CR;
+                        $pdf->Sucursal = $row->Sucursal;
+                        $pdf->Empresa = $row->Empresa;
+                        $pdf->Direccion = $row->Direccion;
+                        $pdf->Unidad = $row->Unidad;
+                        $pdf->Clave = $row->Clave;
+                        $pdf->Categoria = $row->Categoria;
+                        $pdf->Concepto = $row->Concepto;
+                        /* DETALLE IMAGENES */
+                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
                             $pdf->AddPage();
-                            $nimg = 0;
                         }
-                         else {
-                            $pages_added = false;
+                        foreach ($fotos as $key => $foto) {
+                            if ($nimg == 3) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* En blanco mantiene aspecto H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W */ /* En blanco mantiene aspecto H */);
+                            }
+                            $nfotos --;
                         }
-
-                        $nimg += 1;
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                            $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//*En blanco mantiene aspecto H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos > 1) {
-                            $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//*En blanco mantiene aspecto H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos == 1) {
-                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                            $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//*En blanco mantiene aspecto H */);
-                        }
-
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                        if ($nimg == 2 && $fnfotos == 2) {
-                            $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//*En blanco mantiene aspecto H */);
-                        } 
-                        /*Cuando es la segunda imagen pero hay más por imprimir*/
-                        else if ($nimg == 2 && $nfotos >= 2) {
-                            $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//*En blanco mantiene aspecto H */);
-                        } 
-                        /*Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir*/
-                        else if ($nimg == 2 && $nfotos == 1) {
-                             $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//*En blanco mantiene aspecto H */);
-                        }
-                        /*Cuando es la tercera imagen*/
-                        if ($nimg == 3){
-                             $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W */ /*En blanco mantiene aspecto H */);
-                        }
-
-                        $nfotos --;
-
+                        /* FIN DETALLE IMAGENES */
                     }
-                    /* FIN DETALLE IMAGENES */
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOGRAFICO";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
                 }
-                /* FIN CUERPO */
-                $path = 'uploads/Reportes/' . $ID;
-                // print $path;
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
-                }
-                $file_name = "REPORTE FOTOGRAFICO";
-                $url = $path . '/' . $file_name . '.pdf';
-                $pdf->Output($url);
-                print base_url() . $url;
             }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onReporteLevantamientoAntes() {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
-                $pages_added = false;
-                $pdf = new FotosFPDLA('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
-                $nfotosxconcepto = 0;
-                foreach ($Concepto as $i => $row) {
-                    /* ENCABEZADO */
 
-                    $pdf->CrL = $row->CR;
-                    $pdf->SucursalL = $row->Sucursal;
-                    $pdf->EmpresaL = $row->Empresa;
-                    $pdf->ConceptoL = $row->Concepto;
-                    $pdf->ClienteL = $row->Cliente;
-                    /* DETALLE IMAGENES */
-                    $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
-                    $nfotos = count($fotos);
-                    $fnfotos = count($fotos);
-                    $nimg = 0;
-                    $pdf->AliasNbPages();
-                    if (!$pages_added) {
-                        $pdf->AddPage();
-                    }
-                    foreach ($fotos as $key => $foto) {
-                        //Se pone al principio para que valide antes de agregar
-                        if ($nimg == 3 ) {
-                            $pages_added = true;
+                if (!empty($Concepto)) {
+
+                    $pages_added = false;
+                    $pdf = new FotosFPDLA('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        /* DETALLE IMAGENES */
+                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
                             $pdf->AddPage();
-                            $nimg = 0;
                         }
-                         else {
-                            $pages_added = false;
+                        foreach ($fotos as $key => $foto) {
+                            //Se pone al principio para que valide antes de agregar
+                            if ($nimg == 3) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
                         }
-                        $nimg += 1;
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                            $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos > 1) {
-                            $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos == 1) {
-                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                            $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
-                        }
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                        if ($nimg == 2 && $fnfotos == 2) {
-                            $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                        } 
-                        /*Cuando es la segunda imagen pero hay más por imprimir*/
-                        else if ($nimg == 2 && $nfotos >= 2) {
-                            $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
-                        } 
-                        /*Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir*/
-                        else if ($nimg == 2 && $nfotos == 1) {
-                             $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                        }
-
-                        /*Cuando es la tercera imagen*/
-                        if ($nimg == 3){
-                             $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
-                        }
-
-                        $nfotos --;
+                        /* FIN DETALLE IMAGENES */
                     }
-                    /* FIN DETALLE IMAGENES */
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS ANTES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
                 }
-                /* FIN CUERPO */
-                $path = 'uploads/Reportes/' . $ID;
-                // print $path;
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
-                }
-                $file_name = "REPORTE FOTOS ANTES";
-                $url = $path . '/' . $file_name . '.pdf';
-                $pdf->Output($url);
-                print base_url() . $url;
             }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onReporteLevantamientoDespues() {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Concepto = $this->trabajo_model->getDetalleFotosDespues($ID);
-                $pages_added = false;
-                $pdf = new FotosFPDLD('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
-                $nfotosxconcepto = 0;
-                foreach ($Concepto as $i => $row) {
-                    /* ENCABEZADO */
 
-                    $pdf->CrL = $row->CR;
-                    $pdf->SucursalL = $row->Sucursal;
-                    $pdf->EmpresaL = $row->Empresa;
-                    $pdf->ConceptoL = $row->Concepto;
-                    $pdf->ClienteL = $row->Cliente;
-                    /* DETALLE IMAGENES */
-                    $fotos = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
-                    $nfotos = count($fotos);
-                    $fnfotos = count($fotos);
-                    $nimg = 0;
-                    $pdf->AliasNbPages();
-                    if (!$pages_added) {
-                        $pdf->AddPage();
-                    }
-                    foreach ($fotos as $key => $foto) {
-                        //Se pone al principio para que valide antes de agregar
-                        if ($nimg == 3 ) {
-                            $pages_added = true;
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDLD('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        /* DETALLE IMAGENES */
+                        $fotos = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
                             $pdf->AddPage();
-                            $nimg = 0;
                         }
-                         else {
-                            $pages_added = false;
+                        foreach ($fotos as $key => $foto) {
+                            //Se pone al principio para que valide antes de agregar
+                            if ($nimg == 3) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
                         }
-                        $nimg += 1;
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                            $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos > 1) {
-                            $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
-                        } 
-                        else if ($nimg == 1 && $nfotos == 1) {
-                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                            $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
-                        }
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                        if ($nimg == 2 && $fnfotos == 2) {
-                            $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                        } 
-                        /*Cuando es la segunda imagen pero hay más por imprimir*/
-                        else if ($nimg == 2 && $nfotos >= 2) {
-                            $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
-                        } 
-                        /*Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir*/
-                        else if ($nimg == 2 && $nfotos == 1) {
-                             $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                        }
-
-                        /*Cuando es la tercera imagen*/
-                        if ($nimg == 3){
-                             $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
-                        }
-
-                        $nfotos --;
+                        /* FIN DETALLE IMAGENES */
                     }
-                    /* FIN DETALLE IMAGENES */
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS DESPUES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
                 }
-                /* FIN CUERPO */
-                $path = 'uploads/Reportes/' . $ID;
-                // print $path;
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
-                }
-                $file_name = "REPORTE FOTOS DESPUES";
-                $url = $path . '/' . $file_name . '.pdf';
-                $pdf->Output($url);
-                print base_url() . $url;
             }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
 }
+
 class PDF extends FPDF {
+    
 }
+
 class PDFC extends FPDF {
+
     function Footer() {
         /* Leyenda */
         $this->SetY(232);
@@ -3337,8 +3387,11 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
         $this->SetX(175);
         $this->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
     }
+
 }
+
 class FotosFPDF extends FPDF {
+
 // Page header
     function Header() {
         // Logo
@@ -3450,6 +3503,7 @@ class FotosFPDF extends FPDF {
         $this->Cell(35, 6, utf8_decode("FOTOS "), 0, 1, 'L');
         $this->Ln(20);
     }
+
 // Page footer
     function Footer() {
         /* FIRMAS */
@@ -3487,7 +3541,9 @@ class FotosFPDF extends FPDF {
         // Page number
 //        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
+
     /*  STTER AND GETTER */
+
     public $Logo = '';
     public $Empresa = '';
     public $Obra = '';
@@ -3500,80 +3556,107 @@ class FotosFPDF extends FPDF {
     public $Partida = '';
     public $Categoria = '';
     public $Concepto = '';
+
     public function setLogo($Logo) {
         $this->Logo = $Logo;
     }
+
     public function getLogo() {
         return $this->Logo;
     }
+
     public function setDireccion($Direccion) {
         $this->Direccion = $Direccion;
     }
+
     public function getDireccion() {
         return $this->Direccion;
     }
+
     public function setObra($Obra) {
         $this->Obra = $Obra;
     }
+
     public function getObra() {
         return $this->Obra;
     }
+
     public function setEmpresa($Empresa) {
         $this->Empresa = $Empresa;
     }
+
     public function getEmpresa() {
         return $this->Empresa;
     }
+
     public function setCr($Cr) {
         $this->Cr = $Cr;
     }
+
     public function getCr() {
         return $this->Cr;
     }
+
     public function setSucursal($Sucursal) {
         $this->Sucursal = $Sucursal;
     }
+
     public function getSucursal() {
         return $this->Sucursal;
     }
+
     public function setUbicacion($Ubicacion) {
         $this->Ubicacion = $Ubicacion;
     }
+
     public function getUbicacion() {
         return $this->Ubicacion;
     }
+
     public function setUnidad($Unidad) {
         $this->Unidad = $Unidad;
     }
+
     public function getUnidad() {
         return $this->Unidad;
     }
+
     public function setClave($Clave) {
         $this->Clave = $Clave;
     }
+
     public function getClave() {
         return $this->Clave;
     }
+
     public function setPartida($Partida) {
         $this->Partida = $Partida;
     }
+
     public function getPartida() {
         return $this->Partida;
     }
+
     public function setCategoria($Categoria) {
         $this->Categoria = $Categoria;
     }
+
     public function getCategoria() {
         return $this->Categoria;
     }
+
     public function setConcepto($Concepto) {
         $this->Concepto = $Concepto;
     }
+
     public function getConcepto() {
         return $this->Concepto;
     }
+
 }
+
 class PDFFin49 extends FPDF {
+
     function Footer() {
         /* PIE DE PAGINA */
         $this->SetFont('Arial', 'B', 7);
@@ -3588,14 +3671,17 @@ class PDFFin49 extends FPDF {
         $this->SetX(120);
         $this->Cell(90, 4, utf8_decode("Pag. " . $this->PageNo() . '     '), 1, 1, 'R');
     }
+
 }
+
 class FotosFPDLA extends FPDF {
+
 // Page header
     function Header() {
         $this->SetY(0);
         $this->SetX(0);
         $this->SetFillColor(39, 79, 117);
-        $this->Cell(279, 35, '', 1, 0, 'C',true);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
         // Logo
         $this->Image(base_url() . 'img/AYR_reportes.png', 5, 3, 45);
         // Título
@@ -3607,11 +3693,11 @@ class FotosFPDLA extends FPDF {
         $this->SetY(10);
         $this->SetX(185);
         $this->SetFont('Arial', 'B', 8);
-        $this->Cell(90, 5,'PARA: '. utf8_decode($this->getClienteL()), 0, 1, 'R');
-        /*DESCRIPCION LEVANTAMIENTO*/
+        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        /* DESCRIPCION LEVANTAMIENTO */
         $this->SetY(15);
         $this->SetX(90);
-        $this->SetFont('Arial', 'B',8);
+        $this->SetFont('Arial', 'B', 8);
         $this->MultiCell(185, 3, utf8_decode($this->getConceptoL()), 0, 'J');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
@@ -3621,6 +3707,7 @@ class FotosFPDLA extends FPDF {
         $this->Cell(35, 6, utf8_decode("Antes "), 0, 1, 'L');
         $this->Ln(20);
     }
+
 // Page footer
     function Footer() {
         $this->SetTextColor(122, 122, 122);
@@ -3628,7 +3715,6 @@ class FotosFPDLA extends FPDF {
         $this->SetY(205);
         $this->SetX(5);
         $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
-
         // Arial italic 8
         $this->SetFont('Arial', 'I', 8);
         $this->SetTextColor(0, 0, 0);
@@ -3637,7 +3723,9 @@ class FotosFPDLA extends FPDF {
         $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
         $this->SetY(-15);
     }
+
     /*  STTER AND GETTER */
+
     public $EmpresaL = '';
     public $CrL = '';
     public $SucursalL = '';
@@ -3651,38 +3739,49 @@ class FotosFPDLA extends FPDF {
     public function getClienteL() {
         return $this->ClienteL;
     }
+
     public function setEmpresaL($EmpresaL) {
         $this->EmpresaL = $EmpresaL;
     }
+
     public function getEmpresaL() {
         return $this->EmpresaL;
     }
+
     public function setCrL($CrL) {
         $this->CrL = $CrL;
     }
+
     public function getCrL() {
         return $this->CrL;
     }
+
     public function setSucursalL($SucursalL) {
         $this->SucursalL = $SucursalL;
     }
+
     public function getSucursalL() {
         return $this->SucursalL;
     }
+
     public function setConceptoL($ConceptoL) {
         $this->ConceptoL = $ConceptoL;
     }
+
     public function getConceptoL() {
         return $this->ConceptoL;
     }
+
 }
+
 class FotosFPDLD extends FPDF {
+
 // Page header
     function Header() {
         $this->SetY(0);
         $this->SetX(0);
         $this->SetFillColor(39, 79, 117);
-        $this->Cell(279, 35, '', 1, 0, 'C',true);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
         // Logo
         $this->Image(base_url() . 'img/AYR_reportes.png', 5, 3, 45);
         // Título
@@ -3694,11 +3793,11 @@ class FotosFPDLD extends FPDF {
         $this->SetY(10);
         $this->SetX(185);
         $this->SetFont('Arial', 'B', 8);
-        $this->Cell(90, 5,'PARA: '. utf8_decode($this->getClienteL()), 0, 1, 'R');
-        /*DESCRIPCION LEVANTAMIENTO*/
+        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        /* DESCRIPCION LEVANTAMIENTO */
         $this->SetY(15);
         $this->SetX(90);
-        $this->SetFont('Arial', 'B',8);
+        $this->SetFont('Arial', 'B', 8);
         $this->MultiCell(185, 3, utf8_decode($this->getConceptoL()), 0, 'J');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
@@ -3708,6 +3807,7 @@ class FotosFPDLD extends FPDF {
         $this->Cell(35, 6, utf8_decode("Después "), 0, 1, 'L');
         $this->Ln(20);
     }
+
 // Page footer
     function Footer() {
         $this->SetTextColor(122, 122, 122);
@@ -3715,7 +3815,6 @@ class FotosFPDLD extends FPDF {
         $this->SetY(205);
         $this->SetX(5);
         $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
-
         // Arial italic 8
         $this->SetFont('Arial', 'I', 8);
         $this->SetTextColor(0, 0, 0);
@@ -3724,7 +3823,9 @@ class FotosFPDLD extends FPDF {
         $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
         $this->SetY(-15);
     }
+
     /*  STTER AND GETTER */
+
     public $EmpresaL = '';
     public $CrL = '';
     public $SucursalL = '';
@@ -3738,33 +3839,45 @@ class FotosFPDLD extends FPDF {
     public function getClienteL() {
         return $this->ClienteL;
     }
+
     public function setEmpresaL($EmpresaL) {
         $this->EmpresaL = $EmpresaL;
     }
+
     public function getEmpresaL() {
         return $this->EmpresaL;
     }
+
     public function setCrL($CrL) {
         $this->CrL = $CrL;
     }
+
     public function getCrL() {
         return $this->CrL;
     }
+
     public function setSucursalL($SucursalL) {
         $this->SucursalL = $SucursalL;
     }
+
     public function getSucursalL() {
         return $this->SucursalL;
     }
+
     public function setConceptoL($ConceptoL) {
         $this->ConceptoL = $ConceptoL;
     }
+
     public function getConceptoL() {
         return $this->ConceptoL;
     }
+
 }
+
 class Excel extends PHPExcel {
+
     public function __construct() {
         parent::__construct();
     }
+
 }
