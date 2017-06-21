@@ -27,8 +27,8 @@
         <div class="modal-body">Selecciona el reporte que deseas imprimir
             <div class="col-md-12"><br></div>
             <div id="reportesLevantamiento" class="dt-buttons">
-                <button onclick="" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
-                <button onclick="" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
+                <button onclick="onReporteLevantamientoAntes();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
+                <button onclick="onReporteLevantamientoDespues();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
                 <button onclick="" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
             </div>
             <div id="reportesPresupuesto" class="dt-buttons">
@@ -758,7 +758,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Descripción*</label>
-                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
                     </div>
                     <div class="col-6 col-md-6">
@@ -803,7 +803,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Descripción*</label>
-                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
                     </div>
                     <div class="col-6 col-md-6">
@@ -3851,6 +3851,36 @@
         }).done(function (data, x, jq) {
             window.open(data, '_blank');
             onNotify('<span class="fa fa-check fa-lg"></span>', 'TARIFARIO GENERADO', 'success');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteLevantamientoAntes() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteLevantamientoAntes',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteLevantamientoDespues() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteLevantamientoDespues',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
+            window.open(data, '_blank');
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {

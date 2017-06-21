@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
  * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
@@ -7,14 +6,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
-
 class trabajo_model extends CI_Model {
-
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
     }
-
     public function getRecords() {
         try {
             $this->db->select("T.ID, T.Movimiento,"
@@ -37,7 +33,6 @@ class trabajo_model extends CI_Model {
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
                     . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID  "
                     . "INNER JOIN USUARIOS U ON U.ID = T.Usuario_ID WHERE T.ESTATUS in ('Borrador','Concluido') ", false);
-
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -50,7 +45,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajoDetalleByID($IDX) {
         try {
             $this->db->select('TD.ID AS ID,'
@@ -105,13 +99,12 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
      public function getTrabajoDetalleAbiertoByID($IDX) {
         try {
             $this->db->select('tda.ID AS ID,'
                     . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
                     . 'tda.IntExt AS "Int/Ext",'
-                    . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion\" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
+                    . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion CustomUppercase \" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID)>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID),")")'
@@ -147,7 +140,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
      public function onModificarConceptoAbierto($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -157,7 +149,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getGeneradoresDetalleXConceptoID($IDX) {
         try {
             $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*, (SELECT TD.Precio FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS Precio,(SELECT TD.Cantidad FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS CantidadTotal', false);
@@ -175,7 +166,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajoFotosDetalleByID($IDX) {
         try {
             $this->db->select('TDF.*', false);
@@ -194,7 +184,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function getTrabajoFotosDespuesDetalleByID($IDX) {
         try {
             $this->db->select('TDFDE.*', false);
@@ -213,7 +202,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajoCroquisDetalleByID($IDX) {
         try {
             $this->db->select('TDC.*', false);
@@ -231,7 +219,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getFotosXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDF.*', false);
@@ -249,7 +236,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function getFotosDespuesXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
@@ -267,7 +253,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function getFotoXConceptoID($IDX) {
         try {
             $this->db->select('TDF.*', false);
@@ -285,7 +270,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function getFotoDespuesXConceptoID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
@@ -303,7 +287,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getAnexosXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDA.*', false);
@@ -321,7 +304,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getAnexoXConceptoID($IDX) {
         try {
             $this->db->select('TDA.*', false);
@@ -339,7 +321,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getCroquisXConceptoID($IDX) {
         try {
             $this->db->select('TDC.*', false);
@@ -357,7 +338,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getCroquisXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDC.*', false);
@@ -375,7 +355,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajoAnexosDetalleByID($IDX) {
         try {
             $this->db->select('TDEA.*', false);
@@ -394,7 +373,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregar($array) {
         try {
             $this->db->insert("trabajos", $array);
@@ -408,7 +386,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregarDetalle($array) {
         try {
             $this->db->insert("trabajosdetalle", $array);
@@ -422,7 +399,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onAgregarDetalleAbierto($array) {
         try {
             $this->db->insert("trabajosdetalleabierto", $array);
@@ -436,7 +412,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregarDetalleGenerador($array) {
         try {
             $this->db->insert("generadortrabajosdetalle", $array);
@@ -450,7 +425,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregarDetalleFotos($array) {
         try {
             $this->db->insert("trabajodetallefotos", $array);
@@ -464,7 +438,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onAgregarDetalleFotosDespues($array) {
         try {
             $this->db->insert("trabajodetallefotosdespues", $array);
@@ -478,7 +451,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onChangeIntExtByDetalleID($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -487,7 +459,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarDetalleFoto($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -497,7 +468,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onModificarDetalleFotoDespues($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -507,7 +477,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregarDetalleAnexos($array) {
         try {
             $this->db->insert("trabajodetalleanexos", $array);
@@ -521,7 +490,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarDetalleAnexo($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -531,7 +499,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregarDetalleCroquis($array) {
         try {
             $this->db->insert("trabajodetallecroquis", $array);
@@ -545,7 +512,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarDetalleCroquis($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -555,7 +521,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -565,7 +530,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarGenerador($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -575,7 +539,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminar($ID) {
         try {
             $this->db->set('Estatus', 'Cancelado');
@@ -586,7 +549,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEntregado($ID) {
         try {
 //            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
@@ -597,7 +559,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onCancelarEntregado($ID) {
         try {
             // $query = $this->db->query("CALL SP_CANCELA_ENTREGADO ('{$ID}')");
@@ -608,7 +569,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarGeneradorEditar($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -618,7 +578,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarFotoXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -628,7 +587,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onEliminarFotoDespuesXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -638,7 +596,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarAnexoXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -648,7 +605,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarCroquisXID($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -658,7 +614,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajoByID($ID) {
         try {
             $this->db->select('T.*', false);
@@ -676,10 +631,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getConceptosXPreciarioID($ID) {
         try {
-
             $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, PC.Moneda AS Moneda', false);
             $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
@@ -695,7 +648,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getConceptoByID($ID) {
         try {
             $this->db->select('PC.ID, PC.Clave, PC.Descripcion, PC.Unidad, PC.Costo, FORMAT(PC.Costo,2) AS Precio, PC.Moneda, PC.PreciarioSubSubCategoria_ID, PC.PreciarioSubCategorias_ID, PC.PreciarioCategorias_ID, PC.Preciarios_ID', false);
@@ -713,7 +665,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-  
     public function getDetalleAbiertoByID($ID) {
         try {
             $this->db->select('tda.*', false);
@@ -731,7 +682,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getConceptoByIDSinFormato($ID) {
         try {
             $this->db->select('PC.*', false);
@@ -749,7 +699,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getPrecioPorConceptoID($ID, $IDCO) {
         try {
             $this->db->select('TD.Precio', false);
@@ -768,7 +717,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -778,7 +726,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onEliminarConceptoAbierto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -788,7 +735,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarGeneradoresXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -798,7 +744,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarFotosXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -808,7 +753,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
     public function onEliminarFotosDespuesXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -818,7 +762,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarCroquisXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -828,7 +771,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminarAnexosXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -838,7 +780,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarConceptoCantidadEImporte($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -848,7 +789,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificarImportePorTrabajo($ID) {
         try {
             $this->db->set('Importe', '(SELECT SUM(TD.Importe) AS "IMPORTE_TOTAL_TRABAJO" FROM trabajosdetalle AS TD WHERE TD.Trabajo_ID = ' . $ID . ')', FALSE);
@@ -870,7 +810,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     } 
-
     public function getImporteTotalDelTrabajoByID($ID) {
         try {
             $this->db->select('CONCAT("$",FORMAT(SUM(TD.Importe),2)) AS "IMPORTE_TOTAL_TRABAJO"', false);
@@ -889,10 +828,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getTrabajosControlByClienteXClasificacion($ID) {
         try {
-
             $this->db->select('T.ID, T.Movimiento,T.FolioCliente AS Folio ,S.Nombre AS Sucursal,S.Region,'
                     . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,T.Clasificacion '
                     . 'FROM Trabajos T '
@@ -912,9 +849,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     /*     * ************************* Reportes------------------------------ */
-
     public function getCategoriasPresupuesto($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -946,7 +881,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getPresupuesto($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -976,7 +910,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getFin49ConceptosByID($ID) {
         try {
             $this->db->select('T.Movimiento,T.FechaCreacion,T.FolioCliente,T.ImpactoEnPlazo,T.DiasImpacto,T.CausaTrabajo,T.ClaveOrigenTrabajo,
@@ -1006,7 +939,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getFin49ByID($ID) {
         try {
             $this->db->select('T.Movimiento,T.FechaCreacion,T.FolioCliente,T.ImpactoEnPlazo,T.DiasImpacto,T.CausaTrabajo,T.ClaveOrigenTrabajo,
@@ -1032,7 +964,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getResumenPartidas($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1065,7 +996,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getPresupuestoBBVA($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1096,7 +1026,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getConceptosReportesGenericos($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1128,7 +1057,6 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
     public function getDetalleGenerador($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1151,7 +1079,6 @@ left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID  ', false
             echo $exc->getTraceAsString();
         }
     }
-
     public function getDetalleCroquis($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1184,7 +1111,6 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
     public function getDetalleFotos($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1204,6 +1130,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->group_by(array('TD.ID'));
             $this->db->order_by('TD.ID', 'DESC');
             $query = $this->db->get();
             /*
@@ -1217,7 +1144,6 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
     public function getDetalleFotosXID($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1238,7 +1164,86 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
+     public function getDetalleFotosAntes($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa, 
+CTE.RutaLogo AS LogoCliente,
+TDA.Descripcion AS Concepto, 
+CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
+            $this->db->from('Trabajos AS T');
+            $this->db->join('trabajosdetalleabierto AS TDA', 'TDA.Trabajo_ID = T.ID');
+            $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');
+            $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
+            $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
+            $this->db->join('trabajodetallefotos AS TDF', 'TDF.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->group_by(array('TDA.ID'));
+            $this->db->order_by('TDA.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+     public function getDetalleFotosDespues($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa, 
+CTE.RutaLogo AS LogoCliente,
+TDA.Descripcion AS Concepto, 
+CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
+            $this->db->from('Trabajos AS T');
+            $this->db->join('trabajosdetalleabierto AS TDA', 'TDA.Trabajo_ID = T.ID');
+            $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');
+            $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
+            $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
+            $this->db->join('trabajodetallefotosdespues AS TDF', 'TDF.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->group_by(array('TDA.ID'));
+            $this->db->order_by('TDA.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+     public function getDetalleFotosDespuesXID($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDF.*', false);
+            $this->db->from('trabajodetallefotosdespues AS TDF');
+            $this->db->where('TDF.IdTrabajoDetalle', $ID);
+            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TDF.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str . ";\n";
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     /* Excel conceptos por entrega (TARIFARIO) */
     public function getTarifarioXEntrega($ID) {
         try {
@@ -1266,7 +1271,6 @@ inner join preciarioconceptos pc on pc.ID = td.PreciarioConcepto_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
     public function getDesgloseXEntrega($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1290,7 +1294,6 @@ left join sucursales s on s.ID = t.Sucursal_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-    
     /*Excel tarifario por movimiento*/
     public function getTarifarioXMovimiento($ID) {
         try {

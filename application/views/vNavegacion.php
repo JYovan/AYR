@@ -11,7 +11,7 @@
             </button>
 
             <a class="navbar-brand" href="<?php print base_url(); ?>">
-                <img src="<?php print base_url(); ?>img/logo.png" width="60px">
+                <img src="<?php print base_url(); ?>img/AYR_reportes.png" width="62px">
             </a>
         </div>
 
@@ -85,6 +85,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+<!--<button onclick="onReporteLevantamiento();">LEVANTAMIENTO</button>-->
 
 <script>
 
@@ -108,5 +109,23 @@
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
     }
+    
+     var master_url = base_url + 'index.php/CtrlSesion/';
+     function onReporteLevantamiento() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteLevantamiento',
+            type: "POST",
+            data: {ID: 76}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    
 
 </script>
