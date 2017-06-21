@@ -81,25 +81,16 @@
         <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
 
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
+        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
-
     </head>
-
-
-
-
-
-
 
     <script>
         var base_url = "<?php print base_url(); ?>";
-        
-
 
         $(function() {
            // $(".btn").addClass("animated shake");
-//            $("table.display").DataTable(tableOptions);
+            $("table.display").DataTable(tableOptions);
             $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();

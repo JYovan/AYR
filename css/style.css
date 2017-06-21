@@ -521,6 +521,15 @@ div.dt-EncabezadoControlEliminar> .btn {
     cursor: pointer;
     margin-bottom: 4px !important;
 }
+
+.CustomNuevoDetalleAbiertoDescripcion{
+    width: 420px !important;
+    padding: 1px 0 !important;
+    font-size: 12px !important;
+    cursor: pointer;
+    margin-bottom: 4px !important;
+}
+
 .label {
     font-size: 100% !important;
 }

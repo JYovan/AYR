@@ -1,27 +1,21 @@
-
 <div class="col-md-12" id="MenuTablero">
     <div class="panel panel-default animated">
         <div class="panel-heading">
-
             <div class="cursor-hand" >Trabajos</div>
-
         </div>
-        <div class="panel-body ">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
 
-                </div>
-                <div class="col-md-12" id="tblRegistros"></div>
-            </fieldset>
-        </div>
+        <fieldset>
+            <div class="col-md-12 dt-buttons" align="right">
+                <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
+                <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+            </div>
+            <div class="col-md-12" id="tblRegistros"></div>
+        </fieldset>
+
     </div>
 </div>
-
-
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
@@ -30,14 +24,14 @@
                 <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">IMPRIMIR REPORTES</h4>
         </div>
-        <div class="modal-body">
-            Selecciona el reporte que deseas imprimir
-
-            <div class="col-md-12">
-                <br>
+        <div class="modal-body">Selecciona el reporte que deseas imprimir
+            <div class="col-md-12"><br></div>
+            <div id="reportesLevantamiento" class="dt-buttons">
+                <button onclick="" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
+                <button onclick="" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
+                <button onclick="" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
             </div>
-            <div id="reportes" class="dt-buttons">
-
+            <div id="reportesPresupuesto" class="dt-buttons">
                 <div class="col-6 col-md-12">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -46,77 +40,53 @@
                         <li role="presentation"><a href="#Mantenimientos" aria-controls="Mantenimientos" role="tab" data-toggle="tab">Mantenimiento</a></li>
                     </ul>
                 </div>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
-
                     <!-- PANEL DE DATOS GENERALES-->
                     <div role="tabpanel" class="tab-pane fade in active" id="Generales">
                         <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
                         <button onclick="onReporteCroquis()" class="btn btn-default"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
                         <button onclick="onReporteFotografico()" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS</button>
                     </div>
-
                     <div role="tabpanel" class="tab-pane fade " id="Obras">
                         <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49 POC</button>
                         <button onclick="onReporteFin49Conceptos()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49 O.C</button>
                         <button onclick="onReportePresupuestoBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
                     </div>
-
                     <div role="tabpanel" class="tab-pane fade" id="Mantenimientos">
                         <button onclick="onReporteResumenPartidas()" class="btn btn-default"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
                         <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
                         <button onclick="onReporteExcelTarifarioXMov()" class="btn btn-default"><span class="fa fa-download fa-1x"></span><br>TARIFARIO</button>
                     </div>
-
                 </div>
-
-
-
             </div>
         </div>
     </div>
 </div>
-
-
 <!--Confirmacion-->
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">ELIMINAR REGISTRO</h4>
         </div>
-        <div class="modal-body">
-            Deseas eliminar el registro?
-        </div>
-
+        <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
-
 <!--PANEL NUEVO-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlNuevoTrabajo">
-
         <div class="Custompanel-heading dt-EncabezadoControles" >
-
             <div class="Custompanel-heading clearfix">
-
                 <div class="panel-title pull-left cursor-hand" >
                     <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Nuevo Trabajo
-                </div>
-
+                    </button>Nuevo Trabajo</div>
                 <div class="input-group pull-right" align="center">
-
                     <span class="dt-EncabezadoControles">
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento (Debe guardar el movimiento)">
                             <span class="fa fa-clone" ></span>
@@ -124,32 +94,23 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)" >
                             <span class="fa fa-print " ></span>
                         </button>
-
                     </span>
-
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="label label-default spanEstatus">SIN GUARDAR</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class=""> </span>
                     <button type="button" class="btn btn-default CustomColorEliminarRegistro" disabled="" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-
-
                     <span class="togglebutton customLabelToggle" >
-                        <label>
-                            <input type="checkbox" id="Concluir" name="Concluir" >Concluir
-                        </label>
+                        <label><input type="checkbox" id="Concluir" name="Concluir" >Concluir</label>
                     </span>
                     <span>&nbsp;&nbsp;</span>
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar" >GUARDAR</button>
                     <span>&nbsp;&nbsp;&nbsp;</span>
-
                 </div>
-
             </div>
         </div>
         <div class="panel-body">
             <form id="frmNuevo">
-
                 <fieldset>
                     <div class="col-6 col-md-12">
                         <!-- Nav tabs -->
@@ -160,15 +121,11 @@
                             <li role="presentation"><a href="#Datos4" aria-controls="Datos4" role="tab" data-toggle="tab">Adjuntos</a></li>
                         </ul>
                     </div>
-
                     <!-- Tab panes -->
                     <div class="tab-content">
-
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
+                            <div class="col-6 col-md-12"><br></div>
                             <div class="col-6 col-md-6">
                                 <label for="">Movimiento*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
@@ -185,29 +142,24 @@
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
                             </div>
-
-
                             <div class="col-6 col-md-6">
                                 <label for="">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
@@ -217,46 +169,31 @@
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
-
                             <input type="text" id="Atendido" name="Atendido" class="form-control hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
-                                <div class="togglebutton">
-                                    <label for="">Esta Completado?</label>
-                                    <spam><br></spam>
-                                    <spam><br></spam>
-                                    <label>
-                                        <input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" >
-                                    </label>
+                                <div class="togglebutton"><label for="">Esta Completado?</label>
+                                    <spam><br></spam><spam><br></spam>
+                                    <label><input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" ></label>
                                 </div>
                             </div>
-
                             <div class="col-6 col-md-3">
-
                                 <label for="">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="PENDIENTE">PENDIENTE</option>
                                     <option value="AUTORIZADO">AUTORIZADO</option>
                                     <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-
                                 </select>
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Cuadrilla</label>
-                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" >
-                                    <option value=""></option>
+                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" ><option value=""></option>
                                 </select>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
-
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
-
-
+                            <div class="col-6 col-md-12"><br></div>
                             <div class="col-6 col-md-3">
                                 <label for="">Folio</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
@@ -271,13 +208,10 @@
                                     <option value=""></option>
                                 </select>
                             </div>
-
                             <div class="col-6 col-md-3">
                                 <label for="">Días</label>
                                 <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
                             </div>
-
-
                             <div class=" col-6 col-md-12">
                                 <label for="">Solicitante</label>
                                 <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
@@ -290,8 +224,6 @@
                                 <label for="">Trabajo Requerido</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
                             </div>
-
-
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
@@ -301,12 +233,9 @@
                                     <div class="col-6 col-md-3">
                                         <label for="">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
-
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
@@ -314,7 +243,6 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
-
                             </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Fin Visita</label>
@@ -323,35 +251,25 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Fin Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
-
                             </div>
-
                         </div>
-
                         <!--PANEL DE OTROS DATOS-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos3">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
+                            <div class="col-6 col-md-12"><br></div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control hide" readonly="" placeholder="" >
                                     <div class="col-6 col-md-3">
                                         <div class="togglebutton">
-                                            <label for="">Impacto en el Plazo</label>
-                                            <spam><br></spam>
-                                            <spam><br></spam>
-                                            <label>
-                                                <input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" >
+                                            <label for="">Impacto en el Plazo</label><spam><br></spam><spam><br></spam>
+                                            <label><input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" >
                                             </label>
                                         </div>
                                     </div>
-
                                     <div class=" col-6 col-md-3">
                                         <label for="">Días de Impacto</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
                                     </div>
-
                                     <div class="col-6 col-md-6">
                                         <label for="">Causa del trabajo</label>
                                         <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
@@ -367,12 +285,10 @@
                                             <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
                                             <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
-
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
@@ -381,15 +297,12 @@
                                     <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
                                     <option value="BBVA">CTE - CLIENTE</option>
                                     <option value="OTRO">OTRO - OTRO</option>
-
-
                                 </select>
                             </div>
                             <div class=" col-6 col-md-6">
                                 <label for="">(En caso de otros) Especifica</label>
                                 <input type="text" id="OrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
@@ -402,16 +315,10 @@
                                 <label for="">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
                             </div>
-
                         </div>
-
                         <!-- PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos4">
-
-                            <div class="col-md-12 ">
-                                <span> <br></span>
-                            </div>
-
+                            <div class="col-md-12 "><span> <br></span></div>
                             <div class="col-md-12">
                                 <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
@@ -419,33 +326,22 @@
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x">
-                                    </span>
-                                    SELECCIONA EL ARCHIVO
+                                    <span class="fa fa-upload fa-1x"></span>SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
-
                             <div class="col-md-12 hide">
                                 <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
-
                         </div>
-
-
                         <div class="col-6 col-md-12">
                             <h6>Los campos con * son obligatorios</h6>
                         </div>
                     </div>
                 </fieldset>
-
             </form>
-
         </div>
     </div>
 </div>
-
-
-
 <!--PANEL NUEVO DETALLE-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
@@ -459,307 +355,34 @@
                 </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
+        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
-            <div class="col-md-12 table-responsive" id="Conceptos" >
-                <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide" width="100%">
-                    <thead>
-                        <tr>
-                            <th class="hide">ID</th>
-                            <th class="hide">PreciarioConcepto_ID</th>
-                            <th class="hide">Renglon</th>
-                            <th>Clave</th>
-                            <th class="col-md-3" align="center">Int/Ext</th>
-                            <th class="col-md-3" align="center">Descripcion</th>
-                            <th class="col-md-2" align="center">Cantidad</th>
-                            <th class="col-md-1" align="center">Unidad</th>
-                            <th class="col-md-2" align="center">Precio</th>
-                            <th class="col-md-2" align="center">Importe</th>
-                            <th class="hide">Moneda</th>
-                            <th class="hide">Generador Object</th>
-                            <th class="col-md-2" align="center">Generador</th>
-                            <th class="col-md-2" align="center">Fotos</th>
-                            <th class="col-md-2" align="center">Croquis</th>
-                            <th class="col-md-2" align="center">Anexos</th>
-                            <th class="hide">Estatus</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <div class="col-md-12 table-responsive" id="Conceptos" ></div>
         </fieldset>
-        <!--        </div>-->
+        <!--</div>-->
     </div>
 </div>
-
 <!--PANEL NUEVO DETALLE ABIERTO-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajoAbierto">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-6">
-                    <div class="cursor-hand" >Conceptos Levantamiento</div>
-                </div>
-                <div id="ImporteTotal" class="col-md-6" align="right">
-                    <h4 class="text-success">$ 0.0</h4>
+                <div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div>
                 </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
+        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-            <div class="col-md-12 table-responsive " id="ConceptosAbierto" >
-                <table  id="tblConceptosXTrabajoAbierto" class="table table-striped table-hover hide " width="100%">
-                    <thead>
-                        <tr>
-                            <th class="hide">ID</th>
-                            <th class="hide">PreciarioConcepto_ID</th>
-                            <th class="hide">Renglon</th>
-                            <th>Clave</th>
-                            <th class="col-md-2" align="center">Int/Ext</th>
-                            <th class="col-md-5" align="center">Descripcion</th>
-                            <th class="col-md-1" align="center">Cantidad</th>
-                            <th>Unidad</th>
-                            <th>Precio</th>
-                            <th class="">Importe</th>
-                            <th class="hide">Moneda</th>
-                            <th class="hide">Generador Object</th>
-                            <th>Generador</th>
-                            <th>Fotos</th>
-                            <th>Croquis</th>
-                            <th>Anexos</th>
-                            <th class="hide">Estatus</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </fieldset>
         <!--        </div>-->
     </div>
 </div>
-
-
-<!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlTrabajoNuevoConcepto" class="modal animated fadeInUp">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">SELECCIONE UN CONCEPTO</h4>
-            </div>
-            <div class="modal-body">
-                <fieldset>
-                    <div class="col-md-12" align="right">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="chkMultiple" value="ON"> VARIOS
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="col-md-12" id="ConceptosXPreciarioID">
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--MODAL DETALLE - NUEVO GENERADOR POR CONCEPTO-->
-<div id="mdlTrabajoNuevoGeneradorPorConcepto" class="modal animated bounceInDown ">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">GENERADOR</h4>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" style="">
-                    <li class="active"><a href="#Generadores" data-toggle="tab">Generador</a></li>
-                    <li><a href="#NuevoGenerador" data-toggle="tab">Agregar</a></li>
-                </ul>
-                <div id="pnlGenerador" class="tab-content">
-                    <div class="tab-pane fade active in" id="Generadores">
-                        <fieldset>
-                            <div class="col-md-12 table-responsive" id="NuevoGeneradorXConcepto" >
-                            </div>
-                            <div id="GeneradorImporteTotal" class="col-md-12" align="right">
-                                <span class="text-success spanTotalesDetalle">0.0</span>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="tab-pane fade" id="NuevoGenerador">
-                        <div class="col-md-12 hide">
-                            <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control hide">
-                            <textarea id="Generador" name="Generador" rows="4" cols="20" class="hide">
-                            </textarea>
-                            <input type="number" id="xCantidad" min="0" value="0" name="xCantidad" class="form-control hide">
-                        </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="">Area</label>
-                            <input type="text" id="Area" name="Area" class="form-control">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">Eje</label>
-                            <input type="text" id="Eje" name="Eje" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Entre Eje 1</label>
-                            <input type="text" id="EntreEje1" name="EntreEje1" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Entre Eje 2</label>
-                            <input type="text" id="EntreEje2" name="EntreEje2" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Largo</label>
-                            <input type="number" id="Largo" min="0" name="Largo" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Ancho</label>
-                            <input type="number" id="Ancho" min="0" name="Ancho" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Alto</label>
-                            <input type="number" id="Alto" min="0" name="Alto" class="form-control">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Cantidad</label>
-                            <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick="onModificarNuevoGenerador();"><span class="fa fa-check"></span><br>MODIFICAR</button>
-                            <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarModificarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-
-                            <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
-                            <button type="button" class="btn btn-default " id="btnCancelarNuevoGenerador" onclick="onCancelarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--MODAL DETALLE - FOTOS POR CONCEPTO-->
-<div id="mdlTrabajoNuevoFotosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">FOTOS</h4>
-            </div>
-            <div class="modal-body">
-                <div id="VistaPreviaFotos" class="row">
-                </div>
-                <fieldset>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setFotos()">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR FOTOS</h1>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--MODAL DETALLE - NUEVOS CROQUIS POR CONCEPTO-->
-<div id="mdlTrabajoNuevoCroquisPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">CROQUIS</h4>
-            </div>
-            <div class="modal-body">
-                <div id="VistaPreviaCroquis" class="row">
-                </div>
-                <fieldset>
-                    <div class="col-md-12 table-responsive" id="VistaCroquis" align="center">
-                        <table  id="tblCroquis" class="table table-striped table-hover" width="100%">
-                            <thead>
-                                <tr>
-                                    <th class="hide">Renglon</th>
-                                    <th class="col-md-8">Croquis</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setCroquis()">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR CROQUIS</h1>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--MODAL DETALLE - NUEVOS ANEXOS POR CONCEPTO-->
-<div id="mdlTrabajoNuevoAnexosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">ANEXOS</h4>
-            </div>
-            <div class="modal-body">
-                <div id="VistaPreviaAnexos" class="row">
-                </div>
-                <fieldset>
-                    <div class="col-md-12 table-responsive" id="VistaAnexos" align="center">
-                        <table  id="tblAnexos" class="table table-striped table-hover" width="100%">
-                            <thead>
-                                <tr>
-                                    <th class="hide">Renglon</th>
-                                    <th class="col-md-8">Anexo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;"  onclick="setAnexos()">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR ANEXOS</h1>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!--PANEL EDITAR-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlEditarTrabajo">
@@ -779,9 +402,6 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
-                        <!--                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Conceptos">
-                                                    <span class="fa fa-download"></span>
-                                                </button>-->
                     </span>
 
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -1065,8 +685,6 @@
         </div>
     </div>
 </div>
-
-
 <!--PANEL EDITAR DETALLE-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajo">
@@ -1080,44 +698,16 @@
                 </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
+        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
-            <div class="col-md-12 table-responsive " id="Conceptos" >
-                <table  id="tblConceptosXTrabajo" class="table table-striped table-hover hide " width="100%">
-                    <thead>
-                        <tr>
-                            <th class="hide">ID</th>
-                            <th class="hide">PreciarioConcepto_ID</th>
-                            <th class="hide">Renglon</th>
-                            <th>Clave</th>
-                            <th class="col-md-2" align="center">Int/Ext</th>
-                            <th class="col-md-5" align="center">Descripcion</th>
-                            <th class="col-md-1" align="center">Cantidad</th>
-                            <th>Unidad</th>
-                            <th>Precio</th>
-                            <th class="">Importe</th>
-                            <th class="hide">Moneda</th>
-                            <th class="hide">Generador Object</th>
-                            <th>Generador</th>
-                            <th>Fotos</th>
-                            <th>Croquis</th>
-                            <th>Anexos</th>
-                            <th class="hide">Estatus</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <div class="col-md-12 table-responsive " id="Conceptos" ></div>
         </fieldset>
-        <!--        </div>-->
+        <!--</div>-->
     </div>
 </div>
-
 <!--PANEL EDITAR DETALLE ABIERTO -->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajoAbierto">
@@ -1126,50 +716,20 @@
                 <div class="col-md-6">
                     <div class="cursor-hand" >Conceptos Levantamiento</div>
                 </div>
-                <div id="ImporteTotal" class="col-md-6" align="right">
-                    <h4 class="text-success">$ 0.0</h4>
-                </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
+        <!-- <div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive " id="ConceptosAbierto" >
-                <table  id="tblConceptosXTrabajoAbierto" class="table table-striped table-hover hide " width="100%">
-                    <thead>
-                        <tr>
-                            <th class="hide">ID</th>
-                            <th class="hide">PreciarioConcepto_ID</th>
-                            <th class="hide">Renglon</th>
-                            <th>Clave</th>
-                            <th class="col-md-2" align="center">Int/Ext</th>
-                            <th class="col-md-5" align="center">Descripcion</th>
-                            <th class="col-md-1" align="center">Cantidad</th>
-                            <th>Unidad</th>
-                            <th>Precio</th>
-                            <th class="">Importe</th>
-                            <th class="hide">Moneda</th>
-                            <th class="hide">Generador Object</th>
-                            <th>Generador</th>
-                            <th>Fotos</th>
-                            <th>Croquis</th>
-                            <th>Anexos</th>
-                            <th class="hide">Estatus</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+
             </div>
         </fieldset>
-        <!--        </div>-->
+        <!--</div>-->
     </div>
 </div>
-
-
 <!--MODAL AGREGAR CONCEPTO ABIERTO-->
 <div id="mdlAgregarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content modal-lg">
@@ -1188,25 +748,6 @@
                         <label for="">Clave*</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                     </div>
-                   
-                    <div class="col-md-3">
-                        <label for="">Unidad*</label>
-                        <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
-                    </div>
-                     <div class="col-md-3">
-                        <label for="">Cantidad*</label>
-                        <input type="text" id="Cantidad" name="Cantidad" class="form-control" required="" placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="">Precio*</label>
-                        <input type="number" id="Precio" name="Precio" class="form-control" required="" placeholder="">
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <label for="">Moneda*</label>
-                        <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN,USD">
-                    </div>
-
                     <div class="col-md-3">
                         <label for="">Int/Ext*</label>
                         <select id="IntExt" name="IntExt" class="form-control" >
@@ -1215,20 +756,17 @@
                             <option value="Exterior">Exterior</option>
                         </select>
                     </div>
-                    
-                     <div class="col-md-12">
+                    <div class="col-md-12">
                         <label for="">Descripción*</label>
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
                     </div>
-
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
             </form>
         </div>
-
         <div class="modal-footer">
             <!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
@@ -1236,7 +774,6 @@
         </div>
     </div>
 </div>
-
 <!--MODAL EDITAR CONCEPTO ABIERTO-->
 <div id="mdlEditarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content modal-lg">
@@ -1256,27 +793,6 @@
                         <label for="">Clave*</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                     </div>
-                   
-                    <div class="col-md-3">
-                        <label for="">Unidad*</label>
-                        <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
-                    </div>
-                    
-                     <div class="col-md-3">
-                        <label for="">Cantidad*</label>
-                        <input type="number" id="Cantidad" name="Cantidad" class="form-control" required="" placeholder="">
-                    </div>
-                     <div class="col-md-3">
-                        <label for="">Precio*</label>
-                        <input type="number" id="Precio" name="Precio" class="form-control" required="" placeholder="">
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <label for="">Moneda*</label>
-                        <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN,USD">
-                    </div>
-                   
-
                     <div class="col-md-3">
                         <label for="">Int/Ext*</label>
                         <select id="IntExt" name="IntExt" class="form-control" >
@@ -1285,28 +801,23 @@
                             <option value="Exterior">Exterior</option>
                         </select>
                     </div>
-                    
-                     <div class="col-md-12">
+                    <div class="col-md-12">
                         <label for="">Descripción*</label>
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
                     </div>
-
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
             </form>
         </div>
-
-        <div class="modal-footer">
-            <!--BOTONES CONCEPTO-->
+        <div class="modal-footer"><!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEditarConceptoAbierto" name="btnEditarConceptoAbierto"><span class="fa fa-check fa-1x"></span><br>MODIFICAR</button>
         </div>
     </div>
 </div>
-
 <!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO-->
 <div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal animated bounceInDown ">
     <div class="modal-dialog super-fullscreen">
@@ -1337,9 +848,7 @@
                             <input type="text" id="IdTrabajoDetalle" name="IdTrabajoDetalle" class="form-control ">
                             <input type="text" id="Precio" name="Precio" class="form-control">
                         </div>
-                        <div class="col-md-12">
-                            <br>
-                        </div>
+                        <div class="col-md-12"><br></div>
                         <div class="col-md-5">
                             <label for="">Area</label>
                             <input type="text" id="Area" name="Area" class="form-control">
@@ -1372,7 +881,6 @@
                             <label for="">Cantidad</label>
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                         </div>
-
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary hide" id="btnModificar" onclick=""><span class="fa fa-check"></span><br>MODIFICAR</button>
                             <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarEditarModificarGeneradorXID(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
@@ -1385,7 +893,6 @@
         </div>
     </div>
 </div>
-
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
 <div id="mdlTrabajoNuevoConceptoEditar" class="modal animated fadeInUp">
     <div class="modal-dialog super-fullscreen">
@@ -1398,14 +905,12 @@
                 <fieldset>
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="chkMultiple" value="ON"> VARIOS
+                            <label><input type="checkbox" id="chkMultiple" value="ON"> VARIOS
                             </label>
                         </div>
                     </div>
                 </fieldset>
-                <div class="col-md-12" id="ConceptosXPreciarioID">
-                </div>
+                <div class="col-md-12" id="ConceptosXPreciarioID"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
@@ -1413,8 +918,6 @@
         </div>
     </div>
 </div>
-
-
 <!--MODAL EDITAR - VER FOTOS ADJUNTAS-->
 <div id="mdlTrabajoEditarFotosPorConcepto" class="modal animated bounceInDown">
     <div class="modal-dialog super-fullscreen">
@@ -1435,14 +938,12 @@
                 </div>
                 <fieldset>
                     <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setFotosEditar(this)">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
+                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
                         <h1 >ADJUNTAR FOTOS</h1>
                     </div>
                     <div class="col-md-12" align="center"><br><h1>FOTOS</h1><HR></div>
                     <div class="col-md-12 row" id="Fotos"></div>
                 </fieldset>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
@@ -1450,7 +951,39 @@
         </div>
     </div>
 </div>
-
+<!--MODAL EDITAR - VER FOTOS DESPUES ADJUNTAS-->
+<div id="mdlTrabajoEditarFotosDespuesPorConcepto" class="modal animated bounceInDown">
+    <div class="modal-dialog super-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">FOTOS</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <div class="col-md-12">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                    </div>
+                </fieldset>
+                <div id="VistaPreviaFotos" class="row">
+                </div>
+                <fieldset>
+                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setFotosDespuesEditar(this)">
+                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
+                        <h1 >ADJUNTAR FOTOS</h1>
+                    </div>
+                    <div class="col-md-12" align="center"><br><h1>FOTOS</h1><HR></div>
+                    <div class="col-md-12 row" id="Fotos"></div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--MODAL EDITAR - VER CROQUIS ADJUNTOS-->
 <div id="mdlTrabajoEditarCroquisPorConcepto" class="modal animated bounceInDown">
     <div class="modal-dialog super-fullscreen">
@@ -1471,8 +1004,7 @@
                 </div>
                 <fieldset>
                     <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setCroquisEditar()">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
+                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
                         <h1 >ADJUNTAR CROQUIS</h1>
                     </div>
                     <div class="col-md-12"><br></div>
@@ -1485,7 +1017,6 @@
         </div>
     </div>
 </div>
-
 <!--MODAL EDITAR - VER ANEXOS ADJUNTOS-->
 <div id="mdlTrabajoEditarAnexosPorConcepto" class="modal animated bounceInDown">
     <div class="modal-dialog super-fullscreen">
@@ -1506,8 +1037,7 @@
                 </div>
                 <fieldset>
                     <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setAnexosEditar(this)">
-                        <br>
-                        <i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
+                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
                         <h1 >ADJUNTAR ANEXOS</h1>
                     </div>
                     <div class="col-md-12"><br></div>
@@ -1520,8 +1050,6 @@
         </div>
     </div>
 </div>
-
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlTrabajos/';
@@ -1535,103 +1063,73 @@
     var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
     var pnlEditarTrabajo = $("#pnlEditarTrabajo");
     var menuTablero = $('#MenuTablero');
-
     var Archivo = $("#Adjunto");
     var btnArchivo = $("#btnArchivo");
     var VistaPrevia = $("#VistaPrevia");
-
     var ModificarArchivo = pnlEditarTrabajo.find("#Adjunto");
     var btnModificarArchivo = pnlEditarTrabajo.find("#btnArchivo");
     var ModificarVistaPrevia = pnlEditarTrabajo.find("#VistaPrevia");
-
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     var pnlDetalleNuevoTrabajo = $("#pnlDetalleNuevoTrabajo");
     var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
     var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
-    var tblConceptosXTrabajo = pnlDetalleNuevoTrabajo.find("#tblConceptosXTrabajo");
-    var mdlTrabajoNuevoConcepto = $("#mdlTrabajoNuevoConcepto");
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
-
-    //Toggle Button Editar Atendido Impacto
+    /*Toggle Button Editar Atendido Impacto*/
     var tbtnEditarAtendido = pnlEditarTrabajo.find("#EditarAtendido");
     var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
-
-    //Toggle Button  Atendido Impacto
+    /*Toggle Button  Atendido Impacto*/
     var tbtnNuevoAtendido = pnlNuevoTrabajo.find("#NuevoAtendido");
     var tbtnNuevoImpactoEnPlazo = pnlNuevoTrabajo.find("#NuevoImpactoEnPlazo");
-
-
     /*Detalle*/
-    var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
-    var mdlTrabajoNuevoFotosPorConcepto = $("#mdlTrabajoNuevoFotosPorConcepto");
-    var mdlTrabajoNuevoCroquisPorConcepto = $("#mdlTrabajoNuevoCroquisPorConcepto");
-    var mdlTrabajoNuevoAnexosPorConcepto = $("#mdlTrabajoNuevoAnexosPorConcepto");
-    var btnGuardarNuevoGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar");
-    var NuevoGeneradorXConcepto = mdlTrabajoNuevoGeneradorPorConcepto.find("#NuevoGeneradorXConcepto");
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
     var pnlDetalleEditarTrabajo = $("#pnlDetalleEditarTrabajo");
-
-   
     var currentDate = new Date();
-
-    var btnCancelarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelar");
-    var btnMoficarNuevoGenerador = mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar");
-
-    //Reportes
+    /*Reportes*/
     var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
-
     /*EDICION*/
     var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
     var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
     var btnCancelarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador");
     var btnMoficarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar");
     var btnEditarCancelarNuevoGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
-
     var mdlTrabajoNuevoConceptoEditar = $("#mdlTrabajoNuevoConceptoEditar");
     var ConceptosXPreciarioID = mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID");
-    var tblConceptosXTrabajoEditar = pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo");
-
     /*BOTON PARA AGREGAR UN NUEVO CONCEPTO*/
     var btnNuevoConceptoEditar = pnlDetalleEditarTrabajo.find("#btnNuevoConcepto");
     /*BOTON PARA ABRIR EL MODAL DE FOTOS (EDITAR)*/
     var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
+    /*BOTON PARA ABRIR EL MODAL DE FOTOS DESPUES (EDITAR)*/
+    var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE CROQUIS (EDITAR)*/
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE ANEXOS (EDITAR)*/
     var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
-
     /*FOTOS (EDITAR)*/
     var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
     var VistaPreviaFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#VistaPreviaFotos");
-
+    /*FOTOSDESPUES (EDITAR)*/
+    var EditarFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos");
+    var VistaPreviaFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#VistaPreviaFotos");
     /*CROQUIS (EDITAR)*/
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
     var VistaPreviaCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#VistaPreviaCroquis");
-
     /*ANEXOS (EDITAR)*/
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
     var VistaPreviaAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#VistaPreviaAnexos");
-
-
     /******ABIERTO*/
     var pnlDetalleEditarTrabajoAbierto = $('#pnlDetalleEditarTrabajoAbierto');
     var pnlDetalleNuevoTrabajoAbierto = $('#pnlDetalleNuevoTrabajoAbierto');
-
     var btnNuevoConceptoAbierto = pnlDetalleNuevoTrabajoAbierto.find('#btnNuevoConceptoAbierto');
     var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajoAbierto.find('#btnNuevoConceptoAbiertoEditar');
-
-
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
 
-
     $(document).ready(function () {
-
-
+        /**FIN FUNCIONES DE EDICION **/
         btnEditarConceptoAbierto.on("click", function () {
             $.validator.setDefaults({
                 ignore: []
@@ -1640,20 +1138,11 @@
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditarConceptoDetalleAbierto').validate({
-                errorElement: 'span',
-                errorClass: 'errorForms',
+                errorElement: 'span', errorClass: 'errorForms',
                 rules: {
-                    Clave: 'required',
-                    Descripcion: 'required',
-                    Unidad: 'required',
-                    Cantidad:'required',
-                    Moneda: 'required',
-                    Precio: 'required',
-                    IntExt: 'required'
-
+                    Clave: 'required', Descripcion: 'required', IntExt: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
@@ -1666,16 +1155,9 @@
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmEditarConceptoDetalleAbierto').valid()) {
                 var frm = new FormData($("#frmEditarConceptoDetalleAbierto")[0]);
-                
-               var cantidad = parseFloat($('#frmEditarConceptoDetalleAbierto').find('#Cantidad').val());
-               var precio = parseFloat($('#frmEditarConceptoDetalleAbierto').find('#Precio').val()); 
-                var Importe= cantidad*precio;
-                frm.append('Importe',Importe);
-
                 $.ajax({
                     url: master_url + 'onModificarConceptoAbierto',
                     type: "POST",
@@ -1684,36 +1166,8 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
                     $('#mdlEditarConceptoAbierto').modal('hide');
                     getDetalleAbiertoByID(IdMovimiento);
-
-                    $.ajax({
-                        url: master_url + 'onModificarImportePorTrabajoAbierto',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: IdMovimiento
-                        }
-                    }).done(function (data, x, jq) {
-
-                        if (data !== undefined && data.length > 0) {
-                            var dtm = data[0];
-
-                            if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                                pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-                            } else {
-                                pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
-                            }
-                        }
-
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1721,9 +1175,7 @@
                 });
             }
         });
-
         btnAgregarConceptoAbierto.on("click", function () {
-
             $.validator.setDefaults({
                 ignore: []
             });
@@ -1731,20 +1183,11 @@
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
             $('#frmAgregarConceptoDetalleAbierto').validate({
-                errorElement: 'span',
-                errorClass: 'errorForms',
+                errorElement: 'span', errorClass: 'errorForms',
                 rules: {
-                    Clave: 'required',
-                    Descripcion: 'required',
-                    Unidad: 'required',
-                    Cantidad:'required',
-                    Moneda: 'required',
-                    Precio: 'required',
-                    IntExt: 'required'
-
+                    Clave: 'required', Descripcion: 'required', IntExt: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
@@ -1757,21 +1200,10 @@
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmAgregarConceptoDetalleAbierto').valid()) {
                 var frm = new FormData($("#frmAgregarConceptoDetalleAbierto")[0]);
-
-                
-                
-                var cantidad = parseFloat($('#frmAgregarConceptoDetalleAbierto').find('#Cantidad').val());
-               var precio = parseFloat($('#frmAgregarConceptoDetalleAbierto').find('#Precio').val()); 
-                var Importe= cantidad*precio;
-                
-                frm.append('ImporteAbierto',Importe);
                 frm.append('Trabajo_ID', IdMovimiento);
-                
-
                 $.ajax({
                     url: master_url + 'onAgregarDetalleAbiertoEditar',
                     type: "POST",
@@ -1780,35 +1212,8 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
                     $('#mdlAgregarConceptoAbierto').modal('hide');
                     getDetalleAbiertoByID(IdMovimiento);
-
-                    $.ajax({
-                        url: master_url + 'onModificarImportePorTrabajoAbierto',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: IdMovimiento
-                        }
-                    }).done(function (data, x, jq) {
-
-                        if (data !== undefined && data.length > 0) {
-                            var dtm = data[0];
-
-                            if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                                pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-                            } else {
-                                pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
-                            }
-                        }
-
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-
 
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1816,71 +1221,53 @@
                     HoldOn.close();
                 });
             }
-
         });
-
         btnNuevoConceptoAbiertoEditar.on("click", function () {
-
             $('#mdlAgregarConceptoAbierto').find("input").val("");
             $('#mdlAgregarConceptoAbierto').find("textarea").val("");
             $('#mdlAgregarConceptoAbierto').find("select").val(null).trigger("change");
-
             $('#mdlAgregarConceptoAbierto').modal('show');
-
         });
-
-        //Estos eventos controlan que detalle se esta viendo
+        /*Estos eventos controlan que detalle se esta viendo*/
         pnlNuevoTrabajo.find("#Movimiento").change(function () {
-
             if (this.value === 'LEVANTAMIENTO') {
                 pnlDetalleNuevoTrabajoAbierto.removeClass('hide');
                 pnlDetalleNuevoTrabajo.addClass('hide');
             } else if (this.value === 'PRESUPUESTO') {
-
                 pnlDetalleNuevoTrabajoAbierto.addClass('hide');
                 pnlDetalleNuevoTrabajo.removeClass('hide');
             } else {
                 pnlDetalleNuevoTrabajo.addClass('hide');
                 pnlDetalleNuevoTrabajoAbierto.addClass('hide');
             }
-
-
         });
-
         pnlEditarTrabajo.find("#Movimiento").change(function () {
-
             if (this.value === 'LEVANTAMIENTO') {
                 pnlDetalleEditarTrabajoAbierto.removeClass('hide');
                 pnlDetalleEditarTrabajo.addClass('hide');
+                $("#reportesLevantamiento").removeClass('hide');
+                $("#reportesPresupuesto").addClass('hide');
+                getDetalleAbiertoByID(IdMovimiento);
             } else if (this.value === 'PRESUPUESTO') {
-
                 pnlDetalleEditarTrabajoAbierto.addClass('hide');
                 pnlDetalleEditarTrabajo.removeClass('hide');
+                $("#reportesLevantamiento").addClass('hide');
+                $("#reportesPresupuesto").removeClass('hide');
+                getTrabajoDetalleByID(IdMovimiento);
             } else {
+                $("#reportesLevantamiento").addClass('hide');
+                $("#reportesPresupuesto").addClass('hide');
                 pnlDetalleEditarTrabajo.addClass('hide');
                 pnlDetalleEditarTrabajoAbierto.addClass('hide');
             }
-
-
         });
-
-
-
         /**FUNCIONES DE EDICION**/
         /*ANEXOS POR CONCEPTO EDITAR*/
         EditarAnexosPorConcepto.change(function () {
-            HoldOn.open({
-                theme: 'sk-cube',
-                message: 'CARGANDO ANEXOS...'
-            });
-            var imageType = /image.*/;
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             VistaPreviaAnexosPorConcepto.html("<fieldset></fieldset>");
             console.log('EditarAnexosPorConcepto[0].files');
             console.log(EditarAnexosPorConcepto[0].files);
-//            for (var n = 0; n <= EditarAnexosPorConcepto[0].files.length; n++) {
-//                console.log('for: EditarAnexosPorConcepto[0].files[' + n + '].name');
-//                console.log(EditarAnexosPorConcepto[0].files[0].name);
-//            }
             var img = "";
             var nimg = 0;
             $.each(EditarAnexosPorConcepto[0].files, function (k, file) {
@@ -1892,21 +1279,13 @@
                         img += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
-                    console.log(this);
-//                    img += '<div class="col-md-4">';
-//                    img += '<img src="' + reader.result + '" class="img-responsive">';
-//                    img += '<span class="label label-success">' + file.name + '</span><br>';
-//                    img += '</div>';
-//                    VistaPreviaAnexosPorConcepto.find("fieldset").append(img);
                     nimg++;
-
                     /*SUBIR ANEXO*/
                     var frm = new FormData();
                     frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                     frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
                     frm.append('Observaciones', file.name);
                     frm.append('ANEXOS', file);
-
                     $.ajax({
                         url: master_url + 'onAgregarAnexosEditar',
                         type: "POST",
@@ -1916,10 +1295,7 @@
                         data: frm
                     }).done(function (data, x, jq) {
                         onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
-                        onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXOS ' + file.name, 'success');
-                        console.log('* * * LOG ANEXO * * *');
-                        console.log(data, x, jq);
-                        console.log('* * * FIN LOG ANEXO * * *');
+                        //onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXOS ' + file.name, 'success');
                         VistaPreviaAnexosPorConcepto.html("");
                         getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                     }).fail(function (x, y, z) {
@@ -1928,53 +1304,34 @@
                     }).always(function () {
                         HoldOn.close();
                     });
-
                 };
                 reader.readAsDataURL(file);
             });
             HoldOn.close();
         });
-
         /*CROQUIS POR CONCEPTO EDITAR*/
         EditarCroquisPorConcepto.change(function () {
-            HoldOn.open({
-                theme: 'sk-cube',
-                message: 'CARGANDO FOTOS...'
-            });
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var imageType = /image.*/;
             VistaPreviaCroquisPorConcepto.html("<fieldset></fieldset>");
             console.log('EditarCroquisPorConcepto[0].files');
             console.log(EditarCroquisPorConcepto[0].files);
-//            for (var n = 0; n <= EditarCroquisPorConcepto[0].files.length; n++) {
-//                console.log('for: EditarCroquisPorConcepto[0].files[' + n + '].name');
-//                console.log(EditarCroquisPorConcepto[0].files[0].name);
-//            }
             var img = "";
             var nimg = 0;
             $.each(EditarCroquisPorConcepto[0].files, function (k, file) {
                 console.log(file.name);
-//                var reader = new FileReader();
-//                reader.onload = function (e) {
                 img = "";
                 if (nimg === 3) {
                     img += '<div class="col-md-12" align="center"><br><hr><br></div>';
                     nimg = 0;
                 }
-                //  console.log(this);
-//                    img += '<div class="col-md-4">';
-//                    img += '<img src="' + reader.result + '" class="img-responsive">';
-//                    img += '<span class="label label-success">' + file.name + '</span><br>';
-//                    img += '</div>';
-//                    VistaPreviaCroquisPorConcepto.find("fieldset").append(img);
                 nimg++;
-
                 /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
                 frm.append('Observaciones', file.name);
                 frm.append('CROQUIS', file);
-
                 $.ajax({
                     url: master_url + 'onAgregarCroquisEditar',
                     type: "POST",
@@ -1984,10 +1341,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'CROQUIS ' + file.name, 'success');
-                    console.log('* * * LOG FOTO * * *');
-                    console.log(data, x, jq);
-                    console.log('* * * FIN LOG FOTO * * *');
+                    //onNotify('<span class="fa fa-check fa-lg"></span>', 'CROQUIS ' + file.name, 'success');
                     VistaPreviaCroquisPorConcepto.html("");
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
@@ -1995,53 +1349,28 @@
                 }).always(function () {
 
                 });
-
-//                };
-//                reader.readAsDataURL(file);
             });
             HoldOn.close();
         });
-
         /*FOTOS POR CONCEPTO EDITAR*/
         EditarFotosPorConcepto.change(function () {
-            HoldOn.open({
-                theme: 'sk-cube',
-                message: 'CARGANDO FOTOS...'
-            });
-            var imageType = /image.*/;
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             VistaPreviaFotosPorConcepto.html("<fieldset></fieldset>");
-            console.log('EditarFotosPorConcepto[0].files');
-            console.log(EditarFotosPorConcepto[0].files);
-//            for (var n = 0; n <= EditarFotosPorConcepto[0].files.length; n++) {
-//                console.log('for: EditarFotosPorConcepto[0].files[' + n + '].name');
-//                console.log(EditarFotosPorConcepto[0].files[0].name);
-//            }
             var img = "";
             var nimg = 0;
             $.each(EditarFotosPorConcepto[0].files, function (k, file) {
-                console.log(file.name);
-//                var reader = new FileReader();
-//                reader.onload = function (e) {
                 img = "";
                 if (nimg === 3) {
                     img += '<div class="col-md-12" align="center"><br><hr><br></div>';
                     nimg = 0;
                 }
-                console.log(this);
-//                    img += '<div class="col-md-4">';
-//                    img += '<img src="' + reader.result + '" class="img-responsive">';
-//                    img += '<span class="label label-success">' + file.name + '</span><br>';
-//                    img += '</div>';
-//                    VistaPreviaFotosPorConcepto.find("fieldset").append(img);
                 nimg++;
-
                 /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
                 frm.append('Observaciones', file.name);
                 frm.append('FOTO', file);
-
                 $.ajax({
                     url: master_url + 'onAgregarFotosEditar',
                     type: "POST",
@@ -2051,10 +1380,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO ' + file.name, 'success');
-                    console.log('* * * LOG FOTO * * *');
-                    console.log(data, x, jq);
-                    console.log('* * * FIN LOG FOTO * * *');
+                    //onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO ' + file.name, 'success');
                     VistaPreviaFotosPorConcepto.html("");
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
@@ -2062,13 +1388,49 @@
                 }).always(function () {
 
                 });
-
-//                };
-//                reader.readAsDataURL(file);
             });
             HoldOn.close();
         });
+        /*FOTOS DESPUES POR CONCEPTO EDITAR*/
+        EditarFotosDespuesPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            VistaPreviaFotosDespuesPorConcepto.html("<fieldset></fieldset>");
+            var img = "";
+            var nimg = 0;
+            $.each(EditarFotosDespuesPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                /*SUBIR FOTO*/
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosDespuesEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+                    //onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO ' + file.name, 'success');
+                    VistaPreviaFotosDespuesPorConcepto.html("");
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
 
+                });
+            });
+            HoldOn.close();
+        });
+        /*Boton que abre el modal de generador en base a la funcion*/
         btnMoficarEditarGenerador.on('click', function () {
             onModificarGeneradorXID();
         });
@@ -2087,22 +1449,17 @@
                 var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
                 frm.append('Concepto_ID', mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
-
                 frm.append('Area', mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val());
                 frm.append('Eje', mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val());
                 frm.append('EntreEje1', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val());
                 frm.append('EntreEje2', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val());
-
                 frm.append('Largo', mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val());
                 frm.append('Ancho', mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val());
                 frm.append('Alto', mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val());
                 frm.append('Cantidad', mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val());
                 frm.append('Total', total_generador);
                 if (parseFloat(total_generador) !== 0) {
-                    HoldOn.open({
-                        theme: 'sk-bounce',
-                        message: 'GUARDANDO...'
-                    });
+                    HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                     $.ajax({
                         url: master_url + 'onAgregarGenerador',
                         type: "POST",
@@ -2141,421 +1498,124 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE INGRESAR TODOS LOS VALORES NECESARIOS PARA UN TOTAL', 'danger');
             }
         });
-
+        /*Detecta si es nuevo o la lista de generadores*/
         mdlTrabajoEditarGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var target = $(e.target).attr("href");
             switch (target) {
                 case "#EditarGeneradores":
                     console.log('SE CANCELO LA EDICION');
-                    //  onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
                     btnCancelarEditarGenerador.trigger('click');
-                    console.log('* * * * * TARGET * * * * ');
-                    console.log(target);
-                    console.log('* * * * * END TARGET * * * * ');
-
                     break;
                 case "#EditarGenerador":
-
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Area").focus();
                     break;
             }
         });
-
-        /**FIN FUNCIONES DE EDICION **/
-        /*FUNCIONES DE NUEVO*/
+        /*Modal de reportes*/
         btnImprimirReportesEditarTrabajo.on("click", function () {
             mdlReportesEditarTrabajo.modal('show');
         });
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").keypress(function (e) {
-            if (e.which === 13) {
-                if (!btnGuardarNuevoGeneradorXConcepto.hasClass("hide")) {
-                    console.log('ESTA GUARDANDO');
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").trigger('click');
-                }
-                if (!btnMoficarNuevoGenerador.hasClass("hide")) {
-                    console.log('ESTA EDITANDO');
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#btnModificar").trigger('click');
-                }
-            }
-        });
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            var target = $(e.target).attr("href");
-            switch (target) {
-                case "#Generadores":
-                    if (generador_nuevo_editable) {
-                        console.log('SE CANCELO LA EDICION');
-                        //  onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EDICIÓN CANCELADA', 'danger');
-                        btnCancelarNuevoGenerador.trigger('click');
-                        console.log('* * * * * TARGET * * * * ');
-                        console.log(target);
-                        console.log('* * * * * END TARGET * * * * ');
-
-                        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                            var row = $(v).find("td");
-                            if (row.eq(13).text() === "EDITANDO") {
-                                row.eq(13).text("ACTIVO");
-                            }
-                        });
-                    }
-                    break;
-                case "#NuevoGenerador":
-
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
-                    break;
-            }
-        });
-
-        /***** Modificar Concepto ****/
-        btnGuardarNuevoGeneradorXConcepto.on("click", function () {
-            var Generador = [];
-            if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0 ||
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0 ||
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== 0) &&
-                    pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                    var row_status = $(this).find("td").eq(15).text();
-                    if (row_status === 'ACTIVO') {
-                        /*EVALUAR LA CANTIDAD*/
-                        var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
-                        var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
-                        var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
-                        var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-                        //                    console.log('**********************DATOS A EVALUAR**************************')
-                        /*EVALUAR LOS CAMPOS*/
-                        if ((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && Largo !== '' && Largo !== undefined) ||
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && (Ancho !== '' && Ancho !== undefined) || mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && (Alto !== '' && Alto !== undefined) ||
-                                mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '' && (Cantidad !== '' && Cantidad !== undefined)) {
-                            //                        /*FIN DE LA EVALUACIÓN*/
-                            /*ELIMINAR GENERADORES*/
-                            if (NuevoGeneradorXConcepto.find())
-                                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                    var row = $(v).find("td");
-                                    if (row.eq(0).text() === "No existen datos en la tabla.") {
-                                        $(this).remove();
-                                    }
-                                });
-                            var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
-                            var new_row = '<tr role="row" class="even">';
-                            new_row += '<td class="hide sorting_1">1</td>';
-                            new_row += '<td class="hide">';
-                            new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val();
-                            new_row += '</td>';
-                            new_row += '<td><span class="fa fa-times fa-2x customButtonDetalleEliminar" onclick="onEliminarGenerador(this)"></span></td>';
-                            new_row += '<td>';
-                            new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val();
-                            new_row += '</td><td>';
-                            new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val();
-                            new_row += '</td><td>';
-                            new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val();
-                            new_row += '</td><td>';
-                            new_row += mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val();
-                            new_row += '</td><td>';
-                            new_row += parseFloat((Largo !== '') ? Largo : 0);
-                            new_row += '</td><td>';
-                            new_row += parseFloat((Ancho !== '') ? Ancho : 0);
-                            new_row += '</td><td>';
-                            new_row += parseFloat((Alto !== '') ? Alto : 0);
-                            new_row += '</td><td>';
-                            new_row += parseFloat((Cantidad !== '') ? Cantidad : 0);
-                            new_row += '</td>';
-                            new_row += '<td>';
-                            new_row += subtotal;
-                            new_row += '</td>';
-
-                            new_row += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
-                            new_row += "<td class=\"hide\">ACTIVO</td>";
-                            new_row += '</tr>';
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody").append(new_row);
-                            /*AGREGAR NUEVO GENERADOR*/
-                            Generador = [];
-                            var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                var row = $(v).find("td");
-                                console.log(v);
-                                console.log(row);
-                                var nuevo_generador = {};
-                                nuevo_generador["Concepto_ID"] = row.eq(1).text();
-                                nuevo_generador["Area"] = row.eq(3).text();
-                                nuevo_generador["Eje"] = row.eq(4).text();
-                                nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                Generador.push(JSON.stringify(nuevo_generador));
-                                tt += parseFloat(row.eq(11).text());
-                            });
-                            $(this).find("td").eq(6).text(tt);                             /*FIN DE LA EVALUACIÓN*/
-
-                            var Precio = parseFloat($(this).find("td").eq(8).text());
-                            var Total = tt * Precio;
-                            $(this).find("td").eq(10).text(Total);
-                            $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                            $(this).find("td").eq(13).text(Generador);
-                            getGeneradorImporteTotal();
-                            //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                            //Nos regresamos a la pestaña de generadores
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-
-                            return false;
-                        } else {
-                            Generador = [];
-                            var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                var row = $(v).find("td");
-                                var nuevo_generador = {};
-                                nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                nuevo_generador["Area"] = row.eq(3).text();
-                                nuevo_generador["Eje"] = row.eq(4).text();
-                                nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                console.log('GENERADOR NUEVO ');
-                                console.log(row);
-                                console.log(nuevo_generador);
-                                console.log('END GENERADOR NUEVO');
-                                Generador.push(JSON.stringify(nuevo_generador));
-                                tt += parseFloat(row.eq(11).text());
-                            });
-                            $(this).find("td").eq(6).text(tt);
-                            /*FIN DE LA EVALUACIÓN*/
-                            getGeneradorImporteTotal();
-                            var Precio = parseFloat($(this).find("td").eq(8).text());
-                            var Total = tt * Precio;
-                            $(this).find("td").eq(10).text(Total);
-                            $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                            $(this).find("td").eq(13).text(Generador);
-                            // mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-
-                            //Nos regresamos a la pestaña de generadores
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                            return false;
-                        }
-                    }
-                });
-                getImporteTotal();
-            } else {
-                if (NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").length > 0) {
-                    console.log('* * * * * * * RECREANDO EL GENERADOR *********');
-                    $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                        var row_status = $(this).find("td").eq(15).text();
-                        if (row_status === 'ACTIVO') {
-                            Generador = [];
-                            var tt = 0;
-                            NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                                var row = $(v).find("td");
-                                var nuevo_generador = {};
-                                nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                                nuevo_generador["Area"] = row.eq(3).text();
-                                nuevo_generador["Eje"] = row.eq(4).text();
-                                nuevo_generador["EntreEje1"] = row.eq(5).text();
-                                nuevo_generador["EntreEje2"] = row.eq(6).text();
-                                nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                                nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                                nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                                nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                                console.log('GENERADOR NUEVO ');
-                                console.log(row);
-                                console.log(nuevo_generador);
-                                console.log('END GENERADOR NUEVO');
-                                Generador.push(JSON.stringify(nuevo_generador));
-                                tt += parseFloat(row.eq(11).text());
-                            });
-                            console.log(' * * * GENERADOR CREADO * * * ');
-                            console.log(Generador);
-                            console.log(' * * * GENERADOR CREADO * * * ');
-                            $(this).find("td").eq(6).text(tt);
-                            /*FIN DE LA EVALUACIÓN*/
-                            var Precio = parseFloat($(this).find("td").eq(8).text());
-                            var Total = tt * Precio;
-                            $(this).find("td").eq(10).text(Total);
-                            $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                            $(this).find("td").eq(13).text(Generador);
-                            console.log(' * * * ROW CONCEPTO * * * ');
-                            console.log($(this).find("td"));
-                            console.log(' * * * ROW CONCEPTO * * * ');
-                            getGeneradorImporteTotal();
-                            getImporteTotal();
-                            //  mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                            //Nos regresamos a la pestaña de generadores
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-                            mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-                        }
-                    });
-                    console.log('* * * * * * * END RECREANDO EL GENERADOR *********');
-                } else {
-                    mdlTrabajoNuevoGeneradorPorConcepto.modal('hide');
-                }
-            }
-        });
-
-
-
+        /*FUNCIONES DETALLE NUEVO*/
         btnNuevoConceptoAbierto.on("click", function () {
-
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
-
         });
-
+        /*Agregar nuevo concepto en detalle nuevo*/
         btnNuevoConcepto.on("click", function () {
-
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
-//            var Preciario_ID = pnlNuevoTrabajo.find("#Preciario_ID").val();
-//            if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
-//
-//                getConceptosXPreciarioID(Preciario_ID);
-//                mdlTrabajoNuevoConcepto.modal('show');
-//            } else {
-//                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
-//            }
         });
-
         btnRefrescar.on("click", function () {
             getRecords();
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
         });
-
-        //Evento clic del boton confirmar borrar
+        /*Evento clic del boton confirmar borrar*/
         btnConfirmarEliminar.on("click", function () {
-
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                //Muestra el modal
+            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnEliminar.on("click", function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminar',
-                    type: "POST",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    console.log(data);
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'onEliminar',
+                type: "POST",
+                data: {
+                    ID: IdMovimiento
+                }
+            }).done(function (data, x, jq) {
 
-                    mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
-
-                    menuTablero.addClass("animated slideInLeft").removeClass("hide");
-                    pnlEditarTrabajo.addClass("hide");
-                    pnlDetalleEditarTrabajo.addClass("hide");
-
-
-                    getRecords();
-                    btnRefrescar.trigger('click');
-
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
+                mdlConfirmar.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
+                menuTablero.addClass("animated slideInLeft").removeClass("hide");
+                pnlEditarTrabajo.addClass("hide");
+                pnlDetalleEditarTrabajo.addClass("hide");
+                getRecords();
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
-
-        //Funcion que cambia el valor cuando el toggle button cambia
+        /*Funcion que cambia el valor cuando el toggle button cambia*/
         tbtnEditarAtendido.change(function () {
             if (this.checked) {
-
                 pnlEditarTrabajo.find("#Atendido").val('Si');
             } else {
                 pnlEditarTrabajo.find("#Atendido").val('No');
             }
         });
-
         tbtnEditarImpactoEnPlazo.change(function () {
             if (this.checked) {
-
                 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
             } else {
                 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
             }
         });
-
-        //Eventos del toggle para nuevo
+        /*Eventos del toggle para nuevo*/
         tbtnNuevoAtendido.change(function () {
             if (this.checked) {
-
                 pnlNuevoTrabajo.find("#Atendido").val('Si');
             } else {
-
                 pnlNuevoTrabajo.find("#Atendido").val('No');
             }
         });
-
         tbtnNuevoImpactoEnPlazo.change(function () {
             if (this.checked) {
-
                 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('Si');
             } else {
                 pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             }
         });
-
         tBtnEditarConcluir.on("click", function () {
             if (!$(this).is(':checked')) {
                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                 btnConfirmarEliminar.attr("disabled", false);
                 btnModificar.removeClass('hide');
             }
-
         });
-
+        /*Button que se triggerea en el evento click de la tabla getRecords*/
         btnEditar.on("click", function () {
-            tempDetalle = 0;
-
             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
             pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
             pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
             pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
+            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
+                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                 $.ajax({
                     url: master_url + 'getTrabajoByID',
                     type: "POST",
                     dataType: "JSON",
                     data: {
-                        ID: temp
+                        ID: IdMovimiento
                     }
                 }).done(function (data, x, jq) {
                     pnlEditarTrabajo.find("input").val("");
-
                     var trabajo = data[0];
-
                     $.ajax({
                         url: master_url + 'getSucursalesByCliente',
                         type: "POST",
@@ -2564,11 +1624,8 @@
                             ID: trabajo.Cliente_ID
                         }
                     }).done(function (data, x, jq) {
-
-
                         var options = '<option></option>';
                         $.each(data, function (k, v) {
-
                             options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
                         });
                         pnlEditarTrabajo.find("#Sucursal_ID").html(options);
@@ -2586,11 +1643,8 @@
                             Cliente_ID: trabajo.Cliente_ID
                         }
                     }).done(function (data, x, jq) {
-
-
                         var options = '<option></option>';
                         $.each(data, function (k, v) {
-
                             options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                         });
                         pnlEditarTrabajo.find("#Preciario_ID").html(options);
@@ -2600,10 +1654,8 @@
                     }).always(function () {
                         HoldOn.close();
                     });
-
-                    //trae los días
+                    /*trae los días*/
                     getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-
                     pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                     pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                     pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
@@ -2613,12 +1665,10 @@
                         pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
                         pnlEditarTrabajo.find("#Atendido").val('Si');
                     }
-
                     if (trabajo.Atendido === 'No') {
                         pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
                         pnlEditarTrabajo.find("#Atendido").val('No');
                     }
-
                     pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
                     pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
                     pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
@@ -2649,7 +1699,6 @@
                     pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
                     pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
                     pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-
                     if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                         var ext = getExt(trabajo.Adjunto);
                         console.log(ext);
@@ -2665,28 +1714,21 @@
                     } else {
                         pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                     }
-
-
                     menuTablero.addClass("hide");
-
-                    getTrabajoDetalleByID(trabajo.ID);
-                    getDetalleAbiertoByID(trabajo.ID);
-
                     if (trabajo.Movimiento === 'LEVANTAMIENTO') {
                         pnlEditarTrabajo.removeClass("hide");
                         pnlDetalleEditarTrabajoAbierto.removeClass("hide");
-
+                        $("#reportesLevantamiento").removeClass('hide');
+                        $("#reportesPresupuesto").addClass('hide');
+                        getDetalleAbiertoByID(trabajo.ID);
                     } else if (trabajo.Movimiento === 'PRESUPUESTO') {
                         pnlEditarTrabajo.removeClass("hide");
                         pnlDetalleEditarTrabajo.removeClass("hide");
-
+                        $("#reportesLevantamiento").addClass('hide');
+                        $("#reportesPresupuesto").removeClass('hide');
+                        getTrabajoDetalleByID(trabajo.ID);
                     }
-
-
-
-
-
-                    //Control de estatus
+                    /*Control de estatus*/
                     if (trabajo.Estatus === 'Concluido') {
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
                         tBtnEditarConcluir.prop('checked', true);
@@ -2695,6 +1737,8 @@
                         btnConfirmarEliminar.attr("disabled", true);
                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
 
                     } else if (trabajo.Estatus === 'Cancelado') {
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
@@ -2704,8 +1748,9 @@
                         btnConfirmarEliminar.attr("disabled", true);
                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
                     } else {
-
                         $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
                         tBtnEditarConcluir.prop('checked', false);
                         btnModificar.removeClass('hide');
@@ -2713,11 +1758,9 @@
                         btnConfirmarEliminar.attr("disabled", false);
                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
                         pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
+                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
                     }
-
-
-
-
                     getImporteTotalDelTrabajoByID(trabajo.ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -2728,10 +1771,8 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
+        /*Evento que hace el update del movimiento*/
         btnModificar.on("click", function () {
-
-
             $.validator.setDefaults({
                 ignore: []
             });
@@ -2748,10 +1789,8 @@
                     Sucursal_ID: 'required',
                     Preciario_ID: 'required',
                     Situacion: 'required'
-
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
@@ -2759,28 +1798,18 @@
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
-            //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-            //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
-
                 var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
-                //  Para los checkbox
+                /*  Para los checkbox*/
                 if (tBtnEditarConcluir.is(':checked')) {
                     frm.append('Estatus', 'Concluido');
                 } else {
                     frm.append('Estatus', 'Borrador');
                 }
-
-                //Solo para debuggear el formulario de la clase FormData
-//                for (var pair of frm.entries()) {
-//                    console.log(pair[0]+ ', ' + pair[1]);
-//                }
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -2789,10 +1818,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
-
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
-
                     if (tBtnEditarConcluir.is(':checked')) {
                         btnModificar.addClass('hide');
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
@@ -2800,23 +1826,23 @@
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
                     } else {
                         btnConfirmarEliminar.attr("disabled", false);
                         $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
                         pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
                         pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
+                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
                     }
-
-                    console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
             }
-
         });
-
         btnGuardar.on("click", function () {
             $.validator.setDefaults({
                 ignore: []
@@ -2834,10 +1860,8 @@
                     Sucursal_ID: 'required',
                     Preciario_ID: 'required',
                     Situacion: 'required'
-
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
@@ -2846,89 +1870,18 @@
                     elem.removeClass(errorClass);
                 }
             });
-            //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
-            //Si es verdadero que hacer
             if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
-
-
                 var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
-//
-//                for (var pair of frm.entries()) {
-//                    console.log(pair[0] + ', ' + pair[1]);
-//                }
-
-
-                var trabajo_detalle = [];
-                var concepto = {};
-
-                pnlDetalleNuevoTrabajo.find('#tblConceptosXTrabajo > tbody  > tr').each(function (key, value) {
-                    var row = $(this).find("td");
-                    console.log(row);
-                    concepto = {
-                        PreciarioConcepto_ID: row.eq(1).text(),
-                        Renglon: row.eq(2).text(),
-                        Cantidad: row.eq(6).text(),
-                        Unidad: row.eq(7).text(),
-                        Precio: row.eq(8).text(),
-                        Importe: row.eq(10).text(),
-                        IntExt: row.eq(4).find("#IntExt").val(),
-                        Moneda: row.eq(12).text(),
-                        Generador: row.eq(13).text()
-                    };
-                    /*CREAR JSON DE LAS FOTOS POR CADA RENGLON*/
-                    var json_fotos = [];
-                    jQuery.each($(this).find("#Fotos")[0].files, function (i, file) {
-                        json_fotos.push({
-                            Renglon: row.eq(2).text(),
-                            Foto: file.name
-                        });
-                        frm.append('FOTOS[]', file);
-                    });
-                    frm.append('JSONFOTOS[]', JSON.stringify(json_fotos));
-
-                    /*CREAR JSON DE LOS CROQUIS POR CADA RENGLON*/
-                    var json_croquis = [];
-                    jQuery.each($(this).find("#Croquis")[0].files, function (i, file) {
-                        json_croquis.push({
-                            Renglon: row.eq(2).text(),
-                            Croquis: file.name
-                        });
-                        frm.append('CROQUIS[]', file);
-                    });
-                    frm.append('JSONCROQUIS[]', JSON.stringify(json_croquis));
-
-                    /*CREAR JSON DE LOS ANEXOS POR CADA RENGLON*/
-                    var json_anexos = [];
-                    jQuery.each($(this).find("#Anexos")[0].files, function (i, file) {
-                        json_anexos.push({
-                            Renglon: row.eq(2).text(),
-                            Anexo: file.name
-                        });
-                        frm.append('ANEXOS[]', file);
-                    });
-                    frm.append('JSONANEXOS[]', JSON.stringify(json_anexos));
-
-                    /*AGREGAR EL CONCEPTO CREADO*/
-                    trabajo_detalle.push(concepto);
-                });
-                frm.append('CONCEPTOS', JSON.stringify(trabajo_detalle));
-                //                Para los checkbox
                 if (tBtnConcluir.is(':checked')) {
-
                     frm.append('Estatus', 'Concluido');
-                    // $(".spanEstatus").text('Concluido');
                 } else {
-
                     frm.append('Estatus', 'Borrador');
-                    // $(".spanEstatus").text('Borrador');
                 }
-                //Agregar Importe total
+                /*Insertar Importe total*/
                 frm.append('Importe', ImporteTotalGlobal);
-                frm.append('ImporteAbierto', ImporteTotalGlobalAbierto);
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -2938,49 +1891,32 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
-                    console.log('data', data);
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
-//Funcion que regarga el panel de editar con el nuevo registro
-
+                    /*Funcion que regarga el panel de editar con el nuevo registro*/
                     despuesDeGuardar(data);
-                    //  btnCancelar.trigger('click');
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
             }
-
         });
-
         btnCancelar.on("click", function () {
-
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
-            //Detalle
             pnlDetalleNuevoTrabajo.addClass("hide");
             pnlDetalleNuevoTrabajoAbierto.addClass("hide");
             btnRefrescar.trigger('click');
         });
-
         btnCancelarModificar.on("click", function () {
-
-
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajoAbierto.addClass("hide");
-            btnRefrescar.trigger('click');
+            getRecords();
+
         });
-
         btnNuevo.on("click", function () {
-
-            $.each(tblConceptosXTrabajo.find("tbody tr"), function () {
-                $(this).remove();
-            });
-            tblConceptosXTrabajo.addClass("hide");
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
             pnlNuevoTrabajo.find("#Datos").addClass("active in");
@@ -2993,16 +1929,12 @@
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
-
-            //Inicializamos Boleanos en No
+            /*Inicializamos Boleanos en No*/
             pnlNuevoTrabajo.find("#Atendido").val('No');
             pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             //Trae el usuario logeado quien estará registrando el movimiento
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
-            /*DETALLE*/
-
         });
-
         /*Funcion que trae los catalogos en base al cliente*/
         pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
             pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
@@ -3017,15 +1949,14 @@
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
-        //Trae dias de ppta
+        /*Trae dias de ppta*/
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-        //Trae dias de ppta
+        /*Trae dias de ppta*/
         pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-
         btnArchivo.on("click", function () {
             Archivo.change(function () {
                 HoldOn.open({
@@ -3061,7 +1992,6 @@
             });
             Archivo.trigger('click');
         });
-
         btnModificarArchivo.on("click", function () {
             ModificarArchivo.change(function () {
                 HoldOn.open({
@@ -3097,7 +2027,6 @@
             });
             ModificarArchivo.trigger('click');
         });
-
         getClientes();
         getCodigosPPTA();
         getRecords();
@@ -3106,7 +2035,6 @@
     /*----------------------------METODOS DEL CONTROLADOR PARA TRAER DATOS----------------*/
     IdMovimiento = 0;
     function getRecords() {
-        temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
@@ -3122,10 +2050,17 @@
                 $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
             $('#tblTrabajos tbody').on('click', 'tr', function () {
                 $("#tblTrabajos").find("tr").removeClass("success");
                 $("#tblTrabajos").find("tr").removeClass("warning");
-                //                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -3135,22 +2070,8 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
                 IdMovimiento = parseInt(dtm[0]);
                 btnEditar.trigger("click");
-            });
-
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -3158,24 +2079,16 @@
             HoldOn.close();
         });
     }
-
     $('#Encabezado a').on("click", function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
-
-
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
-
     function despuesDeGuardar(IDTrabajo) {
-
         IdMovimiento = IDTrabajo;
-
         pnlNuevoTrabajo.addClass("hide");
         pnlDetalleNuevoTrabajo.addClass("hide");
         pnlDetalleNuevoTrabajoAbierto.addClass("hide");
-
-
         pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
         $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
         pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
@@ -3195,11 +2108,8 @@
                     ID: IdMovimiento
                 }
             }).done(function (data, x, jq) {
-
                 pnlEditarTrabajo.find("input").val("");
-
                 var trabajo = data[0];
-
                 $.ajax({
                     url: master_url + 'getSucursalesByCliente',
                     type: "POST",
@@ -3208,8 +2118,6 @@
                         ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-
-
                     var options = '<option></option>';
                     $.each(data, function (k, v) {
                         options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
@@ -3229,11 +2137,8 @@
                         Cliente_ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-
-
                     var options = '<option></option>';
                     $.each(data, function (k, v) {
-
                         options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
                     });
                     pnlEditarTrabajo.find("#Preciario_ID").html(options);
@@ -3243,12 +2148,8 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
-                //trae los días
+                /*trae los días*/
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);
-
-
-
                 pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                 pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
@@ -3258,7 +2159,6 @@
                     pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
                     pnlEditarTrabajo.find("#Atendido").val('Si');
                 }
-
                 if (trabajo.Atendido === 'No') {
                     pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
                     pnlEditarTrabajo.find("#Atendido").val('No');
@@ -3292,8 +2192,6 @@
                 pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
                 pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
                 pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-
-
                 //Control de estatus
                 if (trabajo.Estatus === 'Concluido') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
@@ -3302,6 +2200,8 @@
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
                 } else if (trabajo.Estatus === 'Cancelado') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
                     tBtnEditarConcluir.addClass('hide');
@@ -3309,6 +2209,8 @@
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
                 } else {
                     $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', false);
@@ -3316,11 +2218,10 @@
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                     pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
                     pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
+                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
                 }
-
-
                 pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-
                 if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                     var ext = getExt(trabajo.Adjunto);
                     console.log(ext);
@@ -3336,25 +2237,22 @@
                 } else {
                     pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                 }
-
-
                 menuTablero.addClass("hide");
-
                 if (trabajo.Movimiento === 'LEVANTAMIENTO') {
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajoAbierto.removeClass("hide");
-
+                    $("#reportesLevantamiento").removeClass('hide');
+                    $("#reportesPresupuesto").addClass('hide');
+                    getDetalleAbiertoByID(trabajo.ID);
                 } else if (trabajo.Movimiento === 'PRESUPUESTO') {
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajo.removeClass("hide");
-
+                    $("#reportesLevantamiento").addClass('hide');
+                    $("#reportesPresupuesto").removeclass('hide');
+                    getTrabajoDetalleByID(trabajo.ID);
                 }
-
                 //Setea el importe total
                 pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$' + parseFloat(trabajo.Importe) + '</span>');
-                getTrabajoDetalleByID(trabajo.ID);
-                getDetalleAbiertoByID(trabajo.ID);
-
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -3364,14 +2262,9 @@
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
         }
     }
-
-
     /*Traer catálogos para el encabezado*/
     function getClientes() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getClientes',
             type: "POST", dataType: "JSON"
@@ -3388,12 +2281,8 @@
             HoldOn.close();
         });
     }
-
     function getSucursalesbyCliente(IDX) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getSucursalesByCliente',
             type: "POST",
@@ -3402,11 +2291,8 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-
-
             var options = '<option></option>';
             $.each(data, function (k, v) {
-
                 options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
             });
             pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
@@ -3417,12 +2303,8 @@
             HoldOn.close();
         });
     }
-
     function getPreciariosbyCliente(Cliente_ID) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getPreciariosByCliente',
             type: "POST",
@@ -3431,8 +2313,6 @@
                 Cliente_ID: Cliente_ID
             }
         }).done(function (data, x, jq) {
-
-
             var options = '<option></option>';
             $.each(data, function (k, v) {
 
@@ -3446,12 +2326,8 @@
             HoldOn.close();
         });
     }
-
     function getSucursalByID(IDX) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getSucursalByID',
             type: "POST",
@@ -3460,7 +2336,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-
             pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -3468,12 +2343,8 @@
             HoldOn.close();
         });
     }
-
     function getPreciarioByID(IDX) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getPreciarioByID',
             type: "POST",
@@ -3482,7 +2353,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-
             pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -3490,11 +2360,8 @@
             HoldOn.close();
         });
     }
-
     function getCodigosPPTA() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'});
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getCodigosPPTA',
             type: "POST", dataType: "JSON"
@@ -3511,12 +2378,8 @@
             HoldOn.close();
         });
     }
-
     function getCuadrillas() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({url: master_url + 'getCuadrillas',
             type: "POST",
             dataType: "JSON"}).done(function (data, x, jq) {
@@ -3532,7 +2395,6 @@
             HoldOn.close();
         });
     }
-
     function getCodigoPPTAbyID(CodigoID) {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -3551,585 +2413,31 @@
                 pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
                 pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
             }
-
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
-
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
-
-
         $('#Adjunto').trigger('blur');
         $('#Adjunto').on('blur', function (e) {
             $('#Adjunto').val('');
         });
-
     }
-
-    function getConceptosXPreciarioID(IDX) {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: master_url + 'getConceptosXPreciarioID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            mdlTrabajoNuevoConcepto.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-            });
-            var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            mdlTrabajoNuevoConcepto.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
-                mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
-                mdlTrabajoNuevoConcepto.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                //                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-
-                $.ajax({
-                    url: master_url + 'getConceptoByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    var has_id = true;
-                    console.log('AGREGANDO.. CONCEPTO ');
-                    if (pnlDetalleNuevoTrabajo.find("tbody tr").length > 0) {
-                        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-                            var row_status = $(this).find("td").eq(1).text();
-                            if (parseInt(row_status) === parseInt(temp)) {
-                                has_id = false;
-                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
-                                return false;
-                            }
-                        });
-                    }
-                    if (has_id) {
-                        console.log('EDITANDO CONCEPTO ');
-                        console.log(data);
-                        var nrow = parseInt(tblConceptosXTrabajo.find("tbody tr").length) + 1;
-                        console.log('NUMERO DE FILAS: ' + tblConceptosXTrabajo.find("tbody tr").length);
-                        var concepto = data[0];
-                        var row = '<tr>';
-                        row += '<td class="hide">';
-                        row += 0;
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += concepto.ID;
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += (parseInt(tblConceptosXTrabajo.find("tbody tr").length) === 0) ? 1 : nrow;
-                        row += '</td>';
-                        row += '<td><span class="label label-warning">';
-                        row += concepto.Clave;
-                        row += '</span></td>';
-                        row += '<td>';
-                        row += '<select id="IntExt" class="form-control">';
-                        row += '<option></option>';
-                        row += '<option value="Interior">Interior</option>';
-                        row += '<option value="Exterior">Exterior</option>';
-                        row += '</select>';
-                        row += '</td>';
-                        row += '<td><textarea class=\"form-control CustomNuevoDetalleDescripcion\" rows=\"5\" readonly=\"\">';
-                        row += concepto.Descripcion;
-                        row += '</textarea></td>';
-                        row += '<td align="center">';
-                        row += '';
-                        row += '</td>';
-                        row += '<td>';
-                        row += concepto.Unidad;
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += concepto.Costo;
-                        row += '</td>';
-                        row += '<td><span class="label label-success">$';
-                        row += concepto.Precio; /*8*/
-                        row += '</span></td>';
-                        row += '<td class="hide">';
-                        row += 0;
-                        row += '</td>';
-                        row += '<td><span class="label label-success">$ ';
-                        row += 0;
-                        row += '</span></td>';
-                        row += '<td class="hide">';
-                        row += concepto.Moneda;
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += '</td>';
-                        row += '<td>';
-                        row += '<span class="fa fa-calculator fa-3x customButtonDetalleGenerador mx-auto" onclick="onGeneradorXConcepto(this)"></span>';
-                        row += '</td>';
-                        row += '<td class="hide">INACTIVO</td>';
-
-                        /*FOTOS*/
-                        row += '<td>';
-                        row += '<span class="fa fa-camera fa-2x customButtonDetalleGenerador" onclick="onFotosXConcepto(this)"></span>';
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += ' <input type="file" class="btn btn-primary" id="Fotos" name="Fotos[]" multiple="multiple">';
-                        row += '</td>';
-
-                        /*CROQUIS*/
-                        row += '<td>';
-                        row += '<span class="fa fa-map fa-2x customButtonDetalleGenerador" onclick="onCroquisXConcepto(this)"></span>';
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += ' <input type="file" class="btn btn-primary" id="Croquis" name="Croquis[]" multiple="multiple">';
-                        row += '</td>';
-
-                        /*ANEXOS*/
-                        row += '<td align="center">';
-                        row += '<span class="fa fa-paperclip fa-2x customButtonDetalleGenerador" onclick="onAnexosXConcepto(this)"></span>';
-                        row += '</td>';
-                        row += '<td class="hide">';
-                        row += ' <input type="file" class="btn btn-primary" id="Anexos" name="Anexos[]" multiple="multiple">';
-                        row += '</td>';
-
-                        /*ELIMINAR*/
-                        row += '<td align="center">';
-                        row += '<span class="fa fa-times fa-2x customButtonDetalleEliminar" onclick="onEliminarConcepto(this)"></span>';
-                        row += '</td>';
-                        row += '</tr>';
-                        if (tblConceptosXTrabajo.hasClass("hide")) {
-                            tblConceptosXTrabajo.removeClass("hide");
-                        }
-                        tblConceptosXTrabajo.find("tbody").append(row);
-                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL CONCEPTO', 'success');
-                        if (!mdlTrabajoNuevoConcepto.find("#chkMultiple").is(":checked")) {
-                            mdlTrabajoNuevoConcepto.modal('hide');
-                        }
-
-                    }
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-
-            });
-
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function onCalcularPrecio(evt) {
-        var row = $(evt).parent().parent().find("td");
-        var cantidad = parseFloat($(evt).val());
-        console.log('CANTIDAD: ' + cantidad);
-        var precio = parseFloat(row.eq(8).text());
-        console.log('PRECIO: ' + precio);
-        var importe = cantidad * precio;
-        console.log('IMPORTE: ' + $.number(importe, 2, '.', ', '));
-        row.eq(10).html(importe);
-        row.eq(11).html('<span class="label label-success">$' + $.number(importe, 2, '.', ', ') + '</span>');
-        /*IMPORTE TOTAL*/
-        var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
-        var total = 0.0;
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-            total += parseFloat($(this).find("td").eq(10).text());
-            console.log(total);
-            //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-        });
-        ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong> <span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
-    }
-
-    function onEliminarConcepto(evt) {
-        //onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
-        $(evt).parent().parent().remove();
-        getImporteTotal();
-    }
-
-    function onGeneradorXConcepto(evt) {
-        var mdlTrabajoNuevoGeneradorPorConcepto = $("#mdlTrabajoNuevoGeneradorPorConcepto");
-        var row = $(evt).parent().parent().find("td");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            $(this).find("td").eq(15).text('INACTIVO');
-        });
-        row.eq(15).text('ACTIVO');
-        var xCantidad = row.eq(6).text();
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Concepto_ID").val(row.eq(1).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#xCantidad").val(xCantidad);
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generador").val(row.eq(13).text());
-
-        var Generadores = JSON.parse("[" + row.eq(13).text() + "]");
-        console.log('************************************GENERADORES ENCONTRADOS****************');
-        console.log(Generadores);
-        console.log('************************************ END GENERADORES ENCONTRADOS****************');
-
-        /*CREAR TABLA DE GENERADORES*/
-        var tblGeneradores = '<br><table  id="tblGeneradores" class="table table-striped table-hover" width="100%">' +
-                '<thead>' +
-                '<tr>' +
-                '<th class="hide">Renglon</th>' +
-                '<th class="hide">Concepto_ID</th>' +
-                '<th></th>' +
-                '<th >Area</th>' +
-                '<th>Eje</th>' +
-                '<th class="col-md-3">Entre Eje 1</th>' +
-                '<th class="col-md-3">Entre Eje 2</th>' +
-                '<th class="col-md-1">Largo</th>' +
-                '<th>Ancho</th>' +
-                '<th class="col-md-2">Alto</th>' +
-                '<th class="col-md-2">Cantidad</th>' +
-                '<th>Total</th>' +
-                '<th></th>' +
-                '<th class="hide">Estatus</th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody>';
-
-        $.each(Generadores, function (k, v) {
-            console.log(k, v);
-            tblGeneradores += "<tr>";
-            /*RENGLON*/
-            tblGeneradores += "<td class='hide'>";
-            tblGeneradores += row.eq(2).text();
-            tblGeneradores += "</td>";
-            /*CONCEPTO_ID*/
-            tblGeneradores += "<td class='hide'>";
-            tblGeneradores += v.Concepto_ID;
-            tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGenerador(this)\"></span></td>";
-
-
-            /*AREA*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Area;
-            tblGeneradores += "</td>";
-
-            /*EJE*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Eje;
-            tblGeneradores += "</td>";
-            /*EntreEje1*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.EntreEje1;
-            tblGeneradores += "</td>";
-            /*EntreEje2*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.EntreEje2;
-            tblGeneradores += "</td>";
-
-            /*Largo*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Largo;
-            tblGeneradores += "</td>";
-            /*Ancho*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Ancho;
-            tblGeneradores += "</td>";
-            /*Alto*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Alto;
-            tblGeneradores += "</td>";
-
-            /*Cantidad*/
-            tblGeneradores += "<td>";
-            tblGeneradores += v.Cantidad;
-            tblGeneradores += "</td>";
-            /*Total*/
-            var generador_largo = parseFloat((v.Largo !== '' && parseFloat(v.Largo) !== 0) ? v.Largo : 1);
-            var generador_ancho = parseFloat((v.Ancho !== '' && parseFloat(v.Ancho) !== 0) ? v.Ancho : 1);
-            var generador_alto = parseFloat((v.Alto !== '' && parseFloat(v.Alto) !== 0) ? v.Alto : 1);
-            var generador_cantidad = parseFloat((v.Cantidad !== '' && parseFloat(v.Cantidad) !== 0) ? v.Cantidad : 1);
-            tblGeneradores += "<td>";
-            tblGeneradores += (generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad));
-            tblGeneradores += "</td>";
-            tblGeneradores += "<td><span class=\"fa fa-angle-right customButtonDetalleGenerador\" onclick=\"onEditarGeneradorNuevo(this)\"></span></td>";
-            tblGeneradores += "<td class=\"hide\">ACTIVO</td>";
-            tblGeneradores += "</tr>";
-        });
-        tblGeneradores += '</tbody>' +
-                '</table>';
-        NuevoGeneradorXConcepto.html(tblGeneradores);
-
-        var DataTableGeneradores = NuevoGeneradorXConcepto.find("#tblGeneradores");
-        if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
-
-            var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
-            NuevoGeneradorXConcepto.find("#tblGeneradores").find('tbody').on('click', 'tr', function () {
-                DataTableGeneradores.find("tr").removeClass("success");
-                DataTableGeneradores.find("tr").removeClass("warning");
-                //                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblDataTableGeneradores.row(this).data();
-
-            });
-        } else {
-            DataTableGeneradores.DataTable(tableOptions);
-        }
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaFotos");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaCroquis");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#VistaPreviaAnexos");
-
-        getGeneradorImporteTotal();
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-
-        mdlTrabajoNuevoGeneradorPorConcepto.modal('show');
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").focus();
-
-        btnCancelarNuevoGenerador.addClass("hide");
-        btnMoficarNuevoGenerador.addClass("hide");
-    }
-
     var ImporteTotalGlobal = 0;
-
     function getImporteTotal() {
-
         /*IMPORTE TOTAL*/
-        var ImporteTotal = pnlDetalleNuevoTrabajo.find("#ImporteTotal");
         var ImporteTotalE = pnlDetalleEditarTrabajo.find("#ImporteTotal");
         var total = 0.0;
-
-//        Recalcula en nuevo
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-            total += parseFloat($(this).find("td").eq(10).text());
-            console.log(total);
-            ImporteTotalGlobal = total;
-            //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-        });
-
-//        Recalcula en nuevo
+        /*Recalcula en editar*/
         $.each(pnlDetalleEditarTrabajo.find("tbody tr"), function () {
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
             total += parseFloat($(this).find("td").eq(10).text());
-            console.log($(this).find("td").eq(10));
             ImporteTotalGlobal = total;
-            //            console.log($(this).find("td:nth-child(10)").text()); //CSS ACCESS
-            console.log('* * * * * * * * * * TR * * * * * * * * * * ');
         });
-
-
-        ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
         ImporteTotalE.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 6, '.', ', ') + '</span>');
-
-
-        //onNotify('<span class="fa fa-check fa-lg"></span>', 'NUEVO IMPORTE: $ ' + $.number(total, 6, '.', ', '), 'success');
     }
-
-    function getGeneradorImporteTotal() {
-        /*GENERADOR IMPORTE TOTAL*/
-        var GeneradorImporteTotal = mdlTrabajoNuevoGeneradorPorConcepto.find("#GeneradorImporteTotal");
-        var total = 0.0;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-            var row = $(v).find("td");
-            total += parseFloat(row.eq(11).text());
-            // ImporteTotalGlobal=total;
-        });
-        GeneradorImporteTotal.html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(total, 6, '.', ', ') + '</span> ');
-    }
-
-    function onFotosXConcepto(evt) {
-        if (pnlNuevoTrabajo.find("#ID").val() === '' || pnlNuevoTrabajo.find("#ID").val() === "")
-        {
-            onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
-        }
-//        var btnFotos;
-//        var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
-//        var row = $(evt).parent().parent().find("td");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            $(this).find("td").eq(15).text('INACTIVO');
-//        });
-//        row.eq(15).text('ACTIVO');
-//        VistaPreviaFotos.html("");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            var row_status = $(this).find("td").eq(15).text();
-//            if (row_status === 'ACTIVO') {
-//                btnFotos = $(this).find("#Fotos");
-//                $.each(btnFotos[0].files, function(k, v) {
-//                    console.log(v.name);
-//                    VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
-//                });
-//            }
-//        });
-//        mdlTrabajoNuevoFotosPorConcepto.modal('show');
-    }
-
-    function setFotos() {
-        console.log('FOTOS');
-        var btnFotos;
-        var VistaPreviaFotos = mdlTrabajoNuevoFotosPorConcepto.find("#VistaPreviaFotos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            var row_status = $(this).find("td").eq(15).text();
-            if (row_status === 'ACTIVO') {
-                btnFotos = $(this).find("#Fotos");
-
-                btnFotos.change(function () {
-                    var imageType = /image.*/;
-                    VistaPreviaFotos.html("");
-                    console.log(btnFotos[0].files);
-                    console.log(btnFotos[0].files.length);
-                    $.each(btnFotos[0].files, function (k, v) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            console.log(this);
-                            VistaPreviaFotos.append('<span class="label label-success">' + v.name + '</span><br>');
-                        };
-                        reader.readAsDataURL(v);
-                    });
-                });
-
-                btnFotos.trigger('click');
-            }
-        });
-    }
-    function onCroquisXConcepto(evt) {
-
-        if (pnlNuevoTrabajo.find("#ID").val() === '' || pnlNuevoTrabajo.find("#ID").val() === "")
-        {
-            onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
-        }
-//        var btnCroquis;
-//        var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
-//        var row = $(evt).parent().parent().find("td");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            $(this).find("td").eq(15).text('INACTIVO');
-//        });
-//        row.eq(15).text('ACTIVO');
-//        VistaPreviaCroquis.html("");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            var row_status = $(this).find("td").eq(15).text();
-//            if (row_status === 'ACTIVO') {
-//                btnCroquis = $(this).find("#Croquis");
-//                $.each(btnCroquis[0].files, function(k, v) {
-//                    console.log(v.name);
-//                    VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
-//                });
-//            }
-//        });
-//        mdlTrabajoNuevoCroquisPorConcepto.modal('show');
-    }
-
-    function setCroquis() {
-        console.log('CROQUIS');
-        var btnCroquis;
-        var VistaPreviaCroquis = mdlTrabajoNuevoCroquisPorConcepto.find("#VistaPreviaCroquis");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            var row_status = $(this).find("td").eq(15).text();
-            console.log(row_status);
-            if (row_status === 'ACTIVO') {
-                console.log('CROQUIS ACTIVO');
-                btnCroquis = $(this).find("#Croquis");
-
-                btnCroquis.change(function () {
-                    var imageType = /image.*/;
-                    VistaPreviaCroquis.html("");
-                    console.log(btnCroquis[0].files);
-                    $.each(btnCroquis[0].files, function (k, v) {
-                        console.log(v.name);
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            console.log(this);
-                            VistaPreviaCroquis.append('<span class="label label-success">' + v.name + '</span><br>');
-                        };
-                        reader.readAsDataURL(v);
-                    });
-                });
-
-                btnCroquis.trigger('click');
-            }
-        });
-    }
-
-    function onAnexosXConcepto(evt) {
-
-        if (pnlNuevoTrabajo.find("#ID").val() === '' || pnlNuevoTrabajo.find("#ID").val() === "")
-        {
-            onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
-        }
-//        var btnAnexos;
-//        var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
-//        var row = $(evt).parent().parent().find("td");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            $(this).find("td").eq(15).text('INACTIVO');
-//        });
-//        row.eq(15).text('ACTIVO');
-//        VistaPreviaAnexos.html("");
-//        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function() {
-//            var row_status = $(this).find("td").eq(15).text();
-//            if (row_status === 'ACTIVO') {
-//                btnAnexos = $(this).find("#Anexos");
-//                $.each(btnAnexos[0].files, function(k, v) {
-//                    console.log(v.name);
-//                    VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
-//                });
-//            }
-//        });
-//        mdlTrabajoNuevoAnexosPorConcepto.modal('show');
-    }
-
-    function setAnexos() {
-        console.log('ANEXOS');
-        var btnAnexos;
-        var VistaPreviaAnexos = mdlTrabajoNuevoAnexosPorConcepto.find("#VistaPreviaAnexos");
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            var row_status = $(this).find("td").eq(15).text();
-            if (row_status === 'ACTIVO') {
-                btnAnexos = $(this).find("#Anexos");
-                btnAnexos.change(function () {
-                    var imageType = /image.*/;
-                    VistaPreviaAnexos.html("");
-                    console.log(btnAnexos[0].files);
-                    $.each(btnAnexos[0].files, function (k, v) {
-                        console.log(v.name);
-                        VistaPreviaAnexos.append('<span class="label label-success">' + v.name + '</span><br>');
-                    });
-                });
-                btnAnexos.trigger('click');
-            }
-        });
-    }
-
     /*PANEL EDITAR DETALLE */
     var tempDetalle = 0;
     function getTrabajoDetalleByID(IDX) {
@@ -4141,7 +2449,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log(data);
             if (data.length > 0) {
                 pnlDetalleEditarTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
                 var thead = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo thead th');
@@ -4158,15 +2465,10 @@
                     td.eq(8).addClass("hide");
                     td.eq(14).addClass("hide");
                 });
-//                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th').each(function() {
-//                    var title = $(this).text();
-//                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-//                });
                 var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
                 pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
                     pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
                     pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
-                    //                console.log(this)
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -4176,20 +2478,8 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
-                    console.log('* * * * * * *  ID ' + dtm[0] + ' * * * * * ');
-                    temp = parseInt(dtm[0]);
                     tempDetalle = parseInt(dtm[0]);
                 });
-
-                // Apply the search
-//                tblSelected.columns().every(function() {
-//                    var that = this;
-//                    $('input', this.footer()).on('keyup change', function() {
-//                        if (that.search() !== this.value) {
-//                            that.search(this.value).draw();
-//                        }
-//                    });
-//                });
             } else {
                 pnlDetalleEditarTrabajo.find("#Conceptos").html("");
             }
@@ -4199,241 +2489,7 @@
             HoldOn.close();
         });
     }
-
-   
-
-    var generador_nuevo_editable = false;
-
-    function onEditarGeneradorNuevo(evt) {
-        var row = $(evt).parent().parent().find("td");
-        console.log('********************EDITANDO GENERADOR*************');
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val(row.eq(3).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val(row.eq(4).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val(row.eq(5).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val(row.eq(6).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val(row.eq(7).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val(row.eq(8).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val(row.eq(9).text());
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val(row.eq(10).text());
-
-        console.log('******************** END EDITANDO GENERADOR*************');
-
-        //oculta botones de nuevo
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelarNuevoGenerador").addClass("hide");
-
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(1).addClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#NuevoGenerador").addClass("active in");
-        btnCancelarNuevoGenerador.removeClass("hide");
-        btnMoficarNuevoGenerador.removeClass("hide");
-        row.eq(13).text("EDITANDO");
-        generador_nuevo_editable = true;
-
-        console.log('* * * * * TARGET ng CANCELANDO* * * * ');
-        console.log('* * * * * END TARGET ng CANCELANDO* * * * ');
-    }
-
-    function onEliminarGenerador(evt) {
-
-        //  onNotify('<span class="fa fa-check fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            var row_status = $(this).find("td").eq(15).text();
-            if (row_status === 'ACTIVO') {
-                var row = $(evt).parent().parent();
-                console.log('********************ELIMINANDO GENERADOR*************');
-                console.log(row);
-                console.log('******************** END ELIMINANDO GENERADOR*************');
-            }
-        });
-
-        $(evt).parent().parent().remove();
-
-        var cantidad_total_generador = 0;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-            var row = $(v).find("td");
-            cantidad_total_generador += parseFloat(row.eq(11).text());
-        });
-        console.log('* * * * * * * * * * * * * * * * * * * * CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
-        console.log(cantidad_total_generador);
-        console.log('* * * * * * * * * * * * * * * * * * * * END CANTIDAD GENERADORES DESPUES DE ELIMINAR * * * * * * * * * * * * * * ')
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            if ($(this).find("td").eq(15).text() === "ACTIVO") {
-                $(this).find("td").eq(6).text(cantidad_total_generador);
-                return false;
-            }
-        });
-        setRecrearGenerador();
-    }
-
-    function onCancelarAgregarNuevoGenerador(evt) {
-        mdlTrabajoNuevoGeneradorPorConcepto.find("input").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-
-
-    }
-
-    function onCancelarModificarNuevoGenerador(evt) {
-
-        console.log('* * * * * TARGET ng CANCELANDO* * * * ');
-
-        console.log('* * * * * END TARGET ng CANCELANDO* * * * ');
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
-        $("#btnCancelarNuevoGenerador").removeClass("hide");
-        btnCancelarNuevoGenerador.addClass("hide");
-        btnMoficarNuevoGenerador.addClass("hide");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val("");
-
-
-        getGeneradorImporteTotal();
-
-        generador_nuevo_editable = false;
-    }
-
-
-    function onModificarNuevoGenerador() {
-        var cantidadTotalEditada = 0;
-        if (generador_nuevo_editable) {
-            console.log('********************MODIFICANDO GENERADOR*************');
-            mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                var row = $(v).find("td");
-                if (row.eq(13).text() === "EDITANDO") {
-                    console.log(v);
-                    console.log(row);
-                    row.eq(3).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val());
-                    row.eq(4).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val());
-                    row.eq(5).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val());
-                    row.eq(6).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val());
-                    row.eq(7).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val());
-                    row.eq(8).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val());
-                    row.eq(9).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val());
-                    row.eq(10).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val());
-                    row.eq(10).text(mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val());
-
-                    var Largo = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val() : 0);
-                    var Ancho = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val() : 0);
-                    var Alto = parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() !== 0) ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val() : 0);
-                    var Cantidad = (parseFloat((mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() !== '') ? mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val() : 0));
-                    var subtotal = ((Largo !== 0 && Largo !== "0") ? Largo : 1) * ((Ancho !== 0 && Ancho !== "0") ? Ancho : 1) * ((Alto !== 0 && Alto !== "0") ? Alto : 1) * ((Cantidad !== 0 && Cantidad !== "0") ? Cantidad : 1);
-                    row.eq(11).text(subtotal);
-                    row.eq(13).text("ACTIVO");
-
-                    mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                        var row = $(v).find("td");
-                        cantidadTotalEditada += parseFloat(row.eq(11).text());
-                    });
-                    getGeneradorImporteTotal();
-                    getImporteTotal();
-                    return false;
-                }
-            });
-            setRecrearGenerador();
-            console.log('******************** END MODIFICANDO GENERADOR*************');
-        }
-
-        getGeneradorImporteTotal();
-        getImporteTotal();
-        //Poner la cantidad editada en la columna de cantidad
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            if ($(this).find("td").eq(15).text() === "ACTIVO") {
-                $(this).find("td").eq(6).text(cantidadTotalEditada);
-                return false;
-            }
-        });
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-            var row = $(v).find("td");
-            if (row.eq(13).text() === "EDITANDO") {
-                row.eq(13).text("ACTIVO");
-            }
-        });
-        generador_nuevo_editable = false;
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Area").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Eje").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje1").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#EntreEje2").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Largo").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Ancho").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Alto").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Cantidad").val("");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#btnCancelarNuevoGenerador").removeClass("hide");
-        btnCancelarNuevoGenerador.addClass("hide");
-        btnMoficarNuevoGenerador.addClass("hide");
-
-
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
-        mdlTrabajoNuevoGeneradorPorConcepto.find("#Generadores").addClass("active in");
-
-        getGeneradorImporteTotal();
-
-
-    }
-
-    function setRecrearGenerador() {
-        var Generador = [];
-        $.each(pnlDetalleNuevoTrabajo.find("tbody tr"), function () {
-            var row_status = $(this).find("td").eq(15).text();
-            if (row_status === 'ACTIVO') {
-                Generador = [];
-                var tt = 0;
-                NuevoGeneradorXConcepto.find("#tblGeneradores").find("tbody tr").each(function (k, v) {
-                    var row = $(v).find("td");
-                    var nuevo_generador = {};
-                    nuevo_generador["Concepto_ID"] = row.eq(2).text();
-                    nuevo_generador["Area"] = row.eq(3).text();
-                    nuevo_generador["Eje"] = row.eq(4).text();
-                    nuevo_generador["EntreEje1"] = row.eq(5).text();
-                    nuevo_generador["EntreEje2"] = row.eq(6).text();
-                    nuevo_generador["Largo"] = parseFloat((parseFloat(row.eq(7).text()) !== '') ? parseFloat(row.eq(7).text()) : 0);
-                    nuevo_generador["Ancho"] = parseFloat((parseFloat(row.eq(8).text()) !== '') ? parseFloat(row.eq(8).text()) : 0);
-                    nuevo_generador["Alto"] = parseFloat((parseFloat(row.eq(9).text()) !== '') ? parseFloat(row.eq(9).text()) : 0);
-                    nuevo_generador["Cantidad"] = parseFloat((parseFloat(row.eq(10).text()) !== '') ? parseFloat(row.eq(10).text()) : 0);
-                    console.log('GENERADOR NUEVO ');
-                    console.log(row);
-                    console.log(nuevo_generador);
-                    console.log('END GENERADOR NUEVO');
-                    Generador.push(JSON.stringify(nuevo_generador));
-                    tt += parseFloat(row.eq(11).text());
-                });
-                console.log(' * * * GENERADOR CREADO * * * ');
-                console.log(Generador);
-                console.log(' * * * GENERADOR CREADO * * * ');
-                $(this).find("td").eq(6).text(tt);
-                /*FIN DE LA EVALUACIÓN*/
-                var Precio = parseFloat($(this).find("td").eq(8).text());
-                var Total = tt * Precio;
-                $(this).find("td").eq(10).text(Total);
-                $(this).find("td").eq(11).html('<span class="label label-success">$' + $.number(Total, 2, '.', ', ') + '</span>');
-                $(this).find("td").eq(13).text(Generador);
-            }
-        });
-        /*RECALCULAR EL TOTAL*/
-        getImporteTotal();
-        getGeneradorImporteTotal();
-    }
-
     /********************EDICION********************************************/
-
     /*FUNCIONES DE EDICION EN EL GENERADOR*/
     function onEliminarConceptoXDetalle(evt, IDX) {
         HoldOn.open({
@@ -4447,18 +2503,7 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            var row = $(evt).parent().parent().find("td");
-            console.log('* * * * * * * * * * * * FILA (EDICION)* * * * * * * * * * * * * * ');
-//            $.each(row, function(k, v) {
-//                console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-//                console.log(k, v);
-//                console.log('* * * * * * * * * * TR * * * * * * * * * * ');
-//            });
-            console.log('* * * * * * * * * * * * END FILA (EDICION)* * * * * * * * * * * * * * ');
             $(evt).parent().parent().remove();
-
-            console.log('* * * UPDATE IMPORTE * * * ');
-
             /*MODIFICAR EL IMPORTE DEL TRABAJO*/
             $.ajax({
                 url: master_url + 'onModificarImportePorTrabajo',
@@ -4471,31 +2516,23 @@
                 console.log(data, x, jq);
                 if (data !== undefined && data.length > 0) {
                     var dtm = data[0];
-
                     if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
                         pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                     } else {
                         pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
-
                     }
                 }
-
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
                 HoldOn.close();
             });
-            console.log('* * * END UPDATE IMPORTE * * * ');
-            /*FIN MODIFICAR EL IMPORTE DEL TRABAJO*/
-
-            // onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
         }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
         }).always(function () {
             HoldOn.close();
         });
     }
-
     /*FUNCIONES DE EDICION EN EL GENERADOR*/
     function onEliminarConceptoXDetalleAbierto(evt, IDX) {
         HoldOn.open({
@@ -4510,55 +2547,16 @@
             }
         }).done(function (data, x, jq) {
             var row = $(evt).parent().parent().find("td");
-
             $(evt).parent().parent().remove();
 
-            console.log('* * * UPDATE IMPORTE * * * ');
-
-            /*MODIFICAR EL IMPORTE DEL TRABAJO*/
-            $.ajax({
-                url: master_url + 'onModificarImportePorTrabajoAbierto',
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    ID: pnlEditarTrabajo.find("#ID").val()
-                }
-            }).done(function (data, x, jq) {
-                console.log(data, x, jq);
-                if (data !== undefined && data.length > 0) {
-                    var dtm = data[0];
-
-                    if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                        pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-                    } else {
-                        pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
-                    }
-                }
-
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-            console.log('* * * END UPDATE IMPORTE * * * ');
-            /*FIN MODIFICAR EL IMPORTE DEL TRABAJO*/
-
-            // onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
         }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
         }).always(function () {
             HoldOn.close();
         });
     }
-
-
-
     function getReloadGeneradoresDetalleXConcepto(IDX) {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
         $.ajax({
             url: master_url + 'getGeneradoresDetalleXConceptoID',
             type: "POST",
@@ -4591,9 +2589,7 @@
                     '</tr>' +
                     '</thead>' +
                     '<tbody>';
-            console.log('* * * * * * * * * * START READ GENERADOR X CONCEPTO * * * * * * * * * * ');
             $.each(data, function (k, v) {
-                console.log(k, v);
                 tblGeneradoresDetalleXConcepto += "<tr>";
                 tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                 tblGeneradoresDetalleXConcepto += v.TRABAJOID;
@@ -4607,12 +2603,10 @@
                 tblGeneradoresDetalleXConcepto += v.IdTrabajoDetalle;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
-
                 /*AREA*/
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Area;
                 tblGeneradoresDetalleXConcepto += "</td>";
-
                 /*EJE*/
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Eje;
@@ -4625,7 +2619,6 @@
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.EntreEje2;
                 tblGeneradoresDetalleXConcepto += "</td>";
-
                 /*Largo*/
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Largo;
@@ -4656,30 +2649,17 @@
                 tblGeneradoresDetalleXConcepto += "<td class=\"hide\">" + v.Precio + "</td>";
                 tblGeneradoresDetalleXConcepto += "</tr>";
             });
-            console.log('* * * * * * * * * * END READ GENERADOR X CONCEPTO * * * * * * * * * * ');
             tblGeneradoresDetalleXConcepto += '</tbody></table>';
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblEditarGeneradorXConcepto").html(tblGeneradoresDetalleXConcepto);
             var precio = mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val();
             var nueva_cantidad = 0;
-
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find("tbody tr").each(function (k, v) {
                 var row = $(v).find("td");
                 nueva_cantidad += parseFloat(row.eq(12).text());
-                console.log(row, precio);
-                console.log(k, v);
             });
-            console.log('* * * CANTIDAD PRECIO * * * ');
-            console.log(nueva_cantidad, precio, (parseFloat(nueva_cantidad) * parseFloat(precio)));
-
-
-
             /*AQUIIIII REFRESA TOTAL CANTIDAD*/
             var GeneradorImporteTotalEditar = mdlTrabajoEditarGeneradorPorConcepto.find("#GeneradorImporteTotal");
             GeneradorImporteTotalEditar.html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(nueva_cantidad, 6, '.', ', ') + '</span> ');
-
-
-
-            console.log('* * * END CANTIDAD  PRECIO * * * ');
             $.ajax({
                 url: master_url + 'onModificarConceptoCantidadEImporte',
                 type: "POST",
@@ -4689,12 +2669,7 @@
                     Importe: (parseFloat(nueva_cantidad) * parseFloat(precio))
                 }
             }).done(function (data, x, jq) {
-                console.log(data, x, jq);
-
                 getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
-
-                console.log('* * * UPDATE IMPORTE * * * ');
-
                 /*MODIFICAR EL IMPORTE DEL TRABAJO*/
                 $.ajax({
                     url: master_url + 'onModificarImportePorTrabajo',
@@ -4708,30 +2683,24 @@
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-
                     }
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
-                console.log('* * * END UPDATE IMPORTE * * * ');
                 /*FIN MODIFICAR EL IMPORTE DEL TRABAJO*/
-
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
                 HoldOn.close();
             });
-
             var DataTableGeneradores = mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto");
             if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
-
                 var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
                 mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function () {
                     DataTableGeneradores.find("tr").removeClass("success");
                     DataTableGeneradores.find("tr").removeClass("warning");
-                    //                console.log(this)
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -4741,7 +2710,6 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblDataTableGeneradores.row(this).data();
-
                 });
             } else {
                 DataTableGeneradores.DataTable(tableOptions);
@@ -4752,13 +2720,8 @@
             HoldOn.close();
         });
     }
-
     function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO) {
-        temp = 0;
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getGeneradoresDetalleXConceptoID',
             type: "POST",
@@ -4796,7 +2759,6 @@
                     '</tr>' +
                     '</thead>' +
                     '<tbody>';
-            console.log('* * * * * * * * * * START READ GENERADOR X CONCEPTO * * * * * * * * * * ');
             if (data.length > 0) {
                 $.each(data, function (k, v) {
                     console.log(k, v);
@@ -4813,12 +2775,10 @@
                     tblGeneradoresDetalleXConcepto += v.IdTrabajoDetalle;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     tblGeneradoresDetalleXConcepto += "<td><span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarGeneradorEditar(" + v.ID + "," + v.TRABAJOID + "," + v.IdTrabajoDetalle + ")\"></span></td>";
-
                     /*AREA*/
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Area;
                     tblGeneradoresDetalleXConcepto += "</td>";
-
                     /*EJE*/
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Eje;
@@ -4831,7 +2791,6 @@
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.EntreEje2;
                     tblGeneradoresDetalleXConcepto += "</td>";
-
                     /*Largo*/
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Largo;
@@ -4844,7 +2803,6 @@
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Alto;
                     tblGeneradoresDetalleXConcepto += "</td>";
-
                     /*Cantidad*/
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Cantidad;
@@ -4865,7 +2823,6 @@
                     cantidadTotal = parseFloat(v.CantidadTotal);
                 });
             } else {
-                console.log('NO SE ENCONTRARON REGISTROS');
                 $.ajax({
                     url: master_url + 'getPrecioPorConceptoID',
                     type: "POST",
@@ -4875,25 +2832,18 @@
                         IDCO: IDCO
                     }
                 }).done(function (data, x, jq) {
-                    console.log('* * * * * * * * * * * * * * * * * * * * PRECIO * * * * * * * * * * * * * * * * * * * * * * ');
-                    console.log(data);
                     var dtm = data[0];
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(dtm.Precio);
-                    console.log('* * * * * * * * * * * * * * * * * * * * END PRECIO * * * * * * * * * * * * * * * * * * * * * * ');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
             }
-            console.log('* * * * * * * * * * END READ GENERADOR X CONCEPTO * * * * * * * * * * ');
             tblGeneradoresDetalleXConcepto += '</tbody></table>';
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblEditarGeneradorXConcepto").html(tblGeneradoresDetalleXConcepto);
-
-
             var DataTableGeneradores = mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto");
             if ($.fn.dataTable.isDataTable(DataTableGeneradores)) {
-
                 var tblDataTableGeneradores = DataTableGeneradores.DataTable(tableOptions);
                 mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find('tbody').on('click', 'tr', function () {
                     DataTableGeneradores.find("tr").removeClass("success");
@@ -4908,18 +2858,13 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblDataTableGeneradores.row(this).data();
-
                 });
             } else {
                 DataTableGeneradores.DataTable(tableOptions);
             }
-
             mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(precio);
-
-            //setear cantidadTotal
+            /*setear cantidadTotal*/
             mdlTrabajoEditarGeneradorPorConcepto.find("#GeneradorImporteTotal").html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(cantidadTotal, 6, '.', ', ') + '</span> ');
-
-
             mdlTrabajoEditarGeneradorPorConcepto.modal('show');
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4927,12 +2872,8 @@
             HoldOn.close();
         });
     }
-
     function onEditarGeneradorXID(evt, IDX) {
-
         var row = $(evt).parent().parent().find("td");
-        console.log('********************EDITANDO GENERADOR*************');
-        console.log(row);
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(row.eq(0).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val(row.eq(1).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(row.eq(2).text());
@@ -4945,9 +2886,6 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val(row.eq(10).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val(row.eq(11).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(row.eq(15).text());
-
-        console.log('******************** END EDITANDO GENERADOR*************');
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
@@ -4957,9 +2895,7 @@
         btnCancelarEditarGenerador.removeClass("hide");
         btnMoficarEditarGenerador.removeClass("hide");
     }
-
     function onModificarGeneradorXID() {
-
         var frm = new FormData();
         /*Total*/
         var generador_largo = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() : 1);
@@ -4977,14 +2913,8 @@
         frm.append('Alto', mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val());
         frm.append('Cantidad', mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val());
         frm.append('Total', total_generador);
-        console.log('* * * * * * * * * * * * * * * *  FRM INI * * * * * * * * * * * * * * * * * * ');
-        console.log(frm);
-        console.log('* * * * * * * * * * * * * * * * END FRM INI * * * * * * * * * * * * * * * * * * ');
         if (parseFloat(total_generador) !== 0) {
-            HoldOn.open({
-                theme: 'sk-bounce',
-                message: 'ACTUALIZANDO...'
-            });
+            HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
             $.ajax({
                 url: master_url + 'onModificarGenerador',
                 type: "POST",
@@ -4993,16 +2923,10 @@
                 processData: false,
                 data: frm
             }).done(function (data, x, jq) {
-                console.log(data);
                 mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
                 mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
                 mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
-
-
-
-                //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR MODIFICADO', 'success');
-
                 mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
@@ -5016,7 +2940,6 @@
                 mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar").addClass("hide");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
                 mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").removeClass("hide");
-
                 getReloadGeneradoresDetalleXConcepto(mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
             }).fail(function (x, y, z) {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL MODIFICAR', 'danger');
@@ -5024,24 +2947,18 @@
                 HoldOn.close();
             });
         } else {
-            console.log(total_generador);
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR, NECESITA ESPECIFICAR UN VALOR: LARGO, ANCHO, ALTO O CANTIDAD', 'danger');
         }
     }
-
     function onCancelarEditarModificarGeneradorXID(evt) {
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").removeClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar").addClass("hide");
-
-        console.log('CANCELANDO MODIFICAR GENERADOR');
         mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
@@ -5051,21 +2968,16 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
-        getGeneradorImporteTotal();
     }
-
     function onCancelarEditarAgregarNuevoGenerador() {
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").removeClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").removeClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar").addClass("hide");
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").removeClass("active");
         mdlTrabajoEditarGeneradorPorConcepto.find(".nav-tabs li").eq(0).addClass("active");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
-
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
@@ -5076,225 +2988,6 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
     }
-
-    //***************************************REPORTES*****************************************
-    //--------------------------------Reportes----------------------------------
-    function onReporteFin49() {
-
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function onReporteFin49Conceptos() {
-
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49Conceptos',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49 CONCEPTOS, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-
-    function onReporteResumenPartidas() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteResumenPartidas',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function onReportePresupuestoBBVA() {
-
-
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuestoBBVA',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-
-    function onReportePresupuesto() {
-
-
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuesto',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-
-    function onReporteGenerador() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteGenerador',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-
-    function onReporteCroquis() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: base_url + 'index.php/ctrlTrabajos/onReporteCroquis',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    function onReporteFotografico() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'onReporteFotografico',
-            type: "POST",
-            data: {
-                ID: pnlEditarTrabajo.find("#ID").val()
-            }
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
-            console.log(data);
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-
-    function onReporteExcelTarifarioXMov() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-
-        $.ajax({
-            url: master_url + 'getTarifarioXMovimiento',
-            type: "POST",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            window.open(data, '_blank');
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'TARIFARIO GENERADO', 'success');
-
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-
-    }
-
-
-    /*************************FIN REPORTES ****************************/
-
-
-
     function onEliminarGeneradorEditar(IDG) {
         $.ajax({
             url: master_url + 'onEliminarGeneradorEditar',
@@ -5303,8 +2996,6 @@
                 ID: IDG
             }
         }).done(function (data, x, jq) {
-            //  onNotify('<span class="fa fa-check fa-lg"></span>', 'GENERADOR, ELIMINADO', 'success');
-            console.log(data);
             getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
             getReloadGeneradoresDetalleXConcepto(mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
         }).fail(function (x, y, z) {
@@ -5313,8 +3004,6 @@
             HoldOn.close();
         });
     }
-
-
     function getConceptosXPreciarioIDEditar(IDX) {
         temp = 0;
         HoldOn.open({
@@ -5329,16 +3018,27 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
+            HoldOn.close();
             mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
             mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
+
+
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+
             mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                //                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -5347,13 +3047,6 @@
                     selected.splice(index, 1);
                 }
                 $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
-                mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
 
@@ -5365,27 +3058,11 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                    console.log('* * * * * ** AGREGANDO CONCEPTO * * * * * * * * ');
-                    console.log(data);
-
-                    console.log('* * * * * ** END AGREGANDO CONCEPTO * * * * * * * * ');
-
-
-                    var DataTableConceptos = pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo");
-                    if ($.fn.dataTable.isDataTable(DataTableConceptos)) {
-                        console.log('Datatable')
-                    } else {
-                        console.log('NO Datatable')
-                    }
                     /**AQUI FALTA VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
                     var has_id = true;
-                    console.log('AGREGANDO.. CONCEPTO PNL EDITAR DETALLE ');
-
-
                     if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
                         $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
                             var row_status = $(this).find("td").eq(14).text();
-
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
                                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
@@ -5393,8 +3070,6 @@
                             }
                         });
                     }
-
-
                     if (has_id) {
                         $.ajax({
                             url: master_url + 'getConceptoByIDSinFormato',
@@ -5404,8 +3079,6 @@
                                 ID: parseInt(dtm[0])
                             }
                         }).done(function (data, x, jq) {
-                            console.log(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
-
                             if (data[0] !== undefined && data.length > 0) {
                                 var dtm = data[0];
                                 var frm = new FormData();
@@ -5423,16 +3096,13 @@
                                     processData: false,
                                     data: frm
                                 }).done(function (data, x, jq) {
-
                                     getTrabajoDetalleByID(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
                                 }).fail(function (x, y, z) {
                                     console.log(x, y, z);
                                 }).always(function () {
                                     HoldOn.close();
                                 });
-                                
-                                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL CONCEPTO', 'success');
-                                
+                                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL CONCEPTO', 'success');
                             } else {
                                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL CONCEPTO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                             }
@@ -5445,30 +3115,20 @@
                             mdlTrabajoNuevoConceptoEditar.modal('hide');
                         }
                     }
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
-
             });
             // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
+
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
-
     btnNuevoConceptoEditar.on("click", function () {
         var Preciario_ID = pnlEditarTrabajo.find("#Preciario_ID").val();
         if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
@@ -5478,13 +3138,50 @@
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
         }
     });
-
-
+    /*MODIFICAR EL IMPORTE DEL TRABAJO*/
+    function getImporteTotalDelTrabajoByID(IDX) {
+        $.ajax({
+            url: master_url + 'getImporteTotalDelTrabajoByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data !== undefined && data.length > 0 && data[0] !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== null) {
+                var dtm = data[0];
+                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+            } else {
+                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ 0.0</span>');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    /*MODIFICAR INTERIOR Y EXTERIOR TRABAJO DETALLE*/
+    function onChangeIntExtByID(IntExt, IDX) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'onChangeIntExtByDetalleID',
+            type: "POST",
+            data: {
+                ID: IDX,
+                IntExt: IntExt
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    /*Multimedia*/
     function getFotosXConceptoID(IDX, IDT) {
-    
-    
-        
-        
         mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("");
@@ -5493,7 +3190,6 @@
             theme: 'sk-bounce',
             message: 'CARGANDO FOTOS...'
         });
-
         $.ajax({
             url: master_url + 'getTrabajoFotosDetalleByID',
             type: "POST",
@@ -5502,12 +3198,8 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
-            console.log(data);
             if (data.length > 0) {
-   
                 VistaPreviaFotosPorConcepto.html("");
-                console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
@@ -5536,15 +3228,58 @@
                 VistaPreviaFotosPorConcepto.html("");
             }
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarFotosPorConcepto.modal('show');
     }
-
+    function getFotosDespuesXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
+        mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
+        mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
+        VistaPreviaFotosDespuesPorConcepto.html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
+        $.ajax({
+            url: master_url + 'getTrabajoFotosDespuesDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                VistaPreviaFotosDespuesPorConcepto.html("");
+                mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 3) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-4">';
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
+                            '</a>' +
+                            '<div class="caption" align="center">' +
+                            '<p>' + v.Observaciones + '</p>' +
+                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
+                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
+                            '</div>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                VistaPreviaFotosDespuesPorConcepto.html("");
+            }
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarFotosDespuesPorConcepto.modal('show');
+    }
     function getCroquisXConceptoID(IDX, IDT) {
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
@@ -5563,9 +3298,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
-            console.log(data);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
             $.each(data, function (k, v) {
                 console.log(v);
@@ -5574,15 +3306,11 @@
             });
 
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarCroquisPorConcepto.modal('show');
     }
-
     function getAnexosXConceptoID(IDX, IDT) {
         mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
@@ -5598,9 +3326,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
-            console.log(data);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
                 var nimg = 0;
@@ -5613,7 +3338,6 @@
                     }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
-//                    debugger;
                     if (ext === "txt" || ext === "dat") {
                         mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
@@ -5643,87 +3367,28 @@
                 mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
             }
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
         mdlTrabajoEditarAnexosPorConcepto.modal('show');
     }
-
-    function getImporteTotalDelTrabajoByID(IDX) {
-
-        console.log('* * * OBTENER IMPORTE * * * ');
-
-        /*MODIFICAR EL IMPORTE DEL TRABAJO*/
-        $.ajax({
-            url: master_url + 'getImporteTotalDelTrabajoByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            console.log(data, x, jq);
-            if (data !== undefined && data.length > 0 && data[0] !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== null) {
-                var dtm = data[0];
-                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-            } else {
-                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ 0.0</span>');
-            }
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-        console.log('* * *FIN OBTENER IMPORTE * * * ');
-    }
-
-    function  onChangeIntExtByID(IntExt, IDX) {
-        console.log('* * * * * * * * * * * ID EN INTERIOR Y EXTERIOR * * * * * * * * * * * ');
-        console.log(IDX, IntExt);
-        console.log('* * * * * * * * * * * FIN ID EN INTERIOR Y EXTERIOR * * * * * * * * * * * ');
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: master_url + 'onChangeIntExtByDetalleID',
-            type: "POST",
-            data: {
-                ID: IDX,
-                IntExt: IntExt
-            }
-        }).done(function (data, x, jq) {
-            console.log(data);
-            //  onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO, MODIFICADO', 'success');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
     function setFotosEditar(evt) {
-
         mdlTrabajoEditarFotosPorConcepto.find("#fFotos").trigger('click');
     }
+    function setFotosDespuesEditar(evt) {
+        mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos").trigger('click');
+    }
     function setCroquisEditar(evt) {
-
         mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis").trigger('click');
     }
     function setAnexosEditar(evt) {
-
         mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos").trigger('click');
     }
-    
-    
-     function onReloadFotosXConcepto(IDX, IDT) {
+    function onReloadFotosXConcepto(IDX, IDT) {
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO FOTOS..."
         });
-
         $.ajax({
             url: master_url + 'getTrabajoFotosDetalleByID',
             type: "POST",
@@ -5732,11 +3397,8 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * FOTOS * * * * * * * * * * * * * * * ");
-            console.log(data);
             if (data.length > 0) {
                 VistaPreviaFotosPorConcepto.html("");
-                console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
@@ -5768,37 +3430,56 @@
             getTrabajoDetalleByID(IDT);
             getDetalleAbiertoByID(IDT);
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL FOTOS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
     }
-
-    function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "ELIMINANDO..."
-        });
+    function onReloadFotosDespuesXConcepto(IDX, IDT) {
+  
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO FOTOS..."});
         $.ajax({
-            url: master_url + 'onEliminarFotoXConcepto',
+            url: master_url + 'getTrabajoFotosDespuesDetalleByID',
             type: "POST",
+            dataType: "JSON",
             data: {
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            //   onNotify('<span class="fa fa-check fa-lg"></span>', 'FOTO, ELIMINADA', 'success');
-            onReloadFotosXConcepto(IDTD, IDT);
+            if (data.length > 0) {
+                VistaPreviaFotosDespuesPorConcepto.html("");
+                mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 3) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-4">';
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
+                            '</a>' +
+                            '<div class="caption" align="center">' +
+                            '<p>' + v.Observaciones + '</p>' +
+                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
+                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
+                            '</div>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
+                VistaPreviaFotosDespuesPorConcepto.html("");
+            }
+            getTrabajoDetalleByID(IDT);
+            getDetalleAbiertoByID(IDT);
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL ELIMINAR FOTO* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
     }
-
     function onReloadCroquisXConcepto(IDX, IDT) {
         HoldOn.open({
             theme: "sk-bounce",
@@ -5812,27 +3493,16 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * CROQUIS * * * * * * * * * * * * * * * ");
-            console.log(data);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
             $.each(data, function (k, v) {
-                console.log(v);
-                console.log(base_url + v.Url);
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
             });
-
             getTrabajoDetalleByID(IDT);
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL CROQUIS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
     }
-
-
     function onReloadAnexosXConcepto(IDX, IDT) {
         HoldOn.open({
             theme: "sk-bounce",
@@ -5845,9 +3515,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log("* * * * * * * * * * * * * ANEXOS * * * * * * * * * * * * * * * ");
-            console.log(data);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
                 var nimg = 0;
@@ -5860,7 +3527,6 @@
                     }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
-//                    debugger;
                     if (ext === "txt" || ext === "dat") {
                         mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
@@ -5891,17 +3557,45 @@
             }
             getDetalleAbiertoByID(IdMovimiento);
             getTrabajoDetalleByID(IDT);
-            
-
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL ANEXOS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
     }
-
+    function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "ELIMINANDO..."
+        });
+        $.ajax({
+            url: master_url + 'onEliminarFotoXConcepto',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            onReloadFotosXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onEliminarFotoDespuesXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({ theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.ajax({
+            url: master_url + 'onEliminarFotoDespuesXConcepto',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            onReloadFotosDespuesXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+             console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     function onEliminarCroquisXID(IDX, IDTD, IDT) {
         HoldOn.open({
             theme: "sk-bounce",
@@ -5914,12 +3608,8 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            //  onNotify('<span class="fa fa-check fa-lg"></span>', 'CROQUIS, ELIMINADO', 'success');
             onReloadCroquisXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL ELIMINAR CROQUIS* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
@@ -5940,21 +3630,15 @@
             onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
             onReloadAnexosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
-            console.log("* * * * * * * * * * * * * FAIL ELIMINAR ANEXO* * * * * * * * * * * * * * * ");
-            console.log(x, y, z);
-            console.log("* * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
         }).always(function () {
             HoldOn.close();
         });
     }
-
-    var ImporteTotalGlobalAbierto = 0;
-    var tempDetalle = 0;
+    /*Funciones Detalle Abierto*/
+    var tempDetalleAbierto = 0;
     function getDetalleAbiertoByID(IDX) {
         var ImporteTotal = pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal");
         var totalAbierto = 0.0;
-
-
         $.ajax({
             url: master_url + 'getTrabajoDetalleAbiertoByID',
             type: "POST",
@@ -5963,35 +3647,22 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-
             if (data.length > 0) {
                 pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").html(getTable('tblRegistrosXDetalleAbierto', data));
                 var thead = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto thead th');
                 var tfoot = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tfoot th');
                 thead.eq(0).addClass("hide");
                 tfoot.eq(0).addClass("hide");
-                thead.eq(8).addClass("hide");
-                tfoot.eq(8).addClass("hide");
-                thead.eq(9).addClass("hide");
-                tfoot.eq(9).addClass("hide");
                 $.each(pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
-                    td.eq(8).addClass("hide");
-                    td.eq(9).addClass("hide");
-                    totalAbierto += parseFloat(td.eq(8).text());
-                    ImporteTotalGlobalAbierto = totalAbierto;
-
                 });
-                //Seteamos el importeTotal
+                /*Seteamos el importeTotal*/
                 ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(totalAbierto, 2, '.', ', ') + '</span>');
-
-
                 var tblSelected = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto').DataTable(tableOptions);
                 pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tbody').on('click', 'tr', function () {
                     pnlDetalleEditarTrabajoAbierto.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("success");
                     pnlDetalleEditarTrabajoAbierto.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("warning");
-
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -6001,13 +3672,8 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
-
-                    temp = parseInt(dtm[0]);
-                    tempDetalle = parseInt(dtm[0]);
-
+                    tempDetalleAbierto = parseInt(dtm[0]);
                 });
-
-
             } else {
                 pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").html("");
             }
@@ -6017,64 +3683,183 @@
             HoldOn.close();
         });
     }
-
-     function onEditarConceptoXDetalleAbierto(IDX) {
-      
+    function onEditarConceptoXDetalleAbierto(IDX) {
         $.ajax({
             url: master_url + 'getTrabajoDetalleAbiertoByID',
             type: "POST",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
-                 if (IDX !== 0 && IDX !== undefined && IDX > 0) {
-                        HoldOn.open({
-                            theme: "sk-bounce",
-                            message: "CARGANDO DATOS..."
-                        });
-                        $.ajax({
-                            url: master_url + 'getDetalleAbiertoByID',
-                            type: "POST",
-                            dataType: "JSON",
-                            data: {
-                                ID: IDX
-                            }
-                        }).done(function (data, x, jq) {
-                            console.log(data);
-                            $('#mdlEditarConceptoAbierto').find("input").val("");
-
-                            var concepto = data[0];
-
-                            $('#mdlEditarConceptoAbierto').find("#ID").val(concepto.ID);
-                            $('#mdlEditarConceptoAbierto').find("#Trabajo_ID").val(concepto.Trabajo_ID);
-                            $('#mdlEditarConceptoAbierto').find("#Clave").val(concepto.Clave);
-                            $('#mdlEditarConceptoAbierto').find("#Descripcion").val(concepto.Descripcion);
-                            $('#mdlEditarConceptoAbierto').find("#Cantidad").val(concepto.Cantidad);
-                            $('#mdlEditarConceptoAbierto').find("#Unidad").val(concepto.Unidad);
-                            $('#mdlEditarConceptoAbierto').find("#Moneda").val(concepto.Moneda);
-                            $('#mdlEditarConceptoAbierto').find("#Precio").val(concepto.Precio);
-                            $('#mdlEditarConceptoAbierto').find("#IntExt").select2("val", concepto.IntExt);
-                            $('#mdlEditarConceptoAbierto').modal('show');
-
-                        }).fail(function (x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function () {
-                            HoldOn.close();
-                        });
-                    } else {
-                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-                    }
-
+            if (IDX !== 0 && IDX !== undefined && IDX > 0) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'getDetalleAbiertoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {ID: IDX}
+                }).done(function (data, x, jq) {
+                    $('#mdlEditarConceptoAbierto').find("input").val("");
+                    var concepto = data[0];
+                    $('#mdlEditarConceptoAbierto').find("#ID").val(concepto.ID);
+                    $('#mdlEditarConceptoAbierto').find("#Trabajo_ID").val(concepto.Trabajo_ID);
+                    $('#mdlEditarConceptoAbierto').find("#Clave").val(concepto.Clave);
+                    $('#mdlEditarConceptoAbierto').find("#Descripcion").val(concepto.Descripcion);
+                    $('#mdlEditarConceptoAbierto').find("#IntExt").select2("val", concepto.IntExt);
+                    $('#mdlEditarConceptoAbierto').modal('show');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
         }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ENCONTRADO', 'danger');
         }).always(function () {
-            
         });
     }
-
+    /***************************************REPORTES*****************************************/
+    function onReporteFin49() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteFin49Conceptos() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteFin49Conceptos',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49 CONCEPTOS, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteResumenPartidas() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteResumenPartidas',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReportePresupuestoBBVA() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuestoBBVA',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReportePresupuesto() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuesto',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteGenerador() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteGenerador',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteCroquis() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteCroquis',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteFotografico() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteFotografico',
+            type: "POST",
+            data: {ID: pnlEditarTrabajo.find("#ID").val()}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteExcelTarifarioXMov() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'getTarifarioXMovimiento',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            window.open(data, '_blank');
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'TARIFARIO GENERADO', 'success');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    /*************************FIN REPORTES ****************************/
 </script>
 <style>
-
     .super-fullscreen {
         width: 90% !important;
     }

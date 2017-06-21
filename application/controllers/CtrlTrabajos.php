@@ -72,8 +72,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
     public function getDetalleAbiertoByID() {
         try {
             extract($this->input->post());
@@ -88,6 +87,16 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getTrabajoFotosDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajoFotosDespuesDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoFotosDespuesDetalleByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -174,50 +183,6 @@ class CtrlTrabajos extends CI_Controller {
                         'Adjunto' => (NULL)
                     );
                     $this->trabajo_model->onModificar($ID, $DATA);
-                    // echo "NO SE PUDO SUBIR EL ARCHIVO";
-                }
-            }
-
-            /* TRABAJO DETALLE */
-
-            $CONCEPTOSX = json_decode($this->input->post("CONCEPTOS"));
-
-            foreach ($CONCEPTOSX as $k => $v) {
-
-
-
-                $data = array(
-                    'Trabajo_ID' => $ID,
-                    'PreciarioConcepto_ID' => $v->PreciarioConcepto_ID,
-                    'Renglon' => $v->Renglon,
-                    'Cantidad' => ($v->Cantidad !== '' && $v->Cantidad !== 0) ? $v->Cantidad : 0,
-                    'Unidad' => $v->Unidad,
-                    'Precio' => $v->Precio,
-                    'Importe' => $v->Importe,
-                    'IntExt' => $v->IntExt,
-                    'Moneda' => $v->Moneda
-                );
-                $IDD = $this->trabajo_model->onAgregarDetalle($data);
-                $GENERADORX = json_decode("[" . $v->Generador . "]", true);
-                foreach ($GENERADORX as $k => $vg) {
-                    //               print $vg["Concepto_ID"] . "\n";
-                    $subtotal = (($vg["Largo"] !== 0 && $vg["Largo"] !== "0") ? $vg["Largo"] : 1) * (($vg["Ancho"] !== 0 && $vg["Ancho"] !== "0") ? $vg["Ancho"] : 1) * (($vg["Alto"] !== 0 && $vg["Alto"] !== "0") ? $vg["Alto"] : 1) * (($vg["Cantidad"] !== 0 && $vg["Cantidad"] !== "0") ? $vg["Cantidad"] : 1);
-                    if ($subtotal !== '' && $subtotal !== 0) {
-                        $data = array(
-                            'IdTrabajoDetalle' => $IDD,
-                            'Concepto_ID' => $vg["Concepto_ID"],
-                            'Area' => (isset($vg["Area"]) && $vg["Area"] !== '' || $vg["Area"] !== NULL) ? $vg["Area"] : '',
-                            'Eje' => (isset($vg["Eje"]) && $vg["Eje"] !== '' || $vg["Eje"] !== NULL) ? $vg["Eje"] : '',
-                            'EntreEje1' => (isset($vg["EntreEje1"]) && $vg["EntreEje1"] !== '' || $vg["EntreEje1"] !== NULL) ? $vg["EntreEje1"] : '',
-                            'EntreEje2' => (isset($vg["EntreEje2"]) && $vg["EntreEje2"] !== '' || $vg["EntreEje2"] !== NULL) ? $vg["EntreEje2"] : '',
-                            'Largo' => $vg["Largo"],
-                            'Ancho' => $vg["Ancho"],
-                            'Alto' => $vg["Alto"],
-                            'Cantidad' => $vg["Cantidad"],
-                            'Total' => $subtotal
-                        );
-                        $IDDG = $this->trabajo_model->onAgregarDetalleGenerador($data);
-                    }
                 }
             }
             echo $ID;
@@ -235,7 +200,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoDetalleAbiertoByID() {
         try {
             extract($this->input->post());
@@ -291,21 +256,16 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onModificarConceptoAbierto() {
+
+    public function onModificarConceptoAbierto() {
         try {
             extract($this->input->post());
             $this->trabajo_model->onModificarConceptoAbierto($ID, $this->input->post());
-
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
 
-    
-    
     public function onAgregarGenerador() {
         try {
             extract($this->input->post());
@@ -381,16 +341,6 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onModificarImportePorTrabajoAbierto() {
-        try {
-            extract($this->input->post());
-            print json_encode($this->trabajo_model->onModificarImportePorTrabajoAbierto($ID));
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
 
     public function onEliminar() {
         try {
@@ -417,9 +367,24 @@ class CtrlTrabajos extends CI_Controller {
             $foto = $data[0];
             if (isset($foto->Url)) {
                 unlink($foto->Url);
-                rmdir("uploads/Trabajos/Fotos/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
+                rmdir("uploads/Trabajos/FotosDespues/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
             }
             $this->trabajo_model->onEliminarFotoXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function onEliminarFotoDespuesXConcepto() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getFotoDespuesXConceptoID($ID);
+            $foto = $data[0];
+            if (isset($foto->Url)) {
+                unlink($foto->Url);
+                rmdir("uploads/Trabajos/FotosDespues/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
+            }
+            $this->trabajo_model->onEliminarFotoDespuesXConcepto($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -535,7 +500,6 @@ class CtrlTrabajos extends CI_Controller {
     }
 
     /* FUNCIONES DE EDICION */
-
     public function onEliminarConceptoXDetalle() {
         try {
             extract($this->input->post());
@@ -572,12 +536,12 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onEliminarConceptoXDetalleAbierto() {
+
+    public function onEliminarConceptoXDetalleAbierto() {
         try {
             extract($this->input->post());
             $this->trabajo_model->onEliminarConceptoAbierto($ID);
-          
+
             $data = $this->trabajo_model->getFotosXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -586,6 +550,15 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosXConcepto($ID);
+            
+            $data = $this->trabajo_model->getFotosDespuesXTrabajoDetalleID($ID);
+            foreach ($data as $key => $foto) {
+                if (isset($foto->Url)) {
+                    unlink($foto->Url);
+                    rmdir("uploads/Trabajos/FotosDespues/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarFotosDespuesXConcepto($ID);
 
             $data = $this->trabajo_model->getCroquisXTrabajoDetalleID($ID);
             foreach ($data as $key => $croquis) {
@@ -604,14 +577,11 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarAnexosXConcepto($ID);
-          
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
     
-    
-
     public function getPrecioPorConceptoID() {
         try {
             extract($this->input->post());
@@ -661,22 +631,15 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onAgregarDetalleAbiertoEditar() {
+
+    public function onAgregarDetalleAbiertoEditar() {
         try {
             extract($this->input->post());
             $data = array(
                 'Trabajo_ID' => $Trabajo_ID,
-                'Clave' =>(isset($Clave)) ? $Clave : "",
-                'Descripcion' =>(isset($Descripcion)) ? $Descripcion : "",
-                'Cantidad' => (isset($Cantidad)) ? $Cantidad : "",
-                'Unidad' => (isset($Unidad)) ? $Unidad : "",
-                'Moneda' => (isset($Moneda)) ? $Moneda : "",
-                'Precio' => (isset($Precio)) ? $Precio : "",
-                'ImporteAbierto' => (isset($ImporteAbierto)) ? $ImporteAbierto : "",
+                'Clave' => (isset($Clave)) ? $Clave : "",
+                'Descripcion' => (isset($Descripcion)) ? $Descripcion : "",
                 'IntExt' => (isset($IntExt)) ? $IntExt : ""
-                
             );
             $ID = $this->trabajo_model->onAgregarDetalleAbierto($data);
         } catch (Exception $exc) {
@@ -725,6 +688,55 @@ class CtrlTrabajos extends CI_Controller {
                         'Url' => (NULL)
                     );
                     $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function onAgregarFotosDespuesEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleFotosDespues($data);
+            /* CREAR DIRECTORIO DE FOTOS */
+            $URL_DOC = "uploads/Trabajos/FotosDespues/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["FOTO"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/'))) {
+                    mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
+                    $img = $master_url . $_FILES["FOTO"]["name"];
+
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width'] = 1080;
+                    $config['height'] = 720;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -820,10 +832,8 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-    
-     public function getTarifarioXMovimiento() {
+
+    public function getTarifarioXMovimiento() {
         try {
             $ID = $_POST["ID"];
             $fields = $this->trabajo_model->getTarifarioXMovimiento($ID);
@@ -877,7 +887,6 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
 
     /* ____________________________________REPORTES__________________________________________ */
     /* ______________________________________________________________________________________ */
@@ -1060,9 +1069,9 @@ class CtrlTrabajos extends CI_Controller {
             $page_size = 75;
 
 
-            
+
             foreach ($trabajo as $key => $value) {
-                
+
                 $pdf->SetTextColor(0, 0, 0);
                 $pdf->SetFont('Arial', '', 7);
                 $Ancho = $pdf->GetStringWidth(utf8_decode($value->Descripcion));
@@ -1073,11 +1082,11 @@ class CtrlTrabajos extends CI_Controller {
                 $AlturaCelda = ceil($AlturaCelda);
 
                 /* DETALLE DATOS */
-                
+
                 $pdf->SetY($Y);
                 $pdf->SetX(5);
                 $pdf->cell(25, $AlturaCelda, utf8_decode($value->ClaveCategoria), 1, 0, 'C');
-                
+
                 $pdf->SetY($Y);
                 $pdf->SetX(30);
                 $pdf->cell(15, $AlturaCelda, utf8_decode($value->Clave), 1, 0, 'C');
@@ -1097,7 +1106,7 @@ class CtrlTrabajos extends CI_Controller {
                 $pdf->SetY($Y);
                 $pdf->SetX(190);
                 $pdf->cell(20, $AlturaCelda, "$ " . number_format($value->Precio, 2), 1, 0, 'C');
-              
+
 
                 $Y = $H;
                 $top += $AlturaCelda;
@@ -1140,17 +1149,17 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
 
-           
-                 /* FIRMAS PRIMER BLOQUE */
+
+            /* FIRMAS PRIMER BLOQUE */
             /* FIRMA 1 */
-            $Y= $pdf->GetY()+30;
+            $Y = $pdf->GetY() + 30;
             $pdf->SetTextColor(0, 0, 0);
             $pdf->SetFont('Arial', 'B', 7.5);
             $pdf->Rect(5, $Y, 63, 25);
             $pdf->SetY($Y);
             $pdf->SetX(5);
             $pdf->Cell(63, 5, utf8_decode(""), 0, 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(5);
             $pdf->Cell(63, 5, utf8_decode("Empresa Constructora"), 'T', 1, 'C');
             /* FIRMA 2 */
@@ -1158,7 +1167,7 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->SetY($Y);
             $pdf->SetX(76);
             $pdf->Cell(63, 5, utf8_decode("SOLICITA:"), 0, 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(76);
             $pdf->Cell(63, 5, utf8_decode("Gerencia De Proyectos (Supervisor O PM)"), 'T', 1, 'C');
             /* FIRMA 3 */
@@ -1166,27 +1175,27 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->SetY($Y);
             $pdf->SetX(146);
             $pdf->Cell(63, 5, utf8_decode("REVISA:"), 0, 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(146);
             $pdf->Cell(64, 5, utf8_decode("Area De Costos"), 'T', 1, 'C');
             /* FIRMAS SEGUNDO BLOQUE */
-            
-            $Y= $pdf->GetY()+5;
-            
+
+            $Y = $pdf->GetY() + 5;
+
             /* FIRMA 1 */
             $pdf->Rect(5, $Y, 63, 25);
             $pdf->SetY($Y);
             $pdf->SetX(5);
             $pdf->Cell(63, 5, utf8_decode(""), 0, 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(5);
             $pdf->Cell(63, 5, utf8_decode("Area De Costos"), 'T', 1, 'C');
             /* FIRMA 2 */
             $pdf->Rect(76, $Y, 63, 25);
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(76);
             $pdf->Cell(63, 5, utf8_decode(""), 'T', 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(76);
             $pdf->Cell(63, 5, utf8_decode("Subdirector De Construccion BBVA BANCOMER"), 'T', 1, 'C');
             /* FIRMA 3 */
@@ -1194,13 +1203,13 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->SetY($Y);
             $pdf->SetX(146);
             $pdf->Cell(63, 5, utf8_decode("AUTORIZA:"), 0, 1, 'C');
-            $pdf->SetY($Y+20);
+            $pdf->SetY($Y + 20);
             $pdf->SetX(146);
             $pdf->Cell(64, 5, utf8_decode("Subdiretor De Gestion Y Admon. Ulises"), 'T', 1, 'C');
 
-          
 
-   
+
+
             /* FIN CUERPO */
             $path = 'uploads/Reportes/' . $ID;
             // print $path;
@@ -3976,22 +3985,23 @@ class FotosFPDF extends FPDF {
 }
 
 class PDFFin49 extends FPDF {
-      function Footer() {
-          
-           /* PIE DE PAGINA */
-            $this->SetFont('Arial', 'B', 7);
-            $this->SetY(270);
-            $this->SetX(5);
-            $this->Cell(92, 4, utf8_decode("INMUEBLES: Actitud, Eficiecia Y Calidad A Tu Servicio"), 1, 1, 'L');
-            $this->SetY(270);
-            $this->SetX(97);
-            $this->SetFillColor(169, 244, 251);
-            $this->Cell(23, 4, utf8_decode("Versión 1"), 1, 1, 'C', true);
-            $this->SetY(270);
-            $this->SetX(120);
-            $this->Cell(90, 4, utf8_decode("Pag. ".$this->PageNo().'     '), 1, 1, 'R');
-      }
-    
+
+    function Footer() {
+
+        /* PIE DE PAGINA */
+        $this->SetFont('Arial', 'B', 7);
+        $this->SetY(270);
+        $this->SetX(5);
+        $this->Cell(92, 4, utf8_decode("INMUEBLES: Actitud, Eficiecia Y Calidad A Tu Servicio"), 1, 1, 'L');
+        $this->SetY(270);
+        $this->SetX(97);
+        $this->SetFillColor(169, 244, 251);
+        $this->Cell(23, 4, utf8_decode("Versión 1"), 1, 1, 'C', true);
+        $this->SetY(270);
+        $this->SetX(120);
+        $this->Cell(90, 4, utf8_decode("Pag. " . $this->PageNo() . '     '), 1, 1, 'R');
+    }
+
 }
 
 class Excel extends PHPExcel {
