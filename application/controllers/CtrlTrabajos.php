@@ -3132,8 +3132,6 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-
-
     public function onReporteLevantamientoAntes() {
         try {
             if (isset($_POST["ID"])) {
@@ -3218,7 +3216,6 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onReporteLevantamientoDespues() {
         try {
             if (isset($_POST["ID"])) {
