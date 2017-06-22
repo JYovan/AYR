@@ -52,7 +52,6 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)" >
                             <span class="fa fa-print " ></span>
                         </button>
-
                     </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="label label-default spanEstatus">SIN GUARDAR</span>
@@ -156,7 +155,6 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarEntrega" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
-
                     </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="label label-default spanEditarEstatus">SIN GUARDAR</span>
@@ -329,18 +327,13 @@
     var tblRegistrosXDetalleXEntrega = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
     var mdlSeleccionarTrabajosEditar = $("#mdlSeleccionarTrabajosEditar");
     var TrabajosXClienteIDXClasificacion = mdlSeleccionarTrabajosEditar.find("#TrabajosXClienteIDXClasificacion");
-
-
     var btnImprimirReportesEditarEntrega = pnlEditarEntrega.find("#btnImprimirReportesEditarEntrega");
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
-
     var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
     var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
     $(document).ready(function () {
         //Reportes
          btnImprimirReportesEditarEntrega.on("click", function () {
-
-
              mdlReportesEditarEntrega.modal('show');
          });
         //Tarifario
@@ -364,8 +357,6 @@
                 HoldOn.close();
             });
         });
-
-
         btnDesglose.on("click", function () {
             HoldOn.open({
                 theme: 'sk-bounce',
@@ -386,7 +377,6 @@
                 HoldOn.close();
             });
         });
-
         //Boton de nuevo en detalle nuevo
         btnNuevoRenglonEntregaNuevo.on("click", function () {
             onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
@@ -395,7 +385,6 @@
         btnNuevoRenglonEntregaEditar.on("click", function () {
             var Cliente_ID = pnlEditarEntrega.find("#Cliente_ID").val();
             if (Cliente_ID !== undefined && Cliente_ID !== '' && Cliente_ID > 0) {
-
                 getTrabajosControlByClienteXClasificacion(Cliente_ID);
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
@@ -422,7 +411,6 @@
                     ID: temp
                 }
             }).done(function (data, x, jq) {
-
                 mdlConfirmar.modal('hide');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ENTREGA ELIMINADA', 'danger');
                 menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -592,7 +580,6 @@
                         pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
                         pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
                     }
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -634,7 +621,6 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-
                 temp = parseInt(dtm[0]);
                 IdMovimiento = parseInt(dtm[0]);
                 //Abre al hacer click el movimiento para editar
@@ -651,7 +637,6 @@
                             ID: temp
                         }
                     }).done(function (data, x, jq) {
-
                         pnlEditarEntrega.find("input").val("");
                         var entrega = data[0];
                         pnlEditarEntrega.find("#ID").val(entrega.ID);
@@ -838,7 +823,6 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
-
                     temp = parseInt(dtm[0]);
                     $.ajax({
                         url: master_url + 'getTrabajoByID',
@@ -891,7 +875,6 @@
                                     });
                                      onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL TRABAJO', 'success');
                                 } 
-
                                 else {
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
@@ -969,7 +952,6 @@
                     }
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
-
                     temp = parseInt(dtm[0]);
                     tempDetalle = parseInt(dtm[0]);
                 });

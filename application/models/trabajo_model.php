@@ -970,7 +970,7 @@ class trabajo_model extends CI_Model {
             $this->db->select(' T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal,
                                 E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CONCAT(E.ContactoNombre," ",E.ContactoApellidos) AS ContactoEmpresa,
-                                CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS FirmaBanco,
+                                CONCAT(S.FirmaManttoNombres3," ",S.FirmaManttoApellidos3) AS FirmaBanco,
                                 CTE.RutaLogo AS LogoCliente,
                                 TD.IntExt,SUM(TD.Importe) AS ImporteRenglon, PCAT.Descripcion AS Categoria
                                 FROM TRABAJOS T
@@ -1033,7 +1033,10 @@ class trabajo_model extends CI_Model {
 AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
 TD.Unidad, TD.Cantidad, TD.Precio,PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
 CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
-ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion
+ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion,
+CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS Firma1,
+CONCAT(S.FirmaManttoNombres2," ",S.FirmaManttoApellidos2) AS Firma2,
+CONCAT(S.FirmaManttoNombres3," ",S.FirmaManttoApellidos3) AS Firma3
 FROM TRABAJOS T
 INNER JOIN clientes CTE ON CTE.ID = T.Cliente_ID
 INNER JOIN sucursales S ON S.ID = T.Sucursal_ID
@@ -1087,7 +1090,10 @@ CTE.Nombre AS Cliente, S.CR, S.Nombre
 AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
 TD.Unidad, TD.Cantidad, PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
 CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
-ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion
+ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion,
+CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS Firma1,
+CONCAT(S.FirmaManttoNombres2," ",S.FirmaManttoApellidos2) AS Firma2,
+CONCAT(S.FirmaManttoNombres3," ",S.FirmaManttoApellidos3) AS Firma3
 FROM TRABAJOS T
 INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
 left join trabajodetallecroquis TDC ON TDC.IdTrabajoDetalle = TD.ID
@@ -1099,6 +1105,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDC.Url is NOT NULL', NULL, FALSE);
+             $this->db->order_by('TDC.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -1118,7 +1125,10 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
                                CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
                                TD.Unidad, TD.Cantidad, PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
                                CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
-                               ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion', false);
+                               ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion,
+                               CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS Firma1,
+                                CONCAT(S.FirmaManttoNombres2," ",S.FirmaManttoApellidos2) AS Firma2,
+                                CONCAT(S.FirmaManttoNombres3," ",S.FirmaManttoApellidos3) AS Firma3', false);
             $this->db->from('Trabajos AS T');
             $this->db->join('trabajosdetalle AS TD', 'TD.Trabajo_ID = T.ID');
             $this->db->join('preciarioconceptos AS pc ', ' pc.id = td.preciarioconcepto_id', 'left');
@@ -1187,7 +1197,7 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-            // print $str;
+             print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {

@@ -2,7 +2,6 @@
     <div class="panel panel-default" id="pnlTablero">
         <div class="panel-heading">
             <div class="cursor-hand" >Empresas Supervisoras</div>
-
         </div>
         <div class="panel-body">
             <fieldset>
@@ -17,11 +16,7 @@
         </div>
     </div>
 </div>
-
-
 <!--Confirmacion-->
-
-
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -32,17 +27,13 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
 <!--MODALES-->
-
 <!--NUEVO-->
 <div class="col-md-12">
     <!--GUARDAR-->
@@ -63,7 +54,6 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-
                     <div class="col-md-12 hide">
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
@@ -75,31 +65,24 @@
                         <label for="">Descripción</label>    
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Contacto 1</label>
                         <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Contacto 2</label>
                         <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                     </div>
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>    
-
                     </div>
                 </fieldset>
-
             </form>
         </div>
     </div>
 </div>       
-
-
 <!--EDITAR-->
 <div class="col-md-12">
-
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading " >
            <div class="Custompanel-heading clearfix">
@@ -116,11 +99,8 @@
             </div>
         </div>
         <div class="panel-body">
-
             <form id="frmEditar">
-
                 <fieldset>
-
                     <div class="col-md-12 hide">
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
@@ -132,38 +112,30 @@
                         <label for="">Descripción</label>    
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Contacto 1</label>
                         <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Contacto 2</label>
                         <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
                     </div>
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>    
-
                     </div>
                 </fieldset>
-
             </form>
         </div>
     </div>
 </div>            
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlEmpresasSupervisoras/';
-
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
-
     var btnEditar = $("#btnEditar");
     var pnlEditar = $("#pnlEditar");
-
     //Boton que guarda los datos del formulario
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
@@ -173,39 +145,30 @@
     //Botones del tablero que actualizan y eliminan registros
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
-
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
     $(document).ready(function () {
         //Evento clic del boton nuevo
         btnNuevo.click(function () {
-
             pnlTablero.addClass("hide");
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
             pnlNuevo.find("select").val(null).trigger("change");
         });
-
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
             pnlNuevo.addClass('hide');
             btnRefrescar.trigger('click');
-
         });
-
         btnCancelarModificar.click(function () {
             pnlEditar.addClass("hide");
             pnlTablero.removeClass("hide");
             btnRefrescar.trigger('click');
-
         });
-
         //Actualiza los datos
         btnRefrescar.click(function () {
             getRecords();
         });
-
         //Evento clic del boton editar
         btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -221,7 +184,6 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-
                     btnEditar.find("input").val("");
                     btnEditar.find("select").empty().select2();
                     btnEditar.find("select").val(null).trigger("change");
@@ -240,10 +202,8 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
@@ -251,7 +211,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         //Boton de eliminar del tablero
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -281,21 +240,15 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
-
         //-----------------------EVENTOS DEL FORMULARIO--------------------------
-
         //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -303,30 +256,23 @@
                     Nombre: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
-
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -335,7 +281,6 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA EMPRESA', 'success');
                     pnlTablero.removeClass("hide");
                     pnlNuevo.addClass('hide');
@@ -346,22 +291,16 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
         });
-
         //Boton para guardar cambios cuando ya existe un registro
         btnModificar.click(function () {
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -369,29 +308,23 @@
                     Nombre: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
                 var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -410,20 +343,12 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
-
         });
-
         //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
     });
-
-
-
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -440,7 +365,6 @@
             $('#tblEmpresasSupervisoras tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buuscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-
             });
             var tblSelected = $('#tblEmpresasSupervisoras').DataTable(tableOptions);
             $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {
@@ -456,19 +380,8 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {
-                $("#tblEmpresasSupervisoras").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-                btnEditar.trigger("click");
+                  temp = parseInt(dtm[0]);
+                  btnEditar.trigger("click");
             });
             // Apply the search
             tblSelected.columns().every(function () {
@@ -485,5 +398,4 @@
             HoldOn.close();
         });
     }
-
 </script>

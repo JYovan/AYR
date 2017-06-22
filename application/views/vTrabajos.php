@@ -401,7 +401,6 @@
                             <span class="fa fa-print " ></span>
                         </button>
                     </span>
-
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="label label-default spanEditarEstatus">SIN GUARDAR</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -453,7 +452,6 @@
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
@@ -499,7 +497,6 @@
                                     <option value="PENDIENTE">PENDIENTE</option>
                                     <option value="AUTORIZADO">AUTORIZADO</option>
                                     <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-
                                 </select>
                             </div>
                             <div class="col-6 col-md-6">
@@ -563,7 +560,6 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
-
                             </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha Fin Visita</label>
@@ -611,12 +607,10 @@
                                             <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
                                             <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
-
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
@@ -631,7 +625,6 @@
                                 <label for="">(En caso de otros) Especifica</label>
                                 <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
                             </div>
-
                             <div class="col-6 col-md-6">
                                 <label for="">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
@@ -644,14 +637,12 @@
                                 <label for="">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
                             </div>
-
                         </div>
                         <!--PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
                             <div class="col-md-12">
                                 <span> <br></span>
                             </div>
-
                             <div class="col-md-12">
                                 <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
@@ -664,22 +655,16 @@
                                     SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
-
                             <div class="col-md-12 hide">
                                 <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
-
                         </div>
-
-
                         <div class="col-6 col-md-12">
                             <h6>Los campos con * son obligatorios</h6>
                         </div>
                     </div>
                 </fieldset>
-
             </form>
-
         </div>
     </div>
 </div>
@@ -722,7 +707,6 @@
                 <button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive " id="ConceptosAbierto" >
-
             </div>
         </fieldset>
         <!--</div>-->
@@ -1125,7 +1109,6 @@
     var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajoAbierto.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
-
     $(document).ready(function() {
         /**FIN FUNCIONES DE EDICION **/
         btnEditarConceptoAbierto.on("click", function() {
@@ -1212,7 +1195,6 @@
                 }).done(function(data, x, jq) {
                     $('#mdlAgregarConceptoAbierto').modal('hide');
                     getDetalleAbiertoByID(IdMovimiento);
-
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
@@ -1269,7 +1251,6 @@
             var img = "";
             var nimg = 0;
             $.each(EditarAnexosPorConcepto[0].files, function(k, file) {
-                console.log(file.name);
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     img = "";
@@ -1304,7 +1285,6 @@
                 };
                 reader.readAsDataURL(file);
             });
-            HoldOn.close();
         });
         /*CROQUIS POR CONCEPTO EDITAR*/
         EditarCroquisPorConcepto.change(function() {
@@ -1343,10 +1323,8 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-
                 });
             });
-            HoldOn.close();
         });
         /*FOTOS POR CONCEPTO EDITAR*/
         EditarFotosPorConcepto.change(function() {
@@ -1381,10 +1359,9 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-
                 });
             });
-            HoldOn.close();
+
         });
         /*FOTOS DESPUES POR CONCEPTO EDITAR*/
         EditarFotosDespuesPorConcepto.change(function() {
@@ -1419,10 +1396,9 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
                 }).always(function() {
-
                 });
             });
-            HoldOn.close();
+
         });
         /*Boton que abre el modal de generador en base a la funcion*/
         btnMoficarEditarGenerador.on('click', function() {
@@ -1539,7 +1515,6 @@
                     ID: IdMovimiento
                 }
             }).done(function(data, x, jq) {
-
                 mdlConfirmar.modal('hide');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                 menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -1732,7 +1707,6 @@
                         pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
                         pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
                         pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
-
                     } else if (trabajo.Estatus === 'Cancelado') {
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
                         tBtnEditarConcluir.addClass('hide');
@@ -1907,7 +1881,6 @@
             pnlDetalleEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajoAbierto.addClass("hide");
             getRecords();
-
         });
         btnNuevo.on("click", function() {
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
@@ -2308,7 +2281,6 @@
         }).done(function(data, x, jq) {
             var options = '<option></option>';
             $.each(data, function(k, v) {
-
                 options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
             });
             pnlNuevoTrabajo.find("#Preciario_ID").html(options);
@@ -2541,7 +2513,6 @@
         }).done(function(data, x, jq) {
             var row = $(evt).parent().parent().find("td");
             $(evt).parent().parent().remove();
-
         }).fail(function(x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
         }).always(function() {
@@ -2624,7 +2595,6 @@
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Alto;
                 tblGeneradoresDetalleXConcepto += "</td>";
-
                 /*Cantidad*/
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Cantidad;
@@ -3017,8 +2987,6 @@
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-
-
             tblSelected.columns().every(function() {
                 var that = this;
                 $('input', this.footer()).on('keyup change', function() {
@@ -3027,7 +2995,6 @@
                     }
                 });
             });
-
             mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 mdlTrabajoNuevoConceptoEditar.find("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
@@ -3041,7 +3008,6 @@
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
-
                 $.ajax({
                     url: master_url + 'getConceptoByID',
                     type: "POST",
@@ -3113,7 +3079,6 @@
                     HoldOn.close();
                 });
             });
-
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
@@ -3276,7 +3241,6 @@
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarCroquisPorConcepto.find("#Fotos").html("");
         VistaPreviaCroquisPorConcepto.html("");
-
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'CARGANDO CROQUIS...'
@@ -3295,7 +3259,6 @@
                 console.log(base_url + v.Url);
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
             });
-
         }).fail(function(x, y, z) {
         }).always(function() {
             HoldOn.close();
@@ -3376,10 +3339,6 @@
         mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos").trigger('click');
     }
     function onReloadFotosXConcepto(IDX, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO FOTOS..."
-        });
         $.ajax({
             url: master_url + 'getTrabajoFotosDetalleByID',
             type: "POST",
@@ -3399,8 +3358,6 @@
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
-                    console.log(v);
-                    console.log(base_url + v.Url);
                     picthumbnail += '<div class="col-md-4">';
                     picthumbnail += '<div class="thumbnail">' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
@@ -3420,14 +3377,13 @@
             }
             getTrabajoDetalleByID(IDT);
             getDetalleAbiertoByID(IDT);
+            HoldOn.close();
         }).fail(function(x, y, z) {
         }).always(function() {
-            HoldOn.close();
+
         });
     }
     function onReloadFotosDespuesXConcepto(IDX, IDT) {
-
-        HoldOn.open({theme: "sk-bounce", message: "CARGANDO FOTOS..."});
         $.ajax({
             url: master_url + 'getTrabajoFotosDespuesDetalleByID',
             type: "POST",
@@ -3464,18 +3420,15 @@
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
                 VistaPreviaFotosDespuesPorConcepto.html("");
             }
+            HoldOn.close();
             getTrabajoDetalleByID(IDT);
             getDetalleAbiertoByID(IDT);
         }).fail(function(x, y, z) {
         }).always(function() {
-            HoldOn.close();
+
         });
     }
     function onReloadCroquisXConcepto(IDX, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO CROQUIS..."
-        });
         $.ajax({
             url: master_url + 'getTrabajoCroquisDetalleByID',
             type: "POST",
@@ -3489,16 +3442,12 @@
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
             });
             getTrabajoDetalleByID(IDT);
+             HoldOn.close();
         }).fail(function(x, y, z) {
         }).always(function() {
-            HoldOn.close();
         });
     }
     function onReloadAnexosXConcepto(IDX, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO ANEXOS..."
-        });
         $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
             type: "POST",
             dataType: "JSON",
@@ -3510,8 +3459,6 @@
             if (data.length > 0) {
                 var nimg = 0;
                 $.each(data, function(k, v) {
-                    console.log(v);
-                    console.log(base_url + v.Url);
                     if (nimg === 3) {
                         mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
                         nimg = 0;
@@ -3548,9 +3495,9 @@
             }
             getDetalleAbiertoByID(IdMovimiento);
             getTrabajoDetalleByID(IDT);
+            HoldOn.close();
         }).fail(function(x, y, z) {
         }).always(function() {
-            HoldOn.close();
         });
     }
     function onEliminarFotoXConcepto(IDX, IDTD, IDT) {

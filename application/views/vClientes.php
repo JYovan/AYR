@@ -2,29 +2,21 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="cursor-hand" >Clientes</div>
-
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
-
-
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default" id="btnConfirmarEliminar"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
-
                     <!--Sucursales-->
                     <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-arrow-left fa-1x"></span><br>VOLVER A CLIENTES</button>
                     <button type="button" class="btn btn-default hide" id="btnNuevaSucursal"><span class="fa fa-plus fa-1x"></span><br>NUEVA SUCURSAL</button>
                     <button type="button" class="btn btn-default" id="btnVerSucursales"><span class="fa fa-arrow-right fa-1x"></span><br>SUCURSALES</button>
                     <button type="button" class="btn btn-default hide" id="btnEditarSucursal"><span class="fa fa-pencil fa-1x"></span><br>EDITAR SUCURSAL</button>
                     <button type="button" class="btn btn-default hide" id="btnEliminarSucursal"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR SUCURSAL</button> 
-
-
-
                 </div>
-
                 <div class="col-md-12" align="right">
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
@@ -32,7 +24,6 @@
         </div>
     </div>
 </div>
-
 <!--Confirmacion-->
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
@@ -44,15 +35,12 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
 <!--MODALES-->
 <div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -64,24 +52,18 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset> 
-
-
                         <div class="col-md-12">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
                         </div>
-
-
                         <div class="col-md-6">
                             <label for="">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
                         </div>
-
                         <div class="col-md-6">
                             <label for="">Calle</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
                         </div>
-
                         <div class="col-md-4">
                             <label for="">No Exterior</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
@@ -120,7 +102,6 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-
                         </div>
                         <div class="col-md-12" align="center">
                             <br>
@@ -142,9 +123,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
 <div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -166,7 +144,6 @@
                             <label for="">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
                         </div>
-
                         <div class="col-md-6">
                             <label for="">Calle</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
@@ -209,7 +186,6 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-
                         </div>
                         <div class="col-md-12" align="center">
                             <br>
@@ -223,7 +199,6 @@
                             </button>
                             <br>
                         </div>
-
                     </fieldset>
                 </div>
             </form>
@@ -234,11 +209,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 <!--MODAL SUCURSAL-->
-
-
-
 <div id="mdlNuevaSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
     <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
         <div class="modal-content">
@@ -255,13 +226,10 @@
                                 <li role="presentation" class="active"><a href="#DatosGenerales" aria-controls="DatosGenerales" role="tab" data-toggle="tab">Datos Generales</a></li>
                                 <li role="presentation"><a href="#InformacionObra" aria-controls="InformacionObra" role="tab" data-toggle="tab">Información de Obra</a></li>
                                 <li role="presentation"><a href="#Firmas" aria-controls="Firmas" role="tab" data-toggle="tab">Firmas</a></li>
-
                             </ul>
                         </div>
-
                         <!-- Tab panes -->
                         <div class="tab-content">
-
                             <!-- PANEL DE DATOS GENERALES-->
                             <div role="tabpanel" class="tab-pane fade in active" id="DatosGenerales">
                                 <div class="col-6 col-md-12">
@@ -288,7 +256,6 @@
                                     <label for="">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
@@ -333,7 +300,6 @@
                                         <option value=""></option> 
                                     </select>
                                 </div> 
-
                                 <div class="col-md-6">
                                     <label for="">Contacto 1</label>
                                     <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
@@ -343,13 +309,10 @@
                                     <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                                 </div>
                             </div> 
-
-
                             <div role="tabpanel" class="tab-pane fade" id="InformacionObra">
                                 <div class="col-6 col-md-12">
                                     <br>
                                 </div>
-
                                 <div class="col-md-3">
                                     <label for="">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
@@ -403,29 +366,18 @@
                                     <label for="">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-
-
                                 <div class="col-md-3">
                                     <label for="">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                                 </div> 
-
-
                                 <div class="col-md-3">
                                     <label for="">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                                 </div> 
-
-
                             </div>  
-
                             <div role="tabpanel" class="tab-pane fade" id="Firmas">
-
-
                                 <div class="col-md-12" align="center">
-
                                     <h3>Firmas de Mantenimiento</h3>
-
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
@@ -435,12 +387,10 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
@@ -449,7 +399,6 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
@@ -462,19 +411,13 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-
-
                                 <div class="col-md-12" align="center">
-
                                     <h3>Firmas de Obra</h3>
-
                                 </div>
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
@@ -483,12 +426,10 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
@@ -497,7 +438,6 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
@@ -510,21 +450,15 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                                 </div> 
-
                             </div>
-
-
                         </div>
-
-                            <div class="col-6 col-md-6">
-                                <h6>Los campos con * son obligatorios</h6>    
-
-                            </div> 
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                        </div> 
                     </fieldset>
                 </div>
             </form>
@@ -535,8 +469,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 <div id="mdlEditarSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
     <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
         <div class="modal-content">
@@ -553,13 +485,10 @@
                                 <li role="presentation" class="active"><a href="#EditarDatosGenerales" aria-controls="EditarDatosGenerales" role="tab" data-toggle="tab">Datos Generales</a></li>
                                 <li role="presentation"><a href="#EditarInformacionObra" aria-controls="EditarInformacionObra" role="tab" data-toggle="tab">Información de Obra</a></li>
                                 <li role="presentation"><a href="#EditarFirmas" aria-controls="EditarFirmas" role="tab" data-toggle="tab">Firmas</a></li>
-
                             </ul>
                         </div>
-
                         <!-- Tab panes -->
                         <div class="tab-content">
-
                             <!-- PANEL DE DATOS GENERALES-->
                             <div role="tabpanel" class="tab-pane fade in active" id="EditarDatosGenerales">
                                 <div class="col-6 col-md-12">
@@ -589,7 +518,6 @@
                                     <label for="">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
@@ -634,7 +562,6 @@
                                         <option value=""></option> 
                                     </select>
                                 </div> 
-
                                 <div class="col-md-6">
                                     <label for="">Contacto 1</label>
                                     <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
@@ -644,13 +571,10 @@
                                     <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
                                 </div>
                             </div> 
-
-
                             <div role="tabpanel" class="tab-pane fade" id="EditarInformacionObra">
                                 <div class="col-6 col-md-12">
                                     <br>
                                 </div>
-
                                 <div class="col-md-3">
                                     <label for="">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
@@ -704,28 +628,18 @@
                                     <label for="">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-3">
                                     <label for="">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
                                 </div> 
-
-
                                 <div class="col-md-3">
                                     <label for="">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
                                 </div> 
-
-
                             </div>  
-
                             <div role="tabpanel" class="tab-pane fade" id="EditarFirmas">
-
-
                                 <div class="col-md-12" align="center">
-
                                     <h3>Firmas de Mantenimiento</h3>
-
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
@@ -735,12 +649,10 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
@@ -749,7 +661,6 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
@@ -762,19 +673,13 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
                                 </div> 
-
-
                                 <div class="col-md-12" align="center">
-
                                     <h3>Firmas de Obra</h3>
-
                                 </div>
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
@@ -783,12 +688,10 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
@@ -797,7 +700,6 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
@@ -810,18 +712,15 @@
                                     <label for="">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
                                 </div> 
-
                                 <div class="col-md-4">
                                     <label for="">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
                                 </div> 
-
                             </div>
                         </div>    
-                            <div class="col-6 col-md-6">
-                                <h6>Los campos con * son obligatorios</h6>    
-
-                            </div> 
+                        <div class="col-6 col-md-6">
+                            <h6>Los campos con * son obligatorios</h6>    
+                        </div> 
                     </fieldset>
                 </div>
             </form>
@@ -832,11 +731,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 <!--Confirmacion-->
-
-
 <div id="mdlEliminarSucursal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -847,16 +742,12 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminarSucursal">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlClientes/';
@@ -888,9 +779,7 @@
     var mdlEliminarSucursal = $("#mdlEliminarSucursal");
     var mdlbtnEliminarSucursal = mdlEliminarSucursal.find("#btnEliminarSucursal");
     var btnVolverAClientes = $("#btnVolverAClientes");
-
     $(document).ready(function () {
-
         btnVolverAClientes.click(function () {
             btnNuevo.removeClass("hide");
             btnRefrescar.removeClass("hide");
@@ -902,10 +791,8 @@
             btnConfirmarEliminar.removeClass("hide");
             getRecords();
         });
-
         btnVerSucursales.click(function () {
             if (cliente_id !== 0 && cliente_id !== null) {
-
                 btnNuevo.addClass("hide");
                 btnRefrescar.addClass("hide");
                 btnVolverAClientes.removeClass("hide");
@@ -919,7 +806,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
             }
         });
-
         mdlbtnEliminarSucursal.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
@@ -942,7 +828,6 @@
                 HoldOn.close();
             });
         });
-
         btnEliminarSucursal.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 mdlEliminarSucursal.modal('show');
@@ -952,17 +837,12 @@
         });
 //**------------------------------------------ SUCURSALES AC
         btnModificarSucursal.click(function () {
-
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
-
             $('#frmEditarSuc').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -971,24 +851,21 @@
                     CR: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-            
-        
-            
+
+
+
             if ($('#frmEditarSuc').valid()) {
                 var frm = new FormData(mdlEditarSucursal.find("#frmEditarSuc")[0]);
                 $.ajax({
@@ -1008,40 +885,29 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
         });
-
         btnGuardarSucursal.click(function () {
-
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevoSuc').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
                 rules: {
-               
+
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
@@ -1068,43 +934,30 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
-
         });
-
 //**------------------------------------------
         btnCancelarSucursal.click(function () {
             mdlNuevaSucursal.modal('hide');
         });
-
         btnNuevaSucursal.click(function (e) {
             mdlNuevaSucursal.find(".nav-tabs li").removeClass("active");
             $(mdlNuevaSucursal.find(".nav-tabs li")[0]).addClass("active");
-
             mdlNuevaSucursal.find("#DatosGenerales").addClass("active in");
             mdlNuevaSucursal.find("#InformacionObra").removeClass("active in");
             mdlNuevaSucursal.find("#Firmas").removeClass("active in");
-
-
             mdlNuevaSucursal.find("#Cliente_ID").select2("val", cliente_id);
             mdlNuevaSucursal.modal('show');
         });
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
-
         });
-
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -1131,7 +984,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnRefrescar.click(function () {
             btnNuevaSucursal.addClass("hide");
             btnEliminarSucursal.addClass("hide");
@@ -1139,16 +991,13 @@
             btnConfirmarEliminar.removeClass("hide");
             getRecords();
         });
-
         btnModificar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1157,30 +1006,23 @@
                     NombreCorto: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
-
                 var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -1198,12 +1040,8 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
         });
-
         btnEditar.click(function () {
             console.log(cliente_id);
             if (cliente_id !== 0 && cliente_id !== undefined && cliente_id > 0) {
@@ -1219,7 +1057,6 @@
                         ID: cliente_id
                     }
                 }).done(function (data, x, jq) {
-
                     console.log(data);
                     mdlEditar.find("input").val("");
                     var cliente = data[0];
@@ -1251,7 +1088,6 @@
                     } else {
                         mdlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                     }
-
                     mdlEditar.modal('show');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1262,16 +1098,13 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnGuardar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1280,28 +1113,22 @@
                     NombreCorto: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-
                 var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -1321,11 +1148,7 @@
                     HoldOn.close();
                 });
             }
-
-
-
         });
-
         btnArchivo.click(function () {
             Archivo.change(function () {
                 HoldOn.open({
@@ -1361,7 +1184,6 @@
             });
             Archivo.trigger('click');
         });
-
         btnModificarArchivo.click(function () {
             ModificarArchivo.change(function () {
                 HoldOn.open({
@@ -1397,7 +1219,6 @@
             });
             ModificarArchivo.trigger('click');
         });
-
         btnNuevo.click(function () {
             //Muestra el modal
             mdlNuevo.modal('show');
@@ -1409,9 +1230,6 @@
         getRecords();
         getEmpresasSupervisoras();
     });
-
-
-
     function getRecords() {
         cliente_id = 0;
         temp = 0;
@@ -1429,7 +1247,6 @@
             $('#tbllClientes tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-
             });
             var tblSelected = $('#tbllClientes').DataTable(tableOptions);
             $('#tbllClientes tbody').on('click', 'tr', function () {
@@ -1450,7 +1267,7 @@
                 console.log(dtm[0]);
                 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
                 cliente_id = parseInt(dtm[0]);
-                temp=parseInt(dtm[0]);
+                temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT
             $('#tbllClientes tbody').on('dblclick', 'tr', function () {
@@ -1475,10 +1292,7 @@
             HoldOn.close();
         });
     }
-
     var cliente_id = 0;
-
-
     function getSucursalesByClienteID(IDX) {
         temp = 0;
         HoldOn.open({
@@ -1503,7 +1317,6 @@
             $('#tblSucursales tbody').on('click', 'tr', function () {
                 $("#tblSucursales").find("tr").removeClass("success");
                 $("#tblSucursales").find("tr").removeClass("warning");
-//                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -1511,18 +1324,11 @@
                 } else {
                     selected.splice(index, 1);
                 }
-
                 $(this).addClass('success');
-                $('#tblSucursales tbody').on('click', 'tr', function () {
+                var dtm = tblSelected.row(this).data();
+                temp = parseInt(dtm[0]);
+                getSucursalByID(temp);
 
-                    var dtm = tblSelected.row(this).data();
-                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                    console.log(dtm);
-                    console.log(dtm[0]);
-                    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                    temp = parseInt(dtm[0]);
-                    getSucursalByID(temp);
-                });
             });
             // Apply the search
             tblSelected.columns().every(function () {
@@ -1541,12 +1347,11 @@
     }
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
-           $('#RutaLogo').trigger('blur');
-          $('#RutaLogo').on('blur', function (e) {
-                $('#RutaLogo').val('');
-            });
+        $('#RutaLogo').trigger('blur');
+        $('#RutaLogo').on('blur', function (e) {
+            $('#RutaLogo').val('');
+        });
     }
-
     function getContratistas() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -1569,7 +1374,6 @@
             HoldOn.close();
         });
     }
-
     function getEmpresasSupervisoras() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -1594,7 +1398,6 @@
         getClientes();
         getContratistas();
     }
-
     function getClientes() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -1617,14 +1420,12 @@
             HoldOn.close();
         });
     }
-
     function getSucursalByID(IDX) {
         mdlEditarSucursal.find(".nav-tabs li").removeClass("active");
         $(mdlEditarSucursal.find(".nav-tabs li")[0]).addClass("active");
         mdlEditarSucursal.find("#EditarDatosGenerales").addClass("active in");
         mdlEditarSucursal.find("#EditarInformacionObra").removeClass("active in");
         mdlEditarSucursal.find("#EditarFirmas").removeClass("active in");
-
         console.log(IDX);
         if (IDX !== 0 && IDX !== undefined && IDX > 0) {
             HoldOn.open({
@@ -1660,7 +1461,6 @@
     }
 </script>
 <style>
-
     .super-fullscreen {
         width: 90% !important; 
         overflow: auto;

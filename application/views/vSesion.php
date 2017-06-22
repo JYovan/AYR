@@ -1,7 +1,4 @@
 <div class="col-md-4"></div>
-
-
-
 <div class="col-md-4 ">
     <div class="panel panel-primary animated bounceInUp form-group margin-top-100 ">
         <div class="panel-headingLogin">
@@ -13,11 +10,8 @@
                     <img src="<?php print base_url(); ?>img/logo.png" class="img-responsive" width="148" height="143">
                     <br><br>
                 </div>
-
-
                 <div class="form-group">
                     <div class="col-md-12">
-
                         <input type="email" class="form-control" id="Usuario" name="Usuario" placeholder="Email*" >
                     </div>
                 </div>
@@ -26,10 +20,6 @@
                         <input type="password" class="form-control" id="Contrasena" name="Contrasena" placeholder="Contraseña*">
                     </div>
                 </div>
-
-
-
-
                 <div class="col-md-12" >
                     <div class="checkbox">
                         <label>
@@ -37,33 +27,23 @@
                         </label>
                     </div>
                 </div>
-
-
                 <!--Mensaje de error-->
                 <div id="msg" class="col-md-12" ></div>
-
-
                 <div class="col-md-12" align="right"> 
-
                     <button id="btnIngresar" type="button" class="btn btn-raised btn-primary">INGRESAR</button>
-
                 </div> 
-
             </div>
         </form>
     </div>
 </div>
-
 <div class="col-md-4"></div>
 <script>
     var master_url = base_url + "index.php/CtrlSesion/";
     var btnResetear = $("#btnResetear");
     var btnIngresar = $("#btnIngresar");
-
     var Usuario = $("#Usuario");
     var Contrasena = $("#Contrasena");
     var chkRobot = $("#chkRobot");
-
     $(document).ready(function () {
         btnIngresar.click(function () {
             if (Usuario.val() !== '' && Contrasena.val() !== '' && chkRobot.is(':checked')) {
@@ -98,8 +78,5 @@
                         '<strong>ERROR!</strong> Verifique su usuario y contraseña</div>');
             }
         });
-
     });
-
-
 </script>

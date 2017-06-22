@@ -1,23 +1,14 @@
 <?php
-
-/*
- * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
- */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
-
 class usuario_model extends CI_Model {
-
     public function __construct() {
         parent::__construct();
     }
-
     public function getRecordsEntrega() {
         try {
             $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
-
             $sqlsrv->select('E.*', false);
             $sqlsrv->from('entregas AS E');
             $query = $sqlsrv->get();
@@ -32,7 +23,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onInsertarEntregas($array) {
         try {
             $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
@@ -46,7 +36,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getRecords() {
         try {
             $query = $this->db->query("CALL SP_USUARIOS()");
@@ -60,7 +49,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getAcceso($USUARIO, $CONTRASENA) {
         try {
             $this->db->select('U.*', false);
@@ -80,7 +68,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onAgregar($array) {
         try {
             $this->db->insert("usuarios", $array);
@@ -93,7 +80,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -103,7 +89,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function onEliminar($ID) {
         try {
             $this->db->set('Estatus', 'Inactivo');
@@ -114,7 +99,6 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
     public function getUsuarioByID($ID) {
         try {
             $this->db->select('U.*', false);
@@ -133,5 +117,4 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-
 }

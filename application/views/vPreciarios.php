@@ -3,7 +3,6 @@
     <div id="pnlPreciario" class="panel panel-default">
         <div class="panel-heading ">
             <div class="cursor-hand" >Preciarios</div>
-
         </div>
         <div class="panel-body">
             <fieldset>
@@ -18,7 +17,6 @@
         </div>
     </div>
 </div>
-
 <!--PANELES-->
 <div class="col-md-12">
     <!--GUARDAR-->
@@ -40,20 +38,14 @@
             <form id="frmNuevo">
                 <div class="modal-body">
                     <fieldset>
-
-
                         <div class="col-6 col-md-12">
                             <label for="">Nombre*</label>
                             <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                         </div>
-
-
                         <div class="col-md-6">
                             <label for="">Fecha de Creación*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                         </div>
-
-
                         <div class="col-6 col-md-6">
                             <label for="">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" >
@@ -62,7 +54,6 @@
                                 <option value="Inactivo">Inactivo</option>
                             </select>
                         </div>
-
                         <div class="col-6 col-md-6">
                             <label for="">TIPO*</label>
                             <select id="Tipo" name="Tipo" class="form-control" >
@@ -71,34 +62,23 @@
                                 <option value="OBRA">Obra</option>
                             </select>
                         </div>
-
-
-
                         <div class="col-md-6">
                             <label for="">CLIENTE*</label>
                             <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                 <option value=""></option>
                             </select>
                         </div>
-
-
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>
-
                         </div>
-
                         <div class="col-md-12">
                             <br>
                             <div class="alert alert-dismissible alert-warning">
-
                                 <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
                                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div>
                         </div>
-
-
-
                         <div class="col-md-12" align="center">
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
@@ -113,14 +93,11 @@
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
-
-
                     </fieldset>
                 </div>
             </form>
         </div>
     </div>
-
     <!--EDITAR-->
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading">
@@ -140,22 +117,18 @@
         <div class="panel-body">
             <form id="frmEditar">
                 <fieldset>
-
                     <div class="col-md-12 hide">
                         <label for="">ID*</label>
                         <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
-
                     <div class="col-md-12">
                         <label for="">Nombre*</label>
                         <input type="text" class="form-control" id="Nombre" name="Nombre"  >
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
                     </div>
-
                     <div class="col-6 col-md-6">
                         <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" >
@@ -164,7 +137,6 @@
                             <option value="Inactivo">Inactivo</option>
                         </select>
                     </div>
-
                     <div class="col-6 col-md-6">
                         <label for="">Tipo*</label>
                         <select id="Tipo" name="Tipo" class="form-control" >
@@ -173,16 +145,12 @@
                             <option value="OBRA">Obra</option>
                         </select>
                     </div>
-
-
-
                     <div class="col-md-6">
                         <label for="">Cliente*</label>
                         <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option>
                         </select>
                     </div>
-
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -191,24 +159,17 @@
         </div>
     </div>
 </div>
-
-
 <!--PANEL DETALLE-->
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleConceptos">
-
         <div class="Custompanel-heading" >
-
             <div class="Custompanel-heading row">
                 <div class="col-md-8">
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
-
             </div>
         </div>
         <div class="panel-body">
-
-
             <div class="col-md-12 dt-buttons" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                 <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
@@ -219,17 +180,10 @@
             </div>
             <div id="PreciarioEspecifico" class="col-md-12">
             </div>
-
         </div>
     </div>
-
 </div>
-
-
-
 <!--EDITAR-->
-
-
 <div id="mdlNuevoConcepto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content modal-lg">
         <div class="modal-header">
@@ -237,7 +191,6 @@
                 <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Nuevo Concepto</h4>
         </div>
-
         <div class="modal-body">
             <div class="col-md-12 hide">
                 <input type="text" class="form-control hide" id="ID" name="ID">
@@ -313,7 +266,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-12">
                                 <label for="">Descripción</label>
                                 <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
@@ -321,7 +273,6 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="SubCategorias">
-
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
@@ -330,7 +281,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-12">
                             <label for="">Descripción</label>
                             <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
@@ -371,11 +321,9 @@
                     <div class="col-md-12">
                         <br>
                     </div>
-
                 </div>
             </div>
         </div>
-
         <div class="modal-footer" >
             <!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
@@ -394,8 +342,6 @@
         </div>
     </div>
 </div>
-
-
 <div id="mdlEditarConcepto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content modal-lg">
         <div class="modal-header">
@@ -415,9 +361,7 @@
                     </div>
                     <div class="col-md-8">
                         <label for="">Descripción</label>
-
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-
                         </textarea>
                     </div>
                     <div class="col-md-4">
@@ -456,7 +400,6 @@
                 </fieldset>
             </form>
         </div>
-
         <div class="modal-footer">
             <!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
@@ -464,10 +407,7 @@
         </div>
     </div>
 </div>
-
 <!--Confirmacion-->
-
-
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -478,15 +418,12 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
 <div id="mdlConfirmarEliminarConcepto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -497,16 +434,12 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnConfirmarEliminarConcepto">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlPreciarios/';
@@ -533,8 +466,6 @@
     var btnCancelarModificacion = mdlEditarConcepto.find("#btnCancelarModificacion");
     var btnNuevoConcepto = $("#btnNuevoConcepto");
     var mdlNuevoConcepto = $("#mdlNuevoConcepto");
-
-
     var btnGuardarConcepto = mdlNuevoConcepto.find("#btnGuardarConcepto");
     var btnCancelarConcepto = mdlNuevoConcepto.find("#btnCancelarConcepto");
     var btnNuevaCategoria = mdlNuevoConcepto.find("#btnNuevaCategoria");
@@ -544,25 +475,16 @@
     var btnCancelarCategoria = mdlNuevoConcepto.find("#btnCancelarCategoria");
     var btnCancelarSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubCategoria");
     var btnCancelarSubSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubSubCategoria");
-
     var pnlConceptos = pnlEditar.find("#pnlConceptos");
-
-
-
-
     //Variables de controles para subir archivo
     var Archivo = pnlNuevo.find("#RutaArchivo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
-
     var currentDate = new Date();
-
 //Variables de conceptos detalle
     /*Detalle*/
     var pnlDetalleConceptos = $("#pnlDetalleConceptos");
-
     $(document).ready(function() {
-
         btnGuardarSubSubCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val();
@@ -601,7 +523,6 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-
         btnGuardarSubCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val();
             var Categoria = mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val();
@@ -635,7 +556,6 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-
         btnGuardarCategoria.click(function() {
             var Clave = mdlNuevoConcepto.find("#Categorias").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val();
@@ -667,10 +587,8 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href"); // activated tab
-
             switch (target) {
                 case "#Conceptos":
                     btnCancelarConcepto.removeClass("hide");
@@ -712,26 +630,21 @@
                     btnCancelarSubSubCategoria.removeClass("hide");
                     btnGuardarSubSubCategoria.removeClass("hide");
                     break;
-
                 default:
-
                     break;
             }
         });
-
         btnCancelarEditar.click(function() {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
             pnlDetalleConceptos.addClass("hide");
             btnRefrescar.trigger('click');
         });
-
         btnCancelar.click(function() {
             pnlPreciario.removeClass("hide");
             pnlNuevo.addClass("hide");
              btnRefrescar.trigger('click')
         });
-
         btnCancelarSubSubCategoria.click(function() {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -742,7 +655,6 @@
                 $(v).select2("val", "");
             });
         });
-
         btnCancelarSubCategoria.click(function() {
             pnlConceptos.find("#SubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -753,7 +665,6 @@
                 $(v).select2("val", "");
             });
         });
-
         btnCancelarCategoria.click(function() {
             pnlConceptos.find("#Categorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -764,11 +675,9 @@
                 $(v).select2("val", "");
             });
         });
-
         btnNuevaCategoria.click(function() {
             mdlNuevaCategoria.removeClass("hide");
         });
-        
         btnCancelarConcepto.click(function() {
             pnlConceptos.find("#Conceptos").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
@@ -779,15 +688,12 @@
                 $(v).select2("val", "");
             });
         });
-
         btnGuardarConcepto.click(function() {
-
             var Clave = mdlNuevoConcepto.find("#Conceptos").find("#Clave").val();
             var Descripcion = mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val();
             var Categoria = mdlNuevoConcepto.find("#Conceptos").find("#Categoria").val();
             var SubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").val();
             var SubSubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubSubCategoria").val();
-
             if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
                     Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0 &&
                     Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0 &&
@@ -825,9 +731,7 @@
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-
         btnNuevoConcepto.click(function() {
-
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
             $(mdlNuevoConcepto.find(".nav-tabs li")[0]).addClass("active");
             console.log(mdlNuevoConcepto.find(".nav-tabs"));
@@ -851,7 +755,6 @@
             btnCancelarConcepto.removeClass("hide");
             btnGuardarConcepto.removeClass("hide");
         });
-
         btnCancelarModificacion.click(function() {
             mdlEditarConcepto.find("#IDConcepto").val("");
             mdlEditarConcepto.find("#Clave").val("");
@@ -864,11 +767,9 @@
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
             mdlEditarConcepto.modal('hide');
         });
-
         btnRefrescarConceptos.click(function() {
             getConceptosXPreciarioID(pnlEditar.find("#ID").val());
         });
-
         btnModificarConcepto.click(function() {
             HoldOn.open({
                 theme: "sk-bounce",
@@ -902,13 +803,11 @@
                 HoldOn.close();
             });
         });
-
         mdlEditarConcepto.find("#Categoria").change(function() {
             getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
         });
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function() {
-           
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
@@ -916,20 +815,15 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
-        
         //Evento clic del boton confirmar borrar un concepto
         btnEliminarConcepto.click(function() {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmarEliminarConcepto.modal('show');
-
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
 //Confirma la eliminacion del concepto
         btnConfirmarEliminarConcepto.click(function() {
             console.log('ELIMINANDO...' + temp);
@@ -958,9 +852,7 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        
         btnEliminar.click(function() {
-        
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "ELIMINANDO DATOS..."
@@ -979,29 +871,23 @@
                     pnlEditar.addClass("hide");
                     pnlDetalleConceptos.addClass("hide");
                     btnRefrescar.trigger('click');
-                    
                     getRecords();
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
                     HoldOn.close();
                 });
-            
         });
-
         btnRefrescar.click(function() {
             getRecords();
         });
-
         btnGuardar.click(function() {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1011,28 +897,22 @@
                     Estatus: 'required',
                     Tipo: 'required',
                     Cliente_ID: 'required'
-
                 },
                 highlight: function(element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function() {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "GUARDANDO... POR FAVOR ESPERE"
@@ -1057,23 +937,15 @@
                 }).always(function() {
                     HoldOn.close();
                 });
-
-
             }
-
-
-
         });
-
         btnModificar.click(function() {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -1083,25 +955,20 @@
                     Estatus: 'required',
                     Tipo: 'required',
                     Cliente_ID: 'required'
-
                 },
                 highlight: function(element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function(element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function() {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
                 HoldOn.open({
@@ -1130,7 +997,6 @@
                 });
             }
         });
-
         btnNuevo.click(function() {
             tblConceptos.html("");
             pnlNuevo.find("select").select2("val", "");
@@ -1139,12 +1005,8 @@
             pnlNuevo.removeClass('hide');
             pnlPreciario.addClass("hide");
         });
-
         btnEditar.click(function() {
-            
-           
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
-
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
                     type: "POST",
@@ -1155,7 +1017,6 @@
                 }).done(function(data, x, jq) {
                     console.log(data);
                     var preciario = data[0];
-
                     pnlEditar.find("#ID").val(preciario.ID);
                     pnlEditar.find("#Nombre").val(preciario.Nombre);
                     pnlEditar.find("#Tipo").val(preciario.Tipo);
@@ -1164,18 +1025,14 @@
                     pnlEditar.find("#Estatus").select2("val", preciario.Estatus);
                     pnlEditar.find("#Tipo").select2("val", preciario.Tipo);
                     pnlEditar.find("#PreciarioEspecifico").html("");
-
-
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
-
                     pnlPreciario.addClass('hide');
                     pnlEditar.addClass("animated slideInLeft").removeClass('hide');
                     pnlDetalleConceptos.removeClass("hide");
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
                 }).always(function() {
-                
                 });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
@@ -1188,7 +1045,6 @@
             });
             Archivo.change(function() {
                 if (Archivo[0].files[0] !== undefined) {
-
                     var extension = getExt(Archivo[0].files[0].name);
                     console.log('EXTENSION ' + extension);
                     if (extension === "xlsx" || extension === "xls" || extension === "csv") {
@@ -1223,13 +1079,10 @@
                 }
             });
             Archivo.trigger('click');
-
         });
-
         /*READY*/
         getRecords();
         getClientes();
-
     });
     var is_filled = false;
     function getClientes() {
@@ -1254,7 +1107,6 @@
             HoldOn.close();
         });
     }
-
     function getRecords() {
         tempID = 0;
         HoldOn.open({
@@ -1286,21 +1138,9 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                tempID = parseInt(dtm[0]);    
+                 tempID = parseInt(dtm[0]);    
                 btnEditar.trigger("click");
             });
-            //DB CLICK FOR EDIT
-//            $('#tblEmpresas tbody').on('click', 'tr', function() {
-//                $("#tblEmpresas").find("tr").removeClass("warning");
-//                $(this).addClass('warning');
-//                var dtm = tblSelected.row(this).data();
-//                tempID = parseInt(dtm[0]);
-//                btnEditar.trigger("click");
-//            });
             // Apply the search
             tblSelected.columns().every(function() {
                 var that = this;
@@ -1316,10 +1156,7 @@
             HoldOn.close();
         });
     }
-
     function getCategorias(IDX) {
-   
-    
         $.ajax({
             url: master_url + 'getCategoriasXPreciarioID',
             type: "POST",
@@ -1341,12 +1178,9 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-       
         });
     }
-
     function getSubCategorias(ID, IDC) {
-      
         $.ajax({
             url: master_url + 'getSubCategoriasXCategoriaIDXPreciarioID',
             type: "POST",
@@ -1367,12 +1201,9 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-        
         });
     }
-
     function getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(ID, IDC, IDSC) {
-    
         $.ajax({
             url: master_url + 'getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID',
             type: "POST",
@@ -1393,10 +1224,8 @@
         }).fail(function(x, y, z) {
             console.log(x, y, z);
         }).always(function() {
-       
         });
     }
-
     function getConceptosXPreciarioID(IDX) {
         temp = 0;
         HoldOn.open({
@@ -1420,7 +1249,6 @@
             $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-//                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -1430,19 +1258,8 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-                $.ajax({
+                 temp = parseInt(dtm[0]);
+                 $.ajax({
                     url: master_url + 'getConceptoByID',
                     type: "POST",
                     dataType: "JSON",
@@ -1484,9 +1301,7 @@
             HoldOn.close();
         });
     }
-
 </script>
-
 <script>
     /*jshint browser:true */
     /* eslint-env browser */
@@ -1509,7 +1324,6 @@
             }
         }
     }
-
     function to_json(workbook) {
         var sheet = "HOJAN";
         var i = 1;
@@ -1524,7 +1338,6 @@
         });
         return result;
     }
-
     function to_csv(workbook) {
         var result = [];
         workbook.SheetNames.forEach(function(sheetName) {
@@ -1537,7 +1350,6 @@
         });
         return result.join("\n");
     }
-
     var tblConceptos = pnlNuevo.find("#VistaPrevia");
     function to_html(workbook) {
         tblConceptos.html("");
@@ -1547,13 +1359,10 @@
             tblConceptos.find("table").addClass("table table-bordered table-striped table-hover display row-border hover order-column");
         });
     }
-
     function onProcesarLibroXLS(wb) {
         var output = "";
         output = JSON.stringify(to_json(wb), 2, 2);
         pnlNuevo.find("#json_preciario").html(output);
         to_html(wb);
-
     }
-
 </script>

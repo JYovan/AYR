@@ -1,7 +1,6 @@
 <div class="col-md-12">
     <div class="panel panel-default" id="pnlTablero">
         <div class="panel-heading">
-
             <div class="cursor-hand" >Empresas</div>
         </div>
         <div class="panel-body">
@@ -17,11 +16,7 @@
         </div>
     </div>
 </div>
-
-
 <!--Confirmacion-->
-
-
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -32,18 +27,13 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
-
 </div>
-
-
 <!--MODALES-->
-
 <!--NUEVO-->
 <div class="col-md-12">
     <!--GUARDAR-->
@@ -56,19 +46,17 @@
                         </button>
                         Nueva Empresa
                     </div>
- 
+
                 <div class="input-group pull-right">
-                    
+
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                 </div>
-    
+
             </div>
         </div>
         <div class="panel-body">
-
             <form id="frmNuevo">
                 <fieldset>
-
                     <div class="col-6 col-md-6">
                         <label for="">Nombre*</label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre" >
@@ -85,53 +73,37 @@
                         <label for="">Contacto Apellidos</label>
                         <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
                     </div>
-
-
-
                     <div class="col-md-6">
                         <label for="">Dirección</label>
                         <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
                     </div>
-
                     <div class="col-md-3">
                         <label for="">N°</label>
                         <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
                     </div>
                     <div class="col-md-3">
                         <label for="">N° Int.</label>
                         <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Código Postal</label>
                         <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                     </div>
-
-
                     <div class="col-md-6">
                         <label for="">Colonia</label>
                         <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                     </div>
-
-
                     <div class="col-md-6">
                         <label for="">Ciudad</label>
                         <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
                     </div>
-
                     <div class="col-md-6">
                         <label for="">Estado</label>
                         <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                     </div>
-
-
                     <div class="col-md-12">
                         <span> <br></span>
                     </div>
-
                     <div class="col-md-12" align="center">
                         <div id="VistaPrevia" class="col-md-12" align="center"></div>
                         <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
@@ -143,17 +115,13 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>    
-
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
 </div>      
-
-
 <!--EDITAR-->
-
 <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
     <div class="Custompanel-heading " >
         <div class="Custompanel-heading clearfix">
@@ -183,8 +151,6 @@
                     <label for="">RFC*</label>    
                     <input type="text" class="form-control" id="Rfc" name="Rfc" >
                 </div>
-
-
                 <div class="col-md-6">
                     <label for="">Contacto Nombre</label>
                     <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
@@ -193,53 +159,37 @@
                     <label for="">Contacto Apellidos</label>
                     <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
                 </div>
-
-
-
                 <div class="col-md-6">
                     <label for="">Dirección</label>
                     <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-
                 </div>
-
                 <div class="col-md-3">
                     <label for="">N°</label>
                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-
                 </div>
                 <div class="col-md-3">
                     <label for="">N° Int.</label>
                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-
                 </div>
-
                 <div class="col-md-6">
                     <label for="">Código Postal</label>
                     <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                 </div>
-
-
                 <div class="col-md-6">
                     <label for="">Colonia</label>
                     <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                 </div>
-
-
                 <div class="col-md-6">
                     <label for="">Ciudad</label>
                     <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
                 </div>
-
                 <div class="col-md-6">
                     <label for="">Estado</label>
                     <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
                 </div>
-
-
                 <div class="col-md-12">
                     <span> <br></span>
                 </div>
-
                 <div class="col-md-12" align="center">
                     <div id="VistaPrevia" class="col-md-12" align="center"></div>
                     <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
@@ -251,75 +201,56 @@
                 </div>
                 <div class="col-6 col-md-6">
                     <h6>Los campos con * son obligatorios</h6>    
-
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
 </div>      
-
 <!--SCRIPT-->
-
 <script>
     var master_url = base_url + 'index.php/CtrlEmpresas/';
       var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
-
      var btnEditar = $("#btnEditar");
      var pnlEditar = $("#pnlEditar");
-
     var Archivo = pnlNuevo.find("#RutaLogo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
-
     //Boton que guarda los datos del formulario
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
-
     var ModificarArchivo = pnlEditar.find("#RutaLogo");
     var btnModificarArchivo = pnlEditar.find("#btnArchivo");
     var ModificarVistaPrevia = pnlEditar.find("#VistaPrevia");
-
-
       var btnModificar = pnlEditar.find("#btnModificar");
     var btnCancelarModificar = pnlEditar.find("#btnCancelar");
-
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
-
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-
     $(document).ready(function () {
-        
-        
-         btnNuevo.click(function () {
 
+
+         btnNuevo.click(function () {
             pnlTablero.addClass("hide");
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
             pnlNuevo.find("select").val(null).trigger("change");
         });
-
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
             pnlNuevo.addClass('hide');
             btnRefrescar.trigger('click');
-
         });
-
         btnCancelarModificar.click(function () {
             pnlEditar.addClass("hide");
             pnlTablero.removeClass("hide");
             btnRefrescar.trigger('click');
-
         });
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
@@ -327,7 +258,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -356,54 +286,41 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnRefrescar.click(function () {
             getRecords();
         });
-
-
         btnModificar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
                 rules: {
                     Nombre: 'required',
                     Rfc: 'required'
-
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
-
                 var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -422,14 +339,8 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
-
-
         });
-
         btnEditar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -477,7 +388,6 @@
                         pnlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                     }
 
-                   
                     pnlEditar.removeClass("hide");
                     pnlTablero.addClass("hide");
                 }).fail(function (x, y, z) {
@@ -489,17 +399,13 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
         btnGuardar.click(function () {
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -508,25 +414,20 @@
                     Rfc: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     var elem = $(element);
                     elem.addClass(errorClass);
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
 //            $('#frmNuevo').valid();
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
@@ -548,13 +449,8 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
-
         });
-
         btnArchivo.click(function () {
             Archivo.change(function () {
                 HoldOn.open({
@@ -590,7 +486,6 @@
             });
             Archivo.trigger('click');
         });
-
         btnModificarArchivo.click(function () {
             ModificarArchivo.change(function () {
                 HoldOn.open({
@@ -627,12 +522,9 @@
             ModificarArchivo.trigger('click');
         });
 
-       
         /*CALLS*/
         getRecords();
     });
-
-
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -649,8 +541,6 @@
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-
-
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
             $('#tblEmpresas tbody').on('click', 'tr', function () {
@@ -666,20 +556,10 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblEmpresas tbody').on('click', 'tr', function () {
-                $("#tblEmpresas").find("tr").removeClass("warning");
-                $(this).addClass('warning');
-                var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
                 btnEditar.trigger("click");
             });
+           
             // Apply the search
             tblSelected.columns().every(function () {
                 var that = this;
@@ -695,7 +575,6 @@
             HoldOn.close();
         });
     }
-
     function onRemovePreview(e) {
         $(e).parent().parent("#VistaPrevia").html("");
         $('#RutaLogo').trigger('blur');

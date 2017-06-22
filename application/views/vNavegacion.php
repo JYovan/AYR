@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,21 +7,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
             <a class="navbar-brand" href="<?php print base_url(); ?>">
                 <img src="<?php print base_url(); ?>img/AYR_reportes.png" width="62px">
             </a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse" id="">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="<?php print base_url() ?>index.php/CtrlTrabajos/"  >Trabajos</a>
                 </li> 
-
                 <li class="dropdown hide" id="liControl">
-
                     <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Control<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li id="liEntregas"><a href="<?php print base_url() ?>index.php/CtrlEntregas/">Control de Entregas</a></li> 
@@ -58,10 +52,8 @@
                     </ul>
                 </li>
                 <li class="hide" id="liUsuarios"><a href="<?php print base_url() ?>index.php/CtrlUsuario/">Usuarios</a></li>
-
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
                 <li class="dropdown">
                     <!--style="font-weight:bold; font-size:18px;"-->
                     <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -72,36 +64,23 @@
                         <li><a href="">Reportar un problema</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" >Salir</a></li> 
-
                     </ul>
                 </li>
-
-
-
             </ul>
         </div><!-- /.navbar-collapse -->
-
-
     </div><!-- /.container-fluid -->
 </nav>
-
-<!--<button onclick="onReporteLevantamiento();">LEVANTAMIENTO</button>-->
-
+<button onclick="onReporteLevantamientoCompleto();">LEVANTAMIENTO</button>
 <script>
-
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
-
     if (TipoAcceso === 'RESIDENTE') {
-
     }
-
     if (TipoAcceso === 'COORDINADOR DE PROCESOS') {
         $('#liControl').removeClass('hide');
         $('#liCatalogos').removeClass('hide');
         $('#liEmpresas').addClass('hide');
         $('#liPrefacturas').addClass('hide');
     }
-
     if (TipoAcceso === 'ADMINISTRADOR') {
         $('#liControl').removeClass('hide');
         $('#liReportes').removeClass('hide');
@@ -109,16 +88,15 @@
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
     }
-    
      var master_url = base_url + 'index.php/CtrlSesion/';
-     function onReporteLevantamiento() {
+     function onReporteLevantamientoCompleto() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
-            url: master_url + 'onReporteLevantamiento',
+            url: master_url + 'onReporteLevantamientoCompleto',
             type: "POST",
-            data: {ID: 76}
+            data: {ID: 82}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO, GENERADO', 'success');
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
             window.open(data, '_blank');
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -126,6 +104,4 @@
             HoldOn.close();
         });
     }
-    
-
 </script>

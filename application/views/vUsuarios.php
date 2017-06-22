@@ -15,11 +15,7 @@
         </div>
     </div>
 </div>
-
-
 <!--Confirmacion-->
-
-
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -30,13 +26,11 @@
         <div class="modal-body">
             Deseas eliminar el registro?
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">Aceptar</button>
         </div>
     </div>
-
 </div>
 <!--MODALES-->
 <div class="col-md-12">
@@ -66,7 +60,6 @@
                         <label for="">Contraseña*</label>    
                         <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
                     </div>
-
                     <div class="col-6 col-md-12">
                         <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
@@ -75,9 +68,6 @@
                             <option value="Inactivo">Inactivo</option> 
                         </select>
                     </div>
-
-
-
                     <div class="col-md-6">
                         <label for="">Nombre*</label>
                         <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
@@ -96,32 +86,20 @@
                             <option value="INVITADO">Invitado</option> 
                         </select>
                     </div>
-
-
                     <div class="col-md-6">
                         <label for="">Empresa*</label>
                         <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
                             <option value=""></option> 
                         </select>
                     </div>
-
-
-
                     <div class="col-6 col-md-6">
                         <h6>Los campos con * son obligatorios</h6>    
-
                     </div>
-
                 </fieldset>
             </form>
         </div>
     </div>
 </div>
-
-
-
-
-
 <div class="col-md-12">
     <!--GUARDAR-->
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
@@ -145,7 +123,6 @@
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
-
                         <div class="col-6 col-md-6">
                             <label for="">Usuario*</label>    
                             <input type="text" class="form-control" id="Usuario" name="Usuario" required >
@@ -162,7 +139,6 @@
                                 <option value="Inactivo">Inactivo</option> 
                             </select>
                         </div>
-
                         <div class="col-md-6">
                             <label for="">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
@@ -187,48 +163,33 @@
                                 <option value=""></option> 
                             </select>
                         </div>
-
                         <div class="col-6 col-md-6">
                             <h6>Los campos con * son obligatorios</h6>    
-
                         </div>
-
                     </fieldset>
             </form>
         </div>
     </div>
 </div>
-
-
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlUsuario/';
-
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
     var btnNuevo = $("#btnNuevo");
-
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
-
-
-
     var btnEditar = $("#btnEditar");
     var pnlEditar = $("#pnlEditar");
-
     var btnModificar = pnlEditar.find("#btnModificar");
     var btnCancelarModificar = pnlEditar.find("#btnCancelar");
-
     var btnRefrescar = $("#btnRefrescar");
-
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     $(document).ready(function () {
-
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
@@ -236,8 +197,6 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
-
         btnEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
@@ -254,11 +213,10 @@
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'USUARIO ELIMINADO', 'danger');
-                    
+
                     pnlEditar.addClass("hide");
                     pnlTablero.removeClass("hide");
                     btnRefrescar.trigger('click');
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -268,18 +226,13 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-
-
         btnModificar.click(function () {
-
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmEditar').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -293,29 +246,22 @@
                     TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     console.log(element);
                     var elem = $(element);
                     elem.addClass(errorClass);
-
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
-
                 var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -325,12 +271,12 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN USUARIO', 'success');
-                    
-    
+
+
                     btnRefrescar.trigger('click');
                     pnlEditar.addClass('hide');
                     pnlTablero.removeClass('hide');
-                    
+
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -339,17 +285,13 @@
                 });
             }
         });
-
-
         btnGuardar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
-
             jQuery.validator.messages.required = 'Esta campo es obligatorio';
             jQuery.validator.messages.number = 'Esta campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-
             $('#frmNuevo').validate({
                 errorElement: 'span',
                 errorClass: 'errorForms',
@@ -363,31 +305,22 @@
                     TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-
                     console.log(element);
                     var elem = $(element);
                     elem.addClass(errorClass);
-
-
-
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
-
                 }
-
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
             //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
-
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
                 $.ajax({
                     url: master_url + 'onAgregar',
@@ -407,41 +340,29 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
             }
-
-
         });
-
         btnRefrescar.click(function () {
             getRecords();
             getEmpresas();
         });
-
         btnNuevo.click(function () {
             pnlTablero.addClass("hide");
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
             pnlNuevo.find("select").val(null).trigger("change");
-
         });
-
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
             pnlNuevo.addClass('hide');
             btnRefrescar.trigger('click');
-
         });
-
         btnCancelarModificar.click(function () {
             pnlEditar.addClass("hide");
             pnlTablero.removeClass("hide");
             btnRefrescar.trigger('click');
-
         });
-
         btnEditar.click(function () {
-
             if (temp !== 0 && temp !== undefined && temp > 0) {
                 HoldOn.open({
                     theme: "sk-bounce",
@@ -478,7 +399,6 @@
         getRecords();
         getEmpresas();
     });
-
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -494,16 +414,13 @@
             $("#tblRegistros").html(getTable('tblUsuarios', data));
             $('#tblUsuarios tfoot th').each(function () {
                 var title = $(this).text();
-                //   $(this).html('<label for=""></label><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" />');
-                //  $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="BUSCAR POR ' + title + '" class="form-control" /></div>');
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
-
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblUsuarios').DataTable(tableOptions);
             $('#tblUsuarios tbody').on('click', 'tr', function () {
                 $("#tblUsuarios").find("tr").removeClass("success");
                 $("#tblUsuarios").find("tr").removeClass("warning");
-//                console.log(this)
+
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -512,17 +429,6 @@
                     selected.splice(index, 1);
                 }
                 $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                temp = parseInt(dtm[0]);
-            });
-            //DB CLICK FOR EDIT
-            $('#tblUsuarios tbody').on('click', 'tr', function () {
-                $("#tblUsuarios").find("tr").removeClass("warning");
-                $(this).addClass('warning');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
                 btnEditar.trigger("click");
@@ -542,7 +448,6 @@
             HoldOn.close();
         });
     }
-
     function getEmpresas() {
         HoldOn.open({
             theme: 'sk-bounce',
@@ -565,5 +470,4 @@
             HoldOn.close();
         });
     }
-
 </script>
