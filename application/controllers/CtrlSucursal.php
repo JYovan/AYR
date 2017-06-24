@@ -5,21 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlSucursal extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     * 	- or -
-     * 		http://example.com/index.php/welcome/index
-     * 	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
-     */
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
@@ -35,14 +20,14 @@ class CtrlSucursal extends CI_Controller {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
             $this->load->view('vSucursales');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
         }
     }
-    
+
     public function getSucursales() {
         try {
             $data = $this->sucursal_model->getRecords();
@@ -147,7 +132,7 @@ class CtrlSucursal extends CI_Controller {
 
     public function onModificar() {
         try {
-            
+
             extract($this->input->post());
             $data = array(
                 'Nombre' => ($Nombre !== NULL ) ? strtoupper($Nombre) : NULL,
