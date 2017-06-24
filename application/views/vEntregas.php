@@ -27,6 +27,7 @@
                 <br>
             </div>
             <div id="reportes" class="dt-buttons">
+                 <button id="btnEntregaObra" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>ENTREGA OBRA</button>
                 <button id="btnTarifario" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>TARIFARIO</button>
                 <button id="btnDesglose" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>DESGLOSE DE REPORTES</button>
             </div>
@@ -331,12 +332,36 @@
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
     var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
     var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
+    var btnEntregaObra= mdlReportesEditarEntrega.find("#btnEntregaObra");
     $(document).ready(function () {
         //Reportes
          btnImprimirReportesEditarEntrega.on("click", function () {
              mdlReportesEditarEntrega.modal('show');
          });
         //Tarifario
+        btnEntregaObra.on("click",function (){
+             HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ESPERE...'
+            });
+            $.ajax({
+                url: master_url + 'getConceptosXPOCXEntrega',
+                type: "POST",
+                data: {
+                    ID: pnlEditarEntrega.find("#ID").val()
+                }
+            }).done(function (data, x, jq) {
+                window.open(data, '_blank');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+            
+        });
+        
+        
         btnTarifario.on("click", function () {
             HoldOn.open({
                 theme: 'sk-bounce',
@@ -491,10 +516,6 @@
                 } else {
                     frm.append('Estatus', 'Borrador');
                 }
-//                for (var pair of frm.entries()) {
-//                    console.log(pair[0] + ', ' + pair[1]);
-//                }
-                //Agregar Importe total
                 frm.append('Importe', 0);
                 /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
@@ -554,10 +575,6 @@
                     frm.append('Estatus', 'Borrador');
                 }
                 frm.append('Importe', ImporteTotalGlobal);
-                //Solo para debuggear el formulario de la clase FormData
-//                for (var pair of frm.entries()) {
-//                    console.log(pair[0]+ ', ' + pair[1]);
-//                }
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",

@@ -143,7 +143,8 @@ class CtrlTrabajos extends CI_Controller {
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
                 'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL
+                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL,
+                'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : NULL,
             );
             $ID = $this->trabajo_model->onAgregar($data);
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
@@ -360,7 +361,7 @@ class CtrlTrabajos extends CI_Controller {
             extract($this->input->post());
             $data = $this->trabajo_model->getAnexoXConceptoID($ID);
             $anexo = $data[0];
-            if (isset($foto->Url)) {
+            if (isset($anexo->Url)) {
                 unlink($anexo->Url);
                 rmdir("uploads/Trabajos/Anexos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/" . $anexo->ID . "/");
             }
@@ -580,8 +581,7 @@ class CtrlTrabajos extends CI_Controller {
             $data = array(
                 'Trabajo_ID' => $Trabajo_ID,
                 'Clave' => (isset($Clave)) ? $Clave : "",
-                'Descripcion' => (isset($Descripcion)) ? $Descripcion : "",
-                'IntExt' => (isset($IntExt)) ? $IntExt : ""
+                'Descripcion' => (isset($Descripcion)) ? $Descripcion : ""
             );
             $ID = $this->trabajo_model->onAgregarDetalleAbierto($data);
         } catch (Exception $exc) {
@@ -3017,38 +3017,53 @@ class CtrlTrabajos extends CI_Controller {
                             $pdf->AddPage();
                         }
                         foreach ($fotos as $key => $foto) {
+                            $nimg += 1;
+                            /* ANTES */
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $YCuandoSonTres = 85;
+                            $withCuandoSonTres = 84;
+                            $withCuandoSonDos = 115;
+                            $withCuandoEsUna = 115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 80;
+                                $withCuandoSonTres = 50;
+                                $withCuandoSonDos = 50;
+                                $withCuandoEsUna = 50;
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, $withCuandoSonDos/* W *//* En blanco mantiene aspecto H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, $withCuandoSonTres/* W *//* En blanco mantiene aspecto H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, $withCuandoEsUna/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, $withCuandoSonDos/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, $withCuandoSonTres/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, $withCuandoSonDos/* W *//* En blanco mantiene aspecto H */);
+                            }
+                            /* Cuando es la tercera imagen */
                             if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, $withCuandoSonTres/* W */ /* En blanco mantiene aspecto H */);
+                            }
+                            $nfotos --;
+                            if ($nimg == 3 && $nfotos > 0) {
                                 $pages_added = true;
                                 $pdf->AddPage();
                                 $nimg = 0;
                             } else {
                                 $pages_added = false;
                             }
-                            $nimg += 1;
-                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
-                            } else if ($nimg == 1 && $nfotos > 1) {
-                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* En blanco mantiene aspecto H */);
-                            } else if ($nimg == 1 && $nfotos == 1) {
-                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
-                            }
-                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                            if ($nimg == 2 && $fnfotos == 2) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
-                            }
-                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
-                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* En blanco mantiene aspecto H */);
-                            }
-                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* En blanco mantiene aspecto H */);
-                            }
-                            /* Cuando es la tercera imagen */
-                            if ($nimg == 3) {
-                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W */ /* En blanco mantiene aspecto H */);
-                            }
-                            $nfotos --;
                         }
                         /* FIN DETALLE IMAGENES */
                     }
@@ -3084,7 +3099,13 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->EmpresaL = $row->Empresa;
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
                         /* DETALLE IMAGENES */
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
                         $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
@@ -3094,39 +3115,58 @@ class CtrlTrabajos extends CI_Controller {
                             $pdf->AddPage();
                         }
                         foreach ($fotos as $key => $foto) {
-                            //Se pone al principio para que valide antes de agregar
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                              $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos=115;
+                            $YCuandoEsUno = 80;
+                            $widthEsUno=115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos=52;
+                                $widthSonDos=82;
+                                $YCuandoEsUno = 52;
+                                $widthEsUno=82;
+                            }
+                           
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
                             if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
+                            
+                             //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
                                 $pages_added = true;
                                 $pdf->AddPage();
                                 $nimg = 0;
                             } else {
                                 $pages_added = false;
                             }
-                            $nimg += 1;
-                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
-                            } else if ($nimg == 1 && $nfotos > 1) {
-                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
-                            } else if ($nimg == 1 && $nfotos == 1) {
-                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
-                            }
-                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                            if ($nimg == 2 && $fnfotos == 2) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                            }
-                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
-                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
-                            }
-                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
-                            }
-                            /* Cuando es la tercera imagen */
-                            if ($nimg == 3) {
-                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
-                            }
-                            $nfotos --;
+                            
                         }
                         /* FIN DETALLE IMAGENES */
                     }
@@ -3162,6 +3202,12 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->EmpresaL = $row->Empresa;
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
                         /* DETALLE IMAGENES */
                         $fotos = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
                         $nfotos = count($fotos);
@@ -3172,39 +3218,420 @@ class CtrlTrabajos extends CI_Controller {
                             $pdf->AddPage();
                         }
                         foreach ($fotos as $key => $foto) {
-                            //Se pone al principio para que valide antes de agregar
+                          
+                            $nimg += 1;
+                            /* ANTES */
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                             $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos=115;
+                            $YCuandoEsUno = 80;
+                            $widthEsUno=115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos=52;
+                                $widthSonDos=82;
+                                $YCuandoEsUno = 52;
+                                $widthEsUno=82;
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ 
+                            else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
                             if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
+                             //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
                                 $pages_added = true;
                                 $pdf->AddPage();
                                 $nimg = 0;
                             } else {
                                 $pages_added = false;
                             }
+                        }
+                        /* FIN DETALLE IMAGENES */
+                    }
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS DESPUES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function onReporteLevantamientoCompleto() {
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                $pages_added = false;
+                $pdf = new FotosFPDLC('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                foreach ($Concepto as $i => $row) {
+                    /* ENCABEZADO */
+                    $pdf->CrL = $row->CR;
+                    $pdf->SucursalL = $row->Sucursal;
+                    $pdf->EmpresaL = $row->Empresa;
+                    $pdf->ConceptoL = $row->Concepto;
+                    $pdf->ClienteL = $row->Cliente;
+                    /* DETALLE IMAGENES */
+                    $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                    $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
+                    $nfotos = count($fotos);
+                    $fnfotos = count($fotos);
+                    $nfotosDespues = count($fotosDespues);
+                    $fnfotosDespues = count($fotosDespues);
+                    $nimgDespues = 0;
+                    $nimg = 0;
+                    $pdf->AliasNbPages();
+                    if (!$pages_added) {
+                        $pdf->AddPage();
+                    }
+                    foreach ($fotos as $key => $foto) {
+                        /* ANTES */
+                        /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                        $dimensiones = getimagesize(utf8_decode($foto->Url));
+                        /* Ancho $dimensiones[0] */
+                        /* Alto $dimensiones[1] */
+                        $width = 62;
+                        $widthCuandoSonDos = 100;
+                        $TerceraSola = 120;
+                        if ($dimensiones[1] > $dimensiones[0]) {
+                            $width = 36;
+                            $widthCuandoSonDos = 53;
+                            $TerceraSola = 70;
+                        }
+                        if ($dimensiones[1] == $dimensiones[0]) {
+                            $width = 55;
+                        }
+                        $nimg += 1;
+                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                            $pdf->Image($foto->Url, 25/* X */, 45/* Y */, $widthCuandoSonDos/* W *//* H */);
+                        }
+                        /* Cuando es la primera pero hay mas de dos imagenes */ else if ($nimg == 1 && $nfotos > 1) {
+                            $pdf->Image($foto->Url, 5/* X */, 52/* Y */, $width/* W *//* H */);
+                        }
+                        /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */ else if ($nimg == 1 && $nfotos == 1) {
+                            $pdf->Image($foto->Url, 15/* X */, 50/* Y */, 110/* W *//* H */);
+                        }
+                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                        if ($nimg == 2 && $fnfotos == 2) {
+                            $pdf->Image($foto->Url, 25/* X */, 120/* Y */, $widthCuandoSonDos/* W *//* H */);
+                        }
+                        /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                            $pdf->Image($foto->Url, 75/* X */, 52/* Y */, $width/* W *//* H */);
+                        }
+                        /* Cuando solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                            $pdf->Image($foto->Url, 25/* X */, 120/* Y */, $widthCuandoSonDos/* W *//* H */);
+                        }
+                        /* Cuando es la tercera imagen y es la ultima */
+                        if ($nimg == 3 && $nfotos == 1) {
+                            $pdf->Image($foto->Url, 5/* X */, 110/* Y */, $TerceraSola/* W *//* H */);
+                        } else if ($nimg == 3) {
+                            $pdf->Image($foto->Url, 5/* X */, 120/* Y */, $width/* W *//* H */);
+                        }
+                        /* Cuando es la cuarta imagen */
+                        if ($nimg == 4) {
+                            $pdf->Image($foto->Url, 75/* X */, 120/* Y */, $width/* W *//* H */);
+                        }
+                        $nfotos --;
+//                        if ($nimg == 4 && $nfotos > 0) {
+//                            $pages_added = true;
+//                            $pdf->AddPage();
+//                            $nimg = 0;
+//                        } 
+                        /* DESPUES */
+                        foreach ($fotosDespues as $key => $fotoD) {
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensionesD = getimagesize($fotoD->Url);
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $WidthUna = 110;
+                            $widthD = 62;
+                            $widthCuandoSonDosD = 100;
+                            $TerceraSolaD = 120;
+                            if ($dimensionesD[1] > $dimensionesD[0]) {
+                                $widthCuandoSonDosD = 53;
+                                $widthD = 36;
+                                $TerceraSolaD = 70;
+                            }
+                            if ($dimensionesD[1] === $dimensionesD[0]) {
+                                $width = 55;
+                            }
+                            $nimgDespues += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimgDespues == 1 && $nfotosDespues > 1 && $nfotosDespues == 2) {
+                                $pdf->Image($fotoD->Url, 155/* X */, 45/* Y */, $widthCuandoSonDosD/* W *//* H */);
+                            }
+                            /* Cuando es la primera pero hay mas de dos imagenes */ else if ($nimgDespues == 1 && $nfotosDespues > 1) {
+                                $pdf->Image($fotoD->Url, 145/* X */, 50/* Y */, $widthD/* W *//* H */);
+                            }
+                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */ else if ($nimgDespues == 1 && $nfotosDespues == 1) {
+                                $pdf->Image($fotoD->Url, 155/* X */, 50/* Y */, $WidthUna/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS EN TOTAL Y ES LA SEGUNDA */
+                            if ($nimgDespues == 2 && $fnfotosDespues == 2) {
+                                $pdf->Image($fotoD->Url, 155/* X */, 120/* Y */, $widthCuandoSonDosD/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimgDespues == 2 && $nfotosDespues >= 2) {
+                                $pdf->Image($fotoD->Url, 212/* X */, 50/* Y */, $widthD/* W *//* H */);
+                            }
+                            /* Cuando solo quedan dos imagenes y es la segunda */ else if ($nimgDespues == 2 && $nfotosDespues == 1) {
+                                $pdf->Image($fotoD->Url, 155/* X */, 120/* Y */, $widthCuandoSonDosD/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimgDespues == 3 && $nfotosDespues == 1) {
+                                $pdf->Image($fotoD->Url, 145/* X */, 110/* Y */, $TerceraSolaD/* W *//* H */);
+                            }
+                            /* Cuando es la tercera pero aun hay mas */ else if ($nimgDespues == 3) {
+                                $pdf->Image($fotoD->Url, 145/* X */, 120/* Y */, $widthD/* W *//* H */);
+                            }
+                            /* Cuando es la cuarta imagen */
+                            if ($nimgDespues == 4) {
+                                $pdf->Image($fotoD->Url, 212/* X */, 120/* Y */, $widthD/* W *//* H */);
+                            }
+                            $nfotosDespues --;
+//                        cuando solo trae 4 o menos de cada lado
+                            if ($fnfotos <= 4 && $fnfotosDespues <= 4) {
+
+                            } 
+                            else if ($nimg == 4 || $nfotosDespues == 4) {
+                                $pdf->AddPage();
+                                $nimgDespues = 0;
+                                $nimg = 0;
+                            }
+                        } /* FIN DESPUES */
+                    }/* FIN ANTES */
+                }/* FIN CONCEPTO */
+                $path = 'uploads/Reportes/' . $ID;
+                // print $path;
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $file_name = "REPORTE LEVANTAMIENTO GENERAL";
+                $url = $path . '/' . $file_name . '.pdf';
+                $pdf->Output($url);
+                print base_url() . $url;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function onReporteLevantamientoAntesPrinciple() {
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDLAP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
+                        /* DETALLE IMAGENES */
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
+                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
+                            $pdf->AddPage();
+                        }
+                        foreach ($fotos as $key => $foto) {
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos=115;
+                            $YCuandoEsUno = 80;
+                            $widthEsUno=115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos=52;
+                                $widthSonDos=82;
+                                 $YCuandoEsUno = 52;
+                                $widthEsUno=82;
+                            }
+                            
                             $nimg += 1;
                             /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
                             if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                                $pdf->Image($foto->Url, 20/* X */, 80/* Y */, 115/* W *//* H */);
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
                             } else if ($nimg == 1 && $nfotos > 1) {
-                                $pdf->Image($foto->Url, 10/* X */, 85/* Y */, 84/* W *//* H */);
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
                             } else if ($nimg == 1 && $nfotos == 1) {
                                 /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
-                                $pdf->Image($foto->Url, 85/* X */, 80/* Y */, 115/* W *//* H */);
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
                             }
                             /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
                             if ($nimg == 2 && $fnfotos == 2) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
                             }
                             /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
-                                $pdf->Image($foto->Url, 97/* X */, 85/* Y */, 84/* W *//* H */);
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
                             }
                             /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
-                                $pdf->Image($foto->Url, 145/* X */, 80/* Y */, 115/* W *//* H */);
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
                             }
                             /* Cuando es la tercera imagen */
                             if ($nimg == 3) {
-                                $pdf->Image($foto->Url, 185/* X */, 85/* Y */, 84/* W *//* H */);
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
                             }
                             $nfotos --;
+                             //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                        }
+                        /* FIN DETALLE IMAGENES */
+                    }
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS ANTES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function onReporteLevantamientoDespuesPrinciple() {
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotosDespues($ID);
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDLDP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
+                        /* DETALLE IMAGENES */
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
+                        $fotos = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
+                            $pdf->AddPage();
+                        }
+                        foreach ($fotos as $key => $foto) {
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos=115;
+                             $YCuandoEsUno = 80;
+                            $widthEsUno=115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos=52;
+                                $widthSonDos=82;
+                                 $YCuandoEsUno = 52;
+                            $widthEsUno=82;
+                            }
+                            
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            } 
+                            else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ 
+                            else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
+                             //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
                         }
                         /* FIN DETALLE IMAGENES */
                     }
@@ -3547,26 +3974,25 @@ class FotosFPDLA extends FPDF {
         $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
         $this->SetY(10);
         $this->SetX(185);
-        $this->SetFont('Arial', 'B', 8);
-        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
         /* DESCRIPCION LEVANTAMIENTO */
         $this->SetY(15);
-        $this->SetX(90);
-        $this->SetFont('Arial', 'B', 8);
-        $this->MultiCell(185, 3, utf8_decode($this->getConceptoL()), 0, 'J');
+        $this->SetX(145);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
         $this->SetY(45);
         $this->SetX(5);
-        $this->Cell(35, 6, utf8_decode("Antes "), 0, 1, 'L');
+        $this->Cell(35, 6, utf8_decode("Estado Inicial"), 0, 1, 'L');
         $this->Ln(20);
     }
 // Page footer
     function Footer() {
         $this->SetTextColor(122, 122, 122);
-        $this->SetFont('Arial', 'B', 17);
-        $this->SetY(205);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
         $this->SetX(5);
         $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
         // Arial italic 8
@@ -3583,6 +4009,13 @@ class FotosFPDLA extends FPDF {
     public $SucursalL = '';
     public $ConceptoL = '';
     public $ClienteL = '';
+    public $DireccionL = '';
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
     public function setClienteL($ClienteL) {
         $this->ClienteL = $ClienteL;
     }
@@ -3631,26 +4064,25 @@ class FotosFPDLD extends FPDF {
         $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
         $this->SetY(10);
         $this->SetX(185);
-        $this->SetFont('Arial', 'B', 8);
-        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
         /* DESCRIPCION LEVANTAMIENTO */
         $this->SetY(15);
-        $this->SetX(90);
-        $this->SetFont('Arial', 'B', 8);
-        $this->MultiCell(185, 3, utf8_decode($this->getConceptoL()), 0, 'J');
+        $this->SetX(145);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
         $this->SetY(45);
         $this->SetX(5);
-        $this->Cell(35, 6, utf8_decode("Después "), 0, 1, 'L');
+        $this->Cell(35, 6, utf8_decode("Estado Final "), 0, 1, 'L');
         $this->Ln(20);
     }
 // Page footer
     function Footer() {
         $this->SetTextColor(122, 122, 122);
-        $this->SetFont('Arial', 'B', 17);
-        $this->SetY(205);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
         $this->SetX(5);
         $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
         // Arial italic 8
@@ -3667,6 +4099,13 @@ class FotosFPDLD extends FPDF {
     public $SucursalL = '';
     public $ConceptoL = '';
     public $ClienteL = '';
+    public $DireccionL = '';
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
     public function setClienteL($ClienteL) {
         $this->ClienteL = $ClienteL;
     }
@@ -3755,5 +4194,258 @@ class PDFGEN extends FPDF {
     }
     public function getFirma3() {
         return $this->Firma3;
+    }
+}
+class FotosFPDLC extends FPDF {
+// Page header
+    function Header() {
+        $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(39, 79, 117);
+        $this->Cell(279, 30, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'img/AYR_reportes.png', 5, 3, 35);
+        // Título
+        $this->SetFont('Arial', 'B', 15);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(5);
+        $this->SetX(185);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
+        $this->SetY(10);
+        $this->SetX(185);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetY(15);
+        $this->SetX(90);
+        $this->SetFont('Arial', 'I', 8);
+        $this->MultiCell(185, 3, strtoupper(utf8_decode($this->getConceptoL())), 0, 'J');
+        /* CUERPO */
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetY(33);
+        $this->SetX(5);
+        $this->Cell(35, 5, utf8_decode("Estado Inicial "), 0, 1, 'L');
+        $this->SetY(33);
+        $this->SetX(145);
+        $this->Cell(35, 5, utf8_decode("Estado Final "), 0, 1, 'L');
+        $this->Line(140, 40, 140, 200);
+    }
+// Page footer
+    function Footer() {
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 15);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(208);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+    /*  STTER AND GETTER */
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+    public function getCrL() {
+        return $this->CrL;
+    }
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+    public function getConceptoL() {
+        return $this->ConceptoL;
+    }
+}
+class FotosFPDLAP extends FPDF {
+// Page header
+    function Header() {
+        $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(210, 71, 38);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'uploads/Clientes/4/PRINCIPLE.png', 225, 15, 50);
+        // Título
+        $this->SetFont('Arial', 'B', 25);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(20);
+        $this->SetX(8);
+        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+        /* CUERPO */
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetY(45);
+        $this->SetX(5);
+        $this->Cell(35, 6, utf8_decode("Estado Inicial"), 0, 1, 'L');
+        $this->Ln(20);
+    }
+// Page footer
+    function Footer() {
+        $this->Image(base_url() . 'img/watermark2.png', 253, 202, 13);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, 'ID -' . utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(210);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+    /*  STTER AND GETTER */
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+    public $DireccionL = '';
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+    public function getCrL() {
+        return $this->CrL;
+    }
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+    public function getConceptoL() {
+        return $this->ConceptoL;
+    }
+}
+class FotosFPDLDP extends FPDF {
+// Page header
+    function Header() {
+        $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(210, 71, 38);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'uploads/Clientes/4/PRINCIPLE.png', 225, 15, 50);
+        // Título
+        $this->SetFont('Arial', 'B', 25);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(20);
+        $this->SetX(8);
+        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+        /* CUERPO */
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetY(45);
+        $this->SetX(5);
+        $this->Cell(35, 6, utf8_decode("Estado Final"), 0, 1, 'L');
+        $this->Ln(20);
+    }
+// Page footer
+    function Footer() {
+        $this->Image(base_url() . 'img/watermark2.png', 253, 202, 13);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, 'ID -' . utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(210);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+    /*  STTER AND GETTER */
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+    public $DireccionL = '';
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+    public function getCrL() {
+        return $this->CrL;
+    }
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+    public function getConceptoL() {
+        return $this->ConceptoL;
     }
 }

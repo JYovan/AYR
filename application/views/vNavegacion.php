@@ -1,3 +1,39 @@
+<div id="mdlCambiarContrasena" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Cambiar Contraseña</h4>
+        </div>
+        <div class="modal-body">
+            <form id="frmEditarContrasena">
+                Ingresa la nueva contraseña
+                <div class="col-md-12">
+                    <br>
+                </div>
+                <input type="text" id="ID" name="ID" class="form-control hide" >
+                <div class=" col-6 col-md-12">
+                    <label for="">Usuario</label>
+                    <input type="text" id="Usuario" name="Usuario"  class="form-control" readonly="" placeholder="" >
+                </div>
+                <div class=" col-6 col-md-12">
+                    <label for="">Nueva Contraseña*</label>
+                    <input type="password" id="Contrasena" name="Contrasena"  class="form-control"  placeholder="" >
+                </div>
+                <div class="col-md-12">
+                    <br>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
+            <button type="button" class="btn btn-primary" id="btnModificar">ACEPTAR</button>
+        </div>
+    </div>
+</div>
+
+
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -60,7 +96,7 @@
                         <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Cambiar Contraseña</a></li> 
+                        <li onclick="onCambiarContrasena();"><a href="#">Cambiar Contraseña</a></li> 
                         <li><a href="">Reportar un problema</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" >Salir</a></li> 
@@ -70,7 +106,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<button onclick="onReporteLevantamientoCompleto();">LEVANTAMIENTO</button>
+<!--<button onclick="onReporteLevantamientoCompleto();">LEVANTAMIENTO</button>-->
 <script>
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     if (TipoAcceso === 'RESIDENTE') {
@@ -88,14 +124,15 @@
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
     }
-     var master_url = base_url + 'index.php/CtrlSesion/';
-     function onReporteLevantamientoCompleto() {
+    var master_url = base_url + 'index.php/CtrlSesion/';
+    function onReporteLevantamientoCompleto() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'onReporteLevantamientoCompleto',
             type: "POST",
             data: {ID: 82}
         }).done(function (data, x, jq) {
+            console.log(data);
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
             window.open(data, '_blank');
         }).fail(function (x, y, z) {
@@ -104,4 +141,66 @@
             HoldOn.close();
         });
     }
+
+    $(document).ready(function () {
+        $('#btnModificar').on("click", function () {
+          
+            var frm = new FormData($('#mdlCambiarContrasena').find("#frmEditarContrasena")[0]);
+            $.validator.setDefaults({
+                ignore: []
+            });
+            jQuery.validator.messages.required = 'Esta campo es obligatorio';
+            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+            $('#frmEditarContrasena').validate({
+                errorElement: 'span',
+                errorClass: 'errorForms',
+                rules: {
+                    Contrasena: 'required'
+                },
+                highlight: function (element, errorClass, validClass) {
+                    console.log(element);
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                }
+            });
+
+            //Si es verdadero que hacer
+            if ($('#frmEditarContrasena').valid()) {
+                 HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+                $.ajax({
+                    url: master_url + 'onCambiarContrasena',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    $('#mdlCambiarContrasena').modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'CONTRASEÑA MODIFICADA EXITOSAMENTE', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+
+            }
+        });
+
+    });
+
+    function onCambiarContrasena() {
+
+        $('#mdlCambiarContrasena').modal('show');
+        $("#Contrasena").val("");
+        $("#Usuario").val("<?php echo $this->session->userdata('USERNAME'); ?>");
+        $("#ID").val("<?php echo $this->session->userdata('ID'); ?>");
+
+    }
+
+
 </script>

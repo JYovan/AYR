@@ -102,8 +102,7 @@ class trabajo_model extends CI_Model {
      public function getTrabajoDetalleAbiertoByID($IDX) {
         try {
             $this->db->select('tda.ID AS ID,'
-                    . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
-                    . 'tda.IntExt AS "Int/Ext",'
+                    . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, ' 
                     . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion CustomUppercase \" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID)>0 THEN '
@@ -835,6 +834,7 @@ class trabajo_model extends CI_Model {
                     . 'FROM Trabajos T '
                     . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
             $this->db->where_in('T.Estatus', array('Concluido'));
+            $this->db->where_in('T.Situacion', array('AUTORIZADO'));
             $this->db->where_in('T.Movimiento', array('PRESUPUESTO'));
             $this->db->where('T.Cliente_ID', $ID);
             $query = $this->db->get();
@@ -1174,6 +1174,27 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
+    
+     public function getDetalleFotosDespuesXID($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDFD.*', false);
+            $this->db->from('trabajodetallefotosdespues AS TDFD');
+            $this->db->where('TDFD.IdTrabajoDetalle', $ID);
+            $this->db->where('TDFD.Url IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TDFD.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str . ";\n";
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
      public function getDetalleFotosAntes($ID) {
         try {
             $this->db->query("set sql_mode=''");
@@ -1197,7 +1218,7 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-             print $str;
+            // print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -1228,26 +1249,6 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
              */
             $str = $this->db->last_query();
             // print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-     public function getDetalleFotosDespuesXID($ID) {
-        try {
-            $this->db->query("set sql_mode=''");
-            $this->db->select('TDF.*', false);
-            $this->db->from('trabajodetallefotosdespues AS TDF');
-            $this->db->where('TDF.IdTrabajoDetalle', $ID);
-            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
-            $this->db->order_by('TDF.ID', 'DESC');
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//            print $str . ";\n";
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -1329,4 +1330,53 @@ inner join preciarioconceptos pc on pc.ID = td.PreciarioConcepto_ID', false);
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function getPOCXEntrega($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('T.ID,CONCAT(S.CR,"-", t.FolioCliente," ",S.Nombre) AS OC
+FROM entregas E
+inner join entregasdetalle ed on ed.Entrega_ID = E.ID
+inner join trabajos t on t.id = ed.Trabajo_ID
+inner join sucursales s on s.ID = t.Sucursal_ID', false);
+            // $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('E.ID', $ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+           //  print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function getConceptosXPOC($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('t.Observaciones,PCAT.Descripcion AS Categoria,pc.Clave, pc.Descripcion, td.Cantidad AS Cantidad, pc.Unidad, pc.Costo AS "Precio", td.Importe
+from trabajos t 
+left join trabajosdetalle td on td.Trabajo_ID = t.ID 
+left join preciarioconceptos pc on pc.ID = td.PreciarioConcepto_ID
+left join preciariocategorias AS PCAT on PCAT.ID = PC.PreciarioCategorias_ID', false);
+            // $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->order_by('pc.ID', 'ASC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    
 }

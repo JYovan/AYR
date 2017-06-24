@@ -1,4 +1,3 @@
-
 <div  class="col-md-12">
     <div id="pnlPreciario" class="panel panel-default">
         <div class="panel-heading ">
@@ -227,7 +226,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Costo</label>
-                            <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                            <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                         </div>
                         <div class="col-md-4">
                             <label for="">Moneda</label>
@@ -366,7 +365,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="">Costo</label>
-                        <input type="text" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                        <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                     </div>
                     <div class="col-md-4">
                         <label for="">Moneda</label>
@@ -486,14 +485,7 @@
     var pnlDetalleConceptos = $("#pnlDetalleConceptos");
     $(document).ready(function() {
         btnGuardarSubSubCategoria.click(function() {
-            var Clave = mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val();
-            var Descripcion = mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val();
-            var Categoria = mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val();
-            var SubCategoria = mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").val();
-            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
-                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0 &&
-                    SubCategoria !== undefined && SubCategoria !== null && SubCategoria !== '' && SubCategoria.length > 0) {
-                var frm = new FormData();
+                  var frm = new FormData();
                 frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
                 frm.append('Clave', mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val());
                 frm.append('Descripcion', mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val());
@@ -519,15 +511,9 @@
                 }).always(function() {
                     HoldOn.close();
                 });
-            } else {
-                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
-            }
+           
         });
         btnGuardarSubCategoria.click(function() {
-            var Clave = mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val();
-            var Categoria = mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val();
-            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
-                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0) {
                 var frm = new FormData();
                 frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
                 frm.append('Clave', mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val());
@@ -552,16 +538,10 @@
                 }).always(function() {
                     HoldOn.close();
                 });
-            } else {
-                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
-            }
+           
         });
         btnGuardarCategoria.click(function() {
-            var Clave = mdlNuevoConcepto.find("#Categorias").find("#Clave").val();
-            var Descripcion = mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val();
-            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
-                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
-                var frm = new FormData();
+                  var frm = new FormData();
                 frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
                 frm.append('Clave', mdlNuevoConcepto.find("#Categorias").find("#Clave").val());
                 frm.append('Descripcion', mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val());
@@ -583,9 +563,7 @@
                 }).always(function() {
                     HoldOn.close();
                 });
-            } else {
-                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
-            }
+            
         });
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var target = $(e.target).attr("href"); // activated tab
@@ -689,16 +667,8 @@
             });
         });
         btnGuardarConcepto.click(function() {
-            var Clave = mdlNuevoConcepto.find("#Conceptos").find("#Clave").val();
-            var Descripcion = mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val();
-            var Categoria = mdlNuevoConcepto.find("#Conceptos").find("#Categoria").val();
-            var SubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").val();
-            var SubSubCategoria = mdlNuevoConcepto.find("#Conceptos").find("#SubSubCategoria").val();
-            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
-                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0 &&
-                    Categoria !== undefined && Categoria !== null && Categoria !== '' && Categoria.length > 0 &&
-                    SubCategoria !== undefined && SubCategoria !== null && SubCategoria !== '' && SubCategoria.length > 0 &&
-                    SubSubCategoria !== undefined && SubSubCategoria !== null && SubSubCategoria !== '' && SubSubCategoria.length > 0) {
+              if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
                 var frm = new FormData();
                 frm.append('ID', pnlEditar.find("#ID").val());
                 frm.append('Clave', mdlNuevoConcepto.find("#Conceptos").find("#Clave").val());
@@ -728,7 +698,7 @@
                     HoldOn.close();
                 });
             } else {
-                onNotify('<span class="fa fa-times fa-lg"></span>', 'TODOS LOS CAMPOS SON REQUERIDOS', 'danger');
+                onNotify('<span class="fa fa-times fa-lg"></span>', 'ALGUNOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
         btnNuevoConcepto.click(function() {
@@ -748,6 +718,7 @@
             btnCancelarSubSubCategoria.addClass("hide");
             btnGuardarSubSubCategoria.addClass("hide");
             mdlNuevoConcepto.find("input").val("");
+            mdlNuevoConcepto.find("textarea").val("");
             mdlNuevoConcepto.find("select").select2("val", "");
             getCategorias(pnlEditar.find("#ID").val());
             mdlNuevoConcepto.find("#ID").val(pnlEditar.find("#ID").val());
@@ -1240,6 +1211,7 @@
                 ID: IDX
             }
         }).done(function(data, x, jq) {
+            HoldOn.close();
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
             $('#tblConceptosXPreciarioID tfoot th').each(function() {
                 var title = $(this).text();
@@ -1276,9 +1248,13 @@
                     mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
                     mdlEditarConcepto.find("#Moneda").val(concepto.Moneda);
                     mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
+                    
+                    
                     mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
                     mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
                     mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
+                    
+                    
                     mdlEditarConcepto.modal('show');
                 }).fail(function(x, y, z) {
                     console.log(x, y, z);
@@ -1296,6 +1272,7 @@
                 });
             });
         }).fail(function(x, y, z) {
+            HoldOn.close();
             console.log(x, y, z);
         }).always(function() {
             HoldOn.close();
