@@ -653,10 +653,10 @@ class FotosFPDLC extends FPDF {
         $this->SetFont('Arial', 'B', 8);
         $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
         /* DESCRIPCION LEVANTAMIENTO */
-        $this->SetY(15);
-        $this->SetX(90);
-        $this->SetFont('Arial', 'I', 8);
-        $this->MultiCell(185, 3, strtoupper(utf8_decode($this->getConceptoL())), 0, 'J');
+        $this->SetY(10);
+        $this->SetX(70);
+        $this->SetFont('Arial', 'I', 7.5);
+        $this->MultiCell(150, 3, strtoupper(utf8_decode($this->getConceptoL())), 0, 'J');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);

@@ -3359,6 +3359,7 @@ class CtrlTrabajos extends CI_Controller {
                 $pages_added = false;
                 $pdf = new FotosFPDLC('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                 foreach ($Concepto as $i => $row) {
+                    $pdf->SetTextColor(0, 0, 0);
                     /* ENCABEZADO */
                     $pdf->CrL = $row->CR;
                     $pdf->SucursalL = $row->Sucursal;
@@ -3366,140 +3367,317 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->ConceptoL = $row->Concepto;
                     $pdf->ClienteL = $row->Cliente;
                     /* DETALLE IMAGENES */
-                    $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                    $fotosAntes = $this->trabajo_model->getDetalleFotosXID($row->ID);
                     $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
-                    $nfotos = count($fotos);
-                    $fnfotos = count($fotos);
-                    $nfotosDespues = count($fotosDespues);
-                    $fnfotosDespues = count($fotosDespues);
-                    $nimgDespues = 0;
+                    /* ANTES Y DESPUES */
+//                    $fotos_antes_despues = $this->trabajo_model->getDetalleFotosXIDAntesYDespues($row->ID);
+
+
+                    $nfotos = count($fotosAntes);
+                    $nantes = 0;
+                    $ndespues = 0;
                     $nimg = 0;
                     $pdf->AliasNbPages();
+                    $xfotos = array_merge($fotosAntes, $fotosDespues);
+                    $nfotos = count($xfotos);
+
+                    /* CONVERSION A INDICES DE FOTOS ANTES */
+                    $array_fotos_antes = array_values($fotosAntes);
+
+                    /* CONVERSION A INDICES DE FOTOS DESPUES */
+                    $array_fotos_despues = array_values($fotosDespues);
+
+                    /* CONTAR CUANTAS FOTOS SON (ANTES + DESPUES) */
+                    $xfotos_count = (count($array_fotos_antes) + count($array_fotos_despues));
+
+                    /* CONTADOR DE FOTOS DESPUES */
+                    $nfotos_antes = count($array_fotos_antes);
+                    $nfotos_antes_count = $nfotos_antes;
+
+                    /* CONTADOR DE FOTOS DESPUES */
+                    $nfotos_despues = count($array_fotos_despues);
+                    $nfotos_despues_count = $nfotos_despues;
+
+                    $nfotos = $xfotos_count;
+//                    var_dump($fotos_antes_despues);
                     if (!$pages_added) {
                         $pdf->AddPage();
                     }
-                    foreach ($fotos as $key => $foto) {
-                        /* ANTES */
-                        /* Valida el tamaño de la imagen para saber si la pone más pequeña */
-                        $dimensiones = getimagesize(utf8_decode($foto->Url));
-                        /* Ancho $dimensiones[0] */
-                        /* Alto $dimensiones[1] */
-                        $width = 62;
-                        $widthCuandoSonDos = 100;
-                        $TerceraSola = 120;
-                        if ($dimensiones[1] > $dimensiones[0]) {
-                            $width = 36;
-                            $widthCuandoSonDos = 53;
-                            $TerceraSola = 70;
-                        }
-                        if ($dimensiones[1] == $dimensiones[0]) {
-                            $width = 55;
-                        }
-                        $nimg += 1;
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                        if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
-                            $pdf->Image($foto->Url, 25/* X */, 45/* Y */, $widthCuandoSonDos/* W *//* H */);
-                        }
-                        /* Cuando es la primera pero hay mas de dos imagenes */ else if ($nimg == 1 && $nfotos > 1) {
-                            $pdf->Image($foto->Url, 5/* X */, 52/* Y */, $width/* W *//* H */);
-                        }
-                        /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */ else if ($nimg == 1 && $nfotos == 1) {
-                            $pdf->Image($foto->Url, 15/* X */, 50/* Y */, 110/* W *//* H */);
-                        }
-                        /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
-                        if ($nimg == 2 && $fnfotos == 2) {
-                            $pdf->Image($foto->Url, 25/* X */, 120/* Y */, $widthCuandoSonDos/* W *//* H */);
-                        }
-                        /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
-                            $pdf->Image($foto->Url, 75/* X */, 52/* Y */, $width/* W *//* H */);
-                        }
-                        /* Cuando solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
-                            $pdf->Image($foto->Url, 25/* X */, 120/* Y */, $widthCuandoSonDos/* W *//* H */);
-                        }
-                        /* Cuando es la tercera imagen y es la ultima */
-                        if ($nimg == 3 && $nfotos == 1) {
-                            $pdf->Image($foto->Url, 5/* X */, 110/* Y */, $TerceraSola/* W *//* H */);
-                        } else if ($nimg == 3) {
-                            $pdf->Image($foto->Url, 5/* X */, 120/* Y */, $width/* W *//* H */);
-                        }
-                        /* Cuando es la cuarta imagen */
-                        if ($nimg == 4) {
-                            $pdf->Image($foto->Url, 75/* X */, 120/* Y */, $width/* W *//* H */);
-                        }
-                        $nfotos --;
-//                        if ($nimg == 4 && $nfotos > 0) {
-//                            $pages_added = true;
-//                            $pdf->AddPage();
-//                            $nimg = 0;
-//                        }
-                        /* DESPUES */
-                        foreach ($fotosDespues as $key => $fotoD) {
-                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
-                            $dimensionesD = getimagesize($fotoD->Url);
-                            /* Ancho $dimensiones[0] */
-                            /* Alto $dimensiones[1] */
-                            $WidthUna = 110;
-                            $widthD = 62;
-                            $widthCuandoSonDosD = 100;
-                            $TerceraSolaD = 120;
-                            if ($dimensionesD[1] > $dimensionesD[0]) {
-                                $widthCuandoSonDosD = 53;
-                                $widthD = 36;
-                                $TerceraSolaD = 70;
-                            }
-                            if ($dimensionesD[1] === $dimensionesD[0]) {
-                                $width = 55;
-                            }
-                            $nimgDespues += 1;
-                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
-                            if ($nimgDespues == 1 && $nfotosDespues > 1 && $nfotosDespues == 2) {
-                                $pdf->Image($fotoD->Url, 155/* X */, 45/* Y */, $widthCuandoSonDosD/* W *//* H */);
-                            }
-                            /* Cuando es la primera pero hay mas de dos imagenes */ else if ($nimgDespues == 1 && $nfotosDespues > 1) {
-                                $pdf->Image($fotoD->Url, 145/* X */, 50/* Y */, $widthD/* W *//* H */);
-                            }
-                            /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */ else if ($nimgDespues == 1 && $nfotosDespues == 1) {
-                                $pdf->Image($fotoD->Url, 155/* X */, 50/* Y */, $WidthUna/* W *//* H */);
-                            }
-                            /* CUANDO SOLO SON DOS FOTOS EN TOTAL Y ES LA SEGUNDA */
-                            if ($nimgDespues == 2 && $fnfotosDespues == 2) {
-                                $pdf->Image($fotoD->Url, 155/* X */, 120/* Y */, $widthCuandoSonDosD/* W *//* H */);
-                            }
-                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimgDespues == 2 && $nfotosDespues >= 2) {
-                                $pdf->Image($fotoD->Url, 212/* X */, 50/* Y */, $widthD/* W *//* H */);
-                            }
-                            /* Cuando solo quedan dos imagenes y es la segunda */ else if ($nimgDespues == 2 && $nfotosDespues == 1) {
-                                $pdf->Image($fotoD->Url, 155/* X */, 120/* Y */, $widthCuandoSonDosD/* W *//* H */);
-                            }
-                            /* Cuando es la tercera imagen */
-                            if ($nimgDespues == 3 && $nfotosDespues == 1) {
-                                $pdf->Image($fotoD->Url, 145/* X */, 110/* Y */, $TerceraSolaD/* W *//* H */);
-                            }
-                            /* Cuando es la tercera pero aun hay mas */ else if ($nimgDespues == 3) {
-                                $pdf->Image($fotoD->Url, 145/* X */, 120/* Y */, $widthD/* W *//* H */);
-                            }
-                            /* Cuando es la cuarta imagen */
-                            if ($nimgDespues == 4) {
-                                $pdf->Image($fotoD->Url, 212/* X */, 120/* Y */, $widthD/* W *//* H */);
-                            }
-                            $nfotosDespues --;
-//                        cuando solo trae 4 o menos de cada lado
-                            if ($fnfotos <= 4 && $fnfotosDespues <= 4) {
+                    $pdf->SetFont('Arial', 'B', 7);
+                    $fotos_antes_add = 0;
+                    $fotos_despues_add = 0;
+                    $pdf->SetTextColor(255, 0, 0);
+                    for ($index = 0; $index < $xfotos_count; $index++) {
 
-                            } else if ($nimg == 4 || $nfotosDespues == 4) {
-                                $pdf->AddPage();
-                                $nimgDespues = 0;
-                                $nimg = 0;
+                        if (isset($array_fotos_antes[$index])) {
+                            $nantes += 1;
+                            /* AQUI VAN LAS VALIDACIONES DE TAMAÑO */
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $ancho_alto = getimagesize(utf8_decode($array_fotos_antes[$index]->Url));
+                            $ancho = $ancho_alto[0];
+                            $alto = $ancho_alto[1];
+
+                            $x_antes_columna_uno = 10;
+                            $y_antes_columna_uno = 45;
+
+                            $x_antes_columna_dos = 75;
+                            $y_antes_columna_dos = 125;
+
+                            /* VALIDACION DE 1 FOTO */
+                            if ($nantes == 1 && $nfotos_antes == 1 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 70) ? $ancho : 120;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
                             }
-                        } /* FIN DESPUES */
-                    }/* FIN ANTES */
+                            /* VALIDACION DE 2 FOTOS */
+                            if ($nantes == 1 && $nfotos_antes == 2 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 2 && $nfotos_antes == 1 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+                            /* VALIDACION DE 3 FOTOS */
+                            if ($nantes == 1 && $nfotos_antes == 3 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 2 && $nfotos_antes == 2 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 3 && $nfotos_antes == 1 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 2 && $nfotos_antes == 3 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 3 && $nfotos_antes == 3 && $nfotos_antes_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+
+                            /* VALIDACION DE 4 FOTOS */
+
+                            if ($nantes == 1 && $nfotos_antes >= 4 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 2 && $nfotos_antes >= 4 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 3 && $nfotos_antes >= 4 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 4 && $nfotos_antes >= 4 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+                            /* VALIDACION CUANDO SUPERA LAS 4 FOTOS DURANTE VARIAS PAGINAS */
+                            if ($nantes == 1 && $nfotos_antes == 1 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 100) ? $ancho : 120;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 1 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 2 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 3 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_uno/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($nantes == 4 && $nfotos_antes_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_antes[$index]->Url, $x_antes_columna_dos/* X */, $y_antes_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+
+                            /* FIN DE LAS VALIDACIONES DE TAMAÑO */
+                            /* DESCOMENTAR SI SE OCUPA RECTIFICAR LAS VALIDACIONES */
+//                            $pdf->SetX(5);
+//                            $pdf->Cell(205, 5, "$nfotos_antes_count, nantes:  $nantes  " . $array_fotos_antes[$index]->Url . ", nfotos_antes:  " . $nfotos_antes . ",  nfotos: " . $nfotos, 0, 1);
+                            if ($fotos_antes_add == 0) {
+                                $fotos_antes_add = 1;
+                                $fotos_despues_add = 0;
+                            }
+                            $nfotos --;
+                            $nfotos_antes--;
+                        }
+
+                        if (isset($array_fotos_despues[$index])) {
+                            $ndespues += 1;
+                            if ($ndespues == 0) {
+                                $pdf->SetY(40);
+                            }
+                            /* AQUI VAN LAS VALIDACIONES DE TAMAÑO */
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $ancho_alto = getimagesize(utf8_decode($array_fotos_despues[$index]->Url));
+                            $ancho = $ancho_alto[0];
+                            $alto = $ancho_alto[1];
+                            $x_despues_columna_uno = 145;
+                            $x_despues_columna_dos = 212;
+
+                            $y_despues_columna_uno = 45;
+                            $y_despues_columna_dos = 125;
+
+                            /* VALIDACION DE 1 FOTO */
+                            if ($ndespues == 1 && $nfotos_despues == 1 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 70) ? $ancho : 120;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+                            /* VALIDACION DE 2 FOTOS */
+                            if ($ndespues == 1 && $nfotos_despues == 2 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 2 && $nfotos_despues == 1 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+                            /* VALIDACION DE 3 FOTOS */
+                            if ($ndespues == 1 && $nfotos_despues == 3 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 2 && $nfotos_despues == 2 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 3 && $nfotos_despues == 1 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 2 && $nfotos_despues == 3 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 3 && $nfotos_despues == 3 && $nfotos_despues_count < 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+
+                            /* VALIDACION DE 4 FOTOS */
+
+                            if ($ndespues == 1 && $nfotos_despues >= 4 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 2 && $nfotos_despues >= 4 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 3 && $nfotos_despues >= 4 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 4 && $nfotos_despues >= 4 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+                            /* VALIDACION CUANDO SUPERA LAS 4 FOTOS DURANTE VARIAS PAGINAS */
+                            if ($ndespues == 1 && $nfotos_despues == 1 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 100) ? $ancho : 120;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 1 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 2 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_uno/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 3 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            } else
+                            if ($ndespues == 4 && $nfotos_despues_count >= 4) {
+                                $alto = ($alto > 0 && $alto < 70) ? $alto : 70;
+                                $ancho = ($ancho > 0 && $ancho < 60) ? $ancho : 60;
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_dos/* X */, $y_despues_columna_dos/* Y */, $ancho/* W */, $alto/* H */);
+                            }
+
+                            /* FIN DE LAS VALIDACIONES DE TAMAÑO */
+                            /* DESCOMENTAR SI SE OCUPA RECTIFICAR LAS VALIDACIONES */
+//                            $pdf->SetX(140);
+//                            $pdf->Cell(205, 5, $array_fotos_despues[$index]->ID . " - " . $array_fotos_despues[$index]->Url . " - " . $array_fotos_despues[$index]->ID . "  + " . $nfotos, 0, 1);
+                            if ($fotos_antes_add == 1 && $fotos_despues_add == 0) {
+                                $fotos_despues_add = 1;
+                                $fotos_antes_add = 0;
+                            } else if ($fotos_antes_add == 0 && $fotos_despues_add == 0) {
+                                $fotos_despues_add = 1;
+                                $fotos_antes_add = 0;
+                            }
+                            $nfotos --;
+                            $nfotos_despues--;
+                        }
+
+                        /* COMPROBAR SI ANTES O DESPUES LLEGARON A 4 */
+                        if (($nantes == 4 || $ndespues == 4) && $nfotos > 0) {
+                            $pages_added = true;
+                            $pdf->AddPage();
+                            /* DESCOMENTAR SI SE OCUPA RECTIFICAR LAS VALIDACIONES */
+//                            $pdf->SetX(120);
+//                            $pdf->Cell(205, 5, "ANTES #$nantes N$fotos_antes_add, DESPUES #$ndespues N$fotos_despues_add - " . $nfotos, 0, 1);
+                            $nimg = 0;
+                            $nantes = 0;
+                            $ndespues = 0;
+                            $fotos_antes_add = 0;
+                            $fotos_despues_add = 0;
+                        } else {
+                            $pages_added = false;
+                        }
+                    }
+
+                    $nimg += 1;
+                    /* FIN ANTES */
                 }/* FIN CONCEPTO */
                 $path = 'uploads/Reportes/' . $ID;
                 // print $path;
                 if (!file_exists($path)) {
                     mkdir($path, 0777, true);
                 }
-                $file_name = "REPORTE LEVANTAMIENTO GENERAL";
+                $file_name = "REPORTE LEVANTAMIENTO GENERAL " . Date('h_i_s');
                 $url = $path . '/' . $file_name . '.pdf';
                 $pdf->Output($url);
                 print base_url() . $url;
