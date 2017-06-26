@@ -13,6 +13,7 @@ class CtrlEntregas extends CI_Controller {
         $this->load->model('entregas_model');
         $this->load->model('cliente_model');
         $this->load->model('trabajo_model');
+        $this->load->model('centrocostos_model');
     }
 
     public function index() {
@@ -76,7 +77,7 @@ class CtrlEntregas extends CI_Controller {
                 'FechaCreacion' => $FechaCreacion,
                 'Cliente_ID' => $Cliente_ID,
                 'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL,
-                'Clasificacion' => (isset($Clasificacion) && $Clasificacion !== '') ? $Clasificacion : NULL,
+                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== '') ? $CentroCostos_ID : NULL,
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
@@ -126,6 +127,16 @@ class CtrlEntregas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+     public function onModificarImportePorEntrega() {
+        try {
+            extract($this->input->post());
+            var_dump($this->input->post());
+            print json_encode($this->entregas_model->onModificarImportePorEntrega($ID,$DATA));
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onEliminar() {
         try {
@@ -148,6 +159,15 @@ class CtrlEntregas extends CI_Controller {
     public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getCC() {
+        try {
+            $data = $this->centrocostos_model->getCC();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

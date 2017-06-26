@@ -7,7 +7,6 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
@@ -122,7 +121,6 @@
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
-    var btnEditar = $("#btnEditar");
     var pnlEditar = $("#pnlEditar");
     //Boton que guarda los datos del formulario
     var btnGuardar = pnlNuevo.find("#btnGuardar");
@@ -142,7 +140,7 @@
             pnlTablero.addClass("hide");
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
-            pnlNuevo.find("select").val(null).trigger("change");
+            pnlNuevo.find("select").select2("val", "");
         });
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
@@ -167,39 +165,6 @@
         //Actualiza los datos
         btnRefrescar.click(function () {
             getRecords();
-        });
-        //Evento clic del boton editar
-        btnEditar.click(function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'getCodigoPPTAByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    btnEditar.find("input").val("");
-                    btnEditar.find("select").empty().select2();
-                    btnEditar.find("select").val(null).trigger("change");
-                    $.each(data[0], function (k, v) {
-                        pnlEditar.find("#" + k).val(v);
-                        pnlEditar.find("#" + k).select2("val", v);
-                    });
-                    pnlEditar.removeClass("hide");
-                    pnlTablero.addClass("hide");
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
         });
         //Boton de eliminar del tablero
         btnEliminar.click(function () {
@@ -375,7 +340,35 @@
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
-                btnEditar.trigger("click");
+                if (temp !== 0 && temp !== undefined && temp > 0) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "CARGANDO DATOS..."
+                    });
+                    $.ajax({
+                        url: master_url + 'getCodigoPPTAByID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: temp
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlEditar.find("input").val("");
+                        pnlEditar.find("select").select2("val", "");
+                        $.each(data[0], function (k, v) {
+                            pnlEditar.find("#" + k).val(v);
+                            pnlEditar.find("#" + k).select2("val", v);
+                        });
+                        pnlEditar.removeClass("hide");
+                        pnlTablero.addClass("hide");
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+                }
             });
             // Apply the search
             tblSelected.columns().every(function () {

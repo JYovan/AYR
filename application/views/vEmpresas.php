@@ -7,7 +7,6 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
@@ -39,13 +38,13 @@
     <!--GUARDAR-->
     <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading" >
-             <div class="Custompanel-heading clearfix">
-                 <div class="panel-title pull-left cursor-hand" >
-                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                        </button>
-                        Nueva Empresa
-                    </div>
+            <div class="Custompanel-heading clearfix">
+                <div class="panel-title pull-left cursor-hand" >
+                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                    </button>
+                    Nueva Empresa
+                </div>
 
                 <div class="input-group pull-right">
 
@@ -125,17 +124,17 @@
 <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
     <div class="Custompanel-heading " >
         <div class="Custompanel-heading clearfix">
-                   <div class="panel-title pull-left cursor-hand" >
-                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                        </button>
-                        Editar Empresa
-                    </div>
-                 <div class="input-group pull-right">
-                         <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                        <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
-                 </div>
+            <div class="panel-title pull-left cursor-hand" >
+                <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                    <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                </button>
+                Editar Empresa
             </div>
+            <div class="input-group pull-right">
+                <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+            </div>
+        </div>
     </div>
     <div class="panel-body">
         <form id="frmEditar">
@@ -210,11 +209,10 @@
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlEmpresas/';
-      var btnNuevo = $("#btnNuevo");
+    var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
-     var btnEditar = $("#btnEditar");
-     var pnlEditar = $("#pnlEditar");
+    var pnlEditar = $("#pnlEditar");
     var Archivo = pnlNuevo.find("#RutaLogo");
     var btnArchivo = pnlNuevo.find("#btnArchivo");
     var VistaPrevia = pnlNuevo.find("#VistaPrevia");
@@ -224,7 +222,7 @@
     var ModificarArchivo = pnlEditar.find("#RutaLogo");
     var btnModificarArchivo = pnlEditar.find("#btnArchivo");
     var ModificarVistaPrevia = pnlEditar.find("#VistaPrevia");
-      var btnModificar = pnlEditar.find("#btnModificar");
+    var btnModificar = pnlEditar.find("#btnModificar");
     var btnCancelarModificar = pnlEditar.find("#btnCancelar");
     var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
@@ -233,11 +231,11 @@
     $(document).ready(function () {
 
 
-         btnNuevo.click(function () {
+        btnNuevo.click(function () {
             pnlTablero.addClass("hide");
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
-            pnlNuevo.find("select").val(null).trigger("change");
+            pnlNuevo.find("select").select2("val", "");
         });
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
@@ -339,64 +337,6 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-            }
-        });
-        btnEditar.click(function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'getEmpresaByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    console.log(data);
-                    btnEditar.find("input").val("");
-                    btnEditar.find("select").empty().select2();
-                    btnEditar.find("select").val(null).trigger("change");
-                    var empresa = data[0];
-                    pnlEditar.find("#ID").val(empresa.ID);
-                    pnlEditar.find("#Nombre").val(empresa.Nombre);
-                    pnlEditar.find("#Rfc").val(empresa.Rfc);
-                    pnlEditar.find("#NoInterior").val(empresa.NoInterior);
-                    pnlEditar.find("#NoExterior").val(empresa.NoExterior);
-                    pnlEditar.find("#Estado").val(empresa.Estado);
-                    pnlEditar.find("#Direccion").val(empresa.Direccion);
-                    pnlEditar.find("#ContactoNombre").val(empresa.ContactoNombre);
-                    pnlEditar.find("#ContactoApellidos").val(empresa.ContactoApellidos);
-                    pnlEditar.find("#Colonia").val(empresa.Colonia);
-                    pnlEditar.find("#CodigoPostal").val(empresa.CodigoPostal);
-                    pnlEditar.find("#Ciudad").val(empresa.Ciudad);
-                    if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
-                        var ext = getExt(empresa.RutaLogo);
-                        console.log(ext);
-                        if (ext === "gif" || ext === "jpg" || ext === "png") {
-                            pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class ="img-responsive"/>');
-                        }
-                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                            pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-                        }
-                        if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                            pnlEditar.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
-                        }
-                    } else {
-                        pnlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
-                    }
-
-                    pnlEditar.removeClass("hide");
-                    pnlTablero.addClass("hide");
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
         btnGuardar.click(function () {
@@ -557,9 +497,63 @@
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
                 temp = parseInt(dtm[0]);
-                btnEditar.trigger("click");
+                if (temp !== 0 && temp !== undefined && temp > 0) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "CARGANDO DATOS..."
+                    });
+                    $.ajax({
+                        url: master_url + 'getEmpresaByID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: temp
+                        }
+                    }).done(function (data, x, jq) {
+                        console.log(data);
+                        pnlEditar.find("input").val("");
+                        pnlEditar.find("select").select2("val", "");
+                        var empresa = data[0];
+                        pnlEditar.find("#ID").val(empresa.ID);
+                        pnlEditar.find("#Nombre").val(empresa.Nombre);
+                        pnlEditar.find("#Rfc").val(empresa.Rfc);
+                        pnlEditar.find("#NoInterior").val(empresa.NoInterior);
+                        pnlEditar.find("#NoExterior").val(empresa.NoExterior);
+                        pnlEditar.find("#Estado").val(empresa.Estado);
+                        pnlEditar.find("#Direccion").val(empresa.Direccion);
+                        pnlEditar.find("#ContactoNombre").val(empresa.ContactoNombre);
+                        pnlEditar.find("#ContactoApellidos").val(empresa.ContactoApellidos);
+                        pnlEditar.find("#Colonia").val(empresa.Colonia);
+                        pnlEditar.find("#CodigoPostal").val(empresa.CodigoPostal);
+                        pnlEditar.find("#Ciudad").val(empresa.Ciudad);
+                        if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
+                            var ext = getExt(empresa.RutaLogo);
+                            console.log(ext);
+                            if (ext === "gif" || ext === "jpg" || ext === "png") {
+                                pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class ="img-responsive"/>');
+                            }
+                            if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                                pnlEditar.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            }
+                            if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                                pnlEditar.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                            }
+                        } else {
+                            pnlEditar.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                        }
+
+                        pnlEditar.removeClass("hide");
+                        pnlTablero.addClass("hide");
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+                }
             });
-           
+
             // Apply the search
             tblSelected.columns().every(function () {
                 var that = this;

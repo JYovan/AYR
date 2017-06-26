@@ -150,21 +150,30 @@
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="Datos">
                             <div class="col-6 col-md-12"><br></div>
-                            <div class="col-6 col-md-6">
-                                <label for="">Movimiento*</label>
+                            <div class="col-6 col-md-3">
+                                <label for="">Etapa*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
                                 </select>
                             </div>
-                            <div class=" col-6 col-md-3">
+                            <div class=" col-3 col-md-3">
                                 <label for="">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                             </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label for="">Situación*</label>
+                                <select id="Situacion" name="Situacion" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="PENDIENTE">PENDIENTE</option>
+                                    <option value="AUTORIZADO">AUTORIZADO</option>
+                                    <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
+                                </select>
                             </div>
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
@@ -194,6 +203,12 @@
                                 </select>
                             </div>
                             <div class="col-6 col-md-3">
+                                <label for="">Centro de Costos</label>
+                                <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-3">
                                 <label for="">Folio Cliente</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
                             </div>
@@ -203,15 +218,6 @@
                                     <spam><br></spam><spam><br></spam>
                                     <label><input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" ></label>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <label for="">Situación*</label>
-                                <select id="Situacion" name="Situacion" class="form-control" >
-                                    <option value=""></option>
-                                    <option value="PENDIENTE">PENDIENTE</option>
-                                    <option value="AUTORIZADO">AUTORIZADO</option>
-                                    <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-                                </select>
                             </div>
                             <div class="col-6 col-md-6">
                                 <label for="">Observaciones</label>
@@ -466,8 +472,8 @@
                             <div class="col-6 col-md-12">
                                 <br>
                             </div>
-                            <div class="col-6 col-md-6">
-                                <label for="">Movimiento*</label>
+                            <div class="col-6 col-md-3">
+                                <label for="">Etapa*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
@@ -481,6 +487,16 @@
                             <div class="col-6 col-md-3">
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            </div>
+                            
+                            <div class="col-6 col-md-3">
+                                <label for="">Situación*</label>
+                                <select id="Situacion" name="Situacion" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="PENDIENTE">PENDIENTE</option>
+                                    <option value="AUTORIZADO">AUTORIZADO</option>
+                                    <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
+                                </select>
                             </div>
                             <div class="col-6 col-md-6">
                                 <label for="">Cliente*</label>
@@ -509,6 +525,12 @@
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
+                              <div class="col-6 col-md-3">
+                                <label for="">Centro de Costos</label>
+                                <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
                             <div class="col-6 col-md-3">
                                 <label for="">Folio Cliente</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
@@ -523,15 +545,6 @@
                                         <input type="checkbox" id="EditarAtendido" name="" >
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <label for="">Situación*</label>
-                                <select id="Situacion" name="Situacion" class="form-control" >
-                                    <option value=""></option>
-                                    <option value="PENDIENTE">PENDIENTE</option>
-                                    <option value="AUTORIZADO">AUTORIZADO</option>
-                                    <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-                                </select>
                             </div>
                             <div class="col-6 col-md-6">
                                 <label for="">Observaciones</label>
@@ -1512,6 +1525,7 @@
             getClientes();
             getCodigosPPTA();
             getCuadrillas();
+            getCC();
         });
         /*Evento clic del boton confirmar borrar*/
         btnConfirmarEliminar.on("click", function () {
@@ -1735,6 +1749,7 @@
             pnlNuevoTrabajo.find("input").val("");
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
+            pnlNuevoTrabajo.find("select").select2("val", "");
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             /*Inicializamos Boleanos en No*/
             pnlNuevoTrabajo.find("#Atendido").val('No');
@@ -1832,6 +1847,7 @@
         getCodigosPPTA();
         getRecords();
         getCuadrillas();
+        getCC();
     });
     /*----------------------------METODOS DEL CONTROLADOR PARA TRAER DATOS----------------*/
     IdMovimiento = 0;
@@ -1933,6 +1949,7 @@
                         pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                         pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
                         pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                        pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
                         if (trabajo.Atendido === 'Si') {
                             pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
                             pnlEditarTrabajo.find("#Atendido").val('Si');
@@ -2124,6 +2141,7 @@
                 pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                 pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
                 pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
                 if (trabajo.Atendido === 'Si') {
                     pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
                     pnlEditarTrabajo.find("#Atendido").val('Si');
@@ -2233,6 +2251,27 @@
         }
     }
     /*Traer catálogos para el encabezado*/
+      function getCC() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getCC',
+            type: "POST", dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+            });
+            pnlNuevoTrabajo.find("#CentroCostos_ID").html(options);
+            pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     function getClientes() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({

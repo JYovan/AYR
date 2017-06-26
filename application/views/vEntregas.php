@@ -27,7 +27,7 @@
                 <br>
             </div>
             <div id="reportes" class="dt-buttons">
-                 <button id="btnEntregaObra" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>ENTREGA OBRA</button>
+                <button id="btnEntregaObra" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>ENTREGA OBRA</button>
                 <button id="btnTarifario" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>TARIFARIO</button>
                 <button id="btnDesglose" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>DESGLOSE DE REPORTES</button>
             </div>
@@ -99,11 +99,9 @@
                         </select>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Clasificación</label>
-                        <select id="Clasificacion" name="Clasificacion" class="form-control" >
+                        <label for="">Centro Costos*</label>
+                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                             <option value=""></option>
-                            <option value="MOBILIARIO">MOBILIARIO</option>
-                            <option value="INMUEBLE">INMUEBLE</option>
                         </select>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
@@ -202,11 +200,9 @@
                         </select>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Clasificación</label>
-                        <select id="Clasificacion" name="Clasificacion" class="form-control" >
+                        <label for="">Centro Costos*</label>
+                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                             <option value=""></option>
-                            <option value="MOBILIARIO">MOBILIARIO</option>
-                            <option value="INMUEBLE">INMUEBLE</option>
                         </select>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
@@ -237,19 +233,7 @@
                 <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive " id="Conceptos" >
-                <table  id="tblRegistrosXDetalleXEntrega" class="table table-striped table-hover hide " width="100%">
-                    <thead>
-                        <tr>
-                            <th class="">ID</th>
-                            <th class="">Entrega</th>
-                            <th class="">Trabajo</th>
-                            <th>Renglon</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+              
             </div>
         </fieldset>
         <!--        </div>-->
@@ -332,15 +316,15 @@
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
     var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
     var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
-    var btnEntregaObra= mdlReportesEditarEntrega.find("#btnEntregaObra");
+    var btnEntregaObra = mdlReportesEditarEntrega.find("#btnEntregaObra");
     $(document).ready(function () {
         //Reportes
-         btnImprimirReportesEditarEntrega.on("click", function () {
-             mdlReportesEditarEntrega.modal('show');
-         });
+        btnImprimirReportesEditarEntrega.on("click", function () {
+            mdlReportesEditarEntrega.modal('show');
+        });
         //Tarifario
-        btnEntregaObra.on("click",function (){
-             HoldOn.open({
+        btnEntregaObra.on("click", function () {
+            HoldOn.open({
                 theme: 'sk-bounce',
                 message: 'ESPERE...'
             });
@@ -358,10 +342,8 @@
             }).always(function () {
                 HoldOn.close();
             });
-            
+
         });
-        
-        
         btnTarifario.on("click", function () {
             HoldOn.open({
                 theme: 'sk-bounce',
@@ -462,7 +444,7 @@
             pnlDetalleNuevaEntrega.removeClass('hide');
             menuTablero.addClass('hide');
             pnlNuevaEntrega.find("input").val("");
-            pnlNuevaEntrega.find("select").val(null).trigger("change");
+            pnlNuevaEntrega.find("select").select2("val", "");
             pnlNuevaEntrega.find("#FechaCreacion").datepicker("setDate", currentDate);
             pnlNuevaEntrega.find("#Movimiento").val("Entrega");
             pnlNuevaEntrega.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
@@ -493,7 +475,8 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required'
+                    NoEntrega: 'required',
+                    CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
@@ -550,7 +533,8 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required'
+                    NoEntrega: 'required',
+                    CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
@@ -606,6 +590,7 @@
         });
         getClientes();
         getRecords();
+        getCC();
     });
     IdMovimiento = 0;
     function getRecords() {
@@ -660,7 +645,7 @@
                         pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
                         pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
                         pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                        pnlEditarEntrega.find("#Clasificacion").select2("val", entrega.Clasificacion);
+                        pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
                         pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
                         pnlEditarEntrega.find("#Importe").val(entrega.Importe);
                         pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
@@ -744,7 +729,7 @@
                 pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
                 pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
                 pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                pnlEditarEntrega.find("#Clasificacion").select2("val", entrega.Clasificacion);
+                pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
                 pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
                 pnlEditarEntrega.find("#Importe").val(entrega.Importe);
                 pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
@@ -809,6 +794,27 @@
             HoldOn.close();
         });
     }
+    function getCC() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getCC',
+            type: "POST", dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+            });
+            pnlNuevaEntrega.find("#CentroCostos_ID").html(options);
+            pnlEditarEntrega.find("#CentroCostos_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     /*Trae los movimientos para el detalle*/
     function getTrabajosControlByClienteXClasificacion(Cliente_ID) {
         temp = 0;
@@ -827,6 +833,10 @@
             if (data.length > 0) {
                 mdlSeleccionarTrabajosEditar.modal('show');
                 $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
+                $('#TrabajosXClienteIDXClasificacion tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
                 $('#tblTrabajos tbody').on('click', 'tr', function () {
                     $("#tblTrabajos").find("tr").removeClass("success");
@@ -839,6 +849,7 @@
                         selected.splice(index, 1);
                     }
                     $(this).addClass('success');
+
                     var dtm = tblSelected.row(this).data();
                     temp = parseInt(dtm[0]);
                     $.ajax({
@@ -890,9 +901,8 @@
                                     }).always(function () {
                                         HoldOn.close();
                                     });
-                                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL TRABAJO', 'success');
-                                } 
-                                else {
+                                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL TRABAJO', 'success');
+                                } else {
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {
@@ -914,11 +924,21 @@
                 });
             } else {
                 mdlSeleccionarTrabajosEditar.modal('hide');
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDOS O AUTORIZADOS PARA ESTE CLIENTE', 'danger');
                 HoldOn.close();
             }
+            // Apply the search
+                    tblSelected.columns().every(function () {
+                        var that = this;
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+                    
         }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISITEN TRABAJOS CONCLUIDOS PARA ESTE CLIENTE', 'danger');
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDOS O AUTORIZADOS PARA ESTE CLIENTE', 'danger');
         }).always(function () {
             HoldOn.close();
         });
@@ -926,6 +946,7 @@
     /*PANEL EDITAR DETALLE */
     var tempDetalle = 0;
     function getDetalleByID(IDX) {
+
         var ImporteTotal = pnlDetalleEditarEntrega.find("#ImporteTotal");
         var total = 0.0;
         $.ajax({
@@ -936,6 +957,8 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
+                console.log(data);
+            
             if (data.length > 0) {
                 pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
                 var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
@@ -954,7 +977,25 @@
                     total += parseFloat(td.eq(8).text());
                     ImporteTotalGlobal = total;
                 });
-                //Seteamos el importeTotal
+                
+                //Modificamos el importe en la base de datos
+                $.ajax({
+                    url: master_url + 'onModificarImportePorEntrega',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento,
+                        DATA: total
+                    }
+                }).done(function (data, x, jq) {
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+                
+                
+               /*Modificamos el importe*/
                 ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 2, '.', ', ') + '</span>');
                 var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptions);
                 pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody').on('click', 'tr', function () {
@@ -973,6 +1014,23 @@
                     tempDetalle = parseInt(dtm[0]);
                 });
             } else {
+                /*Modificamos el importe*/
+                $.ajax({
+                    url: master_url + 'onModificarImportePorEntrega',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento,
+                        DATA: 0
+                    }
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+                ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(0, 2, '.', ', ') + '</span>');
                 pnlDetalleEditarEntrega.find("#Conceptos").html("");
             }
         }).fail(function (x, y, z) {
@@ -996,10 +1054,10 @@
         }).done(function (data, x, jq) {
             var row = $(evt).parent().parent().find("td");
             $(evt).parent().parent().remove();
-            getDetalleByID(pnlEditarEntrega.find("#ID").val());
+            getDetalleByID(IdMovimiento);
             //onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
         }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
         }).always(function () {
             HoldOn.close();
         });

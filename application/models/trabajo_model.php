@@ -67,8 +67,8 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
                     . 'END) AS Generador, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID),")")'
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID  )>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
                     . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Fotos, '
                     . '(CASE '
@@ -77,8 +77,8 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Croquis, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID),")") '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID )>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID ),")") '
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
@@ -105,8 +105,8 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, ' 
                     . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion CustomUppercase \" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID),")")'
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID AND TDF.IdTrabajo = tda.Trabajo_ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID AND TDF.IdTrabajo = tda.Trabajo_ID),")")'
                     . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS FotosAntes, '
                     . '(CASE '
@@ -115,8 +115,8 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosDespuesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS FotosDespues, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID),")") '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID),")") '
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleGenerador\" '
@@ -169,6 +169,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
+            $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.IdTrabajoDetalle", $IDX);
             $this->db->order_by('TDF.ID', 'DESC');
             $query = $this->db->get();
@@ -222,6 +223,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
+            $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.IdTrabajoDetalle", $IDX);
             $query = $this->db->get();
             /*
@@ -256,6 +258,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
+            $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.ID", $IDX);
             $query = $this->db->get();
             /*
@@ -307,6 +310,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TDA.*', false);
             $this->db->from("trabajodetalleanexos AS TDA");
+            $this->db->join("trabajos AS t", "t.ID =TDA.IdTrabajo");
             $this->db->where("TDA.ID", $IDX);
             $query = $this->db->get();
             /*
@@ -358,6 +362,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('TDEA.*', false);
             $this->db->from("trabajodetalleanexos AS TDEA");
+            $this->db->join("trabajos AS t", "t.ID =TDEA.IdTrabajo");
             $this->db->where("TDEA.IdTrabajoDetalle", $IDX);
             $this->db->order_by('TDEA.ID', 'DESC');
             $query = $this->db->get();

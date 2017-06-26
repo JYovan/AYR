@@ -51,13 +51,13 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse" id="">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="<?php print base_url() ?>index.php/CtrlTrabajos/"  >Trabajos</a>
+                    <a href="<?php print base_url('CtrlTrabajos')?>"  >Trabajos</a>
                 </li> 
                 <li class="dropdown hide" id="liControl">
                     <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Control<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li id="liEntregas"><a href="<?php print base_url() ?>index.php/CtrlEntregas/">Control de Entregas</a></li> 
-                        <li id="liPrefacturas"><a href="<?php print base_url() ?>index.php/CtrlPrefacturas/">Control de Prefacturas</a></li>  
+                        <li id="liEntregas"><a href="<?php print base_url('CtrlEntregas') ?>">Control de Entregas</a></li> 
+                        <li id="liPrefacturas"><a href="<?php print base_url('CtrlPrefacturas') ?>">Control de Prefacturas</a></li>  
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liReportes">
@@ -77,17 +77,19 @@
                 <li class="dropdown hide" id="liCatalogos">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="liClientes"><a href="<?php print base_url() ?>index.php/CtrlClientes/">Clientes</a></li> 
-                        <li id="liEmpresas"><a href="<?php print base_url() ?>index.php/CtrlEmpresas/">Empresas</a></li>
-                        <li id="liPreciarios"><a href="<?php print base_url() ?>index.php/CtrlPreciarios/">Preciarios</a></li> 
+                        <li id="liClientes"><a href="<?php print base_url('CtrlClientes') ?>">Clientes</a></li> 
+                        <li id="liEmpresas"><a href="<?php print base_url('CtrlEmpresas') ?>">Empresas</a></li>
+                        <li id="liPreciarios"><a href="<?php print base_url('CtrlPreciarios')?>">Preciarios</a></li> 
                         <!--                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>-->
-                        <li id="liEmpresasSupervisoras"><a href="<?php print base_url() ?>index.php/CtrlEmpresasSupervisoras/">Empresas Supervisoras</a></li> 
+                        <li id="liEmpresasSupervisoras"><a href="<?php print base_url('CtrlEmpresasSupervisoras') ?>">Empresas Supervisoras</a></li> 
                         <!--                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>-->
-                        <li id="liCuadrillas"><a href="<?php print base_url() ?>index.php/CtrlCuadrillas/">Cuadrillas</a></li> 
-                        <li id="liCodigosPPTA"><a href="<?php print base_url() ?>index.php/CtrlCodigosPPTA/">Códigos PPTA</a></li> 
+                        <li id="liCuadrillas"><a href="<?php print base_url('CtrlCuadrillas') ?>">Cuadrillas</a></li> 
+                        <li id="liCodigosPPTA"><a href="<?php print base_url('CtrlCodigosPPTA') ?>">Códigos PPTA</a></li> 
+                        <li id="liCentrosCostos"><a href="<?php print base_url('CtrlCentroCostos') ?>">Centros de Costos</a></li> 
+                  
                     </ul>
                 </li>
-                <li class="hide" id="liUsuarios"><a href="<?php print base_url() ?>index.php/CtrlUsuario/">Usuarios</a></li>
+                <li class="hide" id="liUsuarios"><a href="<?php print base_url('CtrlUsuario') ?>">Usuarios</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -99,14 +101,13 @@
                         <li onclick="onCambiarContrasena();"><a href="#">Cambiar Contraseña</a></li> 
                         <li><a href="">Reportar un problema</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php print base_url() . "index.php/CtrlSesion/onSalir"; ?>" >Salir</a></li> 
+                        <li><a href="<?php print base_url('CtrlSesion/onSalir'); ?>" >Salir</a></li> 
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<!--<button onclick="onReporteLevantamientoCompleto();">LEVANTAMIENTO</button>-->
 <script>
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     if (TipoAcceso === 'RESIDENTE') {
@@ -124,24 +125,7 @@
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
     }
-    var master_url = base_url + 'index.php/CtrlSesion/';
-    function onReporteLevantamientoCompleto() {
-        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
-        $.ajax({
-            url: master_url + 'onReporteLevantamientoCompleto',
-            type: "POST",
-            data: {ID: 82}
-        }).done(function (data, x, jq) {
-            console.log(data);
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
-            window.open(data, '_blank');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
+    var master_url = base_url + 'CtrlSesion/';
     $(document).ready(function () {
         $('#btnModificar').on("click", function () {
           

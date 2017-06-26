@@ -1,14 +1,10 @@
 <div class="col-md-12">
     <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Cuadrillas</div>
-        </div>
+        <div class="panel-heading"><div class="cursor-hand" >Centros de Costos</div></div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                     <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12" id="tblRegistros"></div>
             </fieldset>
@@ -19,13 +15,10 @@
 <div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">ELIMINAR REGISTRO</h4>
         </div>
-        <div class="modal-body">
-            Deseas eliminar el registro?
-        </div>
+        <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
@@ -42,8 +35,7 @@
                     <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
                     </button>
-                    Nueva Cuadrilla
-                </div>
+                    Nuevo Centro Costos </div>
                 <div class="input-group pull-right">
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                 </div>
@@ -52,16 +44,13 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-md-12 hide">
-                        <input type="text" id="ID" name="ID" class="form-control">
-                    </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Cuadrilla*</label>    
+                        <label for="">Nombre*</label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre" >
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Miembros</label>
-                        <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
+                        <label for="">Descripción</label>
+                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                     </div>
                     <div class="col-6 col-md-12">
                         <label for="">Estatus*</label>
@@ -89,7 +78,7 @@
                     <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
                     </button>
-                    Editar Cuadrilla
+                    Editar Centro de Costos
                 </div>
                 <div class="input-group pull-right">
                     <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
@@ -104,12 +93,12 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Cuadrilla*</label>    
+                        <label for="">Nombre*</label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre" required >
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Miembros</label>
-                        <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
+                        <label for="">Descripción</label>
+                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
                     </div>
                     <div class="col-6 col-md-12">
                         <label for="">Estatus*</label>
@@ -129,7 +118,7 @@
 </div>  
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlCuadrillas/'
+    var master_url = base_url + 'index.php/CtrlCentroCostos/';
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
@@ -138,11 +127,9 @@
     var btnGuardar = pnlNuevo.find("#btnGuardar");
     var btnCancelar = pnlNuevo.find("#btnCancelar");
     //Boton que actualiza los datos del formulario
-
     var btnModificar = pnlEditar.find("#btnModificar");
     var btnCancelarModificar = pnlEditar.find("#btnCancelar");
     //Botones del tablero que actualizan y eliminan registros
-    var btnRefrescar = $("#btnRefrescar");
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
@@ -153,19 +140,16 @@
             pnlNuevo.removeClass('hide');
             pnlNuevo.find("input").val("");
             pnlNuevo.find("select").select2("val", "");
+//            pnlNuevo.find("select").val(null).trigger("change");
         });
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
             pnlNuevo.addClass('hide');
-            btnRefrescar.trigger('click');
+            getRecords();
         });
         btnCancelarModificar.click(function () {
             pnlEditar.addClass("hide");
             pnlTablero.removeClass("hide");
-            btnRefrescar.trigger('click');
-        });
-        //Actualiza los datos
-        btnRefrescar.click(function () {
             getRecords();
         });
         //Evento clic del boton confirmar borrar
@@ -192,7 +176,7 @@
                     }
                 }).done(function (data, x, jq) {
                     mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CUADRILLA ELIMINADA', 'danger');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CENTRO DE COSTOS ELIMINADO', 'danger');
                     pnlEditar.addClass("hide");
                     pnlTablero.removeClass("hide");
                     getRecords();
@@ -206,7 +190,6 @@
             }
         });
         //-----------------------EVENTOS DEL FORMULARIO--------------------------
-        //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
             $.validator.setDefaults({
                 ignore: []
@@ -247,11 +230,10 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CENTRO DE COSTOS', 'success');
                     pnlNuevo.addClass("hide");
                     pnlTablero.removeClass("hide");
-                    btnRefrescar.trigger('click');
-                    console.log(data, x, jq);
+                    getRecords();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -300,11 +282,10 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA CUADRILLA', 'success');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL CENTRO DE COSTOS', 'success');
                     pnlEditar.addClass("hide");
                     pnlTablero.removeClass("hide");
-                    btnRefrescar.trigger('click');
-                    console.log(data, x, jq);
+                    getRecords();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -327,16 +308,16 @@
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            console.log(data);
-            $("#tblRegistros").html(getTable('tblCuadrillas', data));
-            $('#tblCuadrillas tfoot th').each(function () {
+            HoldOn.close();
+            $("#tblRegistros").html(getTable('tblCentrosCostos', data));
+            $('#tblCentrosCostos tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
-            var tblSelected = $('#tblCuadrillas').DataTable(tableOptions);
-            $('#tblCuadrillas tbody').on('click', 'tr', function () {
-                $("#tblCuadrillas").find("tr").removeClass("success");
-                $("#tblCuadrillas").find("tr").removeClass("warning");
+            var tblSelected = $('#tblCentrosCostos').DataTable(tableOptions);
+            $('#tblCentrosCostos tbody').on('click', 'tr', function () {
+                $("#tblCentrosCostos").find("tr").removeClass("success");
+                $("#tblCentrosCostos").find("tr").removeClass("warning");
 //                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
@@ -354,7 +335,7 @@
                         message: "CARGANDO DATOS..."
                     });
                     $.ajax({
-                        url: master_url + 'getCuadrillaByID',
+                        url: master_url + 'getCCByID',
                         type: "POST",
                         dataType: "JSON",
                         data: {

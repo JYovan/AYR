@@ -38,7 +38,7 @@
 </div>
 <div class="col-md-4"></div>
 <script>
-    var master_url = base_url + "index.php/CtrlSesion/";
+    var master_url = base_url + "CtrlSesion/";
     var btnResetear = $("#btnResetear");
     var btnIngresar = $("#btnIngresar");
     var Usuario = $("#Usuario");

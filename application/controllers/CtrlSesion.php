@@ -99,7 +99,7 @@ class CtrlSesion extends CI_Controller {
         try {
             $array_items = array('USERNAME', 'PASSWORD', 'LOGGED');
             $this->session->unset_userdata($array_items);
-            header('Location: ' . base_url() . 'index.php/');
+            header('Location: ' . base_url());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

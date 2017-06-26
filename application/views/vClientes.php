@@ -1059,6 +1059,7 @@
                 }).done(function (data, x, jq) {
                     console.log(data);
                     mdlEditar.find("input").val("");
+                     mdlEditar.find("select").select2("val", "");
                     var cliente = data[0];
                     mdlEditar.find("#ID").val(cliente.ID);
                     mdlEditar.find("#Nombre").val(cliente.Nombre);
@@ -1224,7 +1225,7 @@
             mdlNuevo.modal('show');
             //Limpia los campos
             mdlNuevo.find("input").val("");
-            mdlNuevo.find("select").val(null).trigger("change");
+            mdlNuevo.find("select").select2("val", "");
         });
         /*CALLS*/
         getRecords();
@@ -1262,11 +1263,7 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                console.log(dtm);
-                console.log(dtm[0]);
-                console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                cliente_id = parseInt(dtm[0]);
+                  cliente_id = parseInt(dtm[0]);
                 temp = parseInt(dtm[0]);
             });
             //DB CLICK FOR EDIT

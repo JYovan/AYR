@@ -14,8 +14,7 @@ class entregas_model extends CI_Model {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
     }
-    
-    
+
     public function getRecords() {
         try {
             $this->db->select("E.ID, E.Movimiento,"
@@ -25,10 +24,11 @@ class entregas_model extends CI_Model {
                     . "ELSE CONCAT('<span class=\'label label-danger\'>','Cancelado','</span>') END) AS Estatus ,"
                     . "CONCAT(' <span class=\'label label-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
                     . "Ct.Nombre as 'Cliente', "
-                     . "E.Clasificacion as 'Clasificación', "
+                    . "CC.Nombre as 'Centro de Costos', "
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
                     . "FROM ENTREGAS E  "
                     . "INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  "
+                    . "LEFT JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID "
                     . "INNER JOIN USUARIOS U ON U.ID = E.Usuario_ID WHERE E.ESTATUS in ('Borrador','Concluido') ", false);
 
             $query = $this->db->get();
@@ -43,8 +43,31 @@ class entregas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getEntregaByID($ID) {
+
+    public function getEntregas() {
+        try {
+            $this->db->select("E.ID, E.Movimiento, (CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS 'Entrega', 
+CONCAT(' <span class=\'label label-success\'>$', FORMAT(E.Importe, 2), '</span> ') AS Importe, 
+Ct.Nombre as 'Cliente', 
+CC.Nombre as 'Centro de Costos'
+FROM ENTREGAS E  
+INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  
+INNER JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID", false);
+            $this->db->where_in('E.Estatus', array('Concluido'));
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+           // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getEntregaByID($ID) {
         try {
             $this->db->select('E.*', false);
             $this->db->from('entregas AS E');
@@ -61,9 +84,8 @@ class entregas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onAgregar($array) {
+
+    public function onAgregar($array) {
         try {
             $this->db->insert("entregas", $array);
             //   print $str = $this->db->last_query();
@@ -76,8 +98,8 @@ class entregas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onAgregarDetalle($array) {
+
+    public function onAgregarDetalle($array) {
         try {
             $this->db->insert("entregasdetalle", $array);
             //    print $str = $this->db->last_query();
@@ -90,8 +112,8 @@ class entregas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function getDetalleByID($IDX) {
+
+    public function getDetalleByID($IDX) {
         try {
             $this->db->select('ED.ID, T.ID T_ID, T.Movimiento,CONCAT("<strong>",T.FolioCliente,"</strong>") AS Folio ,S.Nombre AS Sucursal,
 S.Region,CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
@@ -114,7 +136,7 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -125,7 +147,20 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
         }
     }
     
-     public function onEliminar($ID) {
+    public function onModificarImportePorEntrega($ID,$DATA) {
+        try {
+            
+            $this->db->set('Importe', $DATA, FALSE);
+            $this->db->where('ID', $ID);
+            $this->db->update('entregas');
+            
+
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminar($ID) {
         try {
             $this->db->set('Estatus', 'Cancelado');
             $this->db->where('ID', $ID);
@@ -135,8 +170,8 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function onEliminarTrabajoDetalle($ID) {
+
+    public function onEliminarTrabajoDetalle($ID) {
         try {
             $this->db->where('ID', $ID);
             $this->db->delete('entregasdetalle');
@@ -146,6 +181,25 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
         }
     }
 
-
-
+     public function onPrefacturado($ID) {
+        try {
+//            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
+            $this->db->set('E.Estatus', 'Prefacturado');
+            $this->db->where('E.ID = PD.EID');
+            $this->db->update("entregas E, (   SELECT  Entrega_ID EID     FROM prefacturasdetalle     JOIN prefacturas on prefacturas.ID = prefacturasdetalle.Prefactura_ID  where prefacturas.ID = " . $ID . ") PD");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function onCancelarPrefacturado($ID) {
+        try {
+            // $query = $this->db->query("CALL SP_CANCELA_ENTREGADO ('{$ID}')");
+            $this->db->set('E.Estatus', 'Concluido');
+            $this->db->where('E.ID = PD.EID');
+            $this->db->update("entregas E, (   SELECT  Entrega_ID EID     FROM prefacturasdetalle     JOIN prefacturas on prefacturas.ID = prefacturasdetalle.Prefactura_ID  where prefacturas.ID = " . $ID . ") PD");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
 }

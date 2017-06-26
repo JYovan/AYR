@@ -14,6 +14,7 @@ class CtrlTrabajos extends CI_Controller {
         $this->load->model('codigoppta_model');
         $this->load->model('cuadrilla_model');
         $this->load->model('trabajo_model');
+        $this->load->model('centrocostos_model');
     }
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
@@ -39,6 +40,14 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getTrabajoByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+     public function getCC() {
+        try {
+            $data = $this->centrocostos_model->getCC();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -145,6 +154,7 @@ class CtrlTrabajos extends CI_Controller {
                 'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : NULL,
+                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : NULL
             );
             $ID = $this->trabajo_model->onAgregar($data);
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
