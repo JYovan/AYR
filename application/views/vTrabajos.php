@@ -1305,7 +1305,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
+                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(),IdMovimiento);
                     VistaPreviaAnexosPorConcepto.html("");
                     getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
@@ -2501,7 +2501,8 @@
             url: master_url + 'onEliminarConceptoXDetalle',
             type: "POST",
             data: {
-                ID: IdEliminarConcepto
+                ID: IdEliminarConcepto,
+                IDT:IdMovimiento
             }
         }).done(function (data, x, jq) {
             $(evtEliminarConcepto).parent().parent().remove();
@@ -3197,7 +3198,8 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IdMovimiento
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
@@ -3321,7 +3323,8 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IdMovimiento
             }
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
@@ -3386,7 +3389,8 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IDT
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
@@ -3492,7 +3496,8 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IDT
             }
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
@@ -3549,7 +3554,8 @@
             url: master_url + 'onEliminarFotoXConcepto',
             type: "POST",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IdMovimiento
             }
         }).done(function (data, x, jq) {
             onReloadFotosXConcepto(IDTD, IDT);
@@ -3599,7 +3605,8 @@
             url: master_url + 'onEliminarAnexoXConcepto ',
             type: "POST",
             data: {
-                ID: IDX
+                ID: IDX,
+                IDT:IDT
             }
         }).done(function (data, x, jq) {
             console.log(data);
@@ -3896,9 +3903,15 @@
         }
     }
     function onReporteLevantamientoCompleto() {
-        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+    var reporte='';
+    if (parseFloat(Cliente) === 4) {
+        reporte='onReporteLevantamientoCompletoPrinciple';
+    }else{
+        reporte='onReporteLevantamientoCompleto';
+    }
+       HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
-            url: master_url + 'onReporteLevantamientoCompleto',
+            url: master_url + reporte,
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {

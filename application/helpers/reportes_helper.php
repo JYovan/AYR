@@ -1,5 +1,7 @@
 <?php
-
+class PDF extends FPDF {
+    
+}
 class PDFC extends FPDF {
 
     function Footer() {
@@ -680,6 +682,102 @@ class FotosFPDLC extends FPDF {
         $this->SetFont('Arial', 'I', 8);
         $this->SetTextColor(0, 0, 0);
         $this->SetY(208);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+
+    /*  STTER AND GETTER */
+
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+
+    public function getCrL() {
+        return $this->CrL;
+    }
+
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+
+    public function getConceptoL() {
+        return $this->ConceptoL;
+    }
+
+}
+
+class FotosFPDLCP extends FPDF {
+
+// Page header
+    function Header() {
+          $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(210, 71, 38);
+        $this->Cell(279, 30, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'uploads/Clientes/4/PRINCIPLE.png', 225, 10, 50);
+        // Título
+        $this->SetFont('Arial', 'B', 25);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(15);
+        $this->SetX(8);
+        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+       
+        /* CUERPO */
+//        $this->SetFont('Arial', 'I', 14);
+//        $this->SetTextColor(122, 122, 122);
+//        $this->SetY(33);
+//        $this->SetX(5);
+//        $this->Cell(35, 5, utf8_decode("Estado Inicial "), 0, 1, 'L');
+//        $this->SetY(33);
+//        $this->SetX(145);
+//        $this->Cell(35, 5, utf8_decode("Estado Final "), 0, 1, 'L');
+        //$this->Line(140, 40, 140, 200);
+    }
+
+// Page footer
+    function Footer() {
+        $this->Image(base_url() . 'img/watermark2.png', 253, 202, 13);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, 'ID -' . utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(210);
         // Page number
         $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
         $this->SetY(-15);

@@ -174,12 +174,12 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajoFotosDetalleByID($IDX) {
+    public function getTrabajoFotosDetalleByID($IDX,$IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
-            $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDF.IdTrabajo", $IDT);
             $this->db->order_by('TDF.ID', 'DESC');
             $query = $this->db->get();
             /*
@@ -231,12 +231,12 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getFotosXTrabajoDetalleID($IDX) {
+    public function getFotosXTrabajoDetalleID($IDX,$IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
-            $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDF.IdTrabajo", $IDT);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -268,12 +268,13 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getFotoXConceptoID($IDX) {
+    public function getFotoXConceptoID($IDX,$IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
             $this->db->join("trabajos AS t", "t.ID =TDF.IdTrabajo");
             $this->db->where("TDF.ID", $IDX);
+            $this->db->where("TDF.IdTrabajo", $IDT);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -305,11 +306,12 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getAnexosXTrabajoDetalleID($IDX) {
+    public function getAnexosXTrabajoDetalleID($IDX,$IDT) {
         try {
             $this->db->select('TDA.*', false);
             $this->db->from("trabajodetalleanexos AS TDA");
             $this->db->where("TDA.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDA.IdTrabajo", $IDT);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -323,12 +325,12 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getAnexoXConceptoID($IDX) {
+    public function getAnexoXConceptoID($IDX, $IDT) {
         try {
             $this->db->select('TDA.*', false);
             $this->db->from("trabajodetalleanexos AS TDA");
-            $this->db->join("trabajos AS t", "t.ID =TDA.IdTrabajo");
             $this->db->where("TDA.ID", $IDX);
+            $this->db->where("TDA.IdTrabajo", $IDT);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -378,12 +380,12 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajoAnexosDetalleByID($IDX) {
+    public function getTrabajoAnexosDetalleByID($IDX, $IDT) {
         try {
             $this->db->select('TDEA.*', false);
             $this->db->from("trabajodetalleanexos AS TDEA");
-            $this->db->join("trabajos AS t", "t.ID =TDEA.IdTrabajo");
             $this->db->where("TDEA.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDEA.IdTrabajo", $IDT);
             $this->db->order_by('TDEA.ID', 'DESC');
             $query = $this->db->get();
             /*
@@ -622,8 +624,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarFotoXConcepto($ID) {
+    public function onEliminarFotoXConcepto($ID,$IDT) {
         try {
+            $this->db->where('IdTrabajo', $IDT);
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetallefotos');
 //            print $str = $this->db->last_query();
@@ -642,8 +645,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarAnexoXConcepto($ID) {
+    public function onEliminarAnexoXConcepto($ID,$IDT) {
         try {
+            $this->db->where('IdTrabajo', $IDT);
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetalleanexos');
             // print $str = $this->db->last_query();
@@ -801,8 +805,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarFotosXConcepto($ID) {
+    public function onEliminarFotosXConcepto($ID,$IDT) {
         try {
+            $this->db->where('IdTrabajo', $IDT);
             $this->db->where('IdTrabajoDetalle', $ID);
             $this->db->delete('trabajodetallefotos');
 //            print $str = $this->db->last_query();
@@ -831,8 +836,9 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarAnexosXConcepto($ID) {
+    public function onEliminarAnexosXConcepto($ID,$IDT) {
         try {
+            $this->db->where('IdTrabajo', $IDT);
             $this->db->where('IdTrabajoDetalle', $ID);
             $this->db->delete('trabajodetalleanexos');
 //            print $str = $this->db->last_query();
