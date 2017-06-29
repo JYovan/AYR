@@ -182,14 +182,14 @@
     </div>
 </div>
 <!--EDITAR-->
-<div id="mdlNuevoConcepto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content modal-lg">
-        <div class="modal-header">
+<div id="mdlNuevoConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull  modal-content modal-contentFull modal-lg">
+        <div class="modal-header modal-headerFull">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Nuevo Concepto</h4>
+            <h4 class="modal-title modal-titleFull">Nuevo Concepto</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-bodyFull">
             <div class="col-md-12 hide">
                 <input type="text" class="form-control hide" id="ID" name="ID">
             </div>
@@ -199,15 +199,11 @@
                         <li class="active"><a href="#Conceptos" data-toggle="tab">Conceptos</a></li>
                         <li><a href="#Categorias" data-toggle="tab">Categorías</a></li>
                         <li><a href="#SubCategorias" data-toggle="tab">Sub Categorías</a></li>
-                        <li><a href="#SubSubCategorias" data-toggle="tab">SubSub Categorías</a></li>
+                        <li><a href="#SubSubCategorias" data-toggle="tab">Sub Sub Categorías</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12"></div>
-                <div class="col-md-12">
-                    <span>
-                        <br>
-                    </span>
-                </div>
+                <div class="col-md-12"><span><br></span></div>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active in" id="Conceptos">
                         <div class="col-md-12">
@@ -322,32 +318,32 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer" >
+        <div class="modal-footer modal-footerFull" >
             <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
+            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto">GUARDAR</button>
             <!--BOTONES CATEGORIA-->
-            <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+            <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria">GUARDAR</button>
             <!--BOTONES SUBCATEGORIA-->
             <br>
-            <button type="button" class="btn btn-default hide" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary hide" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+            <button type="button" class="btn btn-default hide" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria">GUARDAR</button>
             <!--BOTONES SUBSUBCATEGORIA-->
             <br>
-            <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal"><span class="fa fa-ban 1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria"><span class="fa fa-check 1x"></span><br>GUARDAR</button>
+            <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria">GUARDAR</button>
         </div>
     </div>
 </div>
-<div id="mdlEditarConcepto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content modal-lg">
-        <div class="modal-header">
+<div id="mdlEditarConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull  modal-content modal-contentFull modal-lg">
+        <div class="modal-header modal-headerFull">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Editar</h4>
+            <h4 class="modal-title modal-titleFull">Editar</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-bodyFull">
             <form id="frmEditar">
                 <fieldset>
                     <div class="col-md-12 hide">
@@ -398,10 +394,10 @@
                 </fieldset>
             </form>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer modal-footerFull">
             <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnModificarConcepto" name="btnModificarConcepto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnModificarConcepto" name="btnModificarConcepto">GUARDAR</button>
         </div>
     </div>
 </div>
@@ -411,7 +407,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">
             Deseas eliminar el registro?
@@ -427,7 +423,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">
             Deseas eliminar el registro?

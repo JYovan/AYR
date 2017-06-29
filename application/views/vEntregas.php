@@ -19,7 +19,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">IMPRIMIR REPORTES</h4>
+            <h4 class="modal-title">Imprimir Reportes</h4>
         </div>
         <div class="modal-body">
             Selecciona el reporte que deseas imprimir
@@ -245,14 +245,14 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">SELECCIONE UN TRABAJO</h4>
+                <h4 class="modal-title modal-titleFull">Seleccione un trabajo</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="chkMultiple" value="ON"> VARIOS
+                                <input type="checkbox" id="chkMultiple" value="ON"> Varios
                             </label>
                         </div>
                     </div>
@@ -272,7 +272,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">
             Deseas eliminar el registro?

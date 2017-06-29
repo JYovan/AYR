@@ -14,7 +14,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">IMPRIMIR REPORTES</h4>
+            <h4 class="modal-title">Imprimir Reportes</h4>
         </div>
         <div class="modal-body">Selecciona el reporte que deseas imprimir
             <div class="col-md-12"><br></div>
@@ -59,7 +59,7 @@
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
@@ -73,7 +73,7 @@
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
@@ -87,7 +87,7 @@
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ELIMINAR REGISTRO</h4>
+            <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
@@ -801,7 +801,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">GENERADOR</h4>
+                <h4 class="modal-title modal-titleFull">Generador</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <ul class="nav nav-tabs" style="">
@@ -879,12 +879,12 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">SELECCIONE UN CONCEPTO</h4>
+                <h4 class="modal-title modal-titleFull">Seleccione un concepto</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
-                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> VARIOS</label>
+                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> Varios</label>
                         </div>
                     </div>
                 </fieldset>
@@ -901,7 +901,7 @@
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">FOTOS</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">Fotos</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -933,7 +933,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">FOTOS ANTES</h4>
+                <h4 class="modal-title modal-titleFull">Fotos Antes</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -965,7 +965,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">FOTOS DESPUÉS</h4>
+                <h4 class="modal-title modal-titleFull">Fotos Después</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -997,7 +997,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">FOTOS EN PROCESO</h4>
+                <h4 class="modal-title modal-titleFull">Fotos en Proceso</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1029,7 +1029,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">CROQUIS</h4>
+                <h4 class="modal-title modal-titleFull">Croquis</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1060,7 +1060,7 @@
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">ANEXOS</h4>
+                <h4 class="modal-title modal-titleFull">Anexos</h4>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -2876,14 +2876,14 @@
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
                     '<th></th>' +
-                    '<th >Area</th>' +
-                    '<th>Eje</th>' +
-                    '<th class="col-md-3">Entre Eje 1</th>' +
-                    '<th class="col-md-3">Entre Eje 2</th>' +
-                    '<th class="col-md-1">Largo</th>' +
+                    '<th class="col-md-6">Area</th>' +
+                    '<th class="hide">Eje</th>' +
+                    '<th class="hide">Entre Eje 1</th>' +
+                    '<th class="hide">Entre Eje 2</th>' +
+                    '<th >Largo</th>' +
                     '<th>Ancho</th>' +
-                    '<th class="col-md-2">Alto</th>' +
-                    '<th class="col-md-2">Cantidad</th>' +
+                    '<th>Alto</th>' +
+                    '<th>Cantidad</th>' +
                     '<th>Total</th>' +
                     '<th></th>' +
                     '<th class="hide">Estatus</th>' +
@@ -2910,15 +2910,15 @@
                 tblGeneradoresDetalleXConcepto += v.Area;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*EJE*/
-                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                 tblGeneradoresDetalleXConcepto += v.Eje;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*EntreEje1*/
-                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                 tblGeneradoresDetalleXConcepto += v.EntreEje1;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*EntreEje2*/
-                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                 tblGeneradoresDetalleXConcepto += v.EntreEje2;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*Largo*/
@@ -3045,14 +3045,14 @@
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
                     '<th></th>' +
-                    '<th >Area</th>' +
-                    '<th>Eje</th>' +
-                    '<th class="col-md-3">Entre Eje 1</th>' +
-                    '<th class="col-md-3">Entre Eje 2</th>' +
+                    '<th class="col-md-6">Area</th>' +
+                    '<th class="hide">Eje</th>' +
+                    '<th class="hide">Entre Eje 1</th>' +
+                    '<th class="hide">Entre Eje 2</th>' +
                     '<th class="col-md-1">Largo</th>' +
                     '<th>Ancho</th>' +
-                    '<th class="col-md-2">Alto</th>' +
-                    '<th class="col-md-2">Cantidad</th>' +
+                    '<th>Alto</th>' +
+                    '<th>Cantidad</th>' +
                     '<th>Total</th>' +
                     '<th></th>' +
                     '<th class="hide">Estatus</th>' +
@@ -3081,15 +3081,15 @@
                     tblGeneradoresDetalleXConcepto += v.Area;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*EJE*/
-                    tblGeneradoresDetalleXConcepto += "<td>";
+                    tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                     tblGeneradoresDetalleXConcepto += v.Eje;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*EntreEje1*/
-                    tblGeneradoresDetalleXConcepto += "<td>";
+                    tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                     tblGeneradoresDetalleXConcepto += v.EntreEje1;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*EntreEje2*/
-                    tblGeneradoresDetalleXConcepto += "<td>";
+                    tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                     tblGeneradoresDetalleXConcepto += v.EntreEje2;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*Largo*/
@@ -3506,12 +3506,11 @@
                     console.log(base_url + v.Url);
                     picthumbnail += '<div class="col-md-3">';
                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3548,12 +3547,11 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                      mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3589,13 +3587,12 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                      picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                       mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3632,12 +3629,12 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+       
                     mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3675,13 +3672,12 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-6">';
-                    picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3790,12 +3786,12 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3829,12 +3825,11 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3868,12 +3863,11 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3907,12 +3901,11 @@
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3945,13 +3938,13 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-6">';
-                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
-                            '<div class="pull-right" align="right">'+
-                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
-                            '</div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
-                            '</div>';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
+                            '<div class="pull-right" >'+
+                            '<button class="close closeFotos customButtonEliminarFoto"'+
+                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+        
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
