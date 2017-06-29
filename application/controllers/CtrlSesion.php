@@ -13,34 +13,7 @@ class CtrlSesion extends CI_Controller {
         $this->load->model('trabajo_model');
     }
 
-    public function getRecordsEntrega() {
-        try {
-            $data = $this->usuario_model->getRecordsEntrega();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
 
-    public function onInsertarEntregas() {
-        try {
-            extract(filter_input_array(INPUT_POST));
-            $data = array(
-                'Movimiento' => $Movimiento,
-                'FechaCreacion' => $FechaCreacion,
-                'NoEntrega' => $NoEntrega,
-                'Estatus' => 'ACTIVO',
-                'Cliente_ID' => $Cliente_ID,
-                'Clasificacion' => $Clasificacion,
-                'Importe' => $Importe,
-                'Usuario_ID' => 2
-            );
-            $IDX = $this->usuario_model->onInsertarEntregas($data);
-            print "ID: $IDX";
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {

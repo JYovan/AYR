@@ -240,14 +240,14 @@
     </div>
 </div>
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlSeleccionarTrabajosEditar" class="modal animated fadeInUp">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlSeleccionarTrabajosEditar" class="modal modalFull animated fadeInUp">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">SELECCIONE UN TRABAJO</h4>
+                <h4 class="modal-title modal-titleFull">SELECCIONE UN TRABAJO</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
@@ -260,8 +260,8 @@
                 <div class="col-md-12" id="TrabajosXClienteIDXClasificacion">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
@@ -1064,11 +1064,3 @@
     }
     var ImporteTotalGlobal = 0;
 </script>
-<style>
-    .super-fullscreen {
-        width: 90% !important;
-    }
-    .medium-fullscreen {
-        width: 60% !important;
-    }
-</style>

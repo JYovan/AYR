@@ -42,15 +42,15 @@
     </div>
 </div>
 <!--MODALES-->
-<div id="mdlNuevo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlNuevo" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull" role="document">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nuevo Cliente</h4>
+                <h4 class="modal-title modal-titleFull">Nuevo Cliente</h4>
             </div>
             <form id="frmNuevo">
-                <div class="modal-body">
+                <div class="modal-body modal-bodyFull">
                     <fieldset> 
                         <div class="col-md-12">
                             <label for="">Nombre*</label>
@@ -116,22 +116,22 @@
                     </fieldset>
                 </div>
             </form>
-            <div class="modal-footer">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div id="mdlEditar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlEditar" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull modal-lg" role="document">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Editar Cliente</h4>
+                <h4 class="modal-title modal-titleFull">Editar Cliente</h4>
             </div>
             <form id="frmEditar">
-                <div class="modal-body">
+                <div class="modal-body modal-bodyFull">
                     <fieldset>
                         <div class="col-md-12 hide">
                             <input type="text" id="ID" name="ID" class="form-control" >
@@ -202,7 +202,7 @@
                     </fieldset>
                 </div>
             </form>
-            <div class="modal-footer">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
             </div>
@@ -210,15 +210,15 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!--MODAL SUCURSAL-->
-<div id="mdlNuevaSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
-    <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlNuevaSucursal" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+    <div class="modal-dialog modal-dialogFull"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Nueva Sucursal</h4>
+                <h4 class="modal-title modal-titleFull">Nueva Sucursal</h4>
             </div>
             <form id="frmNuevoSuc">
-                <div class="modal-body">
+                <div class="modal-body modal-bodyFull">
                     <fieldset> 
                         <div class="col-6 col-md-12">      
                             <!-- Nav tabs -->
@@ -462,22 +462,22 @@
                     </fieldset>
                 </div>
             </form>
-            <div class="modal-footer">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-default" id="btnCancelarSucursal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnGuardarSucursal">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div id="mdlEditarSucursal" class="modal animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
-    <div class="modal-dialog super-fullscreen"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlEditarSucursal" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+    <div class="modal-dialog modal-dialogFull"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Editar Sucursal</h4>
+                <h4 class="modal-title modal-titleFull">Editar Sucursal</h4>
             </div>
             <form id="frmEditarSuc">
-                <div class="modal-body">
+                <div class="modal-body modal-bodyFull">
                     <fieldset> 
                         <div class="col-6 col-md-12">      
                             <!-- Nav tabs -->
@@ -724,7 +724,7 @@
                     </fieldset>
                 </div>
             </form>
-            <div class="modal-footer">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
                 <button type="button" class="btn btn-raised btn-primary" id="btnGuardarSucursal">GUARDAR</button>
             </div>
@@ -1457,12 +1457,3 @@
         }
     }
 </script>
-<style>
-    .super-fullscreen {
-        width: 90% !important; 
-        overflow: auto;
-    }
-    .super-fullscreen {
-        width: 90% !important; 
-    } 
-</style>

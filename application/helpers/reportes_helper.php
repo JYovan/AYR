@@ -454,6 +454,114 @@ class FotosFPDLA extends FPDF {
 
 }
 
+class FotosFPDLP extends FPDF {
+
+// Page header
+    function Header() {
+        $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(39, 79, 117);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'img/AYR_reportes.png', 5, 3, 45);
+        // Título
+        $this->SetFont('Arial', 'B', 15);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(5);
+        $this->SetX(185);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
+        $this->SetY(10);
+        $this->SetX(185);
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetY(15);
+        $this->SetX(145);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
+        /* CUERPO */
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetY(45);
+        $this->SetX(5);
+        $this->Cell(35, 6, utf8_decode("En Proceso "), 0, 1, 'L');
+        $this->Ln(20);
+    }
+
+// Page footer
+    function Footer() {
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(205);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+
+    /*  STTER AND GETTER */
+
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+    public $DireccionL = '';
+
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
+
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+
+    public function getCrL() {
+        return $this->CrL;
+    }
+
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+
+    public function getConceptoL() {
+        return $this->ConceptoL;
+    }
+
+}
+
 class FotosFPDLD extends FPDF {
 
 // Page header
@@ -752,7 +860,7 @@ class FotosFPDLCP extends FPDF {
         $this->SetTextColor(255, 255, 255);
         $this->SetY(15);
         $this->SetX(8);
-        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+        $this->Cell(80, 10, utf8_decode($this->getCentroCostoL()), 0, 0, 'L');
        
         /* CUERPO */
 //        $this->SetFont('Arial', 'I', 14);
@@ -790,6 +898,15 @@ class FotosFPDLCP extends FPDF {
     public $SucursalL = '';
     public $ConceptoL = '';
     public $ClienteL = '';
+    public $CentroCostoL = '';
+    
+     public function setCentroCostoL($CentroCostoL) {
+        $this->CentroCostoL = $CentroCostoL;
+    }
+
+    public function getCentroCostoL() {
+        return $this->CentroCostoL;
+    }
 
     public function setClienteL($ClienteL) {
         $this->ClienteL = $ClienteL;
@@ -848,7 +965,7 @@ class FotosFPDLAP extends FPDF {
         $this->SetTextColor(255, 255, 255);
         $this->SetY(20);
         $this->SetX(8);
-        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+        $this->Cell(80, 10, utf8_decode($this->getCentroCostoL()), 0, 0, 'L');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
@@ -883,6 +1000,15 @@ class FotosFPDLAP extends FPDF {
     public $ConceptoL = '';
     public $ClienteL = '';
     public $DireccionL = '';
+    public $CentroCostoL = '';
+    
+     public function setCentroCostoL($CentroCostoL) {
+        $this->CentroCostoL = $CentroCostoL;
+    }
+
+    public function getCentroCostoL() {
+        return $this->CentroCostoL;
+    }
 
     public function setDireccionL($DireccionL) {
         $this->DireccionL = $DireccionL;
@@ -949,7 +1075,7 @@ class FotosFPDLDP extends FPDF {
         $this->SetTextColor(255, 255, 255);
         $this->SetY(20);
         $this->SetX(8);
-        $this->Cell(80, 10, utf8_decode("FELL PROGRAM"), 0, 0, 'L');
+        $this->Cell(80, 10, utf8_decode($this->getCentroCostoL()), 0, 0, 'L');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
@@ -984,7 +1110,128 @@ class FotosFPDLDP extends FPDF {
     public $ConceptoL = '';
     public $ClienteL = '';
     public $DireccionL = '';
+    public $CentroCostoL = '';
+    
+     public function setCentroCostoL($CentroCostoL) {
+        $this->CentroCostoL = $CentroCostoL;
+    }
 
+    public function getCentroCostoL() {
+        return $this->CentroCostoL;
+    }
+
+    
+    public function setDireccionL($DireccionL) {
+        $this->DireccionL = $DireccionL;
+    }
+
+    public function getDireccionL() {
+        return $this->DireccionL;
+    }
+
+    public function setClienteL($ClienteL) {
+        $this->ClienteL = $ClienteL;
+    }
+
+    public function getClienteL() {
+        return $this->ClienteL;
+    }
+
+    public function setEmpresaL($EmpresaL) {
+        $this->EmpresaL = $EmpresaL;
+    }
+
+    public function getEmpresaL() {
+        return $this->EmpresaL;
+    }
+
+    public function setCrL($CrL) {
+        $this->CrL = $CrL;
+    }
+
+    public function getCrL() {
+        return $this->CrL;
+    }
+
+    public function setSucursalL($SucursalL) {
+        $this->SucursalL = $SucursalL;
+    }
+
+    public function getSucursalL() {
+        return $this->SucursalL;
+    }
+
+    public function setConceptoL($ConceptoL) {
+        $this->ConceptoL = $ConceptoL;
+    }
+
+    public function getConceptoL() {
+        return $this->ConceptoL;
+    }
+
+}
+
+class FotosFPDLPP extends FPDF {
+
+// Page header
+    function Header() {
+        $this->SetY(0);
+        $this->SetX(0);
+        $this->SetFillColor(210, 71, 38);
+        $this->Cell(279, 35, '', 1, 0, 'C', true);
+        // Logo
+        $this->Image(base_url() . 'uploads/Clientes/4/PRINCIPLE.png', 225, 15, 50);
+        // Título
+        $this->SetFont('Arial', 'B', 25);
+        $this->SetTextColor(255, 255, 255);
+        $this->SetY(20);
+        $this->SetX(8);
+        $this->Cell(80, 10, utf8_decode($this->getCentroCostoL()), 0, 0, 'L');
+        /* CUERPO */
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetY(45);
+        $this->SetX(5);
+        $this->Cell(35, 6, utf8_decode("En Proceso"), 0, 1, 'L');
+        $this->Ln(20);
+    }
+
+// Page footer
+    function Footer() {
+        $this->Image(base_url() . 'img/watermark2.png', 253, 202, 13);
+        $this->SetTextColor(122, 122, 122);
+        $this->SetFont('Arial', 'B', 13);
+        $this->SetY(210);
+        $this->SetX(5);
+        $this->Cell(180, 5, 'ID -' . utf8_decode($this->getCRL() . ' ' . $this->getSucursalL()), 0, 1, 'L');
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(0, 0, 0);
+        $this->SetY(210);
+        // Page number
+        $this->Cell(0, 5, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'R');
+        $this->SetY(-15);
+    }
+
+    /*  STTER AND GETTER */
+
+    public $EmpresaL = '';
+    public $CrL = '';
+    public $SucursalL = '';
+    public $ConceptoL = '';
+    public $ClienteL = '';
+    public $DireccionL = '';
+    public $CentroCostoL = '';
+    
+     public function setCentroCostoL($CentroCostoL) {
+        $this->CentroCostoL = $CentroCostoL;
+    }
+
+    public function getCentroCostoL() {
+        return $this->CentroCostoL;
+    }
+
+    
     public function setDireccionL($DireccionL) {
         $this->DireccionL = $DireccionL;
     }

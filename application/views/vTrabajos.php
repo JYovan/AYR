@@ -1,14 +1,10 @@
 <div class="col-md-12" id="MenuTablero">
     <div class="panel panel-default animated">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Trabajos</div>
-        </div>
-        <fieldset>
-            <div class="col-md-12 dt-buttons" align="right">
+        <div class="panel-heading"><div class="cursor-hand" >Trabajos</div></div>
+        <fieldset><div class="col-md-12 dt-buttons" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                 <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
-            </div>
-            <div class="col-md-12" id="tblRegistros"></div>
+            </div><div class="col-md-12" id="tblRegistros"></div>
         </fieldset>
     </div>
 </div>
@@ -24,12 +20,12 @@
             <div class="col-md-12"><br></div>
             <div id="reportesLevantamiento" class="dt-buttons">
                 <button onclick="onReporteLevantamientoAntes();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
+                <button onclick="onReporteLevantamientoProceso();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS PROCESO</button>
                 <button onclick="onReporteLevantamientoDespues();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
                 <button onclick="onReporteLevantamientoCompleto()" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
             </div>
             <div id="reportesPresupuesto" class="dt-buttons">
                 <div class="col-6 col-md-12">
-                    <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                         <li role="presentation" class="active"><a href="#Generales" aria-controls="Generales" role="tab" data-toggle="tab">Generales</a></li>
                         <li role="presentation"><a href="#Obras" aria-controls="Obras" role="tab" data-toggle="tab">Obras</a></li>
@@ -38,7 +34,6 @@
                 </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <!-- PANEL DE DATOS GENERALES-->
                     <div role="tabpanel" class="tab-pane fade in active" id="Generales">
                         <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
                         <button onclick="onReporteCroquis()" class="btn btn-default"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
@@ -73,7 +68,7 @@
         </div>
     </div>
 </div>
-<!--Confirmacion-->
+<!--Confirmacion Eliminar Concepto-->
 <div id="mdlConfirmarEliminarConcepto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -137,7 +132,6 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="col-6 col-md-12">
-                        <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Datos Generales</a></li>
                             <li role="presentation"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
@@ -389,14 +383,12 @@
                 </div>
             </div>
         </div>
-        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive" id="Conceptos" ></div>
         </fieldset>
-        <!--</div>-->
     </div>
 </div>
 <!--PANEL NUEVO DETALLE ABIERTO-->
@@ -408,13 +400,11 @@
                 </div>
             </div>
         </div>
-        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
         </fieldset>
-        <!--        </div>-->
     </div>
 </div>
 <!--PANEL EDITAR-->
@@ -443,9 +433,7 @@
                     <span class=""> </span>
                     <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
                     <span class="togglebutton customLabelToggle" >
-                        <label>
-                            <input type="checkbox" id="Concluir" name="Concluir" >Concluir
-                        </label>
+                        <label><input type="checkbox" id="Concluir" name="Concluir" >Concluir</label>
                     </span>
                     <span>&nbsp;&nbsp;</span>
                     <button type="button" class="btn btn-raised btn-primary" id="btnModificarTrabajo" >GUARDAR</button>
@@ -465,7 +453,6 @@
                             <li role="presentation"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab">Adjuntos</a></li>
                         </ul>
                     </div>
-                    <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="EditarDatos">
@@ -488,7 +475,6 @@
                                 <label for="">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             </div>
-                            
                             <div class="col-6 col-md-3">
                                 <label for="">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
@@ -525,7 +511,7 @@
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
                             </div>
-                              <div class="col-6 col-md-3">
+                            <div class="col-6 col-md-3">
                                 <label for="">Centro de Costos</label>
                                 <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                                     <option value=""></option>
@@ -628,11 +614,8 @@
                                     <div class="col-6 col-md-3">
                                         <div class="togglebutton">
                                             <label for="">Impacto en el Plazo</label>
-                                            <spam><br></spam>
-                                            <spam><br></spam>
-                                            <label>
-                                                <input type="checkbox" id="EditarImpactoEnPlazo" name="" >
-                                            </label>
+                                            <spam><br></spam><spam><br></spam>
+                                            <label><input type="checkbox" id="EditarImpactoEnPlazo" name="" ></label>
                                         </div>
                                     </div>
                                     <div class=" col-6 col-md-3">
@@ -720,22 +703,16 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-6">
-                    <div class="cursor-hand" >Conceptos Presupuesto</div>
-                </div>
-                <div id="ImporteTotal" class="col-md-6" align="right">
-                    <h4 class="text-success">$ 0.0</h4>
-                </div>
+                <div class="col-md-6"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
+                <div id="ImporteTotal" class="col-md-6" align="right"><h4 class="text-success">$ 0.0</h4></div>
             </div>
         </div>
-        <!--<div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive " id="Conceptos" ></div>
         </fieldset>
-        <!--</div>-->
     </div>
 </div>
 <!--PANEL EDITAR DETALLE ABIERTO -->
@@ -743,67 +720,56 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajoAbierto">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-6">
-                    <div class="cursor-hand" >Conceptos Levantamiento</div>
-                </div>
+                <div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div>
             </div>
         </div>
-        <!-- <div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
-            <div class="col-md-12 table-responsive " id="ConceptosAbierto" >
-            </div>
+            <div class="col-md-12 table-responsive " id="ConceptosAbierto" ></div>
         </fieldset>
-        <!--</div>-->
     </div>
 </div>
 <!--MODAL AGREGAR CONCEPTO ABIERTO-->
-<div id="mdlAgregarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content modal-lg">
-        <div class="modal-header">
+<div id="mdlAgregarConceptoAbierto" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
+        <div class="modal-header modal-headerFull">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Agregar Concepto</h4>
+            <h4 class="modal-title modal-titleFull">Agregar Concepto</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-bodyFull">
             <form id="frmAgregarConceptoDetalleAbierto">
                 <fieldset>
-                    <div class=" hide">
-                        <input type="text" id="ID" name="ID" class="form-control">
-                    </div>
+                    <div class=" hide"><input type="text" id="ID" name="ID" class="form-control"></div>
                     <div class="col-md-3">
                         <label for="">Clave*</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                     </div>
                     <div class="col-md-12">
                         <label for="">Descripción*</label>
-                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                        </textarea>
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
-                    </div>
+                    <div class="col-6 col-md-6"><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
-        <div class="modal-footer">
-            <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnAgregarConceptoAbierto" name="btnAgregarConceptoAbierto"><span class="fa fa-check fa-1x"></span><br>GUARDAR</button>
+        <div class="modal-footer modal-footerFull">
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnAgregarConceptoAbierto" name="btnAgregarConceptoAbierto">GUARDAR</button>
         </div>
     </div>
 </div>
 <!--MODAL EDITAR CONCEPTO ABIERTO-->
-<div id="mdlEditarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content modal-lg">
-        <div class="modal-header">
+<div id="mdlEditarConceptoAbierto" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
+        <div class="modal-header modal-headerFull">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Editar Concepto</h4>
+            <h4 class="modal-title modal-titleFull">Editar Concepto</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-bodyFull">
             <form id="frmEditarConceptoDetalleAbierto">
                 <fieldset>
                     <div class=" hide">
@@ -819,27 +785,25 @@
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
-                    </div>
+                    <div class="col-6 col-md-6"><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
-        <div class="modal-footer"><!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban fa-1x"></span><br>CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEditarConceptoAbierto" name="btnEditarConceptoAbierto"><span class="fa fa-check fa-1x"></span><br>MODIFICAR</button>
+        <div class="modal-footer modal-footerFull"><!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConceptoAbierto" name="btnEditarConceptoAbierto">MODIFICAR</button>
         </div>
     </div>
 </div>
 <!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO-->
-<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal animated bounceInDown ">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull animated bounceInDown ">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">GENERADOR</h4>
+                <h4 class="modal-title modal-titleFull">GENERADOR</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <ul class="nav nav-tabs" style="">
                     <li class="active"><a href="#EditarGeneradores" data-toggle="tab">Generador</a></li>
                     <li><a href="#EditarGenerador" data-toggle="tab">Agregar</a></li>
@@ -894,171 +858,230 @@
                             <label for="">Cantidad</label>
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary hide" id="btnModificar" onclick=""><span class="fa fa-check"></span><br>MODIFICAR</button>
-                            <button type="button" class="btn btn-default hide" id="btnCancelar" onclick="onCancelarEditarModificarGeneradorXID(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
-                            <button type="button" class="btn btn-primary " id="btnGuardar"><span class="fa fa-check"></span><br>GUARDAR</button>
-                            <button type="button" class="btn btn-default " id="btnCancelarEditarGenerador" onclick="onCancelarEditarAgregarNuevoGenerador(this);"><span class="fa fa-times"></span><br>CANCELAR</button>
+                        <div class="modal-footer modal-footerFull">
+                            <button type="button" class="btn btn-raised btn-primary hide" id="btnModificar" onclick="">MODIFICAR</button>
+                            <button type="button" class="btn btn-raised btn-default hide" id="btnCancelar" onclick="onCancelarEditarModificarGeneradorXID(this);">CANCELAR</button>
+                            <button type="button" class="btn btn-raised btn-primary " id="btnGuardar">GUARDAR</button>
+                            <button type="button" class="btn btn-raised btn-default " id="btnCancelarEditarGenerador" onclick="onCancelarEditarAgregarNuevoGenerador(this);">CANCELAR</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
 </div>
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlTrabajoNuevoConceptoEditar" class="modal animated fadeInUp">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlTrabajoNuevoConceptoEditar" class="modal modalFull animated fadeInUp">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">SELECCIONE UN CONCEPTO</h4>
+                <h4 class="modal-title modal-titleFull">SELECCIONE UN CONCEPTO</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="chkMultiple" value="ON"> VARIOS
-                            </label>
+                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> VARIOS</label>
                         </div>
                     </div>
                 </fieldset>
                 <div class="col-md-12" id="ConceptosXPreciarioID"></div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+             <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
 </div>
 <!--MODAL EDITAR - VER FOTOS ADJUNTAS-->
-<div id="mdlTrabajoEditarFotosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">FOTOS</h4>
+<div id="mdlTrabajoEditarFotosPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">FOTOS</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12">
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control hide">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control hide">
+                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="col-md-12" id="" align="center"  onclick="setFotosEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
+                    </div>
+                    <div class="col-md-12"><br><br></div>
+                    <div class="col-md-12 row" id="Fotos"></div>
+                </fieldset>
+            </div>
+             <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL EDITAR - VER FOTOS ANTES ADJUNTAS-->
+<div id="mdlTrabajoEditarFotosAntesPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title modal-titleFull">FOTOS ANTES</h4>
+            </div>
+            <div class="modal-body modal-bodyFull">
+                <fieldset>
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
                         <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
-                <div id="VistaPreviaFotos" class="row">
-                </div>
                 <fieldset>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setFotosEditar(this)">
-                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR FOTOS</h1>
+                    <div class="col-md-12" id="" align="center"  onclick="setFotosAntesEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
                     </div>
-                    <div class="col-md-12" align="center"><br><h1>FOTOS</h1><HR></div>
+                    <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
                 </fieldset>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
 </div>
 <!--MODAL EDITAR - VER FOTOS DESPUES ADJUNTAS-->
-<div id="mdlTrabajoEditarFotosDespuesPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlTrabajoEditarFotosDespuesPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">FOTOS</h4>
+                <h4 class="modal-title modal-titleFull">FOTOS DESPUÉS</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12">
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
                         <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
-                <div id="VistaPreviaFotos" class="row">
-                </div>
                 <fieldset>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setFotosDespuesEditar(this)">
-                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR FOTOS</h1>
+                    <div class="col-md-12" id="" align="center"  onclick="setFotosDespuesEditar(this)">
+                        <div class="file_drag_area"> <p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
                     </div>
-                    <div class="col-md-12" align="center"><br><h1>FOTOS</h1><HR></div>
+                    <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
                 </fieldset>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+             <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL EDITAR - VER FOTOS PROCESO ADJUNTAS-->
+<div id="mdlTrabajoEditarFotosProcesoPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title modal-titleFull">FOTOS EN PROCESO</h4>
+            </div>
+            <div class="modal-body modal-bodyFull">
+                <fieldset>
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="col-md-12" id="" align="center"  onclick="setFotosProcesoEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
+                    </div>
+                    <div class="col-md-12"><br><br></div>
+                    <div class="col-md-12 row" id="Fotos"></div>
+                </fieldset>
+            </div>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
 </div>
 <!--MODAL EDITAR - VER CROQUIS ADJUNTOS-->
-<div id="mdlTrabajoEditarCroquisPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlTrabajoEditarCroquisPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">CROQUIS</h4>
+                <h4 class="modal-title modal-titleFull">CROQUIS</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12">
+                    <div class="col-md-12 hide"><div class="col-md-12"><br></div>
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
                         <input type="file" id="fCroquis" name="fCroquis[]" multiple="" class="hide">
                     </div>
                 </fieldset>
-                <div id="VistaPreviaCroquis" class="row">
-                </div>
                 <fieldset>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setCroquisEditar()">
-                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR CROQUIS</h1>
+                    <div class="col-md-12" id="" align="center"  onclick="setCroquisEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
                     </div>
-                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12"><br><br></div>
                     <div class="col-md-12" id="Croquis"></div>
                 </fieldset>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
 </div>
 <!--MODAL EDITAR - VER ANEXOS ADJUNTOS-->
-<div id="mdlTrabajoEditarAnexosPorConcepto" class="modal animated bounceInDown">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlTrabajoEditarAnexosPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">ANEXOS</h4>
+                <h4 class="modal-title modal-titleFull">ANEXOS</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12">
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
                         <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
-                <div id="VistaPreviaAnexos" class="row">
-                </div>
                 <fieldset>
-                    <div class="col-md-12 hand-cursor" id="" align="center" style="cursor: pointer;" onclick="setAnexosEditar(this)">
-                        <br><i class="fa fa-cloud-upload fa-3x hand-cursor" aria-hidden="true"></i>
-                        <h1 >ADJUNTAR ANEXOS</h1>
+                    <div class="col-md-12" id="" align="center"  onclick="setAnexosEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
                     </div>
-                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12"><br><br></div>
                     <div class="col-md-12" id="Anexos"></div>
                 </fieldset>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+             <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
@@ -1114,24 +1137,28 @@
     var btnNuevoConceptoEditar = pnlDetalleEditarTrabajo.find("#btnNuevoConcepto");
     /*BOTON PARA ABRIR EL MODAL DE FOTOS (EDITAR)*/
     var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
+    /*BOTON PARA ABRIR EL MODAL DE FOTOS ANTES (EDITAR)*/
+    var mdlTrabajoEditarFotosAntesPorConcepto = $("#mdlTrabajoEditarFotosAntesPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE FOTOS DESPUES (EDITAR)*/
     var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
+    /*BOTON PARA ABRIR EL MODAL DE FOTOS PROCESO (EDITAR)*/
+    var mdlTrabajoEditarFotosProcesoPorConcepto = $("#mdlTrabajoEditarFotosProcesoPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE CROQUIS (EDITAR)*/
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE ANEXOS (EDITAR)*/
     var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
     /*FOTOS (EDITAR)*/
     var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
-    var VistaPreviaFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#VistaPreviaFotos");
+    /*FOTOSANTES (EDITAR)*/
+    var EditarFotosAntesPorConcepto = mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos");
     /*FOTOSDESPUES (EDITAR)*/
     var EditarFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos");
-    var VistaPreviaFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#VistaPreviaFotos");
+    /*FOTOSPROCESO (EDITAR)*/
+    var EditarFotosProcesoPorConcepto = mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos");
     /*CROQUIS (EDITAR)*/
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
-    var VistaPreviaCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#VistaPreviaCroquis");
     /*ANEXOS (EDITAR)*/
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
-    var VistaPreviaAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#VistaPreviaAnexos");
     /******ABIERTO*/
     var pnlDetalleEditarTrabajoAbierto = $('#pnlDetalleEditarTrabajoAbierto');
     var pnlDetalleNuevoTrabajoAbierto = $('#pnlDetalleNuevoTrabajoAbierto');
@@ -1140,6 +1167,15 @@
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
     $(document).ready(function () {
+        /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
+        $('.file_drag_area').on('dragover', function () {
+            $(this).addClass('file_drag_over');
+            return false;
+        });
+        $('.file_drag_area').on('dragleave', function () {
+            $(this).removeClass('file_drag_over');
+            return false;
+        });
         /**FIN FUNCIONES DE EDICION **/
         btnEditarConceptoAbierto.on("click", function () {
             $.validator.setDefaults({
@@ -1150,9 +1186,7 @@
             jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditarConceptoDetalleAbierto').validate({
                 errorElement: 'span', errorClass: 'errorForms',
-                rules: {
-                    Clave: 'required', Descripcion: 'required', IntExt: 'required'
-                },
+                rules: {Clave: 'required', Descripcion: 'required', IntExt: 'required'},
                 highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.addClass(errorClass);
@@ -1254,6 +1288,17 @@
             }
         });
         pnlEditarTrabajo.find("#Movimiento").change(function () {
+            /*Actualiza el movimiento sin necesidad de guardar*/
+            $.ajax({
+                url: master_url + 'onModificarMovimiento',
+                type: "POST",
+                data: {ID: IdMovimiento, Movimiento: this.value}
+            }).done(function (data, x, jq) {
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
             if (this.value === 'LEVANTAMIENTO') {
                 pnlDetalleEditarTrabajoAbierto.removeClass('hide');
                 pnlDetalleEditarTrabajo.addClass('hide');
@@ -1276,11 +1321,192 @@
         pnlEditarTrabajo.find("#Cliente_ID").change(function () {
             Cliente = this.value;
         });
-        /**FUNCIONES DE EDICION**/
+        /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
+        /*Evento drag and drop de FOTOS*/
+        mdlTrabajoEditarFotosPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*Evento drag and drop de FOTOS ANTES*/
+        mdlTrabajoEditarFotosAntesPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosAntesEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosAntesXConcepto(mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*Evento drag and drop de FOTOS DESPUES*/
+        mdlTrabajoEditarFotosDespuesPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosDespuesEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*Evento drag and drop de FOTOS PROCESO*/
+        mdlTrabajoEditarFotosProcesoPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosProcesoEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosProcesoXConcepto(mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*Evento drag and drop de CROQUIS*/
+        mdlTrabajoEditarCroquisPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('CROQUIS', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarCroquisEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*Evento drag and drop de ANEXOS*/
+        mdlTrabajoEditarAnexosPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('ANEXOS', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarAnexosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
+                    getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*CARGA DE ARCHIVOS DETALLE NORMAL*/
         /*ANEXOS POR CONCEPTO EDITAR*/
         EditarAnexosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            VistaPreviaAnexosPorConcepto.html("<fieldset></fieldset>");
             console.log(EditarAnexosPorConcepto[0].files);
             var img = "";
             var nimg = 0;
@@ -1305,8 +1531,8 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(),IdMovimiento);
-                    VistaPreviaAnexosPorConcepto.html("");
+                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
+
                     getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
@@ -1320,9 +1546,6 @@
         EditarCroquisPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var imageType = /image.*/;
-            VistaPreviaCroquisPorConcepto.html("<fieldset></fieldset>");
-            console.log('EditarCroquisPorConcepto[0].files');
-            console.log(EditarCroquisPorConcepto[0].files);
             var img = "";
             var nimg = 0;
             $.each(EditarCroquisPorConcepto[0].files, function (k, file) {
@@ -1348,7 +1571,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
-                    VistaPreviaCroquisPorConcepto.html("");
+
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1359,7 +1582,6 @@
         /*FOTOS POR CONCEPTO EDITAR*/
         EditarFotosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            VistaPreviaFotosPorConcepto.html("<fieldset></fieldset>");
             var img = "";
             var nimg = 0;
             $.each(EditarFotosPorConcepto[0].files, function (k, file) {
@@ -1384,7 +1606,42 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-                    VistaPreviaFotosPorConcepto.html("");
+
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            });
+        });
+        /*FOTOS DESPUES POR CONCEPTO EDITAR*/
+        EditarFotosAntesPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(EditarFotosAntesPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                /*SUBIR FOTO*/
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosAntesEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosAntesXConcepto(mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
+
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1395,7 +1652,6 @@
         /*FOTOS DESPUES POR CONCEPTO EDITAR*/
         EditarFotosDespuesPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            VistaPreviaFotosDespuesPorConcepto.html("<fieldset></fieldset>");
             var img = "";
             var nimg = 0;
             $.each(EditarFotosDespuesPorConcepto[0].files, function (k, file) {
@@ -1420,7 +1676,42 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
-                    VistaPreviaFotosDespuesPorConcepto.html("");
+
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            });
+        });
+        /*FOTOS PROCESO POR CONCEPTO EDITAR*/
+        EditarFotosProcesoPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(EditarFotosProcesoPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                /*SUBIR FOTO*/
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosProcesoEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosProcesoXConcepto(mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
+
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -2251,7 +2542,7 @@
         }
     }
     /*Traer catálogos para el encabezado*/
-      function getCC() {
+    function getCC() {
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'ESPERE...'
@@ -2502,7 +2793,7 @@
             type: "POST",
             data: {
                 ID: IdEliminarConcepto,
-                IDT:IdMovimiento
+                IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
             $(evtEliminarConcepto).parent().parent().remove();
@@ -3188,7 +3479,6 @@
         mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("");
-        VistaPreviaFotosPorConcepto.html("");
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'CARGANDO FOTOS...'
@@ -3199,37 +3489,33 @@
             dataType: "JSON",
             data: {
                 ID: IDX,
-                IDT:IdMovimiento
+                IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                VistaPreviaFotosPorConcepto.html("");
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
                 $.each(data, function (k, v) {
                     picthumbnail = "";
-                    if (nimg === 3) {
+                    if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
                     console.log(v);
                     console.log(base_url + v.Url);
-                    picthumbnail += '<div class="col-md-4">';
+                    picthumbnail += '<div class="col-md-3">';
                     picthumbnail += '<div class="thumbnail">' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
-                            '</a>' +
-                            '<div class="caption" align="center">' +
-                            '<p>' + v.Observaciones + '</p>' +
-                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
-                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
-                            '</div>' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
                             '</div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
-                VistaPreviaFotosPorConcepto.html("");
             }
         }).fail(function (x, y, z) {
         }).always(function () {
@@ -3237,11 +3523,52 @@
         });
         mdlTrabajoEditarFotosPorConcepto.modal('show');
     }
+    function getFotosAntesXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
+        mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
+        mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
+        $.ajax({
+            url: master_url + 'getTrabajoFotosAntesDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+            }
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarFotosAntesPorConcepto.modal('show');
+    }
     function getFotosDespuesXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
-        VistaPreviaFotosDespuesPorConcepto.html("");
         HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
         $.ajax({
             url: master_url + 'getTrabajoFotosDespuesDetalleByID',
@@ -3252,31 +3579,27 @@
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                VistaPreviaFotosDespuesPorConcepto.html("");
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
                 $.each(data, function (k, v) {
                     picthumbnail = "";
-                    if (nimg === 3) {
+                    if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-4">';
-                    picthumbnail += '<div class="thumbnail">' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
-                            '</a>' +
-                            '<div class="caption" align="center">' +
-                            '<p>' + v.Observaciones + '</p>' +
-                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
-                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
-                            '</div>' +
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
                             '</div>';
-                    mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                      mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
-                VistaPreviaFotosDespuesPorConcepto.html("");
             }
         }).fail(function (x, y, z) {
         }).always(function () {
@@ -3284,11 +3607,51 @@
         });
         mdlTrabajoEditarFotosDespuesPorConcepto.modal('show');
     }
+    function getFotosProcesoXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
+        $.ajax({
+            url: master_url + 'getTrabajoFotosProcesoDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } 
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
+    }
     function getCroquisXConceptoID(IDX, IDT) {
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarCroquisPorConcepto.find("#Fotos").html("");
-        VistaPreviaCroquisPorConcepto.html("");
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'CARGANDO CROQUIS...'
@@ -3301,12 +3664,28 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-            $.each(data, function (k, v) {
-                console.log(v);
-                console.log(base_url + v.Url);
-                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-            });
+            if (data.length > 0) {
+                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 2) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-6">';
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                    mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } 
         }).fail(function (x, y, z) {
         }).always(function () {
             HoldOn.close();
@@ -3324,7 +3703,7 @@
             dataType: "JSON",
             data: {
                 ID: IDX,
-                IDT:IdMovimiento
+                IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
@@ -3374,8 +3753,14 @@
     function setFotosEditar(evt) {
         mdlTrabajoEditarFotosPorConcepto.find("#fFotos").trigger('click');
     }
+    function setFotosAntesEditar(evt) {
+        mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos").trigger('click');
+    }
     function setFotosDespuesEditar(evt) {
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos").trigger('click');
+    }
+    function setFotosProcesoEditar(evt) {
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos").trigger('click');
     }
     function setCroquisEditar(evt) {
         mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis").trigger('click');
@@ -3390,38 +3775,72 @@
             dataType: "JSON",
             data: {
                 ID: IDX,
-                IDT:IDT
+                IDT: IDT
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                VistaPreviaFotosPorConcepto.html("");
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
                 $.each(data, function (k, v) {
                     picthumbnail = "";
-                    if (nimg === 3) {
+                    if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-4">';
-                    picthumbnail += '<div class="thumbnail">' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
-                            '</a>' +
-                            '<div class="caption" align="center">' +
-                            '<p>' + v.Observaciones + '</p>' +
-                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
-                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
-                            '</div>' +
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
                             '</div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("");
-                VistaPreviaFotosPorConcepto.html("");
             }
+            HoldOn.close();
             getTrabajoDetalleByID(IDT);
+        }).fail(function (x, y, z) {
+        }).always(function () {
+        });
+    }
+    function onReloadFotosAntesXConcepto(IDX, IDT) {
+        $.ajax({
+            url: master_url + 'getTrabajoFotosAntesDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("");
+            }
             getDetalleAbiertoByID(IDT);
             HoldOn.close();
         }).fail(function (x, y, z) {
@@ -3438,36 +3857,70 @@
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                VistaPreviaFotosDespuesPorConcepto.html("");
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
                 $.each(data, function (k, v) {
                     picthumbnail = "";
-                    if (nimg === 3) {
+                    if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-4">';
-                    picthumbnail += '<div class="thumbnail">' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="304" height="236">' +
-                            '</a>' +
-                            '<div class="caption" align="center">' +
-                            '<p>' + v.Observaciones + '</p>' +
-                            '<p><button type="button" class="btn btn-raised btn-default hide" onclick="onVistaPreviaXFotoXConcepto(this)"><span class="fa fa-eye"></span><br>VER</button>' +
-                            '<button type="button" class="btn btn-raised btn-danger" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></p>' +
-                            '</div>' +
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
                             '</div>';
                     mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
-                VistaPreviaFotosDespuesPorConcepto.html("");
             }
-            HoldOn.close();
-            getTrabajoDetalleByID(IDT);
             getDetalleAbiertoByID(IDT);
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+        });
+    }
+    function onReloadFotosProcesoXConcepto(IDX, IDT) {
+        $.ajax({
+            url: master_url + 'getTrabajoFotosProcesoDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">';
+                     picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
+            }
+            getDetalleAbiertoByID(IDT);
+            HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
         });
@@ -3481,10 +3934,28 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-            $.each(data, function (k, v) {
-                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").append('<a href="' + base_url + v.Url + '" target="_blank"><img src="' + base_url + v.Url + '" class="img-responsive"></a><br><div class="col-md-12" align="center"><button type="button" class="btn btn-raised btn-danger" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-            });
+              if (data.length > 0) {
+                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
+                var nimg = 0;
+                var picthumbnail = "";
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 2) {
+                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-6">';
+                      picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption" align="left"><p>' + v.Observaciones + '</p></div>'+
+                            '<div class="pull-right" align="right">'+
+                            '<p><button class="btn btn-danger" data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times customButtonEliminarFoto"></span></button></p>'+
+                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>';
+                    mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } 
             getTrabajoDetalleByID(IDT);
             HoldOn.close();
         }).fail(function (x, y, z) {
@@ -3497,7 +3968,7 @@
             dataType: "JSON",
             data: {
                 ID: IDX,
-                IDT:IDT
+                IDT: IDT
             }
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
@@ -3555,11 +4026,27 @@
             type: "POST",
             data: {
                 ID: IDX,
-                IDT:IdMovimiento
+                IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
             onReloadFotosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onEliminarFotoAntesXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.ajax({
+            url: master_url + 'onEliminarFotoAntesXConcepto',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            onReloadFotosAntesXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
@@ -3574,6 +4061,22 @@
             }
         }).done(function (data, x, jq) {
             onReloadFotosDespuesXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onEliminarFotoProcesoXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.ajax({
+            url: master_url + 'onEliminarFotoProcesoXConcepto',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            onReloadFotosProcesoXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -3606,7 +4109,7 @@
             type: "POST",
             data: {
                 ID: IDX,
-                IDT:IDT
+                IDT: IDT
             }
         }).done(function (data, x, jq) {
             console.log(data);
@@ -3810,11 +4313,12 @@
         });
     }
     function onReporteFotografico() {
+        var mov = pnlEditarTrabajo.find("#Movimiento").val();
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'onReporteFotografico',
             type: "POST",
-            data: {ID: pnlEditarTrabajo.find("#ID").val()}
+            data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
             window.open(data, '_blank');
@@ -3841,79 +4345,81 @@
     }
     var Cliente = 0;
     function onReporteLevantamientoAntes() {
-        /*Reportes Principle*/
+        var mov = pnlEditarTrabajo.find("#Movimiento").val();
+        var reporte = '';
         if (parseFloat(Cliente) === 4) {
-            $.ajax({
-                url: master_url + 'onReporteLevantamientoAntesPrinciple',
-                type: "POST",
-                data: {ID: IdMovimiento}
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES PRINCIPLE, GENERADO', 'success');
-                window.open(data, '_blank');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+            reporte = 'onReporteLevantamientoAntesPrinciple';
         } else {
-            $.ajax({
-                url: master_url + 'onReporteLevantamientoAntes',
-                type: "POST",
-                data: {ID: IdMovimiento}
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES, GENERADO', 'success');
-                window.open(data, '_blank');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+            reporte = 'onReporteLevantamientoAntes';
         }
+        $.ajax({
+            url: master_url + reporte,
+            type: "POST",
+            data: {ID: IdMovimiento, Movimiento: mov}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES PRINCIPLE, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteLevantamientoProceso() {
+        var mov = pnlEditarTrabajo.find("#Movimiento").val();
+        var reporte = '';
+        if (parseFloat(Cliente) === 4) {
+            reporte = 'onReporteLevantamientoProcesoPrinciple';
+        } else {
+            reporte = 'onReporteLevantamientoProceso';
+        }
+        $.ajax({
+            url: master_url + reporte,
+            type: "POST",
+            data: {ID: IdMovimiento, Movimiento: mov}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS EN PROCESO PRINCIPLE, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
     }
     function onReporteLevantamientoDespues() {
-        /*Reportes Principle*/
+        var reporte = '';
         if (parseFloat(Cliente) === 4) {
-            HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
-            $.ajax({
-                url: master_url + 'onReporteLevantamientoDespuesPrinciple',
-                type: "POST",
-                data: {ID: IdMovimiento}
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
-                window.open(data, '_blank');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+            reporte = 'onReporteLevantamientoDespuesPrinciple';
         } else {
-            HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
-            $.ajax({
-                url: master_url + 'onReporteLevantamientoDespues',
-                type: "POST",
-                data: {ID: IdMovimiento}
-            }).done(function (data, x, jq) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
-                window.open(data, '_blank');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+            reporte = 'onReporteLevantamientoDespues';
         }
-    }
-    function onReporteLevantamientoCompleto() {
-    var reporte='';
-    if (parseFloat(Cliente) === 4) {
-        reporte='onReporteLevantamientoCompletoPrinciple';
-    }else{
-        reporte='onReporteLevantamientoCompleto';
-    }
-       HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + reporte,
             type: "POST",
             data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
+            window.open(data, '_blank');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteLevantamientoCompleto() {
+        var reporte = '';
+        var mov = pnlEditarTrabajo.find("#Movimiento").val();
+        if (parseFloat(Cliente) === 4) {
+            reporte = 'onReporteLevantamientoCompletoPrinciple';
+        } else {
+            reporte = 'onReporteLevantamientoCompleto';
+        }
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + reporte,
+            type: "POST",
+            data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
             console.log(data);
             onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
@@ -3926,11 +4432,3 @@
     }
     /*************************FIN REPORTES ****************************/
 </script>
-<style>
-    .super-fullscreen {
-        width: 90% !important;
-    }
-    .medium-fullscreen {
-        width: 60% !important;
-    }
-</style>

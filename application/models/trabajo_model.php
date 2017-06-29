@@ -1,9 +1,5 @@
 <?php
 
-/*
- * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
- */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
@@ -111,15 +107,20 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
                     . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion CustomUppercase \" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID AND TDF.IdTrabajo = tda.Trabajo_ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = tda.ID AND TDF.IdTrabajo = tda.Trabajo_ID),")")'
-                    . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
-                    . 'END) AS FotosAntes, '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotosantes AS TDFA WHERE TDFA.IdTrabajoDetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosAntesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotosantes AS TDFA WHERE TDFA.IdTrabajoDetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID),")")'
+                    . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosAntesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
+                    . 'END) AS "Fotos Antes", '
+                    . '(CASE '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotosproceso AS TDFP WHERE TDFP.IdTrabajoDetalle = tda.ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosProcesoXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotosproceso AS TDFP WHERE TDFP.IdTrabajoDetalle = tda.ID),")")'
+                    . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosProcesoXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
+                    . 'END) AS "Fotos Proceso", '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotosdespues AS TDFD WHERE TDFD.IdTrabajoDetalle = tda.ID)>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosDespuesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotosdespues AS TDFD WHERE TDFD.IdTrabajoDetalle = tda.ID),")")'
                     . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosDespuesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
-                    . 'END) AS FotosDespues, '
+                    . 'END) AS "Fotos Después", '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID)>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID),")") '
@@ -193,6 +194,25 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function getTrabajoFotosAntesDetalleByID($IDX) {
+        try {
+            $this->db->select('TDFA.*', false);
+            $this->db->from("trabajodetallefotosantes AS TDFA");
+            $this->db->where("TDFA.IdTrabajoDetalle", $IDX);
+            $this->db->order_by('TDFA.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getTrabajoFotosDespuesDetalleByID($IDX) {
         try {
@@ -200,6 +220,25 @@ class trabajo_model extends CI_Model {
             $this->db->from("trabajodetallefotosdespues AS TDFDE");
             $this->db->where("TDFDE.IdTrabajoDetalle", $IDX);
             $this->db->order_by('TDFDE.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajoFotosProcesoDetalleByID($IDX) {
+        try {
+            $this->db->select('TDFP.*', false);
+            $this->db->from("trabajodetallefotosproceso AS TDFP");
+            $this->db->where("TDFP.IdTrabajoDetalle", $IDX);
+            $this->db->order_by('TDFP.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -250,11 +289,47 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getFotosAntesXTrabajoDetalleID($IDX) {
+        try {
+            $this->db->select('TDFA.*', false);
+            $this->db->from("trabajodetallefotosantes AS TDFA");
+            $this->db->where("TDFA.IdTrabajoDetalle", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function getFotosDespuesXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
             $this->db->from("trabajodetallefotosdespues AS TDFD");
             $this->db->where("TDFD.IdTrabajoDetalle", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getFotosProcesoXTrabajoDetalleID($IDX) {
+        try {
+            $this->db->select('TDFP.*', false);
+            $this->db->from("trabajodetallefotosproceso AS TDFP");
+            $this->db->where("TDFP.IdTrabajoDetalle", $IDX);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -288,6 +363,24 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getFotoAntesXConceptoID($IDX) {
+        try {
+            $this->db->select('TDFA.*', false);
+            $this->db->from("trabajodetallefotosantes AS TDFA");
+            $this->db->where("TDFA.ID", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function getFotoDespuesXConceptoID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
@@ -306,6 +399,24 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getFotoProcesoXConceptoID($IDX) {
+        try {
+            $this->db->select('TDFP.*', false);
+            $this->db->from("trabajodetallefotosproceso AS TDFP");
+            $this->db->where("TDFP.ID", $IDX);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function getAnexosXTrabajoDetalleID($IDX,$IDT) {
         try {
             $this->db->select('TDA.*', false);
@@ -469,10 +580,38 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onAgregarDetalleFotosAntes($array) {
+        try {
+            $this->db->insert("trabajodetallefotosantes", $array);
+            //     print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onAgregarDetalleFotosDespues($array) {
         try {
             $this->db->insert("trabajodetallefotosdespues", $array);
+            //     print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onAgregarDetalleFotosProceso($array) {
+        try {
+            $this->db->insert("trabajodetallefotosproceso", $array);
             //     print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
@@ -503,10 +642,30 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onModificarDetalleFotoAntes($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetallefotosantes", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    } 
+    
     public function onModificarDetalleFotoDespues($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetallefotosdespues", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onModificarDetalleFotoProceso($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetallefotosproceso", $DATA);
             //    print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -565,7 +724,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajos", $DATA);
-            //    print $str = $this->db->last_query();
+            //    print  $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -592,28 +751,6 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEntregado($ID) {
-        try {
-//            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
-            $this->db->set('T.Estatus', 'Entregado');
-            $this->db->where('T.ID = ED.TID');
-            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = " . $ID . ") ED");
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onCancelarEntregado($ID) {
-        try {
-            // $query = $this->db->query("CALL SP_CANCELA_ENTREGADO ('{$ID}')");
-            $this->db->set('T.Estatus', 'Concluido');
-            $this->db->where('T.ID = ED.TID');
-            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = " . $ID . ") ED");
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function onEliminarGeneradorEditar($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -634,11 +771,31 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onEliminarFotoAntesXConcepto($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetallefotosantes');
+            // print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onEliminarFotoDespuesXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetallefotosdespues');
+            // print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onEliminarFotoProcesoXConcepto($ID) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetallefotosproceso');
             // print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -816,10 +973,30 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onEliminarFotosAntesXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetallefotosantes');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function onEliminarFotosDespuesXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
             $this->db->delete('trabajodetallefotosdespues');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function onEliminarFotosProcesoXConcepto($ID) {
+        try {
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetallefotosproceso');
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -921,6 +1098,27 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function onEntregado($ID) {
+        try {
+//            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
+            $this->db->set('T.Estatus', 'Entregado');
+            $this->db->where('T.ID = ED.TID');
+            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = " . $ID . ") ED");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onCancelarEntregado($ID) {
+        try {
+            // $query = $this->db->query("CALL SP_CANCELA_ENTREGADO ('{$ID}')");
+            $this->db->set('T.Estatus', 'Concluido');
+            $this->db->where('T.ID = ED.TID');
+            $this->db->update("trabajos T, (   SELECT  Trabajo_ID TID     FROM EntregasDetalle     JOIN entregas on entregas.ID = entregasdetalle.Entrega_ID  where entregas.ID = " . $ID . ") ED");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     /*     * ************************* Reportes------------------------------ */
 
     public function getCategoriasPresupuesto($ID) {
@@ -1200,7 +1398,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotos($ID) {
+    public function getDetalleFotos($ID,$Mov) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TD.ID AS ID,pc.ID as PreciarioConcepto_ID,
@@ -1218,14 +1416,15 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
             $this->db->join('preciariocategorias AS PCAT', 'PCAT.ID = PC.PreciarioCategorias_ID', 'left');
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
-            $this->db->join('trabajodetallefotos AS TDF', 'TDF.IdTrabajoDetalle = TD.ID', 'left');
+            $this->db->join('trabajodetallefotos AS TDF', 'TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
+            $this->db->where('T.Movimiento', $Mov);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TD.ID'));
-            $this->db->order_by('TD.ID', 'DESC');
+            $this->db->order_by('TD.ID', 'ASC');
             $query = $this->db->get();
-            /*
+            /*AND  `TDF`.`IdTrabajo` = `TD`.`Trabajo_ID`
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
@@ -1237,12 +1436,13 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotosXID($ID) {
+    public function getDetalleFotosXID($ID,$IDT) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDF.*, "ANTES" AS ANTES', false);
             $this->db->from('trabajodetallefotos AS TDF');
             $this->db->where('TDF.IdTrabajoDetalle', $ID);
+            $this->db->where('TDF.IdTrabajo', $IDT);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->order_by('TDF.ID', 'DESC');
             $query = $this->db->get();
@@ -1250,7 +1450,29 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-//            print $str . ";\n";
+            // print $str . ";\n";
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getDetalleFotosAntesXID($ID,$IDT) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('TDFA.*, "ANTES" AS ANTES', false);
+            $this->db->from('trabajodetallefotosantes AS TDFA');
+            $this->db->where('TDFA.IdTrabajoDetalle', $ID);
+            $this->db->where('TDFA.IdTrabajo', $IDT);
+            $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TDFA.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str . ";\n";
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -1278,11 +1500,32 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-
-    public function getDetalleFotosAntes($ID) {
+    
+      public function getDetalleFotosProcesoXID($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select('TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
+            $this->db->select('TDFP.*,"PROCESO" AS PROCESO', false);
+            $this->db->from('trabajodetallefotosproceso AS TDFP');
+            $this->db->where('TDFP.IdTrabajoDetalle', $ID);
+            $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TDFP.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str . ";\n";
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getDetalleFotosAntes($ID,$Mov) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
 CTE.RutaLogo AS LogoCliente,
 TDA.Descripcion AS Concepto,
 CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
@@ -1291,12 +1534,14 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');
             $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
-            $this->db->join('trabajodetallefotos AS TDF', 'TDF.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->join('trabajodetallefotosantes AS TDFA', 'TDFA.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
-            $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
+            $this->db->where('T.Movimiento', $Mov);
+            $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TDA.ID'));
-            $this->db->order_by('TDA.ID', 'DESC');
+            $this->db->order_by('TDA.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -1313,7 +1558,7 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
     public function getDetalleFotosDespues($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select('TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
+            $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
 CTE.RutaLogo AS LogoCliente,
 TDA.Descripcion AS Concepto,
 CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
@@ -1323,11 +1568,44 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->join('trabajodetallefotosdespues AS TDF', 'TDF.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TDA.ID'));
-            $this->db->order_by('TDA.ID', 'DESC');
+            $this->db->order_by('TDA.ID', 'ASC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+      public function getDetalleFotosProceso($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
+CTE.RutaLogo AS LogoCliente,
+TDA.Descripcion AS Concepto,
+CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
+            $this->db->from('Trabajos AS T');
+            $this->db->join('trabajosdetalleabierto AS TDA', 'TDA.Trabajo_ID = T.ID');
+            $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');
+            $this->db->join('sucursales AS S ', 'S.ID = T.Sucursal_ID');
+            $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
+            $this->db->join('trabajodetallefotosproceso AS TDFP', 'TDFP.IdTrabajoDetalle = TDA.ID', 'left');
+            $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);
+            $this->db->group_by(array('TDA.ID'));
+            $this->db->order_by('TDA.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

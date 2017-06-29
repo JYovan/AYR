@@ -6,36 +6,7 @@ class usuario_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    public function getRecordsEntrega() {
-        try {
-            $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
-            $sqlsrv->select('E.*', false);
-            $sqlsrv->from('entregas AS E');
-            $query = $sqlsrv->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $sqlsrv->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    public function onInsertarEntregas($array) {
-        try {
-            $sqlsrv = $this->load->database('dbsqlsvr', TRUE);
-            $sqlsrv->insert("entregas", $array);
-//            print $str = $sqlsrv->last_query();
-            $query = $sqlsrv->query('SELECT SCOPE_IDENTITY() AS IDL');
-            $row = $query->row_array();
-//            PRINT "\n ID IN MODEL: $LastIdInserted \n";
-            return $row['IDL'];
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
+   
     public function getRecords() {
         try {
             $query = $this->db->query("CALL SP_USUARIOS()");

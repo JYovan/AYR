@@ -269,14 +269,14 @@
 </div>
 
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlSeleccionarEntregasEditar" class="modal animated fadeInUp">
-    <div class="modal-dialog super-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
+<div id="mdlSeleccionarEntregasEditar" class="modal modalFull animated fadeInUp">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">SELECCIONAR ENTREGAS</h4>
+                <h4 class="modal-title modal-titleFull">SELECCIONAR ENTREGAS</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
@@ -289,8 +289,8 @@
                 <div class="col-md-12" id="Entregas">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-times"></span><br>CERRAR</button>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
@@ -319,43 +319,40 @@
     var mdlConfirmar = $("#mdlConfirmar");
     var btnModificar = $("#btnModificarPrefactura");
     var btnExportarIntelisis = $('#btnExportarIntelisis');
-    var mdlConfirmarExportarIntelisis =$('#mdlConfirmarExportarIntelisis');
-    var btnExportar =mdlConfirmarExportarIntelisis.find('#btnExportar');
+    var mdlConfirmarExportarIntelisis = $('#mdlConfirmarExportarIntelisis');
+    var btnExportar = mdlConfirmarExportarIntelisis.find('#btnExportar');
 //detalle editar
     var btnNuevoRenglonPrefacturaEditar = pnlDetalleEditarPrefactura.find("#btnNuevoRenglonPrefacturaEditar");
     var mdlSeleccionarEntregasEditar = $("#mdlSeleccionarEntregasEditar");
 
     $(document).ready(function () {
         /*Boton que inserta a intelisis*/
-        
-        
+
         btnExportar.on("click", function () {
-             var frm = new FormData(pnlEditarPrefactura.find("#frmEditar")[0]);
-               
-                frm.append('Importe', ImporteTotalGlobal);
-                $.ajax({
-                    url: master_url + 'onAgregarIntelisis',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    console.log(data);
-                    mdlConfirmarExportarIntelisis.modal('hide');
-                     onNotify('<span class="fa fa-check fa-lg"></span>', 'PREFACTURA EXPORTADA CORRECTAMENTE', 'success');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
+            var frm = new FormData(pnlEditarPrefactura.find("#frmEditar")[0]);
+
+            frm.append('Importe', ImporteTotalGlobal);
+            $.ajax({
+                url: master_url + 'onAgregarIntelisis',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                console.log(data);
+                mdlConfirmarExportarIntelisis.modal('hide');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'PREFACTURA EXPORTADA CORRECTAMENTE', 'success');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
-        
-    
-         btnExportarIntelisis.on("click", function () {
-             mdlConfirmarExportarIntelisis.modal('show');
+        btnExportarIntelisis.on("click", function () {
+            mdlConfirmarExportarIntelisis.modal('show');
         });
-        
+
         //Boton de neuvo en detalle editar
         btnNuevoRenglonPrefacturaEditar.on("click", function () {
             /*Trae los movimientos para el detalle*/
@@ -490,7 +487,7 @@
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVA PREFACTURA', 'success');
                     // Funcion que regarga el panel de editar con el nuevo registro
-                     despuesDeGuardar(data);
+                    despuesDeGuardar(data);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -553,7 +550,7 @@
                         btnExportarIntelisis.removeClass('hide');
                         $('#frmEditar').find('input, textarea, button, select').attr('readonly', true);
                         $('#frmEditar').find('select').addClass('disabledDetalle');
-                        $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle'); 
+                        $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle');
                         btnConfirmarEliminar.attr("disabled", true);
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
                         pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
@@ -563,7 +560,7 @@
                         $('#frmEditar').find('#Referencia').attr('readonly', false);
                         $('#frmEditar').find('#Comentarios').attr('readonly', false);
                         $('#frmEditar').find('select').removeClass('disabledDetalle');
-                        $('#frmEditar').find("#FechaCreacion").removeClass('disabledDetalle'); 
+                        $('#frmEditar').find("#FechaCreacion").removeClass('disabledDetalle');
                         btnConfirmarEliminar.attr("disabled", false);
                         $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
                         pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
@@ -694,12 +691,12 @@
                             btnModificar.addClass('hide');
                             $('#frmEditar').find('input, textarea, button, select').attr('readonly', true);
                             $('#frmEditar').find('select').addClass('disabledDetalle');
-                            $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle');  
+                            $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle');
                             btnConfirmarEliminar.attr("disabled", true);
                             pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
                             pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
                             btnExportarIntelisis.removeClass('hide');
-                            
+
                         } else if (prefactura.Estatus === 'Cancelado') {
                             $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
                             tBtnEditarConcluir.addClass('hide');
@@ -713,8 +710,8 @@
                             tBtnEditarConcluir.prop('checked', false);
                             btnModificar.removeClass('hide');
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                             $('#frmEditar').find('select').removeClass('disabledDetalle');
-                            $('#frmEditar').find("#FechaCreacion").removeClass('disabledDetalle'); 
+                            $('#frmEditar').find('select').removeClass('disabledDetalle');
+                            $('#frmEditar').find("#FechaCreacion").removeClass('disabledDetalle');
                             btnConfirmarEliminar.attr("disabled", false);
                             pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
                             pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
@@ -1003,7 +1000,7 @@
             HoldOn.close();
         });
     }
-/*Para despues de insertar pro primera vez se cargue el panel de editar*/
+    /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDPrefactura) {
         pnlNuevaPrefactura.addClass("hide");
         pnlDetalleNuevaPrefactura.addClass('hide');
@@ -1011,68 +1008,68 @@
         //Abre al hacer click el movimiento para editar
         if (temp !== 0 && temp !== undefined && temp > 0) {
             HoldOn.open({
-                        theme: "sk-bounce",
-                        message: "CARGANDO DATOS..."
-                    });
-                    $.ajax({
-                        url: master_url + 'getPrefacturaByID',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: temp
-                        }
-                    }).done(function (data, x, jq) {
-                        console.log(data);
-                        pnlEditarPrefactura.find("input").val("");
-                        pnlEditarPrefactura.find("select").select2("val", "");
-                        var prefactura = data[0];
-                        pnlEditarPrefactura.find("#ID").val(prefactura.ID);
-                        pnlEditarPrefactura.find("#Movimiento").val(prefactura.Movimiento);
-                        pnlEditarPrefactura.find("#FechaCreacion").val(prefactura.FechaCreacion);
-                        pnlEditarPrefactura.find("#Referencia").val(prefactura.Referencia);
-                        pnlEditarPrefactura.find("#ClienteIntelisis").select2("val", prefactura.ClienteIntelisis);
-                        pnlEditarPrefactura.find("#ProyectoIntelisis").select2("val", prefactura.ProyectoIntelisis);
-                        pnlEditarPrefactura.find("#ClienteNombre").val(prefactura.ClienteNombre);
-                        pnlEditarPrefactura.find("#Importe").val(prefactura.Importe);
-                        pnlEditarPrefactura.find("#Estatus").val(prefactura.Estatus);
-                        pnlEditarPrefactura.find("#Comentarios").val(prefactura.Comentarios);
-                        pnlEditarPrefactura.find("#Usuario_ID").val(prefactura.Usuario_ID);
-                        menuTablero.addClass("hide");
-                        pnlEditarPrefactura.removeClass("hide");
-                        pnlDetalleEditarPrefactura.removeClass("hide");
-                        getDetalleByID(prefactura.ID);
-                        //Control de estatus
-                        if (prefactura.Estatus === 'Concluido') {
-                            btnExportarIntelisis.removeClass('hide');
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(prefactura.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', true);
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
-                        } else if (prefactura.Estatus === 'Cancelado') {
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
-                            tBtnEditarConcluir.addClass('hide');
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
-                        } else {
-                            $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(prefactura.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', false);
-                            btnModificar.removeClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                            btnConfirmarEliminar.attr("disabled", false);
-                            pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
-                            pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
-                        }
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
+                theme: "sk-bounce",
+                message: "CARGANDO DATOS..."
+            });
+            $.ajax({
+                url: master_url + 'getPrefacturaByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: temp
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                pnlEditarPrefactura.find("input").val("");
+                pnlEditarPrefactura.find("select").select2("val", "");
+                var prefactura = data[0];
+                pnlEditarPrefactura.find("#ID").val(prefactura.ID);
+                pnlEditarPrefactura.find("#Movimiento").val(prefactura.Movimiento);
+                pnlEditarPrefactura.find("#FechaCreacion").val(prefactura.FechaCreacion);
+                pnlEditarPrefactura.find("#Referencia").val(prefactura.Referencia);
+                pnlEditarPrefactura.find("#ClienteIntelisis").select2("val", prefactura.ClienteIntelisis);
+                pnlEditarPrefactura.find("#ProyectoIntelisis").select2("val", prefactura.ProyectoIntelisis);
+                pnlEditarPrefactura.find("#ClienteNombre").val(prefactura.ClienteNombre);
+                pnlEditarPrefactura.find("#Importe").val(prefactura.Importe);
+                pnlEditarPrefactura.find("#Estatus").val(prefactura.Estatus);
+                pnlEditarPrefactura.find("#Comentarios").val(prefactura.Comentarios);
+                pnlEditarPrefactura.find("#Usuario_ID").val(prefactura.Usuario_ID);
+                menuTablero.addClass("hide");
+                pnlEditarPrefactura.removeClass("hide");
+                pnlDetalleEditarPrefactura.removeClass("hide");
+                getDetalleByID(prefactura.ID);
+                //Control de estatus
+                if (prefactura.Estatus === 'Concluido') {
+                    btnExportarIntelisis.removeClass('hide');
+                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(prefactura.Estatus.toUpperCase());
+                    tBtnEditarConcluir.prop('checked', true);
+                    btnModificar.addClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    btnConfirmarEliminar.attr("disabled", true);
+                    pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
+                } else if (prefactura.Estatus === 'Cancelado') {
+                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
+                    tBtnEditarConcluir.addClass('hide');
+                    btnModificar.addClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    btnConfirmarEliminar.attr("disabled", true);
+                    pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
+                    pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
+                } else {
+                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(prefactura.Estatus.toUpperCase());
+                    tBtnEditarConcluir.prop('checked', false);
+                    btnModificar.removeClass('hide');
+                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                    btnConfirmarEliminar.attr("disabled", false);
+                    pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
+                    pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
+                }
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         } else {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
         }

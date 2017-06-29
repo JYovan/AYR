@@ -22,12 +22,12 @@
     <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
-                 <div class="panel-title pull-left cursor-hand" >
-                        <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                        </button>
-                        Nuevo Preciario
-                    </div>
+                <div class="panel-title pull-left cursor-hand" >
+                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                    </button>
+                    Nuevo Preciario
+                </div>
                 <div class="input-group pull-right">
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                 </div>
@@ -100,17 +100,17 @@
     <!--EDITAR-->
     <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
         <div class="Custompanel-heading">
-              <div class="Custompanel-heading clearfix">
-                   <div class="panel-title pull-left cursor-hand" >
-                        <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                            <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                        </button>
-                        Editar Preciario
-                    </div>
-                 <div class="input-group pull-right">
-                         <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                        <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
-                 </div>
+            <div class="Custompanel-heading clearfix">
+                <div class="panel-title pull-left cursor-hand" >
+                    <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                    </button>
+                    Editar Preciario
+                </div>
+                <div class="input-group pull-right">
+                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
+                </div>
             </div>
         </div>
         <div class="panel-body">
@@ -171,7 +171,6 @@
         <div class="panel-body">
             <div class="col-md-12 dt-buttons" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                <button type="button" class="btn btn-default" id="btnEliminarConcepto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                 <button type="button" class="btn btn-default hide" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
             </div>
             <div class="col-md-12">
@@ -461,7 +460,6 @@
     var btnConfirmarEliminarConcepto = $("#btnConfirmarEliminarConcepto");
     var btnModificarConcepto = mdlEditarConcepto.find("#btnModificarConcepto");
     var btnRefrescarConceptos = $("#btnRefrescarConceptos");
-    var btnEliminarConcepto = $("#btnEliminarConcepto");
     var btnCancelarModificacion = mdlEditarConcepto.find("#btnCancelarModificacion");
     var btnNuevoConcepto = $("#btnNuevoConcepto");
     var mdlNuevoConcepto = $("#mdlNuevoConcepto");
@@ -483,89 +481,89 @@
 //Variables de conceptos detalle
     /*Detalle*/
     var pnlDetalleConceptos = $("#pnlDetalleConceptos");
-    $(document).ready(function() {
-        btnGuardarSubSubCategoria.click(function() {
-                  var frm = new FormData();
-                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
-                frm.append('Clave', mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val());
-                frm.append('Descripcion', mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val());
-                frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val());
-                frm.append('PreciarioSubCategorias_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").val());
-                $.ajax({
-                    url: master_url + 'onAgregarSubSubCategoria',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function(data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUBSUB CATEGORIA', 'success');
-                    console.log(data, x, jq);
-                    mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val("");
-                    mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val("");
-                    mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
-                    mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").select2("val", "");
-                    getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
-           
+    $(document).ready(function () {
+        btnGuardarSubSubCategoria.click(function () {
+            var frm = new FormData();
+            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Clave', mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val());
+            frm.append('Descripcion', mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val());
+            frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").val());
+            frm.append('PreciarioSubCategorias_ID', mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").val());
+            $.ajax({
+                url: master_url + 'onAgregarSubSubCategoria',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUBSUB CATEGORIA', 'success');
+                console.log(data, x, jq);
+                mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val("");
+                mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val("");
+                mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
+                mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").select2("val", "");
+                getCategorias(mdlNuevoConcepto.find("#ID").val());
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
         });
-        btnGuardarSubCategoria.click(function() {
-                var frm = new FormData();
-                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
-                frm.append('Clave', mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val());
-                frm.append('Descripcion', mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val());
-                frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val());
-                $.ajax({
-                    url: master_url + 'onAgregarSubCategoria',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function(data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUB CATEGORIA', 'success');
-                    console.log(data, x, jq);
-                    mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val("");
-                    mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val("");
-                    mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
-                    getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
-           
+        btnGuardarSubCategoria.click(function () {
+            var frm = new FormData();
+            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Clave', mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val());
+            frm.append('Descripcion', mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val());
+            frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").val());
+            $.ajax({
+                url: master_url + 'onAgregarSubCategoria',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA SUB CATEGORIA', 'success');
+                console.log(data, x, jq);
+                mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val("");
+                mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val("");
+                mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
+                getCategorias(mdlNuevoConcepto.find("#ID").val());
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
         });
-        btnGuardarCategoria.click(function() {
-                  var frm = new FormData();
-                frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
-                frm.append('Clave', mdlNuevoConcepto.find("#Categorias").find("#Clave").val());
-                frm.append('Descripcion', mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val());
-                $.ajax({
-                    url: master_url + 'onAgregarCategoria',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function(data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA CATEGORIA', 'success');
-                    console.log(data, x, jq);
-                    mdlNuevoConcepto.find("#Categorias").find("#Clave").val("");
-                    mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val("");
-                    getCategorias(mdlNuevoConcepto.find("#ID").val());
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
-            
+        btnGuardarCategoria.click(function () {
+            var frm = new FormData();
+            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Clave', mdlNuevoConcepto.find("#Categorias").find("#Clave").val());
+            frm.append('Descripcion', mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val());
+            $.ajax({
+                url: master_url + 'onAgregarCategoria',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UNA NUEVA CATEGORIA', 'success');
+                console.log(data, x, jq);
+                mdlNuevoConcepto.find("#Categorias").find("#Clave").val("");
+                mdlNuevoConcepto.find("#Categorias").find("#Descripcion").val("");
+                getCategorias(mdlNuevoConcepto.find("#ID").val());
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
         });
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var target = $(e.target).attr("href"); // activated tab
             switch (target) {
                 case "#Conceptos":
@@ -612,62 +610,62 @@
                     break;
             }
         });
-        btnCancelarEditar.click(function() {
+        btnCancelarEditar.click(function () {
             pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
             pnlEditar.addClass("hide");
             pnlDetalleConceptos.addClass("hide");
             btnRefrescar.trigger('click');
         });
-        btnCancelar.click(function() {
+        btnCancelar.click(function () {
             pnlPreciario.removeClass("hide");
             pnlNuevo.addClass("hide");
-             btnRefrescar.trigger('click')
+            btnRefrescar.trigger('click')
         });
-        btnCancelarSubSubCategoria.click(function() {
+        btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#SubSubCategorias").find("input"), function(k, v) {
+            $.each(pnlConceptos.find("#SubSubCategorias").find("input"), function (k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function(k, v) {
+            $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function (k, v) {
                 $(v).select2("val", "");
             });
         });
-        btnCancelarSubCategoria.click(function() {
+        btnCancelarSubCategoria.click(function () {
             pnlConceptos.find("#SubCategorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#SubCategorias").find("input"), function(k, v) {
+            $.each(pnlConceptos.find("#SubCategorias").find("input"), function (k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#SubCategorias").find("select"), function(k, v) {
+            $.each(pnlConceptos.find("#SubCategorias").find("select"), function (k, v) {
                 $(v).select2("val", "");
             });
         });
-        btnCancelarCategoria.click(function() {
+        btnCancelarCategoria.click(function () {
             pnlConceptos.find("#Categorias").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#Categorias").find("input"), function(k, v) {
+            $.each(pnlConceptos.find("#Categorias").find("input"), function (k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#Categorias").find("select"), function(k, v) {
+            $.each(pnlConceptos.find("#Categorias").find("select"), function (k, v) {
                 $(v).select2("val", "");
             });
         });
-        btnNuevaCategoria.click(function() {
+        btnNuevaCategoria.click(function () {
             mdlNuevaCategoria.removeClass("hide");
         });
-        btnCancelarConcepto.click(function() {
+        btnCancelarConcepto.click(function () {
             pnlConceptos.find("#Conceptos").removeClass("active in");
             pnlConceptos.find(".nav-tabs li").removeClass("active");
-            $.each(pnlConceptos.find("#Conceptos").find("input"), function(k, v) {
+            $.each(pnlConceptos.find("#Conceptos").find("input"), function (k, v) {
                 $(v).val("");
             });
-            $.each(pnlConceptos.find("#Conceptos").find("select"), function(k, v) {
+            $.each(pnlConceptos.find("#Conceptos").find("select"), function (k, v) {
                 $(v).select2("val", "");
             });
         });
-        btnGuardarConcepto.click(function() {
-              if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
+        btnGuardarConcepto.click(function () {
+            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
                     Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
                 var frm = new FormData();
                 frm.append('ID', pnlEditar.find("#ID").val());
@@ -686,22 +684,22 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
                     console.log(data, x, jq);
                     btnRefrescarConceptos.trigger('click');
                     mdlNuevoConcepto.modal("hide");
                     HoldOn.close();
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             } else {
                 onNotify('<span class="fa fa-times fa-lg"></span>', 'ALGUNOS CAMPOS SON REQUERIDOS', 'danger');
             }
         });
-        btnNuevoConcepto.click(function() {
+        btnNuevoConcepto.click(function () {
             mdlNuevoConcepto.find(".nav-tabs li").removeClass("active");
             $(mdlNuevoConcepto.find(".nav-tabs li")[0]).addClass("active");
             console.log(mdlNuevoConcepto.find(".nav-tabs"));
@@ -726,7 +724,7 @@
             btnCancelarConcepto.removeClass("hide");
             btnGuardarConcepto.removeClass("hide");
         });
-        btnCancelarModificacion.click(function() {
+        btnCancelarModificacion.click(function () {
             mdlEditarConcepto.find("#IDConcepto").val("");
             mdlEditarConcepto.find("#Clave").val("");
             mdlEditarConcepto.find("#Descripcion").val("");
@@ -738,10 +736,10 @@
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
             mdlEditarConcepto.modal('hide');
         });
-        btnRefrescarConceptos.click(function() {
+        btnRefrescarConceptos.click(function () {
             getConceptosXPreciarioID(pnlEditar.find("#ID").val());
         });
-        btnModificarConcepto.click(function() {
+        btnModificarConcepto.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "GUARDANDO... POR FAVOR ESPERE"
@@ -763,22 +761,22 @@
                 contentType: false,
                 processData: false,
                 data: frm
-            }).done(function(data, x, jq) {
+            }).done(function (data, x, jq) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CONCEPTO', 'success');
                 console.log(data, x, jq);
                 btnRefrescarConceptos.trigger('click');
                 mdlEditarConcepto.modal("hide");
-            }).fail(function(x, y, z) {
+            }).fail(function (x, y, z) {
                 console.log(x, y, z);
-            }).always(function() {
+            }).always(function () {
                 HoldOn.close();
             });
         });
-        mdlEditarConcepto.find("#Categoria").change(function() {
+        mdlEditarConcepto.find("#Categoria").change(function () {
             getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
         });
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.click(function() {
+        btnConfirmarEliminar.click(function () {
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
                 //Muestra el modal
                 mdlConfirmar.modal('show');
@@ -786,73 +784,60 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        //Evento clic del boton confirmar borrar un concepto
-        btnEliminarConcepto.click(function() {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                //Muestra el modal
-                mdlConfirmarEliminarConcepto.modal('show');
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-        });
 //Confirma la eliminacion del concepto
-        btnConfirmarEliminarConcepto.click(function() {
-            console.log('ELIMINANDO...' + temp);
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "ELIMINANDO..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminarConcepto',
-                    type: "POST",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function(data, x, jq) {
-                    console.log(data);
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
-                    btnRefrescarConceptos.trigger('click');
-                    mdlConfirmarEliminarConcepto.modal('hide');
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
+        btnConfirmarEliminarConcepto.click(function () {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "ELIMINANDO..."
+            });
+            $.ajax({
+                url: master_url + 'onEliminarConcepto',
+                type: "POST",
+                data: {
+                    ID: IdConceptoEliminar
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
+                btnRefrescarConceptos.trigger('click');
+                mdlConfirmarEliminarConcepto.modal('hide');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
         });
-        btnEliminar.click(function() {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "ELIMINANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminar',
-                    type: "POST",
-                    data: {
-                        ID: tempID
-                    }
-                }).done(function(data, x, jq) {
-                    console.log(data);
-                    mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
-                     pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
-                    pnlEditar.addClass("hide");
-                    pnlDetalleConceptos.addClass("hide");
-                    btnRefrescar.trigger('click');
-                    getRecords();
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
+        btnEliminar.click(function () {
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "ELIMINANDO DATOS..."
+            });
+            $.ajax({
+                url: master_url + 'onEliminar',
+                type: "POST",
+                data: {
+                    ID: tempID
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                mdlConfirmar.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
+                pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
+                pnlEditar.addClass("hide");
+                pnlDetalleConceptos.addClass("hide");
+                btnRefrescar.trigger('click');
+                getRecords();
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
-        btnRefrescar.click(function() {
+        btnRefrescar.click(function () {
             getRecords();
         });
-        btnGuardar.click(function() {
+        btnGuardar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -869,17 +854,17 @@
                     Tipo: 'required',
                     Cliente_ID: 'required'
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function() {
+            $('select').on('change', function () {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -897,20 +882,20 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     pnlNuevo.addClass('hide');
                     pnlPreciario.removeClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             }
         });
-        btnModificar.click(function() {
+        btnModificar.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -927,17 +912,17 @@
                     Tipo: 'required',
                     Cliente_ID: 'required'
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.addClass(errorClass);
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
                     elem.removeClass(errorClass);
                 }
             });
             //Regresa si es valido para los select2
-            $('select').on('change', function() {
+            $('select').on('change', function () {
                 $(this).valid();
             });
             //Si es verdadero que hacer
@@ -954,21 +939,21 @@
                     contentType: false,
                     processData: false,
                     data: frm
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     pnlPreciario.removeClass('hide');
                     pnlEditar.addClass('hide');
                     pnlDetalleConceptos.addClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                     HoldOn.close();
                 });
             }
         });
-        btnNuevo.click(function() {
+        btnNuevo.click(function () {
             tblConceptos.html("");
             pnlNuevo.find("select").select2("val", "");
             pnlNuevo.find("input").val("");
@@ -976,7 +961,7 @@
             pnlNuevo.removeClass('hide');
             pnlPreciario.addClass("hide");
         });
-        btnEditar.click(function() {
+        btnEditar.click(function () {
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
@@ -985,7 +970,7 @@
                     data: {
                         ID: tempID
                     }
-                }).done(function(data, x, jq) {
+                }).done(function (data, x, jq) {
                     console.log(data);
                     var preciario = data[0];
                     pnlEditar.find("#ID").val(preciario.ID);
@@ -1001,26 +986,26 @@
                     pnlPreciario.addClass('hide');
                     pnlEditar.addClass("animated slideInLeft").removeClass('hide');
                     pnlDetalleConceptos.removeClass("hide");
-                }).fail(function(x, y, z) {
+                }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function() {
+                }).always(function () {
                 });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnArchivo.click(function() {
+        btnArchivo.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "POR FAVOR ESPERE..."
             });
-            Archivo.change(function() {
+            Archivo.change(function () {
                 if (Archivo[0].files[0] !== undefined) {
                     var extension = getExt(Archivo[0].files[0].name);
                     console.log('EXTENSION ' + extension);
                     if (extension === "xlsx" || extension === "xls" || extension === "csv") {
                         var reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             console.log("onload", new Date());
                             var data = e.target.result;
                             var wb;
@@ -1041,7 +1026,7 @@
                     HoldOn.close();
                 }
             });
-            $("html").focusin(function() {
+            $("html").focusin(function () {
                 if (Archivo[0].files[0] !== undefined && is_filled) {
                     is_filled = false;
                     HoldOn.close();
@@ -1065,16 +1050,16 @@
             url: master_url + 'getClientes',
             type: "POST",
             dataType: "JSON"
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
             });
             pnlNuevo.find("#Cliente_ID").html(options);
             pnlEditar.find("#Cliente_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -1088,15 +1073,15 @@
             url: master_url + 'getRecords',
             type: "POST",
             dataType: "JSON"
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             console.log(data);
             $("#tblRegistros").html(getTable('tblEmpresas', data));
-            $('#tblEmpresas tfoot th').each(function() {
+            $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
-            $('#tblEmpresas tbody').on('click', 'tr', function() {
+            $('#tblEmpresas tbody').on('click', 'tr', function () {
                 $("#tblEmpresas").find("tr").removeClass("success");
                 $("#tblEmpresas").find("tr").removeClass("warning");
 //                console.log(this)
@@ -1109,21 +1094,21 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                 tempID = parseInt(dtm[0]);    
+                tempID = parseInt(dtm[0]);
                 btnEditar.trigger("click");
             });
             // Apply the search
-            tblSelected.columns().every(function() {
+            tblSelected.columns().every(function () {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function() {
+                $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
@@ -1135,9 +1120,9 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Categoria + '</option>';
             });
             mdlEditarConcepto.find("#Categoria").html(options);
@@ -1146,9 +1131,9 @@
             mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
             getSubCategorias(IDX, '');
             getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(IDX, '', '');
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
         });
     }
     function getSubCategorias(ID, IDC) {
@@ -1160,18 +1145,18 @@
                 ID: ID,
                 IDC: IDC
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubCategoria").select2("val", "");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.Subcategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
         });
     }
     function getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(ID, IDC, IDSC) {
@@ -1184,21 +1169,20 @@
                 IDC: IDC,
                 IDSC: IDSC
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             var options = '<option></option>';
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
-            $.each(data, function(k, v) {
+            $.each(data, function (k, v) {
                 options += '<option value="' + v.ID + '">' + v.SubSubCategoria + '</option>';
             });
             mdlEditarConcepto.find("#SubSubCategoria").html(options);
             mdlNuevoConcepto.find("#SubSubCategoria").html(options);
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
         });
     }
     function getConceptosXPreciarioID(IDX) {
-        temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
@@ -1210,15 +1194,26 @@
             data: {
                 ID: IDX
             }
-        }).done(function(data, x, jq) {
+        }).done(function (data, x, jq) {
             HoldOn.close();
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
-            $('#tblConceptosXPreciarioID tfoot th').each(function() {
+
+            var thead = pnlDetalleConceptos.find('#tblConceptosXPreciarioID thead th');
+                var tfoot = pnlDetalleConceptos.find('#tblConceptosXPreciarioID tfoot th');
+                thead.eq(0).addClass("hide");
+                tfoot.eq(0).addClass("hide");
+         
+            $.each(pnlDetalleConceptos.find('#tblConceptosXPreciarioID tbody tr'), function (k, v) {
+                    var td = $(v).find("td");
+                    td.eq(0).addClass("hide");
+                });
+            
+            $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function() {
+            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("success");
                 $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
                 var id = this.id;
@@ -1230,54 +1225,61 @@
                 }
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
-                 temp = parseInt(dtm[0]);
-                 $.ajax({
-                    url: master_url + 'getConceptoByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function(data, x, jq) {
-                    console.log('EDITANDO CONCEPTO ');
-                    console.log(data);
-                    var concepto = data[0];
-                    mdlEditarConcepto.find("#IDConcepto").val(concepto.ID);
-                    mdlEditarConcepto.find("#Clave").val(concepto.Clave);
-                    mdlEditarConcepto.find("#Costo").val(concepto.Costo);
-                    mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
-                    mdlEditarConcepto.find("#Moneda").val(concepto.Moneda);
-                    mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
-                    
-                    
-                    mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
-                    mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
-                    mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
-                    
-                    
-                    mdlEditarConcepto.modal('show');
-                }).fail(function(x, y, z) {
-                    console.log(x, y, z);
-                }).always(function() {
-                    HoldOn.close();
-                });
             });
             // Apply the search
-            tblSelected.columns().every(function() {
+            tblSelected.columns().every(function () {
                 var that = this;
-                $('input', this.footer()).on('keyup change', function() {
+                $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that.search(this.value).draw();
                     }
                 });
             });
-        }).fail(function(x, y, z) {
+        }).fail(function (x, y, z) {
             HoldOn.close();
             console.log(x, y, z);
-        }).always(function() {
+        }).always(function () {
             HoldOn.close();
         });
     }
+    IdConceptoEliminar = 0;
+    evtEliminar = '';
+    function onEliminarConceptoPreciario(evt, IDC) {
+        evtEliminar = evt;
+        IdConceptoEliminar = IDC;
+        mdlConfirmarEliminarConcepto.modal('show');
+    }
+    function onEditarConceptoPreciarioXID(IDX) {
+        $.ajax({
+            url: master_url + 'getConceptoByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            console.log('EDITANDO CONCEPTO ');
+            console.log(data);
+            var concepto = data[0];
+            mdlEditarConcepto.find("#IDConcepto").val(concepto.ID);
+            mdlEditarConcepto.find("#Clave").val(concepto.Clave);
+            mdlEditarConcepto.find("#Costo").val(concepto.Costo);
+            mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
+            mdlEditarConcepto.find("#Moneda").val(concepto.Moneda);
+            mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
+            mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
+            mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
+            mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
+            mdlEditarConcepto.modal('show');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+
+    }
+
+
 </script>
 <script>
     /*jshint browser:true */
@@ -1305,7 +1307,7 @@
         var sheet = "HOJAN";
         var i = 1;
         var result = {};
-        workbook.SheetNames.forEach(function(sheetName) {
+        workbook.SheetNames.forEach(function (sheetName) {
             var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]);
             if (roa.length > 0) {
                 sheet = sheet + "" + i;
@@ -1317,7 +1319,7 @@
     }
     function to_csv(workbook) {
         var result = [];
-        workbook.SheetNames.forEach(function(sheetName) {
+        workbook.SheetNames.forEach(function (sheetName) {
             var csv = X.utils.sheet_to_csv(workbook.Sheets[sheetName]);
             if (csv.length > 0) {
                 result.push("SHEET: " + sheetName);
@@ -1330,7 +1332,7 @@
     var tblConceptos = pnlNuevo.find("#VistaPrevia");
     function to_html(workbook) {
         tblConceptos.html("");
-        workbook.SheetNames.forEach(function(sheetName) {
+        workbook.SheetNames.forEach(function (sheetName) {
             var htmlstr = X.write(workbook, {sheet: sheetName, type: 'binary', bookType: 'html'});
             tblConceptos.append(htmlstr);
             tblConceptos.find("table").addClass("table table-bordered table-striped table-hover display row-border hover order-column");

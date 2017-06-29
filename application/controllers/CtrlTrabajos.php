@@ -102,10 +102,30 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function getTrabajoFotosAntesDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoFotosAntesDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function getTrabajoFotosDespuesDetalleByID() {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getTrabajoFotosDespuesDetalleByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajoFotosProcesoDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoFotosProcesoDetalleByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -237,7 +257,6 @@ class CtrlTrabajos extends CI_Controller {
             $this->trabajo_model->onModificar($ID, $this->input->post());
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
-            var_dump($this->input->post());
             if (isset($_FILES["Adjunto"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -259,6 +278,18 @@ class CtrlTrabajos extends CI_Controller {
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onModificarMovimiento() {
+        try {
+             $ID = $this->input->post("ID");
+             $data = array(
+                'Movimiento' => $this->input->post("Movimiento")
+                     );
+            $this->trabajo_model->onModificar($ID,$data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -381,6 +412,21 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onEliminarFotoAntesXConcepto() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getFotoAntesXConceptoID($ID);
+            $foto = $data[0];
+            if (isset($foto->Url)) {
+                unlink($foto->Url);
+                rmdir("uploads/Trabajos/FotosAntes/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
+            }
+            $this->trabajo_model->onEliminarFotoAntesXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onEliminarFotoDespuesXConcepto() {
         try {
@@ -392,6 +438,21 @@ class CtrlTrabajos extends CI_Controller {
                 rmdir("uploads/Trabajos/FotosDespues/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
             }
             $this->trabajo_model->onEliminarFotoDespuesXConcepto($ID);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onEliminarFotoProcesoXConcepto() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getFotoProcesoXConceptoID($ID);
+            $foto = $data[0];
+            if (isset($foto->Url)) {
+                unlink($foto->Url);
+                rmdir("uploads/Trabajos/FotosProceso/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/" . $foto->ID . "/");
+            }
+            $this->trabajo_model->onEliminarFotoProcesoXConcepto($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -554,6 +615,16 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosXConcepto($ID);
+            
+            $data = $this->trabajo_model->getFotosAntesXTrabajoDetalleID($ID);
+            foreach ($data as $key => $foto) {
+                if (isset($foto->Url)) {
+                    unlink($foto->Url);
+                    rmdir("uploads/Trabajos/FotosAntes/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarFotosAntesXConcepto($ID);
+            
             $data = $this->trabajo_model->getFotosDespuesXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -562,6 +633,16 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosDespuesXConcepto($ID);
+            
+            $data = $this->trabajo_model->getFotosProcesoXTrabajoDetalleID($ID);
+            foreach ($data as $key => $foto) {
+                if (isset($foto->Url)) {
+                    unlink($foto->Url);
+                    rmdir("uploads/Trabajos/FotosProceso/T" . $foto->IdTrabajo . "/TD" . $foto->IdTrabajoDetalle . "/");
+                }
+            }
+            $this->trabajo_model->onEliminarFotosProcesoXConcepto($ID);
+            
             $data = $this->trabajo_model->getCroquisXTrabajoDetalleID($ID);
             foreach ($data as $key => $croquis) {
                 if (isset($croquis->Url)) {
@@ -695,6 +776,54 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
+    public function onAgregarFotosAntesEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleFotosAntes($data);
+            /* CREAR DIRECTORIO DE FOTOS */
+            $URL_DOC = "uploads/Trabajos/FotosAntes/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["FOTO"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/'))) {
+                    mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
+                    $img = $master_url . $_FILES["FOTO"]["name"];
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = TRUE;
+                     $config['width'] = 900;
+                    $config['height'] = 700;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoAntes($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoAntes($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function onAgregarFotosDespuesEditar() {
         try {
             extract($this->input->post());
@@ -735,6 +864,54 @@ class CtrlTrabajos extends CI_Controller {
                         'Url' => (NULL)
                     );
                     $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onAgregarFotosProcesoEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleFotosProceso($data);
+            /* CREAR DIRECTORIO DE FOTOS */
+            $URL_DOC = "uploads/Trabajos/FotosProceso/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["FOTO"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/'))) {
+                    mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
+                    $img = $master_url . $_FILES["FOTO"]["name"];
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = TRUE;
+                     $config['width'] = 900;
+                    $config['height'] = 700;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoProceso($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleFotoProceso($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -3060,7 +3237,9 @@ class CtrlTrabajos extends CI_Controller {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                $Concepto = $this->trabajo_model->getDetalleFotos($ID);
+                $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotos($ID,$Mov);
+                
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -3080,7 +3259,8 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->Firma2 = $row->Firma2;
                         $pdf->Firma3 = $row->Firma3;
                         /* DETALLE IMAGENES */
-                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID,$ID);
+                        
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -3160,7 +3340,8 @@ class CtrlTrabajos extends CI_Controller {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDLA('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -3179,7 +3360,7 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->SetX(5);
                         $pdf->SetY(100);
                         $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
-                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -3361,12 +3542,116 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onReporteLevantamientoProceso() {
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotosProceso($ID);
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDLP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
+                        /* DETALLE IMAGENES */
+                        $fotos = $this->trabajo_model->getDetalleFotosProcesoXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
+                            $pdf->AddPage();
+                        }
+                        foreach ($fotos as $key => $foto) {
+
+                            $nimg += 1;
+                            /* ANTES */
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos = 115;
+                            $YCuandoEsUno = 80;
+                            $widthEsUno = 115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos = 52;
+                                $widthSonDos = 82;
+                                $YCuandoEsUno = 52;
+                                $widthEsUno = 82;
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
+                            //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                        }
+                        /* FIN DETALLE IMAGENES */
+                    }
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS DESPUES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onReporteLevantamientoCompleto() {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
                 $pages_added = false;
                 $pdf = new FotosFPDLC('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                 foreach ($Concepto as $i => $row) {
@@ -3378,7 +3663,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->ConceptoL = $row->Concepto;
                     $pdf->ClienteL = $row->Cliente;
                     /* DETALLE IMAGENES */
-                    $fotosAntes = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
                     $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
                     /* ANTES Y DESPUES */
 
@@ -3562,7 +3847,7 @@ class CtrlTrabajos extends CI_Controller {
                             /* Cuando ya solo quedan dos y es la segunda */ else
                             if ($ndespues == 2 && $nfotos_despues == 1) {
                                 $ancho = ($alto > $ancho) ? 40 : 100;
-                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_solas/* X */, $y_despues_columna_uno/* Y */, $ancho/* W *//* H */);
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_solas/* X */, $y_despues_columna_dos/* Y */, $ancho/* W *//* H */);
                             }
 
 
@@ -3662,7 +3947,8 @@ class CtrlTrabajos extends CI_Controller {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                  $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
                 $pages_added = false;
                 $pdf = new FotosFPDLCP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                 foreach ($Concepto as $i => $row) {
@@ -3673,6 +3959,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->EmpresaL = $row->Empresa;
                     $pdf->ConceptoL = $row->Concepto;
                     $pdf->ClienteL = $row->Cliente;
+                    $pdf->CentroCostoL = $row->CentroCosto;
 
 
                     $pdf->SetFont('Arial', 'I', 16);
@@ -3682,7 +3969,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
 
                     /* DETALLE IMAGENES */
-                    $fotosAntes = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
                     $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
                     /* ANTES Y DESPUES */
 
@@ -3877,7 +4164,7 @@ class CtrlTrabajos extends CI_Controller {
                             /* Cuando ya solo quedan dos y es la segunda */ else
                             if ($ndespues == 2 && $nfotos_despues == 1) {
                                 $ancho = ($alto > $ancho) ? 40 : 100;
-                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_solas/* X */, $y_despues_columna_uno/* Y */, $ancho/* W *//* H */);
+                                $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_solas/* X */, $y_despues_columna_dos/* Y */, $ancho/* W *//* H */);
                             }
 
 
@@ -3991,7 +4278,8 @@ class CtrlTrabajos extends CI_Controller {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID);
+                $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDLAP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -4004,13 +4292,14 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
                         $pdf->DireccionL = $row->Direccion;
+                        $pdf->CentroCostoL = $row->CentroCosto;
                         /* DETALLE IMAGENES */
                         $pdf->SetFont('Arial', 'I', 16);
                         $pdf->AddPage();
                         $pdf->SetX(5);
                         $pdf->SetY(100);
                         $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
-                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID);
+                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -4106,6 +4395,7 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
                         $pdf->DireccionL = $row->Direccion;
+                        $pdf->CentroCostoL = $row->CentroCosto;
                         /* DETALLE IMAGENES */
                         $pdf->SetFont('Arial', 'I', 16);
                         $pdf->AddPage();
@@ -4190,5 +4480,107 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onReporteLevantamientoProcesoPrinciple() {
+        try {
+            if (isset($_POST["ID"])) {
+                $ID = $this->input->post("ID");
+                $Concepto = $this->trabajo_model->getDetalleFotosProceso($ID);
+                if (!empty($Concepto)) {
+                    $pages_added = false;
+                    $pdf = new FotosFPDLPP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
+                    $nfotosxconcepto = 0;
+                    foreach ($Concepto as $i => $row) {
+                        /* ENCABEZADO */
+                        $pdf->CrL = $row->CR;
+                        $pdf->SucursalL = $row->Sucursal;
+                        $pdf->EmpresaL = $row->Empresa;
+                        $pdf->ConceptoL = $row->Concepto;
+                        $pdf->ClienteL = $row->Cliente;
+                        $pdf->DireccionL = $row->Direccion;
+                        $pdf->CentroCostoL = $row->CentroCosto;
+                        /* DETALLE IMAGENES */
+                        $pdf->SetFont('Arial', 'I', 16);
+                        $pdf->AddPage();
+                        $pdf->SetX(5);
+                        $pdf->SetY(100);
+                        $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
+                        $fotos = $this->trabajo_model->getDetalleFotosProcesoXID($row->ID);
+                        $nfotos = count($fotos);
+                        $fnfotos = count($fotos);
+                        $nimg = 0;
+                        $pdf->AliasNbPages();
+                        if (!$pages_added) {
+                            $pdf->AddPage();
+                        }
+                        foreach ($fotos as $key => $foto) {
+                            /* Valida el tamaño de la imagen para saber si la pone más pequeña */
+                            $dimensiones = getimagesize(utf8_decode($foto->Url));
+                            /* Ancho $dimensiones[0] */
+                            /* Alto $dimensiones[1] */
+                            $YCuandoSonTres = 85;
+                            $YCuandoSonDos = 80;
+                            $widthSonDos = 115;
+                            $YCuandoEsUno = 80;
+                            $widthEsUno = 115;
+                            if ($dimensiones[1] > $dimensiones[0]) {
+                                $YCuandoSonTres = 52;
+                                $YCuandoSonDos = 52;
+                                $widthSonDos = 82;
+                                $YCuandoEsUno = 52;
+                                $widthEsUno = 82;
+                            }
 
+                            $nimg += 1;
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA PRIMERA */
+                            if ($nimg == 1 && $nfotos > 1 && $nfotos == 2) {
+                                $pdf->Image($foto->Url, 20/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos > 1) {
+                                $pdf->Image($foto->Url, 10/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            } else if ($nimg == 1 && $nfotos == 1) {
+                                /* CUANDO SOLO TIENE UNA IMAGEN EL CONCEPTO O UN CONCEPTO ANTERIOR YA SOLO LE FALTABA UNA IMAGEN */
+                                $pdf->Image($foto->Url, 85/* X */, $YCuandoEsUno/* Y */, $widthEsUno/* W *//* H */);
+                            }
+                            /* CUANDO SOLO SON DOS FOTOS Y ES LA SEGUNDA */
+                            if ($nimg == 2 && $fnfotos == 2) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la segunda imagen pero hay más por imprimir */ else if ($nimg == 2 && $nfotos >= 2) {
+                                $pdf->Image($foto->Url, 97/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            /* Cuando al concepto le faltaba una imagen y solo quedan dos por imprimir */ else if ($nimg == 2 && $nfotos == 1) {
+                                $pdf->Image($foto->Url, 145/* X */, $YCuandoSonDos/* Y */, $widthSonDos/* W *//* H */);
+                            }
+                            /* Cuando es la tercera imagen */
+                            if ($nimg == 3) {
+                                $pdf->Image($foto->Url, 185/* X */, $YCuandoSonTres/* Y */, 84/* W *//* H */);
+                            }
+                            $nfotos --;
+                            //Se pone para que valide antes de agregar
+                            if ($nimg == 3 && $nfotos > 0) {
+                                $pages_added = true;
+                                $pdf->AddPage();
+                                $nimg = 0;
+                            } else {
+                                $pages_added = false;
+                            }
+                        }
+                        /* FIN DETALLE IMAGENES */
+                    }
+                    /* FIN CUERPO */
+                    $path = 'uploads/Reportes/' . $ID;
+                    // print $path;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file_name = "REPORTE FOTOS DESPUES";
+                    $url = $path . '/' . $file_name . '.pdf';
+                    $pdf->Output($url);
+                    print base_url() . $url;
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }
