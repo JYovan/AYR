@@ -122,9 +122,9 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosDespuesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS "Fotos Después", '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = tda.ID AND TDANE.IdTrabajo = tda.Trabajo_ID),")") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
+                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexosDos AS TDANED WHERE TDANED.IdTrabajoDetalle = tda.ID AND TDANED.IdTrabajo = tda.Trabajo_ID)>0 THEN '
+                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosDosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexosDos AS TDANED WHERE TDANED.IdTrabajoDetalle = tda.ID AND TDANED.IdTrabajo = tda.Trabajo_ID),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosDosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleGenerador\" '
                     . 'onclick=\"onEditarConceptoXDetalleAbierto(",tda.ID,")\"></span>") AS Editar,'
@@ -175,7 +175,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajoFotosDetalleByID($IDX,$IDT) {
+    public function getTrabajoFotosDetalleByID($IDX, $IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
@@ -194,7 +194,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoFotosAntesDetalleByID($IDX) {
         try {
             $this->db->select('TDFA.*', false);
@@ -232,7 +232,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoFotosProcesoDetalleByID($IDX) {
         try {
             $this->db->select('TDFP.*', false);
@@ -270,7 +270,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getFotosXTrabajoDetalleID($IDX,$IDT) {
+    public function getFotosXTrabajoDetalleID($IDX, $IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
@@ -306,7 +306,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getFotosDespuesXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
@@ -324,7 +324,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getFotosProcesoXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDFP.*', false);
@@ -343,7 +343,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getFotoXConceptoID($IDX,$IDT) {
+    public function getFotoXConceptoID($IDX, $IDT) {
         try {
             $this->db->select('TDF.*', false);
             $this->db->from("trabajodetallefotos AS TDF");
@@ -380,7 +380,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getFotoDespuesXConceptoID($IDX) {
         try {
             $this->db->select('TDFD.*', false);
@@ -416,8 +416,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    public function getAnexosXTrabajoDetalleID($IDX,$IDT) {
+
+    public function getAnexosXTrabajoDetalleID($IDX, $IDT) {
         try {
             $this->db->select('TDA.*', false);
             $this->db->from("trabajodetalleanexos AS TDA");
@@ -436,12 +436,50 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getAnexosDosXTrabajoDetalleID($IDX, $IDT) {
+        try {
+            $this->db->select('TDAD.*', false);
+            $this->db->from("trabajodetalleanexosDos AS TDAD");
+            $this->db->where("TDAD.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDAD.IdTrabajo", $IDT);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getAnexoXConceptoID($IDX, $IDT) {
         try {
             $this->db->select('TDA.*', false);
             $this->db->from("trabajodetalleanexos AS TDA");
             $this->db->where("TDA.ID", $IDX);
             $this->db->where("TDA.IdTrabajo", $IDT);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getAnexoDosXConceptoID($IDX, $IDT) {
+        try {
+            $this->db->select('TDAD.*', false);
+            $this->db->from("trabajodetalleanexosDos AS TDAD");
+            $this->db->where("TDAD.ID", $IDX);
+            $this->db->where("TDAD.IdTrabajo", $IDT);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -498,6 +536,26 @@ class trabajo_model extends CI_Model {
             $this->db->where("TDEA.IdTrabajoDetalle", $IDX);
             $this->db->where("TDEA.IdTrabajo", $IDT);
             $this->db->order_by('TDEA.ID', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//            print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajoAnexosDosDetalleByID($IDX, $IDT) {
+        try {
+            $this->db->select('TDEAD.*', false);
+            $this->db->from("trabajodetalleanexosdos AS TDEAD");
+            $this->db->where("TDEAD.IdTrabajoDetalle", $IDX);
+            $this->db->where("TDEAD.IdTrabajo", $IDT);
+            $this->db->order_by('TDEAD.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -580,7 +638,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarDetalleFotosAntes($array) {
         try {
             $this->db->insert("trabajodetallefotosantes", $array);
@@ -608,11 +666,53 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarDetalleFotosProceso($array) {
         try {
             $this->db->insert("trabajodetallefotosproceso", $array);
             //     print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleCroquis($array) {
+        try {
+            $this->db->insert("trabajodetallecroquis", $array);
+            //        print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleAnexos($array) {
+        try {
+            $this->db->insert("trabajodetalleanexos", $array);
+            //    print $str = $this->db->last_query();
+            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+            $row = $query->row_array();
+            $LastIdInserted = $row['LAST_INSERT_ID()'];
+            return $LastIdInserted;
+//           print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAgregarDetalleAnexosDos($array) {
+        try {
+            $this->db->insert("trabajodetalleanexosDos", $array);
+            //    print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
             $LastIdInserted = $row['LAST_INSERT_ID()'];
@@ -650,8 +750,8 @@ class trabajo_model extends CI_Model {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-    } 
-    
+    }
+
     public function onModificarDetalleFotoDespues($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -661,26 +761,12 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onModificarDetalleFotoProceso($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("trabajodetallefotosproceso", $DATA);
             //    print $str = $this->db->last_query();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onAgregarDetalleAnexos($array) {
-        try {
-            $this->db->insert("trabajodetalleanexos", $array);
-            //    print $str = $this->db->last_query();
-            $query = $this->db->query('SELECT LAST_INSERT_ID()');
-            $row = $query->row_array();
-            $LastIdInserted = $row['LAST_INSERT_ID()'];
-            return $LastIdInserted;
-//           print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -696,15 +782,11 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onAgregarDetalleCroquis($array) {
+    public function onModificarDetalleAnexoDos($ID, $DATA) {
         try {
-            $this->db->insert("trabajodetallecroquis", $array);
-            //        print $str = $this->db->last_query();
-            $query = $this->db->query('SELECT LAST_INSERT_ID()');
-            $row = $query->row_array();
-            $LastIdInserted = $row['LAST_INSERT_ID()'];
-            return $LastIdInserted;
-//           print $str = $this->db->last_query();
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajodetalleanexosDos", $DATA);
+            //      print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -761,7 +843,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarFotoXConcepto($ID,$IDT) {
+    public function onEliminarFotoXConcepto($ID, $IDT) {
         try {
             $this->db->where('IdTrabajo', $IDT);
             $this->db->where('ID', $ID);
@@ -771,7 +853,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarFotoAntesXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -791,7 +873,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarFotoProcesoXConcepto($ID) {
         try {
             $this->db->where('ID', $ID);
@@ -802,11 +884,22 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarAnexoXConcepto($ID,$IDT) {
+    public function onEliminarAnexoXConcepto($ID, $IDT) {
         try {
             $this->db->where('IdTrabajo', $IDT);
             $this->db->where('ID', $ID);
             $this->db->delete('trabajodetalleanexos');
+            // print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarAnexoDosXConcepto($ID, $IDT) {
+        try {
+            $this->db->where('IdTrabajo', $IDT);
+            $this->db->where('ID', $ID);
+            $this->db->delete('trabajodetalleanexosDos');
             // print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -962,7 +1055,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarFotosXConcepto($ID,$IDT) {
+    public function onEliminarFotosXConcepto($ID, $IDT) {
         try {
             $this->db->where('IdTrabajo', $IDT);
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -982,7 +1075,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarFotosDespuesXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
@@ -992,8 +1085,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onEliminarFotosProcesoXConcepto($ID) {
+
+    public function onEliminarFotosProcesoXConcepto($ID) {
         try {
             $this->db->where('IdTrabajoDetalle', $ID);
             $this->db->delete('trabajodetallefotosproceso');
@@ -1013,11 +1106,22 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarAnexosXConcepto($ID,$IDT) {
+    public function onEliminarAnexosXConcepto($ID, $IDT) {
         try {
             $this->db->where('IdTrabajo', $IDT);
             $this->db->where('IdTrabajoDetalle', $ID);
             $this->db->delete('trabajodetalleanexos');
+//            print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onEliminarAnexosDosXConcepto($ID, $IDT) {
+        try {
+            $this->db->where('IdTrabajo', $IDT);
+            $this->db->where('IdTrabajoDetalle', $ID);
+            $this->db->delete('trabajodetalleanexosDos');
 //            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -1119,6 +1223,7 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
     /*     * ************************* Reportes------------------------------ */
 
     public function getCategoriasPresupuesto($ID) {
@@ -1398,7 +1503,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotos($ID,$Mov) {
+    public function getDetalleFotos($ID, $Mov) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TD.ID AS ID,pc.ID as PreciarioConcepto_ID,
@@ -1424,7 +1529,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->group_by(array('TD.ID'));
             $this->db->order_by('TD.ID', 'ASC');
             $query = $this->db->get();
-            /*AND  `TDF`.`IdTrabajo` = `TD`.`Trabajo_ID`
+            /* AND  `TDF`.`IdTrabajo` = `TD`.`Trabajo_ID`
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
@@ -1436,7 +1541,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotosXID($ID,$IDT) {
+    public function getDetalleFotosXID($ID, $IDT) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDF.*, "ANTES" AS ANTES', false);
@@ -1457,8 +1562,8 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-    
-    public function getDetalleFotosAntesXID($ID,$IDT) {
+
+    public function getDetalleFotosAntesXID($ID, $IDT) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDFA.*, "ANTES" AS ANTES', false);
@@ -1500,8 +1605,8 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function getDetalleFotosProcesoXID($ID) {
+
+    public function getDetalleFotosProcesoXID($ID) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDFP.*,"PROCESO" AS PROCESO', false);
@@ -1522,7 +1627,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotosAntes($ID,$Mov) {
+    public function getDetalleFotosAntes($ID, $Mov) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
@@ -1586,8 +1691,8 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function getDetalleFotosProceso($ID) {
+
+    public function getDetalleFotosProceso($ID) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,

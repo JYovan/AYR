@@ -1,5 +1,4 @@
 <?php
-
 header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
@@ -146,6 +145,16 @@ class CtrlTrabajos extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->trabajo_model->getTrabajoAnexosDetalleByID($ID, $IDT);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTrabajoAnexosDosDetalleByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTrabajoAnexosDosDetalleByID($ID, $IDT);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -472,6 +481,21 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function onEliminarAnexoDosXConcepto() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getAnexoDosXConceptoID($ID, $IDT);
+            $anexo = $data[0];
+            if (isset($anexo->Url)) {
+                unlink($anexo->Url);
+                rmdir("uploads/Trabajos/AnexosDos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/" . $anexo->ID . "/");
+            }
+            $this->trabajo_model->onEliminarAnexoDosXConcepto($ID, $IDT);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function onEliminarCroquisXID() {
         try {
@@ -651,14 +675,16 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarCroquisXConcepto($ID);
-            $data = $this->trabajo_model->getAnexosXTrabajoDetalleID($ID);
+            
+            $data = $this->trabajo_model->getAnexosDosXTrabajoDetalleID($ID, $IDT);
+            print_r($data);
             foreach ($data as $key => $anexo) {
                 if (isset($anexo->Url)) {
                     unlink($anexo->Url);
-                    rmdir("uploads/Trabajos/Anexos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/");
+                    rmdir("uploads/Trabajos/AnexosDos/T" . $anexo->IdTrabajo . "/TD" . $anexo->IdTrabajoDetalle . "/");
                 }
             }
-            $this->trabajo_model->onEliminarAnexosXConcepto($ID);
+            $this->trabajo_model->onEliminarAnexosDosXConcepto($ID, $IDT);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -731,10 +757,11 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosEditar() {
         try {
             extract($this->input->post());
+            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
-                'Observaciones' => $Observaciones,
+                'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
                 'Registro' => Date('d/m/y h:i:s a')
             );
@@ -760,7 +787,8 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
-                        'Url' => ($img)
+                        'Url' => ($img),
+                        'Observaciones' => $nombre_foto.'-'.$ID
                     );
                     $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
                 } else {
@@ -779,10 +807,11 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosAntesEditar() {
         try {
             extract($this->input->post());
+            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
-                'Observaciones' => $Observaciones,
+                'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
                 'Registro' => Date('d/m/y h:i:s a')
             );
@@ -808,7 +837,8 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
-                        'Url' => ($img)
+                        'Url' => ($img),
+                        'Observaciones' => $nombre_foto.'-'.$ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoAntes($ID, $DATA);
                 } else {
@@ -826,11 +856,12 @@ class CtrlTrabajos extends CI_Controller {
     
     public function onAgregarFotosDespuesEditar() {
         try {
+            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
             extract($this->input->post());
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
-                'Observaciones' => $Observaciones,
+                'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
                 'Registro' => Date('d/m/y h:i:s a')
             );
@@ -861,7 +892,8 @@ class CtrlTrabajos extends CI_Controller {
                     $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'Url' => (NULL)
+                        'Url' => (NULL),
+                        'Observaciones' => $nombre_foto.'-'.$ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
@@ -875,10 +907,11 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosProcesoEditar() {
         try {
             extract($this->input->post());
+            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
-                'Observaciones' => $Observaciones,
+                'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
                 'Registro' => Date('d/m/y h:i:s a')
             );
@@ -904,7 +937,8 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
-                        'Url' => ($img)
+                        'Url' => ($img),
+                        'Observaciones' => $nombre_foto.'-'.$ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoProceso($ID, $DATA);
                 } else {
@@ -923,10 +957,11 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarCroquisEditar() {
         try {
             extract($this->input->post());
+            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
-                'Observaciones' => $Observaciones,
+                'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
                 'Registro' => Date('d/m/y h:i:s a')
             );
@@ -952,7 +987,8 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
-                        'Url' => ($img)
+                        'Url' => ($img),
+                        'Observaciones' => $nombre_foto.'-'.$ID
                     );
                     $this->trabajo_model->onModificarDetalleCroquis($ID, $DATA);
                 } else {
@@ -1000,6 +1036,46 @@ class CtrlTrabajos extends CI_Controller {
                         'Url' => (NULL)
                     );
                     $this->trabajo_model->onModificarDetalleAnexo($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onAgregarAnexosDosEditar() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'IdTrabajo' => $IdTrabajo,
+                'IdTrabajoDetalle' => $IdTrabajoDetalle,
+                'Observaciones' => $Observaciones,
+                'Estatus' => "ACTIVO",
+                'Registro' => Date('d/m/y h:i:s a')
+            );
+            $ID = $this->trabajo_model->onAgregarDetalleAnexosDos($data);
+            /* CREAR DIRECTORIO DE ANEXO */
+            $URL_DOC = "uploads/Trabajos/AnexosDos/T$IdTrabajo/TD$IdTrabajoDetalle";
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["ANEXOS"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/'))) {
+                    mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["ANEXOS"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["ANEXOS"]["name"]))) {
+                    $img = $master_url . $_FILES["ANEXOS"]["name"];
+                    $DATA = array(
+                        'Url' => ($img)
+                    );
+                    $this->trabajo_model->onModificarDetalleAnexoDos($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Url' => (NULL)
+                    );
+                    $this->trabajo_model->onModificarDetalleAnexoDos($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -1323,6 +1399,9 @@ class CtrlTrabajos extends CI_Controller {
             }
             $file_name = "REPORTE_FIN49_CONCEPTOS";
             $url = $path . '/' . $file_name . '.pdf';
+             if (file_exists($url)) {
+                         unlink($url);
+                    }
             $pdf->Output($url);
             print base_url() . $url;
         } catch (Exception $exc) {
@@ -1639,6 +1718,9 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE_PRESUPUESTO A&R";
         $url = $path . '/' . $file_name . '.pdf';
+         if (file_exists($url)) {
+                         unlink($url);
+                    }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -1953,6 +2035,9 @@ class CtrlTrabajos extends CI_Controller {
             }
             $file_name = "REPORTE_FIN49";
             $url = $path . '/' . $file_name . '.pdf';
+             if (file_exists($url)) {
+                         unlink($url);
+                    }
             $pdf->Output($url);
             print base_url() . $url;
         } catch (Exception $exc) {
@@ -2344,6 +2429,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "RESUMEN DE PARTIDAS";
         $url = $path . '/' . $file_name . '.pdf';
+         /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -2596,6 +2685,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE_PRESUPUESTOBBVA";
         $url = $path . '/' . $file_name . '.pdf';
+         /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -3067,6 +3160,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "NUMEROS GENERADORES";
         $url = $path . '/' . $file_name . '.pdf';
+         /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -3229,6 +3326,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE CROQUIS";
         $url = $path . '/' . $file_name . '.pdf';
+         /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -3327,6 +3428,10 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOGRAFICO";
                     $url = $path . '/' . $file_name . '.pdf';
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -3431,6 +3536,10 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS ANTES";
                     $url = $path . '/' . $file_name . '.pdf';
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -3534,6 +3643,10 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -3637,6 +3750,10 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -3935,6 +4052,10 @@ class CtrlTrabajos extends CI_Controller {
                 }
                 $file_name = "REPORTE LEVANTAMIENTO GENERAL ";
                 $url = $path . '/' . $file_name . '.pdf';
+                 /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                 $pdf->Output($url);
                 print base_url() . $url;
             }
@@ -4266,6 +4387,10 @@ class CtrlTrabajos extends CI_Controller {
                 }
                 $file_name = "REPORTE LEVANTAMIENTO GENERAL ";
                 $url = $path . '/' . $file_name . '.pdf';
+                 /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                 $pdf->Output($url);
                 print base_url() . $url;
             }
@@ -4369,6 +4494,10 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS ANTES";
                     $url = $path . '/' . $file_name . '.pdf';
+                    /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -4472,6 +4601,12 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
+                    
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
+                    
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -4575,6 +4710,12 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
+                    
+                     /*Borramos el archivo anterior*/
+                     if (file_exists($url)) {
+                         unlink($url);
+                    }
+                    
                     $pdf->Output($url);
                     print base_url() . $url;
                 }

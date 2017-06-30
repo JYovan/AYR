@@ -909,7 +909,7 @@
                     <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control hide">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control hide">
-                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
                 <fieldset>
@@ -941,7 +941,7 @@
                     <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                        <input type="file" id="fFotos" accept='image/*' name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
                 <fieldset>
@@ -973,7 +973,7 @@
                     <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
                 <fieldset>
@@ -1005,7 +1005,7 @@
                     <div class="col-md-12 hide">
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" id="fFotos" name="fFotos[]" multiple="" class="hide">
+                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     </div>
                 </fieldset>
                 <fieldset>
@@ -1036,7 +1036,7 @@
                     <div class="col-md-12 hide"><div class="col-md-12"><br></div>
                         <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
                         <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" id="fCroquis" name="fCroquis[]" multiple="" class="hide">
+                        <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="hide">
                     </div>
                 </fieldset>
                 <fieldset>
@@ -1073,6 +1073,38 @@
                 </fieldset>
                 <fieldset>
                     <div class="col-md-12" id="" align="center"  onclick="setAnexosEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>  
+                    </div>
+                    <div class="col-md-12"><br><br></div>
+                    <div class="col-md-12" id="Anexos"></div>
+                </fieldset>
+            </div>
+             <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL EDITAR - VER ANEXOS DOS ADJUNTOS-->
+<div id="mdlTrabajoEditarAnexosDosPorConcepto" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title modal-titleFull">Anexos</h4>
+            </div>
+            <div class="modal-body modal-bodyFull">
+                <fieldset>
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12 hide">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                        <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="hide">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="col-md-12" id="" align="center"  onclick="setAnexosDosEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
                     </div>
@@ -1147,6 +1179,8 @@
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
     /*BOTON PARA ABRIR EL MODAL DE ANEXOS (EDITAR)*/
     var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
+    /*BOTON PARA ABRIR EL MODAL DE ANEXOSDOS (EDITAR)*/
+    var mdlTrabajoEditarAnexosDosPorConcepto = $("#mdlTrabajoEditarAnexosDosPorConcepto");
     /*FOTOS (EDITAR)*/
     var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
     /*FOTOSANTES (EDITAR)*/
@@ -1159,6 +1193,8 @@
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
     /*ANEXOS (EDITAR)*/
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
+    /*ANEXOS (EDITAR)*/
+    var EditarAnexosDosPorConcepto = mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos");
     /******ABIERTO*/
     var pnlDetalleEditarTrabajoAbierto = $('#pnlDetalleEditarTrabajoAbierto');
     var pnlDetalleNuevoTrabajoAbierto = $('#pnlDetalleNuevoTrabajoAbierto');
@@ -1322,6 +1358,18 @@
             Cliente = this.value;
         });
         /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
+        mdlTrabajoEditarFotosPorConcepto.on('shown.bs.modal', function() {
+            EditarFotosPorConcepto.val('');
+        });
+         mdlTrabajoEditarFotosAntesPorConcepto.on('shown.bs.modal', function() {
+            EditarFotosAntesPorConcepto.val('');
+        });
+         mdlTrabajoEditarFotosDespuesPorConcepto.on('shown.bs.modal', function() {
+            EditarFotosDespuesPorConcepto.val('');
+        });
+         mdlTrabajoEditarFotosProcesoPorConcepto.on('shown.bs.modal', function() {
+            EditarFotosProcesoPorConcepto.val('');
+        });
         /*Evento drag and drop de FOTOS*/
         mdlTrabajoEditarFotosPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
@@ -1503,7 +1551,74 @@
                 });
             }
         });
+        /*Evento drag and drop de ANEXOSDOS*/
+        mdlTrabajoEditarAnexosDosPorConcepto.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            /*SUBIR FOTO*/
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('ANEXOS', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarAnexosDosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadAnexosDosXConcepto(mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
+                    getDetalleAbiertoByID(mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
         /*CARGA DE ARCHIVOS DETALLE NORMAL*/
+        /*ANEXOS DOS POR CONCEPTO EDITAR*/
+        EditarAnexosDosPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(EditarAnexosDosPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                /*SUBIR ANEXO*/
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('ANEXOS', file);
+                $.ajax({
+                    url: master_url + 'onAgregarAnexosDosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadAnexosDosXConcepto(mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
+                    getDetalleAbiertoByID(mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+        });
         /*ANEXOS POR CONCEPTO EDITAR*/
         EditarAnexosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -2832,9 +2947,11 @@
             url: master_url + 'onEliminarConceptoXDetalleAbierto',
             type: "POST",
             data: {
-                ID: IdEliminarConceptoAbierto
+                ID: IdEliminarConceptoAbierto,
+                IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
+            console.log(data);
             $('#mdlConfirmarEliminarConceptoAbierto').modal('hide');
             $(evtEliminarConceptoAbierto).parent().parent().remove();
         }).fail(function (x, y, z) {
@@ -3746,6 +3863,64 @@
         });
         mdlTrabajoEditarAnexosPorConcepto.modal('show');
     }
+    function getAnexosDosXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
+        mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
+        mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO ANEXOS...'
+        });
+        $.ajax({url: master_url + 'getTrabajoAnexosDosDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX,
+                IDT: IdMovimiento
+            }
+        }).done(function (data, x, jq) {
+            mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
+            if (data.length > 0) {
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    if (nimg === 3) {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
+                        nimg = 0;
+                    }
+                    var url_file = base_url + v.Url;
+                    var ext = getExt(url_file);
+                    if (ext === "txt" || ext === "dat") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "zip" || ext === "rar") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "mp4" || ext === "flv") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "doc" || ext === "docx") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "xls" || ext === "xlsx" || ext === "csv") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    }
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarAnexosDosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
+            }
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarAnexosDosPorConcepto.modal('show');
+    }
     function setFotosEditar(evt) {
         mdlTrabajoEditarFotosPorConcepto.find("#fFotos").trigger('click');
     }
@@ -3763,6 +3938,9 @@
     }
     function setAnexosEditar(evt) {
         mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos").trigger('click');
+    }
+    function setAnexosDosEditar(evt) {
+        mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos").trigger('click');
     }
     function onReloadFotosXConcepto(IDX, IDT) {
         $.ajax({
@@ -4002,8 +4180,60 @@
             } else {
                 mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
             }
-            getDetalleAbiertoByID(IdMovimiento);
             getTrabajoDetalleByID(IdMovimiento);
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+        });
+    }
+    function onReloadAnexosDosXConcepto(IDX, IDT) {
+        $.ajax({url: master_url + 'getTrabajoAnexosDosDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX,
+                IDT: IDT
+            }
+        }).done(function (data, x, jq) {
+            mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
+            if (data.length > 0) {
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    if (nimg === 3) {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
+                        nimg = 0;
+                    }
+                    var url_file = base_url + v.Url;
+                    var ext = getExt(url_file);
+                    if (ext === "txt" || ext === "dat") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "zip" || ext === "rar") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "mp4" || ext === "flv") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "doc" || ext === "docx") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "xls" || ext === "xlsx" || ext === "csv") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else {
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    }
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarAnexosDosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
+            }
+            getDetalleAbiertoByID(IdMovimiento);
             HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
@@ -4108,6 +4338,25 @@
             console.log(data);
             onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
             onReloadAnexosXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onEliminarAnexoDosXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."
+        });
+        $.ajax({
+            url: master_url + 'onEliminarAnexoDosXConcepto ',
+            type: "POST",
+            data: {
+                ID: IDX,
+                IDT: IDT
+            }
+        }).done(function (data, x, jq) {
+            console.log(data);
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
+            onReloadAnexosDosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
         }).always(function () {
             HoldOn.close();
