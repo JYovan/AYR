@@ -150,6 +150,7 @@
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
+                                    <option value="SOLICITUD">SOLICITUD</option>
                                 </select>
                             </div>
                             <div class=" col-3 col-md-3">
@@ -465,6 +466,7 @@
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
+                                    <option value="SOLICITUD">SOLICITUD</option>
                                 </select>
                             </div>
                             <div class=" col-6 col-md-3">
@@ -1318,10 +1320,7 @@
             } else if (this.value === 'PRESUPUESTO') {
                 pnlDetalleNuevoTrabajoAbierto.addClass('hide');
                 pnlDetalleNuevoTrabajo.removeClass('hide');
-            } else {
-                pnlDetalleNuevoTrabajo.addClass('hide');
-                pnlDetalleNuevoTrabajoAbierto.addClass('hide');
-            }
+            } 
         });
         pnlEditarTrabajo.find("#Movimiento").change(function () {
             /*Actualiza el movimiento sin necesidad de guardar*/
@@ -2156,6 +2155,9 @@
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("select").select2("val", "");
+            
+//            pnlNuevoTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+            
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             /*Inicializamos Boleanos en No*/
             pnlNuevoTrabajo.find("#Atendido").val('No');
@@ -2412,17 +2414,26 @@
                         }
                         menuTablero.addClass("hide");
                         if (trabajo.Movimiento === 'LEVANTAMIENTO') {
+//                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
                             pnlEditarTrabajo.removeClass("hide");
                             pnlDetalleEditarTrabajoAbierto.removeClass("hide");
                             $("#reportesLevantamiento").removeClass('hide');
                             $("#reportesPresupuesto").addClass('hide');
                             getDetalleAbiertoByID(trabajo.ID);
                         } else if (trabajo.Movimiento === 'PRESUPUESTO') {
+//                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
                             pnlEditarTrabajo.removeClass("hide");
                             pnlDetalleEditarTrabajo.removeClass("hide");
                             $("#reportesLevantamiento").addClass('hide');
                             $("#reportesPresupuesto").removeClass('hide');
                             getTrabajoDetalleByID(trabajo.ID);
+                        }
+                         else if (trabajo.Movimiento === 'SOLICITUD') {
+                            $("#Movimiento").append('<option value="option3">SOLICITUD</option>');
+                            pnlEditarTrabajo.removeClass("hide");
+                            pnlDetalleEditarTrabajo.addClass("hide");
+                            $("#reportesLevantamiento").addClass('hide');
+                            $("#reportesPresupuesto").addClass('hide');
                         }
                         /*Control de estatus*/
                         if (trabajo.Estatus === 'Concluido') {
@@ -2488,6 +2499,9 @@
         pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
+        
+        pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+        
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."
             });
@@ -3736,13 +3750,11 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
-                        nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
                      picthumbnail += '<div class="thumbnail">' +

@@ -34,7 +34,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <!-- Validacion forms -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>js/additional-methods.min.js">
+        <script rel="javascript" type="text/javascript" href="<?php echo base_url(); ?>js/additional-methods.min.js"></script>
         <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
         <!--Third Party-->
         <!--Pace loading and performance for web applications-->
@@ -65,28 +65,35 @@
         <script src="<?php print base_url(); ?>js/material.min.js"></script>
         <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
+        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
     </head>
     <script>
         var base_url = "<?php print base_url(); ?>";
-        $(function() {
-           // $(".btn").addClass("animated shake");
+        $(function () {
+            // $(".btn").addClass("animated shake");
             $("table.display").DataTable(tableOptions);
             $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
-            $('a[data-toggle="collapse"]').on('shown.bs.tab', function(e) {
+            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
             $("select").select2({
                 placeholder: "Selecciona una opción",
-                allowClear: true
+                allowClear: true,
+                autofocusInputOnOpen: false
             });
-            $('.modal').on('shown.bs.modal', function(e) {
+
+            $(document).on('touchend', function () {
+                $(".select2-search, .select2-focusser").remove();
+            });
+
+
+            $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
 
@@ -107,14 +114,14 @@
             }, {
                 type: type,
                 z_index: 3031,
+                delay: 2000,
                 placement: {
-                    from: "top",
-                    align: "center"
-                }
-            }, {
+                    from: "bottom",
+                    align: "right"
+                },
                 animate: {
-                    enter: 'animated bounceIn',
-                    exit: 'animated bounceOut'
+                    enter: 'animated fadeInUp',
+                    exit: 'animated fadeOutDown'
                 }
             });
         }

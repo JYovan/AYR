@@ -38,6 +38,8 @@ class CtrlSesion extends CI_Controller {
                     'PASSWORD' => $data[0]->Contrasena,
                     'Nombre' => $data[0]->Nombre,
                     'Apellidos' => $data[0]->Apellidos,
+                    'Cliente' => $data[0]->Cliente_ID,
+                    'Empresa' => $data[0]->Empresa_ID,
                     'ID' => $data[0]->ID,
                     'LOGGED' => TRUE,
                     'TipoAcceso' => $data[0]->TipoAcceso,

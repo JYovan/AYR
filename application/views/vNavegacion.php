@@ -47,9 +47,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse" id="">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="<?php print base_url('CtrlTrabajos')?>"  >Trabajos</a>
-                </li> 
+                <li class="dropdown" >
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Mesa de Trabajo<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="hide" id="liPedidoCliente">
+                            <a href="<?php print base_url('CtrlPedidoCliente') ?>"  >Pedidos Cliente</a>
+                        </li> 
+                        <li id="liTrabajos">
+                            <a href="<?php print base_url('CtrlTrabajos') ?>"  >Trabajos</a>
+                        </li> 
+                    </ul>
+                </li>
+
                 <li class="dropdown hide" id="liControl">
                     <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Control<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -76,14 +85,14 @@
                     <ul class="dropdown-menu">
                         <li id="liClientes"><a href="<?php print base_url('CtrlClientes') ?>">Clientes</a></li> 
                         <li id="liEmpresas"><a href="<?php print base_url('CtrlEmpresas') ?>">Empresas</a></li>
-                        <li id="liPreciarios"><a href="<?php print base_url('CtrlPreciarios')?>">Preciarios</a></li> 
+                        <li id="liPreciarios"><a href="<?php print base_url('CtrlPreciarios') ?>">Preciarios</a></li> 
                         <!--                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>-->
                         <li id="liEmpresasSupervisoras"><a href="<?php print base_url('CtrlEmpresasSupervisoras') ?>">Empresas Supervisoras</a></li> 
                         <!--                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>-->
                         <li id="liCuadrillas"><a href="<?php print base_url('CtrlCuadrillas') ?>">Cuadrillas</a></li> 
                         <li id="liCodigosPPTA"><a href="<?php print base_url('CtrlCodigosPPTA') ?>">Códigos PPTA</a></li> 
                         <li id="liCentrosCostos"><a href="<?php print base_url('CtrlCentroCostos') ?>">Centros de Costos</a></li> 
-                  
+
                     </ul>
                 </li>
                 <li class="hide" id="liUsuarios"><a href="<?php print base_url('CtrlUsuario') ?>">Usuarios</a></li>
@@ -122,10 +131,23 @@
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
     }
+    if (TipoAcceso === 'CLIENTE') {
+        $('#liPedidoCliente').removeClass('hide');
+        $('#liTrabajos').addClass('hide');
+    }
+    if (TipoAcceso === 'SUPER ADMINISTRADOR') {
+        $('#liPedidoCliente').removeClass('hide');
+        $('#liControl').removeClass('hide');
+        $('#liReportes').removeClass('hide');
+        $('#liExploradores').removeClass('hide');
+        $('#liCatalogos').removeClass('hide');
+        $('#liUsuarios').removeClass('hide');
+    }
+
     var master_url = base_url + 'CtrlSesion/';
     $(document).ready(function () {
         $('#btnModificar').on("click", function () {
-          
+
             var frm = new FormData($('#mdlCambiarContrasena').find("#frmEditarContrasena")[0]);
             $.validator.setDefaults({
                 ignore: []
@@ -152,7 +174,7 @@
 
             //Si es verdadero que hacer
             if ($('#frmEditarContrasena').valid()) {
-                 HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+                HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
                 $.ajax({
                     url: master_url + 'onCambiarContrasena',
                     type: "POST",

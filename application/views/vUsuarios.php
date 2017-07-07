@@ -51,20 +51,38 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-3">
                         <label for="">Usuario*</label>    
                         <input type="text" class="form-control" id="Usuario" name="Usuario" required >
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-3">
                         <label for="">Contraseña*</label>    
                         <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
                     </div>
-                    <div class="col-6 col-md-12">
+                    <div class="col-md-6">
+                        <label for="">Tipo Acceso*</label>
+                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
+                            <option value=""></option> 
+                            <option value="SUPER ADMINISTRADOR">Super Administrador</option>
+                            <option value="ADMINISTRADOR">Administrador</option> 
+                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                            <option value="RESIDENTE">Residente</option> 
+                            <option value="CLIENTE">Cliente</option> 
+                            <option value="INVITADO">Invitado</option> 
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-6">
                         <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Empresa*</label>
+                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
+                            <option value=""></option> 
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -75,26 +93,20 @@
                         <label for="">Apellidos*</label>
                         <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="">Tipo Acceso*</label>
-                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
-                            <option value=""></option> 
-                            <option value="ADMINISTRADOR">Administrador</option> 
-                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                            <option value="RESIDENTE">Residente</option> 
-                            <option value="INVITADO">Invitado</option> 
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="">Empresa*</label>
-                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
+
+                    
+                    <div class="col-md-6 hide" id="AreaCliente">
+                        <label for="">Cliente*</label>
+                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option> 
                         </select>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>    
-                    </div>
+
+
                 </fieldset>
+                <div class="col-6 col-md-6">
+                    <h6>Los campos con * son obligatorios</h6>    
+                </div>
             </form>
         </div>
     </div>
@@ -122,20 +134,38 @@
                     <div class="col-md-12 hide">
                         <input type="text" id="ID" name="ID" class="form-control" >
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-3">
                         <label for="">Usuario*</label>    
                         <input type="text" class="form-control" id="Usuario" name="Usuario" required >
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-3">
                         <label for="">Contraseña*</label>    
                         <input type="password" class="form-control" id="Contrasena" name="Contrasena" required >
                     </div>
-                    <div class="col-6 col-md-12">
+                    <div class="col-md-6">
+                        <label for="">Tipo de Acceso*</label>
+                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
+                            <option value=""></option> 
+                            <option value="SUPER ADMINISTRADOR">Super Administrador</option>
+                            <option value="ADMINISTRADOR">Administrador</option> 
+                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                            <option value="RESIDENTE">Residente</option> 
+                            <option value="CLIENTE">Cliente</option>
+                            <option value="INVITADO">Invitado</option> 
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-6">
                         <label for="">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Empresa*</label>
+                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
+                            <option value=""></option> 
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -146,26 +176,22 @@
                         <label for="">Apellidos*</label>
                         <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="">Tipo de Acceso*</label>
-                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="ADMINISTRADOR">Administrador</option> 
-                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                            <option value="RESIDENTE">Residente</option> 
-                            <option value="INVITADO">Invitado</option> 
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="">Empresa*</label>
-                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
+
+                    
+                    <div class="col-md-6 hide" id="AreaCliente">
+                        <label for="">Cliente*</label>
+                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option> 
                         </select>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>    
-                    </div>
+
+
+
                 </fieldset>
+
+                <div class="col-6 col-md-6">
+                    <h6>Los campos con * son obligatorios</h6>    
+                </div>
             </form>
         </div>
     </div>
@@ -185,7 +211,28 @@
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
+    var sEsClienteNuevo = pnlNuevo.find("#TipoAcceso");
+    var sEsCliente = pnlEditar.find("#TipoAcceso");
+
     $(document).ready(function () {
+        
+        
+         sEsClienteNuevo.change(function () {
+            if (this.value === 'CLIENTE') {
+                pnlNuevo.find("#AreaCliente").removeClass('hide');
+            } else  {
+                pnlNuevo.find("#AreaCliente").addClass('hide');
+            } 
+        });
+        
+         sEsCliente.change(function () {
+            if (this.value === 'CLIENTE') {
+                pnlEditar.find("#AreaCliente").removeClass('hide');
+            } else  {
+                 pnlEditar.find("#AreaCliente").addClass('hide');
+            } 
+        });
+        
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -320,6 +367,7 @@
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
+             
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -364,6 +412,7 @@
         /*CALLS*/
         getRecords();
         getEmpresas();
+        getClientes();
     });
     function getRecords() {
         temp = 0;
@@ -410,7 +459,12 @@
                             ID: temp
                         }
                     }).done(function (data, x, jq) {
-                        console.log(data);
+                        
+                        if (data[0].Cliente_ID !== null && parseFloat(data[0].Cliente_ID) !== 0) {
+                            pnlEditar.find("#AreaCliente").removeClass('hide');
+                        } else {
+                            pnlEditar.find("#AreaCliente").addClass('hide');
+                        }
                         pnlEditar.find("input").val("");
                         pnlEditar.find("select").select2("val", "");
                         $.each(data[0], function (k, v) {
@@ -459,6 +513,28 @@
             });
             pnlNuevo.find("#Empresa_ID").html(options);
             pnlEditar.find("#Empresa_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function getClientes() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        $.ajax({
+            url: master_url + 'getClientes',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
+            });
+            pnlNuevo.find("#Cliente_ID").html(options);
+            pnlEditar.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {

@@ -1,4 +1,5 @@
 <?php
+
 header('Access-Control-Allow-Origin: http://control.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
@@ -110,7 +111,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoFotosDespuesDetalleByID() {
         try {
             extract($this->input->post());
@@ -120,7 +121,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoFotosProcesoDetalleByID() {
         try {
             extract($this->input->post());
@@ -150,7 +151,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getTrabajoAnexosDosDetalleByID() {
         try {
             extract($this->input->post());
@@ -291,14 +292,14 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onModificarMovimiento() {
         try {
-             $ID = $this->input->post("ID");
-             $data = array(
+            $ID = $this->input->post("ID");
+            $data = array(
                 'Movimiento' => $this->input->post("Movimiento")
-                     );
-            $this->trabajo_model->onModificar($ID,$data);
+            );
+            $this->trabajo_model->onModificar($ID, $data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -421,7 +422,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarFotoAntesXConcepto() {
         try {
             extract($this->input->post());
@@ -451,7 +452,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarFotoProcesoXConcepto() {
         try {
             extract($this->input->post());
@@ -481,7 +482,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminarAnexoDosXConcepto() {
         try {
             extract($this->input->post());
@@ -639,7 +640,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosXConcepto($ID);
-            
+
             $data = $this->trabajo_model->getFotosAntesXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -648,7 +649,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosAntesXConcepto($ID);
-            
+
             $data = $this->trabajo_model->getFotosDespuesXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -657,7 +658,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosDespuesXConcepto($ID);
-            
+
             $data = $this->trabajo_model->getFotosProcesoXTrabajoDetalleID($ID);
             foreach ($data as $key => $foto) {
                 if (isset($foto->Url)) {
@@ -666,7 +667,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarFotosProcesoXConcepto($ID);
-            
+
             $data = $this->trabajo_model->getCroquisXTrabajoDetalleID($ID);
             foreach ($data as $key => $croquis) {
                 if (isset($croquis->Url)) {
@@ -675,7 +676,7 @@ class CtrlTrabajos extends CI_Controller {
                 }
             }
             $this->trabajo_model->onEliminarCroquisXConcepto($ID);
-            
+
             $data = $this->trabajo_model->getAnexosDosXTrabajoDetalleID($ID, $IDT);
             print_r($data);
             foreach ($data as $key => $anexo) {
@@ -757,7 +758,7 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosEditar() {
         try {
             extract($this->input->post());
-            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
+            $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
@@ -788,7 +789,7 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto.'-'.$ID
+                        'Observaciones' => $nombre_foto . '-' . $ID
                     );
                     $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
                 } else {
@@ -807,7 +808,7 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosAntesEditar() {
         try {
             extract($this->input->post());
-            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
+            $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
@@ -832,13 +833,13 @@ class CtrlTrabajos extends CI_Controller {
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
                     $config['maintain_ratio'] = TRUE;
-                     $config['width'] = 900;
+                    $config['width'] = 900;
                     $config['height'] = 700;
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto.'-'.$ID
+                        'Observaciones' => $nombre_foto . '-' . $ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoAntes($ID, $DATA);
                 } else {
@@ -853,10 +854,10 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarFotosDespuesEditar() {
         try {
-            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
+            $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             extract($this->input->post());
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
@@ -882,7 +883,7 @@ class CtrlTrabajos extends CI_Controller {
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
                     $config['maintain_ratio'] = TRUE;
-                     $config['width'] = 900;
+                    $config['width'] = 900;
                     $config['height'] = 700;
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
@@ -893,7 +894,7 @@ class CtrlTrabajos extends CI_Controller {
                 } else {
                     $DATA = array(
                         'Url' => (NULL),
-                        'Observaciones' => $nombre_foto.'-'.$ID
+                        'Observaciones' => $nombre_foto . '-' . $ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
@@ -903,11 +904,11 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarFotosProcesoEditar() {
         try {
             extract($this->input->post());
-            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
+            $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
@@ -932,13 +933,13 @@ class CtrlTrabajos extends CI_Controller {
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
                     $config['maintain_ratio'] = TRUE;
-                     $config['width'] = 900;
+                    $config['width'] = 900;
                     $config['height'] = 700;
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto.'-'.$ID
+                        'Observaciones' => $nombre_foto . '-' . $ID
                     );
                     $this->trabajo_model->onModificarDetalleFotoProceso($ID, $DATA);
                 } else {
@@ -957,7 +958,7 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarCroquisEditar() {
         try {
             extract($this->input->post());
-            $nombre_foto='IMGT-'.$IdTrabajo.'-TD'.$IdTrabajoDetalle;
+            $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
@@ -988,7 +989,7 @@ class CtrlTrabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto.'-'.$ID
+                        'Observaciones' => $nombre_foto . '-' . $ID
                     );
                     $this->trabajo_model->onModificarDetalleCroquis($ID, $DATA);
                 } else {
@@ -1043,7 +1044,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarAnexosDosEditar() {
         try {
             extract($this->input->post());
@@ -1276,14 +1277,17 @@ class CtrlTrabajos extends CI_Controller {
             $page_size = 75;
             foreach ($trabajo as $key => $value) {
                 $pdf->SetTextColor(0, 0, 0);
-                $pdf->SetFont('Arial', '', 7);
+                $pdf->SetFont('Arial', '', 6.5);
+
+   
                 $Ancho = $pdf->GetStringWidth(utf8_decode($value->Descripcion));
-                $numero_lineas = $Ancho / (103 ); //El ancho de multicell -5 de la altura
+                $numero_lineas = $Ancho / (104.5); //El ancho de multicell -5 de la altura
                 $numero_lineas = ceil($numero_lineas);
                 $AlturaLinea = 4;
                 $AlturaCelda = $numero_lineas * $AlturaLinea;
                 $AlturaCelda = ceil($AlturaCelda);
                 /* DETALLE DATOS */
+
                 $pdf->SetY($Y);
                 $pdf->SetX(5);
                 $pdf->cell(25, $AlturaCelda, utf8_decode($value->ClaveCategoria), 1, 0, 'C');
@@ -1292,7 +1296,9 @@ class CtrlTrabajos extends CI_Controller {
                 $pdf->cell(15, $AlturaCelda, utf8_decode($value->Clave), 1, 0, 'C');
                 $pdf->SetY($Y);
                 $pdf->SetX(45);
-                $pdf->MultiCell(110, 4, utf8_decode($value->Descripcion), 1, 'P', false);
+                $pdf->MultiCell(110, 4, utf8_decode($value->Descripcion), 1, 'J');
+
+
                 $H = $pdf->GetY();
                 $pdf->SetY($Y);
                 $pdf->SetX(155);
@@ -1332,14 +1338,15 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->SetY($CURRENT_Y);
                     $pdf->SetX(190);
                     $pdf->Cell(20, 5, utf8_decode("PRECIO"), 1, 1, 'C', true);
+
+                    $page_size = 195;
                     $Y = 15;
                     $top = 0;
-                    $page_size = 220;
                 }
             }
             /* FIRMAS PRIMER BLOQUE */
             /* FIRMA 1 */
-            $Y = $pdf->GetY() + 30;
+            $Y = $Y + 10;
             $pdf->SetTextColor(0, 0, 0);
             $pdf->SetFont('Arial', 'B', 7.5);
             $pdf->Rect(5, $Y, 63, 25);
@@ -1399,9 +1406,9 @@ class CtrlTrabajos extends CI_Controller {
             }
             $file_name = "REPORTE_FIN49_CONCEPTOS";
             $url = $path . '/' . $file_name . '.pdf';
-             if (file_exists($url)) {
-                         unlink($url);
-                    }
+            if (file_exists($url)) {
+                unlink($url);
+            }
             $pdf->Output($url);
             print base_url() . $url;
         } catch (Exception $exc) {
@@ -1416,106 +1423,30 @@ class CtrlTrabajos extends CI_Controller {
         $encabezado = $trabajo[0];
         // Creación del objeto de la clase heredada
         $pdf = new PDFC('P', 'mm', array(279 /* ANCHO */, 216 /* ALTURA */));
+
+        /* ENCABEZADO */
+        $pdf->FolioCliente = $encabezado->FolioCliente;
+        $pdf->Cliente = $encabezado->Cliente;
+        $pdf->Sucursal = $encabezado->Sucursal;
+        $pdf->CR = $encabezado->CR;
+        $pdf->TrabajoSolicitado = $encabezado->TrabajoSolicitado;
+        $pdf->Region = $encabezado->Region;
+        $pdf->TrabajoRequerido = $encabezado->TrabajoRequerido;
+        $pdf->Calle = $encabezado->Calle;
+        $pdf->NoExterior = $encabezado->NoExterior;
+        $pdf->Colonia = $encabezado->Colonia;
+        $pdf->Ciudad = $encabezado->Ciudad;
+        $pdf->Estado = $encabezado->Estado;
+
         $pdf->AliasNbPages();
         $pdf->AddPage();
         $pdf->SetAutoPageBreak(false, 300);
         $pdf->SetLineWidth(0.4);
-        /* ENCABEZADO */
-        // Logo
-        $pdf->Image(base_url() . 'img/watermark.png', 10, 95);
-        $pdf->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
-        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
-        $pdf->SetX(10);
-        $pdf->SetY(5);
-        // Movernos a la iquierda
-        $pdf->SetFont('Arial', 'B', 11);
-        $pdf->Cell(50, 5, utf8_decode("A&R Construcciones Sa de Cv"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(18);
-        $pdf->SetFont('Arial', 'B', 7);
-        $pdf->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 3);
-        $pdf->SetX(18);
-        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
-        /* INICIO CUERPO */
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 10);
-        $pdf->SetX(100);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(20, 5, utf8_decode("PRESUPUESTO"), 0, 0, 'L');
-        $pdf->SetY($CurrentY + 7);
-        $pdf->SetX(145);
-        $pdf->SetFont('Arial', 'B', 7.5);
-        $pdf->Cell(60, 5, utf8_decode($encabezado->FolioCliente), 0, 0, 'R');
-        /* DATS GENERALES */
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 8);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 4, utf8_decode($encabezado->Cliente), 0, 0, 'L');
-        $pdf->SetY($CurrentY + 8);
-        $pdf->SetX(140);
-        $pdf->Cell(60, 4, utf8_decode('GUADALAJARA, JALISCO'), 0, 0, 'R');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->Cell(20, 4, utf8_decode("SUCURSAL: "), 0, 0, 'L');
-        $pdf->SetX(30);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(100, 4, utf8_decode($encabezado->Sucursal . ' CR ' . $encabezado->CR), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
-        $pdf->SetX(30);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(100, 4, utf8_decode($encabezado->TrabajoSolicitado), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 4);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE " . $encabezado->Region), 0, 0, 'L');
-        $CurrentY = $pdf->GetY();
-        $pdf->SetY($CurrentY + 10);
-        $pdf->SetX(10);
-        $pdf->SetFont('Arial', '', 7.5);
-        $pdf->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($encabezado->TrabajoRequerido) . " EN LA SUCURSAL " . utf8_decode($encabezado->Sucursal . ' CR ' . $encabezado->CR) . " UBICADA EN " . $encabezado->Calle . ' No. ' . $encabezado->NoExterior . ' ' . $encabezado->Colonia . ', ' . $encabezado->Ciudad . ', ' . $encabezado->Estado), 0, 'J');
-        /* ENCABEZADO DETALLE */
-        $pdf->SetLineWidth(0.4);
-        /* ENCABEZADO TITULOS */
-        $pdf->SetFont('Arial', 'B', 6.5);
-        $CurrentY = $pdf->GetY() + 10;
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(10);
-        $pdf->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C');
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(25);
-        $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(135);
-        $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(150);
-        $pdf->Cell(15, 5, utf8_decode("VOLUMEN"), 1, 1, 'C');
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(165);
-        $pdf->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
-        $pdf->SetY($CurrentY);
-        $pdf->SetX(185);
-        $pdf->Cell(20, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
+
+
         $CurrentY = 80.5;
         foreach ($categorias as $key => $value) {
+
             /* CATEGORIAS */
             $pdf->SetY($CurrentY);
             $pdf->SetX(10);
@@ -1536,10 +1467,10 @@ class CtrlTrabajos extends CI_Controller {
             $pdf->SetX(185);
             $pdf->Cell(20, 5, utf8_decode(""), 1, 1, 'C');
             foreach ($trabajo as $keyConceptos => $valueConceptos) {
-                $pdf->SetFont('Arial', '', 7);
+                $pdf->SetFont('Arial', '', 6.5);
                 //para ajustar multicell
                 $AnchoConcepto = $pdf->GetStringWidth(utf8_decode($valueConceptos->Concepto));
-                $numero_lineasConcepto = $AnchoConcepto / (103 ); //El ancho de multicell -5 de la altura
+                $numero_lineasConcepto = $AnchoConcepto / (104.5 ); //El ancho de multicell -5 de la altura
                 $numero_lineasConcepto = ceil($numero_lineasConcepto);
                 $AlturaLineaConcepto = 4;
                 $AlturaCeldaConcepto = $numero_lineasConcepto * $AlturaLineaConcepto;
@@ -1567,102 +1498,7 @@ class CtrlTrabajos extends CI_Controller {
                     $CurrentY = $pdf->GetY();
                     if ($CurrentY > 190) {
                         $pdf->AddPage();
-                        /* ENCABEZADO */
-                        // Logo
-                        $pdf->Image(base_url() . 'img/watermark.png', 10, 95);
-                        $pdf->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
-                        $pdf->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
-                        $pdf->SetX(10);
-                        $pdf->SetY(5);
-                        // Movernos a la iquierda
-                        $pdf->SetFont('Arial', 'B', 11);
-                        $pdf->Cell(50, 5, utf8_decode("A&R Construcciones Sa de Cv"), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 4);
-                        $pdf->SetX(18);
-                        $pdf->SetFont('Arial', 'B', 7);
-                        $pdf->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 3);
-                        $pdf->SetX(18);
-                        $pdf->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 3);
-                        $pdf->SetX(18);
-                        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 3);
-                        $pdf->SetX(18);
-                        $pdf->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
-                        /* INICIO CUERPO */
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 10);
-                        $pdf->SetX(100);
-                        $pdf->SetFont('Arial', 'B', 8);
-                        $pdf->Cell(20, 5, utf8_decode("PRESUPUESTO"), 0, 0, 'L');
-                        $pdf->SetY($CurrentY + 7);
-                        $pdf->SetX(145);
-                        $pdf->SetFont('Arial', 'B', 7.5);
-                        $pdf->Cell(60, 5, utf8_decode($encabezado->FolioCliente), 0, 0, 'R');
-                        /* DATS GENERALES */
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 8);
-                        $pdf->SetX(10);
-                        $pdf->SetFont('Arial', 'B', 8);
-                        $pdf->Cell(80, 4, utf8_decode($encabezado->Cliente), 0, 0, 'L');
-                        $pdf->SetY($CurrentY + 8);
-                        $pdf->SetX(140);
-                        $pdf->Cell(60, 4, utf8_decode('GUADALAJARA, JALISCO'), 0, 0, 'R');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 4);
-                        $pdf->SetX(10);
-                        $pdf->Cell(20, 4, utf8_decode("SUCURSAL: "), 0, 0, 'L');
-                        $pdf->SetX(30);
-                        $pdf->SetFont('Arial', '', 8);
-                        $pdf->Cell(100, 4, utf8_decode($encabezado->Sucursal . ' CR ' . $encabezado->CR), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 4);
-                        $pdf->SetX(10);
-                        $pdf->SetFont('Arial', 'B', 8);
-                        $pdf->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
-                        $pdf->SetX(30);
-                        $pdf->SetFont('Arial', '', 8);
-                        $pdf->Cell(100, 4, utf8_decode($encabezado->TrabajoSolicitado), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 4);
-                        $pdf->SetX(10);
-                        $pdf->SetFont('Arial', 'B', 8);
-                        $pdf->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE " . $encabezado->Region), 0, 0, 'L');
-                        $CurrentY = $pdf->GetY();
-                        $pdf->SetY($CurrentY + 10);
-                        $pdf->SetX(10);
-                        $pdf->SetFont('Arial', '', 7.5);
-                        $pdf->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($encabezado->TrabajoRequerido) . " EN LA SUCURSAL " . utf8_decode($encabezado->Sucursal . ' CR ' . $encabezado->CR) . " UBICADA EN " . $encabezado->Calle . ' No. ' . $encabezado->NoExterior . ' ' . $encabezado->Colonia . ', ' . $encabezado->Ciudad . ', ' . $encabezado->Estado), 0, 'J');
-                        /* ENCABEZADO DETALLE */
-                        $pdf->SetLineWidth(0.4);
-                        /* ENCABEZADO TITULOS */
-                        $pdf->SetFont('Arial', 'B', 6.5);
-                        $CurrentY = $pdf->GetY() + 10;
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(10);
-                        $pdf->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C');
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(25);
-                        $pdf->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(135);
-                        $pdf->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(150);
-                        $pdf->Cell(15, 5, utf8_decode("VOLUMEN"), 1, 1, 'C');
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(165);
-                        $pdf->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
-                        $pdf->SetY($CurrentY);
-                        $pdf->SetX(185);
-                        $pdf->Cell(20, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
                         $CurrentY = 80.5;
-                        $pdf->SetY($CurrentY);
                     }
                 }
             }
@@ -1718,9 +1554,9 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE_PRESUPUESTO A&R";
         $url = $path . '/' . $file_name . '.pdf';
-         if (file_exists($url)) {
-                         unlink($url);
-                    }
+        if (file_exists($url)) {
+            unlink($url);
+        }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -2035,9 +1871,9 @@ class CtrlTrabajos extends CI_Controller {
             }
             $file_name = "REPORTE_FIN49";
             $url = $path . '/' . $file_name . '.pdf';
-             if (file_exists($url)) {
-                         unlink($url);
-                    }
+            if (file_exists($url)) {
+                unlink($url);
+            }
             $pdf->Output($url);
             print base_url() . $url;
         } catch (Exception $exc) {
@@ -2429,10 +2265,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "RESUMEN DE PARTIDAS";
         $url = $path . '/' . $file_name . '.pdf';
-         /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+        /* Borramos el archivo anterior */
+        if (file_exists($url)) {
+            unlink($url);
+        }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -2513,9 +2349,9 @@ class CtrlTrabajos extends CI_Controller {
         $ImporteTotal = 0;
         foreach ($trabajo as $key => $value) {
             $top += 10;
-            $pdf->SetFont('Arial', '', 7);
+            $pdf->SetFont('Arial', '', 6.5);
             $Ancho = $pdf->GetStringWidth(utf8_decode($value->Concepto));
-            $numero_lineas = $Ancho / (103 ); //El ancho de multicell -5 de la altura
+            $numero_lineas = $Ancho / (104.5 ); //El ancho de multicell -5 de la altura
             $numero_lineas = ceil($numero_lineas);
             $AlturaLinea = 4;
             $AlturaCelda = $numero_lineas * $AlturaLinea;
@@ -2685,10 +2521,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE_PRESUPUESTOBBVA";
         $url = $path . '/' . $file_name . '.pdf';
-         /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+        /* Borramos el archivo anterior */
+        if (file_exists($url)) {
+            unlink($url);
+        }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -2697,7 +2533,7 @@ class CtrlTrabajos extends CI_Controller {
         // Creación del objeto de la clase heredada
         $pdf = new PDFGEN('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
         $ID = $_POST['ID'];
-        $Concepto = $this->trabajo_model->getConceptosReportesGenericos($ID);
+        $Concepto = $this->trabajo_model->getConceptosReporteGenerador($ID);
         $Detalle = $this->trabajo_model->getDetalleGenerador($ID);
         $pdf->AliasNbPages();
         //ENCABEZADOS CONCEPTOS
@@ -3160,10 +2996,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "NUMEROS GENERADORES";
         $url = $path . '/' . $file_name . '.pdf';
-         /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+        /* Borramos el archivo anterior */
+        if (file_exists($url)) {
+            unlink($url);
+        }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -3326,10 +3162,10 @@ class CtrlTrabajos extends CI_Controller {
         }
         $file_name = "REPORTE CROQUIS";
         $url = $path . '/' . $file_name . '.pdf';
-         /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+        /* Borramos el archivo anterior */
+        if (file_exists($url)) {
+            unlink($url);
+        }
         $pdf->Output($url);
         print base_url() . $url;
     }
@@ -3339,8 +3175,8 @@ class CtrlTrabajos extends CI_Controller {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Mov = $this->input->post("Movimiento");
-                $Concepto = $this->trabajo_model->getDetalleFotos($ID,$Mov);
-                
+                $Concepto = $this->trabajo_model->getDetalleFotos($ID, $Mov);
+
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDF('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -3360,8 +3196,8 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->Firma2 = $row->Firma2;
                         $pdf->Firma3 = $row->Firma3;
                         /* DETALLE IMAGENES */
-                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID,$ID);
-                        
+                        $fotos = $this->trabajo_model->getDetalleFotosXID($row->ID, $ID);
+
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -3428,9 +3264,9 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOGRAFICO";
                     $url = $path . '/' . $file_name . '.pdf';
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3446,7 +3282,7 @@ class CtrlTrabajos extends CI_Controller {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Mov = $this->input->post("Movimiento");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID, $Mov);
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDLA('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -3465,7 +3301,7 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->SetX(5);
                         $pdf->SetY(100);
                         $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
-                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
+                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID, $ID);
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -3536,9 +3372,9 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS ANTES";
                     $url = $path . '/' . $file_name . '.pdf';
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3643,9 +3479,9 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3655,7 +3491,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onReporteLevantamientoProceso() {
         try {
             if (isset($_POST["ID"])) {
@@ -3750,9 +3586,9 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3768,7 +3604,7 @@ class CtrlTrabajos extends CI_Controller {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Mov = $this->input->post("Movimiento");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID, $Mov);
                 $pages_added = false;
                 $pdf = new FotosFPDLC('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                 foreach ($Concepto as $i => $row) {
@@ -3780,7 +3616,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->ConceptoL = $row->Concepto;
                     $pdf->ClienteL = $row->Cliente;
                     /* DETALLE IMAGENES */
-                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
+                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID, $ID);
                     $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
                     /* ANTES Y DESPUES */
 
@@ -3833,8 +3669,8 @@ class CtrlTrabajos extends CI_Controller {
 
                             $x_antes_columna_dos = 75;
                             $y_antes_columna_dos = 125;
-                            
-                            $x_antes_columna_solas=20;
+
+                            $x_antes_columna_solas = 20;
 
                             /* VALIDACION DE 1 FOTO */
                             if ($nantes == 1 && $nfotos_antes == 1 && $nfotos_antes_count <= 4) {
@@ -3932,7 +3768,7 @@ class CtrlTrabajos extends CI_Controller {
                             $y_despues_columna_uno = 45;
                             $y_despues_columna_dos = 125;
 
-                            $x_despues_columna_solas=155;
+                            $x_despues_columna_solas = 155;
 
                             /* VALIDACION DE 1 FOTO */
                             if ($ndespues == 1 && $nfotos_despues == 1 && $nfotos_despues_count <= 4) {
@@ -3989,8 +3825,8 @@ class CtrlTrabajos extends CI_Controller {
                                 $ancho = ($alto > $ancho) ? 40 : 60;
                                 $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W *//* H */);
                             }
-                            
-                           
+
+
 
                             /* Cuando es la tercera y ya no hay mas */ else
                             if ($ndespues == 3 && $nfotos_despues_count >= 4 && $nfotos_despues == 1) {
@@ -4052,10 +3888,10 @@ class CtrlTrabajos extends CI_Controller {
                 }
                 $file_name = "REPORTE LEVANTAMIENTO GENERAL ";
                 $url = $path . '/' . $file_name . '.pdf';
-                 /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+                /* Borramos el archivo anterior */
+                if (file_exists($url)) {
+                    unlink($url);
+                }
                 $pdf->Output($url);
                 print base_url() . $url;
             }
@@ -4068,8 +3904,8 @@ class CtrlTrabajos extends CI_Controller {
         try {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
-                  $Mov = $this->input->post("Movimiento");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
+                $Mov = $this->input->post("Movimiento");
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID, $Mov);
                 $pages_added = false;
                 $pdf = new FotosFPDLCP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                 foreach ($Concepto as $i => $row) {
@@ -4090,7 +3926,7 @@ class CtrlTrabajos extends CI_Controller {
                     $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
 
                     /* DETALLE IMAGENES */
-                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
+                    $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID, $ID);
                     $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
                     /* ANTES Y DESPUES */
 
@@ -4154,8 +3990,8 @@ class CtrlTrabajos extends CI_Controller {
 
                             $x_antes_columna_dos = 75;
                             $y_antes_columna_dos = 125;
-                            
-                            $x_antes_columna_solas=20;
+
+                            $x_antes_columna_solas = 20;
 
                             /* VALIDACION DE 1 FOTO */
                             if ($nantes == 1 && $nfotos_antes == 1 && $nfotos_antes_count <= 4) {
@@ -4237,7 +4073,7 @@ class CtrlTrabajos extends CI_Controller {
                             $nfotos_antes--;
                         }
 
-                         if (isset($array_fotos_despues[$index])) {
+                        if (isset($array_fotos_despues[$index])) {
                             $ndespues += 1;
                             if ($ndespues == 0) {
                                 $pdf->SetY(40);
@@ -4247,13 +4083,13 @@ class CtrlTrabajos extends CI_Controller {
                             $ancho_alto = getimagesize(utf8_decode($array_fotos_despues[$index]->Url));
                             $ancho = $ancho_alto[0];
                             $alto = $ancho_alto[1];
-                             $x_despues_columna_uno = 145;
+                            $x_despues_columna_uno = 145;
                             $x_despues_columna_dos = 212;
 
                             $y_despues_columna_uno = 45;
                             $y_despues_columna_dos = 125;
 
-                            $x_despues_columna_solas=155;
+                            $x_despues_columna_solas = 155;
 
                             /* VALIDACION DE 1 FOTO */
                             if ($ndespues == 1 && $nfotos_despues == 1 && $nfotos_despues_count <= 4) {
@@ -4310,8 +4146,8 @@ class CtrlTrabajos extends CI_Controller {
                                 $ancho = ($alto > $ancho) ? 40 : 60;
                                 $pdf->Image($array_fotos_despues[$index]->Url, $x_despues_columna_uno/* X */, $y_despues_columna_uno/* Y */, $ancho/* W *//* H */);
                             }
-                            
-                           
+
+
 
                             /* Cuando es la tercera y ya no hay mas */ else
                             if ($ndespues == 3 && $nfotos_despues_count >= 4 && $nfotos_despues == 1) {
@@ -4333,13 +4169,13 @@ class CtrlTrabajos extends CI_Controller {
                             /* FIN DE LAS VALIDACIONES DE TAMAÑO */
                             /* DESCOMENTAR SI SE OCUPA RECTIFICAR LAS VALIDACIONES */
                             /*
-                            $pdf->SetFont('Arial', '', 8);
-                            $pdf->SetTextColor(0,0 ,0);
-                            $pdf->SetX(100);
-                            $pdf->Cell(205, 5, "$nfotos_despues_count, ndespues:  $ndespues  " . $array_fotos_despues[$index]->Url . ", nfotos_despues:  " . $nfotos_despues . ",  nfotos: " . $nfotos, 0, 1);
-                            */
-                            
-                            
+                              $pdf->SetFont('Arial', '', 8);
+                              $pdf->SetTextColor(0,0 ,0);
+                              $pdf->SetX(100);
+                              $pdf->Cell(205, 5, "$nfotos_despues_count, ndespues:  $ndespues  " . $array_fotos_despues[$index]->Url . ", nfotos_despues:  " . $nfotos_despues . ",  nfotos: " . $nfotos, 0, 1);
+                             */
+
+
                             if ($fotos_antes_add == 1 && $fotos_despues_add == 0) {
                                 $fotos_despues_add = 1;
                                 $fotos_antes_add = 0;
@@ -4387,10 +4223,10 @@ class CtrlTrabajos extends CI_Controller {
                 }
                 $file_name = "REPORTE LEVANTAMIENTO GENERAL ";
                 $url = $path . '/' . $file_name . '.pdf';
-                 /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
-                    }
+                /* Borramos el archivo anterior */
+                if (file_exists($url)) {
+                    unlink($url);
+                }
                 $pdf->Output($url);
                 print base_url() . $url;
             }
@@ -4404,7 +4240,7 @@ class CtrlTrabajos extends CI_Controller {
             if (isset($_POST["ID"])) {
                 $ID = $this->input->post("ID");
                 $Mov = $this->input->post("Movimiento");
-                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID,$Mov);
+                $Concepto = $this->trabajo_model->getDetalleFotosAntes($ID, $Mov);
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPDLAP('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
@@ -4424,7 +4260,7 @@ class CtrlTrabajos extends CI_Controller {
                         $pdf->SetX(5);
                         $pdf->SetY(100);
                         $pdf->MultiCell(260, 6, strtoupper(utf8_decode($row->Concepto)), 0, 'C');
-                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID,$ID);
+                        $fotos = $this->trabajo_model->getDetalleFotosAntesXID($row->ID, $ID);
                         $nfotos = count($fotos);
                         $fnfotos = count($fotos);
                         $nimg = 0;
@@ -4494,9 +4330,9 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS ANTES";
                     $url = $path . '/' . $file_name . '.pdf';
-                    /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4601,12 +4437,12 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
-                    
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
-                    
+
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -4615,7 +4451,7 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onReporteLevantamientoProcesoPrinciple() {
         try {
             if (isset($_POST["ID"])) {
@@ -4710,12 +4546,12 @@ class CtrlTrabajos extends CI_Controller {
                     }
                     $file_name = "REPORTE FOTOS DESPUES";
                     $url = $path . '/' . $file_name . '.pdf';
-                    
-                     /*Borramos el archivo anterior*/
-                     if (file_exists($url)) {
-                         unlink($url);
+
+                    /* Borramos el archivo anterior */
+                    if (file_exists($url)) {
+                        unlink($url);
                     }
-                    
+
                     $pdf->Output($url);
                     print base_url() . $url;
                 }
@@ -4724,4 +4560,5 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
 }

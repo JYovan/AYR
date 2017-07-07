@@ -1442,6 +1442,43 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             echo $exc->getTraceAsString();
         }
     }
+    
+     public function getConceptosReporteGenerador($ID) {
+        try {
+            $this->db->query("set sql_mode=''");
+            $this->db->select('T.FechaCreacion, T.FolioCliente, T.Importe, CTE.Nombre AS Cliente, S.CR, S.Nombre
+AS Sucursal, E.Nombre AS Empresa, CTE.RutaLogo AS LogoCliente, PC.Clave,
+TD.Unidad, TD.Cantidad, TD.Precio,PCAT.Descripcion AS Categoria, PC.Descripcion AS Concepto,TD.PreciarioConcepto_ID AS ConceptoId,
+CONCAT(S.Calle," ",ifnull(S.NoExterior,"")," ",ifnull(S.NoInterior,"")," ",
+ifnull(S.Colonia,"")," ",ifnull(S.Ciudad,"")," ",ifnull(S.Estado,"")) AS Direccion,
+CONCAT(S.FirmaManttoNombres1," ",S.FirmaManttoApellidos1) AS Firma1,
+CONCAT(S.FirmaManttoNombres2," ",S.FirmaManttoApellidos2) AS Firma2,
+CONCAT(S.FirmaManttoNombres3," ",S.FirmaManttoApellidos3) AS Firma3
+FROM TRABAJOS T
+INNER JOIN clientes CTE ON CTE.ID = T.Cliente_ID
+INNER JOIN sucursales S ON S.ID = T.Sucursal_ID
+INNER JOIN trabajosdetalle TD ON TD.Trabajo_ID = T.ID
+left JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
+left JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
+left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
+left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID
+left JOIN empresas E ON E.id = S.Empresa_ID', false);
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where('T.ID', $ID);
+            $this->db->where('GTD.Total IS NOT NULL', NULL, FALSE);
+            $this->db->order_by('TD.Renglon', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getDetalleGenerador($ID) {
         try {

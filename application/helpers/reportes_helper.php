@@ -1,8 +1,101 @@
 <?php
+
 class PDF extends FPDF {
     
 }
+
 class PDFC extends FPDF {
+   
+    
+    
+    
+    function Header() {
+       
+        // Logo
+        $this->Image(base_url() . 'img/watermark.png', 10, 95);
+        $this->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
+        $this->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
+        $this->SetX(10);
+        $this->SetY(5);
+        // Movernos a la iquierda
+        $this->SetFont('Arial', 'B', 11);
+        $this->Cell(50, 5, utf8_decode("A&R Construcciones Sa de Cv"), 0, 0, 'L');
+        $this->SetY(9);
+        $this->SetX(18);
+        $this->SetFont('Arial', 'B', 7);
+        $this->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
+        $this->SetY(12);
+        $this->SetX(18);
+        $this->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
+        $this->SetY(15);
+        $this->SetX(18);
+        $this->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
+        $this->SetY(18);
+        $this->SetX(18);
+        $this->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
+        /* INICIO CUERPO */
+        $this->SetY(28);
+        $this->SetX(100);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(20, 5, utf8_decode("PRESUPUESTO"), 0, 0, 'L');
+        $this->SetY(28);
+        $this->SetX(145);
+        $this->SetFont('Arial', 'B', 7.5);
+        $this->Cell(60, 5, utf8_decode($this->getFolioCliente()), 0, 0, 'R');
+        /* DATS GENERALES */
+        $this->SetY(33);
+        $this->SetX(10);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(80, 4, utf8_decode($this->getCliente()), 0, 0, 'L');
+        $this->SetY(33);
+        $this->SetX(140);
+        $this->Cell(60, 4, utf8_decode('GUADALAJARA, JALISCO'), 0, 0, 'R');
+        $this->SetY(37);
+        $this->SetX(10);
+        $this->Cell(20, 4, utf8_decode("SUCURSAL: "), 0, 0, 'L');
+        $this->SetX(30);
+        $this->SetFont('Arial', '', 8);
+        $this->Cell(100, 4, utf8_decode($this->getSucursal() . ' CR ' . $this->getCR()), 0, 0, 'L');
+        $this->SetY(41);
+        $this->SetX(10);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
+        $this->SetX(30);
+        $this->SetFont('Arial', '', 8);
+        $this->Cell(100, 4, utf8_decode($this->getTrabajoSolicitado()), 0, 0, 'L');
+        $this->SetY(45);
+        $this->SetX(10);
+        $this->SetFont('Arial', 'B', 8);
+        $this->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE " . $this->getRegion()), 0, 0, 'L');
+        $this->SetY(55);
+        $this->SetX(10);
+        $this->SetFont('Arial', '', 7.5);
+        $this->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($this->getTrabajoRequerido()) . " EN LA SUCURSAL " . utf8_decode($this->getSucursal() . ' CR ' . $this->getCR()) . " UBICADA EN " . $this->getCalle() . ' No. ' . $this->getNoExterior() . ' ' . $this->getColonia() . ', ' . $this->getCiudad() . ', ' . $this->getEstado()), 0, 'J');
+        /* ENCABEZADO DETALLE */
+        $this->SetLineWidth(0.4);
+        /* ENCABEZADO TITULOS */
+        $this->SetFont('Arial', 'B', 6.5);
+        $this->SetY(75.5);
+        $this->SetX(10);
+        $this->Cell(15, 5, utf8_decode("CLAVE"), 1, 1, 'C');
+        $this->SetY(75.5);
+        $this->SetX(25);
+        $this->Cell(110, 5, utf8_decode("CONCEPTO"), 1, 1, 'C');
+        $this->SetY(75.5);
+        $this->SetX(135);
+        $this->Cell(15, 5, utf8_decode("UNIDAD"), 1, 1, 'C');
+        $this->SetY(75.5);
+        $this->SetX(150);
+        $this->Cell(15, 5, utf8_decode("VOLUMEN"), 1, 1, 'C');
+        $this->SetY(75.5);
+        $this->SetX(165);
+        $this->Cell(20, 5, utf8_decode("P.U."), 1, 1, 'C');
+        $this->SetY(75.5);
+        $this->SetX(185);
+        $this->Cell(20, 5, utf8_decode("IMPORTE"), 1, 1, 'C');
+        
+    }
+    
 
     function Footer() {
         /* Leyenda */
@@ -11,21 +104,17 @@ class PDFC extends FPDF {
         $this->SetFont('Arial', '', 6.5);
         $this->MultiCell(190, 3, utf8_decode("EL IMPORTE DE ESTE PRESUPUESTO NO INCLUYE 16% IVA. VIGENCIA VÁLIDA POR 30 DÍAS A PARTIR DE LA FECHA DE GENERACIÓN DEL PRESUPUESTO SIN OTRO PARTICULAR DE MOMENTO Y EN ESPERA DE VERNOS FAVORECIDOS CON SU PREFERENCIA, QUEDO A SUS APRECIABLES ORDENES."), 0, 'C');
         /* Firma */
-        $CurrentY = $this->GetY();
-        $this->SetY($CurrentY + 15);
+        $this->SetY(252);
         $this->SetX(73);
         $this->SetFont('Arial', 'B', 7.5);
         $this->cell(70, 5, utf8_decode("Ing. Victor Ayala Ruiz"), 'T', 0, 'C');
-        $CurrentY = $this->GetY();
-        $this->SetY($CurrentY + 3);
+        $this->SetY(257);
         $this->SetX(73);
         $this->SetFont('Arial', '', 7.5);
         $this->cell(70, 5, utf8_decode("A & R Construcciones Sa de Cv"), 0, 0, 'C');
         /* Barra Footer */
-        $CurrentY = $this->GetY();
-        $this->Image(base_url() . 'img/barra_Presupuesto.png', 5, $CurrentY + 2, 210, 6);
-        $CurrentY = $this->GetY();
-        $this->SetY($CurrentY + 4);
+        $this->Image(base_url() . 'img/barra_Presupuesto.png', 5, 257 + 2, 210, 6);
+        $this->SetY(261);
         $this->SetX(10);
         $this->SetFont('Arial', 'B', 7);
         $this->MultiCell(60, 3, utf8_decode("
@@ -33,9 +122,121 @@ Justo Sierra No. 2150
 Col. Americana
 CP. 44600
 Guadalajara, Jalisco, MÉXICO"), 0, 'L');
-        $this->SetY($CurrentY + 6);
+        $this->SetY(263);
         $this->SetX(175);
         $this->cell(30, 4, utf8_decode("victor.ayala@ayr.mx"), 0, 0, 'L');
+    }
+
+    /*  STTER AND GETTER */
+
+    public $FolioCliente = '';
+    public $Cliente = '';
+    public $Sucursal = '';
+    public $CR = '';
+    public $TrabajoSolicitado = '';
+    public $Region = '';
+    public $TrabajoRequerido = '';
+    public $Calle = '';
+    public $NoExterior = '';
+    public $Colonia = '';
+    public $Ciudad = '';
+    public $Estado = '';
+
+    public function setEstado($Estado) {
+        $this->Estado = $Estado;
+    }
+
+    public function getEstado() {
+
+        return $this->Estado;
+    }
+
+    public function setCiudad($Ciudad) {
+        $this->Ciudad = $Ciudad;
+    }
+
+    public function getCiudad() {
+        return $this->Ciudad;
+    }
+
+    public function setColonia($Colonia) {
+        $this->Colonia = $Colonia;
+    }
+
+    public function getColonia() {
+        return $this->Colonia;
+    }
+
+    public function setNoExterior($NoExterior) {
+        $this->NoExterior = $NoExterior;
+    }
+
+    public function getNoExterior() {
+        return $this->NoExterior;
+    }
+
+    public function setCalle($Calle) {
+        $this->Calle = $Calle;
+    }
+
+    public function getCalle() {
+        return $this->Calle;
+    }
+
+    public function setTrabajoRequerido($TrabajoRequerido) {
+        $this->TrabajoRequerido = $TrabajoRequerido;
+    }
+
+    public function getTrabajoRequerido() {
+        return $this->TrabajoRequerido;
+    }
+
+    public function setRegion($Region) {
+        $this->Region = $Region;
+    }
+
+    public function getRegion() {
+        return $this->Region;
+    }
+
+    public function setTrabajoSolicitado($TrabajoSolicitado) {
+        $this->TrabajoSolicitado = $TrabajoSolicitado;
+    }
+
+    public function getTrabajoSolicitado() {
+        return $this->TrabajoSolicitado;
+    }
+
+    public function setCR($CR) {
+        $this->CR = $CR;
+    }
+
+    public function getCR() {
+        return $this->CR;
+    }
+
+    public function setSucursal($Sucursal) {
+        $this->Sucursal = $Sucursal;
+    }
+
+    public function getSucursal() {
+        return $this->Sucursal;
+    }
+
+    public function setCliente($Cliente) {
+        $this->Cliente = $Cliente;
+    }
+
+    public function getCliente() {
+        return $this->Cliente;
+    }
+
+    public function setFolioCliente($FolioCliente) {
+        $this->FolioCliente = $FolioCliente;
+    }
+
+    public function getFolioCliente() {
+        return $this->FolioCliente;
     }
 
 }
@@ -849,7 +1050,7 @@ class FotosFPDLCP extends FPDF {
 
 // Page header
     function Header() {
-          $this->SetY(0);
+        $this->SetY(0);
         $this->SetX(0);
         $this->SetFillColor(210, 71, 38);
         $this->Cell(279, 30, '', 1, 0, 'C', true);
@@ -861,7 +1062,7 @@ class FotosFPDLCP extends FPDF {
         $this->SetY(15);
         $this->SetX(8);
         $this->Cell(80, 10, utf8_decode($this->getCentroCostoL()), 0, 0, 'L');
-       
+
         /* CUERPO */
 //        $this->SetFont('Arial', 'I', 14);
 //        $this->SetTextColor(122, 122, 122);
@@ -899,8 +1100,8 @@ class FotosFPDLCP extends FPDF {
     public $ConceptoL = '';
     public $ClienteL = '';
     public $CentroCostoL = '';
-    
-     public function setCentroCostoL($CentroCostoL) {
+
+    public function setCentroCostoL($CentroCostoL) {
         $this->CentroCostoL = $CentroCostoL;
     }
 
@@ -1001,8 +1202,8 @@ class FotosFPDLAP extends FPDF {
     public $ClienteL = '';
     public $DireccionL = '';
     public $CentroCostoL = '';
-    
-     public function setCentroCostoL($CentroCostoL) {
+
+    public function setCentroCostoL($CentroCostoL) {
         $this->CentroCostoL = $CentroCostoL;
     }
 
@@ -1111,8 +1312,8 @@ class FotosFPDLDP extends FPDF {
     public $ClienteL = '';
     public $DireccionL = '';
     public $CentroCostoL = '';
-    
-     public function setCentroCostoL($CentroCostoL) {
+
+    public function setCentroCostoL($CentroCostoL) {
         $this->CentroCostoL = $CentroCostoL;
     }
 
@@ -1120,7 +1321,6 @@ class FotosFPDLDP extends FPDF {
         return $this->CentroCostoL;
     }
 
-    
     public function setDireccionL($DireccionL) {
         $this->DireccionL = $DireccionL;
     }
@@ -1222,8 +1422,8 @@ class FotosFPDLPP extends FPDF {
     public $ClienteL = '';
     public $DireccionL = '';
     public $CentroCostoL = '';
-    
-     public function setCentroCostoL($CentroCostoL) {
+
+    public function setCentroCostoL($CentroCostoL) {
         $this->CentroCostoL = $CentroCostoL;
     }
 
@@ -1231,7 +1431,6 @@ class FotosFPDLPP extends FPDF {
         return $this->CentroCostoL;
     }
 
-    
     public function setDireccionL($DireccionL) {
         $this->DireccionL = $DireccionL;
     }
