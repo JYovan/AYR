@@ -233,12 +233,31 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajoFotosProcesoDetalleByID($IDX) {
+    public function getTrabajoFotosProcesoDetalleByIDXTiempo($IDX,$Tiempo) {
         try {
             $this->db->select('TDFP.*', false);
             $this->db->from("trabajodetallefotosproceso AS TDFP");
             $this->db->where("TDFP.IdTrabajoDetalle", $IDX);
-            $this->db->order_by('TDFP.ID', 'DESC');
+            $this->db->where("TDFP.Tiempo", $Tiempo);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    public function getTiempoFotosProcesoXTrabajoDetalleID($IDX) {
+        try {
+            $this->db->distinct();
+            $this->db->select('Tiempo, Porcentaje',false);
+            $this->db->from("trabajodetallefotosproceso");
+            $this->db->where("IdTrabajoDetalle", $IDX);
+            $this->db->order_by('Tiempo', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -324,6 +343,8 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
 
     public function getFotosProcesoXTrabajoDetalleID($IDX) {
         try {

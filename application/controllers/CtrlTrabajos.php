@@ -122,10 +122,20 @@ class CtrlTrabajos extends CI_Controller {
         }
     }
 
-    public function getTrabajoFotosProcesoDetalleByID() {
+    public function getTrabajoFotosProcesoDetalleByIDXTiempo() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getTrabajoFotosProcesoDetalleByID($ID);
+            $data = $this->trabajo_model->getTrabajoFotosProcesoDetalleByIDXTiempo($ID,$Tiempo);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function getTiempoFotosProcesoXTrabajoDetalleID() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->getTiempoFotosProcesoXTrabajoDetalleID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -200,7 +210,8 @@ class CtrlTrabajos extends CI_Controller {
                 'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : NULL,
-                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : NULL
+                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : NULL,
+                'ControlProceso' => (isset($ControlProceso) && $ControlProceso !== 0) ? $ControlProceso : NULL
             );
             $ID = $this->trabajo_model->onAgregar($data);
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
@@ -908,13 +919,16 @@ class CtrlTrabajos extends CI_Controller {
     public function onAgregarFotosProcesoEditar() {
         try {
             extract($this->input->post());
+            
             $nombre_foto = 'IMGT-' . $IdTrabajo . '-TD' . $IdTrabajoDetalle;
             $data = array(
                 'IdTrabajo' => $IdTrabajo,
                 'IdTrabajoDetalle' => $IdTrabajoDetalle,
                 'Observaciones' => $nombre_foto,
                 'Estatus' => "ACTIVO",
-                'Registro' => Date('d/m/y h:i:s a')
+                'Registro' => Date('d/m/y h:i:s a'),
+                'Tiempo' => $Tiempo,
+                'Porcentaje' => $Porcentaje
             );
             $ID = $this->trabajo_model->onAgregarDetalleFotosProceso($data);
             /* CREAR DIRECTORIO DE FOTOS */

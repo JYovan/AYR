@@ -150,7 +150,6 @@
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
-                                    <option value="SOLICITUD">SOLICITUD</option>
                                 </select>
                             </div>
                             <div class=" col-3 col-md-3">
@@ -217,6 +216,14 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Observaciones</label>
                                 <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                            </div>
+                            <div id="ControlProceso" class="col-6 col-md-3 hide">
+                                <label for="">Control de proceso</label>
+                                <select id="" name="ControlProceso" class="form-control " >
+                                    <option value=""></option>
+                                    <option value="Dias">DÍAS</option>
+                                    <option value="Semanas">SEMANAS</option>
+                                </select>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
@@ -355,7 +362,7 @@
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span>SELECCIONA EL ARCHIVO
+                                    <span class="fa fa-upload fa-1x"></span><br>SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
                             <div class="col-md-12 hide">
@@ -466,7 +473,6 @@
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
-                                    <option value="SOLICITUD">SOLICITUD</option>
                                 </select>
                             </div>
                             <div class=" col-6 col-md-3">
@@ -537,6 +543,14 @@
                             <div class="col-6 col-md-6">
                                 <label for="">Observaciones</label>
                                 <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                            </div>
+                            <div id="ControlProcesoEditar" class="col-6 col-md-3 hide">
+                                <label for="">Control de proceso</label>
+                                <select id="ControlTiempoProceso" name="ControlProceso" class="form-control" >
+                                    <option value=""></option>
+                                    <option value="Dias">DÍAS</option>
+                                    <option value="Semanas">SEMANAS</option>
+                                </select>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
@@ -683,7 +697,7 @@
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x">
-                                    </span>
+                                    </span><br>
                                     SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
@@ -892,7 +906,7 @@
                 </fieldset>
                 <div class="col-md-12" id="ConceptosXPreciarioID"></div>
             </div>
-             <div class="modal-footer modal-footerFull">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
@@ -923,7 +937,7 @@
                     <div class="col-md-12 row" id="Fotos"></div>
                 </fieldset>
             </div>
-             <div class="modal-footer modal-footerFull">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
@@ -987,7 +1001,7 @@
                     <div class="col-md-12 row" id="Fotos"></div>
                 </fieldset>
             </div>
-             <div class="modal-footer modal-footerFull">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
@@ -1002,16 +1016,21 @@
                 <h4 class="modal-title modal-titleFull">Fotos en Proceso</h4>
             </div>
             <div class="modal-body modal-bodyFull">
+
                 <fieldset>
-                    <div class="col-md-12"><br></div>
-                    <div class="col-md-12 hide">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
+
+                    <div class="col-md-6">
+                        <label class="Tiempo" for="">Debe de elegir un control de tiempo*</label>
+                        <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control">
                     </div>
-                </fieldset>
-                <fieldset>
-                    <div class="col-md-12" id="" align="center"  onclick="setFotosProcesoEditar(this)">
+                    <div class="col-md-6">
+                        <label for="">Porcentaje*</label>
+                        <input type="text" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 100)" id="IdPorcentajeProceso" name="IdPorcentajeProceso" class="form-control numbersOnly">
+                    </div>
+                    <div class="col-md-12 hide" id="idSubirFotosProceso" align="center"  onclick="setFotosProcesoEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
                     </div>
@@ -1082,7 +1101,7 @@
                     <div class="col-md-12" id="Anexos"></div>
                 </fieldset>
             </div>
-             <div class="modal-footer modal-footerFull">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
@@ -1114,7 +1133,7 @@
                     <div class="col-md-12" id="Anexos"></div>
                 </fieldset>
             </div>
-             <div class="modal-footer modal-footerFull">
+            <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
@@ -1205,6 +1224,26 @@
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
     $(document).ready(function () {
+        $('.numbersOnly').keypress(function () {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        });
+        $("#IdTiempoProceso").change(function () {
+            if ($('#IdTiempoProceso').val() !== '' && $('#IdPorcentajeProceso').val() !== '') {
+                $('#idSubirFotosProceso').removeClass('hide');
+            } else {
+                $('#idSubirFotosProceso').addClass('hide');
+            }
+        });
+        $("#IdPorcentajeProceso").change(function () {
+            if ($('#IdPorcentajeProceso').val() !== '') {
+                $('#IdPorcentajeProceso').val($('#IdPorcentajeProceso').val() + '%');
+            }
+            if ($('#IdTiempoProceso').val() !== '' && $('#IdPorcentajeProceso').val() !== '') {
+                $('#idSubirFotosProceso').removeClass('hide');
+            } else {
+                $('#idSubirFotosProceso').addClass('hide');
+            }
+        });
         /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
         $('.file_drag_area').on('dragover', function () {
             $(this).addClass('file_drag_over');
@@ -1317,10 +1356,12 @@
             if (this.value === 'LEVANTAMIENTO') {
                 pnlDetalleNuevoTrabajoAbierto.removeClass('hide');
                 pnlDetalleNuevoTrabajo.addClass('hide');
+                $('#ControlProceso').removeClass('hide');
             } else if (this.value === 'PRESUPUESTO') {
                 pnlDetalleNuevoTrabajoAbierto.addClass('hide');
                 pnlDetalleNuevoTrabajo.removeClass('hide');
-            } 
+                $('#ControlProceso').addClass('hide');
+            }
         });
         pnlEditarTrabajo.find("#Movimiento").change(function () {
             /*Actualiza el movimiento sin necesidad de guardar*/
@@ -1337,6 +1378,7 @@
             if (this.value === 'LEVANTAMIENTO') {
                 pnlDetalleEditarTrabajoAbierto.removeClass('hide');
                 pnlDetalleEditarTrabajo.addClass('hide');
+                $('#ControlProcesoEditar').removeClass('hide');
                 $("#reportesLevantamiento").removeClass('hide');
                 $("#reportesPresupuesto").addClass('hide');
                 getDetalleAbiertoByID(IdMovimiento);
@@ -1345,6 +1387,7 @@
                 pnlDetalleEditarTrabajo.removeClass('hide');
                 $("#reportesLevantamiento").addClass('hide');
                 $("#reportesPresupuesto").removeClass('hide');
+                $('#ControlProcesoEditar').addClass('hide');
                 getTrabajoDetalleByID(IdMovimiento);
             } else {
                 $("#reportesLevantamiento").addClass('hide');
@@ -1357,16 +1400,16 @@
             Cliente = this.value;
         });
         /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
-        mdlTrabajoEditarFotosPorConcepto.on('shown.bs.modal', function() {
+        mdlTrabajoEditarFotosPorConcepto.on('shown.bs.modal', function () {
             EditarFotosPorConcepto.val('');
         });
-         mdlTrabajoEditarFotosAntesPorConcepto.on('shown.bs.modal', function() {
+        mdlTrabajoEditarFotosAntesPorConcepto.on('shown.bs.modal', function () {
             EditarFotosAntesPorConcepto.val('');
         });
-         mdlTrabajoEditarFotosDespuesPorConcepto.on('shown.bs.modal', function() {
+        mdlTrabajoEditarFotosDespuesPorConcepto.on('shown.bs.modal', function () {
             EditarFotosDespuesPorConcepto.val('');
         });
-         mdlTrabajoEditarFotosProcesoPorConcepto.on('shown.bs.modal', function() {
+        mdlTrabajoEditarFotosProcesoPorConcepto.on('shown.bs.modal', function () {
             EditarFotosProcesoPorConcepto.val('');
         });
         /*Evento drag and drop de FOTOS*/
@@ -1468,6 +1511,8 @@
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
+            frm.append('Tiempo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val());
+            frm.append('Porcentaje', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdPorcentajeProceso").val());
             var files_list = e.originalEvent.dataTransfer.files;
             for (var i = 0; i < files_list.length; i++)
             {
@@ -1812,8 +1857,11 @@
                 nimg++;
                 /*SUBIR FOTO*/
                 var frm = new FormData();
+
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('Tiempo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val());
+                frm.append('Porcentaje', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdPorcentajeProceso").val());
                 frm.append('Observaciones', file.name);
                 frm.append('FOTO', file);
                 $.ajax({
@@ -2155,9 +2203,9 @@
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("select").select2("val", "");
-            
+
 //            pnlNuevoTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-            
+
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             /*Inicializamos Boleanos en No*/
             pnlNuevoTrabajo.find("#Atendido").val('No');
@@ -2352,6 +2400,32 @@
                         /*trae los días*/
                         getCodigoPPTAbyID(trabajo.Codigoppta_ID);
                         Cliente = trabajo.Cliente_ID;
+
+                        if (trabajo.Movimiento === 'LEVANTAMIENTO') {
+                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+                            pnlEditarTrabajo.removeClass("hide");
+                            pnlDetalleEditarTrabajoAbierto.removeClass("hide");
+                            $("#reportesLevantamiento").removeClass('hide');
+                            $("#reportesPresupuesto").addClass('hide');
+                            $('#ControlProcesoEditar').removeClass('hide');
+                            getDetalleAbiertoByID(trabajo.ID);
+                        } else if (trabajo.Movimiento === 'PRESUPUESTO') {
+                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+                            pnlEditarTrabajo.removeClass("hide");
+                            pnlDetalleEditarTrabajo.removeClass("hide");
+                            $("#reportesLevantamiento").addClass('hide');
+                            $("#reportesPresupuesto").removeClass('hide');
+                            getTrabajoDetalleByID(trabajo.ID);
+                            $('#ControlProcesoEditar').addClass('hide');
+                        } else if (trabajo.Movimiento === 'SOLICITUD') {
+                            pnlEditarTrabajo.find("#Movimiento").append('<option value="SOLICITUD">SOLICITUD</option>');
+                            pnlEditarTrabajo.removeClass("hide");
+                            pnlDetalleEditarTrabajo.addClass("hide");
+                            $("#reportesLevantamiento").addClass('hide');
+                            $("#reportesPresupuesto").addClass('hide');
+                        }
+
+
                         pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                         pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                         pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
@@ -2397,6 +2471,7 @@
                         pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
                         pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
                         pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
+                        pnlEditarTrabajo.find("#ControlTiempoProceso").select2("val", trabajo.ControlProceso);
                         if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                             var ext = getExt(trabajo.Adjunto);
                             console.log(ext);
@@ -2413,28 +2488,7 @@
                             pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                         }
                         menuTablero.addClass("hide");
-                        if (trabajo.Movimiento === 'LEVANTAMIENTO') {
-//                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-                            pnlEditarTrabajo.removeClass("hide");
-                            pnlDetalleEditarTrabajoAbierto.removeClass("hide");
-                            $("#reportesLevantamiento").removeClass('hide');
-                            $("#reportesPresupuesto").addClass('hide');
-                            getDetalleAbiertoByID(trabajo.ID);
-                        } else if (trabajo.Movimiento === 'PRESUPUESTO') {
-//                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-                            pnlEditarTrabajo.removeClass("hide");
-                            pnlDetalleEditarTrabajo.removeClass("hide");
-                            $("#reportesLevantamiento").addClass('hide');
-                            $("#reportesPresupuesto").removeClass('hide');
-                            getTrabajoDetalleByID(trabajo.ID);
-                        }
-                         else if (trabajo.Movimiento === 'SOLICITUD') {
-                            $("#Movimiento").append('<option value="option3">SOLICITUD</option>');
-                            pnlEditarTrabajo.removeClass("hide");
-                            pnlDetalleEditarTrabajo.addClass("hide");
-                            $("#reportesLevantamiento").addClass('hide');
-                            $("#reportesPresupuesto").addClass('hide');
-                        }
+
                         /*Control de estatus*/
                         if (trabajo.Estatus === 'Concluido') {
                             $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
@@ -2499,9 +2553,9 @@
         pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-        
+
         pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-        
+
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."
             });
@@ -2651,12 +2705,14 @@
                     pnlDetalleEditarTrabajoAbierto.removeClass("hide");
                     $("#reportesLevantamiento").removeClass('hide');
                     $("#reportesPresupuesto").addClass('hide');
+                    $('#ControlProcesoEditar').removeClass('hide');
                     getDetalleAbiertoByID(trabajo.ID);
                 } else if (trabajo.Movimiento === 'PRESUPUESTO') {
                     pnlEditarTrabajo.removeClass("hide");
                     pnlDetalleEditarTrabajo.removeClass("hide");
                     $("#reportesLevantamiento").addClass('hide');
                     $("#reportesPresupuesto").removeclass('hide');
+                    $('#ControlProcesoEditar').addClass('hide');
                     getTrabajoDetalleByID(trabajo.ID);
                 }
                 /*Setea el importe total*/
@@ -3637,10 +3693,10 @@
                     console.log(base_url + v.Url);
                     picthumbnail += '<div class="col-md-3">';
                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
@@ -3677,13 +3733,13 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
@@ -3718,13 +3774,13 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                      picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-                      mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                    mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
             } else {
@@ -3735,44 +3791,86 @@
         });
         mdlTrabajoEditarFotosDespuesPorConcepto.modal('show');
     }
+   
     function getFotosProcesoXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
         HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
         $.ajax({
-            url: master_url + 'getTrabajoFotosProcesoDetalleByID',
+            url: master_url + 'getTiempoFotosProcesoXTrabajoDetalleID',
             type: "POST",
             dataType: "JSON",
             data: {
                 ID: IDX
             }
         }).done(function (data, x, jq) {
+           
+            
             if (data.length > 0) {
+                var TextoAgrupador = "";
+                if ($('#ControlTiempoProceso').val() === 'Dias') {
+                    TextoAgrupador = 'Día No. ';
+                } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+                    TextoAgrupador = 'Semana No. ';
+                }
+                var row = "";
                 mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var picthumbnail = "";
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
-                    }
-                    picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-       
-                    mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
-                    nimg++;
+    
+                $.each(data, function (k, d) {
+                 
+                
+                    $.ajax({
+                        url: master_url + 'getTrabajoFotosProcesoDetalleByIDXTiempo',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: IDX,
+                            Tiempo: d.Tiempo
+                        }
+                    }).done(function (data, x, jq) {
+                        row = '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + data[0].Tiempo +' Avance: '+ data[0].Porcentaje + '</h4><hr></div>';
+                        var nimg = 0;
+                        $.each(data, function (k, v) {
+                            
+                            //row += '<div class="col-md-12" align="center"><h4>'+v.Observaciones + '</h4></div>';
+                            row += '<div class="col-md-3">';
+                            row += '<div class="thumbnail">' +
+                                    '<div class="pull-left caption col-md-11" >'  + v.Observaciones + '</div>' +
+                                    '<div class="pull-right" >' +
+                                    '<button class="close closeFotos customButtonEliminarFoto"' +
+                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                                    '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                             nimg++;
+                            
+                        });
+                        
+                        
+                        mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(row);
+                    }).fail(function (x, y, z) {
+                    }).always(function () {
+                    });
                 });
-            } 
+            }
         }).fail(function (x, y, z) {
         }).always(function () {
             HoldOn.close();
         });
-        mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val('');
+        mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdPorcentajeProceso").val('');
+
+        $('#idSubirFotosProceso').addClass('hide');
+        if ($('#ControlTiempoProceso').val() === 'Dias') {
+            $(".Tiempo").empty();
+            $(".Tiempo").append("No. Día*");
+            mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
+        } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+            $(".Tiempo").empty();
+            $(".Tiempo").append("No. Semana*");
+            mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
+        } else if ($('#ControlTiempoProceso').val() === '') {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBELES DE SELECCIONAR UN CONTROL DE TIEMPO', 'danger');
+        }
     }
     function getCroquisXConceptoID(IDX, IDT) {
         mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
@@ -3801,16 +3899,16 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-6">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
-            } 
+            }
         }).fail(function (x, y, z) {
         }).always(function () {
             HoldOn.close();
@@ -3975,11 +4073,11 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
 
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
@@ -4014,11 +4112,11 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
@@ -4052,11 +4150,11 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
                     mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
@@ -4071,8 +4169,8 @@
         });
     }
     function onReloadFotosProcesoXConcepto(IDX, IDT) {
-        $.ajax({
-            url: master_url + 'getTrabajoFotosProcesoDetalleByID',
+     $.ajax({
+            url: master_url + 'getTiempoFotosProcesoXTrabajoDetalleID',
             type: "POST",
             dataType: "JSON",
             data: {
@@ -4080,33 +4178,57 @@
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
+                var TextoAgrupador = "";
+                if ($('#ControlTiempoProceso').val() === 'Dias') {
+                    TextoAgrupador = 'Día No. ';
+                } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+                    TextoAgrupador = 'Semana No. ';
+                }
+                var row = "";
                 mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
-                var picthumbnail = "";
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
-                        nimg = 0;
-                    }
-                    picthumbnail += '<div class="col-md-3">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-                    mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
-                    nimg++;
+                $.each(data, function (k, d) {
+
+                    $.ajax({
+                        url: master_url + 'getTrabajoFotosProcesoDetalleByIDXTiempo',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: IDX,
+                            Tiempo: d.Tiempo
+                        }
+                    }).done(function (data, x, jq) {
+                        
+                         var nimg = 0;
+                        row = '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + data[0].Tiempo +' Avance: '+ data[0].Porcentaje + '</h4><hr></div>';
+
+                        $.each(data, function (k, v) {
+                            //row += '<div class="col-md-12" align="center"><h4>'+v.Observaciones + '</h4></div>';
+                            row += '<div class="col-md-3">';
+                            row += '<div class="thumbnail">' +
+                                    '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                                    '<div class="pull-right" >' +
+                                    '<button class="close closeFotos customButtonEliminarFoto"' +
+                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                                    '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                             nimg++;
+                        });
+                        mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(row);
+                    }).fail(function (x, y, z) {
+                    }).always(function () {
+                    });
                 });
-            } else {
+            }
+             else {
                 mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
             }
-            getDetalleAbiertoByID(IDT);
-            HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
+            HoldOn.close();
         });
+    
+    
+        getDetalleAbiertoByID(IDT);
+            HoldOn.close();
     }
     function onReloadCroquisXConcepto(IDX, IDT) {
         $.ajax({
@@ -4117,7 +4239,7 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-              if (data.length > 0) {
+            if (data.length > 0) {
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
                 var nimg = 0;
                 var picthumbnail = "";
@@ -4128,17 +4250,17 @@
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-6">';
-                     picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>'+
-                            '<div class="pull-right" >'+
-                            '<button class="close closeFotos customButtonEliminarFoto"'+
-                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>'+
+                    picthumbnail += '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-        
+
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
-            } 
+            }
             getTrabajoDetalleByID(IDT);
             HoldOn.close();
         }).fail(function (x, y, z) {
@@ -4459,6 +4581,16 @@
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ENCONTRADO', 'danger');
         }).always(function () {
         });
+    }
+    function minmax(value, min, max) {
+        if (parseInt(value) < min || isNaN(parseInt(value))) {
+            return "";
+        } else if (parseInt(value) > max) {
+            return 100;
+        } else
+        {
+            return value;
+        }
     }
     /***************************************REPORTES*****************************************/
     function onReporteFin49() {

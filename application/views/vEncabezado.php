@@ -46,6 +46,9 @@
         <!--HoldOn Stupid Accions-->
         <link href="<?php print base_url(); ?>css/HoldOn.min.css" rel="stylesheet">
         <script src="<?php print base_url(); ?>js/HoldOn.min.js"></script>
+        
+        <script src="<?php print base_url(); ?>js/jquery.maskedinput.min.js"></script>
+         
         <!--Notifiers-->
         <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
         <!--Date picker-->
@@ -67,6 +70,7 @@
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
+        
     </head>
     <script>
         var base_url = "<?php print base_url(); ?>";
