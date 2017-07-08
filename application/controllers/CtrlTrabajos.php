@@ -133,10 +133,8 @@ class CtrlTrabajos extends CI_Controller {
     }
     
      public function getTiempoFotosProcesoXTrabajoDetalleID() {
-        try {
-            extract($this->input->post());
-            $data = $this->trabajo_model->getTiempoFotosProcesoXTrabajoDetalleID($ID);
-            print json_encode($data);
+        try {  
+            print json_encode($this->trabajo_model->getTiempoFotosProcesoXTrabajoDetalleID($this->input->get('ID')));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
