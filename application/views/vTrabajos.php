@@ -3820,20 +3820,21 @@
                 });
                 var tiempos_unicos = [];
                 $.each(tiempos, function (i, el) {
-                    if ($.inArray(el, tiempos_unicos) === -1)
+                    if ($.inArray(el, tiempos_unicos) === -1) {
                         tiempos_unicos.push(el);
+                    }
                 });
                 var porcentajes_unicos = [];
                 $.each(porcentajes, function (i, el) {
-                    if ($.inArray(el, porcentajes_unicos) === -1)
+                    if ($.inArray(el, porcentajes_unicos) === -1) {
                         porcentajes_unicos.push(el);
+                    }
                 });
                 var index = 0;
                 $.each(tiempos_unicos, function (k, tu) {
                     row += '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
                     $.each(data, function (k, d) {
                         if (tu === d.Tiempo) {
-                            console.log(d)
                             row += '<div class="col-md-3">';
                             row += '<div class="thumbnail">' +
                                     '<div class="pull-left caption col-md-11" >' + d.Observaciones + '</div>' +
