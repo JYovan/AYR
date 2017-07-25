@@ -49,44 +49,29 @@ class FotosFPB extends FPDF {
 
             /* Primer recuardo */
             $this->SetLineWidth(0.9);
-            $this->SetDrawColor(10, 79, 164);
-            $this->SetY(18);
-            $this->SetX(13);
-            $this->Cell(123, 84, '', 1, 0, 'C');
-            $this->SetDrawColor(137, 209, 243);
-            $this->SetY(104);
-            $this->SetX(13);
-            $this->Cell(123, 8, '', 1, 0, 'C');
+            $this->SetDrawColor(10, 79, 164); 
+            $this->Rect(13, 18, 123, 84); 
+            $this->SetDrawColor(137, 209, 243); 
+            $this->Rect(13, 104, 123, 8); 
 
             /* Segundo recuardo */
-            $this->SetDrawColor(10, 79, 164);
-            $this->SetY(18);
-            $this->SetX(144);
-            $this->Cell(123, 84, '', 1, 0, 'C');
+            $this->SetDrawColor(10, 79, 164); 
+            $this->Rect(144, 18, 123, 84); 
             $this->SetDrawColor(137, 209, 243);
-            $this->SetY(104);
-            $this->SetX(144);
-            $this->Cell(123, 8, '', 1, 0, 'C');
+            $this->Rect(144, 104, 123, 8);  
 
             /* Tercer recuardo */
             $this->SetDrawColor(10, 79, 164);
-            $this->SetY(115);
-            $this->SetX(13);
-            $this->Cell(123, 84, '', 1, 0, 'C');
-            $this->SetDrawColor(137, 209, 243);
-            $this->SetY(201);
-            $this->SetX(13);
-            $this->Cell(123, 8, '', 1, 0, 'C');
+            $this->Rect(13, 115, 123, 84);  
+            $this->SetDrawColor(137, 209, 243); 
+            $this->Rect(13, 201, 123, 8);  
 
             /* Cuarto recuardo */
-            $this->SetDrawColor(10, 79, 164);
-            $this->SetY(115);
-            $this->SetX(144);
-            $this->Cell(123, 84, '', 1, 0, 'C');
+            $this->SetDrawColor(10, 79, 164); 
+            $this->Rect(144, 115, 123, 84);  
             $this->SetDrawColor(137, 209, 243);
-            $this->SetY(201);
-            $this->SetX(144);
-            $this->Cell(123, 8, '', 1, 0, 'C');
+            $this->Rect(144, 201, 123, 8);  
+             
             
         } else if ($this->getLast() == 'Si') {
             /* Estructura de la presentación */
@@ -121,9 +106,10 @@ class FotosFPB extends FPDF {
             $this->SetX(144);
             $this->Cell(123, 180, '', 1, 0, 'C');
             $this->SetDrawColor(137, 209, 243);
+            $this->Rect(144, 200, 123, 8);  
             $this->SetY(200);
             $this->SetX(144);
-            $this->Cell(123, 8, 'VISITA PREVIA', 1, 0, 'C');
+            $this->Cell(123, 8, 'VISITA PREVIA', 0, 0, 'C');
             
             
         }
@@ -131,13 +117,11 @@ class FotosFPB extends FPDF {
 
 // Page footer
     function Footer() {
-
         if ($this->page > 1) {
+            $this->setY(-60); 
             $this->SetFont('Arial', 'B', 9);
-            $this->SetTextColor(10, 79, 164);
-            $this->SetY(208);
-            $this->SetX(271);
-            $this->Cell(5, 5, $this->PageNo(), 0, 0, 'R');
+            $this->SetTextColor(10, 79, 164); 
+            $this->Text(271, 210, $this->PageNo(), 0, 0, 'R');
         }
     }
 

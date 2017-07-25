@@ -346,6 +346,7 @@ class CtrlCajerosBBVA extends CI_Controller {
                     $pdf = new FotosFPB('L', 'mm', array(279/* ANCHO */, 216/* ALTURA */));
                     $pdf->AddPage();
                     $pdf->AliasNbPages();
+                    $pdf->SetAutoPageBreak(false, 1);
                     $pdf->SetTextColor(255, 255, 255);
                     $pdf->SetFont('Arial', 'B', 28);
                     $pdf->SetY(40);
@@ -421,31 +422,29 @@ class CtrlCajerosBBVA extends CI_Controller {
                             $X2 = ($dimensiones[1] > $dimensiones[0]) ? 183 : 146;
                             $pdf->SetTextColor(14, 114, 236);
                             $pdf->SetFont('Arial', 'B', 9);
+                            $pdf->SetY(104);
                             if ($nimg == 1) {
                                 $pdf->Image($foto->Url, $X1/* X */, 20/* Y */, $ancho/* W *//* H */);
-                                $pdf->SetY(103);
                                 $pdf->SetX(13);
-                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 0, 'C');
+                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 1, 'C');
                             }
                             /* Cuando es la segunda imagen */
                             if ($nimg == 2) {
                                 $pdf->Image($foto->Url, $X2/* X */, 20/* Y */, $ancho/* W *//* H */);
-                                $pdf->SetY(103);
                                 $pdf->SetX(144);
-                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 0, 'C');
+                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 1, 'C');
                             }
+                            $pdf->SetY(201);
                             /* Cuando es la tercera imagen */
                             if ($nimg == 3) {
                                 $pdf->Image($foto->Url, $X1/* X */, 117/* Y */, $ancho/* W *//* H */);
-                                $pdf->SetY(200);
                                 $pdf->SetX(13);
-                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 0, 'C');
+                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 1, 'C');
                             }
                             if ($nimg == 4) {
                                 $pdf->Image($foto->Url, $X2/* X */, 117/* Y */, $ancho/* W *//* H */);
-                                $pdf->SetY(200);
                                 $pdf->SetX(144);
-                                 $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)),0, 0, 'C');
+                                $pdf->Cell(123, 8, strtoupper(utf8_decode($foto->ObservacionFoto)), 0, 1, 'C'); 
                             }
                             $nfotos --;
                             //Se pone para que valide antes de agregar
@@ -459,69 +458,69 @@ class CtrlCajerosBBVA extends CI_Controller {
                         }
                         /* FIN DETALLE IMAGENES */
                     }
-                    /*Ultima hoja*/
+                    /* Ultima hoja */
                     $pdf->Last = 'Si';
                     $pdf->AddPage();
                     $pdf->SetFont('Arial', 'BU', 12);
                     $pdf->SetTextColor(0, 0, 0);
                     $pdf->SetY(20);
                     $pdf->SetX(20);
-                    $pdf->MultiCell(115, 5, strtoupper(utf8_decode($Encabezado->FolioCliente.', '.$Encabezado->Sucursal.' - '.$Encabezado->CentroCosto)),0, 'L');
-                    
+                    $pdf->MultiCell(115, 5, strtoupper(utf8_decode($Encabezado->FolioCliente . ', ' . $Encabezado->Sucursal . ' - ' . $Encabezado->CentroCosto)), 0, 'L');
+
                     $pdf->SetFont('Arial', 'U', 9);
                     $pdf->SetTextColor(255, 0, 0);
                     $pdf->SetY(40);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('1.- FECHA DE VISITA: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('1.- FECHA DE VISITA: '), 0, 0, 'L');
                     $pdf->SetY(45);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('2.- ENCARGADO DEL SIITIO: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('2.- ENCARGADO DEL SIITIO: '), 0, 0, 'L');
                     $pdf->SetY(50);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('3.- HORARIO DE ATENCION: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('3.- HORARIO DE ATENCION: '), 0, 0, 'L');
                     $pdf->SetY(55);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('4.- RESTRICCION DE ACCESO: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('4.- RESTRICCION DE ACCESO: '), 0, 0, 'L');
                     $pdf->SetY(60);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('5.- AIRE ACONDICIONADO: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('5.- AIRE ACONDICIONADO: '), 0, 0, 'L');
                     $pdf->SetY(65);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('6.- CARCASA: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('6.- CARCASA: '), 0, 0, 'L');
                     $pdf->SetY(70);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('7.- UPS/SUPRESOR DE PICOS: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('7.- UPS/SUPRESOR DE PICOS: '), 0, 0, 'L');
                     $pdf->SetY(75);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('8.- SEÑALIZACIÓN INTERIOR: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('8.- SEÑALIZACIÓN INTERIOR: '), 0, 0, 'L');
                     $pdf->SetY(80);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('9.- SEÑALIZACIÓN EXTERIOR: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('9.- SEÑALIZACIÓN EXTERIOR: '), 0, 0, 'L');
                     $pdf->SetY(85);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('10.- CANALIZACION DE DATOS:  ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('10.- CANALIZACION DE DATOS:  '), 0, 0, 'L');
                     $pdf->SetY(90);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('11.- CANALIZACION DE SEGURIDAD: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('11.- CANALIZACION DE SEGURIDAD: '), 0, 0, 'L');
                     $pdf->SetY(95);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('12.- PRUEBA DE CALA DE FIRME: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('12.- PRUEBA DE CALA DE FIRME: '), 0, 0, 'L');
                     $pdf->SetY(100);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('13.- TIPO DE PISO: ') , 0, 0, 'L');
-                    
-                    
+                    $pdf->Cell(55, 5, utf8_decode('13.- TIPO DE PISO: '), 0, 0, 'L');
+
+
                     $pdf->SetFont('Arial', 'B', 9);
                     $pdf->SetTextColor(0, 0, 0);
-                    
+
                     $pdf->SetY(115);
                     $pdf->SetX(20);
-                    $pdf->Cell(55, 5, utf8_decode('OBSERVACIONES: ') , 0, 0, 'L');
+                    $pdf->Cell(55, 5, utf8_decode('OBSERVACIONES: '), 0, 0, 'L');
                     $pdf->SetY(122);
                     $pdf->SetX(20);
                     $pdf->SetFont('Arial', '', 9);
-                    $pdf->MultiCell(110, 4, utf8_decode($Encabezado->Observaciones) , 0, 'J');
-                    
+                    $pdf->MultiCell(110, 4, utf8_decode($Encabezado->Observaciones), 0, 'J');
+
 
                     /* FIN CUERPO */
                     $path = 'uploads/CajerosBBVA/Reportes/' . $ID;
@@ -529,7 +528,7 @@ class CtrlCajerosBBVA extends CI_Controller {
                     if (!file_exists($path)) {
                         mkdir($path, 0777, true);
                     }
-                    $file_name = "PRESENTACION FOTOGRAFICA";
+                    $file_name = "PRESENTACION_FOTOGRAFICA_" . Date('h_i_s');
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (file_exists($url)) {
