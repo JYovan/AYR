@@ -37,7 +37,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-primary" id="btn btn-raised btn-primary">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -53,54 +53,78 @@
                 <div class="modal-body modal-bodyFull">
                     <fieldset> 
                         <div class="col-md-12">
-                            <label for="">Nombre*</label>
+                            <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Nombre Corto*</label>
+                            <div class="form-group label-static">
+                            <label for="NombreCorto" class="control-label">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Calle</label>
+                            <div class="form-group label-static">
+                            <label for="Calle" class="control-label">Calle</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No Exterior</label>
+                            <div class="form-group label-static">
+                            <label for="NoExterior" class="control-label">No Exterior</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No Interior</label>
+                            <div class="form-group label-static">
+                            <label for="NoInterior" class="control-label">No Interior</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Código Postal</label>
+                            <div class="form-group label-static">
+                            <label for="CodigoPostal" class="control-label">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Colonia</label>
+                            <div class="form-group label-static">
+                            <label for="Colonia" class="control-label">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Ciudad</label>
+                            <div class="form-group label-static">
+                            <label for="Ciudad" class="control-label">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Estado</label>
+                            <div class="form-group label-static">
+                            <label for="Estado" class="control-label">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 1</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto1" class="control-label">Contacto 1</label>
                             <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 2</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto2" class="control-label">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 3</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto3" class="control-label">Contacto 3</label>
                             <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
+                            </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6"><br>
                             <h6>Los campos con * son obligatorios</h6>    
                         </div>
                         <div class="col-md-12" align="center">
@@ -137,54 +161,78 @@
                             <input type="text" id="ID" name="ID" class="form-control" >
                         </div>
                         <div class="col-md-12">
-                            <label for="">Nombre*</label>
+                            <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Nombre Corto*</label>
+                            <div class="form-group label-static">
+                            <label for="NombreCorto" class="control-label">Nombre Corto*</label>
                             <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Calle</label>
+                            <div class="form-group label-static">
+                            <label for="Calle" class="control-label">Calle</label>
                             <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No Exterior</label>
+                            <div class="form-group label-static">
+                            <label for="NoExterior" class="control-label">No Exterior</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">No Interior</label>
+                            <div class="form-group label-static">
+                            <label for="NoInterior" class="control-label">No Interior</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Código Postal</label>
+                            <div class="form-group label-static">
+                            <label for="CodigoPostal" class="control-label">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Colonia</label>
+                            <div class="form-group label-static">
+                            <label for="Colonia" class="control-label">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Ciudad</label>
+                            <div class="form-group label-static">
+                            <label for="Ciudad" class="control-label">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Estado</label>
+                            <div class="form-group label-static">
+                            <label for="Estado" class="control-label">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 1</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto1" class="control-label">Contacto 1</label>
                             <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 2</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto2" class="control-label">Contacto 2</label>
                             <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Contacto 3</label>
+                            <div class="form-group label-static">
+                            <label for="Contacto3" class="control-label">Contacto 3</label>
                             <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
+                            </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6"><br>
                             <h6>Los campos con * son obligatorios</h6>    
                         </div>
                         <div class="col-md-12" align="center">
@@ -240,48 +288,69 @@
                                         <option value=""></option> 
                                     </select>
                                 </div>   
-                                <div class="col-md-12">
-                                    <label for="">Sucursal*</label>
+                                <div class="col-md-8">
+                                    <div class="form-group label-static">
+                                    <label for="Nombre" class="control-label">Sucursal*</label>
                                     <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CR*</label>
+                                    <div class="form-group label-static">
+                                    <label for="CR" class="control-label">CR*</label>
                                     <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Calle*</label>
+                                    <div class="form-group label-static">
+                                    <label for="Calle" class="control-label">Calle*</label>
                                     <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">No Exterior*</label>
+                                    <div class="form-group label-static">
+                                    <label for="NoExterior" class="control-label">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">No Interior</label>
+                                    <div class="form-group label-static">
+                                    <label for="NoInterior" class="control-label">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-12">
-                                    <label for="">Entre Calles</label>
+                                    <div class="form-group label-static">
+                                    <label for="EntreCalles" class="control-label">Entre Calles</label>
                                     <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" >
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Código Postal</label>
+                                    <div class="form-group label-static">
+                                    <label for="CodigoPostal" class="control-label">Código Postal</label>
                                     <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Colonia</label>
+                                    <div class="form-group label-static">
+                                    <label for="Colonia" class="control-label">Colonia</label>
                                     <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Ciudad</label>
+                                    <div class="form-group label-static">
+                                    <label for="Ciudad"class="control-label">Ciudad</label>
                                     <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Estado</label>
+                                    <div class="form-group label-static">
+                                    <label for="Estado" class="control-label">Estado</label>
                                     <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Region*</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Region*</label>
                                     <select id="Region" name="Region" class="form-control" required="">
                                         <option value=""></option> 
                                         <option value="BAJÍO">BAJÍO</option> 
@@ -293,20 +362,27 @@
                                         <option value="SUR">SUR</option> 
                                         <option value="SURESTE">SURESTE</option> 
                                     </select>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Contratista*</label> 
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Contratista*</label> 
                                     <select id="Empresa_ID" name="Empresa_ID" class="form-control" required="">
                                         <option value=""></option> 
                                     </select>
+                                    </div>
                                 </div> 
                                 <div class="col-md-6">
-                                    <label for="">Contacto 1</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contacto1" class="control-label">Contacto 1</label>
                                     <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-6">
-                                    <label for="">Contacto 2</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contacto2" class="control-label">Contacto 2</label>
                                     <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div>
                             </div> 
                             <div role="tabpanel" class="tab-pane fade" id="InformacionObra">
@@ -314,7 +390,8 @@
                                     <br>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Tipo de Obra</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
                                         <option value=""></option> 
                                         <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -323,140 +400,199 @@
                                         <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
                                         <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Contrato</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contrato" class="control-label">Contrato</label>
                                     <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Tipo de Concepto</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Tipo de Concepto</label>
                                     <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                         <option value=""></option> 
                                         <option value="ADICIONAL">ADICIONAL</option>  
                                         <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Empresa Supervisora</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Empresa Supervisora</label>
                                     <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                         <option value=""></option> 
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Superficie</label>
+                                    <div class="form-group label-static">
+                                    <label for="Superficie" class="control-label">Superficie</label>
                                     <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Fecha Inicio</label>
+                                    <div class="form-group label-static">
+                                    <label for="FechaInicio" class="control-label">Fecha Inicio</label>
                                     <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Fecha Fin</label>
+                                    <div class="form-group label-static">
+                                    <label for="FechaFin" class="control-label">Fecha Fin</label>
                                     <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Días</label>
+                                    <div class="form-group label-static">
+                                    <label for="Dias" class="control-label">Días</label>
                                     <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Número de Semanas</label>
+                                    <div class="form-group label-static">
+                                    <label for="NumeroSemanas" class="control-label">Número de Semanas</label>
                                     <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Proveedor de Energía</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto3" class="control-label">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Coordinador</label>
+                                    <div class="form-group label-static">
+                                    <label for="Cordinador" class="control-label">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Supervisor</label>
+                                    <div class="form-group label-static">
+                                    <label for="Supervisor" class="control-label">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                             </div>  
                             <div role="tabpanel" class="tab-pane fade" id="Firmas">
                                 <div class="col-md-12" align="center">
-                                    <h3>Firmas de Mantenimiento</h3>
+                                    <h4>Firmas de Mantenimiento</h4>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres1" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos1" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto1" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres2" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos2" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto2" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres3" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos3" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto3" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-12" align="center">
-                                    <h3>Firmas de Obra</h3>
+                                    <h4>Firmas de Obra</h4>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres1" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos1" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto1" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres2" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos2" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto2" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres3" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos3" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto3" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6"><br>
                             <h6>Los campos con * son obligatorios</h6>    
                         </div> 
                     </fieldset>
@@ -499,51 +635,69 @@
                                         <option value=""></option> 
                                     </select>
                                 </div>   
-                                <div class="col-md-4 hide">
-                                    <input type="text" id="ID" name="ID" class="form-control" placeholder="" >
-                                </div> 
-                                <div class="col-md-12">
-                                    <label for="">Sucursal*</label>
+                                <div class="col-md-8">
+                                    <div class="form-group label-static">
+                                    <label for="Nombre" class="control-label">Sucursal*</label>
                                     <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="EJ: PLAZA CENTRO SUR" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">CR*</label>
+                                    <div class="form-group label-static">
+                                    <label for="CR" class="control-label">CR*</label>
                                     <input type="number" id="CR" name="CR" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Calle*</label>
+                                    <div class="form-group label-static">
+                                    <label for="Calle" class="control-label">Calle*</label>
                                     <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">No Exterior*</label>
+                                    <div class="form-group label-static">
+                                    <label for="NoExterior" class="control-label">No Exterior*</label>
                                     <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" required>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">No Interior</label>
+                                    <div class="form-group label-static">
+                                    <label for="NoInterior" class="control-label">No Interior</label>
                                     <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-12">
-                                    <label for="">Entre Calles</label>
+                                    <div class="form-group label-static">
+                                    <label for="EntreCalles" class="control-label">Entre Calles</label>
                                     <input type="text" id="EntreCalles" name="EntreCalles" class="form-control" placeholder="" >
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Código Postal</label>
+                                    <div class="form-group label-static">
+                                    <label for="CodigoPostal" class="control-label">Código Postal</label>
                                     <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Colonia</label>
+                                    <div class="form-group label-static">
+                                    <label for="Colonia" class="control-label">Colonia</label>
                                     <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Ciudad</label>
+                                    <div class="form-group label-static">
+                                    <label for="Ciudad"class="control-label">Ciudad</label>
                                     <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Estado</label>
+                                    <div class="form-group label-static">
+                                    <label for="Estado" class="control-label">Estado</label>
                                     <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Region*</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Region*</label>
                                     <select id="Region" name="Region" class="form-control" required="">
                                         <option value=""></option> 
                                         <option value="BAJÍO">BAJÍO</option> 
@@ -555,20 +709,27 @@
                                         <option value="SUR">SUR</option> 
                                         <option value="SURESTE">SURESTE</option> 
                                     </select>
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Contratista*</label> 
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Contratista*</label> 
                                     <select id="Empresa_ID" name="Empresa_ID" class="form-control" required="">
                                         <option value=""></option> 
                                     </select>
+                                    </div>
                                 </div> 
                                 <div class="col-md-6">
-                                    <label for="">Contacto 1</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contacto1" class="control-label">Contacto 1</label>
                                     <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-6">
-                                    <label for="">Contacto 2</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contacto2" class="control-label">Contacto 2</label>
                                     <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div>
                             </div> 
                             <div role="tabpanel" class="tab-pane fade" id="EditarInformacionObra">
@@ -576,7 +737,8 @@
                                     <br>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Tipo de Obra</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Tipo de Obra</label>
                                     <select id="TipoObra" name="TipoObra" class="form-control">
                                         <option value=""></option> 
                                         <option value="REMODELACIÓN">REMODELACIÓN</option> 
@@ -585,140 +747,199 @@
                                         <option value="MANTENIMIENTO">MANTENIMIENTO</option> 
                                         <option value="LEVANTAMIENTO DE SITIO">LEVANTAMIENTO DE SITIO</option> 
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Contrato</label>
+                                    <div class="form-group label-static">
+                                    <label for="Contrato" class="control-label">Contrato</label>
                                     <input type="text" id="Contrato" name="Contrato" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Tipo de Concepto</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Tipo de Concepto</label>
                                     <select id="TipoConcepto" name="TipoConcepto" class="form-control">
                                         <option value=""></option> 
                                         <option value="ADICIONAL">ADICIONAL</option>  
                                         <option value="FUERA DE CATÁLOGO">FUERA DE CATÁLOGO</option>  
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Empresa Supervisora</label>
+                                    <div class="form-group label-static">
+                                    <label for="" class="control-label">Empresa Supervisora</label>
                                     <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control">
                                         <option value=""></option> 
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Superficie</label>
+                                    <div class="form-group label-static">
+                                    <label for="Superficie" class="control-label">Superficie</label>
                                     <input type="number" id="Superficie" name="Superficie" class="form-control" placeholder="0">
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="">Fecha Inicio</label>
+                                    <div class="form-group label-static">
+                                    <label for="FechaInicio" class="control-label">Fecha Inicio</label>
                                     <input type="text" id="FechaInicio" name="FechaInicio" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Fecha Fin</label>
+                                    <div class="form-group label-static">
+                                    <label for="FechaFin" class="control-label">Fecha Fin</label>
                                     <input type="text" id="FechaFin" name="FechaFin" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Días</label>
+                                    <div class="form-group label-static">
+                                    <label for="Dias" class="control-label">Días</label>
                                     <input type="number" id="Dias" name="Dias" class="form-control" placeholder="EJ: 1" >
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Número de Semanas</label>
+                                    <div class="form-group label-static">
+                                    <label for="NumeroSemanas" class="control-label">Número de Semanas</label>
                                     <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control" placeholder="EJ: 1" >
+                                    </div>
                                 </div>  
                                 <div class="col-md-3">
-                                    <label for="">Proveedor de Energía</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto3" class="control-label">Proveedor de Energía</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Coordinador</label>
+                                    <div class="form-group label-static">
+                                    <label for="Cordinador" class="control-label">Coordinador</label>
                                     <input type="text" id="Cordinador" name="Cordinador" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-3">
-                                    <label for="">Supervisor</label>
+                                    <div class="form-group label-static">
+                                    <label for="Supervisor" class="control-label">Supervisor</label>
                                     <input type="text" id="Supervisor" name="Supervisor" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                             </div>  
                             <div role="tabpanel" class="tab-pane fade" id="EditarFirmas">
                                 <div class="col-md-12" align="center">
-                                    <h3>Firmas de Mantenimiento</h3>
+                                    <h4>Firmas de Mantenimiento</h4>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres1" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos1" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto1" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres2" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos2" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto2" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoNombres3" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoApellidos3" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaManttoPuesto3" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-12" align="center">
-                                    <h3>Firmas de Obra</h3>
+                                    <h4>Firmas de Obra</h4>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres1" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos1" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto1" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres2" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos2" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto2" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Nombre</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraNombres3" class="control-label">Nombre</label>
                                     <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Apellidos</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaObraApellidos3" class="control-label">Apellidos</label>
                                     <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label for="">Puesto</label>
+                                    <div class="form-group label-static">
+                                    <label for="FirmaNombrePuesto3" class="control-label">Puesto</label>
                                     <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control" placeholder="" >
+                                    </div>
                                 </div> 
                             </div>
-                        </div>    
-                        <div class="col-6 col-md-6">
+                        </div>  
+                        <div class="col-6 col-md-6"><br>
                             <h6>Los campos con * son obligatorios</h6>    
                         </div> 
                     </fieldset>
@@ -744,7 +965,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminarSucursal">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarSucursal">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -840,32 +1061,24 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditarSuc').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     CR: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-
-
-
             if ($('#frmEditarSuc').valid()) {
                 var frm = new FormData(mdlEditarSucursal.find("#frmEditarSuc")[0]);
                 $.ajax({
@@ -891,22 +1104,17 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevoSuc').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
 
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -928,7 +1136,6 @@
                     btnVerSucursales.trigger('click');
                     mdlNuevaSucursal.modal('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA SUCURSAL', 'success');
-                    console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -995,31 +1202,24 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     NombreCorto: 'required'
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
             //Si es verdadero que hacer
             if ($('#frmEditar').valid()) {
                 var frm = new FormData(mdlEditar.find("#frmEditar")[0]);
@@ -1103,31 +1303,24 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     NombreCorto: 'required'
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(mdlNuevo.find("#frmNuevo")[0]);
@@ -1142,7 +1335,6 @@
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO CLIENTE', 'success');
                     getRecords();
                     mdlNuevo.modal('hide');
-                    console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1247,7 +1439,7 @@
             $("#tblRegistros").html(getTable('tbllClientes', data));
             $('#tbllClientes tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+               $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tbllClientes').DataTable(tableOptions);
             $('#tbllClientes tbody').on('click', 'tr', function () {

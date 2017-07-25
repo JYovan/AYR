@@ -26,7 +26,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnExportar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnExportar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -87,45 +87,56 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-6 col-md-12">
-                        <br>
-                    </div>
+                    <hr>
                     <div class=" col-6 col-md-3">
-                        <label for="">Movimiento</label>
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-6 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Fecha de Creación*</label>
+                        <div class="form-group label-static">
+                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Referencia*</label>
-                        <input type="text" id="Referencia" name="Referencia"  class="form-control" placeholder="" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Referencia*</label>
+                        <input type="text" id="Referencia" name="Referencia"  class="form-control" placeholder="" required="">
+                        </div>
                     </div>
                     <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control hide" placeholder="" >
-
                     <div class="col-6 col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cliente*</label>
                         <select id="ClienteIntelisis" name="ClienteIntelisis" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Proyecto*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Proyecto*</label>
                         <select id="ProyectoIntelisis" name="ProyectoIntelisis" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
+                        <div class="form-group label-static">
+                        <label for="Comentarios" class="control-label">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
                         <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4" ></textarea>
+                        </div>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -197,45 +208,56 @@
         <div class="panel-body">
             <form id="frmEditar">
                 <fieldset>
-                    <div class="col-6 col-md-12">
-                        <br>
-                    </div>
+                    <hr>
                     <div class=" col-6 col-md-3">
-                        <label for="">Movimiento</label>
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-6 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Fecha de Creación*</label>
+                        <div class="form-group label-static">
+                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Referencia*</label>
-                        <input type="text" id="Referencia" name="Referencia"  class="form-control" placeholder="" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Referencia*</label>
+                        <input type="text" id="Referencia" name="Referencia"  class="form-control" placeholder="" required="">
+                        </div>
                     </div>
                     <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control hide" placeholder="" >
-
                     <div class="col-6 col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cliente*</label>
                         <select id="ClienteIntelisis" name="ClienteIntelisis" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Proyecto*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Proyecto*</label>
                         <select id="ProyectoIntelisis" name="ProyectoIntelisis" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
+                        <div class="form-group label-static">
+                        <label for="Comentarios" class="control-label">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
                         <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4" ></textarea>
+                        </div>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -256,7 +278,6 @@
                 </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
         <fieldset>
             <div class="col-md-12" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevoRenglonPrefacturaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
@@ -264,10 +285,8 @@
             <div class="col-md-12 table-responsive " id="Conceptos" >
             </div>
         </fieldset>
-        <!--        </div>-->
     </div>
 </div>
-
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
 <div id="mdlSeleccionarEntregasEditar" class="modal modalFull animated fadeInUp">
     <div class="modal-dialog modal-dialogFull">
@@ -327,7 +346,6 @@
 
     $(document).ready(function () {
         /*Boton que inserta a intelisis*/
-
         btnExportar.on("click", function () {
             var frm = new FormData(pnlEditarPrefactura.find("#frmEditar")[0]);
 
@@ -352,7 +370,6 @@
         btnExportarIntelisis.on("click", function () {
             mdlConfirmarExportarIntelisis.modal('show');
         });
-
         //Boton de neuvo en detalle editar
         btnNuevoRenglonPrefacturaEditar.on("click", function () {
             /*Trae los movimientos para el detalle*/
@@ -435,12 +452,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -449,12 +463,10 @@
                     ProyectoIntelisis: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -465,15 +477,11 @@
             if (pnlNuevaPrefactura.find('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevaPrefactura.find("#frmNuevo")[0]);
                 if (tBtnConcluir.is(':checked')) {
-
                     frm.append('Estatus', 'Concluido');
                 } else {
 
                     frm.append('Estatus', 'Borrador');
                 }
-//                for (var pair of frm.entries()) {
-//                    console.log(pair[0] + ', ' + pair[1]);
-//                }
                 // Agregar Importe total
                 frm.append('Importe', 0);
                 /*DESCOMENTAR PARA AGREGAR*/
@@ -499,12 +507,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -513,12 +518,10 @@
                     ProyectoIntelisis: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -634,7 +637,7 @@
             $("#tblRegistros").html(getTable('tblPrefacturas', data));
             $('#tblPrefacturas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblPrefacturas').DataTable(tableOptions);
             $('#tblPrefacturas tbody').on('click', 'tr', function () {

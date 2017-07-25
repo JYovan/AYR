@@ -6,6 +6,51 @@
     font-family: 'Material Icons';
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
 }
+
+
+ .Customcaption {
+    padding: 0px !important;
+}
+
+.customFormLabel {
+    margin: 0px 0 0 0 !important;
+}
+
+.Customform-group {
+    padding-bottom: 0px !important;
+    margin: 0px 0 0 0 !important;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle !important;
+}
+
+@media screen and (max-width: 767px){
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 0px solid #ddd;
+}
+}
+/*Estas clases son para el menu de los trabajos*/
+.btn-group, .btn-group-vertical {
+    position: relative;
+    margin: 0px 0px !important; 
+}
+.customDropdown-menu {
+    width: 230px;
+    left: -180px !important;
+    top: -75%;
+}
+
+.custonNav {
+    margin-top: 24px !important;
+    background-color: transparent !important;
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -295,7 +340,7 @@ table thead th{
 .table-hover>tbody>tr:hover>.success,
 .table-hover>tbody>tr>td.success:hover,
 .table-hover>tbody>tr>th.success:hover {
-    background-color: #D5D5D5;
+    background-color: #eee;
 }
 .table>thead>tr>td.success,
 .table>tbody>tr>td.success,
@@ -309,8 +354,8 @@ table thead th{
 .table>thead>tr.success>th,
 .table>tbody>tr.success>th,
 .table>tfoot>tr.success>th {
-    background-color: #D5D5D5;
-    color: #FFF;
+    background-color: #eee;
+    color: #000;
 }
 /*Inputs tablas automaticas*/
 table tfoot th input[type="text"]{
@@ -332,10 +377,6 @@ table tfoot th input[type="text"]:focus{
 }
 .form-control:focus {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#3f51b5), to(#3f51b5)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
-    background-image: -webkit-linear-gradient(#3f51b5, #3f51b5), -webkit-linear-gradient(#D2D2D2, #D2D2D2) !important;
-    background-image: -o-linear-gradient(#3f51b5, #3f51b5), -o-linear-gradient(#D2D2D2, #D2D2D2) !important;
-    background-image: linear-gradient(#3f51b5, #3f51b5), linear-gradient(#D2D2D2, #D2D2D2) !important;
     -webkit-background-size: 0 2px, 100% 1px;
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
@@ -353,11 +394,6 @@ table tfoot th input[type="text"]:focus{
 /*Menu de tablas para seleccionar columnas*/
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
     background-color: #3f51b5;
-}
-/*Clase para errores de validacion*/
-.errorForms{
-    color: rgb(221,44,0);
-    font-size: 12px;
 }
 /*Separacion de los botones de herramientas de tablas*/
 div.dt-buttons > .btn{
@@ -412,6 +448,13 @@ div.dt-EncabezadoControlEliminar> .btn {
     color: #EB0C0C !important;
     text-shadow: 0 0 0 #fff;
 }
+.customButtonDetalleEdicion{
+    color: #555353;
+    font-size: 23px !important;
+}
+.customButtonDetalleEdicion:hover{
+    color: #3f51b5;
+}
 .customButtonDetalleGenerador{
     color: #555353;
     font-size: 18px !important;
@@ -464,11 +507,8 @@ div.dt-EncabezadoControlEliminar> .btn {
     font-size: 18px !important;
 }
 .CustomDetalleDescripcion{
-    width: 250px !important;
-    padding: 1px 0 !important;
-    font-size: 11px !important;
-    cursor: pointer;
-    margin-bottom: 4px !important;
+    height: 100px !important;
+   overflow: auto !important;
 }
 .CustomNuevoDetalleDescripcion{
     width: 340px !important;
@@ -492,13 +532,6 @@ div.dt-EncabezadoControlEliminar> .btn {
 {
     pointer-events: none;
     /*opacity: 0.8;*/
-}
-.checkbox label, .radio label, label {
-    font-size: 13px !important;
-    line-height: 1.42857143;
-    /* color: #bdbdbd; */
-    font-weight: 400;
-    color: rgba(0,0,0,0.45) !important;
 }
 /*Drag and drop*/
 .file_drag_area  

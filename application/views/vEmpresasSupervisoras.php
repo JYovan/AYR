@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -57,22 +57,31 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Nombre* </label>    
+                        <div class="form-group label-static">
+                        <label for="Nombre" class="control-label">Nombre* </label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                        </div>                    
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Descripción</label>    
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción</label>    
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                        </div>   
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto 1</label>
+                        <div class="form-group label-static">
+                        <label for="Contacto" class="control-label">Contacto 1</label>
                         <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
+                        </div>   
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto 2</label>
+                        <div class="form-group label-static">
+                        <label for="Contacto2" class="control-label">Contacto 2</label>
                         <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
+                        </div>   
                     </div>
-                    <div class="col-6 col-md-6">
+                      <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -103,23 +112,32 @@
                     <div class="col-md-12 hide">
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
-                    <div class="col-6 col-md-6">
-                        <label for="">Nombre* </label>    
+                     <div class="col-6 col-md-6">
+                        <div class="form-group label-static">
+                        <label for="Nombre" class="control-label">Nombre* </label>    
                         <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                        </div>                    
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Descripción</label>    
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción</label>    
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                        </div>   
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto 1</label>
+                        <div class="form-group label-static">
+                        <label for="Contacto" class="control-label">Contacto 1</label>
                         <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
+                        </div>   
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto 2</label>
+                        <div class="form-group label-static">
+                        <label for="Contacto2" class="control-label">Contacto 2</label>
                         <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
+                        </div>   
                     </div>
-                    <div class="col-6 col-md-6">
+                      <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -213,22 +231,17 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -252,7 +265,6 @@
                     pnlTablero.removeClass("hide");
                     pnlNuevo.addClass('hide');
                     btnRefrescar.trigger('click');
-                    console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -265,22 +277,17 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -331,13 +338,12 @@
             $("#tblRegistros").html(getTable('tblEmpresasSupervisoras', data));
             $('#tblEmpresasSupervisoras tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buuscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblEmpresasSupervisoras').DataTable(tableOptions);
             $('#tblEmpresasSupervisoras tbody').on('click', 'tr', function () {
                 $("#tblEmpresasSupervisoras").find("tr").removeClass("success");
                 $("#tblEmpresasSupervisoras").find("tr").removeClass("warning");
-//                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {

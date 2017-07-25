@@ -56,6 +56,10 @@
                         <li id="liTrabajos">
                             <a href="<?php print base_url('CtrlTrabajos') ?>"  >Trabajos</a>
                         </li> 
+                        <li class="divider"></li>
+                        <li class="hide" id="liCajerosBBVA">
+                            <a href="<?php print base_url('CtrlCajerosBBVA') ?>"  >Cajeros BBVA</a>
+                        </li> 
                     </ul>
                 </li>
 
@@ -99,7 +103,6 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <!--style="font-weight:bold; font-size:18px;"-->
                     <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
                         <span class="caret"></span></a>
@@ -123,6 +126,7 @@
         $('#liCatalogos').removeClass('hide');
         $('#liEmpresas').addClass('hide');
         $('#liPrefacturas').addClass('hide');
+        $('#liCajerosBBVA').removeClass('hide');
     }
     if (TipoAcceso === 'ADMINISTRADOR') {
         $('#liControl').removeClass('hide');
@@ -130,6 +134,7 @@
         $('#liExploradores').removeClass('hide');
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
+        $('#liCajerosBBVA').removeClass('hide');
     }
     if (TipoAcceso === 'CLIENTE') {
         $('#liPedidoCliente').removeClass('hide');
@@ -142,6 +147,7 @@
         $('#liExploradores').removeClass('hide');
         $('#liCatalogos').removeClass('hide');
         $('#liUsuarios').removeClass('hide');
+        $('#liCajerosBBVA').removeClass('hide');
     }
 
     var master_url = base_url + 'CtrlSesion/';

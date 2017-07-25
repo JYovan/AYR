@@ -30,6 +30,7 @@ class empresaSupervisora_model extends CI_Model {
         try {
             $this->db->select('ES.ID, ES.Nombre AS Empresa, ES.Contacto AS Contacto1, ES.Contacto2 AS Contacto2', false);
             $this->db->from('empresassupervisoras AS ES');
+            $this->db->where_in('ES.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

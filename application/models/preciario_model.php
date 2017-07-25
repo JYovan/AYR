@@ -67,7 +67,8 @@ class preciario_model extends CI_Model {
         try {
 
             $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, '
-                    . 'PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, '
+                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",PC.Descripcion,"</p>") AS Descripcion, '
+                    . 'PC.Unidad AS Unidad, '
                     . 'CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
                     . 'PC.Moneda AS Moneda,'
                     . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleGenerador\" '
@@ -75,12 +76,13 @@ class preciario_model extends CI_Model {
                     . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoPreciario(this,",PC.ID,")\"></span>") AS Eliminar', false);
              $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
+            $this->db->order_by('PC.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-//        print $str;
+        //print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {

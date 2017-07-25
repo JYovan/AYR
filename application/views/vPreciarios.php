@@ -38,42 +38,52 @@
                 <div class="modal-body">
                     <fieldset>
                         <div class="col-6 col-md-12">
-                            <label for="">Nombre*</label>
-                            <input type="text" class="form-control" id="Nombre" name="Nombre"  >
+                            <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>
+                            <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Fecha de Creación*</label>
-                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
+                            <div class="form-group label-static">
+                            <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                            </div>
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">Estatus*</label>
-                            <select id="Estatus" name="Estatus" class="form-control" >
+                            <div class="form-group label-static">
+                            <label for="" class="control-label">Estatus*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" required="">
                                 <option value=""></option>
                                 <option value="Activo">Activo</option>
                                 <option value="Inactivo">Inactivo</option>
                             </select>
+                            </div>
                         </div>
                         <div class="col-6 col-md-6">
-                            <label for="">TIPO*</label>
-                            <select id="Tipo" name="Tipo" class="form-control" >
+                            <div class="form-group label-static">
+                            <label for="" class="control-label">Tipo*</label>
+                            <select id="Tipo" name="Tipo" class="form-control" required="">
                                 <option value=""></option>
                                 <option value="MANTENIMIENTO">Mantenimiento</option>
                                 <option value="OBRA">Obra</option>
                             </select>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">CLIENTE*</label>
-                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                            <div class="form-group label-static">
+                            <label for="" class="control-label">Cliente*</label>
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" required="">
                                 <option value=""></option>
                             </select>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <h6>Los campos con * son obligatorios</h6>
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <br>
+                            <h6>Los campos con * son obligatorios</h6>    
+                        </div>
+                        <div class="col-md-12">
                             <div class="alert alert-dismissible alert-warning">
-                                <h4><strong>INFORMACIÓN IMPORTANTE!</strong></h4>
+                                <h4><strong>IMPORTANTE!</strong></h4>
                                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div>
@@ -121,37 +131,48 @@
                         <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
                     <div class="col-md-12">
-                        <label for="">Nombre*</label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre"  >
+                        <div class="form-group label-static">
+                        <label for="Nombre" class="control-label">Nombre*</label>
+                        <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Fecha de Creación*</label>
-                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" >
+                        <div class="form-group label-static">
+                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Estatus*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Estatus*</label>
+                        <select id="Estatus" name="Estatus" class="form-control" required="">
                             <option value=""></option>
                             <option value="Activo">Activo</option>
                             <option value="Inactivo">Inactivo</option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Tipo*</label>
-                        <select id="Tipo" name="Tipo" class="form-control" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Tipo*</label>
+                        <select id="Tipo" name="Tipo" class="form-control" required="">
                             <option value=""></option>
                             <option value="MANTENIMIENTO">Mantenimiento</option>
                             <option value="OBRA">Obra</option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Cliente*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cliente*</label>
+                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" required="">
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
+                    <div class="col-md-12">
+                        <br>
+                        <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
             </form>
@@ -209,45 +230,61 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">Clave</label>
+                                    <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
                                     <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Descripción</label>
+                            <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción</label>
                             <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                             </textarea>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Costo</label>
+                            <div class="form-group label-static">
+                            <label for="Costo" class="control-label">Costo</label>
                             <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Moneda</label>
-                            <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                            <div class="form-group label-static">
+                            <label for="Moneda" class="control-label">Moneda</label>
+                            <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN,USD">
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Unidad</label>
+                            <div class="form-group label-static">
+                            <label for="Unidad" class="control-label">Unidad</label>
                             <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="Categoria" class="control-label">Categoría</label>
                             <select id="Categoria" name="Categoria" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Sub Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="SubCategoria" class="control-label">Sub Categoría</label>
                             <select id="SubCategoria" name="SubCategoria" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Sub Sub Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
                             <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="Categorias">
@@ -255,14 +292,18 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="">Clave</label>
+                                        <div class="form-group label-static">
+                                        <label for="Clave" class="control-label">Clave</label>
                                         <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <label for="">Descripción</label>
+                                <div class="form-group label-static">
+                                <label for="Descripcion" class="control-label">Descripción</label>
                                 <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -270,46 +311,60 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">Clave</label>
+                                    <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
                                     <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Descripción</label>
+                            <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción</label>
                             <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="SubSubCategorias">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">Clave</label>
+                                    <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
                                     <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Descripción</label>
+                            <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción</label>
                             <textarea type="text" class="form-control" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
                             <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="">Sub Categoría</label>
+                            <div class="form-group label-static">
+                            <label for="PreciarioSubCategorias_ID" class="control-label">Sub Categoría</label>
                             <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
                                 <option value=""></option>
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -326,11 +381,9 @@
             <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria">GUARDAR</button>
             <!--BOTONES SUBCATEGORIA-->
-            <br>
             <button type="button" class="btn btn-default hide" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria">GUARDAR</button>
             <!--BOTONES SUBSUBCATEGORIA-->
-            <br>
             <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria">GUARDAR</button>
         </div>
@@ -350,46 +403,59 @@
                         <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="">Clave</label>
+                        <div class="form-group label-static">
+                        <label for="Clave" class="control-label">Clave</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
                     </div>
                     <div class="col-md-8">
-                        <label for="">Descripción</label>
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción</label>
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
                         </textarea>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Costo</label>
+                        <div class="form-group label-static">
+                        <label for="Costo" class="control-label">Costo</label>
                         <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Moneda</label>
+                        <div class="form-group label-static">
+                        <label for="Moneda" class="control-label">Moneda</label>
                         <input type="text" id="Moneda" name="Moneda" class="form-control" required="" placeholder="EJ: MXN">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Unidad</label>
+                        <div class="form-group label-static">
+                        <label for="Unidad" class="control-label">Unidad</label>
                         <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Categoría</label>
+                        <div class="form-group label-static">
+                        <label for="Categoria" class="control-label">Categoría</label>
                         <select id="Categoria" name="Categoria" class="form-control">
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Sub Categoría</label>
+                        <div class="form-group label-static">
+                        <label for="SubCategoria" class="control-label">Sub Categoría</label>
                         <select id="SubCategoria" name="SubCategoria" class="form-control">
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="">Sub Sub Categoría</label>
+                        <div class="form-group label-static">
+                        <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
                         <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
                             <option value=""></option>
                         </select>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
+                        </div>
                     </div>
                 </fieldset>
             </form>
@@ -414,7 +480,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -430,7 +496,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnConfirmarEliminarConcepto">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnConfirmarEliminarConcepto">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -837,12 +903,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     FechaCreacion: 'required',
@@ -851,12 +914,10 @@
                     Cliente_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -882,7 +943,6 @@
                     pnlNuevo.addClass('hide');
                     pnlPreciario.removeClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
-                    console.log(data, x, jq);
                     btnRefrescar.trigger('click');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -895,12 +955,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     FechaCreacion: 'required',
@@ -909,12 +966,10 @@
                     Cliente_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -1074,13 +1129,12 @@
             $("#tblRegistros").html(getTable('tblEmpresas', data));
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+               $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
             $('#tblEmpresas tbody').on('click', 'tr', function () {
                 $("#tblEmpresas").find("tr").removeClass("success");
                 $("#tblEmpresas").find("tr").removeClass("warning");
-//                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -1195,18 +1249,18 @@
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
 
             var thead = pnlDetalleConceptos.find('#tblConceptosXPreciarioID thead th');
-                var tfoot = pnlDetalleConceptos.find('#tblConceptosXPreciarioID tfoot th');
-                thead.eq(0).addClass("hide");
-                tfoot.eq(0).addClass("hide");
-         
+            var tfoot = pnlDetalleConceptos.find('#tblConceptosXPreciarioID tfoot th');
+            thead.eq(0).addClass("hide");
+            tfoot.eq(0).addClass("hide");
+
             $.each(pnlDetalleConceptos.find('#tblConceptosXPreciarioID tbody tr'), function (k, v) {
-                    var td = $(v).find("td");
-                    td.eq(0).addClass("hide");
-                });
-            
+                var td = $(v).find("td");
+                td.eq(0).addClass("hide");
+            });
+
             $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {

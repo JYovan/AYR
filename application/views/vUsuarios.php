@@ -26,8 +26,8 @@
             Deseas eliminar el registro?
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">Aceptar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -52,59 +52,72 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="col-6 col-md-3">
-                        <label for="">Usuario*</label>    
-                        <input type="text" class="form-control" id="Usuario" name="Usuario" required >
+                        <div class="form-group label-static">
+                            <label for="Usuario" class="control-label">Usuario*</label>    
+                            <input type="text" class="form-control" id="Usuario" name="Usuario" required >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Contraseña*</label>    
-                        <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
+                        <div class="form-group label-static">
+                            <label for="Contrasena" class="control-label">Contraseña*</label>    
+                            <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Tipo Acceso*</label>
-                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
-                            <option value=""></option> 
-                            <option value="SUPER ADMINISTRADOR">Super Administrador</option>
-                            <option value="ADMINISTRADOR">Administrador</option> 
-                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                            <option value="RESIDENTE">Residente</option> 
-                            <option value="CLIENTE">Cliente</option> 
-                            <option value="INVITADO">Invitado</option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Tipo Acceso*</label>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
+                                <option value=""></option> 
+                                <option value="SUPER ADMINISTRADOR">Super Administrador</option>
+                                <option value="ADMINISTRADOR">Administrador</option> 
+                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                                <option value="RESIDENTE">Residente</option> 
+                                <option value="CLIENTE">Cliente</option> 
+                                <option value="INVITADO">Invitado</option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Estatus*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="Activo">Activo</option> 
-                            <option value="Inactivo">Inactivo</option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Estatus*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" >
+                                <option value=""></option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Empresa*</label>
-                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" >
-                            <option value=""></option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Empresa*</label>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Nombre*</label>
-                        <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                        <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Apellidos*</label>
-                        <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
+                        <div class="form-group label-static">
+                            <label for="Apellidos" class="control-label">Apellidos*</label>
+                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
+                        </div>
                     </div>
-
-                    
                     <div class="col-md-6 hide" id="AreaCliente">
-                        <label for="">Cliente*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                            <option value=""></option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Cliente*</label>
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                <option value=""></option> 
+                            </select>
+                        </div>
                     </div>
-
-
                 </fieldset>
-                <div class="col-6 col-md-6">
+                <div class="col-md-12">
+                    <br>
                     <h6>Los campos con * son obligatorios</h6>    
                 </div>
             </form>
@@ -135,61 +148,72 @@
                         <input type="text" id="ID" name="ID" class="form-control" >
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Usuario*</label>    
-                        <input type="text" class="form-control" id="Usuario" name="Usuario" required >
+                        <div class="form-group label-static">
+                            <label for="Usuario" class="control-label">Usuario*</label>    
+                            <input type="text" class="form-control" id="Usuario" name="Usuario" required >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Contraseña*</label>    
-                        <input type="password" class="form-control" id="Contrasena" name="Contrasena" required >
+                        <div class="form-group label-static">
+                            <label for="Contrasena" class="control-label">Contraseña*</label>    
+                            <input type="password" class="form-control" id="Contrasena" name="Contrasena" required>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Tipo de Acceso*</label>
-                        <select id="TipoAcceso" name="TipoAcceso" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="SUPER ADMINISTRADOR">Super Administrador</option>
-                            <option value="ADMINISTRADOR">Administrador</option> 
-                            <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                            <option value="RESIDENTE">Residente</option> 
-                            <option value="CLIENTE">Cliente</option>
-                            <option value="INVITADO">Invitado</option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Tipo Acceso*</label>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
+                                <option value=""></option> 
+                                <option value="SUPER ADMINISTRADOR">Super Administrador</option>
+                                <option value="ADMINISTRADOR">Administrador</option> 
+                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                                <option value="RESIDENTE">Residente</option> 
+                                <option value="CLIENTE">Cliente</option> 
+                                <option value="INVITADO">Invitado</option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Estatus*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="Activo">Activo</option> 
-                            <option value="Inactivo">Inactivo</option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Estatus*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" >
+                                <option value=""></option> 
+                                <option value="Activo">Activo</option> 
+                                <option value="Inactivo">Inactivo</option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Empresa*</label>
-                        <select id="Empresa_ID" name="Empresa_ID" class="form-control" required>
-                            <option value=""></option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Empresa*</label>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control">
+                                <option value=""></option> 
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Nombre*</label>
-                        <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                        <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>
+                            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Apellidos*</label>
-                        <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
+                        <div class="form-group label-static">
+                            <label for="Apellidos" class="control-label">Apellidos*</label>
+                            <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
+                        </div>
                     </div>
-
-                    
                     <div class="col-md-6 hide" id="AreaCliente">
-                        <label for="">Cliente*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                            <option value=""></option> 
-                        </select>
+                        <div class="form-group label-static">
+                            <label for="" class="control-label">Cliente*</label>
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                <option value=""></option> 
+                            </select>
+                        </div>
                     </div>
-
-
-
                 </fieldset>
-
-                <div class="col-6 col-md-6">
+                <div class="col-md-12">
+                    <br>
                     <h6>Los campos con * son obligatorios</h6>    
                 </div>
             </form>
@@ -213,26 +237,21 @@
     var mdlConfirmar = $("#mdlConfirmar");
     var sEsClienteNuevo = pnlNuevo.find("#TipoAcceso");
     var sEsCliente = pnlEditar.find("#TipoAcceso");
-
     $(document).ready(function () {
-        
-        
-         sEsClienteNuevo.change(function () {
+        sEsClienteNuevo.change(function () {
             if (this.value === 'CLIENTE') {
                 pnlNuevo.find("#AreaCliente").removeClass('hide');
-            } else  {
+            } else {
                 pnlNuevo.find("#AreaCliente").addClass('hide');
-            } 
+            }
         });
-        
-         sEsCliente.change(function () {
+        sEsCliente.change(function () {
             if (this.value === 'CLIENTE') {
                 pnlEditar.find("#AreaCliente").removeClass('hide');
-            } else  {
-                 pnlEditar.find("#AreaCliente").addClass('hide');
-            } 
+            } else {
+                pnlEditar.find("#AreaCliente").addClass('hide');
+            }
         });
-        
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -258,7 +277,6 @@
                     console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'USUARIO ELIMINADO', 'danger');
-
                     pnlEditar.addClass("hide");
                     pnlTablero.removeClass("hide");
                     btnRefrescar.trigger('click');
@@ -275,12 +293,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Usuario: 'required',
                     Contrasena: 'required',
@@ -291,13 +306,10 @@
                     TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    console.log(element);
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -316,13 +328,9 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN USUARIO', 'success');
-
-
                     btnRefrescar.trigger('click');
                     pnlEditar.addClass('hide');
                     pnlTablero.removeClass('hide');
-
-                    console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -334,12 +342,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Usuario: 'required',
                     Contrasena: 'required',
@@ -350,13 +355,10 @@
                     TipoAcceso: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    console.log(element);
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -367,7 +369,6 @@
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
-             
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -408,7 +409,6 @@
             pnlTablero.removeClass("hide");
             btnRefrescar.trigger('click');
         });
-
         /*CALLS*/
         getRecords();
         getEmpresas();
@@ -429,13 +429,12 @@
             $("#tblRegistros").html(getTable('tblUsuarios', data));
             $('#tblUsuarios tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblUsuarios').DataTable(tableOptions);
             $('#tblUsuarios tbody').on('click', 'tr', function () {
                 $("#tblUsuarios").find("tr").removeClass("success");
                 $("#tblUsuarios").find("tr").removeClass("warning");
-
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -459,7 +458,6 @@
                             ID: temp
                         }
                     }).done(function (data, x, jq) {
-                        
                         if (data[0].Cliente_ID !== null && parseFloat(data[0].Cliente_ID) !== 0) {
                             pnlEditar.find("#AreaCliente").removeClass('hide');
                         } else {

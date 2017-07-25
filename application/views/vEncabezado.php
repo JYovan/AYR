@@ -68,7 +68,7 @@
         <script src="<?php print base_url(); ?>js/material.min.js"></script>
         <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
+        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
         
     </head>
@@ -110,6 +110,11 @@
                 autoclose: true,
                 todayHighlight: true
             });
+            /*Mensajes de jquery validate*/
+            jQuery.validator.messages.required = 'Este campo es obligatorio';
+            jQuery.validator.messages.number = 'Este campo debe ser numérico';
+            jQuery.validator.messages.email = 'Correo no válido';
+            
         });
         function onNotify(span, message, type) {
             $.notify({

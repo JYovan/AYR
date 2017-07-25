@@ -23,7 +23,7 @@ class trabajo_model extends CI_Model {
                     . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
-                    . "CONCAT('<strong>$',FORMAT(T.Importe,2),'</strong>') AS Importe,"
+                    . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
 //                    . "(CASE WHEN  T.Clasificacion IS NULL THEN ' -- ' ELSE T.Clasificacion  END) AS 'Clasificación', "
 //                    . "S.Region ,"
 //                    . "(CASE WHEN  Cd.Nombre IS NULL THEN ' -- ' ELSE Cd.Nombre  END) AS 'Cuadrilla', "
@@ -49,24 +49,29 @@ class trabajo_model extends CI_Model {
     public function getTrabajoDetalleByID($IDX) {
         try {
             $this->db->select('TD.ID AS ID,'
-                    . 'CONCAT("<span class=\'label label-danger\'>",PC.Clave,"</span>") AS Clave, '
+                    . 'CONCAT("<span class=\'label label-info \'>",PC.Clave,"</span>") AS Clave, '
                     . '(CASE '
                     . 'WHEN TD.IntExt = "" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"\"></option><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"\"></option><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
                     . 'WHEN TD.IntExt = "Interior" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\"  onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \"  onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
                     . 'WHEN TD.IntExt = "Exterior" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control\" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
                     . ' END) AS "Int/Ext",'
-                    . 'CONCAT("<textarea class=\"form-control CustomDetalleDescripcion\" rows=\"5\" readonly=\"\">",PC.Descripcion,"</textarea>") AS Descripcion, '
+                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",PC.Descripcion,"</p>") AS Descripcion, '
                     . 'TD.Cantidad, TD.Unidad, '
-                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio, CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
-                    . 'CONCAT("<span class=\"hide\">",TD.Moneda,"</span>") AS ".",'
+                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio,'
+                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
                     . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> ") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
-                    . 'END) AS Generador, '
+                    . 'WHEN TD.TipoCambio = 1 AND TD.Moneda = "USD" THEN '
+                    . 'CONCAT("<span class=\'label label-danger \'>",TD.Moneda,"</span>") '
+                    . 'ELSE CONCAT("<span class=\'  \'>",TD.Moneda,"</span>") '
+                    . 'END) AS "Moneda", '
+//                    . '(CASE '
+//                    . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
+//                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> ") '
+//                    . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
+//                    . 'END) AS Generador, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID  )>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
@@ -82,8 +87,47 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID ),")") '
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
-                    . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
-                    . 'TD.PreciarioConcepto_ID AS "PCID"', false);
+                 //   . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
+                    . 'TD.PreciarioConcepto_ID AS "PCID",'
+                    . 'CASE WHEN TD.Moneda = "MXN" THEN
+                        CONCAT("
+                            <div class=\"btn-group custonNav navbar  \">
+                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
+                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
+                                <ul class=\"dropdown-menu customDropdown-menu\">
+                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",",TD.TipoCambio,",this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
+                                  <li class=\"divider\"></li>
+                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li>
+                                </ul>
+                              </li>
+                            </div>")
+                        WHEN TD.Moneda = "USD"  AND TD.TipoCambio <> 1 THEN
+                        CONCAT("
+                            <div class=\"btn-group custonNav navbar  \">
+                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
+                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
+                                <ul class=\"dropdown-menu customDropdown-menu\">
+                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",",TD.TipoCambio,",this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
+                                  <li><a href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(",TD.ID,",",TD.Precio,",",TD.Cantidad,",",TD.TipoCambio,")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a></li>
+                                  <li class=\"divider\"></li>
+                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li>
+                                </ul>
+                              </li>
+                            </div>")
+                        WHEN TD.Moneda = "USD" AND TD.TipoCambio = 1 THEN
+                        CONCAT("
+                            <div class=\"btn-group custonNav navbar  \">
+                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
+                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
+                                <ul class=\"dropdown-menu customDropdown-menu\">
+                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",",TD.TipoCambio,",this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
+                                  <li><a href=\"javascript:void(0)\" onclick=\"onAgregarTipoCambio(",TD.ID,",",TD.Precio,",",TD.Cantidad,")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a></li>
+                                  <li class=\"divider\"></li>
+                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li>
+                                </ul>
+                              </li>
+                            </div>")   
+            END AS "Editar"', false);
             $this->db->from("trabajosdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
             $this->db->where("TD.Trabajo_ID", $IDX);
@@ -105,7 +149,7 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select('tda.ID AS ID,'
                     . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
-                    . 'CONCAT("<textarea class=\"form-control CustomNuevoDetalleAbiertoDescripcion CustomUppercase \" rows=\"5\" readonly=\"\">",tda.Descripcion,"</textarea>") AS Descripcion, '
+                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",tda.Descripcion,"</p>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotosantes AS TDFA WHERE TDFA.IdTrabajoDetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID)>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosAntesXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotosantes AS TDFA WHERE TDFA.IdTrabajoDetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID),")")'
@@ -126,14 +170,14 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosDosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexosDos AS TDANED WHERE TDANED.IdTrabajoDetalle = tda.ID AND TDANED.IdTrabajo = tda.Trabajo_ID),")") '
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosDosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
-                    . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleGenerador\" '
+                    . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleEdicion\" '
                     . 'onclick=\"onEditarConceptoXDetalleAbierto(",tda.ID,")\"></span>") AS Editar,'
                     . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" '
                     . 'onclick=\"onEliminarConceptoXDetalleAbierto(this,",tda.ID,")\"></span>") AS Eliminar', false);
             $this->db->from("trabajosdetalleabierto AS tda");
             $this->db->join("trabajos AS t", "t.ID =tda.Trabajo_ID");
             $this->db->where("tda.Trabajo_ID", $IDX);
-            $this->db->order_by('tda.ID', 'DESC');
+            //$this->db->order_by('tda.ID', 'DESC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -233,24 +277,6 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajoFotosProcesoDetalleByIDXTiempo($IDX,$Tiempo) {
-        try {
-            $this->db->select('TDFP.*', false);
-            $this->db->from("trabajodetallefotosproceso AS TDFP");
-            $this->db->where("TDFP.IdTrabajoDetalle", $IDX);
-            $this->db->where("TDFP.Tiempo", $Tiempo);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            //print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
     public function getTiempoFotosProcesoXTrabajoDetalleID($IDX) {
         try {
             $this->db->select('TDFP.*',false);
@@ -342,8 +368,6 @@ class trabajo_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
 
     public function getFotosProcesoXTrabajoDetalleID($IDX) {
         try {
@@ -1148,6 +1172,16 @@ class trabajo_model extends CI_Model {
         }
     }
 
+     public function onModificarImporteConcepto($ID, $DATA) {
+        try {
+            $this->db->where('ID', $ID);
+            $this->db->update("trabajosdetalle", $DATA);
+            //    print $str = $this->db->last_query();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function onModificarConceptoCantidadEImporte($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -1263,7 +1297,7 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID", false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
-            $this->db->order_by(' T.ID', 'desc');
+            $this->db->order_by('PCAT.ID', 'ASC');
             $this->db->group_by(array('PCAT.Descripcion'));
             $query = $this->db->get();
             /*
@@ -1449,7 +1483,7 @@ left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
 left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
-            $this->db->order_by('TD.Renglon', 'DESC');
+            $this->db->order_by('PCAT.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -1486,7 +1520,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('GTD.Total IS NOT NULL', NULL, FALSE);
-            $this->db->order_by('TD.Renglon', 'DESC');
+            $this->db->order_by('PCAT.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -1546,7 +1580,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDC.Url is NOT NULL', NULL, FALSE);
-            $this->db->order_by('TDC.ID', 'DESC');
+            $this->db->order_by('PCAT.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -1584,7 +1618,7 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
             $this->db->where('T.Movimiento', $Mov);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TD.ID'));
-            $this->db->order_by('TD.ID', 'ASC');
+            $this->db->order_by('PCAT.ID', 'ASC');
             $query = $this->db->get();
             /* AND  `TDF`.`IdTrabajo` = `TD`.`Trabajo_ID`
              * FOR DEBUG ONLY
@@ -1663,12 +1697,13 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
         }
     }
 
-    public function getDetalleFotosProcesoXID($ID) {
+    public function getDetalleFotosProcesoXID($ID,$Tiempo) {
         try {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDFP.*,"PROCESO" AS PROCESO', false);
             $this->db->from('trabajodetallefotosproceso AS TDFP');
             $this->db->where('TDFP.IdTrabajoDetalle', $ID);
+            $this->db->where("TDFP.Tiempo", $Tiempo);
             $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);
             $this->db->order_by('TDFP.ID', 'DESC');
             $query = $this->db->get();
@@ -1677,6 +1712,26 @@ left JOIN empresas E ON E.id = S.Empresa_ID', false);
              */
             $str = $this->db->last_query();
 //            print $str . ";\n";
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getTiempoFotosProcesoDetalleByIDConcepto($IDX) {
+        try {
+             $this->db->distinct();
+            $this->db->select('Tiempo, Porcentaje',false);
+            $this->db->from("trabajodetallefotosproceso");
+            $this->db->where("IdTrabajoDetalle", $IDX);
+            $this->db->order_by('Tiempo', 'DESC');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -1755,7 +1810,7 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             $this->db->select('CC.Descripcion AS "CentroCosto",TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
 CTE.RutaLogo AS LogoCliente,
 TDA.Descripcion AS Concepto,
-CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion', false);
+CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " ", ifnull(S.Colonia, ""), " ", ifnull(S.Ciudad, ""), " ", ifnull(S.Estado, "")) AS Direccion,T.ControlProceso', false);
             $this->db->from('Trabajos AS T');
             $this->db->join('trabajosdetalleabierto AS TDA', 'TDA.Trabajo_ID = T.ID');
             $this->db->join('Clientes AS CTE ', 'CTE.ID = T.Cliente_ID');

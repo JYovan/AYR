@@ -21,7 +21,7 @@
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -45,22 +45,29 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="col-6 col-md-12">
-                        <label for="">Nombre*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" >
+                         <div class="form-group label-static">
+                        <label for="Nombre" class="control-label">Nombre*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                         </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Descripción</label>
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción</label>
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Estatus*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
                         </select>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -92,24 +99,31 @@
                     <div class="col-md-12 hide">
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
-                    <div class="col-6 col-md-12">
-                        <label for="">Nombre*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                     <div class="col-6 col-md-12">
+                         <div class="form-group label-static">
+                        <label for="Nombre" class="control-label">Nombre*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                         </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Descripción</label>
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción</label>
                         <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Estatus*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
                         </select>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6> 
+                    <div class="col-md-12">
+                        <br>
+                        <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
             </form>
@@ -194,31 +208,24 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Estatus: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
             $('select').on('change', function () {
                 $(this).valid();
             });
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
             //Si es verdadero que hacer
             if ($('#frmNuevo').valid()) {
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
@@ -246,23 +253,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Estatus: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -312,7 +314,7 @@
             $("#tblRegistros").html(getTable('tblCentrosCostos', data));
             $('#tblCentrosCostos tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblCentrosCostos').DataTable(tableOptions);
             $('#tblCentrosCostos tbody').on('click', 'tr', function () {

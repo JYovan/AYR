@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -57,48 +57,70 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="col-6 col-md-6">
-                        <label for="">Nombre*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" >
+                        <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>    
+                            <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">RFC*</label>    
-                        <input type="text" class="form-control" id="Rfc" name="Rfc" >
+                        <div class="form-group label-static">
+                            <label for="Rfc" class="control-label">RFC*</label>    
+                            <input type="text" class="form-control" id="Rfc" name="Rfc" required="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto Nombre</label>
-                        <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="ContactoNombre" class="control-label">Contacto Nombre</label>
+                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Contacto Apellidos</label>
-                        <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="ContactoApellidos" class="control-label">Contacto Apellidos</label>
+                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Dirección</label>
-                        <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="Direccion" class="control-label">Dirección</label>
+                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">N°</label>
-                        <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="NoExterior" class="control-label">N°</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">N° Int.</label>
-                        <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="NoInterior" class="control-label">N° Int.</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Código Postal</label>
-                        <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="CodigoPostal" class="control-label">Código Postal</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Colonia</label>
-                        <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="Colonia" class="control-label">Colonia</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Ciudad</label>
-                        <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="Ciudad" class="control-label">Ciudad</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Estado</label>
-                        <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                        <div class="form-group label-static">
+                            <label for="Estado" class="control-label">Estado</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <span> <br></span>
@@ -121,90 +143,113 @@
     </div>
 </div>      
 <!--EDITAR-->
-<div id="pnlEditar" class="panel panel-default hide animated slideInRight">
-    <div class="Custompanel-heading " >
-        <div class="Custompanel-heading clearfix">
-            <div class="panel-title pull-left cursor-hand" >
-                <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                    <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                </button>
-                Editar Empresa
-            </div>
-            <div class="input-group pull-right">
-                <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+<div class="col-md-12">
+    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+        <div class="Custompanel-heading " >
+            <div class="Custompanel-heading clearfix">
+                <div class="panel-title pull-left cursor-hand" >
+                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
+                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
+                    </button>
+                    Editar Empresa
+                </div>
+                <div class="input-group pull-right">
+                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
+                </div>
             </div>
         </div>
+        <div class="panel-body">
+            <form id="frmEditar">
+                <fieldset>
+                    <div class="col-md-12 hide">
+                        <input type="text" id="ID" name="ID" class="form-control">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Nombre" class="control-label">Nombre*</label>    
+                            <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Rfc" class="control-label">RFC*</label>    
+                            <input type="text" class="form-control" id="Rfc" name="Rfc" required="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="ContactoNombre" class="control-label">Contacto Nombre</label>
+                            <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="ContactoApellidos" class="control-label">Contacto Apellidos</label>
+                            <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Direccion" class="control-label">Dirección</label>
+                            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="NoExterior" class="control-label">N°</label>
+                            <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="NoInterior" class="control-label">N° Int.</label>
+                            <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="CodigoPostal" class="control-label">Código Postal</label>
+                            <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Colonia" class="control-label">Colonia</label>
+                            <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Ciudad" class="control-label">Ciudad</label>
+                            <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-static">
+                            <label for="Estado" class="control-label">Estado</label>
+                            <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <span> <br></span>
+                    </div>
+                    <div class="col-md-12" align="center">
+                        <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                        <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                        <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                            <span class="fa fa-upload fa-1x">
+                            </span> 
+                            Modificar el logo de la empresa
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>    
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-    <div class="panel-body">
-        <form id="frmEditar">
-            <fieldset>
-                <div class="col-md-12 hide">
-                    <input type="text" id="ID" name="ID" class="form-control">
-                </div>
-                <div class="col-6 col-md-6">
-                    <label for="">Nombre*</label>    
-                    <input type="text" class="form-control" id="Nombre" name="Nombre" >
-                </div>
-                <div class="col-6 col-md-6">
-                    <label for="">RFC*</label>    
-                    <input type="text" class="form-control" id="Rfc" name="Rfc" >
-                </div>
-                <div class="col-md-6">
-                    <label for="">Contacto Nombre</label>
-                    <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Contacto Apellidos</label>
-                    <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Dirección</label>
-                    <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-3">
-                    <label for="">N°</label>
-                    <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-3">
-                    <label for="">N° Int.</label>
-                    <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Código Postal</label>
-                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Colonia</label>
-                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Ciudad</label>
-                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="">Estado</label>
-                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-12">
-                    <span> <br></span>
-                </div>
-                <div class="col-md-12" align="center">
-                    <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                    <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
-                    <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                        <span class="fa fa-upload fa-1x">
-                        </span> 
-                        Modificar el logo de la empresa
-                    </button>
-                </div>
-                <div class="col-6 col-md-6">
-                    <h6>Los campos con * son obligatorios</h6>    
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
 </div>      
 <!--SCRIPT-->
 <script>
@@ -269,7 +314,6 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                    console.log(data);
                     mdlConfirmar.modal('hide');
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EMPRESA ELIMINADA', 'danger');
                     pnlEditar.addClass("hide");
@@ -291,23 +335,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Rfc: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -343,23 +382,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Rfc: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -480,7 +514,7 @@
             $("#tblRegistros").html(getTable('tblEmpresas', data));
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
             $('#tblEmpresas tbody').on('click', 'tr', function () {

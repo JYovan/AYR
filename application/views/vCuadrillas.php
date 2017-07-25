@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -56,22 +56,29 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Cuadrilla*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cuadrilla*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Miembros</label>
+                        <div class="form-group label-static">
+                        <label for="Miembros" class="control-label">Miembros</label>
                         <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Estatus*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
                         </select>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -104,23 +111,30 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Cuadrilla*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" required >
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cuadrilla*</label>    
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Miembros</label>
+                        <div class="form-group label-static">
+                        <label for="Miembros" class="control-label">Miembros</label>
                         <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Estatus*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Estatus*</label>
                         <select id="Estatus" name="Estatus" class="form-control" required>
                             <option value=""></option> 
                             <option value="Activo">Activo</option> 
                             <option value="Inactivo">Inactivo</option> 
                         </select>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6> 
+                    <div class="col-md-12">
+                        <br>
+                        <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
             </form>
@@ -211,23 +225,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Estatus: 'required'
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -264,23 +273,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Nombre: 'required',
                     Estatus: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -331,13 +335,12 @@
             $("#tblRegistros").html(getTable('tblCuadrillas', data));
             $('#tblCuadrillas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblCuadrillas').DataTable(tableOptions);
             $('#tblCuadrillas tbody').on('click', 'tr', function () {
                 $("#tblCuadrillas").find("tr").removeClass("success");
                 $("#tblCuadrillas").find("tr").removeClass("warning");
-//                console.log(this)
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {

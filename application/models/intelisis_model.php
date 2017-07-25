@@ -16,6 +16,7 @@ class intelisis_model extends CI_Model {
             $this->sqlsrv->select(" C.Cliente,C.Nombre+' - '+ISNULL( C.NombreCorto,'') AS Nombre ", false);
             $this->sqlsrv->from('Cte AS C');
             $this->sqlsrv->where('C.Tipo', 'Cliente');
+            $this->sqlsrv->order_by('C.Cliente', 'ASC');
             $query = $this->sqlsrv->get();
             /*
              * FOR DEBUG ONLY
@@ -34,6 +35,7 @@ class intelisis_model extends CI_Model {
             $this->sqlsrv->select('Proyecto,Categoria,Descripcion ', false);
             $this->sqlsrv->from('PROY');
             $this->sqlsrv->where('Estatus', 'ALTA');
+            $this->sqlsrv->order_by('Descripcion', 'ASC');
             $query = $this->sqlsrv->get();
             /*
              * FOR DEBUG ONLY

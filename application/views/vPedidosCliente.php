@@ -3,7 +3,6 @@
         <div class="panel-heading"><div class="cursor-hand" >Pedidos del Cliente</div></div>
         <fieldset><div class="col-md-12 dt-buttons" align="right">
                 <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
             </div><div class="col-md-12" id="tblRegistros"></div>
         </fieldset>
     </div>
@@ -18,7 +17,7 @@
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -52,14 +51,6 @@
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
                     </button>Nuevo Pedido</div>
                 <div class="input-group pull-right" align="center">
-                    <span class="dt-EncabezadoControles">
-                        <!--                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento (Debe guardar el movimiento)">
-                                                    <span class="fa fa-clone" ></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)" >
-                                                    <span class="fa fa-print " ></span>
-                                                </button>-->
-                    </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="label label-default spanEstatus">SIN GUARDAR</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -80,52 +71,71 @@
                     <!-- PANEL DE DATOS GENERALES-->
                     <hr>
                     <div class=" col-3 col-md-3">
-                        <label for="">Movimiento</label>
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento" class="form-control" readonly="" value="SOLICITUD" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-3 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID*</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Fecha Origen</label>
-                        <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        <div class="form-group label-static">
+                        <label for="FechaOrigen" class="control-label">Fecha Origen*</label>
+                        <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Hora Origen</label>
-                        <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                        <div class="form-group label-static">
+                        <label for="HoraOrigen" class="control-label">Hora Origen</label>
+                        <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" required=""/>
+                        </div>
                     </div>
                     <!-- Inserta la fecha del movimiento-->
-                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control hide" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control hide" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                    
 
                     <div class="col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="Cliente_ID" class="control-label">Cliente</label>
                         <input type="text" id="Cliente_ID" name="Cliente_ID" class="form-control"  placeholder="" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Sucursal*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Sucursal*</label>
                         <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Solicitante</label>
-                        <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="Nombre de la persona quien solicita el trabajo" >
+                        <div class="form-group label-static">
+                        <label for="Solicitante" class="control-label">Solicitante*</label>
+                        <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="Nombre de la persona quien solicita el trabajo" required="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Clasificación</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
                             <option value="CERRAJERÍA">CERRAJERÍA</option>
                             <option value="MOBILIARIO">MOBILIARIO</option>
                             <option value="INMUEBLE">INMUEBLE</option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Trabajo Solicitado</label>
-                        <textarea class="col-md-12 form-control" placeholder="Introduzca aquí el trabajo que solicita" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="5" ></textarea>
+                        <div class="form-group label-static">
+                        <label for="TrabajoSolicitado" class="control-label">Trabajo Solicitado*</label>
+                        <textarea class="col-md-12 form-control" placeholder="Introduzca aquí el trabajo que solicita" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="5" required=""></textarea>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -146,9 +156,6 @@
                 </div>
                 <div class="input-group pull-right" align="center">
                     <span class="dt-EncabezadoControles">
-                        <!--                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
-                                                    <span class="fa fa-clone" ></span>
-                                                </button>-->
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
@@ -172,53 +179,72 @@
                 <fieldset>
                     <!-- PANEL DE DATOS GENERALES-->
                     <hr>
-                    <div class=" col-3 col-md-3">
-                        <label for="">Movimiento</label>
+                     <div class=" col-3 col-md-3">
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento" class="form-control" readonly="" value="SOLICITUD" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-3 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Fecha Origen</label>
+                        <div class="form-group label-static">
+                        <label for="FechaOrigen" class="control-label">Fecha Origen*</label>
                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Hora Origen</label>
+                        <div class="form-group label-static">
+                        <label for="HoraOrigen" class="control-label">Hora Origen*</label>
                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                        </div>
                     </div>
                     <!-- Inserta la fecha del movimiento-->
                     <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control hide" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                    
 
                     <div class="col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="Cliente_ID" class="control-label">Cliente</label>
                         <input type="text" id="Cliente_ID" name="Cliente_ID" class="form-control"  placeholder="" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Sucursal*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Sucursal*</label>
                         <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Solicitante</label>
-                        <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="Nombre de la persona quien solicita el trabajo" >
+                        <div class="form-group label-static">
+                        <label for="Solicitante" class="control-label">Solicitante*</label>
+                        <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="Nombre de la persona quien solicita el trabajo" required="">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="">Clasificación</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Clasificación</label>
                         <select id="Clasificacion" name="Clasificacion" class="form-control" >
                             <option value=""></option>
                             <option value="CERRAJERÍA">CERRAJERÍA</option>
                             <option value="MOBILIARIO">MOBILIARIO</option>
                             <option value="INMUEBLE">INMUEBLE</option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-12">
-                        <label for="">Trabajo Solicitado</label>
-                        <textarea class="col-md-12 form-control" placeholder="Introduzca aquí el trabajo que solicita" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="5" ></textarea>
+                        <div class="form-group label-static">
+                        <label for="TrabajoSolicitado" class="control-label">Trabajo Solicitado*</label>
+                        <textarea class="col-md-12 form-control" placeholder="Introduzca aquí el trabajo que solicita" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="5" required="" ></textarea>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -230,7 +256,6 @@
 <script>
     var master_url = base_url + 'index.php/CtrlPedidoCliente/';
     var btnNuevo = $("#btnNuevo");
-    var btnRefrescar = $("#btnRefrescar");
     var btnCancelar = $("#btnCancelar");
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
@@ -256,10 +281,8 @@
     $(document).ready(function () {
         /*Modal de reportes*/
         btnImprimirReportesEditarTrabajo.on("click", function () {
-
             mdlReportesEditarTrabajo.modal('show');
         });
-
         btnNuevo.on("click", function () {
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
@@ -273,6 +296,7 @@
             pnlNuevoTrabajo.find("#Movimiento").val("SOLICITUD");
             getCliente();
             getSucursalesbyCliente("<?php echo $this->session->userdata('Cliente'); ?>");
+
         });
         btnCancelar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
@@ -297,28 +321,22 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaOrigen: 'required',
                     HoraOrigen: 'required',
-                    Cliente_ID: 'required',
                     Sucursal_ID: 'required',
                     TrabajoSolicitado: 'required',
                     Solicitante: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             $('select').on('change', function () {
@@ -355,28 +373,22 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaOrigen: 'required',
                     HoraOrigen: 'required',
-                    Cliente_ID: 'required',
                     Sucursal_ID: 'required',
                     TrabajoSolicitado: 'required',
                     Solicitante: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             $('select').on('change', function () {
@@ -463,7 +475,7 @@
                 $("#tblRegistros").html(getTable('tblTrabajos', data));
                 $('#tblTrabajos tfoot th').each(function () {
                     var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
                 tblSelected.columns().every(function () {
@@ -526,6 +538,7 @@
                             pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
                             pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
                             pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                            pnlEditarTrabajo.find("#Clasificacion").select2("val",trabajo.Clasificacion);
                             pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
                             pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
                             menuTablero.addClass("hide");
@@ -675,6 +688,7 @@
                 pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
                 pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
                 pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                pnlEditarTrabajo.find("#Clasificacion").select2("val",trabajo.Clasificacion);
                 menuTablero.addClass("hide");
                 /*Control de estatus*/
                 if (trabajo.Estatus === 'Borrador') {

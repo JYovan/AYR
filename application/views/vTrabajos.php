@@ -5,15 +5,12 @@
                 <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                 <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
             </div><div class="col-md-12" id="tblRegistros"></div>
-        </fieldset>
-    </div>
+        </fieldset></div>
 </div>
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Imprimir Reportes</h4>
         </div>
         <div class="modal-body">Selecciona el reporte que deseas imprimir
@@ -64,7 +61,7 @@
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -78,7 +75,7 @@
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminarConcepto">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConcepto">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -92,7 +89,7 @@
         <div class="modal-body">Deseas eliminar el registro?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminarConceptoAbierto">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConceptoAbierto">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -143,171 +140,222 @@
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class="col-6 col-md-12"><br></div>
                             <div class="col-6 col-md-3">
-                                <label for="">Etapa*</label>
+                                <div class="form-group label-static">
+                                <label for="Movimiento" class="control-label">Etapa*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
                                 </select>
+                                </div>
                             </div>
                             <div class=" col-3 col-md-3">
-                                <label for="">Mov ID</label>
+                                <div class="form-group label-static">
+                                <label for="ID" class="control-label">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha de Creación*</label>
+                                <div class="form-group label-static">
+                                <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Situación*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="PENDIENTE">PENDIENTE</option>
                                     <option value="AUTORIZADO">AUTORIZADO</option>
                                     <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Cliente*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Sucursal*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Preciario*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Clasificación</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="CERRAJERÍA">CERRAJERÍA</option>
                                     <option value="MOBILIARIO">MOBILIARIO</option>
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Centro de Costos</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Centro de Costos</label>
                                 <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Folio Cliente</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Folio Cliente</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                                </div>
                             </div>
-                            <input type="text" id="Atendido" name="Atendido" class="form-control hide" readonly="" placeholder="" >
+                            <input type="text" id="Atendido" name="Atendido" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
-                                <div class="togglebutton"><label for="">Esta Completado?</label>
-                                    <spam><br></spam><spam><br></spam>
+                                <div class="form-group label-static">
+                                <label for="NuevoAtendido" class="control-label">Esta Completado?</label>
+                                <div class="togglebutton">
                                     <label><input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" ></label>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Observaciones</label>
+                                <div class="form-group label-static">
+                                <label for="Observaciones" class="control-label">Observaciones</label>
                                 <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                                </div>
                             </div>
                             <div id="ControlProceso" class="col-6 col-md-3 hide">
-                                <label for="">Control de proceso</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Control de proceso</label>
                                 <select id="" name="ControlProceso" class="form-control " >
                                     <option value=""></option>
                                     <option value="Dias">DÍAS</option>
                                     <option value="Semanas">SEMANAS</option>
                                 </select>
+                                </div>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="col-6 col-md-12"><br></div>
                             <div class="col-6 col-md-3">
-                                <label for="">Cuadrilla</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Cuadrilla</label>
                                 <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" ><option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Atención</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Atención</label>
                                 <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Codigo PPTA</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Codigo PPTA</label>
                                 <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Días</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Días</label>
                                 <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
+                                </div>
                             </div>
                             <div class=" col-6 col-md-12">
-                                <label for="">Solicitante</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Solicitante</label>
                                 <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Trabajo Solicitado</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Trabajo Solicitado</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Trabajo Requerido</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Trabajo Requerido</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
-                                        <label for="">Fecha Origen</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                        </div>
                                     </div>
                                     <div class="col-6 col-md-3">
-                                        <label for="">Hora Origen</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Hora Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Fin Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Fin Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Hora Fin Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Hora Fin Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
+                                </div>
                             </div>
                         </div>
                         <!--PANEL DE OTROS DATOS-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos3">
-                            <div class="col-6 col-md-12"><br></div>
-                            <div class="col-6 col-md-12">
-                                <div class="row ">
-                                    <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control hide" readonly="" placeholder="" >
+                                    <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="hide" readonly="" placeholder="" >
                                     <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Impacto en el Plazo</label>
                                         <div class="togglebutton">
-                                            <label for="">Impacto en el Plazo</label><spam><br></spam><spam><br></spam>
-                                            <label><input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" >
-                                            </label>
+                                            <label><input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" ></label>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class=" col-6 col-md-3">
-                                        <label for="">Días de Impacto</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Días de Impacto</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                        </div>
                                     </div>
                                     <div class="col-6 col-md-6">
-                                        <label for="">Causa del trabajo</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Causa del trabajo</label>
                                         <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
@@ -322,11 +370,11 @@
                                             <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
                                         </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Clave Origen</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
                                     <option value=""></option>
                                     <option value="CONTR">CONTR - CONTRATISTA</option>
@@ -334,29 +382,37 @@
                                     <option value="BBVA">CTE - CLIENTE</option>
                                     <option value="OTRO">OTRO - OTRO</option>
                                 </select>
+                                </div>
                             </div>
                             <div class=" col-6 col-md-6">
-                                <label for="">(En caso de otros) Especifica</label>
-                                <input type="text" id="OrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                <div class="form-group label-static">
+                                <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
+                                <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Origen del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Riesgo del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Riesgo del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-12">
-                                <label for="">Alcance del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                         </div>
                         <!-- PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos4">
-                            <div class="col-md-12 "><span> <br></span></div>
                             <div class="col-md-12">
-                                <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
+                                <label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
                             <div class="col-md-12" align="center">
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
@@ -369,9 +425,7 @@
                                 <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
                         </div>
-                        <div class="col-6 col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>
-                        </div>
+                        <div class="col-6 col-md-12"><br><h6>Los campos con * son obligatorios</h6></div>
                     </div>
                 </fieldset>
             </form>
@@ -383,12 +437,8 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-5">
-                    <div class="cursor-hand" >Conceptos Presupuesto</div>
-                </div>
-                <div id="ImporteTotal" class="col-md-7" align="right">
-                    <span class="text-success spanTotalesDetalle">$ 0.0</span>
-                </div>
+                <div class="col-md-5"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
+                <div id="ImporteTotal" class="col-md-7" align="right"><span class="text-success spanTotalesDetalle">$ 0.0</span></div>
             </div>
         </div>
         <fieldset>
@@ -403,10 +453,7 @@
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajoAbierto">
         <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div>
-                </div>
-            </div>
+            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div></div>
         </div>
         <fieldset>
             <div class="col-md-12" align="right">
@@ -423,8 +470,7 @@
                 <div class="panel-title pull-left cursor-hand" >
                     <button type="button" class="btn btn-default " id="btnCancelarModificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Editar Trabajo
+                    </button>Editar Trabajo
                 </div>
                 <div class="input-group pull-right" align="center">
                     <span class="dt-EncabezadoControles">
@@ -464,182 +510,222 @@
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="EditarDatos">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Etapa*</label>
+                                <div class="form-group label-static">
+                                <label for="Movimiento" class="control-label">Etapa*</label>
                                 <select id="Movimiento" name="Movimiento" class="form-control" >
                                     <option value=""></option>
                                     <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
                                     <option value="PRESUPUESTO">PRESUPUESTO</option>
                                 </select>
+                                </div>
                             </div>
-                            <div class=" col-6 col-md-3">
-                                <label for="">Mov ID</label>
+                            <div class=" col-3 col-md-3">
+                                <div class="form-group label-static">
+                                <label for="ID" class="control-label">Mov ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha de Creación*</label>
+                                <div class="form-group label-static">
+                                <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Situación*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Situación*</label>
                                 <select id="Situacion" name="Situacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="PENDIENTE">PENDIENTE</option>
                                     <option value="AUTORIZADO">AUTORIZADO</option>
                                     <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Cliente*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Sucursal*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Sucursal*</label>
                                 <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Preciario*</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Preciario*</label>
                                 <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Clasificación</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Clasificación</label>
                                 <select id="Clasificacion" name="Clasificacion" class="form-control" >
                                     <option value=""></option>
                                     <option value="CERRAJERÍA">CERRAJERÍA</option>
                                     <option value="MOBILIARIO">MOBILIARIO</option>
                                     <option value="INMUEBLE">INMUEBLE</option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Centro de Costos</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Centro de Costos</label>
                                 <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Folio Cliente</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Folio Cliente</label>
                                 <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                                </div>
                             </div>
-                            <input type="text" id="Atendido" name="Atendido" class="form-control hide" readonly="" placeholder="" >
+                            <input type="text" id="Atendido" name="Atendido" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                <label for="EditarAtendido" class="control-label">Esta Completado?</label>
                                 <div class="togglebutton">
-                                    <label for="">Esta completado?</label>
-                                    <spam><br></spam>
-                                    <spam><br></spam>
-                                    <label>
-                                        <input type="checkbox" id="EditarAtendido" name="" >
-                                    </label>
+                                    <label><input type="checkbox" id="EditarAtendido" name="" ></label>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Observaciones</label>
+                                <div class="form-group label-static">
+                                <label for="Observaciones" class="control-label">Observaciones</label>
                                 <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                                </div>
                             </div>
                             <div id="ControlProcesoEditar" class="col-6 col-md-3 hide">
-                                <label for="">Control de proceso</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Control de proceso</label>
                                 <select id="ControlTiempoProceso" name="ControlProceso" class="form-control" >
                                     <option value=""></option>
                                     <option value="Dias">DÍAS</option>
                                     <option value="Semanas">SEMANAS</option>
                                 </select>
+                                </div>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DEL TRABAJO-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos2">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Cuadrilla</label>
-                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" >
-                                    <option value=""></option>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Cuadrilla</label>
+                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" ><option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Atención</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Atención</label>
                                 <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Codigo PPTA</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Codigo PPTA</label>
                                 <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
                                     <option value=""></option>
                                 </select>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Días</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Días</label>
                                 <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
+                                </div>
                             </div>
                             <div class=" col-6 col-md-12">
-                                <label for="">Solicitante</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Solicitante</label>
                                 <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Trabajo Solicitado</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Trabajo Solicitado</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Trabajo Requerido</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Trabajo Requerido</label>
                                 <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-12">
                                 <div class="row ">
                                     <div class="col-6 col-md-3">
-                                        <label for="">Fecha Origen</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Fecha Origen</label>
                                         <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                        </div>
                                     </div>
                                     <div class="col-6 col-md-3">
-                                        <label for="">Hora Origen</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Hora Origen</label>
                                         <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Visita</label>
                                 <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Hora Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Hora Visita</label>
                                 <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Fecha Fin Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Fecha Fin Visita</label>
                                 <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <label for="">Hora Fin Visita</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Hora Fin Visita</label>
                                 <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
+                                </div>
                             </div>
                         </div>
                         <!--PANEL DE OTROS DATOS-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos3">
-                            <div class="col-6 col-md-12">
-                                <br>
-                            </div>
-                            <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control hide" readonly="" placeholder="" >
-                            <div class="col-6 col-md-12">
-                                <div class="row ">
+                                    <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="hide" readonly="" placeholder="" >
                                     <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Impacto en el Plazo</label>
                                         <div class="togglebutton">
-                                            <label for="">Impacto en el Plazo</label>
-                                            <spam><br></spam><spam><br></spam>
                                             <label><input type="checkbox" id="EditarImpactoEnPlazo" name="" ></label>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class=" col-6 col-md-3">
-                                        <label for="">Días de Impacto</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Días de Impacto</label>
                                         <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                        </div>
                                     </div>
                                     <div class="col-6 col-md-6">
-                                        <label for="">Causa del trabajo</label>
+                                        <div class="form-group label-static">
+                                        <label for="" class="control-label">Causa del trabajo</label>
                                         <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
@@ -654,11 +740,11 @@
                                             <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
                                             <option value="OTR">OTR - OTROS</option>
                                         </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Clave Origen</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Clave Origen</label>
                                 <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
                                     <option value=""></option>
                                     <option value="CONTR">CONTR - CONTRATISTA</option>
@@ -666,48 +752,50 @@
                                     <option value="BBVA">CTE - CLIENTE</option>
                                     <option value="OTRO">OTRO - OTRO</option>
                                 </select>
+                                </div>
                             </div>
                             <div class=" col-6 col-md-6">
-                                <label for="">(En caso de otros) Especifica</label>
+                                <div class="form-group label-static">
+                                <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
                                 <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Origen del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Origen del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-6">
-                                <label for="">Riesgo del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Riesgo del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                             <div class="col-6 col-md-12">
-                                <label for="">Alcance del Trabajo</label>
+                                <div class="form-group label-static">
+                                <label for="" class="control-label">Alcance del Trabajo</label>
                                 <textarea class="col-md-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                                </div>
                             </div>
                         </div>
                         <!--PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
                             <div class="col-md-12">
-                                <span> <br></span>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
+                                <label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
                             </div>
                             <div class="col-md-12" align="center">
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x">
-                                    </span><br>
-                                    SELECCIONA EL ARCHIVO
+                                    <span class="fa fa-upload fa-1x"></span><br>SELECCIONA EL ARCHIVO
                                 </button>
                             </div>
                             <div class="col-md-12 hide">
                                 <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
                             </div>
                         </div>
-                        <div class="col-6 col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>
-                        </div>
+                        <div class="col-6 col-md-12"><br><h6>Los campos con * son obligatorios</h6></div>
                     </div>
                 </fieldset>
             </form>
@@ -718,8 +806,7 @@
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajo">
         <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-6"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
+            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
                 <div id="ImporteTotal" class="col-md-6" align="right"><h4 class="text-success">$ 0.0</h4></div>
             </div>
         </div>
@@ -735,13 +822,11 @@
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajoAbierto">
         <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div>
+            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div>
             </div>
         </div>
         <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+            <div class="col-md-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
             </div>
             <div class="col-md-12 table-responsive " id="ConceptosAbierto" ></div>
         </fieldset>
@@ -760,14 +845,18 @@
                 <fieldset>
                     <div class=" hide"><input type="text" id="ID" name="ID" class="form-control"></div>
                     <div class="col-md-3">
-                        <label for="">Clave*</label>
+                        <div class="form-group label-static">
+                        <label for="Clave" class="control-label">Clave*</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
                     </div>
                     <div class="col-md-12">
-                        <label for="">Descripción*</label>
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción*</label>
                         <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6"><h6>Los campos con * son obligatorios</h6></div>
+                    <div class="col-6 col-md-6"><br><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
@@ -793,15 +882,18 @@
                         <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <label for="">Clave*</label>
+                        <div class="form-group label-static">
+                        <label for="Clave" class="control-label">Clave*</label>
                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
                     </div>
                     <div class="col-md-12">
-                        <label for="">Descripción*</label>
-                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                        </textarea>
+                        <div class="form-group label-static">
+                        <label for="Descripcion" class="control-label">Descripción*</label>
+                        <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6"><h6>Los campos con * son obligatorios</h6></div>
+                     <div class="col-6 col-md-6"><br><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
@@ -828,9 +920,7 @@
                     <div class="tab-pane fade active in" id="EditarGeneradores">
                         <fieldset>
                             <div class="col-md-12" id="tblEditarGeneradorXConcepto"></div>
-                            <div id="GeneradorImporteTotal" class="col-md-12" align="right">
-                                <span class="text-success spanTotalesDetalle">0.0</span>
-                            </div>
+                            <div id="GeneradorImporteTotal" class="col-md-12" align="right"><span class="text-success spanTotalesDetalle">0.0</span></div>
                         </fieldset>
                     </div>
                     <div class="tab-pane fade" id="EditarGenerador">
@@ -840,39 +930,55 @@
                             <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control ">
                             <input type="text" id="IdTrabajoDetalle" name="IdTrabajoDetalle" class="form-control ">
                             <input type="text" id="Precio" name="Precio" class="form-control">
+                            <input type="text" id="TipoCambioGenerador" name="TipoCambio" class="form-control">
                         </div>
-                        <div class="col-md-12"><br></div>
                         <div class="col-md-5">
-                            <label for="">Area</label>
+                            <div class="form-group label-static">
+                            <label for="Area" class="control-label">Area</label>
                             <input type="text" id="Area" name="Area" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-3">
-                            <label for="">Eje</label>
+                            <div class="form-group label-static">
+                            <label for="Eje" class="control-label">Eje</label>
                             <input type="text" id="Eje" name="Eje" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Entre Eje 1</label>
+                            <div class="form-group label-static">
+                            <label for="EntreEje1" class="control-label">Entre Eje 1</label>
                             <input type="text" id="EntreEje1" name="EntreEje1" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Entre Eje 2</label>
+                            <div class="form-group label-static">
+                            <label for="EntreEje2" class="control-label">Entre Eje 2</label>
                             <input type="text" id="EntreEje2" name="EntreEje2" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Largo</label>
+                            <div class="form-group label-static">
+                            <label for="Largo" class="control-label">Largo</label>
                             <input type="number" id="Largo" min="0" name="Largo" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Ancho</label>
+                            <div class="form-group label-static">
+                            <label for="Ancho" class="control-label">Ancho</label>
                             <input type="number" id="Ancho" min="0" name="Ancho" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Alto</label>
+                            <div class="form-group label-static">
+                            <label for="Alto" class="control-label">Alto</label>
                             <input type="number" id="Alto" min="0" name="Alto" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="">Cantidad</label>
+                            <div class="form-group label-static">
+                            <label for="Cantidad" class="control-label">Cantidad</label>
                             <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
+                            </div>
                         </div>
                         <div class="modal-footer modal-footerFull">
                             <button type="button" class="btn btn-raised btn-primary hide" id="btnModificar" onclick="">MODIFICAR</button>
@@ -900,8 +1006,7 @@
             <div class="modal-body modal-bodyFull">
                 <fieldset>
                     <div class="col-md-12" align="right">
-                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> Varios</label>
-                        </div>
+                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> Varios</label></div>
                     </div>
                 </fieldset>
                 <div class="col-md-12" id="ConceptosXPreciarioID"></div>
@@ -921,14 +1026,9 @@
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12"><br></div>
-                    <div class="col-md-12 hide">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control hide">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control hide">
-                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
-                    </div>
-                </fieldset>
-                <fieldset>
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
@@ -953,14 +1053,9 @@
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12"><br></div>
-                    <div class="col-md-12 hide">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" id="fFotos" accept='image/*' name="fFotos[]" multiple="" class="hide">
-                    </div>
-                </fieldset>
-                <fieldset>
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosAntesEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
@@ -985,14 +1080,9 @@
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12"><br></div>
-                    <div class="col-md-12 hide">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
-                    </div>
-                </fieldset>
-                <fieldset>
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosDespuesEditar(this)">
                         <div class="file_drag_area"> <p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
@@ -1016,18 +1106,16 @@
                 <h4 class="modal-title modal-titleFull">Fotos en Proceso</h4>
             </div>
             <div class="modal-body modal-bodyFull">
-
                 <fieldset>
                     <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
                     <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
                     <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
-
                     <div class="col-md-6">
                         <label class="Tiempo" for="">Debe de elegir un control de tiempo*</label>
                         <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Porcentaje*</label>
+                        <label for="" class="control-label">Porcentaje*</label>
                         <input type="text" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 100)" id="IdPorcentajeProceso" name="IdPorcentajeProceso" class="form-control numbersOnly">
                     </div>
                     <div class="col-md-12 hide" id="idSubirFotosProceso" align="center"  onclick="setFotosProcesoEditar(this)">
@@ -1054,13 +1142,9 @@
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <div class="col-md-12 hide"><div class="col-md-12"><br></div>
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
-                        <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="hide">
-                    </div>
-                </fieldset>
-                <fieldset>
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setCroquisEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
                         </div>  
@@ -1139,6 +1223,32 @@
         </div>
     </div>
 </div>
+<!--MODAL TIPO CAMBIO-->
+<div id="mdlAgregarTipoCambio" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content  ">
+        <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title ">Tipo de Cambio</h4>
+        </div>
+        <div class="modal-body ">
+            <form id="frmAgregarTipoCambio">
+                <fieldset>
+                    <div class="col-md-12">
+                        <div class="form-group label-static">
+                        <label for="TipoCambio" class="control-label">Tipo de Cambio*</label>
+                        <input type="text" id="TipoCambio" name="TipoCambio" class="form-control" required="" >
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer "><!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnAgregarTipoCambio" name="btnAgregarTipoCambio">GUARDAR</button>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlTrabajos/';
@@ -1164,20 +1274,16 @@
     var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
     var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
-    /*Toggle Button Editar Atendido Impacto*/
+    /*Toggle Buttons Editar Impacto y Atendido*/
     var tbtnEditarAtendido = pnlEditarTrabajo.find("#EditarAtendido");
     var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
-    /*Toggle Button  Atendido Impacto*/
     var tbtnNuevoAtendido = pnlNuevoTrabajo.find("#NuevoAtendido");
     var tbtnNuevoImpactoEnPlazo = pnlNuevoTrabajo.find("#NuevoImpactoEnPlazo");
-    /*Detalle*/
+    /*Detalle Normal*/
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
     var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
     var pnlDetalleEditarTrabajo = $("#pnlDetalleEditarTrabajo");
     var currentDate = new Date();
-    /*Reportes*/
-    var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
-    var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
     /*EDICION*/
     var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
     var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
@@ -1188,34 +1294,13 @@
     var ConceptosXPreciarioID = mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID");
     /*BOTON PARA AGREGAR UN NUEVO CONCEPTO*/
     var btnNuevoConceptoEditar = pnlDetalleEditarTrabajo.find("#btnNuevoConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE FOTOS (EDITAR)*/
+    /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
     var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE FOTOS ANTES (EDITAR)*/
-    var mdlTrabajoEditarFotosAntesPorConcepto = $("#mdlTrabajoEditarFotosAntesPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE FOTOS DESPUES (EDITAR)*/
-    var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE FOTOS PROCESO (EDITAR)*/
-    var mdlTrabajoEditarFotosProcesoPorConcepto = $("#mdlTrabajoEditarFotosProcesoPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE CROQUIS (EDITAR)*/
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE ANEXOS (EDITAR)*/
     var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
-    /*BOTON PARA ABRIR EL MODAL DE ANEXOSDOS (EDITAR)*/
-    var mdlTrabajoEditarAnexosDosPorConcepto = $("#mdlTrabajoEditarAnexosDosPorConcepto");
-    /*FOTOS (EDITAR)*/
     var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
-    /*FOTOSANTES (EDITAR)*/
-    var EditarFotosAntesPorConcepto = mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos");
-    /*FOTOSDESPUES (EDITAR)*/
-    var EditarFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos");
-    /*FOTOSPROCESO (EDITAR)*/
-    var EditarFotosProcesoPorConcepto = mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos");
-    /*CROQUIS (EDITAR)*/
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
-    /*ANEXOS (EDITAR)*/
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
-    /*ANEXOS (EDITAR)*/
-    var EditarAnexosDosPorConcepto = mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos");
     /******ABIERTO*/
     var pnlDetalleEditarTrabajoAbierto = $('#pnlDetalleEditarTrabajoAbierto');
     var pnlDetalleNuevoTrabajoAbierto = $('#pnlDetalleNuevoTrabajoAbierto');
@@ -1223,6 +1308,18 @@
     var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajoAbierto.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
+    /*MULTIMEDIA (EDITAR ABIERTO)*/
+    var mdlTrabajoEditarFotosAntesPorConcepto = $("#mdlTrabajoEditarFotosAntesPorConcepto");
+    var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
+    var mdlTrabajoEditarFotosProcesoPorConcepto = $("#mdlTrabajoEditarFotosProcesoPorConcepto");
+    var mdlTrabajoEditarAnexosDosPorConcepto = $("#mdlTrabajoEditarAnexosDosPorConcepto");
+    var EditarAnexosDosPorConcepto = mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos");
+    var EditarFotosAntesPorConcepto = mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos");
+    var EditarFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos");
+    var EditarFotosProcesoPorConcepto = mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos");
+    /*Reportes*/
+    var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
+    var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
     $(document).ready(function () {
         $('.numbersOnly').keypress(function () {
             this.value = this.value.replace(/[^0-9\.]/g, '');
@@ -1255,22 +1352,15 @@
         });
         /**FIN FUNCIONES DE EDICION **/
         btnEditarConceptoAbierto.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
+            $.validator.setDefaults({ignore: []});
             $('#frmEditarConceptoDetalleAbierto').validate({
-                errorElement: 'span', errorClass: 'errorForms',
-                rules: {Clave: 'required', Descripcion: 'required', IntExt: 'required'},
+                errorElement: 'span', errorClass: 'help-block',
+                rules: {Clave: 'required', Descripcion: 'required'},
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             /*Regresa si es valido para los select2*/
@@ -1299,24 +1389,15 @@
             }
         });
         btnAgregarConceptoAbierto.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
+            $.validator.setDefaults({ignore: []});
             $('#frmAgregarConceptoDetalleAbierto').validate({
-                errorElement: 'span', errorClass: 'errorForms',
-                rules: {
-                    Clave: 'required', Descripcion: 'required', IntExt: 'required'
-                },
+                errorElement: 'span', errorClass: 'help-block',
+                rules: {Clave: 'required', Descripcion: 'required'},
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             /*Regresa si es valido para los select2*/
@@ -1364,7 +1445,6 @@
             }
         });
         pnlEditarTrabajo.find("#Movimiento").change(function () {
-            /*Actualiza el movimiento sin necesidad de guardar*/
             $.ajax({
                 url: master_url + 'onModificarMovimiento',
                 type: "POST",
@@ -1412,12 +1492,11 @@
         mdlTrabajoEditarFotosProcesoPorConcepto.on('shown.bs.modal', function () {
             EditarFotosProcesoPorConcepto.val('');
         });
-        /*Evento drag and drop de FOTOS*/
+        /*Eventos DRAG and DROP de MULTIMEDIA*/
         mdlTrabajoEditarFotosPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1442,12 +1521,10 @@
                 });
             }
         });
-        /*Evento drag and drop de FOTOS ANTES*/
         mdlTrabajoEditarFotosAntesPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1472,12 +1549,10 @@
                 });
             }
         });
-        /*Evento drag and drop de FOTOS DESPUES*/
         mdlTrabajoEditarFotosDespuesPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1502,12 +1577,10 @@
                 });
             }
         });
-        /*Evento drag and drop de FOTOS PROCESO*/
         mdlTrabajoEditarFotosProcesoPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1534,12 +1607,10 @@
                 });
             }
         });
-        /*Evento drag and drop de CROQUIS*/
         mdlTrabajoEditarCroquisPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1564,12 +1635,10 @@
                 });
             }
         });
-        /*Evento drag and drop de ANEXOS*/
         mdlTrabajoEditarAnexosPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1595,12 +1664,10 @@
                 });
             }
         });
-        /*Evento drag and drop de ANEXOSDOS*/
         mdlTrabajoEditarAnexosDosPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            /*SUBIR FOTO*/
             var frm = new FormData();
             frm.append('IdTrabajo', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
             frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1626,8 +1693,7 @@
                 });
             }
         });
-        /*CARGA DE ARCHIVOS DETALLE NORMAL*/
-        /*ANEXOS DOS POR CONCEPTO EDITAR*/
+        /*CARGA DE ARCHIVOS NORMAL*/
         EditarAnexosDosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1639,7 +1705,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR ANEXO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1663,7 +1728,6 @@
                 });
             });
         });
-        /*ANEXOS POR CONCEPTO EDITAR*/
         EditarAnexosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             console.log(EditarAnexosPorConcepto[0].files);
@@ -1676,7 +1740,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR ANEXO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1691,7 +1754,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
-
                     getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
@@ -1701,7 +1763,6 @@
                 });
             });
         });
-        /*CROQUIS POR CONCEPTO EDITAR*/
         EditarCroquisPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var imageType = /image.*/;
@@ -1715,7 +1776,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1730,7 +1790,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
-
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1738,7 +1797,6 @@
                 });
             });
         });
-        /*FOTOS POR CONCEPTO EDITAR*/
         EditarFotosPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1750,7 +1808,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1765,7 +1822,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1773,7 +1829,6 @@
                 });
             });
         });
-        /*FOTOS DESPUES POR CONCEPTO EDITAR*/
         EditarFotosAntesPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1785,7 +1840,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1800,7 +1854,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosAntesXConcepto(mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").val());
-
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1808,7 +1861,6 @@
                 });
             });
         });
-        /*FOTOS DESPUES POR CONCEPTO EDITAR*/
         EditarFotosDespuesPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1820,7 +1872,6 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR FOTO*/
                 var frm = new FormData();
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
@@ -1835,7 +1886,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
-
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1843,7 +1893,6 @@
                 });
             });
         });
-        /*FOTOS PROCESO POR CONCEPTO EDITAR*/
         EditarFotosProcesoPorConcepto.change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1855,9 +1904,7 @@
                     nimg = 0;
                 }
                 nimg++;
-                /*SUBIR FOTO*/
                 var frm = new FormData();
-
                 frm.append('IdTrabajo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val());
                 frm.append('Tiempo', mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val());
@@ -1873,7 +1920,6 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onReloadFotosProcesoXConcepto(mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
-
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1885,14 +1931,13 @@
         btnMoficarEditarGenerador.on('click', function () {
             onModificarGeneradorXID();
         });
-        /***** Modificar Concepto ****/
+        /***** Modificar Generador ****/
         btnGuardarModificarGeneradorXConcepto.on('click', function () {
             if (mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== 0 ||
                     mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== '' && mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val() !== 0) {
-                var frm = new FormData();
-                /*Total*/
+                var frm = new FormData(); /*Total*/
                 var generador_largo = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() : 1);
                 var generador_ancho = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() : 1);
                 var generador_alto = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() : 1);
@@ -1936,12 +1981,10 @@
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
                     }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR', 'danger');
-                        console.log(total_generador);
                     }).always(function () {
                         HoldOn.close();
                     });
                 } else {
-                    console.log(total_generador);
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR, NECESITA ESPECIFICAR UN VALOR: LARGO, ANCHO, ALTO O CANTIDAD', 'danger');
                 }
             } else {
@@ -2002,6 +2045,7 @@
                 menuTablero.addClass("animated slideInLeft").removeClass("hide");
                 pnlEditarTrabajo.addClass("hide");
                 pnlDetalleEditarTrabajo.addClass("hide");
+                pnlDetalleEditarTrabajoAbierto.addClass("hide");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -2046,17 +2090,11 @@
                 btnModificar.removeClass('hide');
             }
         });
-        /*Evento que hace el update del movimiento*/
         btnModificar.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
+            $.validator.setDefaults({ignore: []});
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -2066,12 +2104,10 @@
                     Situacion: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             $('select').on('change', function () {
@@ -2119,15 +2155,10 @@
             }
         });
         btnGuardar.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
+            $.validator.setDefaults({ignore: []});
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -2137,12 +2168,10 @@
                     Situacion: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             $('select').on('change', function () {
@@ -2155,9 +2184,7 @@
                 } else {
                     frm.append('Estatus', 'Borrador');
                 }
-                /*Insertar Importe total*/
                 frm.append('Importe', ImporteTotalGlobal);
-                /*DESCOMENTAR PARA AGREGAR*/
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -2167,8 +2194,7 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
-                    /*Funcion que regarga el panel de editar con el nuevo registro*/
-                    despuesDeGuardar(data);
+                    despuesDeGuardar(data); /*Funcion que regarga el panel de editar con el nuevo registro*/
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -2203,14 +2229,9 @@
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("select").select2("val", "");
-
-//            pnlNuevoTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
-            /*Inicializamos Boleanos en No*/
             pnlNuevoTrabajo.find("#Atendido").val('No');
             pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
-            /*Trae el usuario logeado quien estará registrando el movimiento*/
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
         });
         /*Funcion que trae los catalogos en base al cliente*/
@@ -2220,18 +2241,16 @@
             getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
-        /*Funcion que trae los catalogos en base al cliente*/
+        /*Funciones que traen los catalogos en base a un select*/
         pnlEditarTrabajo.find("#Cliente_ID").change(function () {
             pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
             pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
             getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
             getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
-        /*Trae dias de ppta*/
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
-        /*Trae dias de ppta*/
         pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
         });
@@ -2317,7 +2336,7 @@
             $("#tblRegistros").html(getTable('tblTrabajos', data));
             $('#tblTrabajos tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
             tblSelected.columns().every(function () {
@@ -2397,10 +2416,8 @@
                         }).always(function () {
                             HoldOn.close();
                         });
-                        /*trae los días*/
-                        getCodigoPPTAbyID(trabajo.Codigoppta_ID);
+                        getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
                         Cliente = trabajo.Cliente_ID;
-
                         if (trabajo.Movimiento === 'LEVANTAMIENTO') {
                             pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
                             pnlEditarTrabajo.removeClass("hide");
@@ -2424,8 +2441,6 @@
                             $("#reportesLevantamiento").addClass('hide');
                             $("#reportesPresupuesto").addClass('hide');
                         }
-
-
                         pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                         pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                         pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
@@ -2488,8 +2503,6 @@
                             pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                         }
                         menuTablero.addClass("hide");
-
-                        /*Control de estatus*/
                         if (trabajo.Estatus === 'Concluido') {
                             $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
                             tBtnEditarConcluir.prop('checked', true);
@@ -2553,9 +2566,7 @@
         pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-
         pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."
             });
@@ -2607,8 +2618,7 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-                /*trae los días*/
-                getCodigoPPTAbyID(trabajo.Codigoppta_ID);
+                getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
                 Cliente = trabajo.Cliente_ID;
                 pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);
@@ -2653,7 +2663,6 @@
                 pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
                 pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
                 pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-                /*Control de estatus*/
                 if (trabajo.Estatus === 'Concluido') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', true);
@@ -2909,10 +2918,8 @@
     }
     var ImporteTotalGlobal = 0;
     function getImporteTotal() {
-        /*IMPORTE TOTAL*/
         var ImporteTotalE = pnlDetalleEditarTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        /*Recalcula en editar*/
         $.each(pnlDetalleEditarTrabajo.find("tbody tr"), function () {
             total += parseFloat($(this).find("td").eq(10).text());
             ImporteTotalGlobal = total;
@@ -2936,28 +2943,48 @@
                 var tfoot = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th');
                 thead.eq(0).addClass("hide");
                 tfoot.eq(0).addClass("hide");
-                thead.eq(8).addClass("hide");
-                tfoot.eq(8).addClass("hide");
-                thead.eq(14).addClass("hide");
-                tfoot.eq(14).addClass("hide");
+                thead.eq(12).addClass("hide");
+                tfoot.eq(12).addClass("hide");
                 $.each(pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
-                    td.eq(8).addClass("hide");
-                    td.eq(14).addClass("hide");
+                    td.eq(12).addClass("hide");
                 });
-                var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions);
+                tableOptions2 =
+                        {
+                            language: {
+                                processing: "Proceso en curso...",
+                                search: "Buscar:",
+                                lengthMenu: "Mostrar _MENU_ Elementos",
+                                info: "Mostrando  _START_ de _END_ , de _TOTAL_ Elementos.",
+                                infoEmpty: "Mostrando 0 de 0 A 0 Elementos.",
+                                infoFiltered: "(Filtrando un total _MAX_ Elementos. )",
+                                infoPostFix: "",
+                                loadingRecords: "Procesando los datos...",
+                                zeroRecords: "No se encontro nada.",
+                                emptyTable: "No existen datos en la tabla.",
+                                paginate: {
+                                    first: "Primero",
+                                    previous: "Anterior",
+                                    next: "Siguiente",
+                                    last: "&Uacute;ltimo"
+                                },
+                                aria: {
+                                    sortAscending: ": Habilitado para ordenar la columna en orden ascendente",
+                                    sortDescending: ": Habilitado para ordenar la columna en orden descendente"
+                                }
+                            },
+                            "autoWidth": true,
+                            "colReorder": true,
+                            "displayLength": 20,
+                            "bLengthChange": false,
+                            "deferRender": true,
+                            "scrollCollapse": true,
+                            "aaSorting": [[0, 'desc']]
+                        };
+                var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions2);
+
                 pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
-                    pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("success");
-                    pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo").find("tr").removeClass("warning");
-                    var id = this.id;
-                    var index = $.inArray(id, selected);
-                    if (index === -1) {
-                        selected.push(id);
-                    } else {
-                        selected.splice(index, 1);
-                    }
-                    $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
                     tempDetalle = parseInt(dtm[0]);
                 });
@@ -2981,7 +3008,7 @@
                 IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
-            $(evtEliminarConcepto).parent().parent().remove();
+            getTrabajoDetalleByID(IdMovimiento);
             /*MODIFICAR EL IMPORTE DEL TRABAJO*/
             $.ajax({
                 url: master_url + 'onModificarImportePorTrabajo',
@@ -3054,8 +3081,6 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log(data);
-            /*CREAR TABLA DE GENERADORES*/
             var tblGeneradoresDetalleXConcepto = '<br><table  id="tblGeneradoresDetalleXConcepto" class="table table-striped table-hover" width="100%">' +
                     '<thead>' +
                     '<tr>' +
@@ -3140,12 +3165,12 @@
             tblGeneradoresDetalleXConcepto += '</tbody></table>';
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblEditarGeneradorXConcepto").html(tblGeneradoresDetalleXConcepto);
             var precio = mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val();
+            var tipo_cambio = mdlTrabajoEditarGeneradorPorConcepto.find("#TipoCambioGenerador").val();
             var nueva_cantidad = 0;
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find("tbody tr").each(function (k, v) {
                 var row = $(v).find("td");
                 nueva_cantidad += parseFloat(row.eq(12).text());
             });
-            /*AQUIIIII REFRESA TOTAL CANTIDAD*/
             var GeneradorImporteTotalEditar = mdlTrabajoEditarGeneradorPorConcepto.find("#GeneradorImporteTotal");
             GeneradorImporteTotalEditar.html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(nueva_cantidad, 6, '.', ', ') + '</span> ');
             $.ajax({
@@ -3154,7 +3179,7 @@
                 data: {
                     ID: IDX,
                     Cantidad: nueva_cantidad,
-                    Importe: (parseFloat(nueva_cantidad) * parseFloat(precio))
+                    Importe: (parseFloat(tipo_cambio) * parseFloat(precio))*parseFloat(nueva_cantidad)
                 }
             }).done(function (data, x, jq) {
                 getTrabajoDetalleByID(mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val());
@@ -3167,7 +3192,6 @@
                         ID: mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val()
                     }
                 }).done(function (data, x, jq) {
-                    console.log(data, x, jq);
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
@@ -3208,7 +3232,7 @@
             HoldOn.close();
         });
     }
-    function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO) {
+    function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO,TipoCambio) {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getGeneradoresDetalleXConceptoID',
@@ -3218,10 +3242,10 @@
                 ID: IDTD
             }
         }).done(function (data, x, jq) {
-            console.log(data);
             mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(IDT);/*ID DEL TRABAJO*/
             mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(IDTD);/*ID DEL TRABAJODETALLE*/
             mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val(IDCO);/*ID DEL CONCEPTO*/
+            mdlTrabajoEditarGeneradorPorConcepto.find("#TipoCambioGenerador").val(TipoCambio);/*Tipo Cambio*/
             var precio = 0;
             var cantidadTotal = 0;
             /*CREAR TABLA DE GENERADORES*/
@@ -3249,7 +3273,6 @@
                     '<tbody>';
             if (data.length > 0) {
                 $.each(data, function (k, v) {
-                    console.log(k, v);
                     tblGeneradoresDetalleXConcepto += "<tr>";
                     tblGeneradoresDetalleXConcepto += "<td class='hide'>";
                     tblGeneradoresDetalleXConcepto += v.TRABAJOID;
@@ -3350,7 +3373,6 @@
                 DataTableGeneradores.DataTable(tableOptions);
             }
             mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(precio);
-            /*setear cantidadTotal*/
             mdlTrabajoEditarGeneradorPorConcepto.find("#GeneradorImporteTotal").html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(cantidadTotal, 6, '.', ', ') + '</span> ');
             mdlTrabajoEditarGeneradorPorConcepto.modal('show');
         }).fail(function (x, y, z) {
@@ -3384,7 +3406,6 @@
     }
     function onModificarGeneradorXID() {
         var frm = new FormData();
-        /*Total*/
         var generador_largo = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val() : 1);
         var generador_ancho = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val() : 1);
         var generador_alto = parseFloat((mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() !== '' && parseFloat(mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val()) !== 0) ? mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val() : 1);
@@ -3509,7 +3530,7 @@
             mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
             mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             tblSelected.columns().every(function () {
@@ -3541,7 +3562,7 @@
                         ID: temp
                     }
                 }).done(function (data, x, jq) {
-                    /**AQUI FALTA VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
+                    /**VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
                     var has_id = true;
                     if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
                         $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
@@ -3553,6 +3574,9 @@
                             }
                         });
                     }
+
+
+
                     if (has_id) {
                         $.ajax({
                             url: master_url + 'getConceptoByIDSinFormato',
@@ -3564,6 +3588,12 @@
                         }).done(function (data, x, jq) {
                             if (data[0] !== undefined && data.length > 0) {
                                 var dtm = data[0];
+
+//                                if(dtm.Moneda==='USD'){
+//                                    alert('Dolars');
+//                                }
+
+
                                 var frm = new FormData();
                                 frm.append('Trabajo_ID', pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
                                 frm.append('PreciarioConcepto_ID', dtm.ID);
@@ -3681,23 +3711,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    console.log(v);
-                    console.log(base_url + v.Url);
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3724,21 +3751,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3765,16 +3791,15 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
@@ -3791,7 +3816,6 @@
         });
         mdlTrabajoEditarFotosDespuesPorConcepto.modal('show');
     }
-
     function getFotosProcesoXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
@@ -3859,7 +3883,6 @@
         });
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val('');
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdPorcentajeProceso").val('');
-
         $('#idSubirFotosProceso').addClass('hide');
         if ($('#ControlTiempoProceso').val() === 'Dias') {
             $(".Tiempo").empty();
@@ -3891,12 +3914,12 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 2) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
                     picthumbnail += '<div class="col-md-6">';
@@ -3905,7 +3928,7 @@
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -3930,40 +3953,35 @@
                 IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
+            console.log(data);
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
-                var nimg = 0;
                 $.each(data, function (k, v) {
-                    if (nimg === 3) {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
-                        nimg = 0;
-                    }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
                     if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     }
-                    nimg++;
                 });
             } else {
                 mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
@@ -3990,38 +4008,32 @@
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
-                var nimg = 0;
                 $.each(data, function (k, v) {
-                    if (nimg === 3) {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
-                        nimg = 0;
-                    }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
                     if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     }
-                    nimg++;
                 });
             } else {
                 mdlTrabajoEditarAnexosDosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
@@ -4065,22 +4077,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -4104,21 +4114,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -4142,21 +4151,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 4) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoDespuesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -4170,63 +4178,65 @@
         });
     }
     function onReloadFotosProcesoXConcepto(IDX, IDT) {
-        $.ajax({
+        $.getJSON({
             url: master_url + 'getTiempoFotosProcesoXTrabajoDetalleID',
-            type: "POST",
-            dataType: "JSON",
             data: {
                 ID: IDX
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 var TextoAgrupador = "";
-                if ($('#ControlTiempoProceso').val() === 'Dias') {
+                if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Dias') {
                     TextoAgrupador = 'Día No. ';
-                } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+                } else if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Semanas') {
                     TextoAgrupador = 'Semana No. ';
                 }
                 var row = "";
-                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                $.each(data, function (k, d) {
-
-                    $.ajax({
-                        url: master_url + 'getTrabajoFotosProcesoDetalleByIDXTiempo',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: IDX,
-                            Tiempo: d.Tiempo
-                        }
-                    }).done(function (data, x, jq) {
-
-                        var nimg = 0;
-                        row = '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + data[0].Tiempo + ' Avance: ' + data[0].Porcentaje + '</h4><hr></div>';
-
-                        $.each(data, function (k, v) {
-                            //row += '<div class="col-md-12" align="center"><h4>'+v.Observaciones + '</h4></div>';
+                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
+                var tiempos = [];
+                var porcentajes = [];
+                $.each(data, function (k, v) {
+                    tiempos.push(v.Tiempo);
+                    porcentajes.push(v.Porcentaje);
+                });
+                var tiempos_unicos = [];
+                $.each(tiempos, function (i, el) {
+                    if ($.inArray(el, tiempos_unicos) === -1) {
+                        tiempos_unicos.push(el);
+                    }
+                });
+                var porcentajes_unicos = [];
+                $.each(porcentajes, function (i, el) {
+                    if ($.inArray(el, porcentajes_unicos) === -1) {
+                        porcentajes_unicos.push(el);
+                    }
+                });
+                var index = 0;
+                $.each(tiempos_unicos, function (k, tu) {
+                    row += '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
+                    $.each(data, function (k, d) {
+                        if (tu === d.Tiempo) {
                             row += '<div class="col-md-3">';
                             row += '<div class="thumbnail">' +
-                                    '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                                    '<div class="pull-left caption col-md-11" >' + d.Observaciones + '</div>' +
                                     '<div class="pull-right" >' +
                                     '<button class="close closeFotos customButtonEliminarFoto"' +
-                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                                    '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
-                            nimg++;
-                        });
-                        mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").find("fieldset").append(row);
-                    }).fail(function (x, y, z) {
-                    }).always(function () {
+                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a></div></div>';
+                        }
                     });
+                    /*BREAK*/
+                    row += '<div class="col-md-12"></div>';
+                    /*SUMAR UN RECORRIDO POR EL INDICE*/
+                    index++;
                 });
-            } else {
-                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("");
+                /*COLOCAR SOLO UNA VEZ EL HTML GENERADO*/
+                mdlTrabajoEditarFotosProcesoPorConcepto.find("#Fotos").html("<fieldset>" + row + "</fieldset>");
             }
         }).fail(function (x, y, z) {
+            console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
-
-
         getDetalleAbiertoByID(IDT);
         HoldOn.close();
     }
@@ -4241,22 +4251,20 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
-                var nimg = 0;
                 var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
                     picthumbnail = "";
                     if (nimg === 2) {
-                        picthumbnail += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-6">';
-                    picthumbnail += '<div class="thumbnail">' +
+                    picthumbnail += '<div class="col-md-6"><div class="thumbnail">' +
                             '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
                             'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div>';
-
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -4278,38 +4286,32 @@
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
-                var nimg = 0;
                 $.each(data, function (k, v) {
-                    if (nimg === 3) {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
-                        nimg = 0;
-                    }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
                     if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     }
-                    nimg++;
                 });
             } else {
                 mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
@@ -4331,38 +4333,32 @@
         }).done(function (data, x, jq) {
             mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
             if (data.length > 0) {
-                var nimg = 0;
                 $.each(data, function (k, v) {
-                    if (nimg === 3) {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-12" align="center"><br></div>');
-                        nimg = 0;
-                    }
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
                     if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-5x"></span><br><br><span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-5x"></span><br><br> <span class="label label-info"> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else {
-                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-5x"></span><br><br> <span class="label label-info"> ' + v.Observaciones + '</span></a><br> <button type="button" class="btn btn-raised btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlTrabajoEditarAnexosDosPorConcepto.find("#Anexos").append('<div class="col-md-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoDosXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     }
-                    nimg++;
                 });
             } else {
                 mdlTrabajoEditarAnexosDosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
@@ -4374,20 +4370,15 @@
         });
     }
     function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "ELIMINANDO..."
-        });
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
         $.ajax({
             url: master_url + 'onEliminarFotoXConcepto',
             type: "POST",
-            data: {
-                ID: IDX,
-                IDT: IdMovimiento
-            }
+            data: {ID: IDX, IDT: IdMovimiento}
         }).done(function (data, x, jq) {
             onReloadFotosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
+            console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
@@ -4397,9 +4388,7 @@
         $.ajax({
             url: master_url + 'onEliminarFotoAntesXConcepto',
             type: "POST",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
             onReloadFotosAntesXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
@@ -4413,9 +4402,7 @@
         $.ajax({
             url: master_url + 'onEliminarFotoDespuesXConcepto',
             type: "POST",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
             onReloadFotosDespuesXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
@@ -4429,9 +4416,7 @@
         $.ajax({
             url: master_url + 'onEliminarFotoProcesoXConcepto',
             type: "POST",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
             onReloadFotosProcesoXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
@@ -4441,54 +4426,41 @@
         });
     }
     function onEliminarCroquisXID(IDX, IDTD, IDT) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "ELIMINANDO ANEXO..."
-        });
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
         $.ajax({
             url: master_url + 'onEliminarCroquisXID',
             type: "POST",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
             onReloadCroquisXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
+            console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
     function onEliminarAnexoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."
-        });
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
         $.ajax({
             url: master_url + 'onEliminarAnexoXConcepto ',
             type: "POST",
-            data: {
-                ID: IDX,
-                IDT: IDT
-            }
+            data: {ID: IDX, IDT: IDT}
         }).done(function (data, x, jq) {
-            console.log(data);
             onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
             onReloadAnexosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
+            console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
     function onEliminarAnexoDosXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."
-        });
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
         $.ajax({
             url: master_url + 'onEliminarAnexoDosXConcepto ',
             type: "POST",
-            data: {
-                ID: IDX,
-                IDT: IDT
-            }
+            data: {ID: IDX, IDT: IDT}
         }).done(function (data, x, jq) {
-            console.log(data);
             onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
             onReloadAnexosDosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
@@ -4505,9 +4477,7 @@
             url: master_url + 'getTrabajoDetalleAbiertoByID',
             type: "POST",
             dataType: "JSON",
-            data: {
-                ID: IDX
-            }
+            data: {ID: IDX}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").html(getTable('tblRegistrosXDetalleAbierto', data));
@@ -4519,7 +4489,6 @@
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
                 });
-                /*Seteamos el importeTotal*/
                 ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(totalAbierto, 2, '.', ', ') + '</span>');
                 var tblSelected = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto').DataTable(tableOptions);
                 pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tbody').on('click', 'tr', function () {
@@ -4552,10 +4521,7 @@
             data: {ID: IDX}
         }).done(function (data, x, jq) {
             if (IDX !== 0 && IDX !== undefined && IDX > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
+                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                 $.ajax({
                     url: master_url + 'getDetalleAbiertoByID',
                     type: "POST",
@@ -4592,6 +4558,113 @@
             return value;
         }
     }
+    function onAgregarTipoCambio(IDX, Precio, Cantidad) {
+        $('#mdlAgregarTipoCambio').find("input").val("");
+        $('#mdlAgregarTipoCambio').modal('show');
+        $("#TipoCambio").mask("99?.99", {placeholder: "00.00"});
+        var nuevoImporte = 0;
+        var TipoCambio = 0;
+        $("#TipoCambio").change(function () {
+            TipoCambio = parseFloat($('#TipoCambio').val());
+            nuevoImporte = (TipoCambio * Precio) * Cantidad;
+
+        });
+        $('#btnAgregarTipoCambio').click(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'onModificarImporteConcepto',
+                type: "POST",
+                data: {
+                    ID: IDX,
+                    TipoCambio: TipoCambio,
+                    Importe: nuevoImporte
+                }
+            }).done(function (data, x, jq) {
+                $('#mdlAgregarTipoCambio').modal('hide');
+                getTrabajoDetalleByID(IdMovimiento);
+                /*MODIFICAR EL IMPORTE DEL TRABAJO*/
+                $.ajax({
+                    url: master_url + 'onModificarImportePorTrabajo',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    if (data !== undefined && data.length > 0) {
+                        var dtm = data[0];
+                        if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                        } else {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                        }
+                    }
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+    }
+    function onModificarTipoCambio(IDX, Precio, Cantidad, TipoCambioBD) {
+        $('#mdlAgregarTipoCambio').find("input").val("");
+        $('#mdlAgregarTipoCambio').modal('show');
+        $("#TipoCambio").val(parseFloat(TipoCambioBD));
+        $("#TipoCambio").mask("99?.99", {placeholder: "00.00"});
+        var nuevoImporte = (TipoCambioBD * Precio) * Cantidad;;
+        var TipoCambio = TipoCambioBD;
+        $("#TipoCambio").change(function () {
+            TipoCambio = parseFloat($('#TipoCambio').val());
+            nuevoImporte = (TipoCambio * Precio) * Cantidad;
+
+        });
+        $('#btnAgregarTipoCambio').click(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'onModificarImporteConcepto',
+                type: "POST",
+                data: {
+                    ID: IDX,
+                    TipoCambio: TipoCambio,
+                    Importe: nuevoImporte
+                }
+            }).done(function (data, x, jq) {
+                $('#mdlAgregarTipoCambio').modal('hide');
+                getTrabajoDetalleByID(IdMovimiento);
+                /*MODIFICAR EL IMPORTE DEL TRABAJO*/
+                $.ajax({
+                    url: master_url + 'onModificarImportePorTrabajo',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    if (data !== undefined && data.length > 0) {
+                        var dtm = data[0];
+                        if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                        } else {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                        }
+                    }
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+    }
     /***************************************REPORTES*****************************************/
     function onReporteFin49() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
@@ -4615,8 +4688,12 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49 CONCEPTOS, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'FIN 49 CONCEPTOS, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4630,8 +4707,13 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'RESUMEN, GENERADO', 'success');
+                ;
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4645,8 +4727,13 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO BBVA, GENERADO', 'success');
+                ;
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4660,8 +4747,13 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO A&R, GENERADO', 'success');
+                ;
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4675,8 +4767,12 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4690,8 +4786,12 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4706,8 +4806,12 @@
             type: "POST",
             data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4721,8 +4825,12 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            window.open(data, '_blank');
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'TARIFARIO GENERADO', 'success');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'TARIFARIO GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4743,8 +4851,12 @@
             type: "POST",
             data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES PRINCIPLE, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES PRINCIPLE, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4764,8 +4876,12 @@
             type: "POST",
             data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS EN PROCESO PRINCIPLE, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS EN PROCESO PRINCIPLE, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4785,8 +4901,12 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4807,14 +4927,16 @@
             type: "POST",
             data: {ID: IdMovimiento, Movimiento: mov}
         }).done(function (data, x, jq) {
-            console.log(data);
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
-            window.open(data, '_blank');
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
-    /*************************FIN REPORTES ****************************/
 </script>

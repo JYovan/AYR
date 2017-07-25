@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -43,12 +43,9 @@
                     </button>
                     Nuevo Código PPTA
                 </div>
-
                 <div class="input-group pull-right">
-
                     <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
                 </div>
-
             </div>
         </div>
         <div class="panel-body">
@@ -58,14 +55,19 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Código*</label>    
+                        <div class="form-group label-static">
+                        <label for="Codigo" class="control-label">Código*</label>    
                         <input type="text" class="form-control" id="Codigo" name="Codigo" required>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Días*</label>    
+                        <div class="form-group label-static">
+                        <label for="Dias" class="control-label">Días*</label>    
                         <input type="number" class="form-control" id="Dias" name="Dias" required>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -100,14 +102,19 @@
                         <input type="text" id="ID" name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Código*</label>    
-                        <input type="text" class="form-control" id="Codigo" name="Codigo" required >
+                        <div class="form-group label-static">
+                        <label for="Codigo" class="control-label">Código*</label>    
+                        <input type="text" class="form-control" id="Codigo" name="Codigo" required>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Días*</label>    
-                        <input type="text" class="form-control" id="Dias" name="Dias" required>
+                        <div class="form-group label-static">
+                        <label for="Dias" class="control-label">Días*</label>    
+                        <input type="number" class="form-control" id="Dias" name="Dias" required>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-md-12">
+                        <br>
                         <h6>Los campos con * son obligatorios</h6>    
                     </div>
                 </fieldset>
@@ -147,7 +154,6 @@
             pnlNuevo.addClass('hide');
             btnRefrescar.trigger('click');
         });
-
         btnCancelarModificar.click(function () {
             pnlEditar.addClass("hide");
             pnlTablero.removeClass("hide");
@@ -201,23 +207,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Codigo: 'required',
                     Dias: 'required'
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -254,23 +255,18 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Codigo: 'required',
                     Dias: 'required'
                 },
-                highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -323,7 +319,7 @@
             $("#tblRegistros").html(getTable('tblCodigosPPTA', data));
             $('#tblCodigosPPTA tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto;"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblCodigosPPTA').DataTable(tableOptions);
             $('#tblCodigosPPTA tbody').on('click', 'tr', function () {

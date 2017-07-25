@@ -47,7 +47,7 @@ class cliente_model extends CI_Model {
         try {
             $this->db->select('E.ID, E.Nombre AS Contratista', false);
             $this->db->from('empresas AS E');
-//            $this->db->where_in('E.Estatus', 'ACTIVO');
+            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

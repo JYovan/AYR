@@ -132,7 +132,7 @@ var tableOptions = {
         }
     },
     "autoWidth": true,
-    colReorder: true, 
+    "colReorder": true, 
     "displayLength": 10,
     "bLengthChange": false,
     "deferRender": true,
@@ -145,7 +145,42 @@ var tableOptions = {
 //        {"width": "20%", "targets": [0]}
 //    ]
 };
+
+
 function getTable(tblname, data) {
+    var column = '';
+    var i = 0;
+    var div = "<div class=\" \">";
+    div = "<table id=\"" + tblname + "\" class=\"table table-striped table-hover \"  width=\"100%\">";
+    //Create header
+    div += "<thead>";
+    div += "<tr class=\"\" >";
+    for (var key in data[i]) {
+        column += "<th>" + key + "</th>";
+    }
+    div += column;
+    div += "</tr></thead>";
+    //Create Rows
+    div += "<tbody>";
+    $.each(data, function (key, value) {
+        div += "<tr data-toggle='tooltip' title='Haga clic para editar' >";
+        $.each(value, function (key, value) {
+            div += "<td>" + value + "</td>";
+        });
+        div += "</tr>";
+    });
+    div += "</tbody>";
+    //Create Footer
+    div += "<tfoot>";
+    div += "<tr class=\"\">";
+
+    div += column;
+    div += "</tr></tfoot>";
+    div += "</table>";
+    div += "</div>";
+    return div;
+} 
+function getTableConceptosTrabajos(tblname, data) {
     var column = '';
     var i = 0;
     var div = "<div class=\" \">";

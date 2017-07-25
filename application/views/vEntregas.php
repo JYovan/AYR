@@ -73,39 +73,49 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-6 col-md-12">
-                        <br>
-                    </div>
+                    <hr>
                     <div class=" col-6 col-md-3">
-                        <label for="">Movimiento</label>
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-6 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Fecha de Creación*</label>
+                        <div class="form-group label-static">
+                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Entrega*</label>
+                        <div class="form-group label-static">
+                        <label for="NoEntrega" class="control-label">Entrega*</label>
                         <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cliente*</label>
                         <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Centro Costos*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Centro Costos*</label>
                         <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -174,39 +184,49 @@
         <div class="panel-body">
             <form id="frmEditar">
                 <fieldset>
-                    <div class="col-6 col-md-12">
-                        <br>
-                    </div>
+                    <hr>
                     <div class=" col-6 col-md-3">
-                        <label for="">Movimiento</label>
+                        <div class="form-group label-static">
+                        <label for="Movimiento" class="control-label">Movimiento</label>
                         <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class=" col-6 col-md-3">
-                        <label for="">Mov ID</label>
+                        <div class="form-group label-static">
+                        <label for="ID" class="control-label">Mov ID</label>
                         <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Fecha de Creación*</label>
+                        <div class="form-group label-static">
+                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                        </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <label for="">Entrega*</label>
+                        <div class="form-group label-static">
+                        <label for="NoEntrega" class="control-label">Entrega*</label>
                         <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Cliente*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Cliente*</label>
                         <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="">Centro Costos*</label>
+                        <div class="form-group label-static">
+                        <label for="" class="control-label">Centro Costos*</label>
                         <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
                             <option value=""></option>
                         </select>
+                        </div>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
-                    <div class="col-6 col-md-12">
+                    <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
@@ -279,7 +299,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-primary" id="btnEliminar">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -465,12 +485,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmNuevo').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -479,12 +496,10 @@
                     CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -523,12 +538,9 @@
             $.validator.setDefaults({
                 ignore: []
             });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
             $('#frmEditar').validate({
                 errorElement: 'span',
-                errorClass: 'errorForms',
+                errorClass: 'help-block',
                 rules: {
                     Movimiento: 'required',
                     FechaCreacion: 'required',
@@ -537,12 +549,10 @@
                     CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.addClass(errorClass);
+                     $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
+                     $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -607,7 +617,7 @@
             $("#tblRegistros").html(getTable('tblEntregas', data));
             $('#tblEntregas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblEntregas').DataTable(tableOptions);
             $('#tblEntregas tbody').on('click', 'tr', function () {
@@ -835,7 +845,7 @@
                 $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
                 $('#TrabajosXClienteIDXClasificacion tfoot th').each(function () {
                     var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div>');
+                   $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
                 $('#tblTrabajos tbody').on('click', 'tr', function () {

@@ -5,9 +5,6 @@ class PDF extends FPDF {
 }
 
 class PDFC extends FPDF {
-   
-    
-    
     
     function Header() {
        
@@ -70,7 +67,7 @@ class PDFC extends FPDF {
         $this->SetY(55);
         $this->SetX(10);
         $this->SetFont('Arial', '', 7.5);
-        $this->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($this->getTrabajoRequerido()) . " EN LA SUCURSAL " . utf8_decode($this->getSucursal() . ' CR ' . $this->getCR()) . " UBICADA EN " . $this->getCalle() . ' No. ' . $this->getNoExterior() . ' ' . $this->getColonia() . ', ' . $this->getCiudad() . ', ' . $this->getEstado()), 0, 'J');
+        $this->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($this->getTrabajoRequerido()) . " EN LA SUCURSAL " . utf8_decode($this->getSucursal() . ' CR ' . $this->getCR()) . " UBICADA EN " . utf8_decode($this->getCalle()) . ' No. ' . $this->getNoExterior() . ' ' . $this->getColonia() . ', ' . $this->getCiudad() . ', ' . $this->getEstado()), 0, 'J');
         /* ENCABEZADO DETALLE */
         $this->SetLineWidth(0.4);
         /* ENCABEZADO TITULOS */
