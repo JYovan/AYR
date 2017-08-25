@@ -932,6 +932,8 @@
                 });
                 var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
                 frm.append('PRECIARIO', pnlNuevo.find("#json_preciario").val());
+                
+                
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
@@ -940,6 +942,8 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
+                     console.log(data);
+                    
                     pnlNuevo.addClass('hide');
                     pnlPreciario.removeClass('hide');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');

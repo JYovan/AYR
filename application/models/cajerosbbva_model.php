@@ -278,8 +278,10 @@ class cajerosbbva_model extends CI_Model {
     public function getDetalleFotosAntes($ID) {
         try {
             $this->db->query("set sql_mode=''");
-            $this->db->select('CC.Descripcion AS "CentroCosto", T.FolioCliente,T.FechaCreacion,T.Observaciones,
-                
+            $this->db->select('TDFA.Url, TDFA.Observaciones AS ObservacionFoto ,CC.Descripcion AS "CentroCosto", T.FolioCliente,T.FechaCreacion,T.Observaciones,
+            T.FechaVisita,T.EncargadoSitio, T.HorarioAtencion,T.RestriccionAcceso, T.AireAcondicionado,T.Carcasa,
+            T.UPS,T.SenalizacionInterior,T.SenalizacionExterior,T.CanalizacionDatos,T.CanalizacionSeguridad,
+            T.PruebaCalaFirme,T.TipoPiso,T.Adjunto,,
             TDA.ID AS ID, CTE.Nombre AS Cliente, S.CR, S.Nombre AS Sucursal, E.Nombre AS Empresa,
             CTE.RutaLogo AS LogoCliente,
             TDA.Descripcion AS Concepto,
@@ -294,14 +296,13 @@ class cajerosbbva_model extends CI_Model {
             $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
-            $this->db->group_by(array('TDA.ID'));
             $this->db->order_by('TDA.ID', 'ASC');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-//             print $str;
+            // print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -314,7 +315,7 @@ class cajerosbbva_model extends CI_Model {
             $this->db->query("set sql_mode=''");
             $this->db->select('TDFA.*, TDFA.Observaciones AS ObservacionFoto,TDFA.ID', false);
             $this->db->from('cajerosbbvadetallefotos AS TDFA');
-            $this->db->where('TDFA.IdCajeroBBVADetalle', $ID);
+           // $this->db->where('TDFA.IdCajeroBBVADetalle', $ID);
             $this->db->where('TDFA.IdCajeroBBVA', $IDT);
             $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
             $this->db->order_by('TDFA.ID', 'DESC');
@@ -330,27 +331,6 @@ class cajerosbbva_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getObservacionFotosCajerosXID($ID, $IDT,$IDFOTO) {
-        try {
-            $this->db->query("set sql_mode=''");
-            $this->db->select('TDFA.Observaciones AS ObservacionFoto', false);
-            $this->db->from('cajerosbbvadetallefotos AS TDFA');
-            $this->db->where('TDFA.IdCajeroBBVADetalle', $ID);
-            $this->db->where('TDFA.IdCajeroBBVA', $IDT);
-            $this->db->where('TDFA.ID', $IDFOTO);
-            $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            // print $str . ";\n";
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
+
 
 }

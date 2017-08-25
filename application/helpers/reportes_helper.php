@@ -59,15 +59,15 @@ class PDFC extends FPDF {
         $this->Cell(20, 4, utf8_decode("OBRA: "), 0, 0, 'L');
         $this->SetX(30);
         $this->SetFont('Arial', '', 8);
-        $this->Cell(100, 4, utf8_decode($this->getTrabajoSolicitado()), 0, 0, 'L');
-        $this->SetY(45);
+        $this->MultiCell(175, 3.5, utf8_decode($this->getTrabajoSolicitado()), 0, 'L');
+        $this->SetY(48);
         $this->SetX(10);
         $this->SetFont('Arial', 'B', 8);
         $this->Cell(80, 4, utf8_decode("INMUEBLES DIVISIÓN DE " . $this->getRegion()), 0, 0, 'L');
         $this->SetY(55);
         $this->SetX(10);
         $this->SetFont('Arial', '', 7.5);
-        $this->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . utf8_decode($this->getTrabajoRequerido()) . " EN LA SUCURSAL " . utf8_decode($this->getSucursal() . ' CR ' . $this->getCR()) . " UBICADA EN " . utf8_decode($this->getCalle()) . ' No. ' . $this->getNoExterior() . ' ' . $this->getColonia() . ', ' . $this->getCiudad() . ', ' . $this->getEstado()), 0, 'J');
+        $this->MultiCell(190, 3.5, utf8_decode("                 POR ESTE CONDUCTO TENEMOS EL AGRADO DE PONER A SU AMABLE CONSIDERACIÓN DEL PRESUPUESTO POR TRABAJOS DE MANTENIMEINTO Y CONSERVACIÓN REFERENTES A : " . ($this->getTrabajoRequerido()) . " EN LA SUCURSAL " . ($this->getSucursal() . ' CR ' . $this->getCR()) . " UBICADA EN " . ($this->getCalle()) . ' No. ' . $this->getNoExterior() . ' ' . $this->getColonia() . ', ' . $this->getCiudad() . ', ' . $this->getEstado()), 0, 'J');
         /* ENCABEZADO DETALLE */
         $this->SetLineWidth(0.4);
         /* ENCABEZADO TITULOS */

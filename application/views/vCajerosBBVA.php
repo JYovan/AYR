@@ -262,15 +262,14 @@
                         </div>
                         <!-- PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos3">
-                            <div class="col-md-12">
-                                <label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
-                            </div>
+                             <center><label class="control-label">Puede subir un archivo de imagen (JPG,GIF,PNG).</label></center>
                             <div class="col-md-12" align="center">
-                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                                <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span><br>SELECCIONA EL ARCHIVO
+                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                                 </button>
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                                <input type="file" id="Adjunto" name="Adjunto" class="hide" accept="image/*">
+                              
                             </div>
 
                         </div>
@@ -510,15 +509,13 @@
                         </div>
                         <!-- PANEL DE ARCHVIO ADJUNTO-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos3">
-                            <div class="col-md-12">
-                                <label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label>
-                            </div>
+                            <center><label class="control-label">Puede subir un archivo de imagen (JPG,GIF,PNG).</label></center>
                             <div class="col-md-12" align="center">
-                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                                <input type="file" id="Adjunto" name="Adjunto" class="hide">
-                                <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span><br>SELECCIONA EL ARCHIVO
+                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                                 </button>
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                                <input type="file" id="Adjunto" name="" class="hide" accept="image/*">
                             </div>
 
                         </div>
@@ -654,7 +651,6 @@
     var Archivo = $("#Adjunto");
     var btnArchivo = $("#btnArchivo");
     var VistaPrevia = $("#VistaPrevia");
-
     var currentDate = new Date();
     /*Modificar*/
     var btnCancelarModificar = $("#btnCancelarModificar");
@@ -897,34 +893,49 @@
         btnArchivo.on("click", function () {
             Archivo.change(function () {
                 HoldOn.open({theme: "sk-bounce", message: "POR FAVOR ESPERE..."});
-                var imageType = /image.*/;
-                if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        console.log(Archivo[0].files[0]);
-                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" >\n\
+                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600" >\n\
                                     <div class="caption">\n\
                                     <p>' + Archivo[0].files[0].name + '</p>\n\
                                 </div></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
-                } else {
-                    if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
-                        console.log('ES UN PDF');
-                        var readerpdf = new FileReader();
-                        readerpdf.onload = function (e) {
-                            VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
-                                    ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
-                        };
-                        readerpdf.readAsDataURL(Archivo[0].files[0]);
-                    } else {
-                        VistaPrevia.html('EL ARCHIVO SE SUBIRÁ, PERO NO ES POSIBLE RECONOCER SI ES UN PDF O UNA IMAGEN');
-                    }
-                }
                 HoldOn.close();
             });
             Archivo.trigger('click');
+        });
+        btnModificarArchivo.on("click", function () {
+            ModificarArchivo.change(function () {
+                var frm = new FormData();
+                frm.append('Adjunto', ModificarArchivo[0].files[0]);
+                frm.append('ID', IdMovimiento );
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onModificarAdjunto',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600px" >\n\
+                                    <div class="caption">\n\
+                                    <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
+                                </div></div>';
+                        ModificarVistaPrevia.html(preview);
+                    };
+                    reader.readAsDataURL(ModificarArchivo[0].files[0]);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+            ModificarArchivo.trigger('click');
         });
         btnGuardar.on("click", function () {
             $.validator.setDefaults({ignore: []});
@@ -997,6 +1008,7 @@
                 } else {
                     frm.append('Estatus', 'Borrador');
                 }
+                //frm.delete('Adjunto');
                 $.ajax({
                     url: master_url + 'onModificar',
                     type: "POST",
@@ -1249,15 +1261,8 @@
                         pnlEditarTrabajo.find("#CanalizacionSeguridad").select2("val", trabajo.CanalizacionSeguridad);
                         if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                             var ext = getExt(trabajo.Adjunto);
-                            console.log(ext);
                             if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
-                            }
-                            if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-                            }
-                            if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                                pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px" />');
                             }
                         } else {
                             pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
@@ -1517,28 +1522,26 @@
                 var picthumbnail = "";
                 var nimg = 0;
                 $.each(data, function (k, v) {
-                    
+
                     picthumbnail = "";
                     if (nimg === 4) {
                         picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3">'+
+                    picthumbnail += '<div class="col-md-3">' +
                             '<div class="thumbnail">' +
-                            
-                            '<div class="pull-left caption col-md-11 Customcaption" >'+
-                            '<div class="form-group Customform-group">'+
-                            '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>'+
-                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>'+
-                            '</div>'+
+                            '<div class="pull-left caption col-md-11 Customcaption" >' +
+                            '<div class="form-group Customform-group">' +
+                            '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
                             '</div>' +
-                            
+                            '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>'+
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
                             '</div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>'+
-                            '</div>'+
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>' +
                             '</div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
@@ -1574,12 +1577,21 @@
                         picthumbnail += '<div class="col-md-12" align="center"></div>';
                         nimg = 0;
                     }
-                    picthumbnail += '<div class="col-md-3"><div class="thumbnail">' +
-                            '<div class="pull-left caption col-md-11" >' + v.Observaciones + '</div>' +
+                    picthumbnail += '<div class="col-md-3">' +
+                            '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11 Customcaption" >' +
+                            '<div class="form-group Customform-group">' +
+                            '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</div>' +
+                            '</div>' +
                             '<div class="pull-right" >' +
                             '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>' +
+                            '</div>';
                     mdlTrabajoEditarFotosAntesPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
@@ -1606,8 +1618,8 @@
             HoldOn.close();
         });
     }
-    function onModificarObservaciones(IDX, IDTD, IDT){
-        var Observaciones=IDT.value;
+    function onModificarObservaciones(IDX, IDTD, IDT) {
+        var Observaciones = IDT.value;
         //$('#ObservacionesxFoto').val('');
         HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
         $.ajax({

@@ -4,9 +4,27 @@
 /* fallback */
 @font-face {
     font-family: 'Material Icons';
-    src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'), 
+        url(../fonts/MaterialIcons-Regular.woff) 
+        format('woff2');
 }
 
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+/*Quita el recuadro azul*/
+.multinivel:focus {
+    outline: 0px auto -webkit-focus-ring-color !important;
+    outline-offset: -2px !important;
+}
 
  .Customcaption {
     padding: 0px !important;

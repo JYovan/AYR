@@ -57,9 +57,15 @@
                             <a href="<?php print base_url('CtrlTrabajos') ?>"  >Trabajos</a>
                         </li> 
                         <li class="divider"></li>
-                        <li class="hide" id="liCajerosBBVA">
+<!--                        <li class="hide" id="liCajerosBBVA">
                             <a href="<?php print base_url('CtrlCajerosBBVA') ?>"  >Cajeros BBVA</a>
-                        </li> 
+                        </li> -->
+                        <li class="dropdown-submenu">
+                            <a class="multinivel" tabindex="-1" href="#">Trabajos Especiales <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="<?php print base_url('CtrlCajerosBBVA') ?>">Cajeros BBVA</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
@@ -117,6 +123,11 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+
+
+
+
 <script>
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     if (TipoAcceso === 'RESIDENTE') {
@@ -152,6 +163,15 @@
 
     var master_url = base_url + 'CtrlSesion/';
     $(document).ready(function () {
+
+        $('.dropdown-submenu a.multinivel').on("click", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+
+
+
         $('#btnModificar').on("click", function () {
 
             var frm = new FormData($('#mdlCambiarContrasena').find("#frmEditarContrasena")[0]);

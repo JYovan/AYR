@@ -631,6 +631,7 @@
                                     <br>
                                 </div>
                                 <div class="col-md-12 hide">
+                                    <input type="text" id="ID" name="ID" class="form-control" placeholder="" >
                                     <select id="Cliente_ID" name="Cliente_ID" class="form-control">
                                         <option value=""></option> 
                                     </select>
@@ -1121,7 +1122,6 @@
             $('select').on('change', function () {
                 $(this).valid();
             });
-            console.log($('#frmNuevoSuc').valid());
             //Si es verdadero que hacer
             if ($('#frmNuevoSuc').valid()) {
                 var frm = new FormData(mdlNuevaSucursal.find("#frmNuevoSuc")[0]);
@@ -1148,6 +1148,10 @@
             mdlNuevaSucursal.modal('hide');
         });
         btnNuevaSucursal.click(function (e) {
+            mdlNuevaSucursal.find("input").val("");
+            mdlNuevaSucursal.find("select").select2("val", "");
+            
+            
             mdlNuevaSucursal.find(".nav-tabs li").removeClass("active");
             $(mdlNuevaSucursal.find(".nav-tabs li")[0]).addClass("active");
             mdlNuevaSucursal.find("#DatosGenerales").addClass("active in");

@@ -259,11 +259,10 @@ class CtrlTrabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-
-    public function onModificar() {
+    
+     public function onModificarAdjunto() {
         try {
             extract($this->input->post());
-            $this->trabajo_model->onModificar($ID, $this->input->post());
             $URL_DOC = 'uploads/Trabajos/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
             if (isset($_FILES["Adjunto"]["name"])) {
@@ -287,6 +286,15 @@ class CtrlTrabajos extends CI_Controller {
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificar() {
+        try {
+            extract($this->input->post());
+            $this->trabajo_model->onModificar($ID, $this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

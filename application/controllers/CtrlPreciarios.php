@@ -172,8 +172,13 @@ class CtrlPreciarios extends CI_Controller {
             );
             $ID = $this->preciario_model->onAgregar($DATA);
             $PRECIARIO_DATA = json_decode($PRECIARIO);
+            
+           
 
             foreach ($PRECIARIO_DATA->HOJAN1 as $k => $v) {
+                
+                
+                
                 if (isset($v->Tipo) && $v->Tipo === '1') {
                     /* AQUI EL PRECIARIO EN LA COLUMNA TIPO, TIENE UN ESPACIO AL FINAL, ESTO SE DEBE DE EVITAR PARA NO PONERLO ENTRE LLAVES */
 
