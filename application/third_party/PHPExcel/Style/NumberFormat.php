@@ -36,10 +36,11 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     const FORMAT_NUMBER_00               = '0.00';
     const FORMAT_NUMBER_COMMA_SEPARATED1 = '#,##0.00';
     const FORMAT_NUMBER_COMMA_SEPARATED2 = '#,##0.00_-';
-
+    const FORMAT_NUMBER_COMMA_SEPARATEDMXN = '$#,##0.00';
     const FORMAT_PERCENTAGE              = '0%';
     const FORMAT_PERCENTAGE_00           = '0.00%';
 
+    const FORMAT_DATE_YYYYMMDD3          = 'dd.mm.yyyy';
     const FORMAT_DATE_YYYYMMDD2          = 'yyyy-mm-dd';
     const FORMAT_DATE_YYYYMMDD           = 'yy-mm-dd';
     const FORMAT_DATE_DDMMYYYY           = 'dd/mm/yy';

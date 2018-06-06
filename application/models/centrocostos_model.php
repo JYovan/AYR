@@ -1,9 +1,5 @@
 <?php
 
-/*
- * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
- */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
@@ -13,26 +9,9 @@ class centrocostos_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
-    public function getRecords() {
-        try {
-            $this->db->select('C.ID, C.Nombre AS "Centro de Costos", C.Descripcion', false);
-            $this->db->from('centrocostos AS C');
-            $this->db->where_in('C.Estatus', 'ACTIVO');
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
+ 
 
-    public function getCC() {
+    public function getCentrosCostos() {
         try {
               $this->db->select('C.ID, C.Nombre, C.Descripcion', false);
             $this->db->from('centrocostos AS C');
@@ -56,6 +35,25 @@ class centrocostos_model extends CI_Model {
             $this->db->from('centrocostos AS C');
             $this->db->where('C.ID', $ID);
             $this->db->where_in('C.Estatus', 'Activo');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+     public function getCentrosCostosByCliente($ID) {
+        try {
+            $this->db->select('E.ID,E.Nombre, E.Descripcion', false);
+            $this->db->from('centrocostos AS E');
+            $this->db->where('E.Cliente_ID', $ID);
+            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY

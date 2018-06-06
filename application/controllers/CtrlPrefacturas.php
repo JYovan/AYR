@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlPrefacturas extends CI_Controller {
@@ -10,8 +10,10 @@ class CtrlPrefacturas extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('entregas_model');
-        $this->load->model('intelisis_model');
+        $this->load->model('trabajo_model');
         $this->load->model('prefactura_model');
+        $this->load->model('intelisis_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -21,6 +23,12 @@ class CtrlPrefacturas extends CI_Controller {
             $this->load->view('vNavegacion');
             $this->load->view('vPrefacturas');
             $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A PREFACTURAS',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -45,6 +53,15 @@ class CtrlPrefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function getAllProyectosIntelisis() {
+        try {
+            $data = $this->intelisis_model->getAllProyectosIntelisis();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getClienteNombrebyCliente() {
         try {
@@ -64,6 +81,16 @@ class CtrlPrefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
+     public function getMyRecords() {
+        try {
+            $data = $this->prefactura_model->getMyRecords();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function getPrefacturaByID() {
         try {
@@ -75,19 +102,19 @@ class CtrlPrefacturas extends CI_Controller {
         }
     }
 
-    public function getEntregaByID() {
+    public function getTrabajoByID() {
         try {
             extract($this->input->post());
-            $data = $this->entregas_model->getEntregaByID($ID);
+            $data = $this->trabajo_model->getTrabajoByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getEntregas() {
+    public function getTrabajosEntregadosParaPrefactura() {
         try {
-            $data = $this->entregas_model->getEntregas();
+            $data = $this->trabajo_model->getTrabajosEntregadosParaPrefactura();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -108,7 +135,8 @@ class CtrlPrefacturas extends CI_Controller {
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0,
-                'Comentarios' => (isset($Comentarios) && $Comentarios !== '') ? $Comentarios : NULL
+                'Comentarios' => (isset($Comentarios) && $Comentarios !== '') ? $Comentarios : NULL,
+                'OrdenCompra' => (isset($OrdenCompra) && $OrdenCompra !== '') ? $OrdenCompra : NULL
             );
             $ID = $this->prefactura_model->onAgregar($data);
             echo $ID;
@@ -143,9 +171,13 @@ class CtrlPrefacturas extends CI_Controller {
                 'Renglon' => 2048,
                 'Articulo' => 'SER-001',
                 'Cantidad' => 1,
+                'Almacen' => '01',
+                'PrecioTipoCambio' => 1,
+                'PrecioMoneda' => 'Pesos',
                 'Precio' => $Importe,
                 'Impuesto1' => 16,
-                'Unidad' => 'Servicio'
+                'Unidad' => 'Servicio',
+                'Almacen' => '01'
             );
             $this->intelisis_model->onAgregarIntelisisDetalle($dataDetalle);
             
@@ -165,7 +197,7 @@ class CtrlPrefacturas extends CI_Controller {
             extract($this->input->post());
             $data = array(
                 'Prefactura_ID' => $Prefactura_ID,
-                'Entrega_ID' => $Entrega_ID
+                'Trabajo_ID' => $Trabajo_ID
             );
             $ID = $this->prefactura_model->onAgregarDetalle($data);
         } catch (Exception $exc) {
@@ -187,11 +219,23 @@ class CtrlPrefacturas extends CI_Controller {
         try {
             extract($this->input->post());
             $this->prefactura_model->onModificar($ID, $this->input->post());
+            //AQUI SE INSERTA EL ID DE LA PREFACTURA PARA PODER HACER EL JOIN QUE NOS TRAIGA LA REF Y LA OC
             if ($Estatus == 'Concluido') {
-                $this->entregas_model->onPrefacturado($ID);
+               
+                $this->prefactura_model->onCambiarEstatusTrabajosPrefacturados($ID);
             } else {
-                $this->entregas_model->onCancelarPrefacturado($ID);
+                $this->prefactura_model->onCancelarCambiarEstatusTrabajosPrefacturados($ID);
             }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function onAgregarPago() {
+        try {
+            extract($this->input->post());
+            $this->prefactura_model->onModificar($ID,$this->input->post()); 
+            $this->prefactura_model->onModificarEstatusPagado($ID,$EstatusPago);  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

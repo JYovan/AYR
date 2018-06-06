@@ -1,17 +1,17 @@
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="cursor-hand" >Centros de Costo por Cliente</div>
+            <div class="cursor-hand" >Especialidades por Cliente</div>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
-                    <!--CENTROS DE COSTOS-->
+                    <!--Especialidades-->
                     <button type="button" class="btn btn-default hide" id="btnVolverAClientes"><span class="fa fa-arrow-left fa-1x"></span><br>VOLVER A CLIENTES</button>
-                    <button type="button" class="btn btn-default hide" id="btnNuevaCentroCosto"><span class="fa fa-plus fa-1x"></span><br>NUEVO CENTRO DE COSTO</button>
-                    <button type="button" class="btn btn-default" id="btnVerCentroCostos"><span class="fa fa-arrow-right fa-1x"></span><br>CENTROS DE COSTOS</button>
-                    <button type="button" class="btn btn-default hide" id="btnEditarCentroCosto"><span class="fa fa-pencil fa-1x"></span><br>EDITAR CENTRO DE COSTO</button>
-                    <button type="button" class="btn btn-default hide" id="btnEliminarCentroCosto"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR CENTRO DE COSTO</button> 
+                    <button type="button" class="btn btn-default hide" id="btnNuevaEspecialidad"><span class="fa fa-plus fa-1x"></span><br>NUEVA ESPECIALIDAD</button>
+                    <button type="button" class="btn btn-default" id="btnVerEspecialidades"><span class="fa fa-arrow-right fa-1x"></span><br>ESPECIALIDADES</button>
+                    <button type="button" class="btn btn-default hide" id="btnEditarEspecialidad"><span class="fa fa-pencil fa-1x"></span><br>EDITAR ESPECIALIDAD</button>
+                    <button type="button" class="btn btn-default hide" id="btnEliminarEspecialidad"><span class="fa fa-trash fa-1x"></span><br>ELIMINAR ESPECIALIDAD</button> 
                 </div>
                 <div class="col-md-12" align="right">
                 </div>
@@ -20,13 +20,13 @@
         </div>
     </div>
 </div>
-<!--MODAL CentroCosto-->
-<div id="mdlNuevaCentroCosto" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+<!--MODAL ESPECIALIDAD-->
+<div id="mdlNuevaEspecialidad" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
     <div class="modal-dialog modal-dialogFull"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title modal-titleFull">Nuevo Centro de Costos</h4>
+                <h4 class="modal-title modal-titleFull">Nueva Especialidad</h4>
             </div>
             <form id="frmNuevoSuc">
                 <div class="modal-body modal-bodyFull">
@@ -34,18 +34,12 @@
                         <div class="col-6 col-md-12">
                             <br>
                         </div>  
-                        <div class="col-6 col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group label-static">
-                                <label for="Nombre" class="control-label">Nombre*</label>    
-                                <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                                <label for="Descripcion" class="control-label">Descripcion*</label>
+                                <input type="text" id="Descripcion" name="Descripcion" class="form-control" placeholder="" required>
                             </div>
-                        </div>
-                        <div class="col-6 col-md-12">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción</label>
-                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
-                            </div>
-                        </div>
+                        </div> 
                         <div class="col-12 col-md-12">
                             <br>
                             <h6>Los campos con * son obligatorios</h6>    
@@ -54,18 +48,18 @@
                 </div>
             </form>
             <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-default" id="btnCancelarCentroCosto">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnGuardarCentroCosto">GUARDAR</button>
+                <button type="button" class="btn btn-raised btn-default" id="btnCancelarEspecialidad">CANCELAR</button>
+                <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEspecialidad">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div id="mdlEditarCentroCosto" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
+<div id="mdlEditarEspecialidad" class="modal modalFull animated bounceInDown" tabindex="-1" data-focus-on="input:first" style="display: none;">
     <div class="modal-dialog modal-dialogFull"> <!--REMOVER EL ROL DE DOCUMENTO PARA ABRIR ESTE MODAL DENTRO DE OTRO-->
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title modal-titleFull">Editar Centro de Costo</h4>
+                <h4 class="modal-title modal-titleFull">Editar Especialidad</h4>
             </div>
             <form id="frmEditarSuc">
                 <div class="modal-body modal-bodyFull">
@@ -73,18 +67,12 @@
                         <div class="col-6 col-md-12">
                             <br>
                         </div>  
-                        <div class="col-6 col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group label-static">
-                                <label for="Nombre" class="control-label">Nombre*</label>    
-                                <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                                <label for="Descripcion" class="control-label">Descripcion*</label>
+                                <input type="text" id="Descripcion" name="Descripcion" class="form-control" placeholder="" required>
                             </div>
-                        </div>
-                        <div class="col-6 col-md-12">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción</label>
-                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
-                            </div>
-                        </div>
+                        </div> 
                         <div class="col-12 col-md-12">
                             <br>
                             <h6>Los campos con * son obligatorios</h6>    
@@ -94,14 +82,14 @@
             </form>
             <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-raised btn-primary" id="btnGuardarCentroCosto">GUARDAR</button>
+                <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEspecialidad">GUARDAR</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!--Confirmacion-->
-<div id="mdlEliminarCentroCosto" class="modal fade" tabindex="-1" role="dialog">
+<div id="mdlEliminarEspecialidad" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -113,32 +101,32 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarCentroCosto">ACEPTAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarEspecialidad">ACEPTAR</button>
         </div>
     </div>
 </div>
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlCentroCostos/';
+    var master_url = base_url + 'index.php/CtrlEspecialidades/';
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-    var btnNuevaCentroCosto = $("#btnNuevaCentroCosto");
-    var mdlNuevaCentroCosto = $("#mdlNuevaCentroCosto");
-    var btnCancelarCentroCosto = mdlNuevaCentroCosto.find("#btnCancelarCentroCosto");
-    var btnGuardarCentroCosto = mdlNuevaCentroCosto.find("#btnGuardarCentroCosto");
-    var btnEliminarCentroCosto = $("#btnEliminarCentroCosto");
-    var btnVerCentroCostos = $("#btnVerCentroCostos");
-    var btnEditarCentroCosto = $("#btnEditarCentroCosto");
-    var mdlEditarCentroCosto = $("#mdlEditarCentroCosto");
-    var btnModificarCentroCosto = mdlEditarCentroCosto.find("#btnGuardarCentroCosto");
-    var mdlEliminarCentroCosto = $("#mdlEliminarCentroCosto");
-    var mdlbtnEliminarCentroCosto = mdlEliminarCentroCosto.find("#btnEliminarCentroCosto");
+    var btnNuevaEspecialidad = $("#btnNuevaEspecialidad");
+    var mdlNuevaEspecialidad = $("#mdlNuevaEspecialidad");
+    var btnCancelarEspecialidad = mdlNuevaEspecialidad.find("#btnCancelarEspecialidad");
+    var btnGuardarEspecialidad = mdlNuevaEspecialidad.find("#btnGuardarEspecialidad");
+    var btnEliminarEspecialidad = $("#btnEliminarEspecialidad");
+    var btnVerEspecialidades = $("#btnVerEspecialidades");
+    var btnEditarEspecialidad = $("#btnEditarEspecialidad");
+    var mdlEditarEspecialidad = $("#mdlEditarEspecialidad");
+    var btnModificarEspecialidad = mdlEditarEspecialidad.find("#btnGuardarEspecialidad");
+    var mdlEliminarEspecialidad = $("#mdlEliminarEspecialidad");
+    var mdlbtnEliminarEspecialidad = mdlEliminarEspecialidad.find("#btnEliminarEspecialidad");
     var btnVolverAClientes = $("#btnVolverAClientes");
     $(document).ready(function () {
 
 
-        mdlbtnEliminarCentroCosto.click(function () {
+        mdlbtnEliminarEspecialidad.click(function () {
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "ELIMINANDO..."
@@ -151,23 +139,27 @@
                 }
             }).done(function (data, x, jq) {
                 console.log(data);
-                mdlEliminarCentroCosto.modal('hide');
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CentroCosto ELIMINADA', 'danger');
-                btnVerCentroCostos.trigger('click');
+                mdlEliminarEspecialidad.modal('hide');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESPECIALIDAD ELIMINADA', 'danger');
+                btnVerEspecialidades.trigger('click');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
                 HoldOn.close();
             });
         });
-        btnEliminarCentroCosto.click(function () {
+
+
+        btnEliminarEspecialidad.click(function () {
             if (temp !== 0 && temp !== undefined && temp > 0) {
-                mdlEliminarCentroCosto.modal('show');
+                mdlEliminarEspecialidad.modal('show');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
         });
-        btnModificarCentroCosto.click(function () {
+
+
+        btnModificarEspecialidad.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -195,13 +187,12 @@
                     type: "POST",
                     data: {
                         ID: temp,
-                        Nombre: mdlEditarCentroCosto.find("#Nombre").val(),
-                        Descripcion: mdlEditarCentroCosto.find("#Descripcion").val()
+                        Descripcion: mdlEditarEspecialidad.find("#Descripcion").val()
                     }
                 }).done(function (data, x, jq) {
-                    btnVerCentroCostos.trigger('click');
-                    mdlEditarCentroCosto.modal('hide');
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CENTRO DE COSTO', 'success');
+                    btnVerEspecialidades.trigger('click');
+                    mdlEditarEspecialidad.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UNA ESPECIALIDAD', 'success');
                     console.log(data, x, jq);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -210,7 +201,9 @@
                 });
             }
         });
-        btnGuardarCentroCosto.click(function () {
+
+
+        btnGuardarEspecialidad.click(function () {
             $.validator.setDefaults({
                 ignore: []
             });
@@ -231,23 +224,19 @@
             $('select').on('change', function () {
                 $(this).valid();
             });
-            
-           
-            
             //Si es verdadero que hacer
             if ($('#frmNuevoSuc').valid()) {
                 $.ajax({
                     url: master_url + 'onAgregar',
                     type: "POST",
                     data: {
-                        Nombre: mdlNuevaCentroCosto.find("#Nombre").val(),
-                        Descripcion: mdlNuevaCentroCosto.find("#Descripcion").val(),
+                        Descripcion: mdlNuevaEspecialidad.find("#Descripcion").val(),
                         Cliente_ID: cliente_id
                     }
                 }).done(function (data, x, jq) {
-                    btnVerCentroCostos.trigger('click');
-                    mdlNuevaCentroCosto.modal('hide');
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN CENTRO DE COSTO', 'success');
+                    btnVerEspecialidades.trigger('click');
+                    mdlNuevaEspecialidad.modal('hide');
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA ESPECIALIDAD', 'success');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -258,29 +247,30 @@
         btnVolverAClientes.click(function () {
 
             btnVolverAClientes.addClass("hide");
-            btnNuevaCentroCosto.addClass("hide");
-            btnEliminarCentroCosto.addClass("hide");
-            btnVerCentroCostos.removeClass("hide");
+            btnNuevaEspecialidad.addClass("hide");
+            btnEliminarEspecialidad.addClass("hide");
+            btnVerEspecialidades.removeClass("hide");
             getRecords();
         });
-        btnVerCentroCostos.click(function () {
+        btnVerEspecialidades.click(function () {
             if (cliente_id !== 0 && cliente_id !== null) {
 
                 btnVolverAClientes.removeClass("hide");
-                btnNuevaCentroCosto.removeClass("hide");
-                btnEliminarCentroCosto.removeClass("hide");
-                btnVerCentroCostos.addClass("hide");
-                getCentroCostosByClienteID(cliente_id);
+                btnNuevaEspecialidad.removeClass("hide");
+                btnEliminarEspecialidad.removeClass("hide");
+                btnVerEspecialidades.addClass("hide");
+                getEspecialidadesByClienteID(cliente_id);
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
             }
         });
-        btnCancelarCentroCosto.click(function () {
-            mdlNuevaCentroCosto.modal('hide');
+
+        btnCancelarEspecialidad.click(function () {
+            mdlNuevaEspecialidad.modal('hide');
         });
-        btnNuevaCentroCosto.click(function (e) {
-            mdlNuevaCentroCosto.find("input").val("");
-            mdlNuevaCentroCosto.modal('show');
+        btnNuevaEspecialidad.click(function (e) {
+            mdlNuevaEspecialidad.find("input").val("");
+            mdlNuevaEspecialidad.modal('show');
         });
 
         /*CALLS*/
@@ -321,7 +311,6 @@
                 $(this).addClass('success');
                 var dtm = tblSelected.row(this).data();
                 cliente_id = parseInt(dtm[0]);
-                console.log(cliente_id);
             });
             //DB CLICK FOR EDIT
             $('#tbllClientes tbody').on('dblclick', 'tr', function () {
@@ -366,14 +355,14 @@
         });
     }
     var temp = 0;
-    function getCentroCostosByClienteID(IDX) {
+    function getEspecialidadesByClienteID(IDX) {
         temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
         });
         $.ajax({
-            url: master_url + 'getCentrosCostosByCliente',
+            url: master_url + 'getEspecialidadesByCliente',
             type: "POST",
             dataType: "JSON",
             data: {
@@ -383,15 +372,15 @@
 
             if (data.length > 0) {
 
-                $("#tblRegistros").html(getTable('tblCentroCostos', data));
-                $('#tblCentroCostos tfoot th').each(function () {
+                $("#tblRegistros").html(getTable('tblEspecialidades', data));
+                $('#tblEspecialidades tfoot th').each(function () {
                     var title = $(this).text();
                     $(this).html('<label for=""></label><input type="text" placeholder="Buscar por ' + title + '" class="form-control" />');
                 });
-                var tblSelected = $('#tblCentroCostos').DataTable(tableOptions);
-                $('#tblCentroCostos tbody').on('click', 'tr', function () {
-                    $("#tblCentroCostos").find("tr").removeClass("success");
-                    $("#tblCentroCostos").find("tr").removeClass("warning");
+                var tblSelected = $('#tblEspecialidades').DataTable(tableOptions);
+                $('#tblEspecialidades tbody').on('click', 'tr', function () {
+                    $("#tblEspecialidades").find("tr").removeClass("success");
+                    $("#tblEspecialidades").find("tr").removeClass("warning");
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -402,7 +391,7 @@
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
                     temp = parseInt(dtm[0]);
-                    getCentroCostoByID(temp);
+                    getEspecialidadByID(temp);
 
                 });
                 // Apply the search
@@ -416,8 +405,8 @@
                 });
             } else {
 //                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN CLIENTES TODAVÍA', 'danger');
-                $("#tblRegistros").html(getTable('tblCentroCostos', data));
-                $('#tblCentroCostos tfoot th').each(function () {
+                $("#tblRegistros").html(getTable('tblEspecialidades', data));
+                $('#tblEspecialidades tfoot th').each(function () {
                     var title = $(this).text();
                     $(this).html('<label for=""></label><input type="text" placeholder="Buscar por ' + title + '" class="form-control" />');
                 });
@@ -430,7 +419,7 @@
             HoldOn.close();
         });
     }
-    function getCentroCostoByID(IDX) {
+    function getEspecialidadByID(IDX) {
 
         console.log(IDX);
         if (IDX !== 0 && IDX !== undefined && IDX > 0) {
@@ -439,7 +428,7 @@
                 message: "CARGANDO DATOS..."
             });
             $.ajax({
-                url: master_url + 'getCCByID',
+                url: master_url + 'getEspecialidadByID',
                 type: "POST",
                 dataType: "JSON",
                 data: {
@@ -447,11 +436,10 @@
                 }
             }).done(function (data, x, jq) {
                 console.log(data);
-                mdlEditarCentroCosto.find("input").val("");
-                var CentroCosto = data[0];
-                mdlEditarCentroCosto.find("#Nombre").val(CentroCosto.Nombre);
-                mdlEditarCentroCosto.find("#Descripcion").val(CentroCosto.Descripcion);
-                mdlEditarCentroCosto.modal('show');
+                mdlEditarEspecialidad.find("input").val("");
+                var especialidad = data[0];
+                mdlEditarEspecialidad.find("#Descripcion").val(especialidad.Descripcion);
+                mdlEditarEspecialidad.modal('show');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -463,5 +451,3 @@
     }
 
 </script>
-
-

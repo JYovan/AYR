@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlSucursal extends CI_Controller {
@@ -12,6 +12,7 @@ class CtrlSucursal extends CI_Controller {
         $this->load->model('sucursal_model');
         $this->load->model('empresa_model');
         $this->load->model('empresaSupervisora_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -21,6 +22,12 @@ class CtrlSucursal extends CI_Controller {
             $this->load->view('vNavegacion');
             $this->load->view('vSucursales');
             $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A SUCURSALES',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -112,7 +119,7 @@ class CtrlSucursal extends CI_Controller {
                 'NumeroSemanas' => ($NumeroSemanas !== NULL && $NumeroSemanas !== '') ? $NumeroSemanas : NULL,
                 'TipoConcepto' => ($TipoConcepto !== NULL && $TipoConcepto !== '') ? $TipoConcepto : NULL,
                 'Cordinador' => ($Cordinador !== NULL && $Cordinador !== '') ? $Cordinador : NULL,
-                 'Supervisor' => ($Supervisor !== NULL && $Supervisor !== '') ? $Supervisor : NULL,
+                'Supervisor' => ($Supervisor !== NULL && $Supervisor !== '') ? $Supervisor : NULL,
                 'EmpresaSupervisora_ID' => ($EmpresaSupervisora_ID !== NULL && $EmpresaSupervisora_ID !== '') ? $EmpresaSupervisora_ID : NULL,
                 'FirmaObraNombres1' => ($FirmaObraNombres1 !== NULL && $FirmaObraNombres1 !== '') ? $FirmaObraNombres1 : NULL,
                 'FirmaObraApellidos1' => ($FirmaObraApellidos1 !== NULL && $FirmaObraApellidos1 !== '') ? $FirmaObraApellidos1 : NULL,

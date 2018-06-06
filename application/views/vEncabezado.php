@@ -46,9 +46,9 @@
         <!--HoldOn Stupid Accions-->
         <link href="<?php print base_url(); ?>css/HoldOn.min.css" rel="stylesheet">
         <script src="<?php print base_url(); ?>js/HoldOn.min.js"></script>
-        
+
         <script src="<?php print base_url(); ?>js/jquery.maskedinput.min.js"></script>
-         
+
         <!--Notifiers-->
         <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
         <!--Date picker-->
@@ -70,22 +70,26 @@
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
-        
+
     </head>
     <script>
         var base_url = "<?php print base_url(); ?>";
         $(function () {
             // $(".btn").addClass("animated shake");
-            $("table.display").DataTable(tableOptions);
-            $('table').css('display', 'block');
-            $('[data-toggle="tooltip"]').tooltip();
-            $('[data-toggle="popover"]').popover();
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-            });
-            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
-                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-            });
+
+            //$("table.display").DataTable(tableOptions);
+//            $('table').css('display', 'block');
+//            $('[data-toggle="tooltip"]').tooltip();
+//            $('[data-toggle="popover"]').popover();
+//            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+//            });
+//            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
+//                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+//            });
+
+
+           
             $("select").select2({
                 placeholder: "Selecciona una opción",
                 allowClear: true,
@@ -110,11 +114,21 @@
                 autoclose: true,
                 todayHighlight: true
             });
+
+            $('[data-provide="timepicker"]').timepicker(
+                    {
+                        disableFocus: true,
+                        showInputs: false,
+                        showSeconds: true,
+                        showMeridian: false,
+                        defaultValue: '12:45:30'
+                    }
+            );
             /*Mensajes de jquery validate*/
             jQuery.validator.messages.required = 'Este campo es obligatorio';
             jQuery.validator.messages.number = 'Este campo debe ser numérico';
             jQuery.validator.messages.email = 'Correo no válido';
-            
+
         });
         function onNotify(span, message, type) {
             $.notify({

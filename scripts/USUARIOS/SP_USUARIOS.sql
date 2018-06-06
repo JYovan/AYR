@@ -12,8 +12,8 @@ BEGIN
      ELSE (SELECT E.Nombre FROM empresas AS E WHERE E.ID = U.Empresa_ID)
      END) AS Empresa
      
-     FROM Usuarios AS U
-     WHERE U.Estatus IN('Activo');
+     FROM Usuarios AS U;
+    /* WHERE U.Estatus IN('Activo');*/
 END$$
 
 DELIMITER ;

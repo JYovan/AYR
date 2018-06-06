@@ -1,45 +1,20 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
 
-class cliente_model extends CI_Model {
+class especialidades_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
     }
-
-    public function getRecords() {
-        try {
-            
-             $query = $this->db->query("CALL SP_CLIENTES()");
-          
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    } 
-
-    public function getClientes() {
-        try {
-            $this->db->select('C.ID, C.Nombre AS Cliente', false);
-            $this->db->from('Clientes AS C');
-            $query = $this->db->get();
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
     
-    public function getContratistas() {
-        try {
-            $this->db->select('E.ID, E.Nombre AS Contratista', false);
-            $this->db->from('empresas AS E');
+
+
+    public function getEspecialidades() {
+         try {
+            $this->db->select('E.ID, E.Descripcion', false);
+            $this->db->from('especialidades AS E');
             $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
@@ -53,12 +28,13 @@ class cliente_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    public function getClienteByID($ID) {
+
+    public function getEspecialidadByID($ID) {
         try {
-            $this->db->select('C.*', false);    
-            $this->db->from('clientes AS C');
-            $this->db->where('C.ID', $ID);
-            $this->db->where_in('C.Estatus', 'Activo');
+            $this->db->select('E.*', false);
+            $this->db->from('especialidades AS E');
+            $this->db->where('E.ID', $ID);
+            $this->db->where_in('E.Estatus', 'Activo');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -72,12 +48,13 @@ class cliente_model extends CI_Model {
         }
     }
     
-    public function getLogoClienteByID($ID) {
+    
+        public function getEspecialidadesByCliente($ID) {
         try {
-            $this->db->select('C.RutaLogo', false);    
-            $this->db->from('clientes AS C');
-            $this->db->where('C.ID', $this->session->userdata('Cliente'));
-            $this->db->where_in('C.Estatus', 'Activo');
+            $this->db->select('E.ID, E.Descripcion', false);
+            $this->db->from('especialidades AS E');
+            $this->db->where('E.Cliente_ID', $ID);
+            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -93,8 +70,7 @@ class cliente_model extends CI_Model {
 
     public function onAgregar($array) {
         try {
-            $array['Registro'] = Date('d/m/Y h:i:s a');
-            $this->db->insert("clientes", $array);
+            $this->db->insert("especialidades", $array);
             print $str = $this->db->last_query();
             $query = $this->db->query('SELECT LAST_INSERT_ID()');
             $row = $query->row_array();
@@ -109,20 +85,26 @@ class cliente_model extends CI_Model {
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
-            $this->db->update("clientes", $DATA);
-//            print $str = $this->db->last_query();
+            $this->db->update("especialidades", $DATA);
+            
+            //print $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
     
     public function onEliminar($ID) {
-        try { 
+        try {
+            $this->db->set('Estatus', 'INACTIVO'); 
             $this->db->where('ID', $ID);
-            $this->db->delete("clientes");
-//            print $str = $this->db->last_query();
+            $this->db->update("especialidades");
+            print $str = $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+    
+
 }
+
+

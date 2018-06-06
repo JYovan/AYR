@@ -1,9 +1,5 @@
 <?php
 
-/*
- * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
- */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
@@ -43,13 +39,31 @@ class preciario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
+    public function getPreciariosActivosByCliente($Cliente_ID) {
+        try {
+            $this->db->select('P.ID as ID, P.Nombre as Preciario', false);
+            $this->db->from('preciarios AS P');
+            // $this->db->where('P.Cliente_ID', $Cliente_ID);
+            $this->db->where('P.Estatus', 'Activo');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getPreciariosByCliente($Cliente_ID) {
         try {
             $this->db->select('P.ID as ID, P.Nombre as Preciario', false);
             $this->db->from('preciarios AS P');
-            $this->db->where('P.Cliente_ID', $Cliente_ID);
+            // $this->db->where('P.Cliente_ID', $Cliente_ID);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -67,14 +81,14 @@ class preciario_model extends CI_Model {
         try {
 
             $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, '
-                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",PC.Descripcion,"</p>") AS Descripcion, '
+                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(PC.Descripcion),"</p>") AS Descripcion, '
                     . 'PC.Unidad AS Unidad, '
                     . 'CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
                     . 'PC.Moneda AS Moneda,'
                     . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleEdicion\" '
                     . 'onclick=\"onEditarConceptoPreciarioXID(",PC.ID,")\"></span>") AS Editar,'
                     . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoPreciario(this,",PC.ID,")\"></span>") AS Eliminar', false);
-             $this->db->from('preciarioconceptos AS PC');
+            $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
             $this->db->order_by('PC.ID', 'ASC');
             $query = $this->db->get();
@@ -82,7 +96,7 @@ class preciario_model extends CI_Model {
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-        //print $str;
+            //print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -109,10 +123,10 @@ class preciario_model extends CI_Model {
     }
 
     public function getConceptoByClaveXDescripcion($ID, $CLAVE, $DESCRIPCION) {
-        try { 
+        try {
             $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, PC.Moneda AS Moneda', false);
             $this->db->from('preciarioconceptos AS PC');
-            $this->db->where('PC.Preciarios_ID', $ID); 
+            $this->db->where('PC.Preciarios_ID', $ID);
             if ($CLAVE !== '') {
                 $this->db->where("PC.Clave LIKE '%$CLAVE%'", null, false);
             }

@@ -1,11 +1,17 @@
 <div class="col-md-12" id="MenuTablero">
     <div class="panel panel-default animated">
         <div class="panel-heading"><div class="cursor-hand" >Trabajos</div></div>
-        <fieldset><div class="col-md-12 dt-buttons" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
-            </div><div class="col-md-12" id="tblRegistros"></div>
-        </fieldset></div>
+        <div class="panel-body">
+            <fieldset><div class="col-md-12 dt-buttons" align="right">
+                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
+                    <button type="button" class="btn btn-default" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>MIS MOVIMIENTOS</button>
+                    <button type="button" class="btn btn-default" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
+                    <button type="button" class="btn btn-default" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>VER TODOS</button>
+
+                </div><div class="col-md-12 table-responsive" id="tblRegistros"></div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
@@ -15,23 +21,21 @@
         </div>
         <div class="modal-body">Selecciona el reporte que deseas imprimir
             <div class="col-md-12"><br></div>
-            <div id="reportesLevantamiento" class="dt-buttons">
-                <button onclick="onReporteLevantamientoAntes();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
-                <button onclick="onReporteLevantamientoProceso();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS PROCESO</button>
-                <button onclick="onReporteLevantamientoDespues();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
-                <button onclick="onReporteLevantamientoCompleto()" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
-            </div>
             <div id="reportesPresupuesto" class="dt-buttons">
                 <div class="col-6 col-md-12">
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                         <li role="presentation" class="active"><a href="#Generales" aria-controls="Generales" role="tab" data-toggle="tab">Generales</a></li>
                         <li role="presentation"><a href="#Obras" aria-controls="Obras" role="tab" data-toggle="tab">Obras</a></li>
                         <li role="presentation"><a href="#Mantenimientos" aria-controls="Mantenimientos" role="tab" data-toggle="tab">Mantenimiento</a></li>
+                        <li role="presentation"><a href="#Presentaciones" aria-controls="Presentaciones" role="tab" data-toggle="tab">Presentaciones</a></li>
+                        <li role="presentation" id="rNordes" class="hide"><a href="#Nordes" aria-controls="Nordes" role="tab" data-toggle="tab">Nordes</a></li>
                     </ul>
                 </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="Generales">
+                        <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
+                        <button onclick="onReportePresupuestoIng()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R INGLÉS</button>
                         <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
                         <button onclick="onReporteCroquis()" class="btn btn-default"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
                         <button onclick="onReporteFotografico()" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS</button>
@@ -43,8 +47,21 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Mantenimientos">
                         <button onclick="onReporteResumenPartidas()" class="btn btn-default"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
-                        <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
                         <button onclick="onReporteExcelTarifarioXMov()" class="btn btn-default"><span class="fa fa-download fa-1x"></span><br>TARIFARIO</button>
+                        <button onclick="onReporteExcelFicheroXMov()" class="btn btn-default"><span class="fa fa-download fa-1x"></span><br>FICHEROS</button>
+                        <button onclick="onReporteCaratulaBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>CARÁTULA BBVA</button>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Presentaciones">
+                        <button onclick="onReporteLevantamientoAntes();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
+                        <button onclick="onReporteLevantamientoProceso();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS PROCESO</button>
+                        <button onclick="onReporteLevantamientoDespues();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
+                        <button onclick="onReporteLevantamientoCompleto()" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
+                        <button onclick="onReportePresentacionCajeros();" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>PRESENTACIÓN DE CAJEROS</button>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Nordes">
+                        <button onclick="onReporteNordesActaRecepcion();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Acta Recepción Trabajos Extras</button>
+                        <button onclick="onReporteNordesHojaServicio();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Hoja de Servicio Diario</button>
+                        <button onclick="onReporteNordesReporteTableros();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Reporte Tableros Iguala</button>
                     </div>
                 </div>
             </div>
@@ -76,6 +93,20 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConcepto">ACEPTAR</button>
+        </div>
+    </div>
+</div>
+<!--Confirmacion Concepto Cajero-->
+<div id="mdlConfirmarEliminarConceptoCajero" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Confirmar</h4>
+        </div>
+        <div class="modal-body">Deseas eliminar el registro?</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConceptoCajero">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -112,8 +143,6 @@
                         </button>
                     </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="label label-default spanEstatus">SIN GUARDAR</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class=""> </span>
                     <button type="button" class="btn btn-default CustomColorEliminarRegistro" disabled="" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
                     <span class="togglebutton customLabelToggle" >
@@ -132,28 +161,62 @@
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Datos Generales</a></li>
                             <li role="presentation"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
-                            <li role="presentation"><a href="#Datos3" aria-controls="Datos3" role="tab" data-toggle="tab">Otros Datos</a></li>
-                            <li role="presentation"><a href="#Datos4" aria-controls="Datos4" role="tab" data-toggle="tab">Adjuntos</a></li>
+                            <li id="nBBVAMantenimiento" class="hide" role="presentation"><a href="#Datos3" aria-controls="Datos3" role="tab" data-toggle="tab">Mantenimiento BBVA</a></li>
+                            <li id="nBBVAObra" class="hide" role="presentation"><a href="#Datos4" aria-controls="Datos4" role="tab" data-toggle="tab">Obra BBVA</a></li>
+                            <li id="nBBVACajeros" class="hide" role="presentation"><a href="#Datos5" aria-controls="Datos5" role="tab" data-toggle="tab">Cajeros BBVA</a></li>
+                            <li  role="presentation"><a href="#Datos6" aria-controls="Datos6" role="tab" data-toggle="tab">Adjunto</a></li>
                         </ul>
+                    </div>
+                    <!-- Estatus -->
+                    <div class="col-12 col-md-12">
+                        <center>
+                            <div class="form-group label-static">
+                                <label class="radio-inline ">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio1" value="Pedido">
+                                    <label class="label-Pedido" for="inlineRadio1">1. Pedido</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Presupuesto">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio2" value="Presupuesto">
+                                    <label class="label-Presupuesto" for="inlineRadio2">2.Presupuesto</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Autorizacion">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio3" value="Autorización">
+                                    <label class="label-Autorizacion" for="inlineRadio3">3. Autorización Del Cliente</label>
+                                </label>
+                                <label class="radio-inline radio-inline-NoAutorizado">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio4" value="No Autorizado">
+                                    <label class="label-NoAutorizado" for="inlineRadio4">4. No Autorizado</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Ejecucion">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio5" value="Ejecución">
+                                    <label class="label-Ejecucion" for="inlineRadio5">5. Ejecución</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Finalizado">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio6" value="Finalizado">
+                                    <label class="label-Finalizado" for="inlineRadio6">6. Finalizado</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Pagado">
+                                    <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio7" value="Pagado">
+                                    <label class="label-Pagado" for="inlineRadio7">7. Pagado</label>
+                                </label>
+                            </div>
+                        </center>
+                        <hr>
                     </div>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class="col-6 col-md-3">
+                            <div class=" col-1 col-md-1">
                                 <div class="form-group label-static">
-                                    <label for="Movimiento" class="control-label">Etapa*</label>
-                                    <select id="Movimiento" name="Movimiento" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
-                                        <option value="PRESUPUESTO">PRESUPUESTO</option>
-                                    </select>
+                                    <label for="ID" class="control-label">Folio Interno</label>
+                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                                 </div>
                             </div>
-                            <div class=" col-3 col-md-3">
+                            <div class="col-2 col-md-2">
                                 <div class="form-group label-static">
-                                    <label for="ID" class="control-label">Mov ID</label>
-                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                    <label for="" class="control-label">Folio Cliente</label>
+                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -162,18 +225,7 @@
                                     <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Situación*</label>
-                                    <select id="Situacion" name="Situacion" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="PENDIENTE">PENDIENTE</option>
-                                        <option value="AUTORIZADO">AUTORIZADO</option>
-                                        <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Cliente*</label>
                                     <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
@@ -181,7 +233,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Sucursal*</label>
                                     <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
@@ -189,22 +241,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Preciario*</label>
                                     <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                         <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Clasificación</label>
-                                    <select id="Clasificacion" name="Clasificacion" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="CERRAJERÍA">CERRAJERÍA</option>
-                                        <option value="MOBILIARIO">MOBILIARIO</option>
-                                        <option value="INMUEBLE">INMUEBLE</option>
                                     </select>
                                 </div>
                             </div>
@@ -216,19 +257,21 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
-                                    <label for="" class="control-label">Folio Cliente</label>
-                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                                    <label for="" class="control-label">Especialidad</label>
+                                    <select id="Especialidad_ID" name="Especialidad_ID" class="form-control" >
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
-                            <input type="text" id="Atendido" name="Atendido" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
-                                    <label for="NuevoAtendido" class="control-label">Esta Completado?</label>
-                                    <div class="togglebutton">
-                                        <label><input type="checkbox" id="NuevoAtendido" name="NuevoAtendido" ></label>
-                                    </div>
+                                    <label for="" class="control-label">Área</label>
+                                    <select id="Area_ID" name="Area_ID" class="form-control" >
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6">
@@ -237,14 +280,26 @@
                                     <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
                                 </div>
                             </div>
-                            <div id="ControlProceso" class="col-6 col-md-3 hide">
+                            <div id="ControlProceso" class="col-6 col-md-3">
                                 <div class="form-group label-static">
-                                    <label for="" class="control-label">Control de proceso</label>
+                                    <label for="" class="control-label">Control de fotos proceso</label>
                                     <select id="" name="ControlProceso" class="form-control " >
                                         <option value=""></option>
                                         <option value="Dias">DÍAS</option>
                                         <option value="Semanas">SEMANAS</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Trabajo Solicitado</label>
+                                    <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Trabajo Requerido</label>
+                                    <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" required=""></textarea>
                                 </div>
                             </div>
                         </div>
@@ -263,36 +318,10 @@
                                     <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Codigo PPTA</label>
-                                    <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Días</label>
-                                    <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
-                                </div>
-                            </div>
-                            <div class=" col-6 col-md-12">
+                            <div class=" col-6 col-md-6">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Solicitante</label>
                                     <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Solicitado</label>
-                                    <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Requerido</label>
-                                    <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
                                 </div>
                             </div>
                             <div class="col-6 col-md-12">
@@ -300,13 +329,13 @@
                                     <div class="col-6 col-md-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Fecha Origen</label>
-                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                            <input type="text" id="FechaOrigen" required="" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Hora Origen</label>
-                                            <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                                            <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" data-second-step="1"/>
                                         </div>
                                     </div>
                                 </div>
@@ -320,7 +349,7 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Hora Visita</label>
-                                    <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
+                                    <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -332,12 +361,109 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Hora Fin Visita</label>
-                                    <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
+                                    <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--PANEL DE MANTENIMIENTO BBVA-->
+                        <div role="tabpanel" class="tab-pane fade" id="Datos3">
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="" class="control-label">Codigo PPTA</label>
+                                            <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="" class="control-label">Días</label>
+                                            <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class=" col-3 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
+                                            <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control" placeholder="" >
+                                        </div>
+                                    </div>
+                                    <div class=" col-3 col-md-6">
+                                        <div class="form-group label-static">
+                                            <label for="TextoCausa" class="control-label">Texto Causa</label>
+                                            <input type="text" id="TextoCausa" name="TextoCausa" class="form-control"  placeholder="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal1" class="control-label">Calificación 1</label>
+                                    <select id="Cal1" name="Cal1" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal2" class="control-label">Calificación 2</label>
+                                    <select id="Cal2" name="Cal2" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal3" class="control-label">Calificación 3</label>
+                                    <select id="Cal3" name="Cal3" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal4" class="control-label">Calificación 4</label>
+                                    <select id="Cal4" name="Cal4" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal5" class="control-label">Calificación 5</label>
+                                    <select id="Cal5" name="Cal5" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <!--PANEL DE OTROS DATOS-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos3">
+                        <div role="tabpanel" class="tab-pane fade" id="Datos4">
                             <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
@@ -409,13 +535,123 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- PANEL DE ARCHVIO ADJUNTO-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos4">
-
+                        <!-- PANEL DE DATOS DE CAJERO-->
+                        <div role="tabpanel" class="tab-pane fade" id="Datos5">
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="FechaVisita" class="control-label">Fecha Visita</label>
+                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
+                                    <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Horario de Atención</label>
+                                    <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
+                                    <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
+                                    <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Carcasa" class="control-label">Carcasa?</label>
+                                    <select id="Carcasa" name="Carcasa" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
+                                    <select id="UPS" name="UPS" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
+                                    <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
+                                    <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
+                                    <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
+                                    <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
+                                    <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="TipoPiso" class="control-label">Tipo Piso</label>
+                                    <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- PANEL DE ARCHIVO ADJUNTO-->
+                        <div role="tabpanel" class="tab-pane fade" id="Datos6">
                             <center><label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label></center>
-
                             <div class="col-md-12" align="center">
-
                                 <input type="file" id="Adjunto" name="Adjunto" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
@@ -438,29 +674,46 @@
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-5"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
-                <div id="ImporteTotal" class="col-md-7" align="right"><span class="text-success spanTotalesDetalle">$ 0.0</span></div>
+                <div id="ImporteTotal" class="col-md-12" align="right">
+                    <span class="text-success spanTotalesDetalle">$ 0.0</span>
+                </div>
+                <div class="col-6 col-md-12">
+                    <ul class="nav nav-tabs" role="tablist" id="tbDetalleNuevo">
+                        <li role="presentation" class="active"><a href="#Presupuesto" aria-controls="Presupuesto" role="tab" data-toggle="tab">Conceptos Presupuesto</a></li>
+                        <li role="presentation"><a href="#Levantamiento" aria-controls="Levantamiento" role="tab" data-toggle="tab">Conceptos Levantamiento</a></li>
+                        <li class="hide" role="presentation" id="pnCajeros"><a href="#Cajeros" aria-controls="Cajeros" role="tab" data-toggle="tab">Conceptos Cajeros</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-            <div class="col-md-12 table-responsive" id="Conceptos" ></div>
-        </fieldset>
-    </div>
-</div>
-<!--PANEL NUEVO DETALLE ABIERTO-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevoTrabajoAbierto">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div></div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Presupuesto">
+                        <fieldset>
+                            <div class="col-md-12" align="right">
+                                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                            <div class="col-md-12 table-responsive" id="Conceptos" ></div>
+                        </fieldset>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Levantamiento">
+                        <fieldset>
+                            <div class="col-md-12" align="right">
+                                <button type="button" class="btn btn-default" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Cajeros">
+                        <fieldset>
+                            <div class="col-md-12" align="right">
+                                <button type="button" class="btn btn-default" id="btnNuevoConceptoCajero"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </fieldset>
         </div>
-        <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-        </fieldset>
     </div>
 </div>
 <!--PANEL EDITAR-->
@@ -483,8 +736,6 @@
                         </button>
                     </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="label label-default spanEditarEstatus">SIN GUARDAR</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class=""> </span>
                     <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
                     <span class="togglebutton customLabelToggle" >
@@ -504,27 +755,61 @@
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                             <li role="presentation" class="active"><a href="#EditarDatos" aria-controls="EditarDatos" role="tab" data-toggle="tab">Datos Generales</a></li>
                             <li role="presentation" ><a href="#EditarDatos2" aria-controls="EditarDatos2" role="tab" data-toggle="tab">Datos del trabajo</a></li>
-                            <li role="presentation"><a href="#EditarDatos3" aria-controls="EditarDatos3" role="tab" data-toggle="tab">Otros Datos</a></li>
-                            <li role="presentation"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab">Adjuntos</a></li>
+                            <li id="eBBVAMantenimiento" class="hide" role="presentation"><a href="#EditarDatos3" aria-controls="EditarDatos3" role="tab" data-toggle="tab">Mantenimiento BBVA</a></li>
+                            <li id="eBBVAObra" class="hide" role="presentation"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab">Obra BBVA</a></li>
+                            <li id="eBBVACajeros" class="hide" role="presentation"><a href="#EditarDatos5" aria-controls="EditarDatos5" role="tab" data-toggle="tab">Cajeros BBVA</a></li>
+                            <li role="presentation"><a href="#EditarDatos6" aria-controls="EditarDatos6" role="tab" data-toggle="tab">Adjunto</a></li>
                         </ul>
+                    </div>
+                    <!-- Estatus -->
+                    <div class="col-12 col-md-12">
+                        <center>
+                            <div class="form-group label-static">
+                                <label class="radio-inline ">
+                                    <input  type="radio" name="EstatusTrabajo" id="inlineRadio1" value="Pedido">
+                                    <label class="label-Pedido" for="inlineRadio1">1. Pedido</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Presupuesto">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio2" value="Presupuesto">
+                                    <label class="label-Presupuesto" for="inlineRadio2">2. Presupuesto</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Autorizacion">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio3" value="Autorización">
+                                    <label class="label-Autorizacion" for="inlineRadio3">3. Autorización Del Cliente</label>
+                                </label>
+                                <label class="radio-inline radio-inline-NoAutorizado">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio4" value="No Autorizado">
+                                    <label class="label-NoAutorizado" for="inlineRadio4">4. No Autorizado</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Ejecucion">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio5" value="Ejecución">
+                                    <label class="label-Ejecucion" for="inlineRadio5">5. Ejecución</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Finalizado">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio6" value="Finalizado">
+                                    <label class="label-Finalizado" for="inlineRadio6">6. Finalizado</label>
+                                </label>
+                                <label class="radio-inline radio-inline-Pagado">
+                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio7" value="Pagado">
+                                    <label class="label-Pagado" for="inlineRadio7">7. Pagado</label>
+                                </label>
+                            </div>
+                        </center>
+                        <hr>
                     </div>
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
                         <div role="tabpanel" class="tab-pane fade in active" id="EditarDatos">
-                            <div class="col-6 col-md-3">
+                            <div class=" col-1 col-md-1">
                                 <div class="form-group label-static">
-                                    <label for="Movimiento" class="control-label">Etapa*</label>
-                                    <select id="Movimiento" name="Movimiento" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="LEVANTAMIENTO">LEVANTAMIENTO</option>
-                                        <option value="PRESUPUESTO">PRESUPUESTO</option>
-                                    </select>
+                                    <label for="ID" class="control-label">Folio Interno</label>
+                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                                 </div>
                             </div>
-                            <div class=" col-3 col-md-3">
+                            <div class="col-2 col-md-2">
                                 <div class="form-group label-static">
-                                    <label for="ID" class="control-label">Mov ID</label>
-                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                    <label for="" class="control-label">Folio Cliente</label>
+                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -533,18 +818,7 @@
                                     <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Situación*</label>
-                                    <select id="Situacion" name="Situacion" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="PENDIENTE">PENDIENTE</option>
-                                        <option value="AUTORIZADO">AUTORIZADO</option>
-                                        <option value="SIN AUTORIZAR">SIN AUTORIZAR</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Cliente*</label>
                                     <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
@@ -552,7 +826,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Sucursal*</label>
                                     <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
@@ -560,22 +834,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6">
+                            <div class="col-3 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Preciario*</label>
                                     <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
                                         <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Clasificación</label>
-                                    <select id="Clasificacion" name="Clasificacion" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="CERRAJERÍA">CERRAJERÍA</option>
-                                        <option value="MOBILIARIO">MOBILIARIO</option>
-                                        <option value="INMUEBLE">INMUEBLE</option>
                                     </select>
                                 </div>
                             </div>
@@ -587,19 +850,21 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
-                                    <label for="" class="control-label">Folio Cliente</label>
-                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                                    <label for="" class="control-label">Especialidad</label>
+                                    <select id="Especialidad_ID" name="Especialidad_ID" class="form-control" >
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
-                            <input type="text" id="Atendido" name="Atendido" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
-                                    <label for="EditarAtendido" class="control-label">Esta Completado?</label>
-                                    <div class="togglebutton">
-                                        <label><input type="checkbox" id="EditarAtendido" name="" ></label>
-                                    </div>
+                                    <label for="" class="control-label">Área</label>
+                                    <select id="Area_ID" name="Area_ID" class="form-control" >
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6">
@@ -608,7 +873,7 @@
                                     <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
                                 </div>
                             </div>
-                            <div id="ControlProcesoEditar" class="col-6 col-md-3 hide">
+                            <div id="ControlProcesoEditar" class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Control de proceso</label>
                                     <select id="ControlTiempoProceso" name="ControlProceso" class="form-control" >
@@ -616,6 +881,18 @@
                                         <option value="Dias">DÍAS</option>
                                         <option value="Semanas">SEMANAS</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Trabajo Solicitado</label>
+                                    <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Trabajo Requerido</label>
+                                    <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" required=""></textarea>
                                 </div>
                             </div>
                         </div>
@@ -634,36 +911,10 @@
                                     <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Codigo PPTA</label>
-                                    <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Días</label>
-                                    <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
-                                </div>
-                            </div>
-                            <div class=" col-6 col-md-12">
+                            <div class=" col-6 col-md-6">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Solicitante</label>
                                     <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Solicitado</label>
-                                    <textarea class="col-md-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" ></textarea>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Requerido</label>
-                                    <textarea class="col-md-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" ></textarea>
                                 </div>
                             </div>
                             <div class="col-6 col-md-12">
@@ -671,13 +922,13 @@
                                     <div class="col-6 col-md-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Fecha Origen</label>
-                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                            <input type="text" required="" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Hora Origen</label>
-                                            <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                                            <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
                                         </div>
                                     </div>
                                 </div>
@@ -691,7 +942,7 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Hora Visita</label>
-                                    <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"/>
+                                    <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -703,12 +954,109 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Hora Fin Visita</label>
-                                    <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   />
+                                    <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
                                 </div>
                             </div>
                         </div>
-                        <!--PANEL DE OTROS DATOS-->
+                        <!--PANEL DE MANTENIMIENTO BBVA-->
                         <div role="tabpanel" class="tab-pane fade" id="EditarDatos3">
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="" class="control-label">Codigo PPTA</label>
+                                            <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="" class="control-label">Días</label>
+                                            <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class=" col-3 col-md-3">
+                                        <div class="form-group label-static">
+                                            <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
+                                            <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control" placeholder="" >
+                                        </div>
+                                    </div>
+                                    <div class=" col-3 col-md-6">
+                                        <div class="form-group label-static">
+                                            <label for="TextoCausa" class="control-label">Texto Causa</label>
+                                            <input type="text" id="TextoCausa" name="TextoCausa" class="form-control"  placeholder="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal1" class="control-label">Calificación 1</label>
+                                    <select id="Cal1" name="Cal1" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal2" class="control-label">Calificación 2</label>
+                                    <select id="Cal2" name="Cal2" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal3" class="control-label">Calificación 3</label>
+                                    <select id="Cal3" name="Cal3" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal4" class="control-label">Calificación 4</label>
+                                    <select id="Cal4" name="Cal4" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Cal5" class="control-label">Calificación 5</label>
+                                    <select id="Cal5" name="Cal5" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="EXCELENTE">EXCELENTE</option>
+                                        <option value="BUENO">BUENO</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="MALO">MALO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--PANEL DE OBRA BBVA-->
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
                             <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="hide" readonly="" placeholder="" >
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
@@ -780,11 +1128,123 @@
                                 </div>
                             </div>
                         </div>
-                        <!--PANEL DE ARCHVIO ADJUNTO-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
+                        <!-- PANEL DE DATOS DE CAJEROS-->
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos5">
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="FechaVisita" class="control-label">Fecha Visita</label>
+                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
+                                    <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Horario de Atención</label>
+                                    <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
+                                    <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
+                                    <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Carcasa" class="control-label">Carcasa?</label>
+                                    <select id="Carcasa" name="Carcasa" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
+                                    <select id="UPS" name="UPS" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
+                                    <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
+                                    <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
+                                    <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
+                                    <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
+                                        <option value=""></option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
+                                    <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="TipoPiso" class="control-label">Tipo Piso</label>
+                                    <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                        <!--PANEL DE ARCHIVO ADJUNTO-->
+                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos6">
                             <center><label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label></center>
                             <div class="col-md-12" align="center">
-
                                 <input type="file" id="Adjunto" name="" class="hide">
                                 <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
@@ -806,30 +1266,47 @@
 <div class="col-6 col-md-12">
     <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajo">
         <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Presupuesto</div></div>
-                <div id="ImporteTotal" class="col-md-6" align="right"><h4 class="text-success">$ 0.0</h4></div>
+            <div class="Custompanel-heading row">
+                <div id="ImporteTotal" class="col-md-12" align="right">
+                    <span class="text-success">$ 0.0</span>
+                </div>
+                <div class="col-6 col-md-12">
+                    <ul class="nav nav-tabs" role="tablist" id="tbDetalleEditar">
+                        <li role="presentation" class="active"><a href="#PresupuestoEditar" aria-controls="PresupuestoEditar" role="tab" data-toggle="tab">Conceptos Presupuesto</a></li>
+                        <li role="presentation"><a href="#LevantamientoEditar" aria-controls="LevantamientoEditar" role="tab" data-toggle="tab">Conceptos Levantamiento</a></li>
+                        <li class="hide" role="presentation" id="peCajeros"><a href="#CajerosEditar" aria-controls="CajerosEditar" role="tab" data-toggle="tab">Conceptos Cajeros</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-            <div class="col-md-12 table-responsive " id="Conceptos" ></div>
-        </fieldset>
-    </div>
-</div>
-<!--PANEL EDITAR DETALLE ABIERTO -->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarTrabajoAbierto">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row"><div class="col-md-6"><div class="cursor-hand" >Conceptos Levantamiento</div></div>
-            </div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="PresupuestoEditar">
+                        <fieldset>
+                            <div class="col-md-12" align="right">
+                                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                            <div class="col-md-12 table-responsive" id="Conceptos" ></div>
+                        </fieldset>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="LevantamientoEditar">
+                        <fieldset>
+                            <div class="col-md-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                            <div class="col-md-12 table-responsive " id="ConceptosAbierto" ></div>
+                        </fieldset>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="CajerosEditar">
+                        <fieldset>
+                            <div class="col-md-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoCajeroEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            </div>
+                            <div class="col-md-12 table-responsive " id="ConceptosCajero" ></div>
+                        </fieldset>
+                    </div>
+                </div>
+            </fieldset>
         </div>
-        <fieldset>
-            <div class="col-md-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-            <div class="col-md-12 table-responsive " id="ConceptosAbierto" ></div>
-        </fieldset>
     </div>
 </div>
 <!--MODAL AGREGAR CONCEPTO ABIERTO-->
@@ -850,13 +1327,47 @@
                             <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="Clave" class="control-label">Semana/Dia*</label>
+                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control" required="" placeholder="">
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción*</label>
+                            <label for="Descripcion" class="control-label">Descripción (Actividades Ejecutadas)*</label>
                             <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6"><br><h6>Los campos con * son obligatorios</h6></div>
+                    <div id="CamposMeor" class="hide">
+
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label for="Clave" class="control-label">Inicio/Fin*</label>
+                                <input type="text" id="InicioFin" name="InicioFin" class="form-control"placeholder="EJ: 01 de Enero Al 07 Enero">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label for="Clave" class="control-label">Inicio/Fin Proxima Semana*</label>
+                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control"  placeholder="EJ: 07 de Enero Al 14 Enero">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion2" class="control-label">(Actividades Próxima Semana)</label>
+                                <textarea type="text" id="Descripcion2" name="Descripcion2" class="form-control CustomUppercase"  placeholder=" " rows="3" cols="20"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion3" class="control-label">Restricciones/Preocupaciones</label>
+                                <textarea type="text" id="Descripcion3" name="Descripcion3" class="form-control CustomUppercase" placeholder=" " rows="3" cols="20"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12"><br><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
@@ -887,6 +1398,110 @@
                             <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="Clave" class="control-label">Semana/Dia*</label>
+                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control" required="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción (Actividades Ejecutadas)*</label>
+                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div id="CamposMeorEditar" class="hide">
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label for="Clave" class="control-label">Inicio/Fin*</label>
+                                <input type="text" id="InicioFin" name="InicioFin" class="form-control"placeholder="EJ: 01 de Enero Al 07 Enero">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label for="Clave" class="control-label">Inicio/Fin Proxima Semana*</label>
+                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control"  placeholder="EJ: 07 de Enero Al 14 Enero">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion2" class="control-label">(Actividades Próxima Semana)</label>
+                                <textarea type="text" id="Descripcion2" name="Descripcion2" class="form-control CustomUppercase"  placeholder=" " rows="3" cols="20"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion3" class="control-label">Restricciones/Preocupaciones</label>
+                                <textarea type="text" id="Descripcion3" name="Descripcion3" class="form-control CustomUppercase" placeholder=" " rows="3" cols="20"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12"><br><h6>Los campos con * son obligatorios</h6></div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer modal-footerFull"><!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConceptoAbierto" name="btnEditarConceptoAbierto">MODIFICAR</button>
+        </div>
+    </div>
+</div>
+<!--MODAL AGREGAR CONCEPTO CAJERO-->
+<div id="mdlAgregarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
+        <div class="modal-header modal-headerFull">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title modal-titleFull">Nuevo</h4>
+        </div>
+        <div class="modal-body modal-bodyFull">
+            <form id="frmAgregarConceptoDetalleCajero">
+                <fieldset>
+                    <div class=" hide"><input type="text" id="ID" name="ID" class="form-control"></div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="Clave" class="control-label">Clave*</label>
+                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción*</label>
+                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6"><br><h6>Los campos con * son obligatorios</h6></div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer modal-footerFull">
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnAgregarConceptoCajero" name="btnAgregarConceptoCajero">GUARDAR</button>
+        </div>
+    </div>
+</div>
+<!--MODAL EDITAR CONCEPTO CAJERO-->
+<div id="mdlEditarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
+        <div class="modal-header modal-headerFull">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title modal-titleFull">Edición</h4>
+        </div>
+        <div class="modal-body modal-bodyFull">
+            <form id="frmEditarConceptoDetalleCajero">
+                <fieldset>
+                    <div class=" hide">
+                        <input type="text" id="ID" name="ID" class="form-control">
+                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="Clave" class="control-label">Clave*</label>
+                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group label-static">
                             <label for="Descripcion" class="control-label">Descripción*</label>
@@ -899,12 +1514,39 @@
         </div>
         <div class="modal-footer modal-footerFull"><!--BOTONES CONCEPTO-->
             <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConceptoAbierto" name="btnEditarConceptoAbierto">MODIFICAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConceptoCajero" name="btnEditarConceptoCajero">MODIFICAR</button>
+        </div>
+    </div>
+</div>
+<!--MODAL EDITAR - VER FOTOS CAJERO ADJUNTAS-->
+<div id="mdlTrabajoEditarFotosCajeroPorConceptoCajero" class="modal modalFull animated bounceInDown">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title modal-titleFull">Fotos Cajero</h4>
+            </div>
+            <div class="modal-body modal-bodyFull">
+                <fieldset>
+                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
+                    <input type="text" readonly="" id="IdCajeroBBVADetalle" name="IdCajeroBBVADetalle"  class="hide">
+                    <input type="file" accept='image/*' id="fFotosCajero" name="fFotosCajero[]" multiple="" class="hide">
+                    <div class="col-md-12" id="" align="center"  onclick="setFotosCajeroEditar(this)">
+                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><br><br></div>
+                    <div class="col-md-12 row" id="Fotos"></div>
+                </fieldset>
+            </div>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
         </div>
     </div>
 </div>
 <!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO-->
-<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull animated bounceInDown ">
+<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull  fade ">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
             <div class="modal-header modal-headerFull">
@@ -932,10 +1574,16 @@
                             <input type="text" id="Precio" name="Precio" class="form-control">
                             <input type="text" id="TipoCambioGenerador" name="TipoCambio" class="form-control">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <div class="form-group label-static">
                                 <label for="Area" class="control-label">Area</label>
                                 <input type="text" id="Area" name="Area" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label for="EstimacionNo" class="control-label">No. Estimación</label>
+                                <input type="number" id="EstimacionNo" name="EstimacionNo" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -1031,7 +1679,7 @@
                     <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
@@ -1058,7 +1706,7 @@
                     <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosAntesEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
@@ -1085,7 +1733,7 @@
                     <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setFotosDespuesEditar(this)">
                         <div class="file_drag_area"> <p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
@@ -1120,7 +1768,7 @@
                     </div>
                     <div class="col-md-12 hide" id="idSubirFotosProceso" align="center"  onclick="setFotosProcesoEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12 row" id="Fotos"></div>
@@ -1132,7 +1780,7 @@
         </div>
     </div>
 </div>
-<!--MODAL EDITAR - VER CROQUIS ADJUNTOS-->
+<!--MODAL EDITAR - VER CROQUIS ADJUNTAS-->
 <div id="mdlTrabajoEditarCroquisPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
@@ -1142,12 +1790,10 @@
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
-                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="hide">
-                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="hide">
                     <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="hide">
                     <div class="col-md-12" id="" align="center"  onclick="setCroquisEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12" id="Croquis"></div>
@@ -1179,7 +1825,7 @@
                 <fieldset>
                     <div class="col-md-12" id="" align="center"  onclick="setAnexosEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12" id="Anexos"></div>
@@ -1211,7 +1857,7 @@
                 <fieldset>
                     <div class="col-md-12" id="" align="center"  onclick="setAnexosDosEditar(this)">
                         <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-md-12"><br><br></div>
                     <div class="col-md-12" id="Anexos"></div>
@@ -1249,11 +1895,87 @@
         </div>
     </div>
 </div>
+<!--MODAL EDITAR CONCEPTO PRECIARIO-->
+<div id="mdlEditarConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
+        <div class="modal-header modal-headerFull">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title modal-titleFull">Editar Concepto</h4>
+        </div>
+        <div class="modal-body modal-bodyFull">
+            <form id="frmEditarConceptoDetalle">
+                <fieldset>
+                    <div class="col-md-3">
+                        <div class="form-group label-static">
+                            <label for="txtEditarClave" class="control-label">Clave</label>
+                            <input type="text" id="txtEditarClave" name="txtEditarClave" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group label-static">
+                            <label for="taEditarConcepto" class="control-label">Descripción</label>
+                            <textarea type="text" id="taEditarConcepto" name="taEditarConcepto" class="form-control CustomUppercase"  rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-static">
+                            <label for="txtEditarUnidad" class="control-label">Unidad</label>
+                            <input type="text" id="txtEditarUnidad" name="txtEditarUnidad" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-static">
+                            <label for="txtEditarPrecio" class="control-label">Precio</label>
+                            <input type="number" id="txtEditarPrecio" name="txtEditarPrecio" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-static">
+                            <label for="txtEditarMoneda" class="control-label">Moneda</label>
+                            <select id="txtEditarMoneda" name="txtEditarMoneda" class="form-control" required="">
+                                <option value=""></option>
+                                <option value="USD">USD</option>
+                                <option value="MXN">MXN</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer modal-footerFull"><!--BOTONES CONCEPTO-->
+            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConcepto" name="btnEditarConcepto">MODIFICAR</button>
+        </div>
+    </div>
+</div>
+<!--MODAL DETALLE - REEMPLAZAR CONCEPTO-->
+<div id="mdlTrabajoReemplazarConceptoEditar" class="modal modalFull fade ">
+    <div class="modal-dialog modal-dialogFull">
+        <div class="modal-content modal-contentFull">
+            <div class="modal-header modal-headerFull">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title modal-titleFull">Seleccione un concepto</h4>
+            </div>
+            <div class="modal-body modal-bodyFull">
+                <div class="col-md-12" id="ConceptosReemplazarXPreciarioID"></div>
+            </div>
+            <div class="modal-footer modal-footerFull">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlTrabajos/';
+    var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
+
+    var verMovs = 'getMyRecords';
     var btnNuevo = $("#btnNuevo");
-    var btnRefrescar = $("#btnRefrescar");
+    var btnVerTodos = $("#btnVerTodos");
+    var btnVerMisMovimientos = $("#btnVerMisMovimientos");
+    var btnVerTodosEnFirme = $('#btnVerTodosEnFirme');
     var btnCancelar = $("#btnCancelar");
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
@@ -1274,10 +1996,7 @@
     var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
     var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
     var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
-    /*Toggle Buttons Editar Impacto y Atendido*/
-    var tbtnEditarAtendido = pnlEditarTrabajo.find("#EditarAtendido");
     var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
-    var tbtnNuevoAtendido = pnlNuevoTrabajo.find("#NuevoAtendido");
     var tbtnNuevoImpactoEnPlazo = pnlNuevoTrabajo.find("#NuevoImpactoEnPlazo");
     /*Detalle Normal*/
     var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
@@ -1302,12 +2021,17 @@
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
     /******ABIERTO*/
-    var pnlDetalleEditarTrabajoAbierto = $('#pnlDetalleEditarTrabajoAbierto');
-    var pnlDetalleNuevoTrabajoAbierto = $('#pnlDetalleNuevoTrabajoAbierto');
-    var btnNuevoConceptoAbierto = pnlDetalleNuevoTrabajoAbierto.find('#btnNuevoConceptoAbierto');
-    var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajoAbierto.find('#btnNuevoConceptoAbiertoEditar');
+    var btnNuevoConceptoAbierto = pnlDetalleNuevoTrabajo.find('#btnNuevoConceptoAbierto');
+    var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajo.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
+    var btnNuevoConceptoCajero = pnlDetalleNuevoTrabajo.find("#btnNuevoConceptoCajero");
+    var btnNuevoConceptoCajeroEditar = pnlDetalleEditarTrabajo.find('#btnNuevoConceptoCajeroEditar');
+    var btnAgregarConceptoCajero = $('#btnAgregarConceptoCajero');
+    var btnEditarConceptoCajero = $('#btnEditarConceptoCajero');
+    /*fOTOS*/
+    var mdlTrabajoEditarFotosCajeroPorConceptoCajero = $("#mdlTrabajoEditarFotosCajeroPorConceptoCajero");
+    var EditarFotosCajeroPorConcepto = mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#fFotosCajero");
     /*MULTIMEDIA (EDITAR ABIERTO)*/
     var mdlTrabajoEditarFotosAntesPorConcepto = $("#mdlTrabajoEditarFotosAntesPorConcepto");
     var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
@@ -1321,6 +2045,7 @@
     var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
     $(document).ready(function () {
+        //RadionButtonSelectedValueSet('NuevoEstatusTrabajo', 'Presupuesto');
         $('.numbersOnly').keypress(function () {
             this.value = this.value.replace(/[^0-9\.]/g, '');
         });
@@ -1431,53 +2156,144 @@
             $('#mdlAgregarConceptoAbierto').find("textarea").val("");
             $('#mdlAgregarConceptoAbierto').find("select").val(null).trigger("change");
             $('#mdlAgregarConceptoAbierto').modal('show');
-        });
-        /*Estos eventos controlan que detalle se esta viendo*/
-        pnlNuevoTrabajo.find("#Movimiento").change(function () {
-            if (this.value === 'LEVANTAMIENTO') {
-                pnlDetalleNuevoTrabajoAbierto.removeClass('hide');
-                pnlDetalleNuevoTrabajo.addClass('hide');
-                $('#ControlProceso').removeClass('hide');
-            } else if (this.value === 'PRESUPUESTO') {
-                pnlDetalleNuevoTrabajoAbierto.addClass('hide');
-                pnlDetalleNuevoTrabajo.removeClass('hide');
-                $('#ControlProceso').addClass('hide');
-            }
-        });
-        pnlEditarTrabajo.find("#Movimiento").change(function () {
-            $.ajax({
-                url: master_url + 'onModificarMovimiento',
-                type: "POST",
-                data: {ID: IdMovimiento, Movimiento: this.value}
-            }).done(function (data, x, jq) {
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-            if (this.value === 'LEVANTAMIENTO') {
-                pnlDetalleEditarTrabajoAbierto.removeClass('hide');
-                pnlDetalleEditarTrabajo.addClass('hide');
-                $('#ControlProcesoEditar').removeClass('hide');
-                $("#reportesLevantamiento").removeClass('hide');
-                $("#reportesPresupuesto").addClass('hide');
-                getDetalleAbiertoByID(IdMovimiento);
-            } else if (this.value === 'PRESUPUESTO') {
-                pnlDetalleEditarTrabajoAbierto.addClass('hide');
-                pnlDetalleEditarTrabajo.removeClass('hide');
-                $("#reportesLevantamiento").addClass('hide');
-                $("#reportesPresupuesto").removeClass('hide');
-                $('#ControlProcesoEditar').addClass('hide');
-                getTrabajoDetalleByID(IdMovimiento);
+            if (Cliente === '8') {
+                $("#CamposMeor").removeClass("hide");
             } else {
-                $("#reportesLevantamiento").addClass('hide');
-                $("#reportesPresupuesto").addClass('hide');
-                pnlDetalleEditarTrabajo.addClass('hide');
-                pnlDetalleEditarTrabajoAbierto.addClass('hide');
+                $("#CamposMeor").addClass("hide");
+            }
+
+        });
+        btnNuevoConceptoCajeroEditar.on("click", function () {
+            $('#mdlAgregarConceptoCajero').find("input").val("");
+            $('#mdlAgregarConceptoCajero').find("textarea").val("");
+            $('#mdlAgregarConceptoCajero').find("select").val(null).trigger("change");
+            $('#mdlAgregarConceptoCajero').modal('show');
+        });
+        btnEditarConceptoCajero.on("click", function () {
+            $.validator.setDefaults({ignore: []});
+            $('#frmEditarConceptoDetalleCajero').validate({
+                errorElement: 'span', errorClass: 'help-block',
+                rules: {Clave: 'required', Descripcion: 'required'},
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                }
+            });
+            /*Regresa si es valido para los select2*/
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+            /*Si es verdadero que hacer*/
+            if ($('#frmEditarConceptoDetalleCajero').valid()) {
+                var frm = new FormData($("#frmEditarConceptoDetalleCajero")[0]);
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onModificarConceptoCajero',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    $('#mdlEditarConceptoCajero').modal('hide');
+                    getDetalleCajerosByID(IdMovimiento);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
             }
         });
+        btnAgregarConceptoCajero.on("click", function () {
+            $.validator.setDefaults({ignore: []});
+            $('#frmAgregarConceptoDetalleCajero').validate({
+                errorElement: 'span', errorClass: 'help-block',
+                rules: {Clave: 'required', Descripcion: 'required'},
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                }
+            });
+            /*Regresa si es valido para los select2*/
+            $('select').on('change', function () {
+                $(this).valid();
+            });
+            /*Si es verdadero que hacer*/
+            if ($('#frmAgregarConceptoDetalleCajero').valid()) {
+                var frm = new FormData($("#frmAgregarConceptoDetalleCajero")[0]);
+                frm.append('Trabajo_ID', IdMovimiento);
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onAgregarDetalleCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    $('#mdlAgregarConceptoCajero').modal('hide');
+                    getDetalleCajerosByID(IdMovimiento);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
+        /*Funcion que trae los catalogos en base al cliente*/
+        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
+            pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
+            pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosActivosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getEspecialidadesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getAreasbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getCCbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+            if ($(this).val() === '1') {
+                pnlNuevoTrabajo.find("#nBBVAMantenimiento").removeClass("hide");
+                pnlNuevoTrabajo.find("#nBBVAObra").removeClass("hide");
+                pnlNuevoTrabajo.find("#nBBVACajeros").removeClass("hide");
+                pnlDetalleNuevoTrabajo.find("#pnCajeros").removeClass("hide");
+                mdlReportesEditarTrabajo.find("#rNordes").addClass("hide");
+            } else if ($(this).val() === '16') {
+                mdlReportesEditarTrabajo.find("#rNordes").removeClass("hide");
+            } else {
+                pnlNuevoTrabajo.find("#nBBVAMantenimiento").addClass("hide");
+                pnlNuevoTrabajo.find("#nBBVAObra").addClass("hide");
+                pnlNuevoTrabajo.find("#nBBVACajeros").addClass("hide");
+                pnlDetalleNuevoTrabajo.find("#pnCajeros").addClass("hide");
+                mdlReportesEditarTrabajo.find("#rNordes").addClass("hide");
+            }
+        });
+        /*Funciones que traen los catalogos en base a un select*/
         pnlEditarTrabajo.find("#Cliente_ID").change(function () {
             Cliente = this.value;
+            pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
+            pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosActivosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getEspecialidadesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getAreasbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            getCCbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            if ($(this).val() === '1') {
+                pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("hide");
+                pnlEditarTrabajo.find("#eBBVAObra").removeClass("hide");
+                pnlEditarTrabajo.find("#eBBVACajeros").removeClass("hide");
+                pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("hide");
+                mdlReportesEditarTrabajo.find("#rNordes").addClass("hide");
+            } else if ($(this).val() === '16') {
+                mdlReportesEditarTrabajo.find("#rNordes").removeClass("hide");
+            } else {
+                pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("hide");
+                pnlEditarTrabajo.find("#eBBVAObra").addClass("hide");
+                pnlEditarTrabajo.find("#eBBVACajeros").addClass("hide");
+                pnlDetalleEditarTrabajo.find("#peCajeros").addClass("hide");
+                mdlReportesEditarTrabajo.find("#rNordes").addClass("hide");
+            }
         });
         /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
         mdlTrabajoEditarFotosPorConcepto.on('shown.bs.modal', function () {
@@ -1491,6 +2307,9 @@
         });
         mdlTrabajoEditarFotosProcesoPorConcepto.on('shown.bs.modal', function () {
             EditarFotosProcesoPorConcepto.val('');
+        });
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.on('shown.bs.modal', function () {
+            EditarFotosCajeroPorConcepto.val('');
         });
         /*Eventos DRAG and DROP de MULTIMEDIA*/
         mdlTrabajoEditarFotosPorConcepto.find('.file_drag_area').on('drop', function (e) {
@@ -1554,8 +2373,8 @@
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var frm = new FormData();
-            frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
-            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
+            frm.append('IdTrabajo', IdMovimiento);
+            frm.append('IdTrabajoDetalle', tempDetalleAbierto);
             var files_list = e.originalEvent.dataTransfer.files;
             for (var i = 0; i < files_list.length; i++)
             {
@@ -1569,7 +2388,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+                    onReloadFotosDespuesXConcepto(tempDetalleAbierto, IdMovimiento);
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
                     console.log(x, y, z);
@@ -1612,8 +2431,8 @@
             $(this).removeClass('file_drag_over');
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var frm = new FormData();
-            frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
-            frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
+            frm.append('IdTrabajo', IdMovimiento);
+            frm.append('IdTrabajoDetalle', tempDetalle);
             var files_list = e.originalEvent.dataTransfer.files;
             for (var i = 0; i < files_list.length; i++)
             {
@@ -1627,7 +2446,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
+                    onReloadCroquisXConcepto(tempDetalle, IdMovimiento);
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + files_list[i].name, 'danger');
                     console.log(x, y, z);
@@ -1688,6 +2507,34 @@
                     getDetalleAbiertoByID(mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+            frm.append('IdCajeroBBVADetalle', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdCajeroBBVADetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosCajeroXConcepto(mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdCajeroBBVADetalle").val(), mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
                     console.log(x, y, z);
                 }).always(function () {
                 });
@@ -1777,8 +2624,8 @@
                 }
                 nimg++;
                 var frm = new FormData();
-                frm.append('IdTrabajo', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
-                frm.append('IdTrabajoDetalle', mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('IdTrabajo', IdMovimiento);
+                frm.append('IdTrabajoDetalle', tempDetalle);
                 frm.append('Observaciones', file.name);
                 frm.append('CROQUIS', file);
                 $.ajax({
@@ -1789,7 +2636,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadCroquisXConcepto(mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").val());
+                    onReloadCroquisXConcepto(tempDetalle, IdMovimiento);
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1873,8 +2720,8 @@
                 }
                 nimg++;
                 var frm = new FormData();
-                frm.append('IdTrabajo', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
-                frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val());
+                frm.append('IdTrabajo', IdMovimiento);
+                frm.append('IdTrabajoDetalle', tempDetalleAbierto);
                 frm.append('Observaciones', file.name);
                 frm.append('FOTO', file);
                 $.ajax({
@@ -1885,7 +2732,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    onReloadFotosDespuesXConcepto(mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").val());
+                    onReloadFotosDespuesXConcepto(tempDetalleAbierto, IdMovimiento);
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
                     console.log(x, y, z);
@@ -1927,6 +2774,39 @@
                 });
             });
         });
+        EditarFotosCajeroPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(EditarFotosCajeroPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-md-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+                frm.append('IdCajeroBBVADetalle', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdCajeroBBVADetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    onReloadFotosCajeroXConcepto(mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdCajeroBBVADetalle").val(), mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            });
+        });
         /*Boton que abre el modal de generador en base a la funcion*/
         btnMoficarEditarGenerador.on('click', function () {
             onModificarGeneradorXID();
@@ -1946,6 +2826,7 @@
                 frm.append('Concepto_ID', mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val());
                 frm.append('IdTrabajoDetalle', mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val());
                 frm.append('Area', mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val());
+                frm.append('EstimacionNo', mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val());
                 frm.append('Eje', mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val());
                 frm.append('EntreEje1', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val());
                 frm.append('EntreEje2', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val());
@@ -1979,6 +2860,7 @@
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val("");
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val("");
                         mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val("");
+                        mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val("");
                     }).fail(function (x, y, z) {
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR', 'danger');
                     }).always(function () {
@@ -2012,16 +2894,26 @@
         btnNuevoConceptoAbierto.on("click", function () {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
         });
+        btnNuevoConceptoCajero.on("click", function () {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
+        });
         /*Agregar nuevo concepto en detalle nuevo*/
         btnNuevoConcepto.on("click", function () {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
         });
-        btnRefrescar.on("click", function () {
+
+        btnVerTodosEnFirme.on("click", function () {
+            verMovs = 'getRecordsFirme';
             getRecords();
-            getClientes();
-            getCodigosPPTA();
-            getCuadrillas();
-            getCC();
+        });
+
+        btnVerMisMovimientos.on("click", function () {
+            verMovs = 'getMyRecords';
+            getRecords();
+        });
+        btnVerTodos.on("click", function () {
+            verMovs = 'getRecords';
+            getRecords();
         });
         /*Evento clic del boton confirmar borrar*/
         btnConfirmarEliminar.on("click", function () {
@@ -2045,7 +2937,6 @@
                 menuTablero.addClass("animated slideInLeft").removeClass("hide");
                 pnlEditarTrabajo.addClass("hide");
                 pnlDetalleEditarTrabajo.addClass("hide");
-                pnlDetalleEditarTrabajoAbierto.addClass("hide");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -2053,27 +2944,11 @@
                 HoldOn.close();
             });
         });
-        /*Funcion que cambia el valor cuando el toggle button cambia*/
-        tbtnEditarAtendido.change(function () {
-            if (this.checked) {
-                pnlEditarTrabajo.find("#Atendido").val('Si');
-            } else {
-                pnlEditarTrabajo.find("#Atendido").val('No');
-            }
-        });
         tbtnEditarImpactoEnPlazo.change(function () {
             if (this.checked) {
                 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
             } else {
                 pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
-            }
-        });
-        /*Eventos del toggle para nuevo*/
-        tbtnNuevoAtendido.change(function () {
-            if (this.checked) {
-                pnlNuevoTrabajo.find("#Atendido").val('Si');
-            } else {
-                pnlNuevoTrabajo.find("#Atendido").val('No');
             }
         });
         tbtnNuevoImpactoEnPlazo.change(function () {
@@ -2091,130 +2966,132 @@
             }
         });
         btnModificar.on("click", function () {
-            $.validator.setDefaults({ignore: []});
-            $('#frmEditar').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Movimiento: 'required',
-                    FechaCreacion: 'required',
-                    Cliente_ID: 'required',
-                    Sucursal_ID: 'required',
-                    Preciario_ID: 'required',
-                    Situacion: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            if ($('#frmEditar').valid()) {
-                var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
-                /*  Para los checkbox*/
-                if (tBtnEditarConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
-                } else {
-                    frm.append('Estatus', 'Borrador');
-                }
-                $.ajax({
-                    url: master_url + 'onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
-                    if (tBtnEditarConcluir.is(':checked')) {
-                        btnModificar.addClass('hide');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                        btnConfirmarEliminar.attr("disabled", true);
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
-                        pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                        pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
-                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    } else {
-                        btnConfirmarEliminar.attr("disabled", false);
-                        $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
-                        pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                        pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                        pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
-                        pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
+            if (!$("input[name='EstatusTrabajo']:checked").val()) {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE SELECCIONAR UN ESTATUS', 'danger');
+            } else {
+                $.validator.setDefaults({ignore: []});
+                $('#frmEditar').validate({
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    rules: {
+                        Movimiento: 'required',
+                        FechaCreacion: 'required',
+                        Cliente_ID: 'required',
+                        Sucursal_ID: 'required',
+                        Preciario_ID: 'required'
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest('.form-group').removeClass('has-error');
                     }
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
                 });
+                $('select').on('change', function () {
+                    $(this).valid();
+                });
+                if ($('#frmEditar').valid()) {
+                    var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
+                    /*  Para los checkbox*/
+                    if (tBtnEditarConcluir.is(':checked')) {
+                        frm.append('Estatus', 'Concluido');
+                    } else {
+                        frm.append('Estatus', 'Borrador');
+                    }
+                    $.ajax({
+                        url: master_url + 'onModificar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
+                        if (tBtnEditarConcluir.is(':checked')) {
+                            btnModificar.addClass('hide');
+                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                            btnConfirmarEliminar.attr("disabled", true);
+                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                            pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                        } else {
+                            btnConfirmarEliminar.attr("disabled", false);
+                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                            pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                            pnlDetalleEditarTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                            pnlDetalleEditarTrabajo.find("#ConceptosCajero").removeClass("disabledDetalle");
+                        }
+                        getRecords();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
             }
         });
         btnGuardar.on("click", function () {
-            $.validator.setDefaults({ignore: []});
-            $('#frmNuevo').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Movimiento: 'required',
-                    FechaCreacion: 'required',
-                    Cliente_ID: 'required',
-                    Sucursal_ID: 'required',
-                    Preciario_ID: 'required',
-                    Situacion: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
-                var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
-                if (tBtnConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
-                } else {
-                    frm.append('Estatus', 'Borrador');
-                }
-                frm.append('Importe', ImporteTotalGlobal);
-                $.ajax({
-                    url: master_url + 'onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
-                    despuesDeGuardar(data); /*Funcion que regarga el panel de editar con el nuevo registro*/
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
+            if ($("input:radio[name='NuevoEstatusTrabajo']").is(":checked")) {
+                $.validator.setDefaults({ignore: []});
+                $('#frmNuevo').validate({
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    rules: {
+                        Movimiento: 'required',
+                        FechaCreacion: 'required',
+                        Cliente_ID: 'required',
+                        Sucursal_ID: 'required',
+                        Preciario_ID: 'required'
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    }
                 });
+                $('select').on('change', function () {
+                    $(this).valid();
+                });
+                if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
+                    var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
+                    if (tBtnConcluir.is(':checked')) {
+                        frm.append('Estatus', 'Concluido');
+                    } else {
+                        frm.append('Estatus', 'Borrador');
+                    }
+                    frm.append('Importe', ImporteTotalGlobal);
+                    $.ajax({
+                        url: master_url + 'onAgregar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
+                        getRecords();
+                        despuesDeGuardar(data); /*Funcion que regarga el panel de editar con el nuevo registro*/
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE SELECCIONAR UN ESTATUS', 'danger');
             }
         });
         btnCancelar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevoTrabajo.addClass("hide");
             pnlDetalleNuevoTrabajo.addClass("hide");
-            pnlDetalleNuevoTrabajoAbierto.addClass("hide");
-            btnRefrescar.trigger('click');
         });
         btnCancelarModificar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarTrabajo.addClass("hide");
             pnlDetalleEditarTrabajo.addClass("hide");
-            pnlDetalleEditarTrabajoAbierto.addClass("hide");
-            getRecords();
         });
         btnNuevo.on("click", function () {
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
@@ -2225,29 +3102,22 @@
             pnlNuevoTrabajo.find("#Datos4").removeClass("active in");
             menuTablero.addClass("hide");
             pnlNuevoTrabajo.removeClass("hide");
-            pnlNuevoTrabajo.find("input").val("");
+            pnlDetalleNuevoTrabajo.removeClass("hide");
+            pnlDetalleNuevoTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlDetalleNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlDetalleNuevoTrabajo.find("#Presupuesto").addClass("active in");
+            pnlDetalleNuevoTrabajo.find("#Levantamiento").removeClass("active in");
+            pnlDetalleNuevoTrabajo.find("#Cajeros").removeClass("active in");
+            pnlNuevoTrabajo.find("input").not('[type=radio]').val('');
+            $("input:radio[name='NuevoEstatusTrabajo']").each(function (i) {
+                this.checked = false;
+            });
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
             pnlNuevoTrabajo.find("select").select2("val", "");
             pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlNuevoTrabajo.find("#Atendido").val('No');
             pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
- 
-        });
-        /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
-            pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
-            pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
-            getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getPreciariosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-        });
-        /*Funciones que traen los catalogos en base a un select*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
-            pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
-            pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
-            getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getPreciariosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
         });
         pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
@@ -2264,9 +3134,9 @@
                     reader.onload = function (e) {
                         console.log(Archivo[0].files[0]);
                         var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600px">\n\
-                                    <div class="caption">\n\
-                                    <p>' + Archivo[0].files[0].name + '</p>\n\
-                                </div></div>';
+            <div class="caption">\n\
+            <p>' + Archivo[0].files[0].name + '</p>\n\
+            </div></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
@@ -2289,10 +3159,6 @@
         });
         btnModificarArchivo.on("click", function () {
             ModificarArchivo.change(function () {
-
-
-
-
                 var frm = new FormData();
                 frm.append('Adjunto', ModificarArchivo[0].files[0]);
                 frm.append('ID', IdMovimiento);
@@ -2305,15 +3171,14 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-
                     var imageType = /image.*/;
                     if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match(imageType)) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600px" >\n\
-                                    <div class="caption">\n\
-                                    <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
-                                </div></div>';
+                <div class="caption">\n\
+                <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
+                </div></div>';
                             ModificarVistaPrevia.html(preview);
                         };
                         reader.readAsDataURL(ModificarArchivo[0].files[0]);
@@ -2329,26 +3194,11 @@
                             ModificarVistaPrevia.html('EL ARCHIVO SE SUBIRÁ, PERO NO ES POSIBLE RECONOCER SI ES UN PDF O UNA IMAGEN');
                         }
                     }
-
-
-
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
-
-
-
-
-
-
-
-
-
-
-
             });
             ModificarArchivo.trigger('click');
         });
@@ -2356,227 +3206,376 @@
         getCodigosPPTA();
         getRecords();
         getCuadrillas();
-        getCC();
     });
-    /*----------------------------METODOS DEL CONTROLADOR PARA TRAER DATOS----------------*/
     IdMovimiento = 0;
     function getRecords() {
+
         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
         $.ajax({
-            url: master_url + 'getRecords',
+            url: master_url + verMovs,
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            $("#tblRegistros").html(getTable('tblTrabajos', data));
-            $('#tblTrabajos tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
-            });
-            var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
+            if (data.length > 0) {
+
+                $("#tblRegistros").html(getTable('tblTrabajos', data));
+                var thead = $('#tblTrabajos').find('thead th');
+                var tfoot = $('#tblTrabajos').find('tfoot th');
+                thead.eq(2).addClass("hide");
+                tfoot.eq(2).addClass("hide");
+                thead.eq(11).addClass("hide");
+                tfoot.eq(11).addClass("hide");
+                $.each($('#tblTrabajos').find('tbody tr'), function (k, v) {
+                    var td = $(v).find("td");
+                    td.eq(3).addClass("hide");
+                    td.eq(11).addClass("hide");
                 });
-            });
-            $('#tblTrabajos tbody').on('click', 'tr', function () {
-                $("#tblTrabajos").find("tr").removeClass("success");
-                $("#tblTrabajos").find("tr").removeClass("warning");
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                IdMovimiento = parseInt(dtm[0]);
-                pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
-                $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-                pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
-                pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
-                pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
-                pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-                if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
-                    HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-                    $.ajax({
-                        url: master_url + 'getTrabajoByID',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: IdMovimiento
+
+
+                $('#tblTrabajos tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                });
+
+
+                var tblSelected = $('#tblTrabajos').DataTable(tableOptionsTrabajos);
+
+                tblSelected.columns().every(function () {
+                    var that = this;
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
                         }
-                    }).done(function (data, x, jq) {
-                        pnlEditarTrabajo.find("input").val("");
-                        var trabajo = data[0];
+                    });
+                });
+
+
+                $('#tblTrabajos tbody').on('click', 'tr', function () {
+                    $("#tblTrabajos").find("tr").removeClass("success");
+                    $("#tblTrabajos").find("tr").removeClass("warning");
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    IdMovimiento = parseInt(dtm[0]);
+                    pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
+                    $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+                    pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
+                    pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
+                    pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
+                    pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
+                    pnlEditarTrabajo.find("#EditarDatos5").removeClass("active in");
+                    pnlEditarTrabajo.find("#EditarDatos6").removeClass("active in");
+                    pnlDetalleEditarTrabajo.find(".nav-tabs li").removeClass("active");
+                    $(pnlDetalleEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
+                    pnlDetalleEditarTrabajo.find("#PresupuestoEditar").addClass("active in");
+                    pnlDetalleEditarTrabajo.find("#LevantamientoEditar").removeClass("active in");
+                    pnlDetalleEditarTrabajo.find("#CajerosEditar").removeClass("active in");
+                    if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
+                        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                         $.ajax({
-                            url: master_url + 'getSucursalesByCliente',
+                            url: master_url + 'getTrabajoByID',
                             type: "POST",
                             dataType: "JSON",
                             data: {
-                                ID: trabajo.Cliente_ID
+                                ID: IdMovimiento
                             }
                         }).done(function (data, x, jq) {
-                            var options = '<option></option>';
-                            $.each(data, function (k, v) {
-                                options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
-                            });
-                            pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-                            pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
-                        }).fail(function (x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function () {
-                            HoldOn.close();
-                        });
-                        $.ajax({
-                            url: master_url + 'getPreciariosByCliente',
-                            type: "POST",
-                            dataType: "JSON",
-                            data: {
-                                Cliente_ID: trabajo.Cliente_ID
+                            var trabajo = data[0];
+                            //pnlEditarTrabajo.find("input").val("");
+                            pnlEditarTrabajo.find("input").not('[type=radio]').val('');
+                            pnlEditarTrabajo.find("select").val(null).trigger("change");
+                            pnlEditarTrabajo.find("select").select2("val", "");
+                            RadionButtonSelectedValueSet('EstatusTrabajo', trabajo.EstatusTrabajo);
+                            if (trabajo.Cliente_ID === '1') {
+                                pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("hide");
+                                pnlEditarTrabajo.find("#eBBVAObra").removeClass("hide");
+                                pnlEditarTrabajo.find("#eBBVACajeros").removeClass("hide");
+                                pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("hide");
+                            } else if (trabajo.Cliente_ID === '16') {
+                                mdlReportesEditarTrabajo.find("#rNordes").removeClass('hide');
+                            } else {
+                                pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("hide");
+                                pnlEditarTrabajo.find("#eBBVAObra").addClass("hide");
+                                pnlDetalleEditarTrabajo.find("#peCajeros").addClass("hide");
                             }
-                        }).done(function (data, x, jq) {
-                            var options = '<option></option>';
-                            $.each(data, function (k, v) {
-                                options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
+                            $.ajax({
+                                url: master_url + 'getSucursalesByCliente',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: trabajo.Cliente_ID
+                                }
+                            }).done(function (data, x, jq) {
+                                var options = '<option></option>';
+                                $.each(data, function (k, v) {
+                                    options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
+                                });
+                                pnlEditarTrabajo.find("#Sucursal_ID").html(options);
+                                pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                //HoldOn.close();
                             });
-                            pnlEditarTrabajo.find("#Preciario_ID").html(options);
-                            pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
-                        }).fail(function (x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function () {
-                            HoldOn.close();
-                        });
-                        getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
-                        Cliente = trabajo.Cliente_ID;
-                        if (trabajo.Movimiento === 'LEVANTAMIENTO') {
-                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
-                            pnlEditarTrabajo.removeClass("hide");
-                            pnlDetalleEditarTrabajoAbierto.removeClass("hide");
-                            $("#reportesLevantamiento").removeClass('hide');
-                            $("#reportesPresupuesto").addClass('hide');
-                            $('#ControlProcesoEditar').removeClass('hide');
-                            getDetalleAbiertoByID(trabajo.ID);
-                        } else if (trabajo.Movimiento === 'PRESUPUESTO') {
-                            pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+                            $.ajax({
+                                url: master_url + 'getPreciariosByCliente',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    Cliente_ID: trabajo.Cliente_ID
+                                }
+                            }).done(function (data, x, jq) {
+                                var options = '<option></option>';
+                                $.each(data, function (k, v) {
+                                    options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
+                                });
+                                pnlEditarTrabajo.find("#Preciario_ID").html(options);
+                                pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                //HoldOn.close();
+                            });
+                            $.ajax({
+                                url: master_url + 'getEspecialidadesByCliente',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: trabajo.Cliente_ID
+                                }
+                            }).done(function (data, x, jq) {
+                                var options = '<option></option>';
+                                $.each(data, function (k, v) {
+                                    options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                                });
+                                pnlEditarTrabajo.find("#Especialidad_ID").html(options);
+                                pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                //HoldOn.close();
+                            });
+                            $.ajax({
+                                url: master_url + 'getAreasByCliente',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: trabajo.Cliente_ID
+                                }
+                            }).done(function (data, x, jq) {
+                                var options = '<option></option>';
+                                $.each(data, function (k, v) {
+                                    options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                                });
+                                pnlEditarTrabajo.find("#Area_ID").html(options);
+                                pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                //HoldOn.close();
+                            });
+                            $.ajax({
+                                url: master_url + 'getCCByCliente',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: trabajo.Cliente_ID
+                                }
+                            }).done(function (data, x, jq) {
+                                var options = '<option></option>';
+                                $.each(data, function (k, v) {
+                                    options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+                                });
+                                pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
+                                pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                //HoldOn.close();
+                            });
+                            getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
+                            Cliente = trabajo.Cliente_ID;
                             pnlEditarTrabajo.removeClass("hide");
                             pnlDetalleEditarTrabajo.removeClass("hide");
-                            $("#reportesLevantamiento").addClass('hide');
-                            $("#reportesPresupuesto").removeClass('hide');
                             getTrabajoDetalleByID(trabajo.ID);
-                            $('#ControlProcesoEditar').addClass('hide');
-                        } else if (trabajo.Movimiento === 'SOLICITUD') {
-                            pnlEditarTrabajo.find("#Movimiento").append('<option value="SOLICITUD">SOLICITUD</option>');
-                            pnlEditarTrabajo.removeClass("hide");
-                            pnlDetalleEditarTrabajo.addClass("hide");
-                            $("#reportesLevantamiento").addClass('hide');
-                            $("#reportesPresupuesto").addClass('hide');
-                        }
-                        pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
-                        pnlEditarTrabajo.find("#ID").val(trabajo.ID);
-                        pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
-                        pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-                        pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
-                        pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
-                        if (trabajo.Atendido === 'Si') {
-                            pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
-                            pnlEditarTrabajo.find("#Atendido").val('Si');
-                        }
-                        if (trabajo.Atendido === 'No') {
-                            pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
-                            pnlEditarTrabajo.find("#Atendido").val('No');
-                        }
-                        pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
-                        pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
-                        pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
-                        pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
-                        pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
-                        pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
-                        pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
-                        pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
-                        pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
-                        pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
-                        pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
-                        pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
-                        pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
-                        if (trabajo.ImpactoEnPlazo === 'Si') {
-                            pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
-                            pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
-                        }
-                        if (trabajo.ImpactoEnPlazo === 'No') {
-                            pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
-                            pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
-                        }
-                        pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
-                        pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
-                        pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
-                        pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
-                        pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
-                        pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
-                        pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
-                        pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-                        pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
-                        pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
-                        pnlEditarTrabajo.find("#ControlTiempoProceso").select2("val", trabajo.ControlProceso);
-                        if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
-                            var ext = getExt(trabajo.Adjunto);
-                            if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px" />');
+                            getDetalleAbiertoByID(trabajo.ID);
+                            getDetalleCajerosByID(trabajo.ID);
+                            pnlEditarTrabajo.find("#ID").val(trabajo.ID);
+                            pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                            pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
+                            pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
+                            pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
+                            pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
+                            pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
+                            pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
+                            pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                            pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
+                            pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
+                            pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                            pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                            pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                            pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                            pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                            pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                            pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
+                            pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                            if (trabajo.ImpactoEnPlazo === 'Si') {
+                                pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
+                                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
                             }
-                            if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                            if (trabajo.ImpactoEnPlazo === 'No') {
+                                pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
+                                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
                             }
-                            if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                            pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                            pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
+                            pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
+                            pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                            pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                            pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                            pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                            pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                            pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
+                            pnlEditarTrabajo.find("#ControlTiempoProceso").select2("val", trabajo.ControlProceso);
+                            pnlEditarTrabajo.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
+                            pnlEditarTrabajo.find("#TextoCausa").val(trabajo.TextoCausa);
+                            pnlEditarTrabajo.find("#Cal1").select2("val", trabajo.Cal1);
+                            pnlEditarTrabajo.find("#Cal2").select2("val", trabajo.Cal2);
+                            pnlEditarTrabajo.find("#Cal3").select2("val", trabajo.Cal3);
+                            pnlEditarTrabajo.find("#Cal4").select2("val", trabajo.Cal4);
+                            pnlEditarTrabajo.find("#Cal5").select2("val", trabajo.Cal5);
+                            /*Cajeros*/
+                            pnlEditarTrabajo.find("#FechaVisita").val(trabajo.FechaVisita);
+                            pnlEditarTrabajo.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
+                            pnlEditarTrabajo.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
+                            pnlEditarTrabajo.find("#RestriccionAcceso").select2("val", trabajo.RestriccionAcceso);
+                            pnlEditarTrabajo.find("#AireAcondicionado").select2("val", trabajo.AireAcondicionado);
+                            pnlEditarTrabajo.find("#Carcasa").select2("val", trabajo.Carcasa);
+                            pnlEditarTrabajo.find("#UPS").select2("val", trabajo.UPS);
+                            pnlEditarTrabajo.find("#SenalizacionInterior").select2("val", trabajo.SenalizacionInterior);
+                            pnlEditarTrabajo.find("#SenalizacionExterior").select2("val", trabajo.SenalizacionExterior);
+                            pnlEditarTrabajo.find("#CanalizacionDatos").select2("val", trabajo.CanalizacionDatos);
+                            pnlEditarTrabajo.find("#CanalizacionSeguridad").select2("val", trabajo.CanalizacionSeguridad);
+                            pnlEditarTrabajo.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
+                            pnlEditarTrabajo.find("#TipoPiso").val(trabajo.TipoPiso);
+                            if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                                var ext = getExt(trabajo.Adjunto);
+                                if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                                    pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
+                                }
+                                if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                                    pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                                }
+                                if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                                    pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                                }
+                            } else {
+                                pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                             }
-                        } else {
-                            pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
-                        }
-                        menuTablero.addClass("hide");
-                        if (trabajo.Estatus === 'Concluido') {
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', true);
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                            pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
-                        } else if (trabajo.Estatus === 'Cancelado') {
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
-                            tBtnEditarConcluir.addClass('hide');
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                            pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
-                        } else {
-                            $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', false);
-                            btnModificar.removeClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                            btnConfirmarEliminar.attr("disabled", false);
-                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                            pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                            pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
-                            pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
-                        }
-                        getImporteTotalDelTrabajoByID(trabajo.ID);
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-                } else {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-                }
-            });
+                            menuTablero.addClass("hide");
+
+                            console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
+
+                            if (trabajo.Estatus === 'Concluido' && trabajo.EstatusTrabajo !== 'Pagado' && trabajo.Estatus !== 'Entregado') {
+                                tBtnEditarConcluir.prop('checked', true);
+                                btnModificar.addClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                btnConfirmarEliminar.attr("disabled", true);
+                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+
+
+
+
+                            } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
+                                tBtnEditarConcluir.prop('checked', true);
+                                btnModificar.addClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                btnConfirmarEliminar.attr("disabled", true);
+                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+
+
+
+
+                            } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
+
+
+                                if (TipoAcceso === 'SUPER ADMINISTRADOR') {
+                                    tBtnEditarConcluir.prop('checked', true);
+                                    btnModificar.addClass('hide');
+                                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                    btnConfirmarEliminar.attr("disabled", true);
+                                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                    $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+
+                                } else {
+                                    tBtnEditarConcluir.prop('disabled', true);
+                                    tBtnEditarConcluir.prop('checked', true);
+                                    btnModificar.addClass('hide');
+                                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                    btnConfirmarEliminar.attr("disabled", true);
+                                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                    pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                    $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+
+                                }
+
+
+
+                            } else if (trabajo.Estatus === 'Cancelado') {
+                                tBtnEditarConcluir.addClass('hide');
+                                btnModificar.addClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                btnConfirmarEliminar.attr("disabled", true);
+                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                            } else {
+                                tBtnEditarConcluir.prop('checked', false);
+                                btnModificar.removeClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                                btnConfirmarEliminar.attr("disabled", false);
+                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                                pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                            }
+                            getImporteTotalDelTrabajoByID(trabajo.ID);
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            //HoldOn.close();
+                        });
+                    } else {
+                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+                    }
+                });
+
+            } else {
+                $("#tblRegistros").html('<br><hr><div class="col-md-12"><center><h3>NO EXISTEN REGISTROS</h3></center></div> ');
+
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -2587,19 +3586,23 @@
         e.preventDefault();
         $(this).tab('show');
     });
+    $('#tbDetalleNuevo a').on("click", function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDTrabajo) {
         IdMovimiento = IDTrabajo;
         pnlNuevoTrabajo.addClass("hide");
         pnlDetalleNuevoTrabajo.addClass("hide");
-        pnlDetalleNuevoTrabajoAbierto.addClass("hide");
         pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
         $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
         pnlEditarTrabajo.find("#EditarDatos").addClass("active in");
         pnlEditarTrabajo.find("#EditarDatos2").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos3").removeClass("active in");
         pnlEditarTrabajo.find("#EditarDatos4").removeClass("active in");
-        pnlEditarTrabajo.find("#Movimiento option[value='SOLICITUD']").remove();
+        pnlEditarTrabajo.find("#EditarDatos5").removeClass("active in");
+        pnlEditarTrabajo.find("#EditarDatos5").removeClass("active in");
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."
             });
@@ -2611,8 +3614,22 @@
                     ID: IdMovimiento
                 }
             }).done(function (data, x, jq) {
-                pnlEditarTrabajo.find("input").val("");
                 var trabajo = data[0];
+                //pnlEditarTrabajo.find("input").val("");
+                pnlEditarTrabajo.find("input").not('[type=radio]').val('');
+                pnlEditarTrabajo.find("select").val(null).trigger("change");
+                pnlEditarTrabajo.find("select").select2("val", "");
+                RadionButtonSelectedValueSet('EstatusTrabajo', trabajo.EstatusTrabajo);
+                if (trabajo.Cliente_ID === '1') {
+                    pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("hide");
+                    pnlEditarTrabajo.find("#eBBVAObra").removeClass("hide");
+                    pnlEditarTrabajo.find("#eBBVACajeros").removeClass("hide");
+                    pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("hide");
+                } else {
+                    pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("hide");
+                    pnlEditarTrabajo.find("#eBBVAObra").addClass("hide");
+                    pnlDetalleEditarTrabajo.find("#peCajeros").addClass("hide");
+                }
                 $.ajax({
                     url: master_url + 'getSucursalesByCliente',
                     type: "POST",
@@ -2651,22 +3668,71 @@
                 }).always(function () {
                     HoldOn.close();
                 });
+                $.ajax({
+                    url: master_url + 'getEspecialidadesByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    var options = '<option></option>';
+                    $.each(data, function (k, v) {
+                        options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                    });
+                    pnlEditarTrabajo.find("#Especialidad_ID").html(options);
+                    pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+                $.ajax({
+                    url: master_url + 'getAreasByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    var options = '<option></option>';
+                    $.each(data, function (k, v) {
+                        options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                    });
+                    pnlEditarTrabajo.find("#Area_ID").html(options);
+                    pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+                $.ajax({
+                    url: master_url + 'getCCByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    var options = '<option></option>';
+                    $.each(data, function (k, v) {
+                        options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+                    });
+                    pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
+                    pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
                 getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
                 Cliente = trabajo.Cliente_ID;
-                pnlEditarTrabajo.find("#Movimiento").select2("val", trabajo.Movimiento);
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                 pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                 pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-                pnlEditarTrabajo.find("#Clasificacion").select2("val", trabajo.Clasificacion);
+                pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
+                pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
                 pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
-                if (trabajo.Atendido === 'Si') {
-                    pnlEditarTrabajo.find("#EditarAtendido").prop('checked', true);
-                    pnlEditarTrabajo.find("#Atendido").val('Si');
-                }
-                if (trabajo.Atendido === 'No') {
-                    pnlEditarTrabajo.find("#EditarAtendido").prop('checked', false);
-                    pnlEditarTrabajo.find("#Atendido").val('No');
-                }
                 pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
                 pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
                 pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
@@ -2696,36 +3762,28 @@
                 pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
                 pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
                 pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-                if (trabajo.Estatus === 'Concluido') {
-                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(trabajo.Estatus.toUpperCase());
-                    tBtnEditarConcluir.prop('checked', true);
-                    btnModificar.addClass('hide');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
-                } else if (trabajo.Estatus === 'Cancelado') {
-                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(trabajo.Estatus.toUpperCase());
-                    tBtnEditarConcluir.addClass('hide');
-                    btnModificar.addClass('hide');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").addClass("disabledDetalle");
-                } else {
-                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(trabajo.Estatus.toUpperCase());
-                    tBtnEditarConcluir.prop('checked', false);
-                    btnModificar.removeClass('hide');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                    pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                    pnlDetalleEditarTrabajoAbierto.find('input, textarea, button, select').attr('disabled', false);
-                    pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").removeClass("disabledDetalle");
-                }
-                pnlEditarTrabajo.find("#Situacion").select2("val", trabajo.Situacion);
                 pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
+                pnlEditarTrabajo.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
+                pnlEditarTrabajo.find("#TextoCausa").val(trabajo.TextoCausa);
+                pnlEditarTrabajo.find("#Cal1").select2("val", trabajo.Cal1);
+                pnlEditarTrabajo.find("#Cal2").select2("val", trabajo.Cal2);
+                pnlEditarTrabajo.find("#Cal3").select2("val", trabajo.Cal3);
+                pnlEditarTrabajo.find("#Cal4").select2("val", trabajo.Cal4);
+                pnlEditarTrabajo.find("#Cal5").select2("val", trabajo.Cal5);
+                /*Cajeros*/
+                pnlEditarTrabajo.find("#FechaVisita").val(trabajo.FechaVisita);
+                pnlEditarTrabajo.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
+                pnlEditarTrabajo.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
+                pnlEditarTrabajo.find("#RestriccionAcceso").select2("val", trabajo.RestriccionAcceso);
+                pnlEditarTrabajo.find("#AireAcondicionado").select2("val", trabajo.AireAcondicionado);
+                pnlEditarTrabajo.find("#Carcasa").select2("val", trabajo.Carcasa);
+                pnlEditarTrabajo.find("#UPS").select2("val", trabajo.UPS);
+                pnlEditarTrabajo.find("#SenalizacionInterior").select2("val", trabajo.SenalizacionInterior);
+                pnlEditarTrabajo.find("#SenalizacionExterior").select2("val", trabajo.SenalizacionExterior);
+                pnlEditarTrabajo.find("#CanalizacionDatos").select2("val", trabajo.CanalizacionDatos);
+                pnlEditarTrabajo.find("#CanalizacionSeguridad").select2("val", trabajo.CanalizacionSeguridad);
+                pnlEditarTrabajo.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
+                pnlEditarTrabajo.find("#TipoPiso").val(trabajo.TipoPiso);
                 if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                     var ext = getExt(trabajo.Adjunto);
                     console.log(ext);
@@ -2741,22 +3799,13 @@
                 } else {
                     pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                 }
-                menuTablero.addClass("hide");
-                if (trabajo.Movimiento === 'LEVANTAMIENTO') {
-                    pnlEditarTrabajo.removeClass("hide");
-                    pnlDetalleEditarTrabajoAbierto.removeClass("hide");
-                    $("#reportesLevantamiento").removeClass('hide');
-                    $("#reportesPresupuesto").addClass('hide');
-                    $('#ControlProcesoEditar').removeClass('hide');
-                    getDetalleAbiertoByID(trabajo.ID);
-                } else if (trabajo.Movimiento === 'PRESUPUESTO') {
-                    pnlEditarTrabajo.removeClass("hide");
-                    pnlDetalleEditarTrabajo.removeClass("hide");
-                    $("#reportesLevantamiento").addClass('hide');
-                    $("#reportesPresupuesto").removeclass('hide');
-                    $('#ControlProcesoEditar').addClass('hide');
-                    getTrabajoDetalleByID(trabajo.ID);
-                }
+                tBtnEditarConcluir.prop('checked', false);
+                btnModificar.removeClass('hide');
+                pnlEditarTrabajo.removeClass("hide");
+                pnlDetalleEditarTrabajo.removeClass("hide");
+                getTrabajoDetalleByID(trabajo.ID);
+                getDetalleAbiertoByID(trabajo.ID);
+                getDetalleCajerosByID(trabajo.ID);
                 /*Setea el importe total*/
                 pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$' + parseFloat(trabajo.Importe) + '</span>');
             }).fail(function (x, y, z) {
@@ -2769,27 +3818,6 @@
         }
     }
     /*Traer catálogos para el encabezado*/
-    function getCC() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'getCC',
-            type: "POST", dataType: "JSON"
-        }).done(function (data, x, jq) {
-            var options = '<option></option>';
-            $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
-            });
-            pnlNuevoTrabajo.find("#CentroCostos_ID").html(options);
-            pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
     function getClientes() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
@@ -2830,10 +3858,10 @@
             HoldOn.close();
         });
     }
-    function getPreciariosbyCliente(Cliente_ID) {
+    function getPreciariosActivosbyCliente(Cliente_ID) {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
-            url: master_url + 'getPreciariosByCliente',
+            url: master_url + 'getPreciariosActivosbyCliente',
             type: "POST",
             dataType: "JSON",
             data: {
@@ -2852,34 +3880,66 @@
             HoldOn.close();
         });
     }
-    function getSucursalByID(IDX) {
+    function getEspecialidadesbyCliente(IDX) {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
-            url: master_url + 'getSucursalByID',
+            url: master_url + 'getEspecialidadesbyCliente',
             type: "POST",
             dataType: "JSON",
             data: {
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            pnlEditarTrabajo.find("#Sucursal_ID").select2("val", data[0].ID);
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+            });
+            pnlNuevoTrabajo.find("#Especialidad_ID").html(options);
+            pnlEditarTrabajo.find("#Especialidad_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
-    function getPreciarioByID(IDX) {
+    function getAreasbyCliente(IDX) {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
-            url: master_url + 'getPreciarioByID',
+            url: master_url + 'getAreasbyCliente',
             type: "POST",
             dataType: "JSON",
             data: {
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            pnlEditarTrabajo.find("#Preciario_ID").select2("val", data[0].ID);
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+            });
+            pnlNuevoTrabajo.find("#Area_ID").html(options);
+            pnlEditarTrabajo.find("#Area_ID").html(options);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function getCCbyCliente(IDX) {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'getCCByCliente',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            var options = '<option></option>';
+            $.each(data, function (k, v) {
+                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+            });
+            pnlNuevoTrabajo.find("#CentroCostos_ID").html(options);
+            pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -2922,7 +3982,7 @@
         });
     }
     function getCodigoPPTAbyID(CodigoID) {
-        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        //HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getCodigoPPTAbyID',
             type: "POST",
@@ -2939,7 +3999,7 @@
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
+            //HoldOn.close();
         });
     }
     function onRemovePreview(e) {
@@ -2983,40 +4043,7 @@
                     td.eq(0).addClass("hide");
                     td.eq(12).addClass("hide");
                 });
-                tableOptions2 =
-                        {
-                            language: {
-                                processing: "Proceso en curso...",
-                                search: "Buscar:",
-                                lengthMenu: "Mostrar _MENU_ Elementos",
-                                info: "Mostrando  _START_ de _END_ , de _TOTAL_ Elementos.",
-                                infoEmpty: "Mostrando 0 de 0 A 0 Elementos.",
-                                infoFiltered: "(Filtrando un total _MAX_ Elementos. )",
-                                infoPostFix: "",
-                                loadingRecords: "Procesando los datos...",
-                                zeroRecords: "No se encontro nada.",
-                                emptyTable: "No existen datos en la tabla.",
-                                paginate: {
-                                    first: "Primero",
-                                    previous: "Anterior",
-                                    next: "Siguiente",
-                                    last: "&Uacute;ltimo"
-                                },
-                                aria: {
-                                    sortAscending: ": Habilitado para ordenar la columna en orden ascendente",
-                                    sortDescending: ": Habilitado para ordenar la columna en orden descendente"
-                                }
-                            },
-                            "autoWidth": true,
-                            "colReorder": true,
-                            "displayLength": 20,
-                            "bLengthChange": false,
-                            "deferRender": true,
-                            "scrollCollapse": true,
-                            "aaSorting": [[0, 'desc']]
-                        };
-                var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptions2);
-
+                var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptionsDetalle);
                 pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
                     var dtm = tblSelected.row(this).data();
                     tempDetalle = parseInt(dtm[0]);
@@ -3090,6 +4117,24 @@
             HoldOn.close();
         });
     });
+    $('#btnEliminarConceptoCajero').on("click", function () {
+        HoldOn.open({theme: 'sk-bounce', message: 'ELIMINANDO...'});
+        $.ajax({
+            url: master_url + 'onEliminarConceptoXDetalleCajero',
+            type: "POST",
+            data: {
+                ID: IdEliminarConceptoCajero,
+                IDT: IdMovimiento
+            }
+        }).done(function (data, x, jq) {
+            $('#mdlConfirmarEliminarConceptoCajero').modal('hide');
+            $(evtEliminarConceptoCajero).parent().parent().remove();
+        }).fail(function (x, y, z) {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
+        }).always(function () {
+            HoldOn.close();
+        });
+    });
     IdEliminarConcepto = 0;
     evtEliminarConcepto = '';
     function onEliminarConceptoXDetalle(evt, IDX) {
@@ -3121,7 +4166,8 @@
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
                     '<th></th>' +
-                    '<th class="col-md-6">Area</th>' +
+                    '<th class="col-md-3">Area</th>' +
+                    '<th class="col-md-3">Estimación</th>' +
                     '<th class="hide">Eje</th>' +
                     '<th class="hide">Entre Eje 1</th>' +
                     '<th class="hide">Entre Eje 2</th>' +
@@ -3153,6 +4199,10 @@
                 /*AREA*/
                 tblGeneradoresDetalleXConcepto += "<td>";
                 tblGeneradoresDetalleXConcepto += v.Area;
+                tblGeneradoresDetalleXConcepto += "</td>";
+                /*ESTIMACION*/
+                tblGeneradoresDetalleXConcepto += "<td>";
+                tblGeneradoresDetalleXConcepto += v.EstimacionNo;
                 tblGeneradoresDetalleXConcepto += "</td>";
                 /*EJE*/
                 tblGeneradoresDetalleXConcepto += "<td class='hide'>";
@@ -3202,7 +4252,7 @@
             var nueva_cantidad = 0;
             mdlTrabajoEditarGeneradorPorConcepto.find("#tblGeneradoresDetalleXConcepto").find("tbody tr").each(function (k, v) {
                 var row = $(v).find("td");
-                nueva_cantidad += parseFloat(row.eq(12).text());
+                nueva_cantidad += parseFloat(row.eq(13).text());
             });
             var GeneradorImporteTotalEditar = mdlTrabajoEditarGeneradorPorConcepto.find("#GeneradorImporteTotal");
             GeneradorImporteTotalEditar.html('<strong class="spanTotalesDetalle">Total: </strong><span class="text-success spanTotalesDetalle">' + $.number(nueva_cantidad, 6, '.', ', ') + '</span> ');
@@ -3289,7 +4339,8 @@
                     '<th class="hide">IDG</th>' +
                     '<th class="hide">Concepto_ID</th>' +
                     '<th></th>' +
-                    '<th class="col-md-6">Area</th>' +
+                    '<th class="col-md-3">Area</th>' +
+                    '<th class="col-md-3">Estimación</th>' +
                     '<th class="hide">Eje</th>' +
                     '<th class="hide">Entre Eje 1</th>' +
                     '<th class="hide">Entre Eje 2</th>' +
@@ -3322,6 +4373,10 @@
                     /*AREA*/
                     tblGeneradoresDetalleXConcepto += "<td>";
                     tblGeneradoresDetalleXConcepto += v.Area;
+                    tblGeneradoresDetalleXConcepto += "</td>";
+                    /*ESTIMACION*/
+                    tblGeneradoresDetalleXConcepto += "<td>";
+                    tblGeneradoresDetalleXConcepto += v.EstimacionNo;
                     tblGeneradoresDetalleXConcepto += "</td>";
                     /*EJE*/
                     tblGeneradoresDetalleXConcepto += "<td class='hide'>";
@@ -3420,14 +4475,15 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val(row.eq(1).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(row.eq(2).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val(row.eq(4).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val(row.eq(5).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val(row.eq(6).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val(row.eq(7).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val(row.eq(8).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val(row.eq(9).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val(row.eq(10).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val(row.eq(11).text());
-        mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(row.eq(15).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val(row.eq(5).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val(row.eq(6).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val(row.eq(7).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val(row.eq(8).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Largo").val(row.eq(9).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Ancho").val(row.eq(10).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Alto").val(row.eq(11).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Cantidad").val(row.eq(12).text());
+        mdlTrabajoEditarGeneradorPorConcepto.find("#Precio").val(row.eq(16).text());
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador").addClass("hide");
         mdlTrabajoEditarGeneradorPorConcepto.find("#pnlGenerador").find("div").removeClass("active in");
@@ -3446,6 +4502,7 @@
         var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
         frm.append('ID', mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val());
         frm.append('Area', mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val());
+        frm.append('EstimacionNo', mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val());
         frm.append('Eje', mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val());
         frm.append('EntreEje1', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val());
         frm.append('EntreEje2', mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val());
@@ -3502,6 +4559,7 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val("");
@@ -3521,6 +4579,7 @@
         mdlTrabajoEditarGeneradorPorConcepto.find("#EditarGeneradores").addClass("active in");
         mdlTrabajoEditarGeneradorPorConcepto.find("#IDG").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Area").val("");
+        mdlTrabajoEditarGeneradorPorConcepto.find("#EstimacionNo").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#Eje").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje1").val("");
         mdlTrabajoEditarGeneradorPorConcepto.find("#EntreEje2").val("");
@@ -3599,7 +4658,7 @@
                     var has_id = true;
                     if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
                         $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
-                            var row_status = $(this).find("td").eq(14).text();
+                            var row_status = $(this).find("td").eq(12).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
                                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
@@ -3607,9 +4666,6 @@
                             }
                         });
                     }
-
-
-
                     if (has_id) {
                         $.ajax({
                             url: master_url + 'getConceptoByIDSinFormato',
@@ -3621,12 +4677,6 @@
                         }).done(function (data, x, jq) {
                             if (data[0] !== undefined && data.length > 0) {
                                 var dtm = data[0];
-
-//                                if(dtm.Moneda==='USD'){
-//                                    alert('Dolars');
-//                                }
-
-
                                 var frm = new FormData();
                                 frm.append('Trabajo_ID', pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
                                 frm.append('PreciarioConcepto_ID', dtm.ID);
@@ -3634,6 +4684,8 @@
                                 frm.append('Unidad', dtm.Unidad);
                                 frm.append('Precio', dtm.Costo);
                                 frm.append('Moneda', dtm.Moneda);
+                                frm.append('Concepto', dtm.Descripcion);
+                                frm.append('Clave', dtm.Clave);
                                 $.ajax({
                                     url: master_url + 'onAgregarDetalleEditar',
                                     type: "POST",
@@ -3810,6 +4862,7 @@
         mdlTrabajoEditarFotosAntesPorConcepto.modal('show');
     }
     function getFotosDespuesXConceptoID(IDX, IDT) {
+        tempDetalleAbierto = IDX;
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
         mdlTrabajoEditarFotosDespuesPorConcepto.find("#Fotos").html("");
@@ -3892,13 +4945,24 @@
                     row += '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
                     $.each(data, function (k, d) {
                         if (tu === d.Tiempo) {
-                            row += '<div class="col-md-3">';
-                            row += '<div class="thumbnail">' +
-                                    '<div class="pull-left caption col-md-11" >' + d.Observaciones + '</div>' +
+
+                            row += '<div class="col-md-3">' +
+                                    '<div class="thumbnail">' +
+                                    '<div class="pull-left caption col-md-11 Customcaption" >' +
+                                    '<div class="form-group Customform-group">' +
+                                    '<label for="ObservacionesxFotoProceso" class="control-label customFormLabel">Observaciones</label>' +
+                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
+                                    '</div>' +
+                                    '</div>' +
                                     '<div class="pull-right" >' +
                                     '<button class="close closeFotos customButtonEliminarFoto"' +
-                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a></div></div>';
+                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button>' +
+                                    '</div>' +
+                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a>' +
+                                    '</div>' +
+                                    '</div>';
+
+
                         }
                     });
                     /*BREAK*/
@@ -3930,9 +4994,8 @@
         }
     }
     function getCroquisXConceptoID(IDX, IDT) {
-        mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
-        mdlTrabajoEditarCroquisPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
-        mdlTrabajoEditarCroquisPorConcepto.find("#Fotos").html("");
+        tempDetalle = IDX;
+        mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
         HoldOn.open({
             theme: 'sk-bounce',
             message: 'CARGANDO CROQUIS...'
@@ -3942,7 +5005,7 @@
             type: "POST",
             dataType: "JSON",
             data: {
-                ID: IDX
+                ID: tempDetalle
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
@@ -3975,7 +5038,7 @@
     function getAnexosXConceptoID(IDX, IDT) {
         mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
-        mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
+        mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("Anexos").html("");
         HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO ANEXOS...'
         });
         $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
@@ -4028,7 +5091,7 @@
     function getAnexosDosXConceptoID(IDX, IDT) {
         mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").addClass("hide").val(IDT);
         mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").addClass("hide").val(IDX);
-        mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("div#Anexos").html("");
+        mdlTrabajoEditarAnexosDosPorConcepto.find("fieldset").find("Anexos").html("");
         HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO ANEXOS...'
         });
         $.ajax({url: master_url + 'getTrabajoAnexosDosDetalleByID',
@@ -4249,13 +5312,21 @@
                     row += '<div class="col-md-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
                     $.each(data, function (k, d) {
                         if (tu === d.Tiempo) {
-                            row += '<div class="col-md-3">';
-                            row += '<div class="thumbnail">' +
-                                    '<div class="pull-left caption col-md-11" >' + d.Observaciones + '</div>' +
+                            row += '<div class="col-md-3">' +
+                                    '<div class="thumbnail">' +
+                                    '<div class="pull-left caption col-md-11 Customcaption" >' +
+                                    '<div class="form-group Customform-group">' +
+                                    '<label for="ObservacionesxFotoProceso" class="control-label customFormLabel">Observaciones</label>' +
+                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
+                                    '</div>' +
+                                    '</div>' +
                                     '<div class="pull-right" >' +
                                     '<button class="close closeFotos customButtonEliminarFoto"' +
-                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a></div></div>';
+                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button>' +
+                                    '</div>' +
+                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a>' +
+                                    '</div>' +
+                                    '</div>';
                         }
                     });
                     /*BREAK*/
@@ -4301,6 +5372,8 @@
                     mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
                     nimg++;
                 });
+            } else {
+                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
             }
             getTrabajoDetalleByID(IDT);
             HoldOn.close();
@@ -4501,11 +5574,154 @@
             HoldOn.close();
         });
     }
+    function getFotosCajeroXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").addClass("hide").val(IDT);
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdCajeroBBVADetalle").addClass("hide").val(IDX);
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
+        $.ajax({
+            url: master_url + 'getTrabajoFotosCajeroDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("<fieldset></fieldset>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">' +
+                            '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11 Customcaption" >' +
+                            '<div class="form-group Customform-group">' +
+                            '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoCajeroXID(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.modal('show');
+    }
+    function setFotosCajeroEditar(evt) {
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#fFotosCajero").trigger('click');
+    }
+    function onReloadFotosCajeroXConcepto(IDX, IDT) {
+        $.ajax({
+            url: master_url + 'getTrabajoFotosCajeroDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("<fieldset></fieldset>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-md-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-md-3">' +
+                            '<div class="thumbnail">' +
+                            '<div class="pull-left caption col-md-11 Customcaption" >' +
+                            '<div class="form-group Customform-group">' +
+                            '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoCajeroXID(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '</div>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").find("fieldset").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("");
+            }
+            getDetalleCajerosByID(IDT);
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+        });
+    }
+    function onEliminarFotoCajeroXID(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.ajax({
+            url: master_url + 'onEliminarFotoCajeroXID',
+            type: "POST",
+            data: {ID: IDX}
+        }).done(function (data, x, jq) {
+            onReloadFotosCajeroXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onModificarObservaciones(IDX, IDTD, IDT) {
+        var Observaciones = IDT.value;
+        //$('#ObservacionesxFoto').val('');
+        HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+        $.ajax({
+            url: master_url + 'ononModificarObservacionesFotoXConcepto',
+            type: "POST",
+            data: {ID: IDX, ObservacionesxFoto: Observaciones
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onModificarObservacionesProceso(IDX, IDTD, IDT) {
+        var Observaciones = IDT.value;
+        //$('#ObservacionesxFoto').val('');
+        HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+        $.ajax({
+            url: master_url + 'ononModificarObservacionesFotoProcesoXConcepto',
+            type: "POST",
+            data: {ID: IDX, ObservacionesxFoto: Observaciones
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     /*Funciones Detalle Abierto*/
     var tempDetalleAbierto = 0;
     function getDetalleAbiertoByID(IDX) {
-        var ImporteTotal = pnlDetalleEditarTrabajoAbierto.find("#ImporteTotal");
-        var totalAbierto = 0.0;
         $.ajax({
             url: master_url + 'getTrabajoDetalleAbiertoByID',
             type: "POST",
@@ -4513,20 +5729,19 @@
             data: {ID: IDX}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").html(getTable('tblRegistrosXDetalleAbierto', data));
-                var thead = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto thead th');
-                var tfoot = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tfoot th');
+                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").html(getTable('tblRegistrosXDetalleAbierto', data));
+                var thead = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleAbierto thead th');
+                var tfoot = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleAbierto tfoot th');
                 thead.eq(0).addClass("hide");
                 tfoot.eq(0).addClass("hide");
-                $.each(pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tbody tr'), function (k, v) {
+                $.each(pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleAbierto tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
                 });
-                ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(totalAbierto, 2, '.', ', ') + '</span>');
-                var tblSelected = pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto').DataTable(tableOptions);
-                pnlDetalleEditarTrabajoAbierto.find('#tblRegistrosXDetalleAbierto tbody').on('click', 'tr', function () {
-                    pnlDetalleEditarTrabajoAbierto.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("success");
-                    pnlDetalleEditarTrabajoAbierto.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("warning");
+                var tblSelected = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleAbierto').DataTable(tableOptionsDetalle);
+                pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleAbierto tbody').on('click', 'tr', function () {
+                    pnlDetalleEditarTrabajo.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("success");
+                    pnlDetalleEditarTrabajo.find("#tblRegistrosXDetalleAbierto").find("tr").removeClass("warning");
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -4539,7 +5754,7 @@
                     tempDetalleAbierto = parseInt(dtm[0]);
                 });
             } else {
-                pnlDetalleEditarTrabajoAbierto.find("#ConceptosAbierto").html("");
+                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").html("");
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4561,12 +5776,25 @@
                     dataType: "JSON",
                     data: {ID: IDX}
                 }).done(function (data, x, jq) {
+
+                    if (Cliente === '8') {
+                        $("#CamposMeorEditar").removeClass("hide");
+                    } else {
+                        $("#CamposMeorEditar").addClass("hide");
+                    }
+
+
                     $('#mdlEditarConceptoAbierto').find("input").val("");
                     var concepto = data[0];
                     $('#mdlEditarConceptoAbierto').find("#ID").val(concepto.ID);
                     $('#mdlEditarConceptoAbierto').find("#Trabajo_ID").val(concepto.Trabajo_ID);
                     $('#mdlEditarConceptoAbierto').find("#Clave").val(concepto.Clave);
                     $('#mdlEditarConceptoAbierto').find("#Descripcion").val(concepto.Descripcion);
+                    $('#mdlEditarConceptoAbierto').find("#Descripcion2").val(concepto.Descripcion2);
+                    $('#mdlEditarConceptoAbierto').find("#Descripcion3").val(concepto.Descripcion3);
+                    $('#mdlEditarConceptoAbierto').find("#SemanaDia").val(concepto.SemanaDia);
+                    $('#mdlEditarConceptoAbierto').find("#InicioFin").val(concepto.InicioFin);
+                    $('#mdlEditarConceptoAbierto').find("#InicioFinProximaSemana").val(concepto.InicioFinProximaSemana);
                     $('#mdlEditarConceptoAbierto').modal('show');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -4581,6 +5809,89 @@
         }).always(function () {
         });
     }
+    var tempDetalleCajero = 0;
+    function getDetalleCajerosByID(IDX) {
+        $.ajax({
+            url: master_url + 'getTrabajoDetalleCajeroByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {ID: IDX}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                pnlDetalleEditarTrabajo.find("#ConceptosCajero").html(getTable('tblRegistrosXDetalleCajeros', data));
+                var thead = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleCajeros thead th');
+                var tfoot = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleCajeros tfoot th');
+                thead.eq(0).addClass("hide");
+                tfoot.eq(0).addClass("hide");
+                $.each(pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleCajeros tbody tr'), function (k, v) {
+                    var td = $(v).find("td");
+                    td.eq(0).addClass("hide");
+                });
+                var tblSelected = pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleCajeros').DataTable(tableOptionsDetalle);
+                pnlDetalleEditarTrabajo.find('#tblRegistrosXDetalleCajeros tbody').on('click', 'tr', function () {
+                    pnlDetalleEditarTrabajo.find("#tblRegistrosXDetalleCajeros").find("tr").removeClass("success");
+                    pnlDetalleEditarTrabajo.find("#tblRegistrosXDetalleCajeros").find("tr").removeClass("warning");
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    tempDetalleCajero = parseInt(dtm[0]);
+                });
+            } else {
+                pnlDetalleEditarTrabajo.find("#ConceptosCajero").html("");
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onEditarConceptoXDetalleCajero(IDX) {
+        $.ajax({
+            url: master_url + 'getTrabajoDetalleCajeroByID',
+            type: "POST",
+            data: {ID: IDX}
+        }).done(function (data, x, jq) {
+            if (IDX !== 0 && IDX !== undefined && IDX > 0) {
+                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+                $.ajax({
+                    url: master_url + 'getDetalleCajeroByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {ID: IDX}
+                }).done(function (data, x, jq) {
+                    $('#mdlEditarConceptoCajero').find("input").val("");
+                    var concepto = data[0];
+                    $('#mdlEditarConceptoCajero').find("#ID").val(concepto.ID);
+                    $('#mdlEditarConceptoCajero').find("#Trabajo_ID").val(concepto.Trabajo_ID);
+                    $('#mdlEditarConceptoCajero').find("#Clave").val(concepto.Clave);
+                    $('#mdlEditarConceptoCajero').find("#Descripcion").val(concepto.Descripcion);
+                    $('#mdlEditarConceptoCajero').modal('show');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ENCONTRADO', 'danger');
+        }).always(function () {
+        });
+    }
+    IdEliminarConceptoCajero = 0;
+    evtEliminarConceptoCajero = '';
+    function onEliminarConceptoXDetalleCajero(evt, IDX) {
+        IdEliminarConceptoCajero = IDX;
+        evtEliminarConceptoCajero = evt;
+        $('#mdlConfirmarEliminarConceptoCajero').modal('show');
+    }
     function minmax(value, min, max) {
         if (parseInt(value) < min || isNaN(parseInt(value))) {
             return "";
@@ -4591,6 +5902,11 @@
             return value;
         }
     }
+    function printImg(url) {
+        var win = window.open('');
+        win.document.write('<img src="' + url + '" onload="window.print();window.close()" />');
+        win.focus();
+    }
     function onAgregarTipoCambio(IDX, Precio, Cantidad) {
         $('#mdlAgregarTipoCambio').find("input").val("");
         $('#mdlAgregarTipoCambio').modal('show');
@@ -4600,7 +5916,6 @@
         $("#TipoCambio").change(function () {
             TipoCambio = parseFloat($('#TipoCambio').val());
             nuevoImporte = (TipoCambio * Precio) * Cantidad;
-
         });
         $('#btnAgregarTipoCambio').click(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -4650,12 +5965,10 @@
         $("#TipoCambio").val(parseFloat(TipoCambioBD));
         $("#TipoCambio").mask("99?.99", {placeholder: "00.00"});
         var nuevoImporte = (TipoCambioBD * Precio) * Cantidad;
-        ;
         var TipoCambio = TipoCambioBD;
         $("#TipoCambio").change(function () {
             TipoCambio = parseFloat($('#TipoCambio').val());
             nuevoImporte = (TipoCambio * Precio) * Cantidad;
-
         });
         $('#btnAgregarTipoCambio').click(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -4668,7 +5981,77 @@
                     Importe: nuevoImporte
                 }
             }).done(function (data, x, jq) {
+                /*MODIFICAR EL IMPORTE DEL TRABAJO*/
+                $.ajax({
+                    url: master_url + 'onModificarImportePorTrabajo',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    if (data !== undefined && data.length > 0) {
+                        var dtm = data[0];
+                        if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                        } else {
+                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                        }
+                    }
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
                 $('#mdlAgregarTipoCambio').modal('hide');
+                getTrabajoDetalleByID(IdMovimiento);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
+    }
+    function getConceptoEditarXDetalle(IDX) {
+        var cantidad = 0;
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+        $.ajax({
+            url: master_url + 'getDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {ID: tempDetalle}
+        }).done(function (data, x, jq) {
+            $('#mdlEditarConcepto').modal('show');
+            $('#mdlEditarConcepto').find("input").val("");
+            var concepto = data[0];
+            cantidad = concepto.Cantidad;
+            $('#txtEditarClave').val(concepto.Clave);
+            $('#taEditarConcepto').val(concepto.Concepto);
+            $("#txtEditarClave").val(concepto.Clave);
+            $("#txtEditarUnidad").val(concepto.Unidad);
+            $("#txtEditarPrecio").val(concepto.Precio);
+            $("#txtEditarMoneda").select2("val", concepto.Moneda);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+        $('#btnEditarConcepto').on("click", function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'onModificarTrabajoDetalle',
+                type: "POST",
+                data: {
+                    ID: tempDetalle,
+                    Clave: $("#txtEditarClave").val(),
+                    Concepto: $("#taEditarConcepto").val(),
+                    Unidad: $("#txtEditarUnidad").val(),
+                    Precio: $("#txtEditarPrecio").val(),
+                    Moneda: $("#txtEditarMoneda").val(),
+                    Importe: $("#txtEditarPrecio").val() * cantidad
+                }
+            }).done(function (data, x, jq) {
+                $('#mdlEditarConcepto').modal('hide');
                 getTrabajoDetalleByID(IdMovimiento);
                 /*MODIFICAR EL IMPORTE DEL TRABAJO*/
                 $.ajax({
@@ -4698,6 +6081,251 @@
                 HoldOn.close();
             });
         });
+    }
+    function onReemplazarConcepto(IDX, Cantidad) {
+        var Preciario_ID = pnlEditarTrabajo.find("#Preciario_ID").val();
+        temp = 0;
+        if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+            getConceptosXPreciarioIDEditar(Preciario_ID);
+            $('#mdlTrabajoReemplazarConceptoEditar').modal('show');
+            $('#mdlTrabajoReemplazarConceptoEditar').find("input").val("");
+            HoldOn.open({
+                theme: "sk-bounce",
+                message: "CARGANDO DATOS..."
+            });
+            $.ajax({
+                url: master_url + 'getConceptosXPreciarioID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: Preciario_ID
+                }
+            }).done(function (data, x, jq) {
+                HoldOn.close();
+                $('#mdlTrabajoReemplazarConceptoEditar').find("#ConceptosReemplazarXPreciarioID").html(getTable('tblConceptosReemplazarXPreciarioID', data));
+                $('#mdlTrabajoReemplazarConceptoEditar').find('#tblConceptosReemplazarXPreciarioID tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                });
+                var tblSelected = $('#tblConceptosReemplazarXPreciarioID').DataTable(tableOptions);
+                tblSelected.columns().every(function () {
+                    var that = this;
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+                $('#mdlTrabajoReemplazarConceptoEditar').find('#tblConceptosReemplazarXPreciarioID tbody').on('click', 'tr', function () {
+                    $('#mdlTrabajoReemplazarConceptoEditar').find("#tblConceptosReemplazarXPreciarioID").find("tr").removeClass("success");
+                    $('#mdlTrabajoReemplazarConceptoEditar').find("#tblConceptosReemplazarXPreciarioID").find("tr").removeClass("warning");
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    temp = parseInt(dtm[0]);
+                    $.ajax({
+                        url: master_url + 'getConceptoByID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: temp
+                        }
+                    }).done(function (data, x, jq) {
+                        /**VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
+                        var has_id = true;
+                        if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
+                            $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
+                                var row_status = $(this).find("td").eq(12).text();
+                                if (parseInt(row_status) === parseInt(temp)) {
+                                    has_id = false;
+                                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE CONCEPTO YA HA SIDO AGREGADO', 'danger');
+                                    return false;
+                                }
+                            });
+                        }
+                        if (has_id) {
+                            $.ajax({
+                                url: master_url + 'getConceptoByIDSinFormato',
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {
+                                    ID: parseInt(dtm[0])
+                                }
+                            }).done(function (data, x, jq) {
+                                var NuevoImporte = 0;
+                                if (data[0] !== undefined && data.length > 0) {
+                                    var dtm = data[0];
+                                    var frm = new FormData();
+                                    NuevoImporte = Cantidad * dtm.Costo;
+                                    frm.append('ID', tempDetalle);
+                                    frm.append('PreciarioConcepto_ID', dtm.ID);
+                                    frm.append('Unidad', dtm.Unidad);
+                                    frm.append('Precio', dtm.Costo);
+                                    frm.append('Moneda', dtm.Moneda);
+                                    frm.append('Concepto', dtm.Descripcion);
+                                    frm.append('Clave', dtm.Clave);
+                                    frm.append('Importe', NuevoImporte);
+                                    $.ajax({
+                                        url: master_url + 'onReemplazarTrabajoDetalle',
+                                        type: "POST",
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        data: frm
+                                    }).done(function (data, x, jq) {
+                                        getTrabajoDetalleByID(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
+                                        $('#mdlTrabajoReemplazarConceptoEditar').modal('hide');
+                                        /*Actualizar Importe Total*/
+                                        $.ajax({
+                                            url: master_url + 'onModificarImportePorTrabajo',
+                                            type: "POST",
+                                            dataType: "JSON",
+                                            data: {
+                                                ID: IdMovimiento
+                                            }
+                                        }).done(function (data, x, jq) {
+                                            if (data !== undefined && data.length > 0) {
+                                                var dtm = data[0];
+                                                if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
+                                                    pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                                                } else {
+                                                    pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                                                }
+                                            }
+                                        }).fail(function (x, y, z) {
+                                            console.log(x, y, z);
+                                        }).always(function () {
+                                            HoldOn.close();
+                                        });
+                                    }).fail(function (x, y, z) {
+                                        console.log(x, y, z);
+                                    }).always(function () {
+                                        HoldOn.close();
+                                    });
+                                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO EL CONCEPTO', 'success');
+                                } else {
+                                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL CONCEPTO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
+                                }
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                            }).always(function () {
+                                HoldOn.close();
+                            });
+                        }
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                });
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+        }
+    }
+    function getConceptoCopiarXDetalle(IDX) {
+        var cantidad = 0;
+        var id_nuevoConcepto = 0;
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+        $.ajax({
+            url: master_url + 'getDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {ID: tempDetalle}
+        }).done(function (data, x, jq) {
+            if (data[0] !== undefined && data.length > 0) {
+                var dtm = data[0];
+                var frm = new FormData();
+                frm.append('Trabajo_ID', IdMovimiento);
+                frm.append('PreciarioConcepto_ID', dtm.PreciarioConcepto_ID);
+                frm.append('Renglon', pnlDetalleEditarTrabajo.find("table tr").length);
+                frm.append('Cantidad', dtm.Cantidad);
+                frm.append('Unidad', dtm.Unidad);
+                frm.append('Precio', dtm.Precio);
+                frm.append('Importe', dtm.Importe);
+                frm.append('IntExt', dtm.IntExt);
+                frm.append('Moneda', dtm.Moneda);
+                frm.append('TipoCambio', dtm.TipoCambio);
+                frm.append('Concepto', dtm.Concepto);
+                frm.append('Clave', dtm.Clave);
+                $.ajax({
+                    url: master_url + 'onCopiarDetalleEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    id_nuevoConcepto = data;
+                    $.ajax({
+                        url: master_url + 'getGeneradoresXDetalleID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {ID: tempDetalle}
+                    }).done(function (datax, x, jq) {
+                        $.each(datax, function (i, v) {
+                            var frmGen = new FormData();
+                            frmGen.append('Concepto_ID', v.Concepto_ID);
+                            frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
+                            frmGen.append('Area', v.Area);
+                            frmGen.append('EstimacionNo', v.EstimacionNo);
+                            frmGen.append('Eje', v.Eje);
+                            frmGen.append('EntreEje1', v.EntreEje1);
+                            frmGen.append('EntreEje2', v.EntreEje2);
+                            frmGen.append('Largo', v.Largo);
+                            frmGen.append('Ancho', v.Ancho);
+                            frmGen.append('Alto', v.Alto);
+                            frmGen.append('Cantidad', v.Cantidad);
+                            frmGen.append('Total', v.Total);
+                            $.ajax({
+                                url: master_url + 'onCopiarGenerador',
+                                type: "POST",
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                data: frmGen
+                            }).done(function (data, x, jq) {
+                                console.log(data);
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR', 'danger');
+                            }).always(function () {
+                                HoldOn.close();
+                            });
+                        });
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                    getTrabajoDetalleByID(IdMovimiento);
+                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA COPIADO EL CONCEPTO', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function RadionButtonSelectedValueSet(name, SelectdValue) {
+        $('input[name="' + name + '"][value="' + SelectdValue + '"]').prop('checked', true);
     }
     /***************************************REPORTES*****************************************/
     function onReporteFin49() {
@@ -4794,6 +6422,25 @@
             HoldOn.close();
         });
     }
+    function onReportePresupuestoIng() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReportePresupuestoIng',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO A&R, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     function onReporteGenerador() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
@@ -4838,7 +6485,7 @@
         $.ajax({
             url: master_url + 'onReporteFotografico',
             type: "POST",
-            data: {ID: IdMovimiento, Movimiento: mov}
+            data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
@@ -4871,9 +6518,28 @@
             HoldOn.close();
         });
     }
+    function onReporteExcelFicheroXMov() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteExcelFicheroXMov',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            //console.log(data);
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'FICHERO GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
     var Cliente = 0;
     function onReporteLevantamientoAntes() {
-        var mov = pnlEditarTrabajo.find("#Movimiento").val();
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoAntesPrinciple';
@@ -4883,10 +6549,10 @@
         $.ajax({
             url: master_url + reporte,
             type: "POST",
-            data: {ID: IdMovimiento, Movimiento: mov}
+            data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES PRINCIPLE, GENERADO', 'success');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS ANTES, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -4898,7 +6564,6 @@
         });
     }
     function onReporteLevantamientoProceso() {
-        var mov = pnlEditarTrabajo.find("#Movimiento").val();
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoProcesoPrinciple';
@@ -4908,10 +6573,10 @@
         $.ajax({
             url: master_url + reporte,
             type: "POST",
-            data: {ID: IdMovimiento, Movimiento: mov}
+            data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS EN PROCESO PRINCIPLE, GENERADO', 'success');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS EN PROCESO, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -4949,7 +6614,6 @@
     }
     function onReporteLevantamientoCompleto() {
         var reporte = '';
-        var mov = pnlEditarTrabajo.find("#Movimiento").val();
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoCompletoPrinciple';
         } else {
@@ -4959,7 +6623,7 @@
         $.ajax({
             url: master_url + reporte,
             type: "POST",
-            data: {ID: IdMovimiento, Movimiento: mov}
+            data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO COMPLETO, GENERADO', 'success');
@@ -4972,5 +6636,132 @@
         }).always(function () {
             HoldOn.close();
         });
+    }
+    /*Reporte cajero*/
+    function onReportePresentacionCajeros() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteCajero',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESENTACIÓN FOTOGRÁFICA, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    /*Reportes NORDES*/
+    function onReporteNordesActaRecepcion() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteNordesActaRecepcion',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteNordesHojaServicio() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteNordesHojaServicio',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteNordesReporteTableros() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onReporteNordesReporteTableros',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    function onReporteCaratulaBBVA() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: base_url + 'index.php/ctrlTrabajos/onReporteCaratulaBBVA',
+            type: "POST",
+            data: {ID: IdMovimiento}
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CARÁTULA BBVA, GENERADO', 'success');
+                ;
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function onReporteProceso(DetalleID, IDX) {
+        var reporte = '';
+        if (parseFloat(Cliente) === 8) {
+            reporte = 'onReporteLevantamientoSemanal';
+        } else {
+            reporte = 'onReporteLevantamientoSemanalGenerico';
+        }
+        $.ajax({
+            url: master_url + reporte,
+            type: "POST",
+            data: {
+                ID: IDX,
+                DetalleID: DetalleID
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE SEMANAL, GENERADO', 'success');
+                window.open(data, '_blank');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+
     }
 </script>

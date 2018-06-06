@@ -49,6 +49,26 @@ class intelisis_model extends CI_Model {
         }
     }
     
+    
+        public function getAllProyectosIntelisis() {
+        try {
+            $this->sqlsrv->select('Proyecto,Categoria,Descripcion ', false);
+            $this->sqlsrv->from('PROY');
+            //$this->sqlsrv->where('Estatus', 'ALTA');
+            $this->sqlsrv->order_by('Descripcion', 'ASC');
+            $query = $this->sqlsrv->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->sqlsrv->last_query();
+//        print $str;
+            $data =$query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
      public function getClienteNombrebyCliente($ID) {
         try {
               $this->sqlsrv->select("C.Nombre", false);

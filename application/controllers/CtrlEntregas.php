@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . "/third_party/PHPExcel.php";
 
@@ -13,7 +13,8 @@ class CtrlEntregas extends CI_Controller {
         $this->load->model('entregas_model');
         $this->load->model('cliente_model');
         $this->load->model('trabajo_model');
-        $this->load->model('centrocostos_model');
+        $this->load->model('registroUsuarios_model');
+        // $this->load->model('centrocostos_model');
     }
 
     public function index() {
@@ -22,6 +23,12 @@ class CtrlEntregas extends CI_Controller {
             $this->load->view('vNavegacion');
             $this->load->view('vEntregas');
             $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A ENTREGAS',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -32,6 +39,15 @@ class CtrlEntregas extends CI_Controller {
     public function getRecords() {
         try {
             $data = $this->entregas_model->getRecords();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getMyRecords() {
+        try {
+            $data = $this->entregas_model->getMyRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -58,10 +74,10 @@ class CtrlEntregas extends CI_Controller {
         }
     }
 
-    public function getTrabajosControlByClienteXClasificacion() {
+    public function getTrabajosControlEntregasByCliente() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getTrabajosControlByClienteXClasificacion($Cliente_ID);
+            $data = $this->trabajo_model->getTrabajosControlEntregasByCliente($Cliente_ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -77,7 +93,7 @@ class CtrlEntregas extends CI_Controller {
                 'FechaCreacion' => $FechaCreacion,
                 'Cliente_ID' => $Cliente_ID,
                 'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL,
-                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== '') ? $CentroCostos_ID : NULL,
+                // 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== '') ? $CentroCostos_ID : NULL,
                 'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
@@ -118,6 +134,8 @@ class CtrlEntregas extends CI_Controller {
             extract($this->input->post());
             //var_dump($Estatus);
             $this->entregas_model->onModificar($ID, $this->input->post());
+            
+            //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
             if ($Estatus == 'Concluido') {
                 $this->trabajo_model->onEntregado($ID);
             } else {
@@ -127,12 +145,43 @@ class CtrlEntregas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onModificarImportePorEntrega() {
+
+    public function onModificarImportePorEntrega() {
         try {
             extract($this->input->post());
-            var_dump($this->input->post());
-            print json_encode($this->entregas_model->onModificarImportePorEntrega($ID,$DATA));
+            //var_dump($this->input->post());
+            print json_encode($this->entregas_model->onModificarImportePorEntrega($ID, $DATA));
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarAdjunto() {
+        try {
+            extract($this->input->post());
+            $URL_DOC = 'uploads/Entregas/AdjuntoEncabezado';
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["Adjunto"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                    $DATA = array(
+                        'Adjunto' => ($img)
+                    );
+                    $this->entregas_model->onModificar($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Adjunto' => (NULL)
+                    );
+                    $this->entregas_model->onModificar($ID, $DATA);
+                    echo "NO SE PUDO SUBIR EL ARCHIVO";
+                }
+            }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -164,16 +213,15 @@ class CtrlEntregas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    public function getCC() {
-        try {
-            $data = $this->centrocostos_model->getCC();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
 
+//    public function getCC() {
+//        try {
+//            $data = $this->centrocostos_model->getCC();
+//            print json_encode($data);
+//        } catch (Exception $exc) {
+//            echo $exc->getTraceAsString();
+//        }
+//    }
     //MEtodo para cambiar Estatus de los movimientos cuando se concluye la entrega
     public function onEntregado() {
         try {
@@ -201,30 +249,39 @@ class CtrlEntregas extends CI_Controller {
             $objPHPExcel = new Excel();
             $objPHPExcel->setActiveSheetIndex(0);
             // Field names in the first row
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'Clave');
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Concepto');
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'Cantidad');
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'Unidad');
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'P.U.');
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'Total');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'No.');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'CODIGO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'DESCRIPCIÓN');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'TIPO PRECIO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'CATALOGO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'TIPO');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, 1, 'UNIDAD');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, 1, 'CANTIDAD');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, 1, 'PU');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, 1, 'TOTAL');
             $row = 2;
             foreach ($fields as $key => $value) {
                 //Set number format
-                $objPHPExcel->getActiveSheet()->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
-                $objPHPExcel->getActiveSheet()->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
-                $objPHPExcel->getActiveSheet()->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                $objPHPExcel->getActiveSheet()->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+                $objPHPExcel->getActiveSheet()->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATEDMXN);
+                $objPHPExcel->getActiveSheet()->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATEDMXN);
                 // Add some data
-                $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->Clave);
-                $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->Descripcion);
-                $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Cantidad);
-                $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->Unidad);
-                $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $value->Precio);
-                $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->Importe);
+                $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, str_pad($row - 1, 3, "0", STR_PAD_LEFT));
+                $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->Clave);
+                $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Concepto);
+                $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->TipoPrecio);
+                $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $value->Catalogo);
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->TipoConcepto);
+                $objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $value->Unidad);
+                $objPHPExcel->getActiveSheet()->setCellValue('H' . $row, $value->Cantidad);
+                $objPHPExcel->getActiveSheet()->setCellValue('I' . $row, $value->Precio);
+                $objPHPExcel->getActiveSheet()->setCellValue('J' . $row, $value->Importe);
                 $row++;
             }
             //Totales
-            $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, 'Total');
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $datosGenerales->ImporteTotal);
+            $objPHPExcel->getActiveSheet()->setCellValue('I' . $row, 'Total');
+            $objPHPExcel->getActiveSheet()->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATEDMXN);
+            $objPHPExcel->getActiveSheet()->setCellValue('J' . $row, $datosGenerales->ImporteTotal);
             $objPHPExcel->setActiveSheetIndex(0);
 // Rename sheet
             $objPHPExcel->getActiveSheet()->setTitle('Hoja1');
@@ -233,6 +290,99 @@ class CtrlEntregas extends CI_Controller {
             $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
             $objWriter->save(str_replace(__FILE__, $path, __FILE__));
             print base_url() . $path;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getFicheroXEntrega() {
+        try {
+            $ID = $_POST["ID"];
+            $fields = $this->trabajo_model->getFicheroXEntrega($ID);
+
+            if (!empty($fields)) {
+                $datosGenerales = $fields[0];
+                $objPHPExcel = new Excel();
+                $objPHPExcel->setActiveSheetIndex(0);
+                // Field names in the first row
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'CIF');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Número de la Orden');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'Fecha Atención');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'Hora Atención');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'Fecha Realización');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'Hora Realización');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, 1, 'Causa de la Actuación');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, 1, 'PRRLL');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, 1, 'Contrato');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, 1, 'Posicion');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(10, 1, 'Sub Pos.');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(11, 1, 'Material');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(12, 1, 'Servicio');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(13, 1, 'Cantidad');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(14, 1, 'Ind.Impuesto');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(15, 1, 'Familia');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(16, 1, 'Unidad');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(17, 1, 'Importe unitario');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(18, 1, 'Texto Material');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(19, 1, 'Moneda');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(20, 1, 'Cal.1');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(21, 1, 'Cal.2');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(21, 1, 'Cal.3');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(23, 1, 'Cal.4');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(24, 1, 'Cal.5');
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(25, 1, 'Texto Causa');
+                $row = 2;
+                foreach ($fields as $key => $value) {
+                    //Set number format
+                    $objPHPExcel->getActiveSheet()->getStyle('B' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+                    // $objPHPExcel->getActiveSheet()->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_YYYYMMDD3);
+                    //$objPHPExcel->getActiveSheet()->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_YYYYMMDD3);
+                    $objPHPExcel->getActiveSheet()->getStyle('D' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_TIME4);
+                    $objPHPExcel->getActiveSheet()->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_TIME4);
+                    $objPHPExcel->getActiveSheet()->getStyle('R' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+
+                    $objPHPExcel->getActiveSheet()->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+                    $objPHPExcel->getActiveSheet()->getStyle('P' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+
+                    // Add data
+                    $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->CIf);
+                    $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->FolioCliente, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->FechaOrigen);
+                    $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->HoraOrigen);
+                    $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $value->FechaLlegada);
+                    $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->HoraLlegada);
+                    $objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $value->Sintoma);
+                    $objPHPExcel->getActiveSheet()->setCellValue('H' . $row, $value->PRRLL);
+                    $objPHPExcel->getActiveSheet()->setCellValue('I' . $row, $value->Contrato);
+                    $objPHPExcel->getActiveSheet()->setCellValue('J' . $row, $value->Posicion);
+                    $objPHPExcel->getActiveSheet()->setCellValue('K' . $row, $value->SubPosicion);
+                    $objPHPExcel->getActiveSheet()->setCellValue('L' . $row, $value->Material);
+                    $objPHPExcel->getActiveSheet()->setCellValue('M' . $row, $value->Servicio);
+                    $objPHPExcel->getActiveSheet()->setCellValue('N' . $row, $value->Cantidad);
+                    $objPHPExcel->getActiveSheet()->setCellValue('O' . $row, $value->IndImpuesto);
+                    $objPHPExcel->getActiveSheet()->setCellValue('P' . $row, $value->Familia);
+                    $objPHPExcel->getActiveSheet()->setCellValue('Q' . $row, $value->Unidad);
+                    $objPHPExcel->getActiveSheet()->setCellValue('R' . $row, $value->ImporteUnitario);
+                    $objPHPExcel->getActiveSheet()->setCellValue('S' . $row, $value->TextoMaterial);
+                    $objPHPExcel->getActiveSheet()->setCellValue('T' . $row, $value->Moneda);
+                    $objPHPExcel->getActiveSheet()->setCellValue('U' . $row, $value->CAL1);
+                    $objPHPExcel->getActiveSheet()->setCellValue('V' . $row, $value->CAL2);
+                    $objPHPExcel->getActiveSheet()->setCellValue('W' . $row, $value->CAL3);
+                    $objPHPExcel->getActiveSheet()->setCellValue('X' . $row, $value->CAL4);
+                    $objPHPExcel->getActiveSheet()->setCellValue('Y' . $row, $value->CAL5);
+                    $objPHPExcel->getActiveSheet()->setCellValue('Z' . $row, $value->TextoCausa);
+                    $row++;
+                }
+
+                $objPHPExcel->setActiveSheetIndex(0);
+// Rename sheet
+                $objPHPExcel->getActiveSheet()->setTitle('Hoja1');
+// Save Excel 2007 file
+                $path = 'uploads/Tarifarios/Fichero.xlsx';
+                $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+                $objWriter->save(str_replace(__FILE__, $path, __FILE__));
+                print base_url() . $path;
+            }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -310,7 +460,7 @@ class CtrlEntregas extends CI_Controller {
             $objPHPExcel->getActiveSheet()->getStyle('A1:I1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
             $objPHPExcel->getActiveSheet()->getStyle('A1:I1')->getFill()->getStartColor()->setARGB('BFBFBF');
             $objPHPExcel->getActiveSheet()->getStyle("A1:I1")->getFont()->setBold(true);
-            
+
 
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, 1, 'Minuta');
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Partida');
@@ -324,7 +474,7 @@ class CtrlEntregas extends CI_Controller {
             $row = 2;
             foreach ($trabajos as $key => $value) {
                 $objPHPExcel->getActiveSheet()->getStyle('A' . $row)->getFont()->setBold(true);
-                $objPHPExcel->setActiveSheetIndex(0)->mergeCells('A' . $row.':I'.$row);
+                $objPHPExcel->setActiveSheetIndex(0)->mergeCells('A' . $row . ':I' . $row);
                 $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->OC);
                 $row++;
 
@@ -340,7 +490,7 @@ class CtrlEntregas extends CI_Controller {
                     $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $value->Observaciones);
                     $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $value->Categoria);
                     $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $value->Clave);
-                    $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->Descripcion);
+                    $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $value->Concepto);
                     $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $value->Cantidad);
                     $objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $value->Unidad);
                     $objPHPExcel->getActiveSheet()->setCellValue('H' . $row, $value->Precio);

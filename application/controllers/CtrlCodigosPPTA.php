@@ -1,35 +1,38 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx');
-
-
+header('Access-Control-Allow-Origin: http://app.ayr.mx');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlCodigosPPTA extends CI_Controller {
 
-   
     public function __construct() {
         parent::__construct();
+        date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-         $this->load->model('codigoppta_model');
+        $this->load->model('codigoppta_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
-        
+
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
             $this->load->view('vCodigosPPTA');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A CÓDIGOS PPTA',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
         }
     }
-    
-    
-    
+
     public function getRecords() {
         try {
             $data = $this->codigoppta_model->getRecords();
@@ -39,9 +42,6 @@ class CtrlCodigosPPTA extends CI_Controller {
         }
     }
 
-    
-   
-    
     public function getCodigoPPTAByID() {
         try {
             extract($this->input->post());
@@ -51,11 +51,10 @@ class CtrlCodigosPPTA extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregar() {
         try {
-          $this->codigoppta_model->onAgregar($this->input->post());
-           
+            $this->codigoppta_model->onAgregar($this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -69,16 +68,15 @@ class CtrlCodigosPPTA extends CI_Controller {
                 'Dias' => ($Dias !== NULL) ? $Dias : NULL
             );
             $this->codigoppta_model->onModificar($ID, $DATA);
-  
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onEliminar() {
+
+    public function onEliminar() {
         try {
-            extract($this->input->post()); 
-            
+            extract($this->input->post());
+
             $this->codigoppta_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

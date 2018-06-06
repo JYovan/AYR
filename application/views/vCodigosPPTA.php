@@ -9,7 +9,7 @@
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
-                <div class="col-md-12" id="tblRegistros"></div>
+                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
         </div>
     </div>

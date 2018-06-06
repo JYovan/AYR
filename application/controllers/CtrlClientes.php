@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlClientes extends CI_Controller {
@@ -12,6 +12,7 @@ class CtrlClientes extends CI_Controller {
         $this->load->model('cliente_model');
         $this->load->model('empresa_model');
         $this->load->model('empresaSupervisora_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -20,11 +21,17 @@ class CtrlClientes extends CI_Controller {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
             $this->load->view('vClientes');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A CLIENTES',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
         }
     }
 
@@ -45,6 +52,7 @@ class CtrlClientes extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getContratistas() {
         try {
             $data = $this->cliente_model->getContratistas();
@@ -53,6 +61,7 @@ class CtrlClientes extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getEmpresas() {
         try {
             $data = $this->empresa_model->getEmpresas();
@@ -70,6 +79,7 @@ class CtrlClientes extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getClienteByID() {
         try {
             extract($this->input->post());
@@ -101,10 +111,10 @@ class CtrlClientes extends CI_Controller {
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
                 } else {
-                     $DATA = array(
+                    $DATA = array(
                         'RutaLogo' => (NULL)
                     );
-                     $this->cliente_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -119,16 +129,17 @@ class CtrlClientes extends CI_Controller {
             $DATA = array(
                 'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
                 'NombreCorto' => ($NombreCorto !== NULL) ? $NombreCorto : NULL,
-                'Calle' => ($Calle !== NULL) ? $Calle : NULL, 
-                'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL, 
-                'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL, 
-                'CodigoPostal' => ($CodigoPostal !== NULL) ? $CodigoPostal : NULL, 
-                'Colonia'=> ($Colonia !== NULL) ? $Colonia : NULL, 
-                'Ciudad'=> ($Ciudad !== NULL) ? $Ciudad : NULL, 
-                'Estado'=> ($Estado !== NULL) ? $Estado : NULL, 
-                'Contacto1'=> ($Contacto1 !== NULL) ? $Contacto1 : NULL, 
-                'Contacto2'=> ($Contacto2 !== NULL) ? $Contacto2 : NULL,  
-                'Contacto3'=> ($Contacto3 !== NULL) ? $Contacto3 : NULL
+                'Calle' => ($Calle !== NULL) ? $Calle : NULL,
+                'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL,
+                'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL,
+                'CodigoPostal' => ($CodigoPostal !== NULL) ? $CodigoPostal : NULL,
+                'Colonia' => ($Colonia !== NULL) ? $Colonia : NULL,
+                'Ciudad' => ($Ciudad !== NULL) ? $Ciudad : NULL,
+                'Estado' => ($Estado !== NULL) ? $Estado : NULL,
+                'Contacto1' => ($Contacto1 !== NULL) ? $Contacto1 : NULL,
+                'Contacto2' => ($Contacto2 !== NULL) ? $Contacto2 : NULL,
+                'Contacto3' => ($Contacto3 !== NULL) ? $Contacto3 : NULL,
+                'LeyendaReporte' => ($LeyendaReporte !== NULL) ? $LeyendaReporte : NULL
             );
             $this->cliente_model->onModificar($ID, $DATA);
             print "ID: " . $ID;
@@ -152,7 +163,7 @@ class CtrlClientes extends CI_Controller {
                     $DATA = array(
                         'RutaLogo' => (NULL)
                     );
-                     $this->cliente_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }

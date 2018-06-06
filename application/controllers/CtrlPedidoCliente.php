@@ -1,12 +1,13 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
-defined('BASEPATH') OR exit('No direct script access allowed');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class CtrlPedidoCliente extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('sucursal_model');
@@ -16,7 +17,9 @@ class CtrlPedidoCliente extends CI_Controller {
         $this->load->model('cuadrilla_model');
         $this->load->model('trabajo_model');
         $this->load->model('pedidocliente_model');
-        
+        $this->load->model('especialidades_model');
+        $this->load->model('areas_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -25,6 +28,12 @@ class CtrlPedidoCliente extends CI_Controller {
             $this->load->view('vNavegacion');
             $this->load->view('vPedidosCliente');
             $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A PEDIDOS DEL CLIENTE',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -32,7 +41,34 @@ class CtrlPedidoCliente extends CI_Controller {
         }
     }
     
-     public function getRecords() {
+    public function getRecordsAutorizacion() {
+        try {
+            $data = $this->pedidocliente_model->getRecordsAutorizacion();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getRecordsFinalizadosPagados() {
+        try {
+            $data = $this->pedidocliente_model->getRecordsFinalizadosPagados();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function getRecordsFinalizadosNoPagados() {
+        try {
+            $data = $this->pedidocliente_model->getRecordsFinalizadosNoPagados();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getRecords() {
         try {
             $data = $this->pedidocliente_model->getRecords();
             print json_encode($data);
@@ -40,8 +76,17 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-      public function getTrabajoByID() {
+
+    public function getRecordsEnFirme() {
+        try {
+            $data = $this->pedidocliente_model->getRecordsEnFirme();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTrabajoByID() {
         try {
             extract($this->input->post());
             $data = $this->pedidocliente_model->getTrabajoByID($ID);
@@ -50,46 +95,45 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onAgregar() {
+
+    public function onAgregar() {
         try {
             /* TRABAJO */
             extract($this->input->post());
             $data = array(
-                'Movimiento' => $Movimiento,
                 'FechaCreacion' => $FechaCreacion,
                 'Cliente_ID' => $Cliente_ID,
                 'Sucursal_ID' => $Sucursal_ID,
-                'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : NULL,
-                'Clasificacion' => (isset($Clasificacion) && $Clasificacion !== '') ? $Clasificacion : NULL,
-                'Atendido' => (isset($Atendido) && $Atendido !== '') ? $Atendido : "No",
-                'Cuadrilla_ID' => (isset($Cuadrilla_ID) && $Cuadrilla_ID !== '') ? $Cuadrilla_ID : NULL,
-                'FolioCliente' => (isset($FolioCliente) && $FolioCliente !== '') ? $FolioCliente : NULL,
-                'FechaAtencion' => (isset($FechaAtencion) && $FechaAtencion !== '') ? $FechaAtencion : NULL,
-                'Codigoppta_ID' => (isset($Codigoppta_ID) && $Codigoppta_ID !== '') ? $Codigoppta_ID : NULL,
-                'Solicitante' => (isset($Solicitante) && $Solicitante !== '') ? $Solicitante : NULL,
-                'TrabajoSolicitado' => (isset($TrabajoSolicitado) && $TrabajoSolicitado !== '') ? $TrabajoSolicitado : NULL,
-                'TrabajoRequerido' => (isset($TrabajoRequerido) && $TrabajoRequerido !== '') ? $TrabajoRequerido : NULL,
-                'FechaOrigen' => (isset($FechaOrigen) && $FechaOrigen !== '') ? $FechaOrigen : NULL,
-                'HoraOrigen' => (isset($HoraOrigen) && $HoraOrigen !== '') ? $HoraOrigen : NULL,
-                'FechaLlegada' => (isset($FechaLlegada) && $FechaLlegada !== '') ? $FechaLlegada : NULL,
-                'HoraLlegada' => (isset($HoraLlegada) && $HoraLlegada !== '') ? $HoraLlegada : NULL,
-                'FechaSalida' => (isset($FechaSalida) && $FechaSalida !== '') ? $FechaSalida : NULL,
-                'HoraSalida' => (isset($HoraSalida) && $HoraSalida !== '') ? $HoraSalida : NULL,
+                'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : null,
+                'Especialidad_ID' => (isset($Especialidad_ID) && $Especialidad_ID !== 0) ? $Especialidad_ID : null,
+                'Cuadrilla_ID' => (isset($Cuadrilla_ID) && $Cuadrilla_ID !== '') ? $Cuadrilla_ID : null,
+                'FolioCliente' => (isset($FolioCliente) && $FolioCliente !== '') ? $FolioCliente : null,
+                'FechaAtencion' => (isset($FechaAtencion) && $FechaAtencion !== '') ? $FechaAtencion : null,
+                'Codigoppta_ID' => (isset($Codigoppta_ID) && $Codigoppta_ID !== '') ? $Codigoppta_ID : null,
+                'Solicitante' => (isset($Solicitante) && $Solicitante !== '') ? $Solicitante : null,
+                'TrabajoSolicitado' => (isset($TrabajoSolicitado) && $TrabajoSolicitado !== '') ? $TrabajoSolicitado : null,
+                'TrabajoRequerido' => (isset($TrabajoRequerido) && $TrabajoRequerido !== '') ? $TrabajoRequerido : null,
+                'FechaOrigen' => (isset($FechaOrigen) && $FechaOrigen !== '') ? $FechaOrigen : null,
+                'HoraOrigen' => (isset($HoraOrigen) && $HoraOrigen !== '') ? $HoraOrigen : null,
+                'FechaLlegada' => (isset($FechaLlegada) && $FechaLlegada !== '') ? $FechaLlegada : null,
+                'HoraLlegada' => (isset($HoraLlegada) && $HoraLlegada !== '') ? $HoraLlegada : null,
+                'FechaSalida' => (isset($FechaSalida) && $FechaSalida !== '') ? $FechaSalida : null,
+                'HoraSalida' => (isset($HoraSalida) && $HoraSalida !== '') ? $HoraSalida : null,
                 'ImpactoEnPlazo' => (isset($ImpactoEnPlazo) && $ImpactoEnPlazo !== '') ? $ImpactoEnPlazo : 'No',
-                'DiasImpacto' => (isset($DiasImpacto) && $DiasImpacto !== '') ? $DiasImpacto : NULL,
-                'CausaTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
-                'ClaveOrigenTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : NULL,
-                'EspecificaOrigenTrabajo' => (isset($EspecificaOrigenTrabajo) && $EspecificaOrigenTrabajo !== '') ? $EspecificaOrigenTrabajo : NULL,
-                'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : NULL,
-                'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : NULL,
-                'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : NULL,
-                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
-                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
-                'Situacion' => (isset($Situacion) && $Situacion !== '') ? $Situacion : NULL,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : NULL,
-                'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : NULL,
-                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : NULL
+                'DiasImpacto' => (isset($DiasImpacto) && $DiasImpacto !== '') ? $DiasImpacto : null,
+                'CausaTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : null,
+                'ClaveOrigenTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : null,
+                'EspecificaOrigenTrabajo' => (isset($EspecificaOrigenTrabajo) && $EspecificaOrigenTrabajo !== '') ? $EspecificaOrigenTrabajo : null,
+                'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : null,
+                'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
+                'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
+                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : null,
+                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : null,
+                'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
+                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : null,
+                'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : null,
+                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,
+                'Area_ID' => (isset($Area_ID) && $Area_ID !== 0) ? $Area_ID : null,
             );
             $ID = $this->pedidocliente_model->onAgregar($data);
 
@@ -98,9 +142,8 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function onModificar() {
+
+    public function onModificar() {
         try {
             extract($this->input->post());
             $this->pedidocliente_model->onModificar($ID, $this->input->post());
@@ -109,7 +152,7 @@ class CtrlPedidoCliente extends CI_Controller {
         }
     }
 
-     public function onEliminar() {
+    public function onEliminar() {
         try {
             extract($this->input->post());
             $this->pedidocliente_model->onEliminar($ID);
@@ -117,11 +160,21 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function getClienteByID() {
+
+    public function getClienteByID() {
         try {
-             extract($this->input->post());
+            extract($this->input->post());
             $data = $this->cliente_model->getClienteByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getLogoClienteByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->cliente_model->getLogoClienteByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -137,8 +190,8 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-       public function getSucursalByID() {
+
+    public function getSucursalByID() {
         try {
             extract($this->input->post());
             $data = $this->sucursal_model->getSucursalByID($ID);
@@ -147,4 +200,45 @@ class CtrlPedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
+    public function getEspecialidadByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->especialidades_model->getEspecialidadByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getEspecialidadesByCliente() {
+        try {
+            extract($this->input->post());
+            $data = $this->especialidades_model->getEspecialidadesByCliente($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getAreaByID() {
+        try {
+            extract($this->input->post());
+            $data = $this->areas_model->getAreaByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getAreasByCliente() {
+        try {
+            extract($this->input->post());
+            $data = $this->areas_model->getAreasByCliente($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
 }

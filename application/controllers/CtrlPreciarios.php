@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://control.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CtrlPreciarios extends CI_Controller {
@@ -10,19 +10,25 @@ class CtrlPreciarios extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('preciario_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
-
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
             $this->load->view('vPreciarios');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A PRECIARIOS',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
-             $this->load->view('vFooter');
+            $this->load->view('vFooter');
         }
     }
 
@@ -157,12 +163,10 @@ class CtrlPreciarios extends CI_Controller {
     public function onAgregar() {
         try {
             extract($this->input->post());
-
             $ID = 0; /* ID */
             $IDPCA = 0; /* ID CATEGORIA */
             $IDPSCA = 0; /* ID SUB CATEGORIA */
             $IDPSSCA = 0; /* ID SUBSUB CATEGORIA */
-
             $DATA = array(
                 'Nombre' => (isset($Nombre) && $Nombre !== NULL && $Nombre !== '') ? $Nombre : 'NO ESPECÍFICA',
                 'Tipo' => (isset($Tipo) && $Tipo !== NULL && $Tipo !== '') ? $Tipo : 'NO ESPECÍFICA',
@@ -172,16 +176,10 @@ class CtrlPreciarios extends CI_Controller {
             );
             $ID = $this->preciario_model->onAgregar($DATA);
             $PRECIARIO_DATA = json_decode($PRECIARIO);
-            
-           
 
             foreach ($PRECIARIO_DATA->HOJAN1 as $k => $v) {
-                
-                
-                
                 if (isset($v->Tipo) && $v->Tipo === '1') {
                     /* AQUI EL PRECIARIO EN LA COLUMNA TIPO, TIENE UN ESPACIO AL FINAL, ESTO SE DEBE DE EVITAR PARA NO PONERLO ENTRE LLAVES */
-
                     /* AGREGAR PRECIARIO CATEGORIA */
                     $data = array(
                         'Clave' => (isset($v->id) && $v->id !== NULL && $v->id !== '') ? $v->id : 'NA',
@@ -201,7 +199,6 @@ class CtrlPreciarios extends CI_Controller {
                     $IDPSCA = $this->preciario_model->onAgregarPreciarioSubCategoria($data);
                 }
                 if (isset($v->Tipo) && $v->Tipo === '3') {
-
                     /* AGREGAR PRECIARIO SUBSUB CATEGORIA */
                     $data = array(
                         'Clave' => (isset($v->id) && $v->id !== NULL && $v->id !== '') ? $v->id : 'NA',
@@ -223,15 +220,19 @@ class CtrlPreciarios extends CI_Controller {
                         'PreciarioSubSubCategoria_ID' => (isset($IDPSSCA) && $IDPSSCA !== NULL && $IDPSSCA !== '' && $IDPSSCA !== 0) ? $IDPSSCA : NULL,
                         'PreciarioSubCategorias_ID' => (isset($IDPSCA) && $IDPSCA !== NULL && $IDPSCA !== '' && $IDPSCA !== 0) ? $IDPSCA : NULL,
                         'PreciarioCategorias_ID' => (isset($IDPCA) && $IDPCA !== NULL && $IDPCA !== '' && $IDPCA !== 0) ? $IDPCA : NULL,
-                        'Preciarios_ID' => $ID
+                        'Preciarios_ID' => $ID,
+                        'Contrato' => (isset($v->Contrato) && $v->Contrato !== NULL && $v->Contrato !== '') ? $v->Contrato : NULL,
+                        'Posicion' => (isset($v->Posicion) && $v->Posicion !== NULL && $v->Posicion !== '') ? $v->Posicion : NULL,
+                        'Material' => (isset($v->Material) && $v->Material !== NULL && $v->Material !== '') ? $v->Material : NULL,
+                        'TextoMaterial' => (isset($v->TextoMaterial) && $v->TextoMaterial !== NULL && $v->TextoMaterial !== '') ? $v->TextoMaterial : NULL,
+                        'Familia' => (isset($v->Familia) && $v->Familia !== NULL && $v->Familia !== '') ? $v->Familia : NULL,
+                        'UnidadFichero' => (isset($v->UnidadFichero) && $v->UnidadFichero !== NULL && $v->UnidadFichero !== '') ? $v->UnidadFichero : NULL
                     );
                     $IDPCO = $this->preciario_model->onAgregarPreciarioConceptos($data);
                 }
             }
-
             $URL_DOC = 'uploads/Preciarios';
             $master_url = $URL_DOC . '/';
-
             if (isset($_FILES["RutaArchivo"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -257,11 +258,10 @@ class CtrlPreciarios extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
-
             $DATA = array(
                 'Nombre' => (isset($Nombre) && $Nombre !== NULL && $Nombre !== '') ? $Nombre : 'NO ESPECÍFICA',
                 'Tipo' => (isset($Tipo) && $Tipo !== NULL && $Tipo !== '') ? $Tipo : 'NO ESPECÍFICA',
-                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion  : '',
+                'FechaCreacion' => (isset($FechaCreacion) && $FechaCreacion !== NULL && $FechaCreacion !== '') ? $FechaCreacion : '',
                 'Cliente_ID' => (isset($Cliente_ID) && $Cliente_ID !== NULL && $Cliente_ID !== '') ? $Cliente_ID : NULL,
                 'Estatus' => (isset($Estatus) && $Estatus !== NULL && $Estatus !== '') ? $Estatus : NULL
             );
@@ -279,7 +279,13 @@ class CtrlPreciarios extends CI_Controller {
                 'Descripcion' => (isset($Descripcion) && $Descripcion !== NULL && $Descripcion !== '') ? $Descripcion : 'NO ESPECÍFICA',
                 'Unidad' => (isset($Unidad) && $Unidad !== NULL && $Unidad !== '') ? $Unidad : 'NA',
                 'Costo' => (isset($Costo) && $Costo !== NULL && $Costo !== '') ? $Costo : 0.0,
-                'Moneda' => (isset($Moneda) && $Moneda !== NULL && $Moneda !== '') ? $Moneda : 'MXN'
+                'Moneda' => (isset($Moneda) && $Moneda !== NULL && $Moneda !== '') ? $Moneda : 'MXN',
+                'Contrato' => (isset($Contrato) && $Contrato !== NULL && $Contrato !== '') ? $Contrato : NULL,
+                'Posicion' => (isset($Posicion) && $Posicion !== NULL && $Posicion !== '') ? $Posicion : NULL,
+                'Material' => (isset($Material) && $Material !== NULL && $Material !== '') ? $Material : NULL,
+                'TextoMaterial' => (isset($TextoMaterial) && $TextoMaterial !== NULL && $TextoMaterial !== '') ? $TextoMaterial : NULL,
+                'Familia' => (isset($Familia) && $Familia !== NULL && $Familia !== '') ? $Familia : NULL,
+                'UnidadFichero' => (isset($UnidadFichero) && $UnidadFichero !== NULL && $UnidadFichero !== '') ? $UnidadFichero : NULL
             );
             if (isset($Categoria) && $Categoria !== NULL && $Categoria !== '') {
                 $data["PreciarioCategorias_ID"] = $Categoria;
@@ -308,7 +314,13 @@ class CtrlPreciarios extends CI_Controller {
                 'PreciarioSubSubCategoria_ID' => $SubSubCategoria,
                 'PreciarioSubCategorias_ID' => $SubCategoria,
                 'PreciarioCategorias_ID' => $Categoria,
-                'Preciarios_ID' => $ID
+                'Preciarios_ID' => $ID,
+                'Contrato' => (isset($Contrato) && $Contrato !== NULL && $Contrato !== '') ? $Contrato : NULL,
+                'Posicion' => (isset($Posicion) && $Posicion !== NULL && $Posicion !== '') ? $Posicion : NULL,
+                'Material' => (isset($Material) && $Material !== NULL && $Material !== '') ? $Material : NULL,
+                'TextoMaterial' => (isset($TextoMaterial) && $TextoMaterial !== NULL && $TextoMaterial !== '') ? $TextoMaterial : NULL,
+                'Familia' => (isset($Familia) && $Familia !== NULL && $Familia !== '') ? $Familia : NULL,
+                'UnidadFichero' => (isset($UnidadFichero) && $UnidadFichero !== NULL && $UnidadFichero !== '') ? $UnidadFichero : NULL
             );
             $IDPCO = $this->preciario_model->onAgregarPreciarioConceptos($data);
         } catch (Exception $exc) {

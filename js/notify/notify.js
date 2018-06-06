@@ -1,4 +1,4 @@
-/* Notify.js - http://notifyjs.com/ Copyright (c) 2015 MIT */
+  /* Notify.js - http://notifyjs.com/ Copyright (c) 2015 MIT */
 (function(window, document, $, undefined) {
   "use strict";
   //IE8 indexOf polyfill

@@ -1,18 +1,17 @@
 <?php
 
 header('Access-Control-Allow-Origin: http://app.ayr.mx/');
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class CtrlUsuario extends CI_Controller {
-
+class CtrlAreas extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('usuario_model');
-        $this->load->model('empresa_model');
         $this->load->model('cliente_model');
+        $this->load->model('areas_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -20,8 +19,14 @@ class CtrlUsuario extends CI_Controller {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
-            $this->load->view('vUsuarios');
+            $this->load->view('vAreas');
             $this->load->view('vFooter');
+            $dataRegistrarAccion = array(
+                'Accion' => 'ACCESO A ÁREAS',
+                'Registro' => date("d-m-Y H:i:s"),
+                'Usuario_ID' => $this->session->userdata('ID')
+            );
+            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -31,23 +36,14 @@ class CtrlUsuario extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->usuario_model->getRecords();
+            $data = $this->cliente_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getEmpresas() {
-        try {
-            $data = $this->empresa_model->getEmpresas();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    
-      public function getClientes() {
+    public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
             print json_encode($data);
@@ -56,10 +52,29 @@ class CtrlUsuario extends CI_Controller {
         }
     }
 
-    public function getUsuarioByID() {
+    public function getAreas() {
+        try {
+            $data = $this->areas_model->getAreas();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getAreaByID() {
         try {
             extract($this->input->post());
-            $data = $this->usuario_model->getUsuarioByID($ID);
+            $data = $this->areas_model->getAreaByID($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getAreasByCliente() {
+        try {
+            extract($this->input->post());
+            $data = $this->areas_model->getAreasByCliente($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -68,7 +83,16 @@ class CtrlUsuario extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $this->usuario_model->onAgregar($this->input->post());
+            /* TRABAJO */
+            extract($this->input->post());
+            $data = array(
+                'Descripcion' => (isset($Descripcion) && $Descripcion !== '') ? $Descripcion : null,
+                'Estatus' => 'ACTIVO',
+                'Cliente_ID' => $Cliente_ID,
+            );
+            $ID = $this->areas_model->onAgregar($data);
+
+            echo $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -78,16 +102,9 @@ class CtrlUsuario extends CI_Controller {
         try {
             extract($this->input->post());
             $DATA = array(
-                'Usuario' => ($Usuario !== NULL) ? $Usuario : NULL,
-                'Contrasena' => ($Contrasena !== NULL) ? $Contrasena : NULL,
-                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
-                'Apellidos' => ($Apellidos !== NULL) ? $Apellidos : NULL,
-                'TipoAcceso' => ($TipoAcceso !== NULL) ? $TipoAcceso : NULL,
-                'Empresa_ID' => ($Empresa_ID !== NULL) ? $Empresa_ID : NULL,
-                'Estatus'=>($Estatus !== NULL) ? $Estatus : NULL,
-                'Cliente_ID'=>($Cliente_ID !== NULL && $Cliente_ID !== 0) ? $Cliente_ID : NULL
+                'Descripcion' => ($Descripcion !== null) ? $Descripcion : null,
             );
-            $this->usuario_model->onModificar($ID, $DATA);
+            $this->areas_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -96,7 +113,7 @@ class CtrlUsuario extends CI_Controller {
     public function onEliminar() {
         try {
             extract($this->input->post());
-            $this->usuario_model->onEliminar($ID);
+            $this->areas_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

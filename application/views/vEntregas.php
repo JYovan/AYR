@@ -7,8 +7,10 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
+                    <button type="button" class="btn btn-default" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>CONCLUIDOS</button>
+                    <button type="button" class="btn btn-default" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>EN FIRME</button>
                 </div>
-                <div class="col-md-12" id="tblRegistros"></div>
+                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
         </div>
     </div>
@@ -29,6 +31,7 @@
             <div id="reportes" class="dt-buttons">
                 <button id="btnEntregaObra" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>ENTREGA OBRA</button>
                 <button id="btnTarifario" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>TARIFARIO</button>
+                <button id="btnFichero" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>FICHERO</button>
                 <button id="btnDesglose" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>DESGLOSE DE REPORTES</button>
             </div>
         </div>
@@ -76,42 +79,34 @@
                     <hr>
                     <div class=" col-6 col-md-3">
                         <div class="form-group label-static">
-                        <label for="Movimiento" class="control-label">Movimiento</label>
-                        <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                            <label for="Movimiento" class="control-label">Movimiento</label>
+                            <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
                         </div>
                     </div>
                     <div class=" col-6 col-md-3">
                         <div class="form-group label-static">
-                        <label for="ID" class="control-label">Mov ID</label>
-                        <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                            <label for="ID" class="control-label">Mov ID</label>
+                            <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="form-group label-static">
-                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="form-group label-static">
-                        <label for="NoEntrega" class="control-label">Entrega*</label>
-                        <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
+                            <label for="NoEntrega" class="control-label">Entrega*</label>
+                            <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
                         </div>
                     </div>
                     <div class="col-6 col-md-6">
                         <div class="form-group label-static">
-                        <label for="" class="control-label">Cliente*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                            <option value=""></option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                        <label for="" class="control-label">Centro Costos*</label>
-                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
-                            <option value=""></option>
-                        </select>
+                            <label for="" class="control-label">Cliente*</label>
+                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
@@ -184,48 +179,62 @@
         <div class="panel-body">
             <form id="frmEditar">
                 <fieldset>
-                    <hr>
-                    <div class=" col-6 col-md-3">
-                        <div class="form-group label-static">
-                        <label for="Movimiento" class="control-label">Movimiento</label>
-                        <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                    <div class="col-6 col-md-12">
+                        <ul class="nav nav-tabs" role="tablist" id="Encabezado">
+                            <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Entrega</a></li>
+                            <li role="presentation"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab">Adjunto Entrega</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!-- PANEL DE DATOS GENERALES-->
+                        <div role="tabpanel" class="tab-pane fade in active" id="Datos">
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Movimiento" class="control-label">Movimiento</label>
+                                    <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                                </div>
+                            </div>
+                            <div class=" col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="ID" class="control-label">Mov ID</label>
+                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="NoEntrega" class="control-label">Entrega*</label>
+                                    <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Cliente*</label>
+                                    <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Datos2">
+                            <center><label class="control-label">Puede subir un archivo de imagen(JPG,GIF,PNG)o PDF</label></center>
+                            <div class="col-md-12" align="center">
+                                <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
+                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
+                                </button>
+                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                                <input type="file" id="Adjunto" name="Adjunto" class="hide" accept="application/pdf, image/*">
+
+                            </div>
+
                         </div>
                     </div>
-                    <div class=" col-6 col-md-3">
-                        <div class="form-group label-static">
-                        <label for="ID" class="control-label">Mov ID</label>
-                        <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-group label-static">
-                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-group label-static">
-                        <label for="NoEntrega" class="control-label">Entrega*</label>
-                        <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                        <label for="" class="control-label">Cliente*</label>
-                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                            <option value=""></option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                        <label for="" class="control-label">Centro Costos*</label>
-                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
-                            <option value=""></option>
-                        </select>
-                        </div>
-                    </div>
-                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
                     <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -247,16 +256,16 @@
                 </div>
             </div>
         </div>
-        <!--        <div class="panel-body">-->
-        <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-            <div class="col-md-12 table-responsive " id="Conceptos" >
-              
-            </div>
-        </fieldset>
-        <!--        </div>-->
+        <div class="panel-body">
+            <fieldset>
+                <div class="col-md-12" align="right">
+                    <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                </div>
+                <div class="col-md-12 table-responsive " id="Conceptos" >
+
+                </div>
+            </fieldset>
+        </div>
     </div>
 </div>
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
@@ -303,11 +312,31 @@
         </div>
     </div>
 </div>
+<div id="mdlConfirmarEliminarDetalle" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content ">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Confirmar</h4>
+        </div>
+        <div class="modal-body">
+            Deseas eliminar el registro?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btnConfirmarEliminarDetalle">ACEPTAR</button>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/CtrlEntregas/';
     var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
+    var verMovs = 'getMyRecords';
+    var btnVerTodos = $("#btnVerTodos");
+    var btnVerMisMovimientos = $("#btnVerMisMovimientos");
+
     var pnlNuevaEntrega = $("#pnlNuevaEntrega");
     var pnlEditarEntrega = $("#pnlEditarEntrega");
     //nuevo
@@ -334,10 +363,24 @@
     var TrabajosXClienteIDXClasificacion = mdlSeleccionarTrabajosEditar.find("#TrabajosXClienteIDXClasificacion");
     var btnImprimirReportesEditarEntrega = pnlEditarEntrega.find("#btnImprimirReportesEditarEntrega");
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
+    var btnFichero = mdlReportesEditarEntrega.find("#btnFichero");
     var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
     var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
     var btnEntregaObra = mdlReportesEditarEntrega.find("#btnEntregaObra");
+    var mdlConfirmarEliminarDetalle = $("#mdlConfirmarEliminarDetalle");
+    var btnConfirmarEliminarDetalle = $("#btnConfirmarEliminarDetalle");
+    var ModificarArchivo = pnlEditarEntrega.find("#Adjunto");
+    var btnModificarArchivo = pnlEditarEntrega.find("#btnArchivo");
+    var ModificarVistaPrevia = pnlEditarEntrega.find("#VistaPrevia");
     $(document).ready(function () {
+        btnVerMisMovimientos.on("click", function () {
+            verMovs = 'getMyRecords';
+            getRecords();
+        });
+        btnVerTodos.on("click", function () {
+            verMovs = 'getRecords';
+            getRecords();
+        });
         //Reportes
         btnImprimirReportesEditarEntrega.on("click", function () {
             mdlReportesEditarEntrega.modal('show');
@@ -363,6 +406,27 @@
                 HoldOn.close();
             });
 
+        });
+        btnFichero.on("click", function () {
+            HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ESPERE...'
+            });
+            $.ajax({
+                url: master_url + 'getFicheroXEntrega',
+                type: "POST",
+                data: {
+                    ID: pnlEditarEntrega.find("#ID").val()
+                }
+            }).done(function (data, x, jq) {
+                console.log(data);
+                window.open(data, '_blank');
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'FICHERO GENERADO', 'success');
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
         btnTarifario.on("click", function () {
             HoldOn.open({
@@ -450,6 +514,26 @@
                 HoldOn.close();
             });
         });
+        btnConfirmarEliminarDetalle.click(function () {
+            HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ELIMINANDO...'
+            });
+            $.ajax({
+                url: master_url + 'onEliminarTrabajoDetalle',
+                type: "POST",
+                data: {
+                    ID: tempDetalle
+                }
+            }).done(function (data, x, jq) {
+                getDetalleByID(IdMovimiento);
+                mdlConfirmarEliminarDetalle.modal('hide');
+            }).fail(function (x, y, z) {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
+            }).always(function () {
+                HoldOn.close();
+            });
+        });
         tBtnEditarConcluir.on("click", function () {
             if (!$(this).is(':checked')) {
                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
@@ -473,13 +557,13 @@
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlNuevaEntrega.addClass("hide");
             pnlDetalleNuevaEntrega.addClass('hide');
-            getRecords();
+           
         });
         btnCancelarModificar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("hide");
             pnlEditarEntrega.addClass("hide");
             pnlDetalleEditarEntrega.addClass("hide");
-            getRecords();
+            
         });
         btnGuardar.on("click", function () {
             $.validator.setDefaults({
@@ -492,14 +576,14 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required',
-                    CentroCostos_ID: 'required'
+                    NoEntrega: 'required'
+                            //CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').addClass('has-error');
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').removeClass('has-error');
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -527,9 +611,11 @@
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVA ENTREGA', 'success');
 //Funcion que regarga el panel de editar con el nuevo registro
                     despuesDeGuardar(data);
-                }).fail(function (x, y, z) {
+                }).fail(function (x, y, z)
+                {
                     console.log(x, y, z);
-                }).always(function () {
+                }).always(function ()
+                {
                     HoldOn.close();
                 });
             }
@@ -545,14 +631,14 @@
                     Movimiento: 'required',
                     FechaCreacion: 'required',
                     Cliente_ID: 'required',
-                    NoEntrega: 'required',
-                    CentroCostos_ID: 'required'
+                    NoEntrega: 'required'
+                            // CentroCostos_ID: 'required'
                 },
                 highlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').addClass('has-error');
+                    $(element).closest('.form-group').addClass('has-error');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').removeClass('has-error');
+                    $(element).closest('.form-group').removeClass('has-error');
                 }
             });
             //Regresa si es valido para los select2
@@ -577,6 +663,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
+                    getRecords();
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     if (tBtnEditarConcluir.is(':checked')) {
                         btnModificar.addClass('hide');
@@ -598,9 +685,54 @@
                 });
             }
         });
+        btnModificarArchivo.on("click", function () {
+            ModificarArchivo.change(function () {
+                var frm = new FormData();
+                frm.append('Adjunto', ModificarArchivo[0].files[0]);
+                frm.append('ID', IdMovimiento);
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onModificarAdjunto',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    var imageType = /image.*/;
+                    if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match(imageType)) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600px" >\n\
+                    <div class="caption">\n\
+                    <p>' + ModificarArchivo[0].files[0].name + '</p>\n\
+                    </div></div>';
+                            ModificarVistaPrevia.html(preview);
+                        };
+                        reader.readAsDataURL(ModificarArchivo[0].files[0]);
+                    } else {
+                        if (ModificarArchivo[0].files[0] !== undefined && ModificarArchivo[0].files[0].type.match('application/pdf')) {
+                            var readerpdf = new FileReader();
+                            readerpdf.onload = function (e) {
+                                ModificarVistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                                        ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
+                            };
+                            readerpdf.readAsDataURL(ModificarArchivo[0].files[0]);
+                        } else {
+                            ModificarVistaPrevia.html('EL ARCHIVO SE SUBIRÁ, PERO NO ES POSIBLE RECONOCER SI ES UN PDF O UNA IMAGEN');
+                        }
+                    }
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+            ModificarArchivo.trigger('click');
+        });
         getClientes();
         getRecords();
-        getCC();
+        //getCC();
     });
     IdMovimiento = 0;
     function getRecords() {
@@ -610,104 +742,128 @@
             message: "CARGANDO DATOS..."
         });
         $.ajax({
-            url: master_url + 'getRecords',
+            url: master_url + verMovs,
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            $("#tblRegistros").html(getTable('tblEntregas', data));
-            $('#tblEntregas tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
-            });
-            var tblSelected = $('#tblEntregas').DataTable(tableOptions);
-            $('#tblEntregas tbody').on('click', 'tr', function () {
-                $("#tblEntregas").find("tr").removeClass("success");
-                $("#tblEntregas").find("tr").removeClass("warning");
-                //                console.log(this)
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                temp = parseInt(dtm[0]);
-                IdMovimiento = parseInt(dtm[0]);
-                //Abre al hacer click el movimiento para editar
-                if (temp !== 0 && temp !== undefined && temp > 0) {
-                    HoldOn.open({
-                        theme: "sk-bounce",
-                        message: "CARGANDO DATOS..."
-                    });
-                    $.ajax({
-                        url: master_url + 'getEntregaByID',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: temp
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlEditarEntrega.find("input").val("");
-                        var entrega = data[0];
-                        pnlEditarEntrega.find("#ID").val(entrega.ID);
-                        pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
-                        pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
-                        pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                        pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
-                        pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
-                        pnlEditarEntrega.find("#Importe").val(entrega.Importe);
-                        pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
-                        pnlEditarEntrega.find("#Usuario_ID").val(entrega.Usuario_ID);
-                        menuTablero.addClass("hide");
-                        pnlEditarEntrega.removeClass("hide");
-                        pnlDetalleEditarEntrega.removeClass("hide");
-                        getDetalleByID(entrega.ID);
-                        //Control de estatus
-                        if (entrega.Estatus === 'Concluido') {
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', true);
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                        } else if (entrega.Estatus === 'Cancelado') {
-                            $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                            tBtnEditarConcluir.addClass('hide');
-                            btnModificar.addClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                            btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                        } else {
-                            $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
-                            tBtnEditarConcluir.prop('checked', false);
-                            btnModificar.removeClass('hide');
-                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                            btnConfirmarEliminar.attr("disabled", false);
-                            pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
-                            pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
-                        }
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-                } else {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-                }
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
+            if (data.length > 0) {
+                $("#tblRegistros").html(getTable('tblEntregas', data));
+                $('#tblEntregas tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                });
+                var tblSelected = $('#tblEntregas').DataTable(tableOptions);
+                $('#tblEntregas tbody').on('click', 'tr', function () {
+                    $("#tblEntregas").find("tr").removeClass("success");
+                    $("#tblEntregas").find("tr").removeClass("warning");
+                    //                console.log(this)
+                    var id = this.id;
+                    var index = $.inArray(id, selected);
+                    if (index === -1) {
+                        selected.push(id);
+                    } else {
+                        selected.splice(index, 1);
+                    }
+                    $(this).addClass('success');
+                    var dtm = tblSelected.row(this).data();
+                    temp = parseInt(dtm[0]);
+                    IdMovimiento = parseInt(dtm[0]);
+                    //Abre al hacer click el movimiento para editar
+                    if (temp !== 0 && temp !== undefined && temp > 0) {
+                        HoldOn.open({
+                            theme: "sk-bounce",
+                            message: "CARGANDO DATOS..."
+                        });
+                        $.ajax({
+                            url: master_url + 'getEntregaByID',
+                            type: "POST",
+                            dataType: "JSON",
+                            data: {
+                                ID: temp
+                            }
+                        }).done(function (data, x, jq) {
+                            pnlEditarEntrega.find("input").val("");
+                            pnlEditarEntrega.find("input").val("");
+                            pnlEditarEntrega.find(".nav-tabs li").removeClass("active");
+                            $(pnlEditarEntrega.find(".nav-tabs li")[0]).addClass("active");
+                            pnlEditarEntrega.find("#Datos").addClass("active in");
+                            pnlEditarEntrega.find("#Datos2").removeClass("active in");
+                            var entrega = data[0];
+                            pnlEditarEntrega.find("#ID").val(entrega.ID);
+                            pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
+                            pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
+                            pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
+                            //pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
+                            pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
+                            pnlEditarEntrega.find("#Importe").val(entrega.Importe);
+                            pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
+                            pnlEditarEntrega.find("#Usuario_ID").val(entrega.Usuario_ID);
+
+                            if (entrega.Adjunto !== null && entrega.Adjunto !== undefined && entrega.Adjunto !== '') {
+                                var ext = getExt(entrega.Adjunto);
+                                if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                                    pnlEditarEntrega.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + entrega.Adjunto + '" class ="img-responsive" width="600px" />');
+                                }
+                                if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                                    pnlEditarEntrega.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + entrega.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                                }
+                                if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                                    pnlEditarEntrega.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                                }
+                            } else {
+                                pnlEditarEntrega.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                            }
+
+                            menuTablero.addClass("hide");
+                            pnlEditarEntrega.removeClass("hide");
+                            pnlDetalleEditarEntrega.removeClass("hide");
+                            getDetalleByID(entrega.ID);
+                            //Control de estatus
+                            if (entrega.Estatus === 'Concluido') {
+                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
+                                tBtnEditarConcluir.prop('checked', true);
+                                btnModificar.addClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                btnConfirmarEliminar.attr("disabled", true);
+                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
+                            } else if (entrega.Estatus === 'Cancelado') {
+                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
+                                tBtnEditarConcluir.addClass('hide');
+                                btnModificar.addClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                                btnConfirmarEliminar.attr("disabled", true);
+                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
+                            } else {
+                                $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
+                                tBtnEditarConcluir.prop('checked', false);
+                                btnModificar.removeClass('hide');
+                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                                btnConfirmarEliminar.attr("disabled", false);
+                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
+                                pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
+                            }
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            HoldOn.close();
+                        });
+                    } else {
+                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
                     }
                 });
-            });
+                // Apply the search
+                tblSelected.columns().every(function () {
+                    var that = this;
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+
+            }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -739,7 +895,7 @@
                 pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
                 pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
                 pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
+                //pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
                 pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
                 pnlEditarEntrega.find("#Importe").val(entrega.Importe);
                 pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
@@ -804,27 +960,7 @@
             HoldOn.close();
         });
     }
-    function getCC() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
-        $.ajax({
-            url: master_url + 'getCC',
-            type: "POST", dataType: "JSON"
-        }).done(function (data, x, jq) {
-            var options = '<option></option>';
-            $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
-            });
-            pnlNuevaEntrega.find("#CentroCostos_ID").html(options);
-            pnlEditarEntrega.find("#CentroCostos_ID").html(options);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
+
     /*Trae los movimientos para el detalle*/
     function getTrabajosControlByClienteXClasificacion(Cliente_ID) {
         temp = 0;
@@ -833,19 +969,20 @@
             message: "CARGANDO DATOS..."
         });
         $.ajax({
-            url: master_url + 'getTrabajosControlByClienteXClasificacion',
+            url: master_url + 'getTrabajosControlEntregasByCliente',
             type: "POST",
             dataType: "JSON",
             data: {
                 Cliente_ID: Cliente_ID
             }
         }).done(function (data, x, jq) {
+            console.log(data);
             if (data.length > 0) {
                 mdlSeleccionarTrabajosEditar.modal('show');
                 $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
                 $('#TrabajosXClienteIDXClasificacion tfoot th').each(function () {
                     var title = $(this).text();
-                   $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
                 $('#tblTrabajos tbody').on('click', 'tr', function () {
@@ -938,16 +1075,17 @@
                 HoldOn.close();
             }
             // Apply the search
-                    tblSelected.columns().every(function () {
-                        var that = this;
-                        $('input', this.footer()).on('keyup change', function () {
-                            if (that.search() !== this.value) {
-                                that.search(this.value).draw();
-                            }
-                        });
-                    });
-                    
+            tblSelected.columns().every(function () {
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+
         }).fail(function (x, y, z) {
+            console.log(x, y, z);
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDOS O AUTORIZADOS PARA ESTE CLIENTE', 'danger');
         }).always(function () {
             HoldOn.close();
@@ -967,27 +1105,27 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-                console.log(data);
-            
+            console.log(data);
+
             if (data.length > 0) {
                 pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
                 var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
                 var tfoot = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tfoot th');
                 thead.eq(0).addClass("hide");
                 tfoot.eq(0).addClass("hide");
-                thead.eq(1).addClass("hide");
-                tfoot.eq(1).addClass("hide");
+                //thead.eq(1).addClass("hide");
+                //tfoot.eq(1).addClass("hide");
                 thead.eq(8).addClass("hide");
                 tfoot.eq(8).addClass("hide");
                 $.each(pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("hide");
-                    td.eq(1).addClass("hide");
+                    //td.eq(1).addClass("hide");
                     td.eq(8).addClass("hide");
                     total += parseFloat(td.eq(8).text());
                     ImporteTotalGlobal = total;
                 });
-                
+
                 //Modificamos el importe en la base de datos
                 $.ajax({
                     url: master_url + 'onModificarImportePorEntrega',
@@ -1003,11 +1141,11 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-                
-                
-               /*Modificamos el importe*/
+
+
+                /*Modificamos el importe*/
                 ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 2, '.', ', ') + '</span>');
-                var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptions);
+                var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptionsDetalle);
                 pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody').on('click', 'tr', function () {
                     pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("success");
                     pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega").find("tr").removeClass("warning");
@@ -1049,28 +1187,13 @@
             HoldOn.close();
         });
     }
-    /*FUNCIONES DE EDICION EN EL GENERADOR*/
-    function onEliminarTrabajoDetalle(evt, IDX) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ELIMINANDO...'
-        });
-        $.ajax({
-            url: master_url + 'onEliminarTrabajoDetalle',
-            type: "POST",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            var row = $(evt).parent().parent().find("td");
-            $(evt).parent().parent().remove();
-            getDetalleByID(IdMovimiento);
-            //onNotify('<span class="fa fa-check fa-lg"></span>', 'CONCEPTO ELIMINADO', 'success');
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
-        }).always(function () {
-            HoldOn.close();
-        });
+
+    function onEliminarDetalleEntrega(IDC) {
+
+        tempDetalle = IDC;
+        mdlConfirmarEliminarDetalle.modal('show');
     }
+
+
     var ImporteTotalGlobal = 0;
 </script>

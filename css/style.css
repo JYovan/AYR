@@ -5,9 +5,113 @@
 @font-face {
     font-family: 'Material Icons';
     src: local('Material Icons'),
-        local('MaterialIcons-Regular'), 
-        url(../fonts/MaterialIcons-Regular.woff) 
-        format('woff2');
+    local('MaterialIcons-Regular'), 
+    url(../fonts/MaterialIcons-Regular.woff) 
+    format('woff2');
+}
+
+.navbar,
+.navbar.navbar-default {
+    background-color: #ffefb4;
+    color: rgba(0, 0, 0, 0.84)
+}
+
+body {
+    background-color: #002c4c;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%; 
+  height: 340px;
+  min-width: 300px;
+  max-width: 600px;
+  padding: 30px;
+}
+
+
+
+
+.label.label-pagado {
+    background-color: #009688 !important;
+}
+
+.label.label-NoAutorizadoTablero {
+    background-color: #9954BB !important;
+    color: #FFF !important;
+}
+
+
+.label-Pedido{
+    color: #002c4c !important;
+}
+
+.label-Presupuesto{
+    color: #ff5722 !important;
+}
+
+.label-Autorizacion{
+    color: #03a9f4 !important;
+}
+
+.label-NoAutorizado{
+    color: #9954BB !important;
+}
+.label-Ejecucion{
+    color: #f44336 !important;
+}
+
+.label-Finalizado{
+    color: #4caf50 !important;
+}
+.label-Pagado{
+    color: #009688 !important;
+}
+
+
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-Presupuesto input[type=radio]:checked ~ .check  {
+    background-color: #ff5722;
+}
+
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-Autorizacion input[type=radio]:checked ~ .check {
+    background-color: #03a9f4;
+}
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-NoAutorizado input[type=radio]:checked ~ .check {
+    background-color: #9954BB;
+}
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-Ejecucion input[type=radio]:checked ~ .check {
+    background-color: #f44336;
+}
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-Finalizado input[type=radio]:checked ~ .check {
+    background-color: #4caf50;
+}
+.radio input[type=radio]:checked ~ .check, 
+label.radio-inline-Pagado input[type=radio]:checked ~ .check {
+    background-color: #009688;
+}
+
+
+.imgCliente {
+    text-align: left !important;
+}
+
+.watermarkCliente{
+    margin: 15px;
+    position: fixed;
+    z-index: 99999;
+    pointer-events: none;
+    opacity:0.2;
+    color:white;
 }
 
 .dropdown-submenu {
@@ -26,7 +130,7 @@
     outline-offset: -2px !important;
 }
 
- .Customcaption {
+.Customcaption {
     padding: 0px !important;
 }
 
@@ -45,13 +149,13 @@
 }
 
 @media screen and (max-width: 767px){
-.table-responsive {
-    width: 100%;
-    margin-bottom: 15px;
-    overflow-y: hidden;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 0px solid #ddd;
-}
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 0px solid #ddd;
+    }
 }
 /*Estas clases son para el menu de los trabajos*/
 .btn-group, .btn-group-vertical {
@@ -97,7 +201,7 @@
     border-top: 0;
 }
 .select2-results .select2-highlighted {
-    background-color: #3f51b5 !important;
+    background-color: #002c4c !important;
     height: 26px;
 }
 .select2-search input {
@@ -119,7 +223,7 @@
 }
 .select2-container-disabled{
     background-size: 0 0px,100% 0px !important;
-        
+
 }
 /*select disabled*/
 .select2-container.select2-container-disabled .select2-choice {
@@ -127,7 +231,7 @@
     background-image: none;
     border-bottom: 1px dotted #d2d2d2;
     color: #555 !important;
-     height: 31px !important;
+    height: 31px !important;
 }
 .select2-container.select2-container-disabled .select2-choice .select2-arrow {
     background-color: #fff;
@@ -135,22 +239,22 @@
 }
 /*Estilo datepicker*/
 .datepicker table tr td.day:hover, .datepicker table tr td.day.focused {
-    background-color: #3f51b5 !important;
+    background-color: #002c4c !important;
     color: #fff;
     cursor: pointer;
 }
 /*Hover fechas*/
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:focus, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td.active, .open .dropdown-toggle.datepicker table tr td.active:hover, .open .dropdown-toggle.datepicker table tr td.active.disabled, .open .dropdown-toggle.datepicker table tr td.active.disabled:hover {
     color: #ffffff;
-    background-color: #3f51b5;
-    border-color: #3f51b5;
+    background-color: #002c4c;
+    border-color: #002c4c;
 }
 .datepicker table tr td.today:hover:hover {
     color: #fff;
 }
 /*Modales*/
 .modal-header{
-    background-image: linear-gradient(#3f51b5, #3f51b5 60%, #3f51b5) !important;
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
 }
 .modal-title {
     color: #fff;
@@ -189,8 +293,8 @@
     z-index: 3;
     color: #fff;
     cursor: default;
-    background-color: #3f51b5;
-    border-color: #3f51b5;
+    background-color: #002c4c;
+    border-color: #002c4c;
 }
 /*Focus y active en tab paneles*/
 .nav-tabs {
@@ -200,7 +304,7 @@
     border: 0;
     -webkit-box-shadow: inset 0 -2px 0 rgb(255,64,129) !important;
     box-shadow: inset 0 -2px 0 rgb(255,64,129) !important;
-    color: #3f51b5 !important;
+    color: #002c4c !important;
     font-size: 15px !important;
 }
 .nav-tabs>li>a, .nav-tabs>li>a:focus {
@@ -411,7 +515,7 @@ table tfoot th input[type="text"]:focus{
 }
 /*Menu de tablas para seleccionar columnas*/
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
-    background-color: #3f51b5;
+    background-color: #002c4c;
 }
 /*Separacion de los botones de herramientas de tablas*/
 div.dt-buttons > .btn{
@@ -471,14 +575,14 @@ div.dt-EncabezadoControlEliminar> .btn {
     font-size: 23px !important;
 }
 .customButtonDetalleEdicion:hover{
-    color: #3f51b5;
+    color: #002c4c;
 }
 .customButtonDetalleGenerador{
     color: #555353;
     font-size: 18px !important;
 }
 .customButtonDetalleGenerador:hover{
-    color: #3f51b5;
+    color: #002c4c;
 }
 .customLabelToggle label {
     margin-left: 15px;
@@ -519,14 +623,14 @@ div.dt-EncabezadoControlEliminar> .btn {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     color: #fff;
-    background-color: #3f51b5 !important;
+    background-color: #002c4c !important;
 }
 .spanTotalesDetalle{
     font-size: 18px !important;
 }
 .CustomDetalleDescripcion{
     height: 100px !important;
-   overflow: auto !important;
+    overflow: auto !important;
 }
 .CustomNuevoDetalleDescripcion{
     width: 340px !important;
@@ -551,6 +655,11 @@ div.dt-EncabezadoControlEliminar> .btn {
     pointer-events: none;
     /*opacity: 0.8;*/
 }
+.customDisabled
+{
+    pointer-events: none;
+    opacity: 0.25;
+}
 /*Drag and drop*/
 .file_drag_area  
 {  
@@ -567,11 +676,11 @@ div.dt-EncabezadoControlEliminar> .btn {
 } 
 .file_drag_area:hover  
 {  
-    border-color:#3f51b5 !important;
+    border-color:#002c4c !important;
 }
 .file_drag_over{  
     color:#B0B0B0;  
-    border-color:#3f51b5;  
+    border-color:#002c4c;  
 }  
 .modalFull {
     position: fixed !important;
@@ -604,7 +713,7 @@ div.dt-EncabezadoControlEliminar> .btn {
     left: 0 !important;
     height: 60px !important;
     padding: 18px !important;
-    background-image: linear-gradient(#3f51b5, #3f51b5 60%, #3f51b5) !important;
+    background-image: linear-gradient(#002c4c, #002c4c 60%, #002c4c) !important;
     border: 0 !important;
 }
 .modal-titleFull {
