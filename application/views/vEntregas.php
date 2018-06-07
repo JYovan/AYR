@@ -330,7 +330,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlEntregas/';
+    var master_url = base_url + 'index.php/Entregas/';
     var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
     var verMovs = 'getMyRecords';

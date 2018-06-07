@@ -108,7 +108,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlEspecialidades/';
+    var master_url = base_url + 'index.php/Especialidades/';
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     var btnNuevaEspecialidad = $("#btnNuevaEspecialidad");

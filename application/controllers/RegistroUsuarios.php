@@ -1,29 +1,28 @@
 <?php
 
 header('Access-Control-Allow-Origin: http://app.ayr.mx/');
-defined('BASEPATH') or exit('No direct script access allowed');
-require_once APPPATH . "/third_party/fpdf17/fpdf.php";
-require_once APPPATH . "/third_party/PHPExcel.php";
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CtrlExploradorServicios extends CI_Controller {
+class RegistroUsuarios extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('exploradorServicios_model');
+        $this->load->model('usuario_model');
         $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
+
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
-            $this->load->view('vExploradorServicios');
+            $this->load->view('vRegistroUsuarios');
             $this->load->view('vFooter');
 
             $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A EXPLORADORES SERVICIOS',
+                'Accion' => 'ACCESO A LOG DE USUARIOS',
                 'Registro' => date("d-m-Y H:i:s"),
                 'Usuario_ID' => $this->session->userdata('ID')
             );
@@ -37,7 +36,7 @@ class CtrlExploradorServicios extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->exploradorServicios_model->getRecords();
+            $data = $this->registroUsuarios_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

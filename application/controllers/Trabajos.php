@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
 require_once APPPATH . "/third_party/PHPExcel.php";
 
-class CtrlTrabajos extends CI_Controller {
+class Trabajos extends CI_Controller {
 
     public function __construct() {
         parent::__construct();

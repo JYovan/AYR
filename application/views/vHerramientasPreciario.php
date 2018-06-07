@@ -46,7 +46,7 @@
 
 
 <script>
-    var master_url = base_url + 'index.php/CtrlHerramientasPreciario/';
+    var master_url = base_url + 'index.php/HerramientasPreciario/';
 
     $(document).ready(function () {
 

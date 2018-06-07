@@ -360,7 +360,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlPedidoCliente/';
+    var master_url = base_url + 'index.php/PedidoCliente/';
     var verMovs = 'getRecordsEnFirme';
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
@@ -1111,7 +1111,7 @@
         $('input[name="' + name + '"][value="' + SelectdValue + '"]').prop('checked', true);
     }
     /*-------------------Reportes----------------------------*/
-    var master_urlReportes = base_url + 'index.php/CtrlTrabajos/';
+    var master_urlReportes = base_url + 'index.php/Trabajos/';
     function onReportePresupuesto() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({

@@ -222,7 +222,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlUsuario/';
+    var master_url = base_url + 'index.php/Usuario/';
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");
     var btnNuevo = $("#btnNuevo");

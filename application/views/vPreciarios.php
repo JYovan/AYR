@@ -597,7 +597,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlPreciarios/';
+    var master_url = base_url + 'index.php/Preciarios/';
     var pnlPreciario = $("#pnlPreciario");
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");

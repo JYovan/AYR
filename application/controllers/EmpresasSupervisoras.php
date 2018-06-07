@@ -3,26 +3,24 @@
 header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CtrlEspecialidades extends CI_Controller {
+class EmpresasSupervisoras extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('cliente_model');
-        $this->load->model('especialidades_model');
+        $this->load->model('empresaSupervisora_model');
         $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
-
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
-            $this->load->view('vEspecialidades');
+            $this->load->view('vEmpresasSupervisoras');
             $this->load->view('vFooter');
             $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A ESPECIALIDADES',
+                'Accion' => 'ACCESO A EMPRESAS SUPERVISORAS',
                 'Registro' => date("d-m-Y H:i:s"),
                 'Usuario_ID' => $this->session->userdata('ID')
             );
@@ -36,45 +34,17 @@ class CtrlEspecialidades extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->empresaSupervisora_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getClientes() {
-        try {
-            $data = $this->cliente_model->getClientes();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEspecialidades() {
-        try {
-            $data = $this->especialidades_model->getEspecialidades();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEspecialidadByID() {
+    public function getEmpresaSupervisoraByID() {
         try {
             extract($this->input->post());
-            $data = $this->especialidades_model->getEspecialidadByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEspecialidadesByCliente() {
-        try {
-            extract($this->input->post());
-            $data = $this->especialidades_model->getEspecialidadesByCliente($ID);
+            $data = $this->empresaSupervisora_model->getEmpresaSupervisoraByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -83,16 +53,7 @@ class CtrlEspecialidades extends CI_Controller {
 
     public function onAgregar() {
         try {
-            /* TRABAJO */
-            extract($this->input->post());
-            $data = array(
-                'Descripcion' => (isset($Descripcion) && $Descripcion !== '') ? $Descripcion : NULL,
-                'Estatus' => 'ACTIVO',
-                'Cliente_ID' => $Cliente_ID
-            );
-            $ID = $this->especialidades_model->onAgregar($data);
-
-            echo $ID;
+            $this->empresaSupervisora_model->onAgregar($this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -102,9 +63,12 @@ class CtrlEspecialidades extends CI_Controller {
         try {
             extract($this->input->post());
             $DATA = array(
-                'Descripcion' => ($Descripcion !== NULL) ? $Descripcion : NULL
+                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
+                'Descripcion' => ($Descripcion !== NULL) ? $Descripcion : NULL,
+                'Contacto' => ($Contacto !== NULL) ? $Contacto : NULL,
+                'Contacto2' => ($Contacto2 !== NULL) ? $Contacto2 : NULL
             );
-            $this->especialidades_model->onModificar($ID, $DATA);
+            $this->empresaSupervisora_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -113,7 +77,8 @@ class CtrlEspecialidades extends CI_Controller {
     public function onEliminar() {
         try {
             extract($this->input->post());
-            $this->especialidades_model->onEliminar($ID);
+
+            $this->empresaSupervisora_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

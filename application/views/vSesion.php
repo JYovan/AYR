@@ -1,3 +1,6 @@
+<?PHP 
+print CI_VERSION;
+?>
 <div id="mdlOlvideContrasena" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -76,7 +79,7 @@
 </div>
 
 <script>
-    var master_url = base_url + "CtrlSesion/";
+    var master_url = base_url + "Sesion/";
     var btnResetear = $("#btnResetear");
     var btnIngresar = $("#btnIngresar");
     var Usuario = $("#Usuario");

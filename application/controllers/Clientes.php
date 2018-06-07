@@ -3,24 +3,27 @@
 header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CtrlEmpresas extends CI_Controller {
+class Clientes extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
+        $this->load->model('cliente_model');
         $this->load->model('empresa_model');
+        $this->load->model('empresaSupervisora_model');
         $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
+
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
-            $this->load->view('vEmpresas');
+            $this->load->view('vClientes');
             $this->load->view('vFooter');
             $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A EMPRESAS',
+                'Accion' => 'ACCESO A CLIENTES',
                 'Registro' => date("d-m-Y H:i:s"),
                 'Usuario_ID' => $this->session->userdata('ID')
             );
@@ -34,17 +37,53 @@ class CtrlEmpresas extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->empresa_model->getRecords();
+            $data = $this->cliente_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getEmpresaByID() {
+    public function getClientes() {
+        try {
+            $data = $this->cliente_model->getClientes();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getContratistas() {
+        try {
+            $data = $this->cliente_model->getContratistas();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getEmpresas() {
+        try {
+            $data = $this->empresa_model->getEmpresas();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getEmpresasSupervisoras() {
+        try {
+            $data = $this->empresaSupervisora_model->getEmpresasSupervisoras();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getClienteByID() {
         try {
             extract($this->input->post());
-            $data = $this->empresa_model->getEmpresaByID($ID);
+            $data = $this->cliente_model->getClienteByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -53,9 +92,9 @@ class CtrlEmpresas extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $ID = $this->empresa_model->onAgregar($this->input->post());
+            $ID = $this->cliente_model->onAgregar($this->input->post());
             print "ID: " . $ID;
-            $URL_DOC = 'uploads/Empresas';
+            $URL_DOC = 'uploads/Clientes';
             $master_url = $URL_DOC . '/';
 
             if (isset($_FILES["RutaLogo"]["name"])) {
@@ -70,12 +109,12 @@ class CtrlEmpresas extends CI_Controller {
                     $DATA = array(
                         'RutaLogo' => ($img)
                     );
-                    $this->empresa_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
                         'RutaLogo' => (NULL)
                     );
-                    $this->empresa_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -89,20 +128,22 @@ class CtrlEmpresas extends CI_Controller {
             extract($this->input->post());
             $DATA = array(
                 'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
-                'Rfc' => ($Rfc !== NULL) ? $Rfc : NULL,
-                'ContactoNombre' => ($ContactoNombre !== NULL) ? $ContactoNombre : NULL,
-                'ContactoApellidos' => ($ContactoApellidos !== NULL) ? $ContactoApellidos : NULL,
-                'Direccion' => ($Direccion !== NULL) ? $Direccion : NULL,
+                'NombreCorto' => ($NombreCorto !== NULL) ? $NombreCorto : NULL,
+                'Calle' => ($Calle !== NULL) ? $Calle : NULL,
                 'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL,
                 'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL,
                 'CodigoPostal' => ($CodigoPostal !== NULL) ? $CodigoPostal : NULL,
                 'Colonia' => ($Colonia !== NULL) ? $Colonia : NULL,
                 'Ciudad' => ($Ciudad !== NULL) ? $Ciudad : NULL,
                 'Estado' => ($Estado !== NULL) ? $Estado : NULL,
+                'Contacto1' => ($Contacto1 !== NULL) ? $Contacto1 : NULL,
+                'Contacto2' => ($Contacto2 !== NULL) ? $Contacto2 : NULL,
+                'Contacto3' => ($Contacto3 !== NULL) ? $Contacto3 : NULL,
+                'LeyendaReporte' => ($LeyendaReporte !== NULL) ? $LeyendaReporte : NULL
             );
-            $this->empresa_model->onModificar($ID, $DATA);
+            $this->cliente_model->onModificar($ID, $DATA);
             print "ID: " . $ID;
-            $URL_DOC = 'uploads/Empresas';
+            $URL_DOC = 'uploads/Clientes';
             $master_url = $URL_DOC . '/';
 
             if (isset($_FILES["RutaLogo"]["name"])) {
@@ -117,12 +158,12 @@ class CtrlEmpresas extends CI_Controller {
                     $DATA = array(
                         'RutaLogo' => ($img)
                     );
-                    $this->empresa_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
                         'RutaLogo' => (NULL)
                     );
-                    $this->empresa_model->onModificar($ID, $DATA);
+                    $this->cliente_model->onModificar($ID, $DATA);
                     echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
@@ -134,7 +175,7 @@ class CtrlEmpresas extends CI_Controller {
     public function onEliminar() {
         try {
             extract($this->input->post());
-            $this->empresa_model->onEliminar($ID);
+            $this->cliente_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

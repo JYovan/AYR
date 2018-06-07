@@ -143,7 +143,7 @@
 </div>  
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlCuadrillas/'
+    var master_url = base_url + 'index.php/Cuadrillas/'
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");

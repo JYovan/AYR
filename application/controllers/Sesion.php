@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . "/third_party/fpdf17/fpdf.php";
 
-class CtrlSesion extends CI_Controller {
+class Sesion extends CI_Controller {
 
     public function __construct() {
         parent::__construct();

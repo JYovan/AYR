@@ -120,7 +120,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlCentroCostos/';
+    var master_url = base_url + 'index.php/CentroCostos/';
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     var btnNuevaCentroCosto = $("#btnNuevaCentroCosto");

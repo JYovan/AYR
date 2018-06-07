@@ -51,20 +51,20 @@
                     <a href="#"  class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Mesa de Trabajo<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="hide" id="liPedidoCliente">
-                            <a href="<?php print base_url('CtrlPedidoCliente') ?>">Pedidos Cliente</a>
+                            <a href="<?php print base_url('PedidoCliente.py'); ?>">Pedidos Cliente</a>
                         </li>
                         <li class="divider"></li>
                         <li class="hide" id="liServicios">
-                            <a href="<?php print base_url('CtrlTrabajos') ?>">Servicios</a>
+                            <a href="<?php print base_url('Trabajos.py'); ?>">Servicios</a>
                         </li>
                         <!--
 
                        <li class="dropdown-submenu hide"  id="liServicios">
                             <a class="multinivel" tabindex="-1" href="#">Servicios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li id="liTrabajo" class="hide" tabindex="-1"><a href="<?php print base_url('CtrlTrabajos') ?>"  >Trabajos</a></li>
+                                <li id="liTrabajo" class="hide" tabindex="-1"><a href="<?php print base_url('Trabajos.py'); ?>"  >Trabajos</a></li>
                                 <li class="divider"></li>
-                                <li id="liCajerosBBVA" class="hide"><a  href="<?php print base_url('CtrlCajerosBBVA') ?>">Cajeros BBVA</a></li>
+                                <li id="liCajerosBBVA" class="hide"><a  href="<?php print base_url('CajerosBBVA.py'); ?>">Cajeros BBVA</a></li>
                             </ul>
                         </li>
                         -->
@@ -73,43 +73,43 @@
                 <li class="dropdown hide" id="liControl">
                     <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Control<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li id="liEntregas"><a href="<?php print base_url('CtrlEntregas') ?>" >Control de Entregas</a></li>
-                        <li id="liPrefacturas"><a href="<?php print base_url('CtrlPrefacturas') ?>">Control de Prefacturas</a></li>
+                        <li id="liEntregas"><a href="<?php print base_url('Entregas.py'); ?>" >Control de Entregas</a></li>
+                        <li id="liPrefacturas"><a href="<?php print base_url('Prefacturas.py'); ?>">Control de Prefacturas</a></li>
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liExploradores">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exploradores <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php print base_url('CtrlExploradorServicios') ?>">Servicios</a></li> 
+                        <li><a href="<?php print base_url('ExploradorServicios.py'); ?>">Servicios</a></li> 
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liCatalogos">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="liClientes"><a href="<?php print base_url('CtrlClientes') ?>">Clientes</a></li>
-                        <li id="liEmpresas"><a href="<?php print base_url('CtrlEmpresas') ?>">Empresas</a></li>
-                        <li id="liPreciarios"><a href="<?php print base_url('CtrlPreciarios') ?>">Preciarios</a></li> 
+                        <li id="liClientes"><a href="<?php print base_url('Clientes.py'); ?>">Clientes</a></li>
+                        <li id="liEmpresas"><a href="<?php print base_url('Empresas.py'); ?>">Empresas</a></li>
+                        <li id="liPreciarios"><a href="<?php print base_url('Preciarios.py'); ?>">Preciarios</a></li> 
                         <!--                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>-->
-                        <li id="liEmpresasSupervisoras"><a href="<?php print base_url('CtrlEmpresasSupervisoras') ?>">Empresas Supervisoras</a></li>
+                        <li id="liEmpresasSupervisoras"><a href="<?php print base_url('EmpresasSupervisoras.py'); ?>">Empresas Supervisoras</a></li>
                         <!--                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>-->
-                        <li id="liCuadrillas"><a href="<?php print base_url('CtrlCuadrillas') ?>" >Cuadrillas</a></li>
-                        <li id="liCodigosPPTA"><a href="<?php print base_url('CtrlCodigosPPTA') ?>" >Códigos PPTA</a></li>
-                        <li id="liCentrosCostos"><a href="<?php print base_url('CtrlCentroCostos') ?>" >Centros de Costos</a></li>
-                        <li id="liEspecialidades"><a href="<?php print base_url('CtrlEspecialidades') ?>" >Especialidades</a></li>
-                        <li id="liAreas"><a href="<?php print base_url('CtrlAreas') ?>" >Areas</a></li>
+                        <li id="liCuadrillas"><a href="<?php print base_url('Cuadrillas.py'); ?>" >Cuadrillas</a></li>
+                        <li id="liCodigosPPTA"><a href="<?php print base_url('CodigosPPTA.py'); ?>" >Códigos PPTA</a></li>
+                        <li id="liCentrosCostos"><a href="<?php print base_url('CentroCostos.py'); ?>" >Centros de Costos</a></li>
+                        <li id="liEspecialidades"><a href="<?php print base_url('Especialidades.py'); ?>" >Especialidades</a></li>
+                        <li id="liAreas"><a href="<?php print base_url('Areas.py'); ?>" >Areas</a></li>
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liUsuarios">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ><a href="<?php print base_url('CtrlUsuario') ?>">Usuarios</a></li>
-                        <li ><a href="<?php print base_url('CtrlRegistroUsuarios') ?>">Log de Usuarios</a></li>
+                        <li ><a href="<?php print base_url('Usuario.py'); ?>">Usuarios</a></li>
+                        <li ><a href="<?php print base_url('RegistroUsuarios.py'); ?>">Log de Usuarios</a></li>
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liHerramiendas">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Herramientas <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php print base_url('CtrlHerramientasPreciario'); ?>">Herramientas de Preciarios</a></li>
+                        <li><a href="<?php print base_url('HerramientasPreciario.py'); ?>">Herramientas de Preciarios</a></li>
                     </ul>
                 </li>
             </ul>
@@ -121,9 +121,9 @@
                     <ul class="dropdown-menu">
                         <li onclick="onCambiarContrasena();"><a href="#" onclick="onRegistrarAccion('INTENTÓ CAMBIAR CONTRASEÑA');">Cambiar Contraseña</a></li>
                         <li><a href="">Reportar un problema</a></li>
-                        
+
                         <li class="divider"></li>
-                        <li><a href="<?php print base_url('CtrlSesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">Salir</a></li>
+                        <li><a href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">Salir</a></li>
                     </ul>
                 </li>
             </ul>
@@ -172,9 +172,8 @@
         $('#liHerramiendas').removeClass('hide');
         //$('#liTrabajo').removeClass('hide');
         //$('#liCajerosBBVA').removeClass('hide');
-
     }
-    var master_url = base_url + 'CtrlSesion/';
+    var master_url = base_url + 'Sesion/';
     $(document).ready(function () {
         $('.dropdown-submenu a.multinivel').on("click", function (e) {
             $(this).next('ul').toggle();
@@ -235,7 +234,7 @@
     }
 
     function onRegistrarAccion(accion) {
-        var master_url = base_url + 'CtrlSesion/';
+        var master_url = base_url + 'Sesion/';
         $.ajax({
             url: master_url + 'onAgregar',
             type: "POST",
@@ -251,10 +250,4 @@
             HoldOn.close();
         });
     }
-
-
-
-
-
-
 </script>

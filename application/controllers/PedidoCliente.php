@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: http://app.ayr.mx/');
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class CtrlPedidoCliente extends CI_Controller {
+class PedidoCliente extends CI_Controller {
 
     public function __construct() {
         parent::__construct();

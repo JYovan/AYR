@@ -16,7 +16,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlRegistroUsuarios/';
+    var master_url = base_url + 'index.php/RegistroUsuarios/';
     var pnlTablero = $("#pnlTablero");
     var btnRefrescar = $("#btnRefrescar");
     $(document).ready(function () {

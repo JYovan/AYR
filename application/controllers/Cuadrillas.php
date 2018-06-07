@@ -1,16 +1,15 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://app.ayr.mx/');
+header('Access-Control-Allow-Origin: http://app.ayr.mx');
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class CtrlAreas extends CI_Controller {
+class Cuadrillas extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('cliente_model');
-        $this->load->model('areas_model');
+        $this->load->model('cuadrilla_model');
         $this->load->model('registroUsuarios_model');
     }
 
@@ -19,10 +18,10 @@ class CtrlAreas extends CI_Controller {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
-            $this->load->view('vAreas');
+            $this->load->view('vCuadrillas');
             $this->load->view('vFooter');
             $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A ÁREAS',
+                'Accion' => 'ACCESO A CUADRILLAS',
                 'Registro' => date("d-m-Y H:i:s"),
                 'Usuario_ID' => $this->session->userdata('ID')
             );
@@ -36,45 +35,17 @@ class CtrlAreas extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->cuadrilla_model->getRecords();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getClientes() {
-        try {
-            $data = $this->cliente_model->getClientes();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getAreas() {
-        try {
-            $data = $this->areas_model->getAreas();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getAreaByID() {
+    public function getCuadrillaByID() {
         try {
             extract($this->input->post());
-            $data = $this->areas_model->getAreaByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getAreasByCliente() {
-        try {
-            extract($this->input->post());
-            $data = $this->areas_model->getAreasByCliente($ID);
+            $data = $this->cuadrilla_model->getCuadrillaByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -83,16 +54,7 @@ class CtrlAreas extends CI_Controller {
 
     public function onAgregar() {
         try {
-            /* TRABAJO */
-            extract($this->input->post());
-            $data = array(
-                'Descripcion' => (isset($Descripcion) && $Descripcion !== '') ? $Descripcion : null,
-                'Estatus' => 'ACTIVO',
-                'Cliente_ID' => $Cliente_ID,
-            );
-            $ID = $this->areas_model->onAgregar($data);
-
-            echo $ID;
+            $this->cuadrilla_model->onAgregar($this->input->post());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -102,9 +64,11 @@ class CtrlAreas extends CI_Controller {
         try {
             extract($this->input->post());
             $DATA = array(
-                'Descripcion' => ($Descripcion !== null) ? $Descripcion : null,
+                'Nombre' => ($Nombre !== null) ? $Nombre : null,
+                'Miembros' => ($Miembros !== null) ? $Miembros : null,
+                'Estatus' => ($Estatus !== null) ? $Estatus : null,
             );
-            $this->areas_model->onModificar($ID, $DATA);
+            $this->cuadrilla_model->onModificar($ID, $DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -113,7 +77,7 @@ class CtrlAreas extends CI_Controller {
     public function onEliminar() {
         try {
             extract($this->input->post());
-            $this->areas_model->onEliminar($ID);
+            $this->cuadrilla_model->onEliminar($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

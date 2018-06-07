@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: http://app.ayr.mx');
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CtrlCodigosPPTA extends CI_Controller {
+class CodigosPPTA extends CI_Controller {
 
     public function __construct() {
         parent::__construct();

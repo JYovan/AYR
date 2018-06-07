@@ -382,7 +382,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlPrefacturas/';
+    var master_url = base_url + 'index.php/Prefacturas/';
     var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
     var verMovs = 'getMyRecords';

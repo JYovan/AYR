@@ -109,7 +109,7 @@
 
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlAreas/';
+    var master_url = base_url + 'index.php/Areas/';
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     var btnNuevaArea = $("#btnNuevaArea");

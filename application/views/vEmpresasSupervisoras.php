@@ -147,7 +147,7 @@
 </div>            
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlEmpresasSupervisoras/';
+    var master_url = base_url + 'index.php/EmpresasSupervisoras/';
     var btnNuevo = $("#btnNuevo");
     var pnlNuevo = $("#pnlNuevo");
     var pnlTablero = $("#pnlTablero");

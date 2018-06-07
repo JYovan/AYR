@@ -16,7 +16,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlExploradorServicios/';
+    var master_url = base_url + 'index.php/ExploradorServicios/';
     $(document).ready(function () {
         /*CALLS*/
         getRecords();

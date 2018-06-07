@@ -1002,7 +1002,7 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/CtrlClientes/';
+    var master_url = base_url + 'index.php/Clientes/';
     var btnNuevo = $("#btnNuevo");
     var mdlNuevo = $("#mdlNuevo");
     var btnEditar = $("#btnEditar");
@@ -1064,7 +1064,7 @@
                 message: "ELIMINANDO..."
             });
             $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/onEliminar',
+                url: base_url + 'index.php/Sucursal/onEliminar',
                 type: "POST",
                 data: {
                     ID: temp
@@ -1113,7 +1113,7 @@
             if ($('#frmEditarSuc').valid()) {
                 var frm = new FormData(mdlEditarSucursal.find("#frmEditarSuc")[0]);
                 $.ajax({
-                    url: base_url + 'index.php/CtrlSucursal/onModificar',
+                    url: base_url + 'index.php/Sucursal/onModificar',
                     type: "POST",
                     cache: false,
                     contentType: false,
@@ -1156,7 +1156,7 @@
             if ($('#frmNuevoSuc').valid()) {
                 var frm = new FormData(mdlNuevaSucursal.find("#frmNuevoSuc")[0]);
                 $.ajax({
-                    url: base_url + 'index.php/CtrlSucursal/onAgregar',
+                    url: base_url + 'index.php/Sucursal/onAgregar',
                     type: "POST",
                     cache: false,
                     contentType: false,
@@ -1528,7 +1528,7 @@
             message: "CARGANDO DATOS..."
         });
         $.ajax({
-            url: base_url + 'index.php/CtrlSucursal/getSucursalesByCliente',
+            url: base_url + 'index.php/Sucursal/getSucursalesByCliente',
             type: "POST",
             dataType: "JSON",
             data: {
@@ -1676,7 +1676,7 @@
                 message: "CARGANDO DATOS..."
             });
             $.ajax({
-                url: base_url + 'index.php/CtrlSucursal/getSucursalByID',
+                url: base_url + 'index.php/Sucursal/getSucursalByID',
                 type: "POST",
                 dataType: "JSON",
                 data: {
