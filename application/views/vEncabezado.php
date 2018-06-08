@@ -25,11 +25,17 @@
         <title>Control de Trabajo</title>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php print base_url(); ?>js/jquery-3.2.1.min.js"></script>
+
         <!--DataTables Plugin-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.css">
         <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
+
+        <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/JSZip-3.1.3/jszip.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/Buttons-1.5.1/js/buttons.html5.min.js" type="text/javascript"></script>
         <!--select2 control-->
-        <script src="<?php echo base_url(); ?>js/select2/select2.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/selectize/js/standalone/selectize.min.js"></script>
+        <link href="<?php echo base_url(); ?>js/selectize/css/selectize.bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -45,9 +51,25 @@
         <link rel="stylesheet" href="<?php print base_url(); ?>css/animate.min.css">
         <!--HoldOn Stupid Accions-->
         <link href="<?php print base_url(); ?>css/HoldOn.min.css" rel="stylesheet">
-        <script src="<?php print base_url(); ?>js/HoldOn.min.js"></script>
+        <script src="<?php print base_url(); ?>js/HoldOn/HoldOn.min.js"></script>
 
+        <!--MasekdAll-->
+        <script src="<?php print base_url(); ?>js/inputmask/dependencyLibs/inputmask.dependencyLib.jquery.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/jquery.inputmask.bundle.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/inputmask.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/inputmask.extensions.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/inputmask.numeric.extensions.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/inputmask.date.extensions.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/inputmask.phone.extensions.js"></script>
+        <script src="<?php print base_url(); ?>js/inputmask/jquery.inputmask.min.js"></script>
+
+
+        <!--Masked number format money etc-->
         <script src="<?php print base_url(); ?>js/jquery.maskedinput.min.js"></script>
+        <!--Masked number format money etc-->
+        <script src="<?php print base_url(); ?>js/jquery.maskMoney.min.js"></script>
+        <!--Modales simplificados-->
+        <script src="<?php print base_url(); ?>js/swal/sweetalert.min.js"></script>
 
         <!--Notifiers-->
         <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
@@ -89,7 +111,7 @@
 //            });
 
 
-           
+
             $("select").select2({
                 placeholder: "Selecciona una opción",
                 allowClear: true,
@@ -131,21 +153,47 @@
 
         });
         function onNotify(span, message, type) {
-            $.notify({
-                title: span,
-                message: message
-            }, {
-                type: type,
-                z_index: 3031,
-                delay: 2000,
-                placement: {
-                    from: "bottom",
-                    align: "right"
-                },
-                animate: {
-                    enter: 'animated fadeInUp',
-                    exit: 'animated fadeOutDown'
+            swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');
+        }
+
+        var valido = false;
+        function isValid(p) {
+            var inputs = $('#' + p).find("div.card-body").find("input.form-control:required").length;
+            var selects = $('#' + p).find("div.card-body").find("select.required").length;
+            var valid_inputs = 0;
+            var valid_selects = 0;
+
+            $.each($('#' + p).find("div.card-body").find("input.form-control:required"), function () {
+                var e = $(this).parent().find("small.text-danger");
+                if ($(this).val() === '' && e.length === 0) {
+                    $(this).parent().find("label").after("<small class=\"text-danger\"> Este campo es obligatorio</small>");
+                    $(this).css("border", "1px solid #d01010");
+                    valido = false;
+                } else {
+                    if ($(this).val() !== '') {
+                        $(this).css("border", "1px solid #ccc");
+                        $(this).parent().find("small.text-danger").remove();
+                        valid_inputs += 1;
+                    }
                 }
             });
+            $.each($('#' + p).find("div.card-body").find("select.required"), function () {
+                var e = $(this).parent().find("small.text-danger");
+                if ($(this).val() === '' && e.length === 0) {
+                    $(this).after("<small class=\"text-danger\"> Este campo es obligatorio</small>");
+                    $(this).parent().find(".selectize-input").css("border", "1px solid #d01010");
+                    valido = false;
+                } else {
+                    if ($(this).val() !== '') {
+                        $(this).parent().find(".selectize-input").css("border", "1px solid #ccc");
+                        $(this).parent().find("small.text-danger").remove();
+                        valid_selects += 1;
+                    }
+                }
+            });
+
+            if (valid_inputs === inputs && valid_selects === selects) {
+                valido = true;
+            }
         }
     </script>
