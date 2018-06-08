@@ -177,6 +177,7 @@ class Preciarios extends CI_Controller {
             $ID = $this->preciario_model->onAgregar($DATA);
             $PRECIARIO_DATA = json_decode($PRECIARIO);
 
+
             foreach ($PRECIARIO_DATA->HOJAN1 as $k => $v) {
                 if (isset($v->Tipo) && $v->Tipo === '1') {
                     /* AQUI EL PRECIARIO EN LA COLUMNA TIPO, TIENE UN ESPACIO AL FINAL, ESTO SE DEBE DE EVITAR PARA NO PONERLO ENTRE LLAVES */
@@ -226,7 +227,10 @@ class Preciarios extends CI_Controller {
                         'Material' => (isset($v->Material) && $v->Material !== NULL && $v->Material !== '') ? $v->Material : NULL,
                         'TextoMaterial' => (isset($v->TextoMaterial) && $v->TextoMaterial !== NULL && $v->TextoMaterial !== '') ? $v->TextoMaterial : NULL,
                         'Familia' => (isset($v->Familia) && $v->Familia !== NULL && $v->Familia !== '') ? $v->Familia : NULL,
-                        'UnidadFichero' => (isset($v->UnidadFichero) && $v->UnidadFichero !== NULL && $v->UnidadFichero !== '') ? $v->UnidadFichero : NULL
+                        'UnidadFichero' => (isset($v->UnidadFichero) && $v->UnidadFichero !== NULL && $v->UnidadFichero !== '') ? $v->UnidadFichero : NULL,
+                        'TipoConcepto' => (isset($v->TipoConcepto) && $v->TipoConcepto !== NULL && $v->TipoConcepto !== '') ? $v->TipoConcepto : NULL,
+                        'Catalogo' => (isset($v->Catalogo) && $v->Catalogo !== NULL && $v->Catalogo !== '') ? $v->Catalogo : NULL,
+                        'TipoPrecio' => (isset($v->TipoPrecio) && $v->TipoPrecio !== NULL && $v->TipoPrecio !== '') ? $v->TipoPrecio : NULL
                     );
                     $IDPCO = $this->preciario_model->onAgregarPreciarioConceptos($data);
                 }

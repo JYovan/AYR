@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-md-12">
                             <br>
-                            <h6>Los campos con * son obligatorios</h6>    
+                            <h6>Los campos con * son obligatorios</h6>
                         </div>
                         <div class="col-md-12">
                             <div class="alert alert-dismissible alert-warning">
@@ -172,7 +172,7 @@
                     </div>
                     <div class="col-md-12">
                         <br>
-                        <h6>Los campos con * son obligatorios</h6>    
+                        <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
             </form>
@@ -1056,12 +1056,13 @@
                     data: frm
                 }).done(function (data, x, jq) {
                     console.log(data);
-                    HoldOn.close();
+
                     pnlNuevo.addClass('hide');
                     pnlPreciario.removeClass('hide');
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                     btnRefrescar.trigger('click');
+                    HoldOn.close();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
