@@ -15,7 +15,7 @@
 </div>
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide animated slideInRight">
+    <div id="pnlDatos" class="panel panel-default hide">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -181,7 +181,6 @@
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
             pnlDatos.addClass('hide');
-            btnRefrescar.trigger('click');
         });
         //Evento clic del boton confirmar borrar
         btnEliminar.click(function () {
@@ -319,8 +318,6 @@
                         });
                         pnlTablero.addClass("hide");
                         pnlDatos.removeClass('hide');
-                        pnlDatos.find("[name='nombre']").focus();
-                        pnlDatos.find("[name='nombre']").select();
 
                         if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
                             var ext = getExt(empresa.RutaLogo);

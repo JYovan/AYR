@@ -97,20 +97,20 @@
     <script>
         var base_url = "<?php print base_url(); ?>";
         $(function () {
-            // $(".btn").addClass("animated shake");
 
-            //$("table.display").DataTable(tableOptions);
-//            $('table').css('display', 'block');
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
-//            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-//            });
-//            $('a[data-toggle="collapse"]').on('shown.bs.tab', function (e) {
-//                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-//            });
 
+            $('.numbersOnly').keypress(function (event) {
+                var charCode = (event.which) ? event.which : event.keyCode;
+                if (
+                        (charCode !== 45 || $(this).val().indexOf('-') !== -1) && // “-” CHECK MINUS, AND ONLY ONE.
+                        (charCode !== 46 || $(this).val().indexOf('.') !== -1) && // “.” CHECK DOT, AND ONLY ONE.
+                        (charCode < 48 || charCode > 57))
+                    return false;
 
+                return true;
+            });
 
             $("select").select2({
                 placeholder: "Selecciona una opción",

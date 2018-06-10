@@ -53,7 +53,15 @@ class EmpresasSupervisoras extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $this->empresaSupervisora_model->onAgregar($this->input->post());
+            extract($this->input->post());
+            $DATA = array(
+                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
+                'Descripcion' => ($Descripcion !== NULL) ? $Descripcion : NULL,
+                'Contacto' => ($Contacto !== NULL) ? $Contacto : NULL,
+                'Contacto2' => ($Contacto2 !== NULL) ? $Contacto2 : NULL,
+                'Estatus' => 'Activo'
+            );
+            $this->empresaSupervisora_model->onAgregar($DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

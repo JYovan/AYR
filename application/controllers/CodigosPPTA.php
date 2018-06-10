@@ -54,7 +54,12 @@ class CodigosPPTA extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $this->codigoppta_model->onAgregar($this->input->post());
+            extract($this->input->post());
+            $DATA = array(
+                'Codigo' => ($Codigo !== NULL) ? $Codigo : NULL,
+                'Dias' => ($Dias !== NULL) ? $Dias : NULL
+            );
+            $this->codigoppta_model->onAgregar($DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

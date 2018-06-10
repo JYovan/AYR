@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
+ * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
  */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -16,8 +16,11 @@ class empresaSupervisora_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $query = $this->db->query("CALL SP_EMPRESAS_SUPERVISORAS()");
-         
+            $this->db->select('ES.ID, ES.Nombre AS Empresa ', false);
+            $this->db->from('empresassupervisoras AS ES');
+            $this->db->where_in('ES.Estatus', 'Activo');
+            $query = $this->db->get();
+
             $str = $this->db->last_query();
             $data = $query->result();
             return $data;
@@ -84,16 +87,15 @@ class empresaSupervisora_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-     public function onEliminar($ID) {
+
+    public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'Inactivo');
             $this->db->where('ID', $ID);
             $this->db->update("empresassupervisoras");
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
 }
-
-
