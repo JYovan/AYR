@@ -14,8 +14,8 @@ class registroUsuarios_model extends CI_Model {
         try {
             $this->db->select("UL.ID,
 UPPER(CONCAT(U.Nombre, ' ', U.Apellidos)) AS Usuario,
-CONCAT('<span class=\'label label-info\'>',ifnull(UL.Registro,'--'),'</span>') AS 'Registro',
-UL.Accion AS 'Acción',
+CONCAT('<span class=\'label label-info\'>',ifnull(UL.Registro,'--'),'</span>') AS Registro,
+UL.Accion AS Accion,
 ifnull(CT.Nombre,'USUARIO INTERNO') AS Cliente,
 E.Nombre AS Empresa
 FROM usuarios_log AS UL

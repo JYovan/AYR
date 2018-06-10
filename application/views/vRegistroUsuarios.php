@@ -8,7 +8,31 @@
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
+                <div class="col-md-12 table-responsive" id="Registros">
+                    <table id="tblRegistros" class="table table-sm display " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Registro</th>
+                                <th>Acción</th>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Registro</th>
+                                <th>Acción</th>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </fieldset>
         </div>
     </div>
@@ -25,51 +49,14 @@
         });
         getRecords();
     });
+    var tblRegistrosX = $("#tblRegistros"), Registros;
     function getRecords() {
-        temp = 0;
         HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
         });
-        $.ajax({
-            url: master_url + 'getRecords',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                $("#tblRegistros").html(getTable('tblUsuarios', data));
-                $('#tblUsuarios').DataTable(tableOptionsLog);
-            }
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
-    var tableOptionsLog = {
-    initComplete: function () {
-        this.api().columns([1,4,5]).every(function () {
-            var column = this;
-            var select = $('<select class="form-control"><option value="">TODOS</option></select>')
-                    .appendTo($(column.footer()).empty())
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                                );
-                        column
-                                .search(val ? '^' + val + '$' : '', true, false)
-                                        .draw();
-                            });
-                    column.data().unique().sort().each(function (d, j) {
-                        if (column.search() === '^' + d + '$') {
-                            select.append('<option value="' + d + '" selected="selected">' + d + '</option>')
-                        } else {
-                            select.append('<option value="' + d + '">' + d + '</option>')
-                        }
-                    });
-                });
-            },
+        tblRegistrosX.DataTable().destroy();
+        Registros = tblRegistrosX.DataTable({
             "dom": 'Bfrtip',
             buttons: [{
                     extend: 'excelHtml5',
@@ -87,36 +74,62 @@
                         columns: ':visible'
                     }
                 }],
-            language: {
-                processing: "Proceso en curso...",
-                search: "Buscar:",
-                lengthMenu: "Mostrar _MENU_ Elementos",
-                info: "Mostrando  _START_ de _END_ , de _TOTAL_ Elementos.",
-                infoEmpty: "Mostrando 0 de 0 A 0 Elementos.",
-                infoFiltered: "(Filtrando un total _MAX_ Elementos. )",
-                infoPostFix: "",
-                loadingRecords: "Procesando los datos...",
-                zeroRecords: "No se encontro nada.",
-                emptyTable: "No existen datos en la tabla.",
-                paginate: {
-                    first: "Primero",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "&Uacute;ltimo"
-                },
-                aria: {
-                    sortAscending: ": Habilitado para ordenar la columna en orden ascendente",
-                    sortDescending: ": Habilitado para ordenar la columna en orden descendente"
-                }
+            "ajax": {
+                "url": master_url + 'getRecords',
+                "dataType": "jsonp",
+                "dataSrc": ""
             },
+            initComplete: function () {
+                this.api().columns([1, 4, 5]).every(function () {
+                    var column = this;
+                    var select = $('<select class="form-control"><option value="">TODOS</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                        );
+                                column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                            });
+                    column.data().unique().sort().each(function (d, j) {
+                        if (column.search() === '^' + d + '$') {
+                            select.append('<option value="' + d + '" selected="selected">' + d + '</option>')
+                        } else {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        }
+                    });
+                });
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Usuario"},
+                {"data": "Registro"},
+                {"data": "Accion"},
+                {"data": "Cliente"},
+                {"data": "Empresa"}
+            ],
+            language: lang,
             "autoWidth": true,
+            "bStateSave": true,
             "colReorder": true,
             "displayLength": 15,
             "bLengthChange": false,
             "deferRender": true,
-            "scrollCollapse": true,
+            "scrollCollapse": false,
+            keys: true,
+            "bSort": true,
             "aaSorting": [
-                [0, 'desc']
+                [0, 'desc']/*ID*/
             ]
-        };
+        });
+        $('#tblRegistros_filter input[type=search]').focus();
+        tblRegistrosX.find('tbody').on('click', 'tr', function () {
+            tblRegistrosX.find("tbody tr").removeClass("success");
+            $(this).addClass("success");
+            var dtm = Registros.row(this).data();
+            temp = parseInt(dtm.ID);
+        });
+        HoldOn.close();
+    }
 </script>

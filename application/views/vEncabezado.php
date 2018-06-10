@@ -90,8 +90,8 @@
         <script src="<?php print base_url(); ?>js/material.min.js"></script>
         <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
         <!--Final Modifiers for CSS-->
-        <link href="<?php print base_url(); ?>css/style.min.css" rel="stylesheet" />
-        <script src="<?php echo base_url(); ?>js/scripts.min.js"></script>
+        <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
+        <script src="<?php echo base_url(); ?>js/scripts.js"></script>
 
     </head>
     <script>
@@ -101,8 +101,8 @@
 
             //$("table.display").DataTable(tableOptions);
 //            $('table').css('display', 'block');
-//            $('[data-toggle="tooltip"]').tooltip();
-//            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
 //            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 //                $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
 //            });
@@ -156,14 +156,14 @@
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');
         }
 
-        var valido = false;
+
+
         function isValid(p) {
-            var inputs = $('#' + p).find("div.card-body").find("input.form-control:required").length;
-            var selects = $('#' + p).find("div.card-body").find("select.required").length;
+            var inputs = $('#' + p).find("input.form-control:required").length;
+            var selects = $('#' + p).find("select.required").length;
             var valid_inputs = 0;
             var valid_selects = 0;
-
-            $.each($('#' + p).find("div.card-body").find("input.form-control:required"), function () {
+            $.each($('#' + p).find("input.form-control:required"), function () {
                 var e = $(this).parent().find("small.text-danger");
                 if ($(this).val() === '' && e.length === 0) {
                     $(this).parent().find("label").after("<small class=\"text-danger\"> Este campo es obligatorio</small>");
@@ -177,7 +177,7 @@
                     }
                 }
             });
-            $.each($('#' + p).find("div.card-body").find("select.required"), function () {
+            $.each($('#' + p).find("select.required"), function () {
                 var e = $(this).parent().find("small.text-danger");
                 if ($(this).val() === '' && e.length === 0) {
                     $(this).after("<small class=\"text-danger\"> Este campo es obligatorio</small>");
@@ -191,9 +191,9 @@
                     }
                 }
             });
-
             if (valid_inputs === inputs && valid_selects === selects) {
                 valido = true;
             }
         }
+
     </script>

@@ -36,8 +36,7 @@ class RegistroUsuarios extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->registroUsuarios_model->getRecords();
-            print json_encode($data);
+            print $_GET['callback'] . '(' . json_encode($this->registroUsuarios_model->getRecords()) . ');'; /* JSONP */
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

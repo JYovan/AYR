@@ -53,11 +53,27 @@ class Empresas extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $ID = $this->empresa_model->onAgregar($this->input->post());
-            print "ID: " . $ID;
-            $URL_DOC = 'uploads/Empresas';
-            $master_url = $URL_DOC . '/';
+            extract($this->input->post());
+            $DATA = array(
+                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
+                'Rfc' => ($Rfc !== NULL) ? $Rfc : NULL,
+                'ContactoNombre' => ($ContactoNombre !== NULL) ? $ContactoNombre : NULL,
+                'ContactoApellidos' => ($ContactoApellidos !== NULL) ? $ContactoApellidos : NULL,
+                'Direccion' => ($Direccion !== NULL) ? $Direccion : NULL,
+                'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL,
+                'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL,
+                'CodigoPostal' => ($CodigoPostal !== NULL) ? $CodigoPostal : NULL,
+                'Colonia' => ($Colonia !== NULL) ? $Colonia : NULL,
+                'Ciudad' => ($Ciudad !== NULL) ? $Ciudad : NULL,
+                'Estado' => ($Estado !== NULL) ? $Estado : NULL,
+                'Estatus' => 'Activo',
+                'Registro' => Date('d/m/Y h:i:s a')
+            );
 
+            $ID = $this->empresa_model->onAgregar($this->input->post());
+            /* SUBIR FOTO */
+            $URL_DOC = 'uploads/Empresas/';
+            $master_url = $URL_DOC . '/';
             if (isset($_FILES["RutaLogo"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -67,18 +83,28 @@ class Empresas extends CI_Controller {
                 }
                 if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
+
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = true;
+                    $config['width'] = 250;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
                     $DATA = array(
-                        'RutaLogo' => ($img)
+                        'RutaLogo' => ($img),
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'RutaLogo' => (NULL)
+                        'RutaLogo' => (null),
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
+            /* FIN SUBIR FOTO */
+            print $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -102,9 +128,9 @@ class Empresas extends CI_Controller {
             );
             $this->empresa_model->onModificar($ID, $DATA);
             print "ID: " . $ID;
-            $URL_DOC = 'uploads/Empresas';
+            /* SUBIR FOTO */
+            $URL_DOC = 'uploads/Empresas/';
             $master_url = $URL_DOC . '/';
-
             if (isset($_FILES["RutaLogo"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -114,16 +140,24 @@ class Empresas extends CI_Controller {
                 }
                 if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
+
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = true;
+                    $config['width'] = 250;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
                     $DATA = array(
-                        'RutaLogo' => ($img)
+                        'RutaLogo' => ($img),
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'RutaLogo' => (NULL)
+                        'RutaLogo' => (null),
                     );
                     $this->empresa_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
         } catch (Exception $exc) {
