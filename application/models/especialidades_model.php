@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
@@ -8,14 +9,13 @@ class especialidades_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
 
-
-    public function getEspecialidades() {
-         try {
+    public function getRecords($Cliente) {
+        try {
             $this->db->select('E.ID, E.Descripcion', false);
             $this->db->from('especialidades AS E');
             $this->db->where_in('E.Estatus', 'ACTIVO');
+            $this->db->where('E.Cliente_ID', $Cliente);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -47,9 +47,8 @@ class especialidades_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-        public function getEspecialidadesByCliente($ID) {
+
+    public function getEspecialidadesByCliente($ID) {
         try {
             $this->db->select('E.ID, E.Descripcion', false);
             $this->db->from('especialidades AS E');
@@ -86,16 +85,16 @@ class especialidades_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("especialidades", $DATA);
-            
+
             //print $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'INACTIVO');
             $this->db->where('ID', $ID);
             $this->db->update("especialidades");
             print $str = $this->db->last_query();
@@ -103,8 +102,5 @@ class especialidades_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
 
 }
-
-

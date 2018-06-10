@@ -112,10 +112,14 @@
                 return true;
             });
 
-            $("select").select2({
-                placeholder: "Selecciona una opción",
-                allowClear: true,
-                autofocusInputOnOpen: false
+//            $("select").select2({
+//                placeholder: "Selecciona una opción",
+//                allowClear: true,
+//                autofocusInputOnOpen: false
+//            });
+
+            $("select").selectize({
+                hideSelected: true
             });
 
             $(document).on('touchend', function () {

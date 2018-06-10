@@ -36,7 +36,7 @@ class Areas extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->areas_model->getRecords($this->input->post('Cliente'));
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -65,16 +65,6 @@ class Areas extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->areas_model->getAreaByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getAreasByCliente() {
-        try {
-            extract($this->input->post());
-            $data = $this->areas_model->getAreasByCliente($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

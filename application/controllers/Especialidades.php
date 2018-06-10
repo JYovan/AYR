@@ -36,7 +36,7 @@ class Especialidades extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->especialidades_model->getRecords($this->input->post('Cliente'));
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -65,16 +65,6 @@ class Especialidades extends CI_Controller {
         try {
             extract($this->input->post());
             $data = $this->especialidades_model->getEspecialidadByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEspecialidadesByCliente() {
-        try {
-            extract($this->input->post());
-            $data = $this->especialidades_model->getEspecialidadesByCliente($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
@@ -8,14 +9,13 @@ class areas_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
 
-
-    public function getAreas() {
-         try {
+    public function getRecords($Cliente) {
+        try {
             $this->db->select('E.ID, E.Descripcion', false);
             $this->db->from('areas AS E');
             $this->db->where_in('E.Estatus', 'ACTIVO');
+            $this->db->where('E.Cliente_ID', $Cliente);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -47,9 +47,8 @@ class areas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-        public function getAreasByCliente($ID) {
+
+    public function getAreasByCliente($ID) {
         try {
             $this->db->select('E.ID, E.Descripcion', false);
             $this->db->from('areas AS E');
@@ -86,16 +85,16 @@ class areas_model extends CI_Model {
         try {
             $this->db->where('ID', $ID);
             $this->db->update("areas", $DATA);
-            
+
             //print $this->db->last_query();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'INACTIVO');
             $this->db->where('ID', $ID);
             $this->db->update("areas");
             print $str = $this->db->last_query();
@@ -103,9 +102,5 @@ class areas_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
 
 }
-
-
-
