@@ -1,6 +1,4 @@
-<?PHP 
-print CI_VERSION;
-?>
+
 <div id="mdlOlvideContrasena" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -57,15 +55,6 @@ print CI_VERSION;
                 <div class="form-group">
                     <input type="password" class="form-control" id="Contrasena" name="Contrasena" placeholder="Contraseña*">
                 </div>
-                <!--
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" placeholder="No soy un robot" id="chkRobot" name="chkRobot"> No soy un robot
-                    </label>
-                </div>
-                -->
-                <!--Mensaje de error-->
-                <!--<div id="msg"></div>-->
                 <div align="right">
                     <button id="btnIngresar" type="button" class="btn btn-raised btn-primary">INGRESAR</button>
                     <hr>
@@ -91,40 +80,54 @@ print CI_VERSION;
     var btnEnviar = $("#btnEnviar");
     var btnOlvidasteContrasena = $("#btnOlvidasteContrasena");
 
-    $(document).ready(function () {
-        btnIngresar.click(function () {
-            //Agregar al if si se quiere poner el check --- && chkRobot.is(':checked')
-            if (Usuario.val() !== '' && Contrasena.val() !== '') {
-                HoldOn.open({
-                    theme: 'sk-bounce',
-                    message: 'ESPERE...'
+    function login() {
+        HoldOn.open({
+            theme: 'sk-bounce',
+            message: 'ESPERE...'
+        });
+        if (Usuario.val() !== '' && Contrasena.val() !== '') {
+            setTimeout(function () {
+                var frm = $("#frmIngresar");
+                $.ajax({
+                    url: master_url + "onIngreso",
+                    type: "POST",
+                    data: {
+                        USUARIO: frm.find("#Usuario").val(),
+                        CONTRASENA: frm.find("#Contrasena").val()
+                    }
+                }).done(function (data, x, jq) {
+                    if (parseInt(data) === 1) {
+                        location.reload(true);
+                    } else {
+                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', data, 'danger');
+                    }
+                    HoldOn.close();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                    HoldOn.close();
+                }).always(function () {
+
                 });
-                setTimeout(function () {
-                    var frm = $("#frmIngresar");
-                    $.ajax({
-                        url: master_url + "onIngreso",
-                        type: "POST",
-                        data: {
-                            USUARIO: frm.find("#Usuario").val(),
-                            CONTRASENA: frm.find("#Contrasena").val()
-                        }
-                    }).done(function (data, x, jq) {
-                        if (parseInt(data) === 1) {
-                            location.reload(true);
-                        } else {
-                            onNotify('<span class="fa fa-exclamation fa-lg"></span>', data, 'danger');
-                        }
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-                }, 1000);
-            } else {
-//                $("#msg").html('<div  class="alert alert-dismissible alert-danger">' +
-//                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-//                        '<strong>ERROR!</strong> Verifique su usuario y contraseña</div>');
+            }, 1000);
+        } else {
+        }
+    }
+
+    $(document).ready(function () {
+
+        handleEnter();
+        Usuario.focus();
+        Usuario.select();
+        Usuario.val("");
+        Contrasena.val("");
+        btnIngresar.click(function () {
+            login();
+        });
+        btnIngresar.keypress(function (e) {
+            if (e.which === 13) {
+                login();
             }
+            e.preventDefault();
         });
         btnOlvidasteContrasena.on("click", function () {
             mdlOlvideContrasena.modal('show');

@@ -127,8 +127,6 @@
         tblRegistrosX.find('tbody').on('click', 'tr', function () {
             tblRegistrosX.find("tbody tr").removeClass("success");
             $(this).addClass("success");
-            var dtm = Registros.row(this).data();
-            temp = parseInt(dtm.ID);
         });
         HoldOn.close();
     }

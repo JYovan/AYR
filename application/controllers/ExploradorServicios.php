@@ -37,8 +37,9 @@ class ExploradorServicios extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->exploradorServicios_model->getRecords();
-            print json_encode($data);
+            //$data = $this->exploradorServicios_model->getRecords();
+            print $_GET['callback'] . '(' . json_encode($this->exploradorServicios_model->getRecords()) . ');'; /* JSONP */
+            //print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
