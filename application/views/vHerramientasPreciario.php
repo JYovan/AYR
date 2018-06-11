@@ -1,46 +1,51 @@
-<div class="col-md-12" id="MenuTablero">
-    <div class="panel panel-default animated">
-        <div class="panel-heading"><div class="cursor-hand" >Importar Preciario a Trabajo, ambos previamente creados</div></div>
-        <div class="panel-body">
-            <fieldset><div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>IMPORTAR</button>
-            </fieldset>
-        </div>
-    </div>
-</div>
-<!--MODAL EDITAR CONCEPTO ABIERTO-->
-<div id="mdlImportar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content  modal-lg">
-        <div class="modal-header ">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body ">
-            <form id="frmImportar">
-                <fieldset>
-                    <div class="col-md-12">
-                        <div class="form-group label-static">
-                            <label for="idPreciario" class="control-label">ID Preciario*</label>
-                            <input type="number" id="idPreciario" name="idPreciario" class="form-control" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group label-static">
-                            <label for="idTrabajo" class="control-label">ID Trabajo*</label>
-                            <input type="number" id="idTrabajo" name="idTrabajo" class="form-control" required="">
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div>
-        <div class="modal-footer "><!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-            <button onclick="onImportarPreciarioasServicio()" type="button" class="btn btn-raised btn-primary" id="btnImportar" name="btnImportar">IMPORTAR</button>
+<div class="card border-0" id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Importar Preciario a Trabajo, ambos previamente creados</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="left" title="Agregar"><span class="fa fa-plus"></span><br></button>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="modal" id="mdlImportar" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmImportar">
+                    <fieldset>
+                        <div class="col-md-12">
+                            <div class="form-group label-static">
+                                <label for="idPreciario" class="control-label">ID Preciario*</label>
+                                <input type="text" id="idPreciario" name="idPreciario" class="form-control form-control-sm numbersOnly" required="">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group label-static">
+                                <label for="idTrabajo" class="control-label">ID Trabajo*</label>
+                                <input type="text" id="idTrabajo" name="idTrabajo" class="form-control form-control-sm numbersOnly" required="">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button onclick="onImportarPreciarioasServicio()" type="button" class="btn btn-raised btn-primary" id="btnImportar" name="btnImportar">IMPORTAR</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var master_url = base_url + 'index.php/HerramientasPreciario/';

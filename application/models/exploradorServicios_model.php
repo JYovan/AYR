@@ -20,16 +20,17 @@ CTE.Nombre,
 CONCAT(S.CR,' - ',S.Nombre) AS Sucursal,
 IFNULL(T.TrabajoRequerido,'') AS TrabajoRequerido,
 CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,
-(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'label label-primary\'>','PEDIDO','</span>')
-WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'label label-warning\'>','PRESUPUESTO','</span>')
-WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'label label-info\'>','AUTORIZACIÓN','</span>')
-WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'label label-danger\'>','EJECUCIÓN','</span>')
-WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'label label-success\'>','FINALIZADO','</span>')
-WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'label label-NoAutorizadoTablero\'>','NO AUTORIZADO','</span>')
-ELSE CONCAT('<span class=\'label label-danger label-pagado \'>','PAGADO','</span>') END) AS EstatusTrabajo,
-(CASE WHEN  T.Estatus ='Concluido' THEN CONCAT('<span class=\'label label-NoAutorizadoTablero\'>','SIN ENTREGAR','</span>')
-WHEN  T.Estatus ='Entregado' THEN CONCAT('<span class=\'label label-info\'>','ENTREGADO','</span>')
-ELSE CONCAT('<span class=\'label label-danger label-pagado \'>','CANCELADO','</span>') END) AS EstatusEntrega,
+(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
+WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
+WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
+WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','EJECUCIÓN','</span>')
+WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-warning\'>','FINALIZADO','</span>')
+WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-info\'>','NO AUTORIZADO','</span>')
+ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAGADO','</span>') END) AS EstatusTrabajo,
+
+(CASE WHEN  T.Estatus ='Concluido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','SIN ENTREGAR','</span>')
+WHEN  T.Estatus ='Entregado' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-info\'>','ENTREGADO','</span>')
+ELSE CONCAT('<span class=\'badge badge-danger \'>','CANCELADO','</span>') END) AS EstatusEntrega,
 IFNULL(E.NoEntrega,'') AS NoEntrega,
 IFNULL(PF.Referencia,'') AS FacturaIntelisis,
 IFNULL(PF.OrdenCompra,'') AS OrdenCompra,

@@ -1,110 +1,105 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Usuarios</div>
+<div class="card " id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Usuarios</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
+            </div>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
-            </fieldset>
+        <div class="card-block">
+            <div class="table-responsive" id="tblRegistros"></div>
         </div>
     </div>
 </div>
-<div class="col-md-12">
-    <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default d-none">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    Usuario
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    <button type="button" class="btn btn-raised btn-danger" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
                 <fieldset>
-                    <fieldset>
-                        <div class="col-md-12 d-none">
-                            <input type="text"  name="ID" class="form-control" >
+                    <div class="row">
+                        <div class="col-md-4 float-left">
+                            <legend >Usuario</legend>
                         </div>
-                        <div class="col-6 col-md-3">
-                            <div class="form-group label-static">
-                                <label for="Usuario" class="control-label">Usuario*</label>
-                                <input type="text" class="form-control"  name="Usuario" required >
-                            </div>
+                        <div class="col-md-8" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                                <span class="fa fa-arrow-left" ></span>
+                            </button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
-                        <div class="col-6 col-md-3">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="d-none">
+                            <input type="text"  name="ID" class="form-control form-control-sm" >
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <label for="Usuario" >Usuario*</label>
+                            <input type="text" class="form-control form-control-sm"  name="Usuario" required >
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <label for="Contrasena" >Contraseña*</label>
+                            <input type="password" class="form-control form-control-sm"  name="Contrasena" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" >Tipo Acceso*</label>
+                            <select id="TipoAcceso" name="TipoAcceso" class="form-control form-control-sm" >
+                                <option value=""></option>
+                                <option value="SUPER ADMINISTRADOR">Super Administrador</option>
+                                <option value="ADMINISTRADOR">Administrador</option>
+                                <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
+                                <option value="RESIDENTE">Residente</option>
+                                <option value="CLIENTE">Cliente</option>
+                                <option value="INVITADO">Invitado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="" >Estatus*</label>
+                            <select id="Estatus" name="Estatus" class="form-control form-control-sm" >
+                                <option value=""></option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" >Empresa*</label>
+                            <select id="Empresa_ID" name="Empresa_ID" class="form-control form-control-sm">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group label-static">
-                                <label for="Contrasena" class="control-label">Contraseña*</label>
-                                <input type="password" class="form-control"  name="Contrasena" required>
+                                <label for="Nombre" >Nombre*</label>
+                                <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group label-static">
-                                <label for="" class="control-label">Tipo Acceso*</label>
-                                <select id="TipoAcceso" name="TipoAcceso" class="form-control" >
-                                    <option value=""></option>
-                                    <option value="SUPER ADMINISTRADOR">Super Administrador</option>
-                                    <option value="ADMINISTRADOR">Administrador</option>
-                                    <option value="COORDINADOR DE PROCESOS">Coordinador de procesos</option>
-                                    <option value="RESIDENTE">Residente</option>
-                                    <option value="CLIENTE">Cliente</option>
-                                    <option value="INVITADO">Invitado</option>
-                                </select>
+                                <label for="Apellidos" >Apellidos*</label>
+                                <input type="text" id="Apellidos" name="Apellidos" class="form-control form-control-sm" placeholder="" required>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Estatus*</label>
-                                <select id="Estatus" name="Estatus" class="form-control" >
-                                    <option value=""></option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Empresa*</label>
-                                <select id="Empresa_ID" name="Empresa_ID" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group label-static">
-                                <label for="Nombre" class="control-label">Nombre*</label>
-                                <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group label-static">
-                                <label for="Apellidos" class="control-label">Apellidos*</label>
-                                <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 d-none" id="AreaCliente">
                             <div class="form-group label-static">
-                                <label for="" class="control-label">Cliente*</label>
-                                <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                <label for="" >Cliente*</label>
+                                <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm" >
                                     <option value=""></option>
                                 </select>
                             </div>
                         </div>
-                    </fieldset>
-                    <div class="col-md-12">
-                        <br>
-                        <h6>Los campos con * son obligatorios</h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Los campos con * son obligatorios</h6>
+                        </div>
                     </div>
                 </fieldset>
             </form>
@@ -242,16 +237,16 @@
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            $("#tblRegistros").html(getTable('tblEmpresas', data));
-            $('#tblEmpresas tfoot th').each(function () {
+            $("#tblRegistros").html(getTable('tblUsuarios', data));
+            $('#tblUsuarios tfoot th').each(function () {
                 $(this).html('');
             });
-            var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
-            $('#tblEmpresas_filter input[type=search]').focus();
-            $('#tblEmpresas tbody').on('click', 'tr', function () {
+            var tblSelected = $('#tblUsuarios').DataTable(tableOptions);
+            $('#tblUsuarios_filter input[type=search]').focus();
+            $('#tblUsuarios tbody').on('click', 'tr', function () {
                 nuevo = false;
-                $("#tblEmpresas").find("tr").removeClass("success");
-                $("#tblEmpresas").find("tr").removeClass("warning");
+                $("#tblUsuarios").find("tr").removeClass("success");
+                $("#tblUsuarios").find("tr").removeClass("warning");
                 var id = this.id;
                 var index = $.inArray(id, selected);
                 if (index === -1) {
@@ -349,10 +344,5 @@
         }).always(function () {
             HoldOn.close();
         });
-    }
-    function onRemovePreview(e) {
-        VistaPrevia.html("");
-        $('#RutaLogo').attr("type", "text");
-        $('#RutaLogo').val('N');
     }
 </script>

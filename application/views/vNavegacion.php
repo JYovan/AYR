@@ -147,6 +147,7 @@
                             Clientes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li id="liClientes"><a class="dropdown-item" href="<?php print base_url('Clientes.py') ?>">Clientes</a></li>
                             <li id="liSucursales"><a class="dropdown-item" href="<?php print base_url('Sucursal.py') ?>">Sucursales</a></li>
                             <li id="liEspecialidades"><a class="dropdown-item" href="<?php print base_url('Especialidades.py') ?>">Especialidades</a></li>
                             <li id="liCentrosCostos"><a class="dropdown-item" href="<?php print base_url('CentroCostos.py') ?>">Centros de Costo</a></li>
@@ -191,7 +192,7 @@
         </div>
         <div class="col-8 " align="right">
 
-            <span class="badge badge-primary">
+            <span class="text-light">
                 <img src="<?php print base_url(); ?>img/logo.png" width="40px">
                 <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
             </span>

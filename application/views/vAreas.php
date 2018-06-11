@@ -1,72 +1,66 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="cursor-hand" >Areas por Cliente</div>
-                </div>
-                <div class="col-md-3" >
-                    <label for="" class="control-label">Cliente</label>
-                    <select id="sCliente" name="sCliente" class="form-control " >
-                        <option value=""></option>
-                    </select>
-                </div>
-                <div class="col-md-3" align="right">
-                    <div class="dt-buttons" align="right">
-                        <!--Areas-->
-                        <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    </div>
-                </div>
+<div class="card" id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Areas por Cliente</legend>
+            </div>
+            <div class="col-md-3" >
+                <label for="" class="control-label">Cliente</label>
+                <select id="sCliente" name="sCliente" class="form-control " >
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="col-sm-3 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div class="panel-body">
-            <fieldset> 
-                <div id="Areas" class="table-responsive col-md-12">
-                    <table id="tblAreas" class="table table-sm display " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Descripción</th> 
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </fieldset>
+        <div class="row">
+            <div id="Areas" class="table-responsive d-none">
+                <table id="tblAreas" class="table table-sm display " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<div class="col-md-12">
-    <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default d-none ">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    Area
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    <button type="button" class="btn btn-raised btn-danger" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-12 d-none">
-                        <input type="text"  name="ID" class="form-control">
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción*</label>
-                            <input type="text" class="form-control" id="Descripcion" name="Descripcion" required>
+                    <div class="row">
+                        <div class="col-md-4 float-left">
+                            <legend >Area</legend>
+                        </div>
+                        <div class="col-md-8" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                                <span class="fa fa-arrow-left" ></span>
+                            </button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
+                    <div class="row">
+                        <div class="col-12 d-none">
+                            <input type="text"  name="ID" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion" class="control-label">Descripción*</label>
+                                <input type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <h6>Los campos con * son obligatorios</h6>
+                        </div>
                     </div>
                 </fieldset>
             </form>
@@ -90,7 +84,6 @@
     var tblAreas = $('#tblAreas');
 
     $(document).ready(function () {
-
         $("[name='sCliente']").change(function () {
             getRecords($(this).val());
             cliente = $(this).val();
@@ -195,10 +188,11 @@
         getRecords('');
         getClientes();
         handleEnter();
-    }); 
-    
+    });
+
     function getRecords(Cliente) {
         if (Cliente !== '') {
+            $('#Areas').removeClass('d-none');
             temp = 0;
             HoldOn.open({
                 theme: 'sk-cube',
@@ -208,14 +202,14 @@
 
             if ($.fn.DataTable.isDataTable('#tblAreas')) {
                 tblAreas.DataTable().destroy();
-            } 
+            }
             Areas = tblAreas.DataTable({
                 "dom": 'Bfrtip',
                 buttons: buttons,
                 "ajax": {
                     "url": master_url + 'getRecords',
                     type: "POST",
-                    dataSrc : "",
+                    dataSrc: "",
                     "data": {
                         Cliente: Cliente
                     }

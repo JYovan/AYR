@@ -1,3 +1,15 @@
+/*Legend*/
+legend {
+    font-size: 1.3rem;
+}
+/*NavTabs*/
+.nav-tabs {
+    border-bottom: 1px solid #99aeb2;
+}
+.nav-tabs a {
+    color: #161c1d;
+}
+
 /*Fondo aplicacion*/
 html{
     background-color: #DCE1E5;
@@ -12,25 +24,30 @@ body{
     background-color: #DCE1E5;
 }
 
-/*Tablas mas angostas*/
-.table th {
-    background-color: white;
+/*Formularios*/
+label {
+    margin-bottom: 0rem;
 }
-table td {
-    background-color: white;
+label, .control-label, .help-block, .checkbox, .radio, .form-control-feedback {
+    font-size: 0.72rem;
 }
 
-.table-sm td {
-    background-color: white;
+.form-control {
+    color: #000 !important;
 }
+
+/*Tablas */
+
 
 table tbody tr{
     cursor: pointer;
-    font-size: 12px !important;
+    font-size: 0.725rem !important;
+    background-color: white;
 
 }
 table thead tr{
     cursor: pointer;
+    background-color: white;
 }
 
 .table thead th {
@@ -38,6 +55,22 @@ table thead tr{
     border-bottom: 0.5px solid #dee2e6;
 }
 
+.table>tbody>tr>td.success,
+.table>tfoot>tr>td.success,
+.table>tbody>tr>th.success,
+.table>tfoot>tr>th.success,
+.table>tbody>tr.success>td,
+.table>tfoot>tr.success>td,
+.table>tbody>tr.success>th,
+.table>tfoot>tr.success>th {
+    background-color: #2C3E50 ;
+    color: #fff;
+}
+
+table tbody tr:hover {
+    background-color: #2C3E50;
+    color: #fff !important;
+}
 
 /*Modal FullScreen*/
 .modal.modal-fullscreen .modal-dialog {

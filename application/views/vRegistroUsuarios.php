@@ -1,39 +1,44 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Registro de Acciones</div>
+
+<div class="card " id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Registro de Acciones</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnRefrescar" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><span class="fa fa-sync"></span><br></button>
+            </div>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-block">
+                    <div class="table-responsive" id="Registros">
+                        <table id="tblRegistros" class="table table-sm" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuario</th>
+                                    <th>Registro</th>
+                                    <th>Acción</th>
+                                    <th>Cliente</th>
+                                    <th>Empresa</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Usuario</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Cliente</th>
+                                    <th>Empresa</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-12 table-responsive" id="Registros">
-                    <table id="tblRegistros" class="table table-sm display " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Usuario</th>
-                                <th>Registro</th>
-                                <th>Acción</th>
-                                <th>Cliente</th>
-                                <th>Empresa</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Usuario</th>
-                                <th>Registro</th>
-                                <th>Acción</th>
-                                <th>Cliente</th>
-                                <th>Empresa</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </fieldset>
+            </div>
         </div>
     </div>
 </div>
@@ -58,22 +63,7 @@
         tblRegistrosX.DataTable().destroy();
         Registros = tblRegistrosX.DataTable({
             "dom": 'Bfrtip',
-            buttons: [{
-                    extend: 'excelHtml5',
-                    text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }, {
-                    extend: 'colvis',
-                    text: '<span  data-tooltip="Columnas"><span class="fa fa-columns CustomIconsForDataTable"></span></span>',
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'
-                        },
-                        columns: ':visible'
-                    }
-                }],
+            buttons: buttons,
             "ajax": {
                 "url": master_url + 'getRecords',
                 "dataType": "jsonp",
@@ -82,7 +72,7 @@
             initComplete: function () {
                 this.api().columns([1, 4, 5]).every(function () {
                     var column = this;
-                    var select = $('<select class="form-control"><option value="">TODOS</option></select>')
+                    var select = $('<select class="form-control form-control-sm"><option value="">TODOS</option></select>')
                             .appendTo($(column.footer()).empty())
                             .on('change', function () {
                                 var val = $.fn.dataTable.util.escapeRegex(

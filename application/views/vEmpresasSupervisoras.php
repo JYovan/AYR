@@ -1,67 +1,71 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Empresas Supervisoras</div>
+<div class="card " id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Empresas Supervisoras</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
+            </div>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
-            </fieldset>
+        <div class="card-block">
+            <div class="table-responsive" id="tblRegistros"></div>
         </div>
     </div>
 </div>
-<div class="col-md-12">
-    <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default d-none ">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    Empresa Supervisora
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    <button type="button" class="btn btn-raised btn-danger" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-md-12 d-none">
-                        <input type="text"  name="ID" class="form-control">
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                            <label for="Nombre" class="control-label">Nombre* </label>
-                            <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
+                    <div class="row">
+                        <div class="col-md-4 float-left">
+                            <legend >Empresa</legend>
+                        </div>
+                        <div class="col-md-8" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                                <span class="fa fa-arrow-left" ></span>
+                            </button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción</label>
-                            <input type="text" class="form-control" id="Descripcion" name="Descripcion" >
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 d-none">
+                            <input type="text"  name="ID" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Nombre" class="control-label">Nombre* </label>
+                                <input type="text" class="form-control form-control-sm" id="Nombre" name="Nombre" required="">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Descripcion" class="control-label">Descripción</label>
+                                <input type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" >
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group label-static">
-                            <label for="Contacto" class="control-label">Contacto 1</label>
-                            <input type="text" id="Contacto" name="Contacto" class="form-control" placeholder="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Contacto" class="control-label">Contacto 1</label>
+                                <input type="text" id="Contacto" name="Contacto" class="form-control form-control-sm" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-static">
+                                <label for="Contacto2" class="control-label">Contacto 2</label>
+                                <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group label-static">
-                            <label for="Contacto2" class="control-label">Contacto 2</label>
-                            <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Los campos con * son obligatorios</h6>
                         </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
             </form>

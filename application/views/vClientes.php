@@ -1,125 +1,135 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Clientes</div>
+<div class="card " id="pnlTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 float-left">
+                <legend class="float-left">Clientes</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
+            </div>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
-            </fieldset>
+        <div class="card-block">
+            <div class="table-responsive" id="tblRegistros"></div>
         </div>
     </div>
 </div>
-<div class="col-md-12">
-    <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default d-none">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    Cliente
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    <button type="button" class="btn btn-raised btn-danger" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
                 <fieldset>
+                    <div class="row">
+                        <div class="col-md-4 float-left">
+                            <legend >Cliente</legend>
+                        </div>
+                        <div class="col-md-8" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                                <span class="fa fa-arrow-left" ></span>
+                            </button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                        </div>
+                    </div>
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                        <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Datos Generales</a></li>
-                        <li role="presentation"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab">Datos de Reportes</a></li>
+                        <li class="nav-item"><a href="#Datos" class="nav-link active show"  data-toggle="tab">Datos Generales</a></li>
+                        <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Datos de Reportes</a></li>
                     </ul>
+                    <br>
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class="col-md-12 d-none">
-                                <input type="text"  name="ID" class="form-control">
+                        <div role="tabpanel" class="tab-pane fade active show" id="Datos">
+                            <div class="d-none">
+                                <input type="text"  name="ID" class="form-control form-control-sm">
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group label-static">
-                                    <label for="Nombre" class="control-label">Nombre*</label>
-                                    <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-static">
+                                        <label for="Nombre" class="control-label">Nombre*</label>
+                                        <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-static">
+                                        <label for="NombreCorto" class="control-label">Nombre Corto*</label>
+                                        <input type="text" id="NombreCorto" name="NombreCorto" class="form-control form-control-sm" placeholder="" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="NombreCorto" class="control-label">Nombre Corto*</label>
-                                    <input type="text" id="NombreCorto" name="NombreCorto" class="form-control" placeholder="" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-static">
+                                        <label for="Calle" class="control-label">Calle</label>
+                                        <input type="text" id="Calle" name="Calle" class="form-control form-control-sm" placeholder="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="NoExterior" class="control-label">No Exterior</label>
+                                        <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="" >
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="NoInterior" class="control-label">No Interior</label>
+                                        <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="" >
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="Calle" class="control-label">Calle</label>
-                                    <input type="text" id="Calle" name="Calle" class="form-control" placeholder="" >
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="CodigoPostal" class="control-label">Código Postal</label>
+                                        <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Colonia" class="control-label">Colonia</label>
+                                        <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Ciudad" class="control-label">Ciudad</label>
+                                        <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Estado" class="control-label">Estado</label>
+                                        <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="" >
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="NoExterior" class="control-label">No Exterior</label>
-                                    <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="" >
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Contacto1" class="control-label">Contacto 1</label>
+                                        <input type="text" id="Contacto1" name="Contacto1" class="form-control form-control-sm" placeholder="" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="NoInterior" class="control-label">No Interior</label>
-                                    <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="" >
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Contacto2" class="control-label">Contacto 2</label>
+                                        <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="CodigoPostal" class="control-label">Código Postal</label>
-                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Colonia" class="control-label">Colonia</label>
-                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Ciudad" class="control-label">Ciudad</label>
-                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Estado" class="control-label">Estado</label>
-                                    <input type="text" id="Estado" name="Estado" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Contacto1" class="control-label">Contacto 1</label>
-                                    <input type="text" id="Contacto1" name="Contacto1" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Contacto2" class="control-label">Contacto 2</label>
-                                    <input type="text" id="Contacto2" name="Contacto2" class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-static">
-                                    <label for="Contacto3" class="control-label">Contacto 3</label>
-                                    <input type="text" id="Contacto3" name="Contacto3" class="form-control" placeholder="" >
+                                <div class="col-md-3">
+                                    <div class="form-group label-static">
+                                        <label for="Contacto3" class="control-label">Contacto 3</label>
+                                        <input type="text" id="Contacto3" name="Contacto3" class="form-control form-control-sm" placeholder="" >
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Leyenda Reportes</label>
-                                    <textarea class="col-md-12 form-control" id="LeyendaReporte" name="LeyendaReporte" rows="3" ></textarea>
+                            <div class="row">
+                                <div class="col-6 col-md-6">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Leyenda Reportes</label>
+                                        <textarea class="col-md-12 form-control" id="LeyendaReporte" name="LeyendaReporte" rows="3" ></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <!-- FOTO -->
@@ -127,7 +137,7 @@
                             <div class="col-md-12" align="center">
                                 <div for="" align="center">
                                     <br>
-                                    <h3>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h3>
+                                    <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
                                 </div>
                                 <input type="file" id="RutaLogo" name="RutaLogo" class="d-none">
                                 <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
@@ -138,8 +148,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6"><br>
-                        <h6>Los campos con * son obligatorios</h6>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Los campos con * son obligatorios</h6>
+                        </div>
                     </div>
 
                 </fieldset>
@@ -198,10 +210,12 @@
             pnlTablero.addClass("d-none");
             pnlDatos.removeClass('d-none');
             pnlDatos.find("input").val("");
-            pnlDatos.find(".nav-tabs li").removeClass("active");
-            $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
-            pnlDatos.find("#Datos").addClass("active in");
-            pnlDatos.find("#Datos2").removeClass("active in");
+
+            pnlDatos.find(".nav-tabs a").removeClass("active show");
+            $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
+            pnlDatos.find("#Datos").addClass("active show");
+            pnlDatos.find("#Datos2").removeClass("active show");
+
             $(':input:text:enabled:visible:first').focus();
             nuevo = true;
         });
@@ -336,10 +350,10 @@
                         }
                     }).done(function (data, x, jq) {
                         pnlDatos.find("input").val("");
-                        pnlDatos.find(".nav-tabs li").removeClass("active");
-                        $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
-                        pnlDatos.find("#Datos").addClass("active in");
-                        pnlDatos.find("#Datos2").removeClass("active in");
+                        pnlDatos.find(".nav-tabs a").removeClass("active show");
+                        $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
+                        pnlDatos.find("#Datos").addClass("active show");
+                        pnlDatos.find("#Datos2").removeClass("active show");
                         var cliente = data[0];
                         $.each(data[0], function (k, v) {
                             if (k !== 'RutaLogo') {
@@ -358,10 +372,10 @@
                                 pnlDatos.find("#VistaPrevia").html('<div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + cliente.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                             }
                             if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                                pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                                pnlDatos.find("#VistaPrevia").html('<h5>NO EXISTE ARCHIVO ADJUNTO</h5>');
                             }
                         } else {
-                            pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                            pnlDatos.find("#VistaPrevia").html('<h5>NO EXISTE ARCHIVO ADJUNTO</h5>');
                         }
                         $(':input:text:enabled:visible:first').focus();
                         $(':input:text:enabled:visible:first').select();

@@ -51,7 +51,7 @@ class Especialidades extends CI_Controller {
 
     public function getClientes() {
         try {
-            $data = $this->cliente_model->getClientes();
+            $data = $this->especialidades_model->getClientes();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
