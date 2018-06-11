@@ -16,7 +16,7 @@ class sucursal_model extends CI_Model {
 
     public function getRecords($Cliente) {
         try {
-            $this->db->select("S.ID, S.CR AS CR,S.Nombre as 'Sucursal' , S.Region AS 'Región', C.Nombre AS 'Cliente' ", false);
+            $this->db->select("S.ID, S.CR AS CR,S.Nombre as Sucursal , S.Region AS Region, C.Nombre AS Cliente ", false);
             $this->db->from('Sucursales AS S');
             $this->db->join('Clientes AS C', 'C.ID = S.Cliente_ID', 'left');
             $this->db->where('S.Cliente_ID', $Cliente);

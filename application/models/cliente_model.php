@@ -29,6 +29,8 @@ class cliente_model extends CI_Model {
         try {
             $this->db->select('C.ID, C.Nombre AS Cliente', false);
             $this->db->from('Clientes AS C');
+            $this->db->where_in('C.Estatus', 'ACTIVO');
+            $this->db->order_by('C.Nombre', 'ASC');
             $query = $this->db->get();
             $str = $this->db->last_query();
 //        print $str;

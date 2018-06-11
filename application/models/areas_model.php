@@ -18,14 +18,6 @@ class areas_model extends CI_Model {
         }
     }
 
-    public function getClientes() {
-        try {
-            return $this->db->select('C.ID, C.Nombre AS Cliente', false)->from('Clientes AS C')->where('C.ID IN (SELECT A.Cliente_ID FROM areas AS A GROUP BY A.Cliente_ID)', null, false)->get()->result();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getAreaByID($ID) {
         try {
             $this->db->select('E.*', false);

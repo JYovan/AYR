@@ -41,7 +41,7 @@ class Areas extends CI_Controller {
 
     public function getClientes() {
         try {
-            print json_encode($this->areas_model->getClientes());
+            print json_encode($this->cliente_model->getClientes());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -66,7 +66,7 @@ class Areas extends CI_Controller {
     public function onAgregar() {
         try {
             /* TRABAJO */
-            $x = $this->input; 
+            $x = $this->input;
             $ID = $this->areas_model->onAgregar(array(
                 'Descripcion' => ($x->post('Descripcion') !== '') ? $x->post('Descripcion') : null,
                 'Estatus' => 'ACTIVO',
