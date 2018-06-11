@@ -5,29 +5,22 @@
                 <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Cambiar Contraseña</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="pnlDatos">
             <form id="frmEditarContrasena">
-                Ingresa la nueva contraseña
-                <div class="col-md-12">
-                    <br>
-                </div>
-                <input type="text" id="ID" name="ID" class="form-control hide" >
+                <input type="text" name="ID" class="form-control hide" >
                 <div class=" col-6 col-md-12">
                     <label for="">Usuario</label>
-                    <input type="text" id="Usuario" name="Usuario"  class="form-control" readonly="" placeholder="" >
+                    <input type="text"  name="Usuario"  class="form-control" readonly="" placeholder="" >
                 </div>
                 <div class=" col-6 col-md-12">
                     <label for="">Nueva Contraseña*</label>
-                    <input type="password" id="Contrasena" name="Contrasena"  class="form-control"  placeholder="" >
-                </div>
-                <div class="col-md-12">
-                    <br>
+                    <input type="password" name="Contrasena" id="Pass"  class="form-control"  placeholder="Introduce la nueva contraseña" required="">
                 </div>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnModificar">ACEPTAR</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
         </div>
     </div>
 </div>
@@ -111,7 +104,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li onclick="onCambiarContrasena();"><a href="#" onclick="onRegistrarAccion('INTENTÓ CAMBIAR CONTRASEÑA');">Cambiar Contraseña</a></li>
-                        <li><a href="">Reportar un problema</a></li>
+                        <li><a href="#">Reportar un problema</a></li>
 
                         <li class="divider"></li>
                         <li><a href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">Salir</a></li>
@@ -157,37 +150,20 @@
     }
     var master_url = base_url + 'Sesion/';
     $(document).ready(function () {
+        handleEnter();
+
         $('.dropdown-submenu a.multinivel').on("click", function (e) {
             $(this).next('ul').toggle();
             e.stopPropagation();
             e.preventDefault();
         });
+        $('#mdlCambiarContrasena').on('shown.bs.modal', function () {
+            $('#Pass').focus();
+        });
         $('#btnModificar').on("click", function () {
             var frm = new FormData($('#mdlCambiarContrasena').find("#frmEditarContrasena")[0]);
-            $.validator.setDefaults({
-                ignore: []
-            });
-            jQuery.validator.messages.required = 'Esta campo es obligatorio';
-            jQuery.validator.messages.number = 'Esta campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
-            $('#frmEditarContrasena').validate({
-                errorElement: 'span',
-                errorClass: 'errorForms',
-                rules: {
-                    Contrasena: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    console.log(element);
-                    var elem = $(element);
-                    elem.addClass(errorClass);
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    var elem = $(element);
-                    elem.removeClass(errorClass);
-                }
-            });
-            //Si es verdadero que hacer
-            if ($('#frmEditarContrasena').valid()) {
+            isValid('pnlDatos');
+            if (valido) {
                 HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
                 $.ajax({
                     url: master_url + 'onCambiarContrasena',
@@ -210,9 +186,9 @@
     });
     function onCambiarContrasena() {
         $('#mdlCambiarContrasena').modal('show');
-        $("#Contrasena").val("");
-        $("#Usuario").val("<?php echo $this->session->userdata('USERNAME'); ?>");
-        $("#ID").val("<?php echo $this->session->userdata('ID'); ?>");
+        $("[name='Contrasena']").val("");
+        $("[name='Usuario']").val("<?php echo $this->session->userdata('USERNAME'); ?>");
+        $("[name='ID']").val("<?php echo $this->session->userdata('ID'); ?>");
     }
 
     function onRegistrarAccion(accion) {
@@ -220,7 +196,6 @@
         $.ajax({
             url: master_url + 'onAgregar',
             type: "POST",
-            dataType: "JSON",
             data: {
                 Accion: accion
             }
