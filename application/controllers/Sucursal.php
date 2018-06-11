@@ -11,6 +11,7 @@ class Sucursal extends CI_Controller {
         $this->load->library('session');
         $this->load->model('sucursal_model');
         $this->load->model('empresa_model');
+        $this->load->model('cliente_model');
         $this->load->model('empresaSupervisora_model');
         $this->load->model('registroUsuarios_model');
     }
@@ -35,18 +36,18 @@ class Sucursal extends CI_Controller {
         }
     }
 
-    public function getSucursales() {
+    public function getRecords() {
         try {
-            $data = $this->sucursal_model->getRecords();
+            $data = $this->sucursal_model->getRecords($this->input->post('Cliente'));
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function getEmpresas() {
+    public function getContratistas() {
         try {
-            $data = $this->empresa_model->getEmpresas();
+            $data = $this->cliente_model->getContratistas();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -56,6 +57,15 @@ class Sucursal extends CI_Controller {
     public function getEmpresasSupervisoras() {
         try {
             $data = $this->empresaSupervisora_model->getEmpresasSupervisoras();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getClientes() {
+        try {
+            $data = $this->cliente_model->getClientes();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

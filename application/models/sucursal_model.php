@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
+ * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
  */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -14,9 +14,15 @@ class sucursal_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getRecords() {
+    public function getRecords($Cliente) {
         try {
-            $query = $this->db->query("CALL SP_SUCURSALES()");
+            $this->db->select("S.ID, S.CR AS CR,S.Nombre as 'Sucursal' , S.Region AS 'Región', C.Nombre AS 'Cliente' ", false);
+            $this->db->from('Sucursales AS S');
+            $this->db->join('Clientes AS C', 'C.ID = S.Cliente_ID', 'left');
+            $this->db->where('S.Cliente_ID', $Cliente);
+            $query = $this->db->get();
+
+
 
             $str = $this->db->last_query();
             $data = $query->result();
@@ -121,7 +127,7 @@ class sucursal_model extends CI_Model {
     }
 
     public function onEliminar($ID) {
-        try { 
+        try {
             $this->db->where('ID', $ID);
             $this->db->delete("sucursales");
 //            print $str = $this->db->last_query();
@@ -129,4 +135,5 @@ class sucursal_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
 }

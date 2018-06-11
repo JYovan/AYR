@@ -9,13 +9,13 @@ class centrocostos_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
- 
 
-    public function getCentrosCostos() {
+    public function getRecords($Cliente) {
         try {
-              $this->db->select('C.ID, C.Nombre, C.Descripcion', false);
+            $this->db->select('C.ID, C.Nombre, C.Descripcion', false);
             $this->db->from('centrocostos AS C');
             $this->db->where_in('C.Estatus', 'ACTIVO');
+            $this->db->where('C.Cliente_ID', $Cliente);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -35,25 +35,6 @@ class centrocostos_model extends CI_Model {
             $this->db->from('centrocostos AS C');
             $this->db->where('C.ID', $ID);
             $this->db->where_in('C.Estatus', 'Activo');
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    
-     public function getCentrosCostosByCliente($ID) {
-        try {
-            $this->db->select('E.ID,E.Nombre, E.Descripcion', false);
-            $this->db->from('centrocostos AS E');
-            $this->db->where('E.Cliente_ID', $ID);
-            $this->db->where_in('E.Estatus', 'ACTIVO');
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -89,10 +70,10 @@ class centrocostos_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'INACTIVO');
             $this->db->where('ID', $ID);
             $this->db->update("centrocostos");
 //            print $str = $this->db->last_query();
@@ -100,6 +81,5 @@ class centrocostos_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
 
 }

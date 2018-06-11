@@ -10,8 +10,6 @@ class Clientes extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('cliente_model');
-        $this->load->model('empresa_model');
-        $this->load->model('empresaSupervisora_model');
         $this->load->model('registroUsuarios_model');
     }
 
@@ -53,33 +51,6 @@ class Clientes extends CI_Controller {
         }
     }
 
-    public function getContratistas() {
-        try {
-            $data = $this->cliente_model->getContratistas();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEmpresas() {
-        try {
-            $data = $this->empresa_model->getEmpresas();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEmpresasSupervisoras() {
-        try {
-            $data = $this->empresaSupervisora_model->getEmpresasSupervisoras();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getClienteByID() {
         try {
             extract($this->input->post());
@@ -92,11 +63,26 @@ class Clientes extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $ID = $this->cliente_model->onAgregar($this->input->post());
-            print "ID: " . $ID;
-            $URL_DOC = 'uploads/Clientes';
+            extract($this->input->post());
+            $DATA = array(
+                'Nombre' => ($Nombre !== NULL) ? $Nombre : NULL,
+                'NombreCorto' => ($NombreCorto !== NULL) ? $NombreCorto : NULL,
+                'Calle' => ($Calle !== NULL) ? $Calle : NULL,
+                'NoExterior' => ($NoExterior !== NULL) ? $NoExterior : NULL,
+                'NoInterior' => ($NoInterior !== NULL) ? $NoInterior : NULL,
+                'CodigoPostal' => ($CodigoPostal !== NULL) ? $CodigoPostal : NULL,
+                'Colonia' => ($Colonia !== NULL) ? $Colonia : NULL,
+                'Ciudad' => ($Ciudad !== NULL) ? $Ciudad : NULL,
+                'Estado' => ($Estado !== NULL) ? $Estado : NULL,
+                'Contacto1' => ($Contacto1 !== NULL) ? $Contacto1 : NULL,
+                'Contacto2' => ($Contacto2 !== NULL) ? $Contacto2 : NULL,
+                'Contacto3' => ($Contacto3 !== NULL) ? $Contacto3 : NULL,
+                'LeyendaReporte' => ($LeyendaReporte !== NULL) ? $LeyendaReporte : NULL
+            );
+            $ID = $this->cliente_model->onAgregar($DATA);
+            /* SUBIR FOTO */
+            $URL_DOC = 'uploads/Clientes/';
             $master_url = $URL_DOC . '/';
-
             if (isset($_FILES["RutaLogo"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -106,18 +92,27 @@ class Clientes extends CI_Controller {
                 }
                 if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
+
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = true;
+                    $config['width'] = 250;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
                     $DATA = array(
-                        'RutaLogo' => ($img)
+                        'RutaLogo' => ($img),
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'RutaLogo' => (NULL)
+                        'RutaLogo' => (null),
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
+            print $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -142,10 +137,8 @@ class Clientes extends CI_Controller {
                 'LeyendaReporte' => ($LeyendaReporte !== NULL) ? $LeyendaReporte : NULL
             );
             $this->cliente_model->onModificar($ID, $DATA);
-            print "ID: " . $ID;
-            $URL_DOC = 'uploads/Clientes';
+            $URL_DOC = 'uploads/Clientes/';
             $master_url = $URL_DOC . '/';
-
             if (isset($_FILES["RutaLogo"]["name"])) {
                 if (!file_exists($URL_DOC)) {
                     mkdir($URL_DOC, 0777, true);
@@ -155,16 +148,24 @@ class Clientes extends CI_Controller {
                 }
                 if (move_uploaded_file($_FILES["RutaLogo"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["RutaLogo"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["RutaLogo"]["name"];
+
+                    $this->load->library('image_lib');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = $img;
+                    $config['maintain_ratio'] = true;
+                    $config['width'] = 250;
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
                     $DATA = array(
-                        'RutaLogo' => ($img)
+                        'RutaLogo' => ($img),
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'RutaLogo' => (NULL)
+                        'RutaLogo' => (null),
                     );
                     $this->cliente_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
         } catch (Exception $exc) {

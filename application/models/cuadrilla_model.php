@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2016 Ing.Giovanni Flores (email :ing.giovanniflores93@gmail.com)
- * This program isn't free software; you can't redistribute it and/or modify it without authorization of author. 
+ * This program isn't free software; you can't redistribute it and/or modify it without authorization of author.
  */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -16,7 +16,10 @@ class cuadrilla_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $query = $this->db->query("CALL SP_CUADRILLAS()");
+            $this->db->select('C.ID, C.Nombre AS Cuadrilla ', false);
+            $this->db->from('cuadrillas AS C');
+            $this->db->where_in('C.Estatus', 'ACTIVO');
+            $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
              */
@@ -87,10 +90,10 @@ class cuadrilla_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onEliminar($ID) {
         try {
-            $this->db->set('Estatus', 'INACTIVO'); 
+            $this->db->set('Estatus', 'INACTIVO');
             $this->db->where('ID', $ID);
             $this->db->update("cuadrillas");
 //            print $str = $this->db->last_query();
@@ -98,6 +101,5 @@ class cuadrilla_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
 }
-
-

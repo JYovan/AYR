@@ -7,45 +7,26 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                     <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
         </div>
     </div>
 </div>
-<!--Confirmacion-->
-<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">
-            Deseas eliminar el registro?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--NUEVO-->
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
+    <div id="pnlDatos" class="panel panel-default hide ">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
+                    Cuadrilla
+                </div>
+                <div class="input-group pull-right">
                     <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
                         <span class="fa fa-arrow-left CustomColorIcon" ></span>
                     </button>
-                    Nueva Cuadrilla
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                 </div>
             </div>
         </div>
@@ -53,272 +34,147 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="col-md-12 hide">
-                        <input type="text" id="ID" name="ID" class="form-control">
+                        <input type="text"  name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-12">
                         <div class="form-group label-static">
-                        <label for="" class="control-label">Cuadrilla*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+                            <label for="" class="control-label">Cuadrilla*</label>
+                            <input type="text" class="form-control" id="Nombre" name="Nombre" required>
                         </div>
                     </div>
                     <div class="col-6 col-md-12">
                         <div class="form-group label-static">
-                        <label for="Miembros" class="control-label">Miembros</label>
-                        <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
+                            <label for="Miembros" class="control-label">Miembros</label>
+                            <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
                         </div>
                     </div>
                     <div class="col-6 col-md-12">
                         <div class="form-group label-static">
-                        <label for="" class="control-label">Estatus*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="Activo">Activo</option> 
-                            <option value="Inactivo">Inactivo</option> 
-                        </select>
+                            <label for="" class="control-label">Estatus*</label>
+                            <select id="Estatus" name="Estatus" class="form-control" required>
+                                <option value=""></option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <br>
-                        <h6>Los campos con * son obligatorios</h6>    
+                    <div class="col-6 col-md-6">
+                        <h6>Los campos con * son obligatorios</h6>
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
-</div>  
-<!--EDITAR-->
-<div class="col-md-12">
-    <!--GUARDAR-->
-    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
-        <div class="Custompanel-heading " >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Editar Cuadrilla
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnModificar">GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <form id="frmEditar">
-                <fieldset>
-                    <div class="col-md-12 hide">
-                        <input type="text" id="ID" name="ID" class="form-control">
-                    </div>
-                    <div class="col-6 col-md-12">
-                        <div class="form-group label-static">
-                        <label for="" class="control-label">Cuadrilla*</label>    
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-12">
-                        <div class="form-group label-static">
-                        <label for="Miembros" class="control-label">Miembros</label>
-                        <textarea class="col-md-12 form-control" id="Miembros" name="Miembros" rows="4" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-12">
-                        <div class="form-group label-static">
-                        <label for="" class="control-label">Estatus*</label>
-                        <select id="Estatus" name="Estatus" class="form-control" required>
-                            <option value=""></option> 
-                            <option value="Activo">Activo</option> 
-                            <option value="Inactivo">Inactivo</option> 
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <h6>Los campos con * son obligatorios</h6>    
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>  
+</div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/Cuadrillas/'
+    var master_url = base_url + 'index.php/Cuadrillas/';
     var btnNuevo = $("#btnNuevo");
-    var pnlNuevo = $("#pnlNuevo");
+    var pnlDatos = $("#pnlDatos");
     var pnlTablero = $("#pnlTablero");
-    var pnlEditar = $("#pnlEditar");
     //Boton que guarda los datos del formulario
-    var btnGuardar = pnlNuevo.find("#btnGuardar");
-    var btnCancelar = pnlNuevo.find("#btnCancelar");
-    //Boton que actualiza los datos del formulario
-
-    var btnModificar = pnlEditar.find("#btnModificar");
-    var btnCancelarModificar = pnlEditar.find("#btnCancelar");
-    //Botones del tablero que actualizan y eliminan registros
-    var btnRefrescar = $("#btnRefrescar");
+    var btnGuardar = pnlDatos.find("#btnGuardar");
+    var btnCancelar = pnlDatos.find("#btnCancelar");
     var btnEliminar = $("#btnEliminar");
-    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
-    var mdlConfirmar = $("#mdlConfirmar");
+    var nuevo = true;
     $(document).ready(function () {
-        //---------------------------EVENTOS DEL TABLERO--------------------------
+
         btnNuevo.click(function () {
             pnlTablero.addClass("hide");
-            pnlNuevo.removeClass('hide');
-            pnlNuevo.find("input").val("");
-            pnlNuevo.find("select").select2("val", "");
+            pnlDatos.removeClass('hide');
+            pnlDatos.find("input").val("");
+            $.each(pnlDatos.find("select"), function (k, v) {
+                pnlDatos.find("select")[k].selectize.clear(true);
+            });
+            $(':input:text:enabled:visible:first').focus();
+            nuevo = true;
         });
         btnCancelar.click(function () {
             pnlTablero.removeClass("hide");
-            pnlNuevo.addClass('hide');
-            btnRefrescar.trigger('click');
-        });
-        btnCancelarModificar.click(function () {
-            pnlEditar.addClass("hide");
-            pnlTablero.removeClass("hide");
-            btnRefrescar.trigger('click');
-        });
-        //Actualiza los datos
-        btnRefrescar.click(function () {
+            pnlDatos.addClass('hide');
             getRecords();
         });
         //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.click(function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                //Muestra el modal
-                mdlConfirmar.modal('show');
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-        });
-        //Boton de eliminar del tablero
         btnEliminar.click(function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminar',
-                    type: "POST",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    mdlConfirmar.modal('hide');
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CUADRILLA ELIMINADA', 'danger');
-                    pnlEditar.addClass("hide");
-                    pnlTablero.removeClass("hide");
-                    getRecords();
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
+            swal({
+                title: "Confirmar",
+                text: "Deseas eliminar el registro?",
+                icon: "warning",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "CARGANDO DATOS..."
+                    });
+                    $.ajax({
+                        url: master_url + 'onEliminar',
+                        type: "POST",
+                        data: {
+                            ID: temp
+                        }
+                    }).done(function (data, x, jq) {
+                        getRecords();
+                        pnlDatos.addClass("hide");
+                        pnlTablero.removeClass("hide");
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            });
         });
-        //-----------------------EVENTOS DEL FORMULARIO--------------------------
-        //Eventos del boton de guardar el formulario cuando es nuevo
         btnGuardar.click(function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmNuevo').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Nombre: 'required',
-                    Estatus: 'required'
-                },
-                 highlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').removeClass('has-error');
+            isValid('pnlDatos');
+            if (valido) {
+                var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
+                if (!nuevo) {
+                    $.ajax({
+                        url: master_url + 'onModificar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
+                        getRecords();
+                        pnlDatos.addClass("hide");
+                        pnlTablero.removeClass("hide");
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                } else {
+                    $.ajax({
+                        url: master_url + 'onAgregar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UN NUEVO REGISTRO', 'success');
+                        pnlDatos.find("[name='ID']").val(data);
+                        nuevo = false;
+                        getRecords();
+                        pnlDatos.addClass("hide");
+                        pnlTablero.removeClass("hide");
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
                 }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
-            //Si es verdadero que hacer
-            if ($('#frmNuevo').valid()) {
-                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
-                $.ajax({
-                    url: master_url + 'onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AÑADIDO UNA NUEVA CUADRILLA', 'success');
-                    pnlNuevo.addClass("hide");
-                    pnlTablero.removeClass("hide");
-                    btnRefrescar.trigger('click');
-                    console.log(data, x, jq);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', '* DEBE DE COMPLETAR LOS CAMPOS REQUERIDOS *', 'danger');
             }
         });
-        //Boton para guardar cambios cuando ya existe un registro
-        btnModificar.click(function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmEditar').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Nombre: 'required',
-                    Estatus: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                     $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Regresa verdadero si ya se cumplieron las reglas, si no regresa falso
-//            $('#frmNuevo').valid();
-            //Si es verdadero que hacer
-            if ($('#frmEditar').valid()) {
-                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-                $.ajax({
-                    url: master_url + 'onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO LA CUADRILLA', 'success');
-                    pnlEditar.addClass("hide");
-                    pnlTablero.removeClass("hide");
-                    btnRefrescar.trigger('click');
-                    console.log(data, x, jq);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
-        //ESTOS METODOS FUNCIONAN PARA CARGAR LOS REGISTROS AL TABLERO
         /*CALLS*/
         getRecords();
+        handleEnter();
     });
     function getRecords() {
         temp = 0;
@@ -331,14 +187,14 @@
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            console.log(data);
             $("#tblRegistros").html(getTable('tblCuadrillas', data));
             $('#tblCuadrillas tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                $(this).html('');
             });
             var tblSelected = $('#tblCuadrillas').DataTable(tableOptions);
+            $('#tblCuadrillas_filter input[type=search]').focus();
             $('#tblCuadrillas tbody').on('click', 'tr', function () {
+                nuevo = false;
                 $("#tblCuadrillas").find("tr").removeClass("success");
                 $("#tblCuadrillas").find("tr").removeClass("warning");
                 var id = this.id;
@@ -364,15 +220,19 @@
                             ID: temp
                         }
                     }).done(function (data, x, jq) {
-                        console.log(data);
-                        pnlEditar.find("input").val("");
-                        pnlEditar.find("select").select2("val", "");
+                        pnlDatos.find("input").val("");
                         $.each(data[0], function (k, v) {
-                            pnlEditar.find("#" + k).val(v);
-                            pnlEditar.find("#" + k).select2("val", v);
+                            pnlDatos.find("[name='" + k + "']").val(v);
+                            if (pnlDatos.find("[name='" + k + "']").is('select')) {
+                                pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
+                            }
                         });
-                        pnlEditar.removeClass("hide");
+
                         pnlTablero.addClass("hide");
+                        pnlDatos.removeClass('hide');
+
+                        $(':input:text:enabled:visible:first').focus();
+                        $(':input:text:enabled:visible:first').select();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -382,19 +242,12 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
                 }
             });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
+
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
         });
     }
+
 </script>

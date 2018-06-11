@@ -36,7 +36,7 @@ class CentroCostos extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->cliente_model->getRecords();
+            $data = $this->centrocostos_model->getRecords($this->input->post('Cliente'));
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -55,16 +55,6 @@ class CentroCostos extends CI_Controller {
     public function getCentrosCostos() {
         try {
             $data = $this->centrocostos_model->getCentrosCostos();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getCentrosCostosByCliente() {
-        try {
-            extract($this->input->post());
-            $data = $this->centrocostos_model->getCentrosCostosByCliente($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

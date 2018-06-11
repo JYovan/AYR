@@ -234,7 +234,6 @@
                                 }
                             }).done(function (data, x, jq) {
                                 pnlDatos.find("input").val("");
-                                pnlDatos.find("select").select2("val", "");
                                 $.each(data[0], function (k, v) {
                                     pnlDatos.find("[name='" + k + "']").val(v);
                                 });

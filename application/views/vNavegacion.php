@@ -80,15 +80,16 @@
                 <li class="dropdown hide" id="liExploradores">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exploradores <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php print base_url('ExploradorServicios.py'); ?>">Servicios</a></li> 
+                        <li><a href="<?php print base_url('ExploradorServicios.py'); ?>">Servicios</a></li>
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liCatalogos">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li id="liClientes"><a href="<?php print base_url('Clientes.py'); ?>">Clientes</a></li>
+                        <li id="liClientes"><a href="<?php print base_url('Sucursal.py'); ?>">Sucursales</a></li>
                         <li id="liEmpresas"><a href="<?php print base_url('Empresas.py'); ?>">Empresas</a></li>
-                        <li id="liPreciarios"><a href="<?php print base_url('Preciarios.py'); ?>">Preciarios</a></li> 
+                        <li id="liPreciarios"><a href="<?php print base_url('Preciarios.py'); ?>">Preciarios</a></li>
                         <!--                        <li class="disabled"><a href="#"><b>OBRA</b></a></li>-->
                         <li id="liEmpresasSupervisoras"><a href="<?php print base_url('EmpresasSupervisoras.py'); ?>">Empresas Supervisoras</a></li>
                         <!--                        <li class="disabled"><a href="#"><b>MANTENIMIENTO</b></a></li>-->

@@ -54,7 +54,13 @@ class Cuadrillas extends CI_Controller {
 
     public function onAgregar() {
         try {
-            $this->cuadrilla_model->onAgregar($this->input->post());
+            extract($this->input->post());
+            $DATA = array(
+                'Nombre' => ($Nombre !== null) ? $Nombre : null,
+                'Miembros' => ($Miembros !== null) ? $Miembros : null,
+                'Estatus' => 'Activo',
+            );
+            $this->cuadrilla_model->onAgregar($DATA);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

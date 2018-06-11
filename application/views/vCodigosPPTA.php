@@ -73,7 +73,6 @@
             pnlTablero.addClass("hide");
             pnlDatos.removeClass('hide');
             pnlDatos.find("input").val("");
-            pnlDatos.find("select").select2("val", "");
             $(':input:text:enabled:visible:first').focus();
             nuevo = true;
         });
@@ -209,7 +208,6 @@
                         }
                     }).done(function (data, x, jq) {
                         pnlDatos.find("input").val("");
-                        pnlDatos.find("select").select2("val", "");
                         $.each(data[0], function (k, v) {
                             pnlDatos.find("[name='" + k + "']").val(v);
                         });
