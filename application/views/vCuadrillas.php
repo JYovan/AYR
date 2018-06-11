@@ -15,7 +15,7 @@
 </div>
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide ">
+    <div id="pnlDatos" class="panel panel-default d-none ">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -33,7 +33,7 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-md-12 hide">
+                    <div class="col-md-12 d-none">
                         <input type="text"  name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-12">
@@ -80,8 +80,8 @@
     $(document).ready(function () {
 
         btnNuevo.click(function () {
-            pnlTablero.addClass("hide");
-            pnlDatos.removeClass('hide');
+            pnlTablero.addClass("d-none");
+            pnlDatos.removeClass('d-none');
             pnlDatos.find("input").val("");
             $.each(pnlDatos.find("select"), function (k, v) {
                 pnlDatos.find("select")[k].selectize.clear(true);
@@ -90,8 +90,8 @@
             nuevo = true;
         });
         btnCancelar.click(function () {
-            pnlTablero.removeClass("hide");
-            pnlDatos.addClass('hide');
+            pnlTablero.removeClass("d-none");
+            pnlDatos.addClass('d-none');
             getRecords();
         });
         //Evento clic del boton confirmar borrar
@@ -115,8 +115,8 @@
                         }
                     }).done(function (data, x, jq) {
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -140,8 +140,8 @@
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -160,8 +160,8 @@
                         pnlDatos.find("[name='ID']").val(data);
                         nuevo = false;
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -228,8 +228,8 @@
                             }
                         });
 
-                        pnlTablero.addClass("hide");
-                        pnlDatos.removeClass('hide');
+                        pnlTablero.addClass("d-none");
+                        pnlDatos.removeClass('d-none');
 
                         $(':input:text:enabled:visible:first').focus();
                         $(':input:text:enabled:visible:first').select();

@@ -49,7 +49,7 @@
                     <li role="presentation" class="active"><a href="#Generales" aria-controls="Generales" role="tab" data-toggle="tab">Presupuesto</a></li>
                     <li role="presentation"><a href="#Estimacion" aria-controls="Estimacion" role="tab" data-toggle="tab">Estimación</a></li>
                     <li role="presentation"><a href="#Fotos" aria-controls="Fotos" role="tab" data-toggle="tab">Fotográfico</a></li>
-                    <li role="presentation" id="rNordes" class="hide"><a href="#Nordes" aria-controls="Nordes" role="tab" data-toggle="tab">Nordes</a></li>
+                    <li role="presentation" id="rNordes" class="d-none"><a href="#Nordes" aria-controls="Nordes" role="tab" data-toggle="tab">Nordes</a></li>
                 </ul>
             </div>
             <div class="tab-content dt-buttons">
@@ -77,7 +77,7 @@
 </div>
 <!--PANEL NUEVO-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlNuevoTrabajo">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlNuevoTrabajo">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <!-- Inserta la fecha del movimiento-->
-                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control hide" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control d-none" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
                     <div class="col-md-6">
                         <div class="form-group label-static">
                             <label for="Cliente_ID" class="control-label">Cliente</label>
@@ -202,7 +202,7 @@
 </div>
 <!--PANEL EDITAR-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlEditarTrabajo">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlEditarTrabajo">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -286,7 +286,7 @@
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="form-group label-static hide" id="cmbAutorizacion">
+                                <div class="form-group label-static d-none" id="cmbAutorizacion">
                                     <label for="" class="control-label">AUTORIZADO</label>
                                     <select id="EstatusTrabajo" name="EstatusTrabajo" class="form-control" >
                                         <option value=""></option>
@@ -296,7 +296,7 @@
                                 </div>
                             </div>
                             <!-- Inserta la fecha del movimiento-->
-                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control hide" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control d-none" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                             <div class="col-md-6">
                                 <div class="form-group label-static">
                                     <label for="Cliente_ID" class="control-label">Cliente</label>
@@ -439,8 +439,8 @@
             mdlReportesEditarTrabajo.modal('show');
         });
         btnNuevo.on("click", function () {
-            menuTablero.addClass("hide");
-            pnlNuevoTrabajo.removeClass("hide");
+            menuTablero.addClass("d-none");
+            pnlNuevoTrabajo.removeClass("d-none");
             pnlNuevoTrabajo.find("input").val("");
             pnlNuevoTrabajo.find("textarea").val("");
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
@@ -454,15 +454,15 @@
             getAreasbyCliente("<?php echo $this->session->userdata('Cliente'); ?>");
         });
         btnCancelar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlNuevoTrabajo.addClass("hide");
-            pnlDetalleNuevoTrabajo.addClass("hide");
-            pnlDetalleNuevoTrabajoAbierto.addClass("hide");
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlNuevoTrabajo.addClass("d-none");
+            pnlDetalleNuevoTrabajo.addClass("d-none");
+            pnlDetalleNuevoTrabajoAbierto.addClass("d-none");
             //getRecords();
         });
         btnCancelarModificar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlEditarTrabajo.addClass("hide");
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlEditarTrabajo.addClass("d-none");
             //getRecords();
         });
         btnGuardar.on("click", function () {
@@ -581,10 +581,10 @@
                     ID: IdMovimiento
                 }
             }).done(function (data, x, jq) {
-                mdlConfirmar.modal('hide');
+                mdlConfirmar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PEDIDO ELIMINADO', 'danger');
-                menuTablero.addClass("animated slideInLeft").removeClass("hide");
-                pnlEditarTrabajo.addClass("hide");
+                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+                pnlEditarTrabajo.addClass("d-none");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -658,7 +658,7 @@
                             var trabajo = data[0];
 
                             if (trabajo.Cliente_ID === '16') {
-                                mdlReportesEditarTrabajo.find('#rNordes').removeClass('hide');
+                                mdlReportesEditarTrabajo.find('#rNordes').removeClass('d-none');
                             }
                             pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
                             $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
@@ -723,7 +723,7 @@
                             }).always(function () {
                                 HoldOn.close();
                             });
-                            pnlEditarTrabajo.removeClass('hide');
+                            pnlEditarTrabajo.removeClass('d-none');
                             pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                             pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                             getCliente();
@@ -754,77 +754,77 @@
                             } else {
                                 pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                             }
-                            menuTablero.addClass("hide");
+                            menuTablero.addClass("d-none");
                             /*Control de estatus*/
                             $('#dEstatusDetalle').find('.radio-inline').addClass('customDisabled');
                             if (trabajo.EstatusTrabajo === 'Pedido') {
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', false);
                                 pnlEditarTrabajo.find("#lPedido").removeClass('customDisabled');
-                                btnModificar.removeClass('hide');
+                                btnModificar.removeClass('d-none');
                                 btnConfirmarEliminar.attr("disabled", false);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", true);
-                                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                                 $('#frmEditar').find('#cmbAutorizacion').removeClass('Autorizacion');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('Estimado Cliente, su pedido será recibido y se procederá a realizar el presupuesto correspondiente.');
                             } else if (trabajo.EstatusTrabajo === 'Autorización') {
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', true);
                                 pnlEditarTrabajo.find("#lAutorización").removeClass('customDisabled');
                                 btnConfirmarEliminar.attr("disabled", true);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", false);
                                 $('#frmEditar').find('#cmbAutorizacion').addClass('Autorizacion');
                                 $('#frmEditar').find('#EstatusTrabajo').attr('disabled', false);
-                                $('#frmEditar').find('#cmbAutorizacion').removeClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').removeClass('d-none');
                                 var importeFormateado = parseFloat(trabajo.Importe).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('Estimado Cliente, si está de acuerdo con el presupuesto favor de marcar SÍ en el control de autorización marcado en azul.\n\
                                                                              <br><strong class="spanTotalesDetalle">Importe total: <strong><span class="text-success spanTotalesDetalle">$' + importeFormateado + '</span>');
                             } else if (trabajo.EstatusTrabajo === 'Presupuesto') {
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', true);
                                 pnlEditarTrabajo.find("#lPresupuesto").removeClass('customDisabled');
                                 btnConfirmarEliminar.attr("disabled", true);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", true);
                                 $('#frmEditar').find('#EstatusTrabajo').attr('disabled', true);
-                                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('Estimado Cliente, estamos trabajando en su presupuesto, gracias por su comprensión.');
                             } else if (trabajo.EstatusTrabajo === 'No Autorizado')
                             {
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", false);
                                 pnlEditarTrabajo.find("#lNoAutorizado").removeClass('customDisabled');
                                 $('#frmEditar').find('#EstatusTrabajo').attr('disabled', true);
-                                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                                 var importeFormateado = parseFloat(trabajo.Importe).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('Presupuesto rechazado por el cliente. <br> <strong class="spanTotalesDetalle">Importe total: <strong><span class="text-success spanTotalesDetalle">$' + importeFormateado + '</span>');
                             } else if (trabajo.EstatusTrabajo === 'Ejecución')
                             {
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", false);
                                 pnlEditarTrabajo.find("#lEjecución").removeClass('customDisabled');
                                 $('#frmEditar').find('#cmbAutorizacion').addClass('Autorizacion');
                                 $('#frmEditar').find('#EstatusTrabajo').attr('disabled', true);
-                                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                                 var importeFormateado = parseFloat(trabajo.Importe).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: <strong><span class="text-success spanTotalesDetalle">$' + importeFormateado + '</span>');
                             } else if (trabajo.EstatusTrabajo === 'Finalizado')
                             {
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').not('[type=radio]').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 btnImprimirReportesEditarTrabajo.attr("disabled", false);
                                 pnlEditarTrabajo.find("#lFinalizado").removeClass('customDisabled');
                                 $('#frmEditar').find('#cmbAutorizacion').addClass('Autorizacion');
                                 $('#frmEditar').find('#EstatusTrabajo').attr('disabled', true);
-                                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                                 var importeFormateado = parseFloat(trabajo.Importe).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                                 pnlEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: <strong><span class="text-success spanTotalesDetalle">$' + importeFormateado + '</span>');
@@ -1003,7 +1003,7 @@
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDTrabajo) {
         IdMovimiento = IDTrabajo;
-        pnlNuevoTrabajo.addClass("hide");
+        pnlNuevoTrabajo.addClass("d-none");
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             $.ajax({
@@ -1076,7 +1076,7 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-                pnlEditarTrabajo.removeClass('hide');
+                pnlEditarTrabajo.removeClass('d-none');
                 pnlEditarTrabajo.find("#ID").val(trabajo.ID);
                 pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
                 getCliente();
@@ -1087,13 +1087,13 @@
                 pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
                 pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
                 pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
-                menuTablero.addClass("hide");
+                menuTablero.addClass("d-none");
                 /*Control de estatus*/
                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                btnModificar.removeClass('hide');
+                btnModificar.removeClass('d-none');
                 btnConfirmarEliminar.attr("disabled", false);
                 btnImprimirReportesEditarTrabajo.attr("disabled", true);
-                $('#frmEditar').find('#cmbAutorizacion').addClass('hide');
+                $('#frmEditar').find('#cmbAutorizacion').addClass('d-none');
                 $('#frmEditar').find('#cmbAutorizacion').removeClass('Autorizacion');
                 pnlEditarTrabajo.find("#ImporteTotal").html('');
                 pnlEditarTrabajo.find("#ImporteTotal").html('Estimado Cliente, su pedido será recibido y se procederá a realizar el presupuesto correspondiente.');

@@ -20,9 +20,17 @@
             </div>
         </div>
         <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12 table-responsive" id="tblRegistros">
-
+            <fieldset> 
+                <div id="Areas" class="table-responsive col-md-12">
+                    <table id="tblAreas" class="table table-sm display " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripción</th> 
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </fieldset>
         </div>
@@ -30,7 +38,7 @@
 </div>
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide ">
+    <div id="pnlDatos" class="panel panel-default d-none ">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -48,7 +56,7 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <fieldset>
-                    <div class="col-md-12 hide">
+                    <div class="col-12 d-none">
                         <input type="text"  name="ID" class="form-control">
                     </div>
                     <div class="col-6 col-md-6">
@@ -77,6 +85,10 @@
     var btnEliminar = $("#btnEliminar");
     var nuevo = true;
     var cliente;
+
+    var Areas;
+    var tblAreas = $('#tblAreas');
+
     $(document).ready(function () {
 
         $("[name='sCliente']").change(function () {
@@ -85,8 +97,8 @@
         });
         btnNuevo.click(function () {
             if (cliente !== '' && cliente !== undefined) {
-                pnlTablero.addClass("hide");
-                pnlDatos.removeClass('hide');
+                pnlTablero.addClass("d-none");
+                pnlDatos.removeClass('d-none');
                 pnlDatos.find("input").val("");
                 $(':input:text:enabled:visible:first').focus();
                 nuevo = true;
@@ -96,8 +108,8 @@
 
         });
         btnCancelar.click(function () {
-            pnlTablero.removeClass("hide");
-            pnlDatos.addClass('hide');
+            pnlTablero.removeClass("d-none");
+            pnlDatos.addClass('d-none');
             getRecords('');
         });
         //Evento clic del boton confirmar borrar
@@ -121,8 +133,8 @@
                         }
                     }).done(function (data, x, jq) {
                         getRecords(cliente);
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -147,8 +159,8 @@
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
                         getRecords(cliente);
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -167,8 +179,8 @@
                         pnlDatos.find("[name='ID']").val(data);
                         nuevo = false;
                         getRecords(cliente);
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -184,7 +196,7 @@
         getClientes();
         handleEnter();
     });
-    function getRecords(Cliente) {
+    function getRecordszz(Cliente) {
         if (Cliente !== '') {
             temp = 0;
             HoldOn.open({
@@ -238,8 +250,8 @@
                                     pnlDatos.find("[name='" + k + "']").val(v);
                                 });
 
-                                pnlTablero.addClass("hide");
-                                pnlDatos.removeClass('hide');
+                                pnlTablero.addClass("d-none");
+                                pnlDatos.removeClass('d-none');
 
                                 $(':input:text:enabled:visible:first').focus();
                                 $(':input:text:enabled:visible:first').select();
@@ -262,6 +274,90 @@
             });
         }
     }
+
+
+    function getRecords(Cliente) {
+        if (Cliente !== '') {
+            temp = 0;
+            HoldOn.open({
+                theme: 'sk-cube',
+                message: 'CARGANDO...'
+            });
+            $.fn.dataTable.ext.errMode = 'throw';
+
+            if ($.fn.DataTable.isDataTable('#tblAreas')) {
+                tblAreas.DataTable().destroy();
+            } 
+            Areas = tblAreas.DataTable({
+                "dom": 'Bfrtip',
+                buttons: buttons,
+                "ajax": {
+                    "url": master_url + 'getRecords',
+                    type: "POST",
+                    dataSrc : "",
+                    "data": {
+                        Cliente: Cliente
+                    }
+                },
+                "columns": [
+                    {"data": "ID"},
+                    {"data": "Descripcion"}
+                ],
+                language: lang,
+                "autoWidth": true,
+                "colReorder": true,
+                "displayLength": 20,
+                "bLengthChange": false,
+                "deferRender": true,
+                "scrollCollapse": false,
+                "bSort": true,
+                "aaSorting": [
+                    [0, 'desc']/*ID*/
+                ]
+            });
+
+            tblAreas.find('tbody').on('click', 'tr', function () {
+                tblAreas.find("tbody tr").removeClass("success");
+                $(this).addClass("success");
+                var dtm = Areas.row(this).data();
+                temp = parseInt(dtm.ID);
+                nuevo = false;
+                if (temp !== 0 && temp !== undefined && temp > 0) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "CARGANDO DATOS..."
+                    });
+                    $.ajax({
+                        url: master_url + 'getAreaByID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: temp
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("input").val("");
+                        $.each(data[0], function (k, v) {
+                            pnlDatos.find("[name='" + k + "']").val(v);
+                        });
+
+                        pnlTablero.addClass("d-none");
+                        pnlDatos.removeClass('d-none');
+
+                        $(':input:text:enabled:visible:first').focus();
+                        $(':input:text:enabled:visible:first').select();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+                }
+            });
+            HoldOn.close();
+        }
+    }
+
 
     function getClientes() {
         $.ajax({

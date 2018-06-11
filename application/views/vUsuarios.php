@@ -15,7 +15,7 @@
 </div>
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide">
+    <div id="pnlDatos" class="panel panel-default d-none">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -34,7 +34,7 @@
             <form id="frmNuevo">
                 <fieldset>
                     <fieldset>
-                        <div class="col-md-12 hide">
+                        <div class="col-md-12 d-none">
                             <input type="text"  name="ID" class="form-control" >
                         </div>
                         <div class="col-6 col-md-3">
@@ -93,7 +93,7 @@
                                 <input type="text" id="Apellidos" name="Apellidos" class="form-control" placeholder="" required>
                             </div>
                         </div>
-                        <div class="col-md-6 hide" id="AreaCliente">
+                        <div class="col-md-6 d-none" id="AreaCliente">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
@@ -127,15 +127,15 @@
 
         sEsCliente.change(function () {
             if (this.value === 'CLIENTE' || this.value === 'SUPER ADMINISTRADOR') {
-                pnlDatos.find("#AreaCliente").removeClass('hide');
+                pnlDatos.find("#AreaCliente").removeClass('d-none');
             } else {
-                pnlDatos.find("#AreaCliente").addClass('hide');
+                pnlDatos.find("#AreaCliente").addClass('d-none');
             }
         });
 
         btnNuevo.click(function () {
-            pnlTablero.addClass("hide");
-            pnlDatos.removeClass('hide');
+            pnlTablero.addClass("d-none");
+            pnlDatos.removeClass('d-none');
             pnlDatos.find("input").val("");
             $.each(pnlDatos.find("select"), function (k, v) {
                 pnlDatos.find("select")[k].selectize.clear(true);
@@ -144,8 +144,8 @@
             nuevo = true;
         });
         btnCancelar.click(function () {
-            pnlTablero.removeClass("hide");
-            pnlDatos.addClass('hide');
+            pnlTablero.removeClass("d-none");
+            pnlDatos.addClass('d-none');
         });
         //Evento clic del boton confirmar borrar
         btnEliminar.click(function () {
@@ -168,8 +168,8 @@
                         }
                     }).done(function (data, x, jq) {
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -193,8 +193,8 @@
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -213,8 +213,8 @@
                         pnlDatos.find("[name='ID']").val(data);
                         nuevo = false;
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -280,9 +280,9 @@
                             pnlDatos.find("select")[k].selectize.clear(true);
                         });
                         if (data[0].Cliente_ID !== null && parseFloat(data[0].Cliente_ID) !== 0) {
-                            pnlDatos.find("#AreaCliente").removeClass('hide');
+                            pnlDatos.find("#AreaCliente").removeClass('d-none');
                         } else {
-                            pnlDatos.find("#AreaCliente").addClass('hide');
+                            pnlDatos.find("#AreaCliente").addClass('d-none');
                         }
                         $.each(data[0], function (k, v) {
                             pnlDatos.find("[name='" + k + "']").val(v);
@@ -290,8 +290,8 @@
                                 pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
                             }
                         });
-                        pnlTablero.addClass("hide");
-                        pnlDatos.removeClass('hide');
+                        pnlTablero.addClass("d-none");
+                        pnlDatos.removeClass('d-none');
 
                         $(':input:text:enabled:visible:first').focus();
                         $(':input:text:enabled:visible:first').select();

@@ -103,7 +103,7 @@
 </div>
 <!--PANEL NUEVO-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlNuevaPrefactura">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlNuevaPrefactura">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -141,7 +141,7 @@
             <form id="frmNuevo">
                 <fieldset>
                     <hr>
-                    <div class=" col-6 col-md-3 hide">
+                    <div class=" col-6 col-md-3 d-none">
                         <div class="form-group label-static">
                             <label for="Movimiento" class="control-label">Movimiento</label>
                             <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
@@ -171,7 +171,7 @@
                             <input type="text" id="OrdenCompra" name="OrdenCompra"  class="form-control" placeholder="" required="">
                         </div>
                     </div>
-                    <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control hide" placeholder="" >
+                    <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control d-none" placeholder="" >
                     <div class="col-6 col-md-6">
                         <div class="form-group label-static">
                             <label for="" class="control-label">Cliente*</label>
@@ -194,7 +194,7 @@
                             <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4" ></textarea>
                         </div>
                     </div>
-                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
+                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
                     <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -205,7 +205,7 @@
 </div>
 <!--PANEL NUEVO DETALLE-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevaPrefactura">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleNuevaPrefactura">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div class="col-md-5">
@@ -227,7 +227,7 @@
 </div>
 <!--PANEL EDITAR-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlEditarPrefactura">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlEditarPrefactura">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -242,7 +242,7 @@
                         <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
                             <span class="fa fa-print " ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon hide" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="top" title="" data-original-title="Exportar a Intelisis" >
+                        <button type="button" class="btn btn-default CustomColorIcon d-none" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="top" title="" data-original-title="Exportar a Intelisis" >
                             <span class="fa fa-cloud-upload " ></span>
                         </button>
                         <button type="button" class="btn btn-default CustomColorIcon" id="btnCapturarPago" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Capturar Pago">
@@ -269,7 +269,7 @@
             <form id="frmEditar">
                 <fieldset>
                     <hr>
-                    <div class=" col-6 col-md-3 hide">
+                    <div class=" col-6 col-md-3 d-none">
                         <div class="form-group label-static">
                             <label for="Movimiento" class="control-label">Movimiento</label>
                             <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
@@ -299,7 +299,7 @@
                             <input type="text" id="OrdenCompra" name="OrdenCompra"  class="form-control" placeholder="" required="">
                         </div>
                     </div>
-                    <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control hide" placeholder="" >
+                    <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control d-none" placeholder="" >
                     <div class="col-6 col-md-6">
                         <div class="form-group label-static">
                             <label for="" class="control-label">Cliente*</label>
@@ -322,7 +322,7 @@
                             <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4" ></textarea>
                         </div>
                     </div>
-                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
+                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
                     <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -333,7 +333,7 @@
 </div>
 <!--PANEL EDITAR DETALLE-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarPrefactura">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleEditarPrefactura">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div class="col-md-6">
@@ -441,7 +441,7 @@
                 data: frm
             }).done(function (data, x, jq) {
                 console.log(data);
-                mdlConfirmarExportarIntelisis.modal('hide');
+                mdlConfirmarExportarIntelisis.modal('d-none');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'PREFACTURA EXPORTADA CORRECTAMENTE', 'success');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -466,7 +466,7 @@
                 data: frm
             }).done(function (data, x, jq) {
                 console.log(data);
-                mdlCapturarInfoPago.modal('hide');
+                mdlCapturarInfoPago.modal('d-none');
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'PAGO REGISTRADO CORRECTAMENTE', 'success');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -521,7 +521,7 @@
         tBtnEditarConcluir.on("click", function () {
             if (!$(this).is(':checked')) {
                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                btnModificar.removeClass('hide');
+                btnModificar.removeClass('d-none');
             }
         });
         btnConfirmarEliminar.on("click", function () {
@@ -544,11 +544,11 @@
                     ID: IdMovimiento
                 }
             }).done(function (data, x, jq) {
-                mdlConfirmar.modal('hide');
+                mdlConfirmar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PREFACTURA ELIMINADA', 'danger');
-                pnlEditarPrefactura.addClass("hide");
-                pnlDetalleEditarPrefactura.addClass("hide");
-                menuTablero.addClass("animated slideInLeft").removeClass("hide");
+                pnlEditarPrefactura.addClass("d-none");
+                pnlDetalleEditarPrefactura.addClass("d-none");
+                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -558,9 +558,9 @@
         });
         btnNuevo.on('click', function () {
      
-            pnlNuevaPrefactura.removeClass('hide');
-            menuTablero.addClass('hide');
-            pnlDetalleNuevaPrefactura.removeClass('hide');
+            pnlNuevaPrefactura.removeClass('d-none');
+            menuTablero.addClass('d-none');
+            pnlDetalleNuevaPrefactura.removeClass('d-none');
             pnlNuevaPrefactura.find("input").val("");
             pnlNuevaPrefactura.find("textarea").val("");
             pnlNuevaPrefactura.find("select").val(null).trigger("change");
@@ -570,15 +570,15 @@
         });
         //Boton de nuevo en detalle nuevo
         btnCancelar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlNuevaPrefactura.addClass("hide");
-            pnlDetalleNuevaPrefactura.addClass('hide');
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlNuevaPrefactura.addClass("d-none");
+            pnlDetalleNuevaPrefactura.addClass('d-none');
            
         });
         btnCancelarModificar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlEditarPrefactura.addClass("hide");
-            pnlDetalleEditarPrefactura.addClass("hide");
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlEditarPrefactura.addClass("d-none");
+            pnlDetalleEditarPrefactura.addClass("d-none");
             
         });
         btnGuardar.on("click", function () {
@@ -682,9 +682,9 @@
                     getRecords();
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     if (tBtnEditarConcluir.is(':checked')) {
-                        btnModificar.addClass('hide');
-                        btnExportarIntelisis.removeClass('hide');
-                        btnCapturarPago.removeClass('hide');
+                        btnModificar.addClass('d-none');
+                        btnExportarIntelisis.removeClass('d-none');
+                        btnCapturarPago.removeClass('d-none');
                         $('#frmEditar').find('input, textarea, button, select').attr('readonly', true);
                         $('#frmEditar').find('select').addClass('disabledDetalle');
                         $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle');
@@ -693,8 +693,8 @@
                         pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
                         pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
                     } else {
-                        btnExportarIntelisis.addClass('hide');
-                        btnCapturarPago.addClass('hide');
+                        btnExportarIntelisis.addClass('d-none');
+                        btnCapturarPago.addClass('d-none');
                         $('#frmEditar').find('#Referencia').attr('readonly', false);
                         $('#frmEditar').find('#Comentarios').attr('readonly', false);
                         $('#frmEditar').find('select').removeClass('disabledDetalle');
@@ -845,27 +845,27 @@
                             pnlEditarPrefactura.find("#Comentarios").val(prefactura.Comentarios);
                             pnlEditarPrefactura.find("#Usuario_ID").val(prefactura.Usuario_ID);
                             pnlEditarPrefactura.find("#OrdenCompra").val(prefactura.OrdenCompra);
-                            menuTablero.addClass("hide");
-                            pnlEditarPrefactura.removeClass("hide");
-                            pnlDetalleEditarPrefactura.removeClass("hide");
+                            menuTablero.addClass("d-none");
+                            pnlEditarPrefactura.removeClass("d-none");
+                            pnlDetalleEditarPrefactura.removeClass("d-none");
                             getDetalleByID(IdMovimiento);
                             //Control de estatus
                             if (prefactura.Estatus === 'Concluido') {
                                 $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(prefactura.Estatus.toUpperCase());
                                 tBtnEditarConcluir.prop('checked', true);
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('readonly', true);
                                 $('#frmEditar').find('select').addClass('disabledDetalle');
                                 $('#frmEditar').find("#FechaCreacion").addClass('disabledDetalle');
                                 btnConfirmarEliminar.attr("disabled", true);
                                 pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
                                 pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
-                                btnExportarIntelisis.removeClass('hide');
-                                btnCapturarPago.removeClass('hide');
+                                btnExportarIntelisis.removeClass('d-none');
+                                btnCapturarPago.removeClass('d-none');
                             } else if (prefactura.Estatus === 'Cancelado') {
                                 $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
-                                tBtnEditarConcluir.addClass('hide');
-                                btnModificar.addClass('hide');
+                                tBtnEditarConcluir.addClass('d-none');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
@@ -873,7 +873,7 @@
                             } else {
                                 $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(prefactura.Estatus.toUpperCase());
                                 tBtnEditarConcluir.prop('checked', false);
-                                btnModificar.removeClass('hide');
+                                btnModificar.removeClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                                 $('#frmEditar').find('select').removeClass('disabledDetalle');
                                 $('#frmEditar').find("#FechaCreacion").removeClass('disabledDetalle');
@@ -1016,14 +1016,14 @@
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'LA PREFACTURA NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {
-                                mdlSeleccionarEntregasEditar.modal('hide');
+                                mdlSeleccionarEntregasEditar.modal('d-none');
                                 HoldOn.close();
                                 console.log(x, y, z);
                             }).always(function () {
                                 HoldOn.close();
                             });
                             if (!mdlSeleccionarEntregasEditar.find("#chkMultiple").is(":checked")) {
-                                mdlSeleccionarEntregasEditar.modal('hide');
+                                mdlSeleccionarEntregasEditar.modal('d-none');
                             }
                         }
                     }).fail(function (x, y, z) {
@@ -1033,7 +1033,7 @@
                     });
                 });
             } else {
-                mdlSeleccionarEntregasEditar.modal('hide');
+                mdlSeleccionarEntregasEditar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDAS O ENTREGADOS', 'danger');
                 HoldOn.close();
             }
@@ -1068,17 +1068,17 @@
                 pnlDetalleEditarPrefactura.find("#Conceptos").html(getTable('tblRegistrosDetalle', data));
                 var thead = pnlDetalleEditarPrefactura.find('#tblRegistrosDetalle thead th');
                 var tfoot = pnlDetalleEditarPrefactura.find('#tblRegistrosDetalle tfoot th');
-                thead.eq(0).addClass("hide");
-                tfoot.eq(0).addClass("hide");
-                thead.eq(1).addClass("hide");
-                tfoot.eq(1).addClass("hide");
-                thead.eq(7).addClass("hide");
-                tfoot.eq(7).addClass("hide");
+                thead.eq(0).addClass("d-none");
+                tfoot.eq(0).addClass("d-none");
+                thead.eq(1).addClass("d-none");
+                tfoot.eq(1).addClass("d-none");
+                thead.eq(7).addClass("d-none");
+                tfoot.eq(7).addClass("d-none");
                 $.each(pnlDetalleEditarPrefactura.find('#tblRegistrosDetalle tbody tr'), function (k, v) {
                     var td = $(v).find("td");
-                    td.eq(0).addClass("hide");
-                    td.eq(1).addClass("hide");
-                    td.eq(7).addClass("hide");
+                    td.eq(0).addClass("d-none");
+                    td.eq(1).addClass("d-none");
+                    td.eq(7).addClass("d-none");
                     total += parseFloat(td.eq(7).text());
                     ImporteTotalGlobal = total;
                 });
@@ -1164,8 +1164,8 @@
     }
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDPrefactura) {
-        pnlNuevaPrefactura.addClass("hide");
-        pnlDetalleNuevaPrefactura.addClass('hide');
+        pnlNuevaPrefactura.addClass("d-none");
+        pnlDetalleNuevaPrefactura.addClass('d-none');
         temp = IDPrefactura;
         IdMovimiento = IDPrefactura;
         //Abre al hacer click el movimiento para editar
@@ -1198,24 +1198,24 @@
                 pnlEditarPrefactura.find("#Comentarios").val(prefactura.Comentarios);
                 pnlEditarPrefactura.find("#Usuario_ID").val(prefactura.Usuario_ID);
                 pnlEditarPrefactura.find("#OrdenCompra").val(prefactura.OrdenCompra);
-                menuTablero.addClass("hide");
-                pnlEditarPrefactura.removeClass("hide");
+                menuTablero.addClass("d-none");
+                pnlEditarPrefactura.removeClass("d-none");
                 
                 //Control de estatus
                 if (prefactura.Estatus === 'Concluido') {
-                    btnExportarIntelisis.removeClass('hide');
-                    btnCapturarPago.removeClass('hide');
+                    btnExportarIntelisis.removeClass('d-none');
+                    btnCapturarPago.removeClass('d-none');
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(prefactura.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', true);
-                    btnModificar.addClass('hide');
+                    btnModificar.addClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
                     pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
                 } else if (prefactura.Estatus === 'Cancelado') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
-                    tBtnEditarConcluir.addClass('hide');
-                    btnModificar.addClass('hide');
+                    tBtnEditarConcluir.addClass('d-none');
+                    btnModificar.addClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
                     pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
@@ -1223,14 +1223,14 @@
                 } else {
                     $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(prefactura.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', false);
-                    btnModificar.removeClass('hide');
+                    btnModificar.removeClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                     btnConfirmarEliminar.attr("disabled", false);
                     pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
                     pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
                 }
                 
-                pnlDetalleEditarPrefactura.removeClass("hide");
+                pnlDetalleEditarPrefactura.removeClass("d-none");
                 getDetalleByID(temp);
                 
             }).fail(function (x, y, z) {

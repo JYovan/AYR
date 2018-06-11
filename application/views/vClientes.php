@@ -15,7 +15,7 @@
 </div>
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide">
+    <div id="pnlDatos" class="panel panel-default d-none">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -39,7 +39,7 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class="col-md-12 hide">
+                            <div class="col-md-12 d-none">
                                 <input type="text"  name="ID" class="form-control">
                             </div>
                             <div class="col-md-12">
@@ -129,7 +129,7 @@
                                     <br>
                                     <h3>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h3>
                                 </div>
-                                <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                                <input type="file" id="RutaLogo" name="RutaLogo" class="d-none">
                                 <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                                 </button>
@@ -195,8 +195,8 @@
         });
 
         btnNuevo.click(function () {
-            pnlTablero.addClass("hide");
-            pnlDatos.removeClass('hide');
+            pnlTablero.addClass("d-none");
+            pnlDatos.removeClass('d-none');
             pnlDatos.find("input").val("");
             pnlDatos.find(".nav-tabs li").removeClass("active");
             $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
@@ -206,8 +206,8 @@
             nuevo = true;
         });
         btnCancelar.click(function () {
-            pnlTablero.removeClass("hide");
-            pnlDatos.addClass('hide');
+            pnlTablero.removeClass("d-none");
+            pnlDatos.addClass('d-none');
         });
         //Evento clic del boton confirmar borrar
         btnEliminar.click(function () {
@@ -230,8 +230,8 @@
                         }
                     }).done(function (data, x, jq) {
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -255,8 +255,8 @@
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -275,8 +275,8 @@
                         pnlDatos.find("[name='ID']").val(data);
                         nuevo = false;
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -346,8 +346,8 @@
                                 pnlDatos.find("[name='" + k + "']").val(v);
                             }
                         });
-                        pnlTablero.addClass("hide");
-                        pnlDatos.removeClass('hide');
+                        pnlTablero.addClass("d-none");
+                        pnlDatos.removeClass('d-none');
 
                         if (cliente.RutaLogo !== null && cliente.RutaLogo !== undefined && cliente.RutaLogo !== '') {
                             var ext = getExt(cliente.RutaLogo);

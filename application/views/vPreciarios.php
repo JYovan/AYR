@@ -7,9 +7,9 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default hide" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
-                    <button type="button" class="btn btn-default hide" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
-                    <button type="button" class="btn btn-default hide" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default d-none" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
+                    <button type="button" class="btn btn-default d-none" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
+                    <button type="button" class="btn btn-default d-none" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
@@ -19,7 +19,7 @@
 <!--PANELES-->
 <div class="col-md-12">
     <!--GUARDAR-->
-    <div id="pnlNuevo" class="panel panel-default hide animated slideInRight">
+    <div id="pnlNuevo" class="panel panel-default d-none animated slideInRight">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="col-md-12" align="center">
-                            <input type="file" id="RutaArchivo" name="RutaArchivo" class="hide">
+                            <input type="file" id="RutaArchivo" name="RutaArchivo" class="d-none">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
                                 </span>
@@ -98,7 +98,7 @@
                             <br>
                         </div>
                         <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
-                        <div class="col-md-12 hide">
+                        <div class="col-md-12 d-none">
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
@@ -108,7 +108,7 @@
         </div>
     </div>
     <!--EDITAR-->
-    <div id="pnlEditar" class="panel panel-default hide animated slideInRight">
+    <div id="pnlEditar" class="panel panel-default d-none animated slideInRight">
         <div class="Custompanel-heading">
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -126,7 +126,7 @@
         <div class="panel-body">
             <form id="frmEditar">
                 <fieldset>
-                    <div class="col-md-12 hide">
+                    <div class="col-md-12 d-none">
                         <label for="">ID*</label>
                         <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
@@ -181,7 +181,7 @@
 </div>
 <!--PANEL DETALLE-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleConceptos">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleConceptos">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div class="col-md-8">
@@ -193,7 +193,7 @@
             <fieldset>
                 <div class="col-md-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default hide" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
+                    <button type="button" class="btn btn-default d-none" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-md-12">
                     <br>
@@ -213,8 +213,8 @@
             <h4 class="modal-title modal-titleFull">Nuevo Concepto</h4>
         </div>
         <div class="modal-body modal-bodyFull">
-            <div class="col-md-12 hide">
-                <input type="text" class="form-control hide" id="ID" name="ID">
+            <div class="col-md-12 d-none">
+                <input type="text" class="form-control d-none" id="ID" name="ID">
             </div>
             <div id="pnlConceptos" class="col-md-12" >
                 <div class="col-md-12">
@@ -425,14 +425,14 @@
             <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto">GUARDAR</button>
             <!--BOTONES CATEGORIA-->
-            <button type="button" class="btn btn-default hide" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarCategoria" name="btnGuardarCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarCategoria" name="btnGuardarCategoria">GUARDAR</button>
             <!--BOTONES SUBCATEGORIA-->
-            <button type="button" class="btn btn-default hide" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria">GUARDAR</button>
             <!--BOTONES SUBSUBCATEGORIA-->
-            <button type="button" class="btn btn-default hide" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary hide" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria">GUARDAR</button>
         </div>
     </div>
 </div>
@@ -447,7 +447,7 @@
         <div class="modal-body modal-bodyFull">
             <form id="frmEditar">
                 <fieldset>
-                    <div class="col-md-12 hide">
+                    <div class="col-md-12 d-none">
                         <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
                     </div>
                     <div class="col-md-4">
@@ -721,58 +721,58 @@
             var target = $(e.target).attr("href"); // activated tab
             switch (target) {
                 case "#Conceptos":
-                    btnCancelarConcepto.removeClass("hide");
-                    btnGuardarConcepto.removeClass("hide");
-                    btnCancelarCategoria.addClass("hide");
-                    btnGuardarCategoria.addClass("hide");
-                    btnCancelarSubCategoria.addClass("hide");
-                    btnGuardarSubCategoria.addClass("hide");
-                    btnCancelarSubSubCategoria.addClass("hide");
-                    btnGuardarSubSubCategoria.addClass("hide");
+                    btnCancelarConcepto.removeClass("d-none");
+                    btnGuardarConcepto.removeClass("d-none");
+                    btnCancelarCategoria.addClass("d-none");
+                    btnGuardarCategoria.addClass("d-none");
+                    btnCancelarSubCategoria.addClass("d-none");
+                    btnGuardarSubCategoria.addClass("d-none");
+                    btnCancelarSubSubCategoria.addClass("d-none");
+                    btnGuardarSubSubCategoria.addClass("d-none");
                     break;
                 case "#Categorias":
-                    btnCancelarConcepto.addClass("hide");
-                    btnGuardarConcepto.addClass("hide");
-                    btnCancelarCategoria.removeClass("hide");
-                    btnGuardarCategoria.removeClass("hide");
-                    btnCancelarSubCategoria.addClass("hide");
-                    btnGuardarSubCategoria.addClass("hide");
-                    btnCancelarSubSubCategoria.addClass("hide");
-                    btnGuardarSubSubCategoria.addClass("hide");
+                    btnCancelarConcepto.addClass("d-none");
+                    btnGuardarConcepto.addClass("d-none");
+                    btnCancelarCategoria.removeClass("d-none");
+                    btnGuardarCategoria.removeClass("d-none");
+                    btnCancelarSubCategoria.addClass("d-none");
+                    btnGuardarSubCategoria.addClass("d-none");
+                    btnCancelarSubSubCategoria.addClass("d-none");
+                    btnGuardarSubSubCategoria.addClass("d-none");
                     break;
                 case "#SubCategorias":
-                    btnCancelarConcepto.addClass("hide");
-                    btnGuardarConcepto.addClass("hide");
-                    btnCancelarCategoria.addClass("hide");
-                    btnGuardarCategoria.addClass("hide");
-                    btnCancelarSubCategoria.removeClass("hide");
-                    btnGuardarSubCategoria.removeClass("hide");
-                    btnCancelarSubSubCategoria.addClass("hide");
-                    btnGuardarSubSubCategoria.addClass("hide");
+                    btnCancelarConcepto.addClass("d-none");
+                    btnGuardarConcepto.addClass("d-none");
+                    btnCancelarCategoria.addClass("d-none");
+                    btnGuardarCategoria.addClass("d-none");
+                    btnCancelarSubCategoria.removeClass("d-none");
+                    btnGuardarSubCategoria.removeClass("d-none");
+                    btnCancelarSubSubCategoria.addClass("d-none");
+                    btnGuardarSubSubCategoria.addClass("d-none");
                     break;
                 case "#SubSubCategorias":
-                    btnCancelarConcepto.addClass("hide");
-                    btnGuardarConcepto.addClass("hide");
-                    btnCancelarCategoria.addClass("hide");
-                    btnGuardarCategoria.addClass("hide");
-                    btnCancelarSubCategoria.addClass("hide");
-                    btnGuardarSubCategoria.addClass("hide");
-                    btnCancelarSubSubCategoria.removeClass("hide");
-                    btnGuardarSubSubCategoria.removeClass("hide");
+                    btnCancelarConcepto.addClass("d-none");
+                    btnGuardarConcepto.addClass("d-none");
+                    btnCancelarCategoria.addClass("d-none");
+                    btnGuardarCategoria.addClass("d-none");
+                    btnCancelarSubCategoria.addClass("d-none");
+                    btnGuardarSubCategoria.addClass("d-none");
+                    btnCancelarSubSubCategoria.removeClass("d-none");
+                    btnGuardarSubSubCategoria.removeClass("d-none");
                     break;
                 default:
                     break;
             }
         });
         btnCancelarEditar.click(function () {
-            pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
-            pnlEditar.addClass("hide");
-            pnlDetalleConceptos.addClass("hide");
+            pnlPreciario.addClass("animated slideInLeft").removeClass("d-none");
+            pnlEditar.addClass("d-none");
+            pnlDetalleConceptos.addClass("d-none");
             btnRefrescar.trigger('click');
         });
         btnCancelar.click(function () {
-            pnlPreciario.removeClass("hide");
-            pnlNuevo.addClass("hide");
+            pnlPreciario.removeClass("d-none");
+            pnlNuevo.addClass("d-none");
             btnRefrescar.trigger('click')
         });
         btnCancelarSubSubCategoria.click(function () {
@@ -806,7 +806,7 @@
             });
         });
         btnNuevaCategoria.click(function () {
-            mdlNuevaCategoria.removeClass("hide");
+            mdlNuevaCategoria.removeClass("d-none");
         });
         btnCancelarConcepto.click(function () {
             pnlConceptos.find("#Conceptos").removeClass("active in");
@@ -850,7 +850,7 @@
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
                     console.log(data, x, jq);
                     btnRefrescarConceptos.trigger('click');
-                    mdlNuevoConcepto.modal("hide");
+                    mdlNuevoConcepto.modal("d-none");
                     HoldOn.close();
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -869,22 +869,22 @@
             mdlNuevoConcepto.find("#Categorias").removeClass("active in");
             mdlNuevoConcepto.find("#SubSubCategorias").removeClass("active in");
             mdlNuevoConcepto.find("#SubSubCategorias").removeClass("active in");
-            btnCancelarConcepto.removeClass("hide");
-            btnGuardarConcepto.removeClass("hide");
-            btnCancelarCategoria.addClass("hide");
-            btnGuardarCategoria.addClass("hide");
-            btnCancelarSubCategoria.addClass("hide");
-            btnGuardarSubCategoria.addClass("hide");
-            btnCancelarSubSubCategoria.addClass("hide");
-            btnGuardarSubSubCategoria.addClass("hide");
+            btnCancelarConcepto.removeClass("d-none");
+            btnGuardarConcepto.removeClass("d-none");
+            btnCancelarCategoria.addClass("d-none");
+            btnGuardarCategoria.addClass("d-none");
+            btnCancelarSubCategoria.addClass("d-none");
+            btnGuardarSubCategoria.addClass("d-none");
+            btnCancelarSubSubCategoria.addClass("d-none");
+            btnGuardarSubSubCategoria.addClass("d-none");
             mdlNuevoConcepto.find("input").val("");
             mdlNuevoConcepto.find("textarea").val("");
             mdlNuevoConcepto.find("select").select2("val", "");
             getCategorias(pnlEditar.find("#ID").val());
             mdlNuevoConcepto.find("#ID").val(pnlEditar.find("#ID").val());
             mdlNuevoConcepto.modal('show');
-            btnCancelarConcepto.removeClass("hide");
-            btnGuardarConcepto.removeClass("hide");
+            btnCancelarConcepto.removeClass("d-none");
+            btnGuardarConcepto.removeClass("d-none");
         });
         btnCancelarModificacion.click(function () {
             mdlEditarConcepto.find("#IDConcepto").val("");
@@ -904,7 +904,7 @@
             mdlEditarConcepto.find("#Categoria").select2("val", "");
             mdlEditarConcepto.find("#SubCategoria").select2("val", "");
             mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
-            mdlEditarConcepto.modal('hide');
+            mdlEditarConcepto.modal('d-none');
         });
         btnRefrescarConceptos.click(function () {
             getConceptosXPreciarioID(pnlEditar.find("#ID").val());
@@ -943,7 +943,7 @@
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN CONCEPTO', 'success');
                 console.log(data, x, jq);
                 btnRefrescarConceptos.trigger('click');
-                mdlEditarConcepto.modal("hide");
+                mdlEditarConcepto.modal("d-none");
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -978,7 +978,7 @@
                 console.log(data);
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
                 btnRefrescarConceptos.trigger('click');
-                mdlConfirmarEliminarConcepto.modal('hide');
+                mdlConfirmarEliminarConcepto.modal('d-none');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -998,11 +998,11 @@
                 }
             }).done(function (data, x, jq) {
                 console.log(data);
-                mdlConfirmar.modal('hide');
+                mdlConfirmar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
-                pnlPreciario.addClass("animated slideInLeft").removeClass("hide");
-                pnlEditar.addClass("hide");
-                pnlDetalleConceptos.addClass("hide");
+                pnlPreciario.addClass("animated slideInLeft").removeClass("d-none");
+                pnlEditar.addClass("d-none");
+                pnlDetalleConceptos.addClass("d-none");
                 btnRefrescar.trigger('click');
                 getRecords();
             }).fail(function (x, y, z) {
@@ -1057,8 +1057,8 @@
                 }).done(function (data, x, jq) {
                     console.log(data);
 
-                    pnlNuevo.addClass('hide');
-                    pnlPreciario.removeClass('hide');
+                    pnlNuevo.addClass('d-none');
+                    pnlPreciario.removeClass('d-none');
 
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
                     btnRefrescar.trigger('click');
@@ -1110,9 +1110,9 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    pnlPreciario.removeClass('hide');
-                    pnlEditar.addClass('hide');
-                    pnlDetalleConceptos.addClass('hide');
+                    pnlPreciario.removeClass('d-none');
+                    pnlEditar.addClass('d-none');
+                    pnlDetalleConceptos.addClass('d-none');
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
                     console.log(data, x, jq);
                     btnRefrescar.trigger('click');
@@ -1128,8 +1128,8 @@
             pnlNuevo.find("select").select2("val", "");
             pnlNuevo.find("input").val("");
             pnlNuevo.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlNuevo.removeClass('hide');
-            pnlPreciario.addClass("hide");
+            pnlNuevo.removeClass('d-none');
+            pnlPreciario.addClass("d-none");
         });
         btnEditar.click(function () {
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
@@ -1153,9 +1153,9 @@
                     pnlEditar.find("#PreciarioEspecifico").html("");
                     getCategorias(preciario.ID);
                     getConceptosXPreciarioID(preciario.ID);
-                    pnlPreciario.addClass('hide');
-                    pnlEditar.addClass("animated slideInLeft").removeClass('hide');
-                    pnlDetalleConceptos.removeClass("hide");
+                    pnlPreciario.addClass('d-none');
+                    pnlEditar.addClass("animated slideInLeft").removeClass('d-none');
+                    pnlDetalleConceptos.removeClass("d-none");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -1368,11 +1368,11 @@
             $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
             var thead = pnlDetalleConceptos.find('#tblConceptosXPreciarioID thead th');
             var tfoot = pnlDetalleConceptos.find('#tblConceptosXPreciarioID tfoot th');
-            thead.eq(0).addClass("hide");
-            tfoot.eq(0).addClass("hide");
+            thead.eq(0).addClass("d-none");
+            tfoot.eq(0).addClass("d-none");
             $.each(pnlDetalleConceptos.find('#tblConceptosXPreciarioID tbody tr'), function (k, v) {
                 var td = $(v).find("td");
-                td.eq(0).addClass("hide");
+                td.eq(0).addClass("d-none");
             });
             $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();

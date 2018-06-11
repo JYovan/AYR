@@ -150,7 +150,7 @@
                     }).done(function (data, x, jq) {
                         console.log(data);
                         if (parseInt(data) === 1) {
-                            mdlOlvideContrasena.modal('hide');
+                            mdlOlvideContrasena.modal('d-none');
                             mdlEnviado.modal('show');
                         } else if (parseInt(data) === 0) {
                             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'OCURRIÓ UN ERROR, EL CORREO NO FUE ENVIADO', 'danger');

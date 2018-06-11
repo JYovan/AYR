@@ -1,24 +1,24 @@
-<div class="col-md-12">
-    <div class="panel panel-default" id="pnlTablero">
-        <div class="panel-heading">
+<div class="col-12">
+    <div class="panel panel-default animated zoomIn" id="pnlTablero">
+        <div class="card-heading">
             <div class="cursor-hand" >Empresas</div>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
+                <div class="col-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
+                <div class="col-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
         </div>
     </div>
 </div>
-<div class="col-md-12">
+<div class="col-12">
     <!--GUARDAR-->
-    <div id="pnlDatos" class="panel panel-default hide">
+    <div id="pnlDatos" class="panel panel-default d-none animated zoomIn">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
+                <div class="card-title pull-left cursor-hand" >
                     Empresa
                 </div>
                 <div class="input-group pull-right">
@@ -30,73 +30,73 @@
                 </div>
             </div>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <form id="frmNuevo">
-                <fieldset>
-                    <div class="col-md-12 hide">
+                <div class="row">
+                    <div class="col-12 d-none">
                         <input type="text"  name="ID" class="form-control">
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-6">
                         <div class="form-group label-static">
                             <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" class="form-control" id="Nombre" name="Nombre" required="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-6">
                         <div class="form-group label-static">
                             <label for="Rfc" class="control-label">RFC*</label>
                             <input type="text" class="form-control" id="Rfc" name="Rfc" required="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="ContactoNombre" class="control-label">Contacto Nombre</label>
                             <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="ContactoApellidos" class="control-label">Contacto Apellidos</label>
                             <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="Direccion" class="control-label">Dirección</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-3">
                         <div class="form-group label-static">
                             <label for="NoExterior" class="control-label">N°</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-3">
                         <div class="form-group label-static">
                             <label for="NoInterior" class="control-label">N° Int.</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="CodigoPostal" class="control-label">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="Colonia" class="control-label">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="Ciudad" class="control-label">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="Estado" class="control-label">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control" placeholder="">
@@ -107,18 +107,18 @@
                         <br>
                         <h3>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h3>
                     </div>
-                    <div class="col-md-12" align="center">
-                        <input type="file" id="RutaLogo" name="RutaLogo" class="hide">
+                    <div class="col-12" align="center">
+                        <input type="file" id="RutaLogo" name="RutaLogo" class="d-none">
                         <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
                             <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                         </button>
                         <br><hr>
-                        <div id="VistaPrevia" class="col-md-12" align="center"></div>
+                        <div id="VistaPrevia" class="col-12" align="center"></div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-6">
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
-                </fieldset>
+                </div>
             </form>
         </div>
     </div>
@@ -171,15 +171,15 @@
         });
 
         btnNuevo.click(function () {
-            pnlTablero.addClass("hide");
-            pnlDatos.removeClass('hide');
+            pnlTablero.addClass("d-none");
+            pnlDatos.removeClass('d-none');
             pnlDatos.find("input").val("");
             $(':input:text:enabled:visible:first').focus();
             nuevo = true;
         });
         btnCancelar.click(function () {
-            pnlTablero.removeClass("hide");
-            pnlDatos.addClass('hide');
+            pnlTablero.removeClass("d-none");
+            pnlDatos.addClass('d-none');
         });
         //Evento clic del boton confirmar borrar
         btnEliminar.click(function () {
@@ -202,8 +202,8 @@
                         }
                     }).done(function (data, x, jq) {
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -227,8 +227,8 @@
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO EL REGISTRO', 'success');
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -247,8 +247,8 @@
                         pnlDatos.find("[name='ID']").val(data);
                         nuevo = false;
                         getRecords();
-                        pnlDatos.addClass("hide");
-                        pnlTablero.removeClass("hide");
+                        pnlDatos.addClass("d-none");
+                        pnlTablero.removeClass("d-none");
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -314,16 +314,16 @@
                                 pnlDatos.find("[name='" + k + "']").val(v);
                             }
                         });
-                        pnlTablero.addClass("hide");
-                        pnlDatos.removeClass('hide');
+                        pnlTablero.addClass("d-none");
+                        pnlDatos.removeClass('d-none');
 
                         if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
                             var ext = getExt(empresa.RutaLogo);
                             if (ext === "gif" || ext === "jpg" || ext === "png") {
-                                pnlDatos.find("#VistaPrevia").html('<div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" width="400px"/>');
+                                pnlDatos.find("#VistaPrevia").html('<div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" width="400px"/>');
                             }
                             if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                                pnlDatos.find("#VistaPrevia").html('<div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                                pnlDatos.find("#VistaPrevia").html('<div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                             }
                             if (ext !== "gif" && ext !== "jpg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
                                 pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');

@@ -39,7 +39,7 @@
 </div>
 <!--PANEL NUEVO-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlNuevaEntrega">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlNuevaEntrega">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -109,7 +109,7 @@
                             </select>
                         </div>
                     </div>
-                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
+                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
                     <div class="col-6 col-md-12"><br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
@@ -120,7 +120,7 @@
 </div>
 <!--PANEL NUEVO DETALLE-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleNuevaEntrega">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleNuevaEntrega">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div class="col-md-5">
@@ -142,7 +142,7 @@
 </div>
 <!--PANEL EDITAR-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlEditarEntrega">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlEditarEntrega">
         <div class="Custompanel-heading dt-EncabezadoControles" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -220,7 +220,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control hide" placeholder="" >
+                            <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
                             <center><label class="control-label">Puede subir un archivo de imagen(JPG,GIF,PNG)o PDF</label></center>
@@ -229,7 +229,7 @@
                                     <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                                 </button>
                                 <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                                <input type="file" id="Adjunto" name="Adjunto" class="hide" accept="application/pdf, image/*">
+                                <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
 
                             </div>
 
@@ -245,7 +245,7 @@
 </div>
 <!--PANEL EDITAR DETALLE-->
 <div class="col-6 col-md-12">
-    <div class="panel panel-default hide animated slideInRight" id="pnlDetalleEditarEntrega">
+    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleEditarEntrega">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div class="col-md-6">
@@ -502,11 +502,11 @@
                     ID: temp
                 }
             }).done(function (data, x, jq) {
-                mdlConfirmar.modal('hide');
+                mdlConfirmar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ENTREGA ELIMINADA', 'danger');
-                menuTablero.addClass("animated slideInLeft").removeClass("hide");
-                pnlEditarEntrega.addClass("hide");
-                pnlDetalleEditarEntrega.addClass("hide");
+                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+                pnlEditarEntrega.addClass("d-none");
+                pnlDetalleEditarEntrega.addClass("d-none");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -527,7 +527,7 @@
                 }
             }).done(function (data, x, jq) {
                 getDetalleByID(IdMovimiento);
-                mdlConfirmarEliminarDetalle.modal('hide');
+                mdlConfirmarEliminarDetalle.modal('d-none');
             }).fail(function (x, y, z) {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
             }).always(function () {
@@ -537,16 +537,16 @@
         tBtnEditarConcluir.on("click", function () {
             if (!$(this).is(':checked')) {
                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                btnModificar.removeClass('hide');
+                btnModificar.removeClass('d-none');
             }
         });
         btnNuevo.on('click', function () {
             $.each(tblRegistrosXDetalleXEntrega.find("tbody tr"), function () {
                 $(this).remove();
             });
-            pnlNuevaEntrega.removeClass('hide');
-            pnlDetalleNuevaEntrega.removeClass('hide');
-            menuTablero.addClass('hide');
+            pnlNuevaEntrega.removeClass('d-none');
+            pnlDetalleNuevaEntrega.removeClass('d-none');
+            menuTablero.addClass('d-none');
             pnlNuevaEntrega.find("input").val("");
             pnlNuevaEntrega.find("select").select2("val", "");
             pnlNuevaEntrega.find("#FechaCreacion").datepicker("setDate", currentDate);
@@ -554,15 +554,15 @@
             pnlNuevaEntrega.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
         });
         btnCancelar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlNuevaEntrega.addClass("hide");
-            pnlDetalleNuevaEntrega.addClass('hide');
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlNuevaEntrega.addClass("d-none");
+            pnlDetalleNuevaEntrega.addClass('d-none');
            
         });
         btnCancelarModificar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("hide");
-            pnlEditarEntrega.addClass("hide");
-            pnlDetalleEditarEntrega.addClass("hide");
+            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            pnlEditarEntrega.addClass("d-none");
+            pnlDetalleEditarEntrega.addClass("d-none");
             
         });
         btnGuardar.on("click", function () {
@@ -666,7 +666,7 @@
                     getRecords();
                     onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     if (tBtnEditarConcluir.is(':checked')) {
-                        btnModificar.addClass('hide');
+                        btnModificar.addClass('d-none');
                         $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                         btnConfirmarEliminar.attr("disabled", true);
                         $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
@@ -814,23 +814,23 @@
                                 pnlEditarEntrega.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                             }
 
-                            menuTablero.addClass("hide");
-                            pnlEditarEntrega.removeClass("hide");
-                            pnlDetalleEditarEntrega.removeClass("hide");
+                            menuTablero.addClass("d-none");
+                            pnlEditarEntrega.removeClass("d-none");
+                            pnlDetalleEditarEntrega.removeClass("d-none");
                             getDetalleByID(entrega.ID);
                             //Control de estatus
                             if (entrega.Estatus === 'Concluido') {
                                 $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
                                 tBtnEditarConcluir.prop('checked', true);
-                                btnModificar.addClass('hide');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
                                 pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
                             } else if (entrega.Estatus === 'Cancelado') {
                                 $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                                tBtnEditarConcluir.addClass('hide');
-                                btnModificar.addClass('hide');
+                                tBtnEditarConcluir.addClass('d-none');
+                                btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
                                 pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
@@ -838,7 +838,7 @@
                             } else {
                                 $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
                                 tBtnEditarConcluir.prop('checked', false);
-                                btnModificar.removeClass('hide');
+                                btnModificar.removeClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                                 btnConfirmarEliminar.attr("disabled", false);
                                 pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
@@ -872,8 +872,8 @@
     }
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDTrabajo) {
-        pnlNuevaEntrega.addClass("hide");
-        pnlDetalleNuevaEntrega.addClass('hide');
+        pnlNuevaEntrega.addClass("d-none");
+        pnlDetalleNuevaEntrega.addClass('d-none');
         temp = IDTrabajo;
         //Abre al hacer click el movimiento para editar
         if (temp !== 0 && temp !== undefined && temp > 0) {
@@ -900,22 +900,22 @@
                 pnlEditarEntrega.find("#Importe").val(entrega.Importe);
                 pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
                 pnlEditarEntrega.find("#Usuario_ID").val(entrega.Usuario_ID);
-                pnlEditarEntrega.removeClass("hide");
-                pnlDetalleEditarEntrega.removeClass("hide");
+                pnlEditarEntrega.removeClass("d-none");
+                pnlDetalleEditarEntrega.removeClass("d-none");
                 getDetalleByID(entrega.ID);
                 //Control de estatus
                 if (entrega.Estatus === 'Concluido') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', true);
-                    btnModificar.addClass('hide');
+                    btnModificar.addClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
                     pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
                     pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
                 } else if (entrega.Estatus === 'Cancelado') {
                     $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                    tBtnEditarConcluir.addClass('hide');
-                    btnModificar.addClass('hide');
+                    tBtnEditarConcluir.addClass('d-none');
+                    btnModificar.addClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                     btnConfirmarEliminar.attr("disabled", true);
                     pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
@@ -923,7 +923,7 @@
                 } else {
                     $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
                     tBtnEditarConcluir.prop('checked', false);
-                    btnModificar.removeClass('hide');
+                    btnModificar.removeClass('d-none');
                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                     btnConfirmarEliminar.attr("disabled", false);
                     pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
@@ -1053,14 +1053,14 @@
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {
-                                mdlSeleccionarTrabajosEditar.modal('hide');
+                                mdlSeleccionarTrabajosEditar.modal('d-none');
                                 HoldOn.close();
                                 console.log(x, y, z);
                             }).always(function () {
                                 HoldOn.close();
                             });
                             if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
-                                mdlSeleccionarTrabajosEditar.modal('hide');
+                                mdlSeleccionarTrabajosEditar.modal('d-none');
                             }
                         }
                     }).fail(function (x, y, z) {
@@ -1070,7 +1070,7 @@
                     });
                 });
             } else {
-                mdlSeleccionarTrabajosEditar.modal('hide');
+                mdlSeleccionarTrabajosEditar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDOS O AUTORIZADOS PARA ESTE CLIENTE', 'danger');
                 HoldOn.close();
             }
@@ -1111,17 +1111,17 @@
                 pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
                 var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
                 var tfoot = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tfoot th');
-                thead.eq(0).addClass("hide");
-                tfoot.eq(0).addClass("hide");
-                //thead.eq(1).addClass("hide");
-                //tfoot.eq(1).addClass("hide");
-                thead.eq(8).addClass("hide");
-                tfoot.eq(8).addClass("hide");
+                thead.eq(0).addClass("d-none");
+                tfoot.eq(0).addClass("d-none");
+                //thead.eq(1).addClass("d-none");
+                //tfoot.eq(1).addClass("d-none");
+                thead.eq(8).addClass("d-none");
+                tfoot.eq(8).addClass("d-none");
                 $.each(pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega tbody tr'), function (k, v) {
                     var td = $(v).find("td");
-                    td.eq(0).addClass("hide");
-                    //td.eq(1).addClass("hide");
-                    td.eq(8).addClass("hide");
+                    td.eq(0).addClass("d-none");
+                    //td.eq(1).addClass("d-none");
+                    td.eq(8).addClass("d-none");
                     total += parseFloat(td.eq(8).text());
                     ImporteTotalGlobal = total;
                 });

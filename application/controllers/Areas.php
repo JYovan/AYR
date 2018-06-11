@@ -8,10 +8,7 @@ class Areas extends CI_Controller {
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
-        $this->load->library('session');
-        $this->load->model('cliente_model');
-        $this->load->model('areas_model');
-        $this->load->model('registroUsuarios_model');
+        $this->load->library('session')->model('cliente_model')->model('areas_model')->model('registroUsuarios_model');
     }
 
     public function index() {
@@ -19,10 +16,7 @@ class Areas extends CI_Controller {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
 
             if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "ADMINISTRADOR", "SUPER ADMINISTRADOR"))) {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vAreas');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vAreas')->view('vFooter');
                 $dataRegistrarAccion = array(
                     'Accion' => 'ACCESO A ÁREAS',
                     'Registro' => date("d-m-Y H:i:s"),
@@ -30,21 +24,16 @@ class Areas extends CI_Controller {
                 );
                 $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
             } else {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vFooter');
             }
         } else {
-            $this->load->view('vEncabezado');
-            $this->load->view('vSesion');
-            $this->load->view('vFooter');
+            $this->load->view('vEncabezado')->view('vSesion')->view('vFooter');
         }
     }
 
     public function getRecords() {
         try {
-            $data = $this->areas_model->getRecords($this->input->post('Cliente'));
-            print json_encode($data);
+            print json_encode($this->areas_model->getRecords($this->input->post('Cliente')));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -52,8 +41,7 @@ class Areas extends CI_Controller {
 
     public function getClientes() {
         try {
-            $data = $this->cliente_model->getClientes();
-            print json_encode($data);
+            print json_encode($this->areas_model->getClientes());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -61,8 +49,7 @@ class Areas extends CI_Controller {
 
     public function getAreas() {
         try {
-            $data = $this->areas_model->getAreas();
-            print json_encode($data);
+            print json_encode($this->areas_model->getAreas());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -70,9 +57,7 @@ class Areas extends CI_Controller {
 
     public function getAreaByID() {
         try {
-            extract($this->input->post());
-            $data = $this->areas_model->getAreaByID($ID);
-            print json_encode($data);
+            print json_encode($this->areas_model->getAreaByID($this->input->post('ID')));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -81,14 +66,12 @@ class Areas extends CI_Controller {
     public function onAgregar() {
         try {
             /* TRABAJO */
-            extract($this->input->post());
-            $data = array(
-                'Descripcion' => (isset($Descripcion) && $Descripcion !== '') ? $Descripcion : null,
+            $x = $this->input; 
+            $ID = $this->areas_model->onAgregar(array(
+                'Descripcion' => ($x->post('Descripcion') !== '') ? $x->post('Descripcion') : null,
                 'Estatus' => 'ACTIVO',
-                'Cliente_ID' => $Cliente_ID,
-            );
-            $ID = $this->areas_model->onAgregar($data);
-
+                'Cliente_ID' => $x->post('Cliente_ID'),
+            ));
             echo $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -97,11 +80,9 @@ class Areas extends CI_Controller {
 
     public function onModificar() {
         try {
-            extract($this->input->post());
-            $DATA = array(
-                'Descripcion' => ($Descripcion !== null) ? $Descripcion : null,
-            );
-            $this->areas_model->onModificar($ID, $DATA);
+            $this->areas_model->onModificar($this->input->post('ID'), array(
+                'Descripcion' => ($this->input->post('Descripcion') !== null) ? $this->input->post('Descripcion') : null,
+            ));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -109,8 +90,7 @@ class Areas extends CI_Controller {
 
     public function onEliminar() {
         try {
-            extract($this->input->post());
-            $this->areas_model->onEliminar($ID);
+            $this->areas_model->onEliminar($this->input->post('ID'));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
