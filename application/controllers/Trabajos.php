@@ -27,17 +27,23 @@ class Trabajos extends CI_Controller {
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vTrabajos');
-            $this->load->view('vFooter');
+            if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "SUPER ADMINISTRADOR", "ADMINISTRADOR"))) {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vTrabajos');
+                $this->load->view('vFooter');
 
-            $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A TRABAJOS',
-                'Registro' => date("d-m-Y H:i:s"),
-                'Usuario_ID' => $this->session->userdata('ID')
-            );
-            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+                $dataRegistrarAccion = array(
+                    'Accion' => 'ACCESO A TRABAJOS',
+                    'Registro' => date("d-m-Y H:i:s"),
+                    'Usuario_ID' => $this->session->userdata('ID')
+                );
+                $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            } else {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vFooter');
+            }
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');

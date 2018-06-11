@@ -13,14 +13,27 @@ class HerramientasPreciario extends CI_Controller {
         $this->load->library('session');
         $this->load->model('preciario_model');
         $this->load->model('trabajo_model');
+        $this->load->model('registroUsuarios_model');
     }
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vHerramientasPreciario');
-            $this->load->view('vFooter');
+            if (in_array($this->session->userdata["TipoAcceso"], array("SUPER ADMINISTRADOR"))) {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vHerramientasPreciario');
+                $this->load->view('vFooter');
+                $dataRegistrarAccion = array(
+                    'Accion' => 'ACCESO A HERRAMIENTAS PRECIARIOS',
+                    'Registro' => date("d-m-Y H:i:s"),
+                    'Usuario_ID' => $this->session->userdata('ID')
+                );
+                $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            } else {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vFooter');
+            }
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');

@@ -19,16 +19,22 @@ class Prefacturas extends CI_Controller {
     public function index() {
 
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vPrefacturas');
-            $this->load->view('vFooter');
-            $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A PREFACTURAS',
-                'Registro' => date("d-m-Y H:i:s"),
-                'Usuario_ID' => $this->session->userdata('ID')
-            );
-            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            if (in_array($this->session->userdata["TipoAcceso"], array("ADMINISTRADOR", "SUPER ADMINISTRADOR"))) {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vPrefacturas');
+                $this->load->view('vFooter');
+                $dataRegistrarAccion = array(
+                    'Accion' => 'ACCESO A PREFACTURAS',
+                    'Registro' => date("d-m-Y H:i:s"),
+                    'Usuario_ID' => $this->session->userdata('ID')
+                );
+                $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            } else {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vFooter');
+            }
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
@@ -53,7 +59,7 @@ class Prefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getAllProyectosIntelisis() {
         try {
             $data = $this->intelisis_model->getAllProyectosIntelisis();
@@ -81,9 +87,8 @@ class Prefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
-     public function getMyRecords() {
+
+    public function getMyRecords() {
         try {
             $data = $this->prefactura_model->getMyRecords();
             print json_encode($data);
@@ -144,7 +149,7 @@ class Prefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarIntelisis() {
         try {
             /* TRABAJO */
@@ -165,7 +170,7 @@ class Prefacturas extends CI_Controller {
                 'Comentarios' => (isset($Comentarios) && $Comentarios !== '') ? $Comentarios : NULL
             );
             $ID = $this->intelisis_model->onAgregarIntelisis($data);
-            
+
             $dataDetalle = array(
                 'ID' => $ID,
                 'Renglon' => 2048,
@@ -180,17 +185,14 @@ class Prefacturas extends CI_Controller {
                 'Almacen' => '01'
             );
             $this->intelisis_model->onAgregarIntelisisDetalle($dataDetalle);
-            
-           // $MovID =$this->intelisis_model->getMovIDIntelisis($ID);
- 
-            echo $ID;
- 
 
+            // $MovID =$this->intelisis_model->getMovIDIntelisis($ID);
+
+            echo $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
 
     public function onAgregarDetalleEditar() {
         try {
@@ -221,7 +223,7 @@ class Prefacturas extends CI_Controller {
             $this->prefactura_model->onModificar($ID, $this->input->post());
             //AQUI SE INSERTA EL ID DE LA PREFACTURA PARA PODER HACER EL JOIN QUE NOS TRAIGA LA REF Y LA OC
             if ($Estatus == 'Concluido') {
-               
+
                 $this->prefactura_model->onCambiarEstatusTrabajosPrefacturados($ID);
             } else {
                 $this->prefactura_model->onCancelarCambiarEstatusTrabajosPrefacturados($ID);
@@ -230,12 +232,12 @@ class Prefacturas extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function onAgregarPago() {
         try {
             extract($this->input->post());
-            $this->prefactura_model->onModificar($ID,$this->input->post()); 
-            $this->prefactura_model->onModificarEstatusPagado($ID,$EstatusPago);  
+            $this->prefactura_model->onModificar($ID, $this->input->post());
+            $this->prefactura_model->onModificarEstatusPagado($ID, $EstatusPago);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

@@ -57,17 +57,7 @@
                         <li class="hide" id="liServicios">
                             <a href="<?php print base_url('Trabajos.py'); ?>">Servicios</a>
                         </li>
-                        <!--
 
-                       <li class="dropdown-submenu hide"  id="liServicios">
-                            <a class="multinivel" tabindex="-1" href="#">Servicios <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li id="liTrabajo" class="hide" tabindex="-1"><a href="<?php print base_url('Trabajos.py'); ?>"  >Trabajos</a></li>
-                                <li class="divider"></li>
-                                <li id="liCajerosBBVA" class="hide"><a  href="<?php print base_url('CajerosBBVA.py'); ?>">Cajeros BBVA</a></li>
-                            </ul>
-                        </li>
-                        -->
                     </ul>
                 </li>
                 <li class="dropdown hide" id="liControl">
@@ -135,8 +125,6 @@
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     if (TipoAcceso === 'RESIDENTE') {
         $('#liServicios').removeClass('hide');
-        //$('#liTrabajo').removeClass('hide');
-        //$('#liCajerosBBVA').removeClass('disabledDetalle');
     }
     if (TipoAcceso === 'COORDINADOR DE PROCESOS') {
         $('#liControl').removeClass('hide');
@@ -146,8 +134,6 @@
         $('#liServicios').removeClass('hide');
         $('#liClientes').addClass('hide');
         $('#liExploradores').removeClass('hide');
-        //$('#liTrabajo').removeClass('hide');
-        //$('#liCajerosBBVA').removeClass('hide');
 
     }
     if (TipoAcceso === 'ADMINISTRADOR') {
@@ -155,10 +141,7 @@
         $('#liReportes').removeClass('hide');
         $('#liExploradores').removeClass('hide');
         $('#liCatalogos').removeClass('hide');
-        //$('#liUsuarios').removeClass('hide');
         $('#liServicios').removeClass('hide');
-        //$('#liTrabajo').removeClass('hide');
-        //$('#liCajerosBBVA').removeClass('hide');
     }
     if (TipoAcceso === 'CLIENTE') {
         $('#liPedidoCliente').removeClass('hide');
@@ -171,8 +154,6 @@
         $('#liUsuarios').removeClass('hide');
         $('#liServicios').removeClass('hide');
         $('#liHerramiendas').removeClass('hide');
-        //$('#liTrabajo').removeClass('hide');
-        //$('#liCajerosBBVA').removeClass('hide');
     }
     var master_url = base_url + 'Sesion/';
     $(document).ready(function () {

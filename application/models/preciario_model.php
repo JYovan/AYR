@@ -12,7 +12,16 @@ class preciario_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $query = $this->db->query("CALL SP_PRECIARIOS()");
+            $this->db->select("P.ID, P.Nombre AS Nombre, P.Tipo AS Tipo, P.FechaCreacion AS 'Fecha de Creación', "
+                    . "(CASE "
+                    . "WHEN P.Cliente_ID IS NULL THEN 'No especifica' "
+                    . "ELSE (SELECT C.Nombre FROM Clientes AS C WHERE C.ID = P.Cliente_ID) "
+                    . "END) AS Cliente "
+                    . "", false);
+            $this->db->from('preciarios AS P');
+            // $this->db->where('P.Cliente_ID', $Cliente_ID);
+            $this->db->where('P.Estatus', 'Activo');
+            $query = $this->db->get();
 
             $str = $this->db->last_query();
             $data = $query->result();

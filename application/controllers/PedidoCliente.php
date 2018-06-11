@@ -24,23 +24,29 @@ class PedidoCliente extends CI_Controller {
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vPedidosCliente');
-            $this->load->view('vFooter');
-            $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A PEDIDOS DEL CLIENTE',
-                'Registro' => date("d-m-Y H:i:s"),
-                'Usuario_ID' => $this->session->userdata('ID')
-            );
-            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "SUPER ADMINISTRADOR", "CLIENTE"))) {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vPedidosCliente');
+                $this->load->view('vFooter');
+                $dataRegistrarAccion = array(
+                    'Accion' => 'ACCESO A PEDIDOS DEL CLIENTE',
+                    'Registro' => date("d-m-Y H:i:s"),
+                    'Usuario_ID' => $this->session->userdata('ID')
+                );
+                $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            } else {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vFooter');
+            }
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
             $this->load->view('vFooter');
         }
     }
-    
+
     public function getRecordsAutorizacion() {
         try {
             $data = $this->pedidocliente_model->getRecordsAutorizacion();
@@ -49,7 +55,7 @@ class PedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getRecordsFinalizadosPagados() {
         try {
             $data = $this->pedidocliente_model->getRecordsFinalizadosPagados();
@@ -58,7 +64,7 @@ class PedidoCliente extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     public function getRecordsFinalizadosNoPagados() {
         try {
             $data = $this->pedidocliente_model->getRecordsFinalizadosNoPagados();

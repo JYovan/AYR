@@ -15,16 +15,22 @@ class Empresas extends CI_Controller {
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
-            $this->load->view('vEmpresas');
-            $this->load->view('vFooter');
-            $dataRegistrarAccion = array(
-                'Accion' => 'ACCESO A EMPRESAS',
-                'Registro' => date("d-m-Y H:i:s"),
-                'Usuario_ID' => $this->session->userdata('ID')
-            );
-            $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            if (in_array($this->session->userdata["TipoAcceso"], array("ADMINISTRADOR", "SUPER ADMINISTRADOR"))) {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vEmpresas');
+                $this->load->view('vFooter');
+                $dataRegistrarAccion = array(
+                    'Accion' => 'ACCESO A EMPRESAS',
+                    'Registro' => date("d-m-Y H:i:s"),
+                    'Usuario_ID' => $this->session->userdata('ID')
+                );
+                $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
+            } else {
+                $this->load->view('vEncabezado');
+                $this->load->view('vNavegacion');
+                $this->load->view('vFooter');
+            }
         } else {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
