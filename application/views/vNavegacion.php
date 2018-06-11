@@ -45,14 +45,14 @@
         font-size: 30px !important;
     }
 
-    li a{
+    .overlay li a{
         -webkit-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
     }
-    li a:hover {
+    .overlay li a:hover {
         -webkit-transform: scale(1.15);
         transform: scale(1.15);
-        margin-left: 25px !important;
+        margin-left: 20px !important;
     }
 </style>
 <div id="mdlCambiarContrasena" class="modal fade" tabindex="-1" role="dialog">
@@ -62,7 +62,7 @@
                 <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Cambiar Contraseña</h4>
         </div>
-        <div class="modal-body" id="pnlDatos">
+        <div class="modal-body" id="pnlContra">
             <form id="frmEditarContrasena">
                 <input type="text" name="ID" class="form-control d-none" >
                 <div class=" col-6 col-md-12">
@@ -264,7 +264,7 @@
         });
         $('#btnModificar').on("click", function () {
             var frm = new FormData($('#mdlCambiarContrasena').find("#frmEditarContrasena")[0]);
-            isValid('pnlDatos');
+            isValid('pnlContra');
             if (valido) {
                 HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
                 $.ajax({

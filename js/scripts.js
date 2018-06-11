@@ -234,7 +234,7 @@ function getTable(tblname, data) {
     var column = '';
     var i = 0;
     var div = "<div class=\" \">";
-    div = "<table id=\"" + tblname + "\" class=\"table table-striped table-hover \"  width=\"100%\">";
+    div = "<table id=\"" + tblname + "\" class=\" table table-sm  \"  width=\"100%\">";
     //Create header
     div += "<thead>";
     div += "<tr class=\"\" >";

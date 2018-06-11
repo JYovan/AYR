@@ -1,3 +1,44 @@
+/*Fondo aplicacion*/
+html{
+    background-color: #DCE1E5;
+}
+
+body{
+    background-color: #DCE1E5;
+    line-height: 1.4;
+    font-size: 0.8375rem;
+}
+.card-body {
+    background-color: #DCE1E5;
+}
+
+/*Tablas mas angostas*/
+.table th {
+    background-color: white;
+}
+table td {
+    background-color: white;
+}
+
+.table-sm td {
+    background-color: white;
+}
+
+table tbody tr{
+    cursor: pointer;
+    font-size: 12px !important;
+
+}
+table thead tr{
+    cursor: pointer;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 0.5px solid #dee2e6;
+}
+
+
 /*Modal FullScreen*/
 .modal.modal-fullscreen .modal-dialog {
     width: 75%;
