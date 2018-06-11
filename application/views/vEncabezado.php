@@ -41,7 +41,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <!-- Validacion forms -->
         <script rel="javascript" type="text/javascript" href="<?php echo base_url(); ?>js/additional-methods.min.js"></script>
-        <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>
+<!--        <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>-->
         <!--Third Party-->
         <!--Pace loading and performance for web applications-->
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
@@ -150,17 +150,10 @@
                         defaultValue: '12:45:30'
                     }
             );
-            /*Mensajes de jquery validate*/
-            jQuery.validator.messages.required = 'Este campo es obligatorio';
-            jQuery.validator.messages.number = 'Este campo debe ser numérico';
-            jQuery.validator.messages.email = 'Correo no válido';
-
         });
         function onNotify(span, message, type) {
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');
         }
-
-
 
         function isValid(p) {
             var inputs = $('#' + p).find("input.form-control:required").length;
