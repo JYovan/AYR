@@ -195,87 +195,8 @@
         getRecords('');
         getClientes();
         handleEnter();
-    });
-    function getRecordszz(Cliente) {
-        if (Cliente !== '') {
-            temp = 0;
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "CARGANDO DATOS..."
-            });
-            $.ajax({
-                url: master_url + 'getRecords',
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    Cliente: Cliente
-                }
-            }).done(function (data, x, jq) {
-                if (data.length > 0) {
-                    $("#tblRegistros").html(getTable('tblAreas', data));
-                    $('#tblAreas tfoot th').each(function () {
-                        $(this).html('');
-                    });
-                    var tblSelected = $('#tblAreas').DataTable(tableOptions);
-                    $('#tblAreas_filter input[type=search]').focus();
-                    $('#tblAreas tbody').on('click', 'tr', function () {
-                        nuevo = false;
-                        $("#tblAreas").find("tr").removeClass("success");
-                        $("#tblAreas").find("tr").removeClass("warning");
-                        var id = this.id;
-                        var index = $.inArray(id, selected);
-                        if (index === -1) {
-                            selected.push(id);
-                        } else {
-                            selected.splice(index, 1);
-                        }
-                        $(this).addClass('success');
-                        var dtm = tblSelected.row(this).data();
-                        temp = parseInt(dtm[0]);
-                        if (temp !== 0 && temp !== undefined && temp > 0) {
-                            HoldOn.open({
-                                theme: "sk-bounce",
-                                message: "CARGANDO DATOS..."
-                            });
-                            $.ajax({
-                                url: master_url + 'getAreaByID',
-                                type: "POST",
-                                dataType: "JSON",
-                                data: {
-                                    ID: temp
-                                }
-                            }).done(function (data, x, jq) {
-                                pnlDatos.find("input").val("");
-                                $.each(data[0], function (k, v) {
-                                    pnlDatos.find("[name='" + k + "']").val(v);
-                                });
-
-                                pnlTablero.addClass("d-none");
-                                pnlDatos.removeClass('d-none');
-
-                                $(':input:text:enabled:visible:first').focus();
-                                $(':input:text:enabled:visible:first').select();
-                            }).fail(function (x, y, z) {
-                                console.log(x, y, z);
-                            }).always(function () {
-                                HoldOn.close();
-                            });
-                        } else {
-                            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-                        }
-                    });
-                } else {
-                    $("#tblRegistros").html('');
-                }
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-        }
-    }
-
-
+    }); 
+    
     function getRecords(Cliente) {
         if (Cliente !== '') {
             temp = 0;
