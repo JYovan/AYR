@@ -67,25 +67,7 @@ var selected = [];
  *******************************************************************************/
 var tableOptions = {
     "dom": 'Bfrtip',
-    buttons: [
-        {
-            extend: 'excelHtml5',
-            text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                columns: ':visible'
-            }
-        },
-        {
-            extend: 'colvis',
-            text: '<span  data-tooltip="Columnas"><span class="fa fa-columns CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                },
-                columns: ':visible'
-            }
-        }
-    ],
+    buttons: buttons,
     language: {
         processing: "Proceso en curso...",
         search: "Buscar:",
@@ -174,22 +156,7 @@ var tableOptionsDetalle = {
 var tableOptionsPedidos = {
 
     "dom": 'Bfrtip',
-    buttons: [{
-            extend: 'excelHtml5',
-            text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                columns: ':visible'
-            }
-        }, {
-            extend: 'colvis',
-            text: '<span  data-tooltip="Columnas"><span class="fa fa-columns CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                },
-                columns: ':visible'
-            }
-        }],
+    buttons:buttons,
     language: {
         processing: "Proceso en curso...",
         search: "Buscar:",
@@ -227,22 +194,7 @@ var tableOptionsPedidos = {
 var tableOptionsTrabajos = {
 
     "dom": 'Bfrtip',
-    buttons: [{
-            extend: 'excelHtml5',
-            text: '<span  data-tooltip="Exportar a Excel"><span class="fa fa-file-excel-o CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                columns: ':visible'
-            }
-        }, {
-            extend: 'colvis',
-            text: '<span  data-tooltip="Columnas"><span class="fa fa-columns CustomIconsForDataTable"></span></span>',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                },
-                columns: ':visible'
-            }
-        }],
+    buttons: buttons,
     language: {
         processing: "Proceso en curso...",
         search: "Buscar:",

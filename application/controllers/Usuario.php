@@ -8,7 +8,7 @@ class Usuario extends CI_Controller {
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
-        $this->load->library('session')->model('usuario_model')->model('empresa_model')->model('cliente_model');
+        $this->load->library('session')->model('usuario_model')->model('empresa_model')->model('cliente_model')->model('registroUsuarios_model');
     }
 
     public function index() {

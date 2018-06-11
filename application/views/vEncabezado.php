@@ -25,7 +25,9 @@
         <title>Control de Trabajo</title>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php print base_url(); ?>js/jquery-3.2.1.min.js"></script>
-
+        <!--Estilo principal-->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-flaty.css">
+        <link href="<?php print base_url('js/submenu-boostrap4/bootstrap-4-navbar.min.css') ?>" rel="stylesheet">
         <!--DataTables Plugin-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.css">
         <script src="<?php echo base_url(); ?>js/tabletools/master/DataTables/datatables.min.js"></script>
@@ -36,18 +38,13 @@
         <!--select2 control-->
         <script src="<?php echo base_url(); ?>js/selectize/js/standalone/selectize.min.js"></script>
         <link href="<?php echo base_url(); ?>js/selectize/css/selectize.bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>js/select2/select2.min.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-        <!-- Validacion forms -->
-        <script rel="javascript" type="text/javascript" href="<?php echo base_url(); ?>js/additional-methods.min.js"></script>
 <!--        <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>-->
         <!--Third Party-->
         <!--Pace loading and performance for web applications-->
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
         <link href="<?php print base_url(); ?>css/pace.css" rel="stylesheet" />
         <!--Font Awesome Icons-->
-        <link rel="stylesheet" href="<?php print base_url(); ?>css/font-awesome.min.css">
+        <script defer src="<?php print base_url(); ?>js/fontawesome-all.js"></script>
         <link rel="stylesheet" href="<?php print base_url(); ?>css/animate.min.css">
         <!--HoldOn Stupid Accions-->
         <link href="<?php print base_url(); ?>css/HoldOn.min.css" rel="stylesheet">
@@ -86,9 +83,7 @@
         <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
-        <script src="<?php print base_url(); ?>js/bootstrap.min.js"></script>
-        <script src="<?php print base_url(); ?>js/material.min.js"></script>
-        <script src="<?php print base_url(); ?>js/ripples.min.js"></script>
+
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.js"></script>
@@ -112,6 +107,15 @@
                 return true;
             });
 
+
+
+            $(window).click(function () {
+                if (parseInt($('#myNav').width()) > 0) {
+                    closeNav();
+                }
+            });
+
+
 //            $("select").select2({
 //                placeholder: "Selecciona una opción",
 //                allowClear: true,
@@ -122,19 +126,11 @@
                 hideSelected: true
             });
 
-            $(document).on('touchend', function () {
-                $(".select2-search, .select2-focusser").remove();
-            });
-
 
             $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
 
-            //Esto se hace para que ejecute el validador de campos
-            $('[data-provide="datepicker"]').on('changeDate', function (ev) {
-//               $(this).valid();
-            });
             $('[data-provide="datepicker"]').datepicker({
                 todayBtn: true,
                 autoclose: true,

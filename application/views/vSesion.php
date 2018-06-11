@@ -22,8 +22,8 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnEnviar">ENVIAR</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
                     <hr>
                 </div>
                 <div class=" dt-buttons" align="left">
-                    <button id="btnOlvidasteContrasena" type="button"  class="btn btn-default">Olvidaste tu contraseña?</button>
+                    <button id="btnOlvidasteContrasena" type="button"  class="btn btn-warning">Olvidaste tu contraseña?</button>
                 </div>
             </form>
         </div>
@@ -129,12 +129,16 @@
             }
             e.preventDefault();
         });
+
+        mdlOlvideContrasena.on('shown.bs.modal', function () {
+            $("#ocUsuario").focus();
+        });
+
         btnOlvidasteContrasena.on("click", function () {
             mdlOlvideContrasena.modal('show');
             $("#ocUsuario").val("");
 
             btnEnviar.on("click", function () {
-
                 if ($("#ocUsuario").val() !== '') {
                     HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
                     $.ajax({
