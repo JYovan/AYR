@@ -8,18 +8,13 @@ class Preciarios extends CI_Controller {
     public function __construct() {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
-        $this->load->library('session');
-        $this->load->model('preciario_model');
-        $this->load->model('registroUsuarios_model');
+        $this->load->library('session')->model('preciario_model')->model('registroUsuarios_model');
     }
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "ADMINISTRADOR", "SUPER ADMINISTRADOR"))) {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vPreciarios');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vPreciarios')->view('vFooter');
                 $dataRegistrarAccion = array(
                     'Accion' => 'ACCESO A PRECIARIOS',
                     'Registro' => date("d-m-Y H:i:s"),
@@ -27,14 +22,10 @@ class Preciarios extends CI_Controller {
                 );
                 $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
             } else {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vFooter');
             }
         } else {
-            $this->load->view('vEncabezado');
-            $this->load->view('vSesion');
-            $this->load->view('vFooter');
+            $this->load->view('vEncabezado')->view('vSesion')->view('vFooter');
         }
     }
 
@@ -385,8 +376,7 @@ class Preciarios extends CI_Controller {
 
     public function onEliminar() {
         try {
-            extract($this->input->post());
-            $this->preciario_model->onEliminar($ID);
+            $this->preciario_model->onEliminar($this->input->post('ID'));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -394,8 +384,7 @@ class Preciarios extends CI_Controller {
 
     public function onEliminarConcepto() {
         try {
-            extract($this->input->post());
-            $this->preciario_model->onEliminarConcepto($ID);
+            $this->preciario_model->onEliminarConcepto($this->input->post('ID'));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

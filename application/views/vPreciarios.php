@@ -1,25 +1,25 @@
-<div  class="col-md-12">
-    <div id="pnlPreciario" class="panel panel-default">
+<div  class="col-12">
+    <div id="pnlPreciario" class="panel panel-default animated fadeIn">
         <div class="panel-heading ">
             <div class="cursor-hand" >Preciarios</div>
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
+                <div class="col-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default d-none" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                     <button type="button" class="btn btn-default d-none" id=""><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                     <button type="button" class="btn btn-default d-none" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
+                <div class="col-12 table-responsive" id="tblRegistros"></div>
             </fieldset>
         </div>
     </div>
 </div>
 <!--PANELES-->
-<div class="col-md-12">
+<div class="col-12">
     <!--GUARDAR-->
-    <div id="pnlNuevo" class="panel panel-default d-none animated slideInRight">
+    <div id="pnlNuevo" class="panel panel-default d-none animated fadeIn">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -36,20 +36,20 @@
         <div class="panel-body">
             <form id="frmNuevo">
                 <div class="modal-body">
-                    <fieldset>
-                        <div class="col-6 col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-12">
                             <div class="form-group label-static">
                                 <label for="Nombre" class="control-label">Nombre*</label>
                                 <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="form-group label-static">
                                 <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-6">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Estatus*</label>
                                 <select id="Estatus" name="Estatus" class="form-control" required="">
@@ -59,7 +59,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-6">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Tipo*</label>
                                 <select id="Tipo" name="Tipo" class="form-control" required="">
@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control" required="">
@@ -77,18 +77,18 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <br>
                             <h6>Los campos con * son obligatorios</h6>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="alert alert-dismissible alert-warning">
                                 <h4><strong>IMPORTANTE!</strong></h4>
                                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
                                 <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
                             </div>
                         </div>
-                        <div class="col-md-12" align="center">
+                        <div class="col-12" align="center">
                             <input type="file" id="RutaArchivo" name="RutaArchivo" class="d-none">
                             <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
                                 <span class="fa fa-upload fa-2x">
@@ -97,18 +97,18 @@
                             </button>
                             <br>
                         </div>
-                        <div id="VistaPrevia" class="col-md-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
-                        <div class="col-md-12 d-none">
+                        <div id="VistaPrevia" class="col-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
+                        <div class="col-12 d-none">
                             <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
                             </textarea>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
     <!--EDITAR-->
-    <div id="pnlEditar" class="panel panel-default d-none animated slideInRight">
+    <div id="pnlEditar" class="panel panel-default d-none animated zoomIn">
         <div class="Custompanel-heading">
             <div class="Custompanel-heading clearfix">
                 <div class="panel-title pull-left cursor-hand" >
@@ -125,24 +125,24 @@
         </div>
         <div class="panel-body">
             <form id="frmEditar">
-                <fieldset>
-                    <div class="col-md-12 d-none">
+                <div class="row">
+                    <div class="col-12 d-none">
                         <label for="">ID*</label>
                         <input type="text" class="form-control" id="ID" name="ID" >
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="form-group label-static">
                             <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="" class="control-label">Estatus*</label>
                             <select id="Estatus" name="Estatus" class="form-control" required="">
@@ -152,7 +152,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="" class="control-label">Tipo*</label>
                             <select id="Tipo" name="Tipo" class="form-control" required="">
@@ -162,7 +162,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group label-static">
                             <label for="" class="control-label">Cliente*</label>
                             <select id="Cliente_ID" name="Cliente_ID" class="form-control" required="">
@@ -170,54 +170,71 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
-                </fieldset>
+                </div>
             </form>
         </div>
     </div>
 </div>
 <!--PANEL DETALLE-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleConceptos">
+<div class="col-6 col-12">
+    <div class="panel panel-default d-none animated zoomIn" id="pnlDetalleConceptos">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
-                <div class="col-md-8">
+                <div class="col-8">
                     <div class="cursor-hand" >Conceptos </div>
                 </div>
             </div>
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
+                <div class="col-12 dt-buttons" align="right">
                     <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x"></span><br>NUEVO</button>
                     <button type="button" class="btn btn-default d-none" id="btnRefrescarConceptos"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <br>
                 </div>
-                <div id="PreciarioEspecifico" class="col-md-12 table-responsive">
+                <!--                <div id="PreciarioEspecifico" class="col-12 table-responsive">
+                                </div>-->
+                <div id="PreciarioEspecifico" class="table-responsive">
+                    <table id="tblPreciarioEspecifico" class="table table-sm display " style="width:100%">
+                        <thead>
+                            <tr> 
+                                <th>ID</th>
+                                <th>Clave</th>
+                                <th>Descripcion</th>
+                                <th>Unidad</th>
+                                <th>Costo</th>
+                                <th>Moneda</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </fieldset>
         </div>
     </div>
 </div>
 <!--NUEVO CONCEPTO-->
-<div id="mdlNuevoConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
+<div id="mdlNuevoConcepto" class="modal modal-fullscreen fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull  modal-content modal-contentFull modal-lg">
         <div class="modal-header modal-headerFull">
+            <h4 class="modal-title modal-titleFull">Nuevo Concepto</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Nuevo Concepto</h4>
         </div>
         <div class="modal-body modal-bodyFull">
-            <div class="col-md-12 d-none">
+            <div class="col-12 d-none">
                 <input type="text" class="form-control d-none" id="ID" name="ID">
             </div>
-            <div id="pnlConceptos" class="col-md-12" >
-                <div class="col-md-12">
+            <div id="pnlConceptos" class="col-12" >
+                <div class="col-12">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#Conceptos" data-toggle="tab">Conceptos</a></li>
                         <li><a href="#Categorias" data-toggle="tab">Categorías</a></li>
@@ -225,13 +242,17 @@
                         <li><a href="#SubSubCategorias" data-toggle="tab">Sub Sub Categorías</a></li>
                     </ul>
                 </div>
-                <div class="col-md-12"></div>
-                <div class="col-md-12"><span><br></span></div>
+                <div class="col-12"></div>
+                <div class="col-12"><span><br></span></div>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active in" id="Conceptos">
-                        <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12 d-none">
+                                    <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
+                                </div>
+                                <div class="col-4">
                                     <div class="form-group label-static">
                                         <label for="Clave" class="control-label">Clave</label>
                                         <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
@@ -239,21 +260,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="Descripcion" class="control-label">Descripción</label>
                                 <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                                 </textarea>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group label-static">
                                 <label for="Costo" class="control-label">Costo</label>
                                 <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                             </div>
                         </div>
 
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-3">
                             <div class="form-group label-static">
                                 <label for="Moneda" class="control-label">Moneda</label>
                                 <select id="Moneda" name="Moneda" class="form-control" required="">
@@ -263,13 +284,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group label-static">
                                 <label for="Unidad" class="control-label">Unidad</label>
                                 <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group label-static">
                                 <label for="Categoria" class="control-label">Categoría</label>
                                 <select id="Categoria" name="Categoria" class="form-control">
@@ -277,7 +298,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group label-static">
                                 <label for="SubCategoria" class="control-label">Sub Categoría</label>
                                 <select id="SubCategoria" name="SubCategoria" class="form-control">
@@ -285,7 +306,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group label-static">
                                 <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
                                 <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
@@ -293,52 +314,55 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                        <div class="col-12">
                             <center><h3>Datos para fichero</h3></center>
                             <hr>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="Contrato" class="control-label">Contrato</label>
-                                <input type="number" id="Contrato" name="Contrato" class="form-control" >
+                        <DIV class="row">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Contrato" class="control-label">Contrato</label>
+                                    <input type="number" id="Contrato" name="Contrato" class="form-control" >
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="Posicion" class="control-label">Posición</label>
-                                <input type="number" id="Posicion" name="Posicion" class="form-control" >
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Posicion" class="control-label">Posición</label>
+                                    <input type="number" id="Posicion" name="Posicion" class="form-control" >
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="Material" class="control-label">Material</label>
-                                <input type="number" id="Material" name="Material" class="form-control">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Material" class="control-label">Material</label>
+                                    <input type="number" id="Material" name="Material" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="TextoMaterial" class="control-label">Texto Material</label>
-                                <input type="text" id="TextoMaterial" name="TextoMaterial" class="form-control CustomUppercase">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="TextoMaterial" class="control-label">Texto Material</label>
+                                    <input type="text" id="TextoMaterial" name="TextoMaterial" class="form-control CustomUppercase">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="Familia" class="control-label">Familia</label>
-                                <input type="number" id="Familia" name="Familia" class="form-control">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Familia" class="control-label">Familia</label>
+                                    <input type="number" id="Familia" name="Familia" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group label-static">
-                                <label for="UnidadFichero" class="control-label">Unidad Fichero</label>
-                                <input type="text" id="UnidadFichero" name="UnidadFichero" class="form-control CustomUppercase" placeholder="EJ: PZA">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="UnidadFichero" class="control-label">Unidad Fichero</label>
+                                    <input type="text" id="UnidadFichero" name="UnidadFichero" class="form-control CustomUppercase" placeholder="EJ: PZA">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="Categorias">
                         <div class="" id="mdlNuevaCategoria">
-                            <div class="col-md-12">
+                            <div class="col-12">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="form-group label-static">
                                             <label for="Clave" class="control-label">Clave</label>
                                             <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
@@ -346,7 +370,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-12">
                                 <div class="form-group label-static">
                                     <label for="Descripcion" class="control-label">Descripción</label>
                                     <textarea type="text" class="form-control CustomUppercase" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
@@ -355,9 +379,9 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="SubCategorias">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <div class="form-group label-static">
                                         <label for="Clave" class="control-label">Clave</label>
                                         <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
@@ -365,13 +389,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="Descripcion" class="control-label">Descripción</label>
                                 <textarea type="text" class="form-control CustomUppercase" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
                                 <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
@@ -381,9 +405,9 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="SubSubCategorias">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <div class="form-group label-static">
                                         <label for="Clave" class="control-label">Clave</label>
                                         <input type="text" class="form-control" id="Clave" name="Clave" placeholder="EJ: XYZ">
@@ -391,13 +415,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="Descripcion" class="control-label">Descripción</label>
                                 <textarea type="text" class="form-control CustomUppercase" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
                                 <select id="PreciarioCategoria_ID" name="PreciarioCategoria_ID" class="form-control">
@@ -405,7 +429,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="form-group label-static">
                                 <label for="PreciarioSubCategorias_ID" class="control-label">Sub Categoría</label>
                                 <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control">
@@ -414,7 +438,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <br>
                     </div>
                 </div>
@@ -437,16 +461,16 @@
     </div>
 </div>
 <!--EDITAR CONCEPTO-->
-<div id="mdlEditarConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
+<div id="mdlEditarConcepto" class="modal modal-fullscreen fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull  modal-content modal-contentFull modal-lg">
         <div class="modal-header modal-headerFull">
+            <h4 class="modal-title modal-titleFull">Editar</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Editar</h4>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmEditar">
-                <fieldset>
+                <div class="row">
                     <div class="col-md-12 d-none">
                         <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
                     </div>
@@ -550,9 +574,7 @@
                             <input type="text" id="UnidadFichero" name="UnidadFichero" class="form-control CustomUppercase" placeholder="EJ: PZA">
                         </div>
                     </div>
-
-
-                </fieldset>
+                </div>
             </form>
         </div>
         <div class="modal-footer modal-footerFull">
@@ -579,6 +601,7 @@
         </div>
     </div>
 </div>
+
 <div id="mdlConfirmarEliminarConcepto" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -658,8 +681,9 @@
                 console.log(data, x, jq);
                 mdlNuevoConcepto.find("#SubSubCategorias").find("#Clave").val("");
                 mdlNuevoConcepto.find("#SubSubCategorias").find("#Descripcion").val("");
-                mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
-                mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").select2("val", "");
+                mdlNuevoConcepto.find("[name='PreciarioCategoria_ID']")[0].selectize.clear(true);
+                mdlNuevoConcepto.find("[name='PreciarioSubCategorias_ID']")[0].selectize.clear(true);
+
                 getCategorias(mdlNuevoConcepto.find("#ID").val());
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -685,7 +709,7 @@
                 console.log(data, x, jq);
                 mdlNuevoConcepto.find("#SubCategorias").find("#Clave").val("");
                 mdlNuevoConcepto.find("#SubCategorias").find("#Descripcion").val("");
-                mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").select2("val", "");
+                mdlNuevoConcepto.find("[name='PreciarioCategoria_ID']")[0].selectize.clear(true);
                 getCategorias(mdlNuevoConcepto.find("#ID").val());
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -765,7 +789,7 @@
             }
         });
         btnCancelarEditar.click(function () {
-            pnlPreciario.addClass("animated slideInLeft").removeClass("d-none");
+            pnlPreciario.addClass("animated zoomIn").removeClass("d-none");
             pnlEditar.addClass("d-none");
             pnlDetalleConceptos.addClass("d-none");
             btnRefrescar.trigger('click');
@@ -782,7 +806,7 @@
                 $(v).val("");
             });
             $.each(pnlConceptos.find("#SubSubCategorias").find("select"), function (k, v) {
-                $(v).select2("val", "");
+                $(v)[0].selectize.clear(true);
             });
         });
         btnCancelarSubCategoria.click(function () {
@@ -792,7 +816,7 @@
                 $(v).val("");
             });
             $.each(pnlConceptos.find("#SubCategorias").find("select"), function (k, v) {
-                $(v).select2("val", "");
+                $(v)[0].selectize.clear(true);
             });
         });
         btnCancelarCategoria.click(function () {
@@ -802,7 +826,7 @@
                 $(v).val("");
             });
             $.each(pnlConceptos.find("#Categorias").find("select"), function (k, v) {
-                $(v).select2("val", "");
+                $(v)[0].selectize.clear(true);
             });
         });
         btnNuevaCategoria.click(function () {
@@ -815,7 +839,7 @@
                 $(v).val("");
             });
             $.each(pnlConceptos.find("#Conceptos").find("select"), function (k, v) {
-                $(v).select2("val", "");
+                $(v)[0].selectize.clear(true);
             });
         });
         btnGuardarConcepto.click(function () {
@@ -879,7 +903,8 @@
             btnGuardarSubSubCategoria.addClass("d-none");
             mdlNuevoConcepto.find("input").val("");
             mdlNuevoConcepto.find("textarea").val("");
-            mdlNuevoConcepto.find("select").select2("val", "");
+            mdlNuevoConcepto.find("select")[0].selectize.clear(true);
+
             getCategorias(pnlEditar.find("#ID").val());
             mdlNuevoConcepto.find("#ID").val(pnlEditar.find("#ID").val());
             mdlNuevoConcepto.modal('show');
@@ -891,7 +916,7 @@
             mdlEditarConcepto.find("#Clave").val("");
             mdlEditarConcepto.find("#Descripcion").val("");
             mdlEditarConcepto.find("#Costo").val("");
-            mdlEditarConcepto.find("#Moneda").select2("val", "");
+            mdlEditarConcepto.find("#Moneda")[0].selectize.clear(true);
             mdlEditarConcepto.find("#Unidad").val("");
 
             mdlEditarConcepto.find("#Contrato").val("");
@@ -901,9 +926,9 @@
             mdlEditarConcepto.find("#Familia").val("");
             mdlEditarConcepto.find("#UnidadFichero").val("");
 
-            mdlEditarConcepto.find("#Categoria").select2("val", "");
-            mdlEditarConcepto.find("#SubCategoria").select2("val", "");
-            mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
+            mdlEditarConcepto.find("#Categoria")[0].selectize.clear(true);
+            mdlEditarConcepto.find("#SubCategoria")[0].selectize.clear(true);
+            mdlEditarConcepto.find("#SubSubCategoria")[0].selectize.clear(true);
             mdlEditarConcepto.modal('d-none');
         });
         btnRefrescarConceptos.click(function () {
@@ -1000,7 +1025,7 @@
                 console.log(data);
                 mdlConfirmar.modal('d-none');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
-                pnlPreciario.addClass("animated slideInLeft").removeClass("d-none");
+                pnlPreciario.addClass("animated zoomIn").removeClass("d-none");
                 pnlEditar.addClass("d-none");
                 pnlDetalleConceptos.addClass("d-none");
                 btnRefrescar.trigger('click');
@@ -1125,7 +1150,7 @@
         });
         btnNuevo.click(function () {
             tblConceptos.html("");
-            pnlNuevo.find("select").select2("val", "");
+            pnlNuevo.find("select")[0].selectize.clear(true);
             pnlNuevo.find("input").val("");
             pnlNuevo.find("#FechaCreacion").datepicker("setDate", currentDate);
             pnlNuevo.removeClass('d-none');
@@ -1142,19 +1167,22 @@
                     }
                 }).done(function (data, x, jq) {
                     console.log(data);
-                    var preciario = data[0];
-                    pnlEditar.find("#ID").val(preciario.ID);
-                    pnlEditar.find("#Nombre").val(preciario.Nombre);
-                    pnlEditar.find("#Tipo").val(preciario.Tipo);
-                    pnlEditar.find("#FechaCreacion").val(preciario.FechaCreacion);
-                    pnlEditar.find("#Cliente_ID").select2("val", preciario.Cliente_ID);
-                    pnlEditar.find("#Estatus").select2("val", preciario.Estatus);
-                    pnlEditar.find("#Tipo").select2("val", preciario.Tipo);
-                    pnlEditar.find("#PreciarioEspecifico").html("");
-                    getCategorias(preciario.ID);
-                    getConceptosXPreciarioID(preciario.ID);
+                    var p = data[0];
+                    pnlEditar.find("#ID").val(p.ID);
+                    pnlEditar.find("#Nombre").val(p.Nombre);
+                    pnlEditar.find("#Tipo").val(p.Tipo);
+                    pnlEditar.find("#FechaCreacion").val(p.FechaCreacion);
+
+                    pnlEditar.find("select")[0].selectize.clear(true);
+                    pnlEditar.find("[name='Cliente_ID']")[0].selectize.setValue(p.Cliente_ID);
+                    pnlEditar.find("[name='Estatus']")[0].selectize.setValue(p.Estatus);
+                    pnlEditar.find("[name='Tipo']")[0].selectize.setValue(p.Tipo);
+
+                    pnlEditar.find("#p.specifico").html("");
+                    getCategorias(p.ID);
+                    getConceptosXPreciarioID(p.ID);
                     pnlPreciario.addClass('d-none');
-                    pnlEditar.addClass("animated slideInLeft").removeClass('d-none');
+                    pnlEditar.addClass("animated zoomIn").removeClass('d-none');
                     pnlDetalleConceptos.removeClass("d-none");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1223,10 +1251,9 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
+                pnlNuevo.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
+                pnlEditar.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
             });
-            pnlNuevo.find("#Cliente_ID").html(options);
-            pnlEditar.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1244,11 +1271,10 @@
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {
-            console.log(data);
             $("#tblRegistros").html(getTable('tblEmpresas', data));
             $('#tblEmpresas tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
             $('#tblEmpresas tbody').on('click', 'tr', function () {
@@ -1292,12 +1318,15 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Categoria + '</option>';
+                mdlEditarConcepto.find("#Categoria")[0].selectize.addOption({text: v.Categoria, value: v.ID});
+                mdlNuevoConcepto.find("#Conceptos").find("#Categoria")[0].selectize.addOption({text: v.Categoria, value: v.ID});
+                mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID")[0].selectize.addOption({text: v.Categoria, value: v.ID});
+                mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID")[0].selectize.addOption({text: v.Categoria, value: v.ID});
             });
-            mdlEditarConcepto.find("#Categoria").html(options);
-            mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
-            mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").html(options);
-            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
+//            mdlEditarConcepto.find("#Categoria").html(options);
+//            mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
+//            mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").html(options);
+//            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
             getSubCategorias(IDX, '');
             getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(IDX, '', '');
         }).fail(function (x, y, z) {
@@ -1316,13 +1345,11 @@
             }
         }).done(function (data, x, jq) {
             var options = '<option></option>';
-            mdlEditarConcepto.find("#SubCategoria").select2("val", "");
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Subcategoria + '</option>';
+                mdlEditarConcepto.find("#SubCategoria")[0].selectize.addOption({text: v.Subcategoria, value: v.ID});
+                mdlNuevoConcepto.find("#SubCategoria")[0].selectize.addOption({text: v.Subcategoria, value: v.ID});
+                mdlNuevoConcepto.find("#PreciarioSubCategorias_ID")[0].selectize.addOption({text: v.Subcategoria, value: v.ID});
             });
-            mdlEditarConcepto.find("#SubCategoria").html(options);
-            mdlNuevoConcepto.find("#Conceptos").find("#SubCategoria").html(options);
-            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioSubCategorias_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1340,18 +1367,17 @@
             }
         }).done(function (data, x, jq) {
             var options = '<option></option>';
-            mdlEditarConcepto.find("#SubSubCategoria").select2("val", "");
+            mdlNuevoConcepto.find("#SubSubCategoria")[0].selectize.clear(true);
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.SubSubCategoria + '</option>';
+                mdlNuevoConcepto.find("#SubSubCategoria")[0].selectize.addOption({text: v.SubSubCategoria, value: v.ID});
             });
-            mdlEditarConcepto.find("#SubSubCategoria").html(options);
-            mdlNuevoConcepto.find("#SubSubCategoria").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
         });
     }
-    function getConceptosXPreciarioID(IDX) {
+
+    function getConceptosXPreciarioIDx(IDX) {
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
@@ -1376,7 +1402,7 @@
             });
             $('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
@@ -1408,6 +1434,64 @@
             HoldOn.close();
         });
     }
+
+    var tblPreciarioEspecifico = $('#tblPreciarioEspecifico');
+    var PreciarioEspecifico;
+
+
+    function getConceptosXPreciarioID(IDX) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+
+        temp = 0;
+        HoldOn.open({
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+
+        if ($.fn.DataTable.isDataTable('#tblPreciarioEspecifico')) {
+            tblPreciarioEspecifico.DataTable().destroy();
+        }
+        PreciarioEspecifico = tblPreciarioEspecifico.DataTable({
+            "dom": 'Bfrtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getConceptosXPreciarioID',
+                type: "POST",
+                dataSrc: "",
+                "data": {
+                    ID: IDX
+                }
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Clave"},
+                {"data": "Descripcion"},
+                {"data": "Unidad"},
+                {"data": "Costo"},
+                {"data": "Moneda"},
+                {"data": "Editar"},
+                {"data": "Eliminar"}
+            ],
+            language: lang,
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 20,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ]
+        });
+        HoldOn.close();
+    }
+
+
     IdConceptoEliminar = 0;
     evtEliminar = '';
     function onEliminarConceptoPreciario(evt, IDC) {
@@ -1431,7 +1515,8 @@
             mdlEditarConcepto.find("#Clave").val(concepto.Clave);
             mdlEditarConcepto.find("#Costo").val(concepto.Costo);
             mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
-            mdlEditarConcepto.find("#Moneda").select2("val", concepto.Moneda);
+            mdlEditarConcepto.find("[name='Moneda']")[0].selectize.setValue(concepto.Moneda);
+
             mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
 
 
@@ -1442,9 +1527,9 @@
             mdlEditarConcepto.find("#Familia").val(concepto.Familia);
             mdlEditarConcepto.find("#UnidadFichero").val(concepto.UnidadFichero);
 
-            mdlEditarConcepto.find("#Categoria").select2("val", concepto.PreciarioCategorias_ID);
-            mdlEditarConcepto.find("#SubCategoria").select2("val", concepto.PreciarioSubCategorias_ID);
-            mdlEditarConcepto.find("#SubSubCategoria").select2("val", concepto.PreciarioSubSubCategoria_ID);
+            mdlEditarConcepto.find("[name='Categoria']")[0].selectize.setValue(concepto.PreciarioCategorias_ID);
+            mdlEditarConcepto.find("[name='SubCategoria']")[0].selectize.setValue(concepto.PreciarioSubCategorias_ID);
+            mdlEditarConcepto.find("[name='SubSubCategoria']")[0].selectize.setValue(concepto.PreciarioSubSubCategoria_ID);
             mdlEditarConcepto.modal('show');
         }).fail(function (x, y, z) {
             console.log(x, y, z);
