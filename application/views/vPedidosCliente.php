@@ -126,7 +126,7 @@
                         <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Adjunto</a></li>
                     </ul>
                     <br>
-                    <ul class="progress-indicator" id="pEstatusTrabajo">
+                    <ul class="progress-indicator pt-3 pb-3" style="background-color: white; border-radius: 3px;" id="pEstatusTrabajo">
                         <li id="pPedido">
                             <span class="bubble"></span>
                             1. Pedido
