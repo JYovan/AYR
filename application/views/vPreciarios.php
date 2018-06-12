@@ -1,7 +1,11 @@
 <div  class="col-12">
     <div id="pnlPreciario" class="panel panel-default animated fadeIn">
-        <div class="panel-heading ">
-            <div class="cursor-hand" >Preciarios</div>
+        <div class="panel-heading "> 
+            <div class="row">
+                <div class="col-sm-6 float-left">
+                    <legend class="float-left">Preciarios</legend>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -12,125 +16,45 @@
                     <button type="button" class="btn btn-default d-none" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
                 </div>
                 <div class="col-12 table-responsive" id="tblRegistros"></div>
+                <div id="Preciarios" class="table-responsive">
+                    <table id="tblPreciarios" class="table table-sm display " style="width:100%">
+                        <thead>
+                            <tr> 
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Fecha de creación</th>
+                                <th>Cliente</th> 
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
             </fieldset>
         </div>
     </div>
 </div>
 <!--PANELES-->
-<div class="col-12">
-    <!--GUARDAR-->
-    <div id="pnlNuevo" class="panel panel-default d-none animated fadeIn">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Nuevo Preciario
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar">GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6 col-12">
-                            <div class="form-group label-static">
-                                <label for="Nombre" class="control-label">Nombre*</label>
-                                <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group label-static">
-                                <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
-                            </div>
-                        </div>
-                        <div class="col-6 col-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Estatus*</label>
-                                <select id="Estatus" name="Estatus" class="form-control" required="">
-                                    <option value=""></option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6 col-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Tipo*</label>
-                                <select id="Tipo" name="Tipo" class="form-control" required="">
-                                    <option value=""></option>
-                                    <option value="MANTENIMIENTO">Mantenimiento</option>
-                                    <option value="OBRA">Obra</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Cliente*</label>
-                                <select id="Cliente_ID" name="Cliente_ID" class="form-control" required="">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <br>
-                            <h6>Los campos con * son obligatorios</h6>
-                        </div>
-                        <div class="col-12">
-                            <div class="alert alert-dismissible alert-warning">
-                                <h4><strong>IMPORTANTE!</strong></h4>
-                                <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
-                                <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
-                            </div>
-                        </div>
-                        <div class="col-12" align="center">
-                            <input type="file" id="RutaArchivo" name="RutaArchivo" class="d-none">
-                            <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
-                                <span class="fa fa-upload fa-2x">
-                                </span>
-                                Seleccionar Archivo
-                            </button>
-                            <br>
-                        </div>
-                        <div id="VistaPrevia" class="col-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
-                        <div class="col-12 d-none">
-                            <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
-                            </textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--EDITAR-->
-    <div id="pnlEditar" class="panel panel-default d-none animated zoomIn">
-        <div class="Custompanel-heading">
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelarEditar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Editar Preciario
-                </div>
-                <div class="input-group pull-right">
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardarEditar">GUARDAR</button>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <form id="frmEditar">
                 <div class="row">
-                    <div class="col-12 d-none">
-                        <label for="">ID*</label>
-                        <input type="text" class="form-control" id="ID" name="ID" >
+                    <div class="col-md-4 float-left">
+                        <legend>Preciario</legend>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-8" align="right">
+                        <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                            <span class="fa fa-arrow-left" ></span>
+                        </button>
+                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo"><span class="fa fa-print fa-1x"></span> IMPRIMIR</button>
+                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-12">
                         <div class="form-group label-static">
                             <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" class="form-control" id="Nombre" name="Nombre"  required="">
@@ -174,7 +98,28 @@
                         <br>
                         <h6>Los campos con * son obligatorios</h6>
                     </div>
-                </div>
+                    <div class="col-12">
+                        <div class="alert alert-dismissible alert-warning">
+                            <h4><strong>IMPORTANTE!</strong></h4>
+                            <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
+                            <p><strong>Columnas requeridas: </strong>id, Concepto, Unidad, Precio, Tipo, Moneda</p>
+                        </div>
+                    </div>
+                    <div class="col-12" align="center">
+                        <input type="file" id="RutaArchivo" name="RutaArchivo" class="d-none">
+                        <button type="button" class="btn btn-default fa-lg" id="btnArchivo" name="btnArchivo">
+                            <span class="fa fa-upload fa-2x">
+                            </span>
+                            Seleccionar Archivo
+                        </button>
+                        <br>
+                    </div>
+                    <div id="VistaPrevia" class="col-12 table-responsive" align="center" style="overflow-y: auto; height: 250px;"></div>
+                    <div class="col-12 d-none">
+                        <textarea id="json_preciario" name="json_preciario" rows="2" cols="10" class="form-control">
+                        </textarea>
+                    </div>
+                </div> 
             </form>
         </div>
     </div>
@@ -236,85 +181,85 @@
             <div id="pnlConceptos" class="col-12" >
                 <div class="col-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#Conceptos" data-toggle="tab">Conceptos</a></li>
-                        <li><a href="#Categorias" data-toggle="tab">Categorías</a></li>
-                        <li><a href="#SubCategorias" data-toggle="tab">Sub Categorías</a></li>
-                        <li><a href="#SubSubCategorias" data-toggle="tab">Sub Sub Categorías</a></li>
+                        <li  class="nav-item" class="active"><a href="#Conceptos" data-toggle="tab" class="nav-link  active show">Conceptos</a></li>
+                        <li class="nav-item"><a href="#Categorias" data-toggle="tab" class="nav-link">Categorías</a></li>
+                        <li class="nav-item"><a href="#SubCategorias" data-toggle="tab" class="nav-link">Sub Categorías</a></li>
+                        <li class="nav-item"><a href="#SubSubCategorias" data-toggle="tab" class="nav-link">Sub Sub Categorías</a></li>
                     </ul>
                 </div>
                 <div class="col-12"></div>
                 <div class="col-12"><span><br></span></div>
                 <div id="pnlTabConceptos" class="tab-content">
-                    <div class="tab-pane fade active in" id="Conceptos">
-                            <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-12 d-none">
-                                    <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group label-static">
-                                        <label for="Clave" class="control-label">Clave</label>
-                                        <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                    <div class="tab-pane fade active show" id="Conceptos">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 d-none">
+                                        <input type="text" id="IDConcepto" name="IDConcepto" class="form-control">
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group label-static">
+                                            <label for="Clave" class="control-label">Clave</label>
+                                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción</label>
-                                <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
-                                </textarea>
+                            <div class="col-12">
+                                <div class="form-group label-static">
+                                    <label for="Descripcion" class="control-label">Descripción</label>
+                                    <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
+                                    </textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group label-static">
-                                <label for="Costo" class="control-label">Costo</label>
-                                <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Costo" class="control-label">Costo</label>
+                                    <input type="number" id="Costo" name="Costo" class="form-control" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-6 col-3">
-                            <div class="form-group label-static">
-                                <label for="Moneda" class="control-label">Moneda</label>
-                                <select id="Moneda" name="Moneda" class="form-control" required="">
-                                    <option value=""></option>
-                                    <option value="USD">USD</option>
-                                    <option value="MXN">MXN</option>
-                                </select>
+                            <div class="col-6 col-3">
+                                <div class="form-group label-static">
+                                    <label for="Moneda" class="control-label">Moneda</label>
+                                    <select id="Moneda" name="Moneda" class="form-control" required="">
+                                        <option value=""></option>
+                                        <option value="USD">USD</option>
+                                        <option value="MXN">MXN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Unidad" class="control-label">Unidad</label>
+                                    <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Categoria" class="control-label">Categoría</label>
+                                    <select id="Categoria" name="Categoria" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="SubCategoria" class="control-label">Sub Categoría</label>
+                                    <select id="SubCategoria" name="SubCategoria" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
+                                    <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-group label-static">
-                                <label for="Unidad" class="control-label">Unidad</label>
-                                <input type="text" id="Unidad" name="Unidad" class="form-control CustomUppercase" required="" placeholder="EJ: PZA">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group label-static">
-                                <label for="Categoria" class="control-label">Categoría</label>
-                                <select id="Categoria" name="Categoria" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group label-static">
-                                <label for="SubCategoria" class="control-label">Sub Categoría</label>
-                                <select id="SubCategoria" name="SubCategoria" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group label-static">
-                                <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
-                                <select id="SubSubCategoria" name="SubSubCategoria" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                         <div class="col-12">
                             <center><h3>Datos para fichero</h3></center>
                             <hr>
@@ -623,18 +568,16 @@
     var master_url = base_url + 'index.php/Preciarios/';
     var pnlPreciario = $("#pnlPreciario");
     var btnNuevo = $("#btnNuevo");
-    var pnlNuevo = $("#pnlNuevo");
-    var btnGuardar = pnlNuevo.find("#btnGuardar");
-    var btnCancelar = pnlNuevo.find("#btnCancelar");
-    var btnCancelarEditar = $("#btnCancelarEditar");
+    var pnlDatos = $("#pnlDatos");
+    var btnGuardar = pnlDatos.find("#btnGuardar");
+    var btnCancelar = pnlDatos.find("#btnCancelar");
     var btnRefrescar = $("#btnRefrescar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
     var btnEliminar = $("#btnEliminar");
     var btnEditar = $("#btnEditar");
-    var pnlEditar = $("#pnlEditar");
-    var btnModificar = pnlEditar.find("#btnGuardarEditar");
-    var PreciarioEspecifico = pnlEditar.find("#PreciarioEspecifico");
+    var btnModificar = pnlDatos.find("#btnGuardarEditar");
+    var PreciarioEspecifico = pnlDatos.find("#PreciarioEspecifico");
     var mdlEditarConcepto = $("#mdlEditarConcepto");
     var mdlConfirmarEliminarConcepto = $("#mdlConfirmarEliminarConcepto");
     var btnConfirmarEliminarConcepto = $("#btnConfirmarEliminarConcepto");
@@ -652,11 +595,11 @@
     var btnCancelarCategoria = mdlNuevoConcepto.find("#btnCancelarCategoria");
     var btnCancelarSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubCategoria");
     var btnCancelarSubSubCategoria = mdlNuevoConcepto.find("#btnCancelarSubSubCategoria");
-    var pnlConceptos = pnlEditar.find("#pnlConceptos");
+    var pnlConceptos = pnlDatos.find("#pnlConceptos");
     //Variables de controles para subir archivo
-    var Archivo = pnlNuevo.find("#RutaArchivo");
-    var btnArchivo = pnlNuevo.find("#btnArchivo");
-    var VistaPrevia = pnlNuevo.find("#VistaPrevia");
+    var Archivo = pnlDatos.find("#RutaArchivo");
+    var btnArchivo = pnlDatos.find("#btnArchivo");
+    var VistaPrevia = pnlDatos.find("#VistaPrevia");
     var currentDate = new Date();
 //Variables de conceptos detalle
     /*Detalle*/
@@ -788,16 +731,11 @@
                     break;
             }
         });
-        btnCancelarEditar.click(function () {
-            pnlPreciario.addClass("animated zoomIn").removeClass("d-none");
-            pnlEditar.addClass("d-none");
-            pnlDetalleConceptos.addClass("d-none");
-            btnRefrescar.trigger('click');
-        });
         btnCancelar.click(function () {
             pnlPreciario.removeClass("d-none");
-            pnlNuevo.addClass("d-none");
-            btnRefrescar.trigger('click')
+            pnlDatos.addClass("d-none");
+            pnlDetalleConceptos.addClass("d-none");
+            btnRefrescar.trigger('click');
         });
         btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#SubSubCategorias").removeClass("active in");
@@ -846,7 +784,7 @@
             if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
                     Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
                 var frm = new FormData();
-                frm.append('ID', pnlEditar.find("#ID").val());
+                frm.append('ID', pnlDatos.find("#ID").val());
                 frm.append('Clave', mdlNuevoConcepto.find("#Conceptos").find("#Clave").val());
                 frm.append('Descripcion', mdlNuevoConcepto.find("#Conceptos").find("#Descripcion").val());
                 frm.append('Costo', mdlNuevoConcepto.find("#Conceptos").find("#Costo").val());
@@ -905,8 +843,8 @@
             mdlNuevoConcepto.find("textarea").val("");
             mdlNuevoConcepto.find("select")[0].selectize.clear(true);
 
-            getCategorias(pnlEditar.find("#ID").val());
-            mdlNuevoConcepto.find("#ID").val(pnlEditar.find("#ID").val());
+            getCategorias(pnlDatos.find("#ID").val());
+            mdlNuevoConcepto.find("#ID").val(pnlDatos.find("#ID").val());
             mdlNuevoConcepto.modal('show');
             btnCancelarConcepto.removeClass("d-none");
             btnGuardarConcepto.removeClass("d-none");
@@ -932,7 +870,7 @@
             mdlEditarConcepto.modal('d-none');
         });
         btnRefrescarConceptos.click(function () {
-            getConceptosXPreciarioID(pnlEditar.find("#ID").val());
+            getConceptosXPreciarioID(pnlDatos.find("#ID").val());
         });
         btnModificarConcepto.click(function () {
             HoldOn.open({
@@ -976,7 +914,7 @@
             });
         });
         mdlEditarConcepto.find("#Categoria").change(function () {
-            getSubCategorias(pnlEditar.find("#ID").val(), $(this).val());
+            getSubCategorias(pnlDatos.find("#ID").val(), $(this).val());
         });
         //Evento clic del boton confirmar borrar
         btnConfirmarEliminar.click(function () {
@@ -1000,7 +938,6 @@
                     ID: IdConceptoEliminar
                 }
             }).done(function (data, x, jq) {
-                console.log(data);
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO ELIMINADO', 'danger');
                 btnRefrescarConceptos.trigger('click');
                 mdlConfirmarEliminarConcepto.modal('d-none');
@@ -1022,11 +959,10 @@
                     ID: tempID
                 }
             }).done(function (data, x, jq) {
-                console.log(data);
-                mdlConfirmar.modal('d-none');
+                mdlConfirmar.modal('hide');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PRECIARIO ELIMINADO', 'danger');
                 pnlPreciario.addClass("animated zoomIn").removeClass("d-none");
-                pnlEditar.addClass("d-none");
+                pnlDatos.addClass("d-none");
                 pnlDetalleConceptos.addClass("d-none");
                 btnRefrescar.trigger('click');
                 getRecords();
@@ -1040,124 +976,74 @@
             getRecords();
         });
         btnGuardar.click(function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmNuevo').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Nombre: 'required',
-                    FechaCreacion: 'required',
-                    Estatus: 'required',
-                    Tipo: 'required',
-                    Cliente_ID: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Si es verdadero que hacer
-            if ($('#frmNuevo').valid()) {
+            isValid('pnlDatos');
+            if (valido) {
                 HoldOn.open({
                     theme: "sk-bounce",
                     message: "GUARDANDO... POR FAVOR ESPERE"
                 });
-                var frm = new FormData(pnlNuevo.find("#frmNuevo")[0]);
-                frm.append('PRECIARIO', pnlNuevo.find("#json_preciario").val());
-                $.ajax({
-                    url: master_url + 'onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    console.log(data);
+                if (!nuevo) {
+                    var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
+                    frm.append('PRECIARIO', pnlDatos.find("#json_preciario").val());
+                    $.ajax({
+                        url: master_url + 'onAgregar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        pnlDatos.addClass('d-none');
+                        pnlPreciario.removeClass('d-none');
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
+                        btnRefrescar.trigger('click');
+                        HoldOn.close();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
 
-                    pnlNuevo.addClass('d-none');
-                    pnlPreciario.removeClass('d-none');
-
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN NUEVO PRECIARIO', 'success');
-                    btnRefrescar.trigger('click');
-                    HoldOn.close();
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-
-                });
+                    });
+                } else {
+                    var frm = new FormData(pnlDatos.find("#frmEditar")[0]);
+                    $.ajax({
+                        url: master_url + 'onModificar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        pnlPreciario.removeClass('d-none');
+                        pnlDatos.addClass('d-none');
+                        pnlDetalleConceptos.addClass('d-none');
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
+                        console.log(data, x, jq);
+                        btnRefrescar.trigger('click');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', '* DEBE DE COMPLETAR LOS CAMPOS REQUERIDOS *', 'danger');
             }
         });
         btnModificar.click(function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmEditar').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Nombre: 'required',
-                    FechaCreacion: 'required',
-                    Estatus: 'required',
-                    Tipo: 'required',
-                    Cliente_ID: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Si es verdadero que hacer
-            if ($('#frmEditar').valid()) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "GUARDANDO... POR FAVOR ESPERE"
-                });
-                var frm = new FormData(pnlEditar.find("#frmEditar")[0]);
-                $.ajax({
-                    url: master_url + 'onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    pnlPreciario.removeClass('d-none');
-                    pnlEditar.addClass('d-none');
-                    pnlDetalleConceptos.addClass('d-none');
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA MODIFICADO UN PRECIARIO', 'success');
-                    console.log(data, x, jq);
-                    btnRefrescar.trigger('click');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
         });
         btnNuevo.click(function () {
+            btnEliminar.addClass("d-none");
+            pnlDatos.find("#VistaPrevia,#btnArchivo").removeClass("d-none");
             tblConceptos.html("");
-            pnlNuevo.find("select")[0].selectize.clear(true);
-            pnlNuevo.find("input").val("");
-            pnlNuevo.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlNuevo.removeClass('d-none');
+            pnlDatos.find("select")[0].selectize.clear(true);
+            pnlDatos.find("input").val("");
+            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            pnlDatos.removeClass('d-none');
             pnlPreciario.addClass("d-none");
         });
         btnEditar.click(function () {
             if (tempID !== 0 && tempID !== undefined && tempID > 0) {
+                btnEliminar.removeClass("d-none");
                 $.ajax({
                     url: master_url + 'getPreciarioByID',
                     type: "POST",
@@ -1166,23 +1052,23 @@
                         ID: tempID
                     }
                 }).done(function (data, x, jq) {
-                    console.log(data);
                     var p = data[0];
-                    pnlEditar.find("#ID").val(p.ID);
-                    pnlEditar.find("#Nombre").val(p.Nombre);
-                    pnlEditar.find("#Tipo").val(p.Tipo);
-                    pnlEditar.find("#FechaCreacion").val(p.FechaCreacion);
+                    pnlDatos.find("#VistaPrevia,#btnArchivo").addClass("d-none");
+                    pnlDatos.find("#ID").val(p.ID);
+                    pnlDatos.find("#Nombre").val(p.Nombre);
+                    pnlDatos.find("#Tipo").val(p.Tipo);
+                    pnlDatos.find("#FechaCreacion").val(p.FechaCreacion);
 
-                    pnlEditar.find("select")[0].selectize.clear(true);
-                    pnlEditar.find("[name='Cliente_ID']")[0].selectize.setValue(p.Cliente_ID);
-                    pnlEditar.find("[name='Estatus']")[0].selectize.setValue(p.Estatus);
-                    pnlEditar.find("[name='Tipo']")[0].selectize.setValue(p.Tipo);
+                    pnlDatos.find("select")[0].selectize.clear(true);
+                    pnlDatos.find("[name='Cliente_ID']")[0].selectize.setValue(p.Cliente_ID);
+                    pnlDatos.find("[name='Estatus']")[0].selectize.setValue(p.Estatus);
+                    pnlDatos.find("[name='Tipo']")[0].selectize.setValue(p.Tipo);
 
-                    pnlEditar.find("#p.specifico").html("");
+                    pnlDatos.find("#p.specifico").html("");
                     getCategorias(p.ID);
                     getConceptosXPreciarioID(p.ID);
                     pnlPreciario.addClass('d-none');
-                    pnlEditar.addClass("animated zoomIn").removeClass('d-none');
+                    pnlDatos.addClass("animated zoomIn").removeClass('d-none');
                     pnlDetalleConceptos.removeClass("d-none");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -1251,8 +1137,7 @@
         }).done(function (data, x, jq) {
             var options = '<option></option>';
             $.each(data, function (k, v) {
-                pnlNuevo.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
-                pnlEditar.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
+                pnlDatos.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -1260,53 +1145,64 @@
             HoldOn.close();
         });
     }
+
+    var tblPreciarios = $('#tblPreciarios');
+    var Preciarios;
+
     function getRecords() {
-        tempID = 0;
+        temp = 0;
         HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
         });
-        $.ajax({
-            url: master_url + 'getRecords',
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            $("#tblRegistros").html(getTable('tblEmpresas', data));
-            $('#tblEmpresas tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
-            });
-            var tblSelected = $('#tblEmpresas').DataTable(tableOptions);
-            $('#tblEmpresas tbody').on('click', 'tr', function () {
-                $("#tblEmpresas").find("tr").removeClass("success");
-                $("#tblEmpresas").find("tr").removeClass("warning");
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblPreciarios')) {
+            tblPreciarios.DataTable().destroy();
+        }
+        Preciarios = tblPreciarios.DataTable({
+            "dom": 'Bfrtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getRecords',
+                "dataSrc": ""
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Nombre"},
+                {"data": "Tipo"},
+                {"data": "Fecha"},
+                {"data": "Cliente"}
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
                 }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-                tempID = parseInt(dtm[0]);
-                btnEditar.trigger("click");
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
+            ],
+            language: lang,
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 20,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ]
         });
+
+        tblPreciarios.find('tbody').on('click', 'tr', function () {
+            tblPreciarios.find("tbody tr").removeClass("success");
+            $(this).addClass("success");
+            var dtm = Preciarios.row(this).data();
+            tempID = parseInt(dtm.ID);
+            btnEditar.trigger("click");
+        });
+        HoldOn.close();
     }
+
     function getCategorias(IDX) {
         $.ajax({
             url: master_url + 'getCategoriasXPreciarioID',
@@ -1316,17 +1212,12 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
                 mdlEditarConcepto.find("#Categoria")[0].selectize.addOption({text: v.Categoria, value: v.ID});
                 mdlNuevoConcepto.find("#Conceptos").find("#Categoria")[0].selectize.addOption({text: v.Categoria, value: v.ID});
                 mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID")[0].selectize.addOption({text: v.Categoria, value: v.ID});
                 mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID")[0].selectize.addOption({text: v.Categoria, value: v.ID});
             });
-//            mdlEditarConcepto.find("#Categoria").html(options);
-//            mdlNuevoConcepto.find("#Conceptos").find("#Categoria").html(options);
-//            mdlNuevoConcepto.find("#SubCategorias").find("#PreciarioCategoria_ID").html(options);
-//            mdlNuevoConcepto.find("#SubSubCategorias").find("#PreciarioCategoria_ID").html(options);
             getSubCategorias(IDX, '');
             getSubSubCategoriasXSubCategoriaXCategoriaIDXPreciarioID(IDX, '', '');
         }).fail(function (x, y, z) {
@@ -1377,81 +1268,15 @@
         });
     }
 
-    function getConceptosXPreciarioIDx(IDX) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: master_url + 'getConceptosXPreciarioID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            HoldOn.close();
-            $("#PreciarioEspecifico").html(getTable('tblConceptosXPreciarioID', data));
-            var thead = pnlDetalleConceptos.find('#tblConceptosXPreciarioID thead th');
-            var tfoot = pnlDetalleConceptos.find('#tblConceptosXPreciarioID tfoot th');
-            thead.eq(0).addClass("d-none");
-            tfoot.eq(0).addClass("d-none");
-            $.each(pnlDetalleConceptos.find('#tblConceptosXPreciarioID tbody tr'), function (k, v) {
-                var td = $(v).find("td");
-                td.eq(0).addClass("d-none");
-            });
-            $('#tblConceptosXPreciarioID tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
-            });
-            var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
-            $('#tblConceptosXPreciarioID tbody').on('click', 'tr', function () {
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("success");
-                $("#tblConceptosXPreciarioID").find("tr").removeClass("warning");
-                var id = this.id;
-                var index = $.inArray(id, selected);
-                if (index === -1) {
-                    selected.push(id);
-                } else {
-                    selected.splice(index, 1);
-                }
-                $(this).addClass('success');
-                var dtm = tblSelected.row(this).data();
-            });
-            // Apply the search
-            tblSelected.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-        }).fail(function (x, y, z) {
-            HoldOn.close();
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-
     var tblPreciarioEspecifico = $('#tblPreciarioEspecifico');
     var PreciarioEspecifico;
-
-
     function getConceptosXPreciarioID(IDX) {
         HoldOn.open({
             theme: "sk-bounce",
             message: "CARGANDO DATOS..."
         });
-
         temp = 0;
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
         $.fn.dataTable.ext.errMode = 'throw';
-
         if ($.fn.DataTable.isDataTable('#tblPreciarioEspecifico')) {
             tblPreciarioEspecifico.DataTable().destroy();
         }
@@ -1508,25 +1333,19 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            console.log('EDITANDO CONCEPTO ');
-            console.log(data);
             var concepto = data[0];
             mdlEditarConcepto.find("#IDConcepto").val(concepto.ID);
             mdlEditarConcepto.find("#Clave").val(concepto.Clave);
             mdlEditarConcepto.find("#Costo").val(concepto.Costo);
             mdlEditarConcepto.find("#Descripcion").val(concepto.Descripcion);
             mdlEditarConcepto.find("[name='Moneda']")[0].selectize.setValue(concepto.Moneda);
-
             mdlEditarConcepto.find("#Unidad").val(concepto.Unidad);
-
-
             mdlEditarConcepto.find("#Contrato").val(concepto.Contrato);
             mdlEditarConcepto.find("#Posicion").val(concepto.Posicion);
             mdlEditarConcepto.find("#Material").val(concepto.Material);
             mdlEditarConcepto.find("#TextoMaterial").val(concepto.TextoMaterial);
             mdlEditarConcepto.find("#Familia").val(concepto.Familia);
             mdlEditarConcepto.find("#UnidadFichero").val(concepto.UnidadFichero);
-
             mdlEditarConcepto.find("[name='Categoria']")[0].selectize.setValue(concepto.PreciarioCategorias_ID);
             mdlEditarConcepto.find("[name='SubCategoria']")[0].selectize.setValue(concepto.PreciarioSubCategorias_ID);
             mdlEditarConcepto.find("[name='SubSubCategoria']")[0].selectize.setValue(concepto.PreciarioSubSubCategoria_ID);
@@ -1586,7 +1405,7 @@
         });
         return result.join("\n");
     }
-    var tblConceptos = pnlNuevo.find("#VistaPrevia");
+    var tblConceptos = pnlDatos.find("#VistaPrevia");
     function to_html(workbook) {
         tblConceptos.html("");
         workbook.SheetNames.forEach(function (sheetName) {
@@ -1598,7 +1417,7 @@
     function onProcesarLibroXLS(wb) {
         var output = "";
         output = JSON.stringify(to_json(wb), 2, 2);
-        pnlNuevo.find("#json_preciario").html(output);
+        pnlDatos.find("#json_preciario").html(output);
         to_html(wb);
     }
 </script>

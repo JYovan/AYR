@@ -12,7 +12,7 @@ class preciario_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $this->db->select("P.ID, P.Nombre AS Nombre, P.Tipo AS Tipo, P.FechaCreacion AS 'Fecha de Creación', "
+            $this->db->select("P.ID, P.Nombre AS Nombre, P.Tipo AS Tipo, P.FechaCreacion AS 'Fecha', "
                     . "(CASE "
                     . "WHEN P.Cliente_ID IS NULL THEN 'No especifica' "
                     . "ELSE (SELECT C.Nombre FROM Clientes AS C WHERE C.ID = P.Cliente_ID) "
