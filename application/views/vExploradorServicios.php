@@ -116,7 +116,6 @@
 
 
         $('#tblRegistros tfoot th').each(function () {
-            console.log($(this));
             var title = $(this).text();
             $(this).html('<div  style="overflow-x:auto; "><div class="form-group "><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
         });

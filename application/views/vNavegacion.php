@@ -21,7 +21,7 @@
         z-index: 999;
         top: 0;
         left: 0;
-        background-color: rgba(13, 25, 41, 0.95);
+        background-color: rgba(13, 25, 41, 0.88);
         overflow-x: hidden;
         transition: 0.1s;
     }

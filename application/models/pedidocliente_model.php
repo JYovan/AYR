@@ -16,9 +16,9 @@ class pedidocliente_model extends CI_Model {
         try {
             $this->db->select("T.ID AS ID,"
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'Trabajo Requerido' ,"
+                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
 WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
 WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
@@ -32,7 +32,10 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
                     . "WHEN  T.EstatusTrabajo in ('No Autorizado') "
                     . "THEN CONCAT('<strong>','--','</strong>') "
                     . "ELSE  CONCAT('<strong><span style=\'font-size:14px;\' class=\'badge badge-warning\'>','PENDIENTE','</span></strong>') END) AS Importe ,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "'--' AS OrdenCompra,  "
+                    . "'--' AS FechaPago,  "
+                    . "'--' AS FolioFactura,  "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -60,9 +63,9 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
         try {
             $this->db->select("T.ID AS ID,"
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'Trabajo Requerido' ,"
+                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
 WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
 WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
@@ -76,10 +79,10 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
                     . "WHEN  T.EstatusTrabajo in ('No Autorizado') "
                     . "THEN CONCAT('<strong>','--','</strong>') "
                     . "ELSE  CONCAT('<strong><span style=\'font-size:14px;\' class=\'badge badge-warning\'>','PENDIENTE','</span></strong>') END) AS Importe ,"
-                    . "IFNULL(PF.OrdenCompra,'--') AS 'Orden de Compra',  "
-                    . "IFNULL(PF.FechaPago,'--') AS 'Fecha Pago',  "
-                    . "IFNULL(PF.Referencia,'--') AS 'Folio Factura',  "
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "IFNULL(PF.OrdenCompra,'--') AS OrdenCompra,  "
+                    . "IFNULL(PF.FechaPago,'--') AS FechaPago,  "
+                    . "IFNULL(PF.Referencia,'--') AS FolioFactura,  "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -108,9 +111,9 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
         try {
             $this->db->select("T.ID AS ID,"
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'Trabajo Requerido' ,"
+                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
 WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
 WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
@@ -124,7 +127,10 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
                     . "WHEN  T.EstatusTrabajo in ('No Autorizado') "
                     . "THEN CONCAT('<strong>','--','</strong>') "
                     . "ELSE  CONCAT('<strong><span style=\'font-size:14px;\' class=\'badge badge-warning\'>','PENDIENTE','</span></strong>') END) AS Importe ,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "'--' AS OrdenCompra,  "
+                    . "'--' AS FechaPago,  "
+                    . "'--' AS FolioFactura,  "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -152,9 +158,9 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
         try {
             $this->db->select("T.ID AS ID,"
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'Trabajo Requerido' ,"
+                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
 WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
 WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
@@ -168,7 +174,10 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
                     . "WHEN  T.EstatusTrabajo in ('No Autorizado') "
                     . "THEN CONCAT('<strong>','--','</strong>') "
                     . "ELSE  CONCAT('<strong><span style=\'font-size:14px;\' class=\'badge badge-warning\'>','PENDIENTE','</span></strong>') END) AS Importe ,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "'--' AS OrdenCompra,  "
+                    . "'--' AS FechaPago,  "
+                    . "'--' AS FolioFactura,  "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -196,9 +205,9 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
         try {
             $this->db->select("T.ID AS ID,"
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
+                    . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'Trabajo Requerido' ,"
+                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
 WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
 WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
@@ -212,7 +221,10 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
                     . "WHEN  T.EstatusTrabajo in ('No Autorizado') "
                     . "THEN CONCAT('<strong>','--','</strong>') "
                     . "ELSE  CONCAT('<strong><span style=\'font-size:14px;\' class=\'badge badge-warning\'>','PENDIENTE','</span></strong>') END) AS Importe ,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "'--' AS OrdenCompra,  "
+                    . "'--' AS FechaPago,  "
+                    . "'--' AS FolioFactura,  "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM TRABAJOS T  "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
@@ -270,8 +282,9 @@ ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAG
 
     public function getTrabajoByID($ID) {
         try {
-            $this->db->select('T.*', false);
+            $this->db->select('T.*,C.Nombre AS NombreCliente ', false);
             $this->db->from('trabajos AS T');
+            $this->db->join('Clientes AS C', 'C.ID = T.Cliente_ID', 'left');
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*

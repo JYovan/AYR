@@ -1,3 +1,19 @@
+/*CheckBox*/
+/*Color del cuadro checkbox*/
+.custom-control-label::before {
+
+    background-color: #fff;
+}
+
+/*Progress Bar*/
+.progress-indicator>li.completed .bubble, .progress-indicator>li.completed .bubble:after, .progress-indicator>li.completed .bubble:before {
+    background-color: #5db969;
+    border-color: #247830;
+}
+
+.progress-indicator>li.completed, .progress-indicator>li.completed .bubble {
+    color: #386f3f;
+}
 /*Legend*/
 legend {
     font-size: 1.3rem;

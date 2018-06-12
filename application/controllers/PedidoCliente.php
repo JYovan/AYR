@@ -155,7 +155,6 @@ class PedidoCliente extends CI_Controller {
             extract($this->input->post());
             $data = array(
                 'FechaCreacion' => Date('d/m/Y'),
-                'Cliente_ID' => $Cliente_ID,
                 'Sucursal_ID' => $Sucursal_ID,
                 'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : null,
                 'Especialidad_ID' => (isset($Especialidad_ID) && $Especialidad_ID !== 0) ? $Especialidad_ID : null,
@@ -180,13 +179,24 @@ class PedidoCliente extends CI_Controller {
                 'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : null,
                 'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
-                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : null,
                 'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : null,
                 'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : null,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== 0) ? $Observaciones : null,
                 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,
                 'Area_ID' => (isset($Area_ID) && $Area_ID !== 0) ? $Area_ID : null,
+            );
+            $this->pedidocliente_model->onModificar($ID, $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onAutorizarPedido() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
             );
             $this->pedidocliente_model->onModificar($ID, $data);
         } catch (Exception $exc) {
@@ -223,40 +233,10 @@ class PedidoCliente extends CI_Controller {
         }
     }
 
-    public function getSucursalByID() {
-        try {
-            extract($this->input->post());
-            $data = $this->sucursal_model->getSucursalByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getEspecialidadByID() {
-        try {
-            extract($this->input->post());
-            $data = $this->especialidades_model->getEspecialidadByID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getEspecialidadesByCliente() {
         try {
             extract($this->input->post());
             $data = $this->especialidades_model->getEspecialidadesByCliente($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getAreaByID() {
-        try {
-            extract($this->input->post());
-            $data = $this->areas_model->getAreaByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
