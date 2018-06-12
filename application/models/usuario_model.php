@@ -1,12 +1,15 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
+
 class usuario_model extends CI_Model {
+
     public function __construct() {
         parent::__construct();
     }
-   
+
     public function getRecords() {
         try {
             $this->db->select("ID, CONCAT(U.Nombre, ' ', U.Apellidos) AS Nombre,
@@ -29,6 +32,7 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getAcceso($USUARIO, $CONTRASENA) {
         try {
             $this->db->select('U.*', false);
@@ -68,6 +72,31 @@ class usuario_model extends CI_Model {
         }
     }
 
+    public function getLogoByID() {
+        try {
+            $this->db->select("CASE  WHEN U.TipoAcceso = 'CLIENTE' THEN "
+                    . "IFNULL(C.RutaLogo,'uploads/Empresas/1/log_mediano.png') "
+                    . "ELSE "
+                    . "IFNULL(E.RutaLogo,'uploads/Empresas/1/log_mediano.png') "
+                    . "END AS RutaLogo "
+                    . "", false);
+            $this->db->from('Usuarios AS U');
+            $this->db->join('Clientes C', ' C.ID =  U.Cliente_ID', 'left');
+            $this->db->join('Empresas E', ' E.ID =  U.Empresa_ID', 'left');
+            $this->db->where('U.ID', $this->session->userdata('ID'));
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            //print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onAgregar($array) {
         try {
             $this->db->insert("usuarios", $array);
@@ -80,6 +109,7 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);
@@ -111,6 +141,7 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
     public function getUsuarioByID($ID) {
         try {
             $this->db->select('U.*', false);
@@ -129,4 +160,5 @@ class usuario_model extends CI_Model {
             echo $exc->getTraceAsString();
         }
     }
+
 }

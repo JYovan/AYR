@@ -85,6 +85,9 @@
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
 
+        <!-- Progress bar CSS -->
+        <link href="<?php print base_url('css/progress-wizard.min.css') ?>" rel="stylesheet">
+
         <!--Final Modifiers for CSS-->
         <link href="<?php print base_url(); ?>css/style.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>js/scripts.js"></script>
@@ -151,11 +154,12 @@
         function onNotify(span, message, type) {
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');
         }
-
         function isValid(p) {
             var inputs = $('#' + p).find("input.form-control:required").length;
+            var inputs_textarea = $('#' + p).find("textarea.form-control:required").length;
             var selects = $('#' + p).find("select.required").length;
             var valid_inputs = 0;
+            var valid_inputs_textarea = 0;
             var valid_selects = 0;
             $.each($('#' + p).find("input.form-control:required"), function () {
                 var e = $(this).parent().find("small.text-danger");
@@ -168,6 +172,20 @@
                         $(this).css("border", "1px solid #ccc");
                         $(this).parent().find("small.text-danger").remove();
                         valid_inputs += 1;
+                    }
+                }
+            });
+            $.each($('#' + p).find("textarea.form-control:required"), function () {
+                var e = $(this).parent().find("small.text-danger");
+                if ($(this).val() === '' && e.length === 0) {
+                    $(this).parent().find("label").after("<small class=\"text-danger\"> Este campo es obligatorio</small>");
+                    $(this).css("border", "1px solid #d01010");
+                    valido = false;
+                } else {
+                    if ($(this).val() !== '') {
+                        $(this).css("border", "1px solid #ccc");
+                        $(this).parent().find("small.text-danger").remove();
+                        valid_inputs_textarea += 1;
                     }
                 }
             });
@@ -185,9 +203,8 @@
                     }
                 }
             });
-            if (valid_inputs === inputs && valid_selects === selects) {
+            if (valid_inputs === inputs && valid_selects === selects && valid_inputs_textarea === inputs_textarea) {
                 valido = true;
             }
         }
-
     </script>

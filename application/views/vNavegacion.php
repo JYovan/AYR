@@ -85,7 +85,8 @@
     <a class="closebtn " onclick="closeNav()">&times;</a>
     <div class="overlay-content navbar ">
         <ul class=" navbar-nav mr-auto">
-            <img src="<?php print base_url(); ?>img/logo.png" width="140px">
+<!--            <img src="<?php print base_url(); ?>img/logo.png" width="140px">-->
+            <span id="logoSesion"></span>
             <br>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,14 +188,14 @@
 <div class="container-fluid bg-primary" style="background-color: rgb(166,175,179);">
     <div class="row">
         <div class="col-4 ">
-            <button class="btn btn-primary btn-sm " onclick="openNav()">
+            <button class="btn btn-primary btn-sm mt-1 mb-1" onclick="openNav()">
                 <i class="fa fa-bars"></i> Menú Principal
             </button>
         </div>
         <div class="col-8 " align="right">
 
             <span class="text-light">
-                <img src="<?php print base_url(); ?>img/logo.png" width="40px">
+                <img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
                 <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
             </span>
 
@@ -242,6 +243,19 @@
     }
     var master_url = base_url + 'Sesion/';
 
+    function getLogoByID() {
+        $.ajax({
+            url: 'http://127.0.0.1/AYR/Sesion/getLogoByID',
+            type: "POST",
+            dataType: "JSON"
+        }).done(function (data, x, jq) {
+            $("#logoSesion").html('<img src="' + base_url + data[0].RutaLogo + '" width ="180px" />');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+        });
+    }
+
     function openNav() {
         $('#myNav').width(230);
     }
@@ -252,6 +266,7 @@
 
     $(document).ready(function () {
         handleEnter();
+        getLogoByID();
         $('#myNav > li:not(ul)').click(function (event) {
             event.stopPropagation();
         });

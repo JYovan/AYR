@@ -96,6 +96,9 @@ table tbody tr:hover {
 input { 
     text-transform: uppercase;
 }
+textarea  { 
+    text-transform: uppercase;
+}
 ::-webkit-input-placeholder { /* WebKit browsers */
     text-transform: none;
 }

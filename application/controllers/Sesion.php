@@ -11,7 +11,6 @@ class Sesion extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
         $this->load->model('usuario_model');
-        $this->load->model('trabajo_model');
         $this->load->model('registroUsuarios_model');
     }
 
@@ -24,6 +23,15 @@ class Sesion extends CI_Controller {
             $this->load->view('vEncabezado');
             $this->load->view('vSesion');
             $this->load->view('vFooter');
+        }
+    }
+
+    public function getLogoByID() {
+        try {
+            $data = $this->usuario_model->getLogoByID();
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
     }
 
