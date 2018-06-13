@@ -19,20 +19,20 @@ class entregas_model extends CI_Model {
 
     public function getMyRecords() {
         try {
-            $this->db->select("E.ID, E.Movimiento,"
-                    . "(CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS 'Entrega', "
-                    . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span class=\'label label-success\'>','CONCLUIDO','</span>') "
-                    . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span class=\'label label-default\'>','BORRADOR','</span>')"
-                    . "ELSE CONCAT('<span class=\'label label-danger\'>','Cancelado','</span>') END) AS Estatus ,"
-                    . "CONCAT(' <span class=\'label label-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
-                    . "Ct.Nombre as 'Cliente', "
-                    //  . "CC.Nombre as 'Centro de Costos', "
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+            $this->db->select("E.ID, "
+                    . "E.Movimiento,"
+                    . "(CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS Entrega, "
+                    . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','CONCLUIDO','</span>') "
+                    . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','BORRADOR','</span>')"
+                    . "ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','Cancelado','</span>') END) AS Estatus ,"
+                    . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
+                    . "Ct.Nombre as Cliente, "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM ENTREGAS E  "
                     . "INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  "
                     //. "LEFT JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID "
                     . "INNER JOIN USUARIOS U ON U.ID = E.Usuario_ID WHERE E.ESTATUS in ('Borrador') "
-                    .  " ", false);
+                    . " ", false);
 
             $query = $this->db->get();
             /*
@@ -50,14 +50,13 @@ class entregas_model extends CI_Model {
     public function getRecords() {
         try {
             $this->db->select("E.ID, E.Movimiento,"
-                    . "(CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS 'Entrega', "
-                    . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span class=\'label label-success\'>','CONCLUIDO','</span>') "
-                    . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span class=\'label label-default\'>','BORRADOR','</span>')"
-                    . "ELSE CONCAT('<span class=\'label label-danger\'>','Cancelado','</span>') END) AS Estatus ,"
-                    . "CONCAT(' <span class=\'label label-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
-                    . "Ct.Nombre as 'Cliente', "
-                    // . "CC.Nombre as 'Centro de Costos', "
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
+                    . "(CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS Entrega, "
+                    . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','CONCLUIDO','</span>') "
+                    . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','BORRADOR','</span>')"
+                    . "ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','Cancelado','</span>') END) AS Estatus ,"
+                    . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-success\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
+                    . "Ct.Nombre as Cliente, "
+                    . "concat(u.nombre,' ',u.apellidos)as Usuario "
                     . "FROM ENTREGAS E  "
                     . "INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  "
                     // . "LEFT JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID "
@@ -79,7 +78,7 @@ class entregas_model extends CI_Model {
     public function getEntregas() {
         try {
             $this->db->select("E.ID, E.Movimiento, (CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS 'Entrega',
-CONCAT(' <span class=\'label label-success\'>$', FORMAT(E.Importe, 2), '</span> ') AS Importe,
+CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-success\'>$', FORMAT(E.Importe, 2), '</span> ') AS Importe,
 Ct.Nombre as 'Cliente'
 FROM ENTREGAS E
 INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  ", false);
@@ -89,7 +88,7 @@ INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  ", false);
              * FOR DEBUG ONLY
              */
             $str = $this->db->last_query();
-             //print $str;
+            //print $str;
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
@@ -149,7 +148,7 @@ INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  ", false);
                 CONCAT("<strong>",T.FolioCliente,"</strong>") AS "Folio Cliente" ,
                 T.TrabajoRequerido AS "Trabajo Requerido",
                 S.Nombre AS Sucursal,
-S.Region,CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
+S.Region,CONCAT("<span class=\'badge badge-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
 CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarDetalleEntrega(",ED.ID,")\"></span>") AS Eliminar,
 T.Importe AS ImporteSF
 from entregasdetalle ED

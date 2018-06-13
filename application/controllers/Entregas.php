@@ -95,13 +95,12 @@ class Entregas extends CI_Controller {
             /* TRABAJO */
             extract($this->input->post());
             $data = array(
-                'Movimiento' => $Movimiento,
+                'Movimiento' => 'Entrega',
                 'FechaCreacion' => $FechaCreacion,
                 'Cliente_ID' => $Cliente_ID,
                 'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL,
-                // 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== '') ? $CentroCostos_ID : NULL,
-                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
-                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
+                'Usuario_ID' => $this->session->userdata('ID'),
+                'Estatus' => 'Borrador',
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
             );
             $ID = $this->entregas_model->onAgregar($data);
@@ -138,8 +137,12 @@ class Entregas extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
-            //var_dump($Estatus);
-            $this->entregas_model->onModificar($ID, $this->input->post());
+            $data = array(
+                'Cliente_ID' => $Cliente_ID,
+                'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL,
+                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
+            );
+            $this->entregas_model->onModificar($ID, $data);
 
             //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
             if ($Estatus == 'Concluido') {
@@ -220,14 +223,6 @@ class Entregas extends CI_Controller {
         }
     }
 
-//    public function getCC() {
-//        try {
-//            $data = $this->centrocostos_model->getCC();
-//            print json_encode($data);
-//        } catch (Exception $exc) {
-//            echo $exc->getTraceAsString();
-//        }
-//    }
     //MEtodo para cambiar Estatus de los movimientos cuando se concluye la entrega
     public function onEntregado() {
         try {

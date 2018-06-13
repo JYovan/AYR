@@ -57,7 +57,7 @@ label, .control-label, .help-block, .checkbox, .radio, .form-control-feedback {
 
 table tbody tr{
     cursor: pointer;
-    font-size: 0.725rem !important;
+    font-size: 0.8rem !important;
     background-color: white;
 
 }

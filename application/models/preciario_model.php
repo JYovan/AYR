@@ -89,10 +89,10 @@ class preciario_model extends CI_Model {
     public function getConceptosXPreciarioID($ID) {
         try {
 
-            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, '
-                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(PC.Descripcion),"</p>") AS Descripcion, '
+            $this->db->select('PC.ID,CONCAT("<span style=\'font-size:14px;\' class=\"badge badge-danger\">",PC.Clave,"</span>") AS Clave, '
+                    . 'CONCAT("<p class=\" \">",UPPER(PC.Descripcion),"</p>") AS Descripcion, '
                     . 'PC.Unidad AS Unidad, '
-                    . 'CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
+                    . 'CONCAT("<span style=\'font-size:14px;\' class=\"badge badge-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
                     . 'PC.Moneda AS Moneda,'
                     . 'CONCAT("<span class=\"fa fa-cog fa-lg\" '
                     . 'onclick=\"onEditarConceptoPreciarioXID(",PC.ID,")\"></span>") AS Editar,'

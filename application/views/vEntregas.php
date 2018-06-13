@@ -1,17 +1,34 @@
-<div class="col-md-12" id="MenuTablero">
-    <div class="panel panel-default animated">
-        <div class="panel-heading">
-            <div class="cursor-hand" >Entregas</div>
+<div class="card " id="MenuTablero">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-5 float-left">
+                <legend class="float-left">Entregas</legend>
+            </div>
+            <div class="col-md-7" align="right">
+                <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
+            </div>
         </div>
-        <div class="panel-body ">
-            <fieldset>
-                <div class="col-md-12 dt-buttons" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
-                    <button type="button" class="btn btn-default" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>CONCLUIDOS</button>
-                    <button type="button" class="btn btn-default" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>EN FIRME</button>
-                </div>
-                <div class="col-md-12 table-responsive" id="tblRegistros"></div>
-            </fieldset>
+        <div class="card-block">
+            <div id="Registros" class="table-responsive">
+                <table id="tblRegistros" class="table table-sm display " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Movimiento</th>
+                            <th>Entrega</th>
+                            <th>Estatus</th>
+                            <th>Importe</th>
+                            <th>Cliente</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -19,224 +36,104 @@
 <div id="mdlReportesEditarEntrega" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
+            <h5 class="modal-title">Imprimir Reportes</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Imprimir Reportes</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body">
-            Selecciona el reporte que deseas imprimir
-            <div class="col-md-12">
-                <br>
-            </div>
             <div id="reportes" class="dt-buttons">
-                <button id="btnEntregaObra" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>ENTREGA OBRA</button>
-                <button id="btnTarifario" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>TARIFARIO</button>
-                <button id="btnFichero" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>FICHERO</button>
-                <button id="btnDesglose" class="btn btn-default"><span class="fa fa-newspaper-o fa-1x"></span><br>DESGLOSE DE REPORTES</button>
+                <button id="btnEntregaObra" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>ENTREGA OBRA</button>
+                <button id="btnTarifario" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>TARIFARIO</button>
+                <button id="btnFichero" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>FICHERO</button>
+                <button id="btnDesglose" class="btn btn-primary btn-sm"><span class="fa fa-file-excel fa-1x"></span><br>DESGLOSE DE REPORTES</button>
             </div>
         </div>
     </div>
 </div>
-<!--PANEL NUEVO-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default d-none animated slideInRight" id="pnlNuevaEntrega">
-        <div class="Custompanel-heading dt-EncabezadoControles" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Nueva Entrega
-                </div>
-                <div class="input-group pull-right" align="center">
-                    <span class="dt-EncabezadoControles">
-                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento (Debe guardar el movimiento)">
-                            <span class="fa fa-clone" ></span>
-                        </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes (Debe guardar el movimiento)" >
-                            <span class="fa fa-print " ></span>
-                        </button>
-                    </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="label label-default spanEstatus">SIN GUARDAR</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class=""> </span>
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" disabled="" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                    <span class="togglebutton customLabelToggle" >
-                        <label>
-                            <input type="checkbox" id="Concluir" name="Concluir" >Concluir
-                        </label>
-                    </span>
-                    <span>&nbsp;&nbsp;</span>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnGuardar" >GUARDAR</button>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
+<!--PANEL DATOS-->
+<div id="" class="container-fluid">
+    <div class="card border-0  d-none" id="pnlDatos">
+        <div class="card-body text-dark">
             <form id="frmNuevo">
-                <fieldset>
-                    <hr>
-                    <div class=" col-6 col-md-3">
-                        <div class="form-group label-static">
-                            <label for="Movimiento" class="control-label">Movimiento</label>
-                            <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
-                        </div>
+                <div class="row">
+                    <div class="col-md-5 float-left">
+                        <legend >Entrega</legend>
                     </div>
-                    <div class=" col-6 col-md-3">
-                        <div class="form-group label-static">
-                            <label for="ID" class="control-label">Mov ID</label>
-                            <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
-                        </div>
+                    <div class="col-md-2" align="right" id="spanEstatus">
+                        <span style="font-size: 15px;" class="badge badge-secondary">
+                            BORRADOR
+                        </span>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-group label-static">
-                            <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-group label-static">
-                            <label for="NoEntrega" class="control-label">Entrega*</label>
-                            <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="form-group label-static">
-                            <label for="" class="control-label">Cliente*</label>
-                            <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                <option value=""></option>
-                            </select>
-                        </div>
-                    </div>
-                    <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
-                    <div class="col-6 col-md-12"><br>
-                        <h6>Los campos con * son obligatorios</h6>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
-<!--PANEL NUEVO DETALLE-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleNuevaEntrega">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-5">
-                    <div class="cursor-hand" >Trabajos </div>
-                </div>
-                <div id="ImporteTotal" class="col-md-7" align="right">
-                    <span class="text-success spanTotalesDetalle">$ 0.0</span>
-                </div>
-            </div>
-        </div>
-        <!--<div class="panel-body">-->
-        <fieldset>
-            <div class="col-md-12" align="right">
-                <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaNuevo"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-            </div>
-        </fieldset>
-        <!--        </div>-->
-    </div>
-</div>
-<!--PANEL EDITAR-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default d-none animated slideInRight" id="pnlEditarEntrega">
-        <div class="Custompanel-heading dt-EncabezadoControles" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelarModificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>
-                    Editar Entrega
-                </div>
-                <div class="input-group pull-right" align="center">
-                    <span class="dt-EncabezadoControles">
-                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
-                            <span class="fa fa-clone" ></span>
+                    <div class="col-md-5" align="right">
+                        <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                            <span class="fa fa-arrow-left" ></span>
                         </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarEntrega" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
-                            <span class="fa fa-print " ></span>
-                        </button>
-                    </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="label label-default spanEditarEstatus">SIN GUARDAR</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class=""> </span>
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                    <span class="togglebutton customLabelToggle" >
-                        <label>
-                            <input type="checkbox" id="Concluir" name="Concluir" >Concluir
-                        </label>
-                    </span>
-                    <span>&nbsp;&nbsp;</span>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnModificarEntrega" >GUARDAR</button>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body">
-            <form id="frmEditar">
-                <fieldset>
-                    <div class="col-6 col-md-12">
-                        <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                            <li role="presentation" class="active"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab">Entrega</a></li>
-                            <li role="presentation"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab">Adjunto Entrega</a></li>
-                        </ul>
+                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarEntrega"><span class="fa fa-print "></span> IMPRIMIR</button>
+                        <button type="button" class="btn btn-raised btn-success btn-sm" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash "></span> ELIMINAR</button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                     </div>
+                </div>
+                <fieldset>
+                    <ul class="nav nav-tabs" role="tablist" id="Encabezado">
+                        <li class="nav-item"><a href="#Datos" class="nav-link active show"  data-toggle="tab">Datos Entrega</a></li>
+                        <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Adjunto</a></li>
+                    </ul>
+                    <br>
                     <div class="tab-content">
                         <!-- PANEL DE DATOS GENERALES-->
-                        <div role="tabpanel" class="tab-pane fade in active" id="Datos">
-                            <div class=" col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="Movimiento" class="control-label">Movimiento</label>
-                                    <input type="text" id="Movimiento" name="Movimiento"  class="form-control" readonly="" placeholder="" >
+                        <div role="tabpanel" class="tab-pane fade active show" id="Datos">
+                            <div class="row">
+                                <div class=" col-2 col-md-2">
+                                    <div class="form-group label-static">
+                                        <label for="ID" class="control-label">ID</label>
+                                        <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
+                                    </div>
+                                </div>
+                                <div class="col-2 col-md-2">
+                                    <div class="form-group label-static">
+                                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-2 col-md-2">
+                                    <div class="form-group label-static">
+                                        <label for="NoEntrega" class="control-label">Entrega*</label>
+                                        <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control form-control-sm" placeholder="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Cliente*</label>
+                                        <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class=" col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="ID" class="control-label">Mov ID</label>
-                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="form-group label-static">
-                                    <label for="NoEntrega" class="control-label">Entrega*</label>
-                                    <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Cliente*</label>
-                                    <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <input type="text" id="Usuario_ID" name="Usuario_ID"  class="form-control d-none" placeholder="" >
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <center><label class="control-label">Puede subir un archivo de imagen(JPG,GIF,PNG)o PDF</label></center>
-                            <div class="col-md-12" align="center">
-                                <button type="button" class="btn btn-default" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
-                                </button>
-                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                                <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
-
+                            <div class="row">
+                                <div class="col-12" align="center">
+                                    <br>
+                                    <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
+                                </div>
+                                <div class="col-12" align="center">
+                                    <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
+                                    <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
+                                        <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
+                                    </button>
+                                    <br><hr>
+                                    <div id="VistaPrevia" class="col-12" align="center"></div>
+                                </div>
                             </div>
-
                         </div>
                     </div>
-                    <div class="col-6 col-md-12"><br>
-                        <h6>Los campos con * son obligatorios</h6>
+                    <div class="row">
+                        <div class="col-12 col-md-12"><br>
+                            <h6>Los campos con * son obligatorios</h6>
+                        </div>
                     </div>
                 </fieldset>
             </form>
@@ -244,39 +141,36 @@
     </div>
 </div>
 <!--PANEL EDITAR DETALLE-->
-<div class="col-6 col-md-12">
-    <div class="panel panel-default d-none animated slideInRight" id="pnlDetalleEditarEntrega">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div class="col-md-6">
-                    <div class="cursor-hand" >Trabajos </div>
-                </div>
-                <div id="ImporteTotal" class="col-md-6" align="right">
-                    <h4 class="text-success">$ 0.0</h4>
-                </div>
+<div class="card d-none" id="pnlDetalleEditarEntrega">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4" align="left">
+                <legend>Trabajos</legend>
+            </div>
+            <div class="col-md-4" align="center" id="ImporteTotal">
+                <h4 class="text-success">$ 0.0</h4>
+            </div>
+            <div class="col-md-4" align="right">
+                <button type="button" class="btn btn-primary btn-sm" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus "></span></button>
             </div>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="col-md-12" align="right">
-                    <button type="button" class="btn btn-default" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                </div>
-                <div class="col-md-12 table-responsive " id="Conceptos" >
-
-                </div>
-            </fieldset>
+        <div class="row">
+            <div class="col-md-12 table-responsive " id="Conceptos" >
+            </div>
         </div>
     </div>
 </div>
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlSeleccionarTrabajosEditar" class="modal modalFull animated fadeInUp">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Seleccione un trabajo</h4>
+<div id="mdlSeleccionarTrabajosEditar" class="modal modal-fullscreen">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar Trabajos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body modal-bodyFull">
+            <div class="modal-body">
                 <fieldset>
                     <div class="col-md-12" align="right">
                         <div class="checkbox">
@@ -289,42 +183,9 @@
                 <div class="col-md-12" id="TrabajosXClienteIDXClasificacion">
                 </div>
             </div>
-            <div class="modal-footer modal-footerFull">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
-        </div>
-    </div>
-</div>
-<!--MODAL DE CONFIRMACION PARA BORRAR-->
-<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">
-            Deseas eliminar el registro?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<div id="mdlConfirmarEliminarDetalle" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">
-            Deseas eliminar el registro?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnConfirmarEliminarDetalle">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -336,43 +197,39 @@
     var verMovs = 'getMyRecords';
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
-
-    var pnlNuevaEntrega = $("#pnlNuevaEntrega");
-    var pnlEditarEntrega = $("#pnlEditarEntrega");
+    var pnlDatos = $("#pnlDatos");
     //nuevo
     var btnCancelar = $("#btnCancelar");
     var btnGuardar = $("#btnGuardar");
-    //editar
-    var btnCancelarModificar = $("#btnCancelarModificar");
-    var btnModificar = $("#btnModificarEntrega");
     var btnEliminar = $("#btnEliminar");
-    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
-    var mdlConfirmar = $("#mdlConfirmar");
-    //Controles de concluir
-    var tBtnConcluir = pnlNuevaEntrega.find("#Concluir");
-    var tBtnEditarConcluir = pnlEditarEntrega.find("#Concluir");
+    var btnCleanFilter = $("#btnCleanFilter");
+    var btnConcluir = $("#btnConcluir");
     var currentDate = new Date();
-    /***Detalle Nuevo****/
-    var pnlDetalleNuevaEntrega = $("#pnlDetalleNuevaEntrega");
-    var btnNuevoRenglonEntregaNuevo = pnlDetalleNuevaEntrega.find('#btnNuevoRenglonEntregaNuevo');
     /*Detalle Editar*/
     var pnlDetalleEditarEntrega = $("#pnlDetalleEditarEntrega");
     var btnNuevoRenglonEntregaEditar = pnlDetalleEditarEntrega.find("#btnNuevoRenglonEntregaEditar");
     var tblRegistrosXDetalleXEntrega = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
     var mdlSeleccionarTrabajosEditar = $("#mdlSeleccionarTrabajosEditar");
     var TrabajosXClienteIDXClasificacion = mdlSeleccionarTrabajosEditar.find("#TrabajosXClienteIDXClasificacion");
-    var btnImprimirReportesEditarEntrega = pnlEditarEntrega.find("#btnImprimirReportesEditarEntrega");
+    var btnImprimirReportesEditarEntrega = pnlDatos.find("#btnImprimirReportesEditarEntrega");
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
     var btnFichero = mdlReportesEditarEntrega.find("#btnFichero");
     var btnTarifario = mdlReportesEditarEntrega.find("#btnTarifario");
     var btnDesglose = mdlReportesEditarEntrega.find("#btnDesglose");
     var btnEntregaObra = mdlReportesEditarEntrega.find("#btnEntregaObra");
-    var mdlConfirmarEliminarDetalle = $("#mdlConfirmarEliminarDetalle");
-    var btnConfirmarEliminarDetalle = $("#btnConfirmarEliminarDetalle");
-    var ModificarArchivo = pnlEditarEntrega.find("#Adjunto");
-    var btnModificarArchivo = pnlEditarEntrega.find("#btnArchivo");
-    var ModificarVistaPrevia = pnlEditarEntrega.find("#VistaPrevia");
+    var ModificarArchivo = pnlDatos.find("#Adjunto");
+    var btnModificarArchivo = pnlDatos.find("#btnArchivo");
+    var ModificarVistaPrevia = pnlDatos.find("#VistaPrevia");
+
+    var nuevo = true;
+    var tblRegistrosX = $("#tblRegistros"), Registros;
+
     $(document).ready(function () {
+
+        btnCleanFilter.on("click", function () {
+            Registros.state.clear();
+            window.location.reload();
+        });
         btnVerMisMovimientos.on("click", function () {
             verMovs = 'getMyRecords';
             getRecords();
@@ -395,7 +252,7 @@
                 url: master_url + 'getConceptosXPOCXEntrega',
                 type: "POST",
                 data: {
-                    ID: pnlEditarEntrega.find("#ID").val()
+                    ID: pnlDatos.find("#ID").val()
                 }
             }).done(function (data, x, jq) {
                 window.open(data, '_blank');
@@ -416,7 +273,7 @@
                 url: master_url + 'getFicheroXEntrega',
                 type: "POST",
                 data: {
-                    ID: pnlEditarEntrega.find("#ID").val()
+                    ID: pnlDatos.find("#ID").val()
                 }
             }).done(function (data, x, jq) {
                 console.log(data);
@@ -437,7 +294,7 @@
                 url: master_url + 'getTarifarioXEntrega',
                 type: "POST",
                 data: {
-                    ID: pnlEditarEntrega.find("#ID").val()
+                    ID: pnlDatos.find("#ID").val()
                 }
             }).done(function (data, x, jq) {
                 window.open(data, '_blank');
@@ -457,7 +314,7 @@
                 url: master_url + 'getDesgloseXEntrega',
                 type: "POST",
                 data: {
-                    ID: pnlEditarEntrega.find("#ID").val()
+                    ID: pnlDatos.find("#ID").val()
                 }
             }).done(function (data, x, jq) {
                 window.open(data, '_blank');
@@ -468,221 +325,127 @@
                 HoldOn.close();
             });
         });
-        //Boton de nuevo en detalle nuevo
-        btnNuevoRenglonEntregaNuevo.on("click", function () {
-            onNotify('<span class="fa fa-exclamation fa-2x"></span>', 'DEBE DE GUARDAR EL MOVIMIENTO', 'danger');
-        });
+
         //Boton de neuvo en detalle editar
         btnNuevoRenglonEntregaEditar.on("click", function () {
-            var Cliente_ID = pnlEditarEntrega.find("#Cliente_ID").val();
-            if (Cliente_ID !== undefined && Cliente_ID !== '' && Cliente_ID > 0) {
-                getTrabajosControlByClienteXClasificacion(Cliente_ID);
+            if (!nuevo) {
+                var Cliente_ID = pnlDatos.find("#Cliente_ID").val();
+                if (Cliente_ID !== undefined && Cliente_ID !== '' && Cliente_ID > 0) {
+                    getTrabajosControlByClienteXClasificacion(Cliente_ID);
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
+                }
             } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN CLIENTE', 'danger');
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
             }
+
         });
-        //Evento clic del boton confirmar borrar
-        btnConfirmarEliminar.on("click", function () {
-            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
-                //Muestra el modal
-                mdlConfirmar.modal('show');
+
+        btnEliminar.on("click", function () {
+            if (temp !== 0 && temp !== undefined && temp > 0) {
+                swal({
+                    title: "Confirmar",
+                    text: "Deseas eliminar el registro?",
+                    icon: "warning",
+                    buttons: ["Cancelar", "Aceptar"]
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        HoldOn.open({
+                            theme: "sk-bounce",
+                            message: "POR FAVOR ESPERE..."
+                        });
+                        $.ajax({
+                            url: master_url + 'onEliminar',
+                            type: "POST",
+                            data: {
+                                ID: temp
+                            }
+                        }).done(function (data, x, jq) {
+                            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO ELIMINADO', 'success');
+                            menuTablero.removeClass("d-none");
+                            pnlDatos.addClass("d-none");
+                            pnlDetalleEditarEntrega.addClass("d-none");
+                            Registros.ajax.reload();
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            HoldOn.close();
+                        });
+                    }
+                });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
+
         });
-        btnEliminar.on("click", function () {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "CARGANDO DATOS..."
-            });
-            $.ajax({
-                url: master_url + 'onEliminar',
-                type: "POST",
-                data: {
-                    ID: temp
-                }
-            }).done(function (data, x, jq) {
-                mdlConfirmar.modal('d-none');
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ENTREGA ELIMINADA', 'danger');
-                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-                pnlEditarEntrega.addClass("d-none");
-                pnlDetalleEditarEntrega.addClass("d-none");
-                getRecords();
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-        });
-        btnConfirmarEliminarDetalle.click(function () {
-            HoldOn.open({
-                theme: 'sk-bounce',
-                message: 'ELIMINANDO...'
-            });
-            $.ajax({
-                url: master_url + 'onEliminarTrabajoDetalle',
-                type: "POST",
-                data: {
-                    ID: tempDetalle
-                }
-            }).done(function (data, x, jq) {
-                getDetalleByID(IdMovimiento);
-                mdlConfirmarEliminarDetalle.modal('d-none');
-            }).fail(function (x, y, z) {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
-            }).always(function () {
-                HoldOn.close();
-            });
-        });
-        tBtnEditarConcluir.on("click", function () {
-            if (!$(this).is(':checked')) {
-                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                btnModificar.removeClass('d-none');
-            }
-        });
+
         btnNuevo.on('click', function () {
             $.each(tblRegistrosXDetalleXEntrega.find("tbody tr"), function () {
                 $(this).remove();
             });
-            pnlNuevaEntrega.removeClass('d-none');
-            pnlDetalleNuevaEntrega.removeClass('d-none');
+            pnlDatos.removeClass('d-none');
+            pnlDetalleEditarEntrega.removeClass('d-none');
             menuTablero.addClass('d-none');
-            pnlNuevaEntrega.find("input").val("");
-            pnlNuevaEntrega.find("select").select2("val", "");
-            pnlNuevaEntrega.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlNuevaEntrega.find("#Movimiento").val("Entrega");
-            pnlNuevaEntrega.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
+            pnlDatos.find("input").val("");
+            $.each(pnlDatos.find("select"), function (k, v) {
+                pnlDatos.find("select")[k].selectize.clear(true);
+            });
+            pnlDatos.find(".nav-tabs a").removeClass("active show");
+            $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
+            pnlDatos.find("#Datos").addClass("active show");
+            pnlDatos.find("#Datos2").removeClass("active show");
+            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            nuevo = true;
+            $(':input:text:enabled:visible:first').focus();
         });
         btnCancelar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-            pnlNuevaEntrega.addClass("d-none");
-            pnlDetalleNuevaEntrega.addClass('d-none');
-           
+            menuTablero.removeClass("d-none");
+            pnlDatos.addClass("d-none");
+            pnlDetalleEditarEntrega.addClass('d-none');
         });
-        btnCancelarModificar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-            pnlEditarEntrega.addClass("d-none");
-            pnlDetalleEditarEntrega.addClass("d-none");
-            
-        });
-        btnGuardar.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmNuevo').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Movimiento: 'required',
-                    FechaCreacion: 'required',
-                    Cliente_ID: 'required',
-                    NoEntrega: 'required'
-                            //CentroCostos_ID: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Si es verdadero que hacer
-            if (pnlNuevaEntrega.find('#frmNuevo').valid()) {
-                var frm = new FormData(pnlNuevaEntrega.find("#frmNuevo")[0]);
-                if (tBtnConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
+
+        btnGuardar.click(function () {
+            isValid('pnlDatos');
+            if (valido) {
+                var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
+
+                if (!nuevo) {
+                    frm.append('Importe', ImporteTotalGlobal);
+                    $.ajax({
+                        url: master_url + 'onModificar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        Registros.ajax.reload();
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
                 } else {
-                    frm.append('Estatus', 'Borrador');
+                    frm.append('Importe', 0);
+                    $.ajax({
+                        url: master_url + 'onAgregar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        Registros.ajax.reload();
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
+                        nuevo = false;
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
                 }
-                frm.append('Importe', 0);
-                /*DESCOMENTAR PARA AGREGAR*/
-                $.ajax({
-                    url: master_url + 'onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVA ENTREGA', 'success');
-//Funcion que regarga el panel de editar con el nuevo registro
-                    despuesDeGuardar(data);
-                }).fail(function (x, y, z)
-                {
-                    console.log(x, y, z);
-                }).always(function ()
-                {
-                    HoldOn.close();
-                });
-            }
-        });
-        btnModificar.on("click", function () {
-            $.validator.setDefaults({
-                ignore: []
-            });
-            $('#frmEditar').validate({
-                errorElement: 'span',
-                errorClass: 'help-block',
-                rules: {
-                    Movimiento: 'required',
-                    FechaCreacion: 'required',
-                    Cliente_ID: 'required',
-                    NoEntrega: 'required'
-                            // CentroCostos_ID: 'required'
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            //Regresa si es valido para los select2
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            //Si es verdadero que hacer
-            if ($('#frmEditar').valid()) {
-                var frm = new FormData(pnlEditarEntrega.find("#frmEditar")[0]);
-                //  Para los checkbox
-                if (tBtnEditarConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
-                } else {
-                    frm.append('Estatus', 'Borrador');
-                }
-                frm.append('Importe', ImporteTotalGlobal);
-                $.ajax({
-                    url: master_url + 'onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    getRecords();
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
-                    if (tBtnEditarConcluir.is(':checked')) {
-                        btnModificar.addClass('d-none');
-                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                        btnConfirmarEliminar.attr("disabled", true);
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
-                        pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                        pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                    } else {
-                        btnConfirmarEliminar.attr("disabled", false);
-                        $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
-                        pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
-                        pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
-                    }
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', '* DEBE DE COMPLETAR LOS CAMPOS REQUERIDOS *', 'danger');
             }
         });
         btnModificarArchivo.on("click", function () {
@@ -732,151 +495,58 @@
         });
         getClientes();
         getRecords();
-        //getCC();
     });
     IdMovimiento = 0;
     function getRecords() {
-        temp = 0;
         HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
         });
-        $.ajax({
-            url: master_url + verMovs,
-            type: "POST",
-            dataType: "JSON"
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                $("#tblRegistros").html(getTable('tblEntregas', data));
-                $('#tblEntregas tfoot th').each(function () {
-                    var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
-                });
-                var tblSelected = $('#tblEntregas').DataTable(tableOptions);
-                $('#tblEntregas tbody').on('click', 'tr', function () {
-                    $("#tblEntregas").find("tr").removeClass("success");
-                    $("#tblEntregas").find("tr").removeClass("warning");
-                    //                console.log(this)
-                    var id = this.id;
-                    var index = $.inArray(id, selected);
-                    if (index === -1) {
-                        selected.push(id);
-                    } else {
-                        selected.splice(index, 1);
-                    }
-                    $(this).addClass('success');
-                    var dtm = tblSelected.row(this).data();
-                    temp = parseInt(dtm[0]);
-                    IdMovimiento = parseInt(dtm[0]);
-                    //Abre al hacer click el movimiento para editar
-                    if (temp !== 0 && temp !== undefined && temp > 0) {
-                        HoldOn.open({
-                            theme: "sk-bounce",
-                            message: "CARGANDO DATOS..."
-                        });
-                        $.ajax({
-                            url: master_url + 'getEntregaByID',
-                            type: "POST",
-                            dataType: "JSON",
-                            data: {
-                                ID: temp
-                            }
-                        }).done(function (data, x, jq) {
-                            pnlEditarEntrega.find("input").val("");
-                            pnlEditarEntrega.find("input").val("");
-                            pnlEditarEntrega.find(".nav-tabs li").removeClass("active");
-                            $(pnlEditarEntrega.find(".nav-tabs li")[0]).addClass("active");
-                            pnlEditarEntrega.find("#Datos").addClass("active in");
-                            pnlEditarEntrega.find("#Datos2").removeClass("active in");
-                            var entrega = data[0];
-                            pnlEditarEntrega.find("#ID").val(entrega.ID);
-                            pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
-                            pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
-                            pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                            //pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
-                            pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
-                            pnlEditarEntrega.find("#Importe").val(entrega.Importe);
-                            pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
-                            pnlEditarEntrega.find("#Usuario_ID").val(entrega.Usuario_ID);
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblRegistros')) {
+            tblRegistrosX.DataTable().destroy();
+        }
+        Registros = tblRegistrosX.DataTable({
+            "dom": 'Bfrtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + verMovs,
+                "dataType": "json",
+                "dataSrc": ""
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Movimiento"},
+                {"data": "Entrega"},
+                {"data": "Estatus"},
+                {"data": "Importe"},
+                {"data": "Cliente"},
+                {"data": "Usuario"}
 
-                            if (entrega.Adjunto !== null && entrega.Adjunto !== undefined && entrega.Adjunto !== '') {
-                                var ext = getExt(entrega.Adjunto);
-                                if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                                    pnlEditarEntrega.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + entrega.Adjunto + '" class ="img-responsive" width="600px" />');
-                                }
-                                if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                                    pnlEditarEntrega.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + entrega.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-                                }
-                                if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                                    pnlEditarEntrega.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
-                                }
-                            } else {
-                                pnlEditarEntrega.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
-                            }
-
-                            menuTablero.addClass("d-none");
-                            pnlEditarEntrega.removeClass("d-none");
-                            pnlDetalleEditarEntrega.removeClass("d-none");
-                            getDetalleByID(entrega.ID);
-                            //Control de estatus
-                            if (entrega.Estatus === 'Concluido') {
-                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
-                                tBtnEditarConcluir.prop('checked', true);
-                                btnModificar.addClass('d-none');
-                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                                btnConfirmarEliminar.attr("disabled", true);
-                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                                pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                            } else if (entrega.Estatus === 'Cancelado') {
-                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                                tBtnEditarConcluir.addClass('d-none');
-                                btnModificar.addClass('d-none');
-                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                                btnConfirmarEliminar.attr("disabled", true);
-                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                                pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                            } else {
-                                $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
-                                tBtnEditarConcluir.prop('checked', false);
-                                btnModificar.removeClass('d-none');
-                                $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                                btnConfirmarEliminar.attr("disabled", false);
-                                pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
-                                pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
-                            }
-                        }).fail(function (x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function () {
-                            HoldOn.close();
-                        });
-                    } else {
-                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-                    }
-                });
-                // Apply the search
-                tblSelected.columns().every(function () {
-                    var that = this;
-                    $('input', this.footer()).on('keyup change', function () {
-                        if (that.search() !== this.value) {
-                            that.search(this.value).draw();
-                        }
-                    });
-                });
-
-            }
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
+            ],
+            language: lang,
+            "autoWidth": true,
+            "bStateSave": true,
+            "colReorder": true,
+            "displayLength": 12,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollCollapse": false,
+            keys: true,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ]
         });
-    }
-    /*Para despues de insertar pro primera vez se cargue el panel de editar*/
-    function despuesDeGuardar(IDTrabajo) {
-        pnlNuevaEntrega.addClass("d-none");
-        pnlDetalleNuevaEntrega.addClass('d-none');
-        temp = IDTrabajo;
-        //Abre al hacer click el movimiento para editar
-        if (temp !== 0 && temp !== undefined && temp > 0) {
+        $('#tblRegistros_filter input[type=search]').focus();
+
+        tblRegistrosX.find('tbody').on('click', 'tr', function () {
+            tblRegistrosX.find("tbody tr").removeClass("success");
+            $(this).addClass("success");
+            nuevo = false;
+            var dtm = Registros.row(this).data();
+            temp = parseInt(dtm.ID);
+            IdMovimiento = parseInt(dtm.ID);
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "CARGANDO DATOS..."
@@ -889,78 +559,94 @@
                     ID: temp
                 }
             }).done(function (data, x, jq) {
-                pnlEditarEntrega.find("input").val("");
+                pnlDatos.find("input").val("");
+                pnlDatos.find("input").val("");
+                pnlDatos.find(".nav-tabs li").removeClass("active show");
+                $(pnlDatos.find(".nav-tabs li")[0]).addClass("active show");
+                pnlDatos.find("#Datos").addClass("active show");
+                pnlDatos.find("#Datos2").removeClass("active show");
                 var entrega = data[0];
-                pnlEditarEntrega.find("#ID").val(entrega.ID);
-                pnlEditarEntrega.find("#Movimiento").val(entrega.Movimiento);
-                pnlEditarEntrega.find("#FechaCreacion").val(entrega.FechaCreacion);
-                pnlEditarEntrega.find("#Cliente_ID").select2("val", entrega.Cliente_ID);
-                //pnlEditarEntrega.find("#CentroCostos_ID").select2("val", entrega.CentroCostos_ID);
-                pnlEditarEntrega.find("#NoEntrega").val(entrega.NoEntrega);
-                pnlEditarEntrega.find("#Importe").val(entrega.Importe);
-                pnlEditarEntrega.find("#Estatus").val(entrega.Estatus);
-                pnlEditarEntrega.find("#Usuario_ID").val(entrega.Usuario_ID);
-                pnlEditarEntrega.removeClass("d-none");
-                pnlDetalleEditarEntrega.removeClass("d-none");
-                getDetalleByID(entrega.ID);
-                //Control de estatus
-                if (entrega.Estatus === 'Concluido') {
-                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
-                    tBtnEditarConcluir.prop('checked', true);
-                    btnModificar.addClass('d-none');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    btnConfirmarEliminar.attr("disabled", true);
-                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                } else if (entrega.Estatus === 'Cancelado') {
-                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                    tBtnEditarConcluir.addClass('d-none');
-                    btnModificar.addClass('d-none');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    btnConfirmarEliminar.attr("disabled", true);
-                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
+
+                $.each(data[0], function (k, v) {
+
+                    if (v !== null && v !== '' && v !== 'null') {
+                        if (pnlDatos.find("[name='" + k + "']").is('select')) {
+                            pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
+                        } else {
+                            if (k !== 'Adjunto') {
+                                pnlDatos.find("[name='" + k + "']").val(v);
+                            }
+                        }
+                    }
+                });
+
+                if (entrega.Adjunto !== null && entrega.Adjunto !== undefined && entrega.Adjunto !== '') {
+                    var ext = getExt(entrega.Adjunto);
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-md-8"></div><div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + entrega.Adjunto + '" class ="img-responsive" width="600px" />');
+                    }
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-md-8"></div> <div class="col-md-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + entrega.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                    }
+                    if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                        pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                    }
                 } else {
-                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
-                    tBtnEditarConcluir.prop('checked', false);
-                    btnModificar.removeClass('d-none');
-                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                    btnConfirmarEliminar.attr("disabled", false);
-                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
-                    pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
+                    pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                 }
+
+                menuTablero.addClass("d-none");
+                pnlDatos.removeClass("d-none");
+                pnlDetalleEditarEntrega.removeClass("d-none");
+                //getDetalleByID(entrega.ID);
+                //Control de estatus
+//                if (entrega.Estatus === 'Concluido') {
+//                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
+//                    tBtnEditarConcluir.prop('checked', true);
+//                    btnModificar.addClass('d-none');
+//                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+//                    btnConfirmarEliminar.attr("disabled", true);
+//                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+//                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
+//                } else if (entrega.Estatus === 'Cancelado') {
+//                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
+//                    tBtnEditarConcluir.addClass('d-none');
+//                    btnModificar.addClass('d-none');
+//                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+//                    btnConfirmarEliminar.attr("disabled", true);
+//                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
+//                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
+//                } else {
+//                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
+//                    tBtnEditarConcluir.prop('checked', false);
+//                    btnModificar.removeClass('d-none');
+//                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+//                    btnConfirmarEliminar.attr("disabled", false);
+//                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
+//                    pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
+//                }
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
                 HoldOn.close();
             });
-        } else {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-        }
+        });
+        HoldOn.close();
     }
     /*Traer catálogos para el encabezado*/
     function getClientes() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getClientes',
             type: "POST", dataType: "JSON"
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
+                pnlDatos.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
             });
-            pnlNuevaEntrega.find("#Cliente_ID").html(options);
-            pnlEditarEntrega.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
     }
-
     /*Trae los movimientos para el detalle*/
     function getTrabajosControlByClienteXClasificacion(Cliente_ID) {
         temp = 0;
@@ -982,7 +668,7 @@
                 $("#TrabajosXClienteIDXClasificacion").html(getTable('tblTrabajos', data));
                 $('#TrabajosXClienteIDXClasificacion tfoot th').each(function () {
                     var title = $(this).text();
-                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                    $(this).html('<div class="col-md-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptions);
                 $('#tblTrabajos tbody').on('click', 'tr', function () {
@@ -1031,7 +717,7 @@
                                 if (data[0] !== undefined && data.length > 0) {
                                     var dtm = data[0];
                                     var frm = new FormData();
-                                    frm.append('Entrega_ID', pnlEditarEntrega.find("#ID").val());
+                                    frm.append('Entrega_ID', pnlDatos.find("#ID").val());
                                     frm.append('Trabajo_ID', dtm.ID);
                                     frm.append('Renglon', pnlDetalleEditarEntrega.find("table tr").length);
                                     $.ajax({
@@ -1042,7 +728,7 @@
                                         processData: false,
                                         data: frm
                                     }).done(function (data, x, jq) {
-                                        getDetalleByID(pnlEditarEntrega.find("#ID").val());
+                                        getDetalleByID(pnlDatos.find("#ID").val());
                                     }).fail(function (x, y, z) {
                                         console.log(x, y, z);
                                     }).always(function () {
@@ -1053,14 +739,14 @@
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL TRABAJO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {
-                                mdlSeleccionarTrabajosEditar.modal('d-none');
+                                mdlSeleccionarTrabajosEditar.modal('hide');
                                 HoldOn.close();
                                 console.log(x, y, z);
                             }).always(function () {
                                 HoldOn.close();
                             });
                             if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
-                                mdlSeleccionarTrabajosEditar.modal('d-none');
+                                mdlSeleccionarTrabajosEditar.modal('hide');
                             }
                         }
                     }).fail(function (x, y, z) {
@@ -1070,7 +756,7 @@
                     });
                 });
             } else {
-                mdlSeleccionarTrabajosEditar.modal('d-none');
+                mdlSeleccionarTrabajosEditar.modal('hide');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS CONCLUIDOS O AUTORIZADOS PARA ESTE CLIENTE', 'danger');
                 HoldOn.close();
             }
@@ -1094,7 +780,6 @@
     /*PANEL EDITAR DETALLE */
     var tempDetalle = 0;
     function getDetalleByID(IDX) {
-
         var ImporteTotal = pnlDetalleEditarEntrega.find("#ImporteTotal");
         var total = 0.0;
         $.ajax({
@@ -1106,7 +791,6 @@
             }
         }).done(function (data, x, jq) {
             console.log(data);
-
             if (data.length > 0) {
                 pnlDetalleEditarEntrega.find("#Conceptos").html(getTable('tblRegistrosXDetalleXEntrega', data));
                 var thead = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega thead th');
@@ -1141,8 +825,6 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-
-
                 /*Modificamos el importe*/
                 ImporteTotal.html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ ' + $.number(total, 2, '.', ', ') + '</span>');
                 var tblSelected = pnlDetalleEditarEntrega.find('#tblRegistrosXDetalleXEntrega').DataTable(tableOptionsDetalle);
@@ -1189,11 +871,32 @@
     }
 
     function onEliminarDetalleEntrega(IDC) {
-
-        tempDetalle = IDC;
-        mdlConfirmarEliminarDetalle.modal('show');
+        if (IDC !== 0 && IDC !== undefined && IDC > 0) {
+            swal({
+                title: "Confirmar",
+                text: "Deseas eliminar el registro?",
+                icon: "warning",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: master_url + 'onEliminarTrabajoDetalle',
+                        type: "POST",
+                        data: {
+                            ID: IDC
+                        }
+                    }).done(function (data, x, jq) {
+                        getDetalleByID(IdMovimiento);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            });
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+        }
     }
-
-
     var ImporteTotalGlobal = 0;
 </script>

@@ -179,34 +179,32 @@
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active show" id="pConceptos">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12 d-none">
-                                        <input type="text" id="IDConcepto" name="IDConcepto" class="form-control form-control-sm">
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group label-static">
-                                            <label for="Clave" class="control-label">Clave</label>
-                                            <input type="text" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
-                                        </div>
-                                    </div>
+                            <div class="col-12 d-none">
+                                <input type="text" id="IDConcepto" name="IDConcepto" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
+                                    <input type="text" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-8">
                                 <div class="form-group label-static">
                                     <label for="Descripcion" class="control-label">Descripción</label>
                                     <textarea type="text" id="Descripcion" name="Descripcion" class="form-control form-control-sm" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                                     </textarea>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
                             <div class="col-4">
                                 <div class="form-group label-static">
                                     <label for="Costo" class="control-label">Costo</label>
-                                    <input type="number" id="Costo" name="Costo" class="form-control form-control-sm" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                                    <input type="text" id="Costo" name="Costo" class="form-control form-control-sm numbersOnly" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                                 </div>
                             </div>
-
-                            <div class="col-6 col-3">
+                            <div class="col-4">
                                 <div class="form-group label-static">
                                     <label for="Moneda" class="control-label">Moneda</label>
                                     <select id="Moneda" name="Moneda" class="form-control form-control-sm" required="">
@@ -222,6 +220,8 @@
                                     <input type="text" id="Unidad" name="Unidad" class="form-control form-control-sm" required="" placeholder="EJ: PZA">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-4">
                                 <div class="form-group label-static">
                                     <label for="Categoria" class="control-label">Categoría</label>
@@ -248,7 +248,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <center><h3>Datos para fichero</h3></center>
+                            <center><h5>Datos para fichero</h5></center>
                             <hr>
                         </div>
                         <DIV class="row">
@@ -267,7 +267,7 @@
                             <div class="col-4">
                                 <div class="form-group label-static">
                                     <label for="Material" class="control-label">Material</label>
-                                    <input type="number" id="Material" name="Material" class="form-control form-control-sm">
+                                    <input type="text" id="Material" name="Material" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="col-4">
@@ -279,7 +279,7 @@
                             <div class="col-4">
                                 <div class="form-group label-static">
                                     <label for="Familia" class="control-label">Familia</label>
-                                    <input type="number" id="Familia" name="Familia" class="form-control form-control-sm">
+                                    <input type="text" id="Familia" name="Familia" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="col-4">
@@ -422,7 +422,7 @@
                             <input type="number"  name="Costo" class="form-control form-control-sm" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-4">
                         <div class="form-group label-static">
                             <label for="Moneda" class="control-label">Moneda</label>
                             <select  name="Moneda" class="form-control form-control-sm" required="">
@@ -464,7 +464,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <center><h3>Datos para fichero</h3></center>
+                        <center><h5>Datos para fichero</h5></center>
                         <hr>
                     </div>
                     <div class="col-md-4">
@@ -482,7 +482,7 @@
                     <div class="col-md-4">
                         <div class="form-group label-static">
                             <label for="Material" class="control-label">Material</label>
-                            <input type="number"  name="Material" class="form-control form-control-sm">
+                            <input type="text"  name="Material" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -494,7 +494,7 @@
                     <div class="col-md-4">
                         <div class="form-group label-static">
                             <label for="Familia" class="control-label">Familia</label>
-                            <input type="number"  name="Familia" class="form-control form-control-sm">
+                            <input type="text"  name="Familia" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -553,7 +553,7 @@
     $(document).ready(function () {
         btnGuardarSubSubCategoria.click(function () {
             var frm = new FormData();
-            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Preciario_ID', tempID);
             frm.append('Clave', mdlNuevoConcepto.find("#pSubSubCategorias").find("[name='Clave']").val());
             frm.append('Descripcion', mdlNuevoConcepto.find("#pSubSubCategorias").find("#Descripcion").val());
             frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#pSubSubCategorias").find("[name='PreciarioCategoria_ID']").val());
@@ -582,7 +582,7 @@
         });
         btnGuardarSubCategoria.click(function () {
             var frm = new FormData();
-            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Preciario_ID', tempID);
             frm.append('Clave', mdlNuevoConcepto.find("#pSubCategorias").find("[name='Clave']").val());
             frm.append('Descripcion', mdlNuevoConcepto.find("#pSubCategorias").find("#Descripcion").val());
             frm.append('PreciarioCategoria_ID', mdlNuevoConcepto.find("#pSubCategorias").find("[name='PreciarioCategoria_ID']").val());
@@ -608,7 +608,7 @@
         });
         btnGuardarCategoria.click(function () {
             var frm = new FormData();
-            frm.append('Preciario_ID', mdlNuevoConcepto.find("#ID").val());
+            frm.append('Preciario_ID', tempID);
             frm.append('Clave', mdlNuevoConcepto.find("#pCategorias").find("[name='Clave']").val());
             frm.append('Descripcion', mdlNuevoConcepto.find("#pCategorias").find("#Descripcion").val());
             $.ajax({
@@ -727,47 +727,39 @@
             });
         });
         btnGuardarConcepto.click(function () {
-            if (Clave !== undefined && Clave !== null && Clave !== '' && Clave.length > 0 &&
-                    Descripcion !== undefined && Descripcion !== null && Descripcion !== '' && Descripcion.length > 0) {
-                var frm = new FormData();
-                frm.append('ID', pnlDatos.find("#ID").val());
-                frm.append('Clave', mdlNuevoConcepto.find("#pConceptos").find("[name='Clave']").val());
-                frm.append('Descripcion', mdlNuevoConcepto.find("#pConceptos").find("#Descripcion").val());
-                frm.append('Costo', mdlNuevoConcepto.find("#pConceptos").find("#Costo").val());
-                frm.append('Moneda', mdlNuevoConcepto.find("#pConceptos").find("#Moneda").val());
-                frm.append('Unidad', mdlNuevoConcepto.find("#pConceptos").find("#Unidad").val());
+            var frm = new FormData();
+            frm.append('ID', tempID);
+            frm.append('Clave', mdlNuevoConcepto.find("#pConceptos").find("[name='Clave']").val());
+            frm.append('Descripcion', mdlNuevoConcepto.find("#pConceptos").find("#Descripcion").val());
+            frm.append('Costo', mdlNuevoConcepto.find("#pConceptos").find("#Costo").val());
+            frm.append('Moneda', mdlNuevoConcepto.find("#pConceptos").find("#Moneda").val());
+            frm.append('Unidad', mdlNuevoConcepto.find("#pConceptos").find("#Unidad").val());
 
-                frm.append('Contrato', mdlNuevoConcepto.find("#pConceptos").find("#Contrato").val());
-                frm.append('Posicion', mdlNuevoConcepto.find("#pConceptos").find("#Posicion").val());
-                frm.append('Material', mdlNuevoConcepto.find("#pConceptos").find("#Material").val());
-                frm.append('TextoMaterial', mdlNuevoConcepto.find("#pConceptos").find("#TextoMaterial").val());
-                frm.append('Familia', mdlNuevoConcepto.find("#pConceptos").find("#Familia").val());
-                frm.append('UnidadFichero', mdlNuevoConcepto.find("#pConceptos").find("#UnidadFichero").val());
+            frm.append('Contrato', mdlNuevoConcepto.find("#pConceptos").find("#Contrato").val());
+            frm.append('Posicion', mdlNuevoConcepto.find("#pConceptos").find("#Posicion").val());
+            frm.append('Material', mdlNuevoConcepto.find("#pConceptos").find("#Material").val());
+            frm.append('TextoMaterial', mdlNuevoConcepto.find("#pConceptos").find("#TextoMaterial").val());
+            frm.append('Familia', mdlNuevoConcepto.find("#pConceptos").find("#Familia").val());
+            frm.append('UnidadFichero', mdlNuevoConcepto.find("#pConceptos").find("#UnidadFichero").val());
 
-                frm.append('Categoria', mdlNuevoConcepto.find("#pConceptos").find("#Categoria").val());
-                frm.append('SubCategoria', mdlNuevoConcepto.find("#pConceptos").find("#SubCategoria").val());
-                frm.append('SubSubCategoria', mdlNuevoConcepto.find("#pConceptos").find("#SubSubCategoria").val());
-                $.ajax({
-                    url: master_url + 'onAgregarConcepto',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA AGREGADO UN CONCEPTO', 'success');
-                    console.log(data, x, jq);
-                    btnRefrescarConceptos.trigger('click');
-                    mdlNuevoConcepto.modal("hide");
-                    HoldOn.close();
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-times fa-lg"></span>', 'ALGUNOS CAMPOS SON REQUERIDOS', 'danger');
-            }
+            frm.append('Categoria', mdlNuevoConcepto.find("#pConceptos").find("#Categoria").val());
+            frm.append('SubCategoria', mdlNuevoConcepto.find("#pConceptos").find("#SubCategoria").val());
+            frm.append('SubSubCategoria', mdlNuevoConcepto.find("#pConceptos").find("#SubSubCategoria").val());
+            $.ajax({
+                url: master_url + 'onAgregarConcepto',
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: frm
+            }).done(function (data, x, jq) {
+                PreciarioEspecifico.ajax.reload();
+                mdlNuevoConcepto.modal("hide");
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
         });
         btnNuevoConcepto.click(function () {
             mdlNuevoConcepto.find(".nav-tabs a").removeClass("active show");
@@ -1108,6 +1100,10 @@
         });
 
         tblPreciarios.find('tbody').on('click', 'tr', function () {
+            HoldOn.open({
+                theme: 'sk-cube',
+                message: 'CARGANDO...'
+            });
             tblPreciarios.find("tbody tr").removeClass("success");
             $(this).addClass("success");
             var dtm = Preciarios.row(this).data();
@@ -1172,8 +1168,10 @@
             }
         }).done(function (data, x, jq) {
             mdlNuevoConcepto.find("#SubSubCategoria")[0].selectize.clear(true);
+            mdlEditarConcepto.find("[name='SubSubCategoria']")[0].selectize.clear(true);
             $.each(data, function (k, v) {
                 mdlNuevoConcepto.find("#SubSubCategoria")[0].selectize.addOption({text: v.SubSubCategoria, value: v.ID});
+                mdlEditarConcepto.find("[name='SubSubCategoria']")[0].selectize.addOption({text: v.SubSubCategoria, value: v.ID});
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -1183,10 +1181,7 @@
     var tblPreciarioEspecifico = $('#tblPreciarioEspecifico');
     var PreciarioEspecifico;
     function getConceptosXPreciarioID(IDX) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
+
         temp = 0;
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblPreciarioEspecifico')) {
@@ -1223,9 +1218,12 @@
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
-            ]
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
         });
-        HoldOn.close();
+
     }
     function onEliminarConceptoPreciario(evt, IDC) {
         swal({
