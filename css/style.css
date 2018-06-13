@@ -21,16 +21,16 @@ legend {
 
 /*Fondo aplicacion*/
 html{
-    background-color: #DCE1E5;
+    background-color: rgb(241, 241, 241);
 }
 
 body{
-    background-color: #DCE1E5;
-/*    line-height: 1.4;*/
+    background-color: rgb(241, 241, 241);
+    line-height: 1.4;
     font-size: 0.8875rem;
 }
 .card-body {
-    background-color: #DCE1E5;
+    background-color: rgb(241, 241, 241);
 }
 
 /*Formularios*/

@@ -70,7 +70,8 @@
                             <span class="fa fa-arrow-left" ></span>
                         </button>
                         <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarEntrega"><span class="fa fa-print "></span> IMPRIMIR</button>
-                        <button type="button" class="btn btn-raised btn-success btn-sm" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                        <button type="button" class="btn btn-raised btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
                         <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash "></span> ELIMINAR</button>
                         <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                     </div>
@@ -81,51 +82,53 @@
                         <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Adjunto</a></li>
                     </ul>
                     <br>
-                    <div class="tab-content">
-                        <!-- PANEL DE DATOS GENERALES-->
-                        <div role="tabpanel" class="tab-pane fade active show" id="Datos">
-                            <div class="row">
-                                <div class=" col-2 col-md-2">
-                                    <div class="form-group label-static">
-                                        <label for="ID" class="control-label">ID</label>
-                                        <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
+                    <div id="CapturaDatos">
+                        <div class="tab-content">
+                            <!-- PANEL DE DATOS GENERALES-->
+                            <div role="tabpanel" class="tab-pane fade active show" id="Datos">
+                                <div class="row">
+                                    <div class=" col-2 col-md-2">
+                                        <div class="form-group label-static">
+                                            <label for="ID" class="control-label">ID</label>
+                                            <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-2 col-md-2">
-                                    <div class="form-group label-static">
-                                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    <div class="col-2 col-md-2">
+                                        <div class="form-group label-static">
+                                            <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-2 col-md-4">
-                                    <div class="form-group label-static">
-                                        <label for="NoEntrega" class="control-label">Entrega*</label>
-                                        <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control form-control-sm" placeholder="" required="">
+                                    <div class="col-2 col-md-4">
+                                        <div class="form-group label-static">
+                                            <label for="NoEntrega" class="control-label">Entrega*</label>
+                                            <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control form-control-sm" placeholder="" required="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-4 col-md-4">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Cliente*</label>
-                                        <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
-                                            <option value=""></option>
-                                        </select>
+                                    <div class="col-4 col-md-4">
+                                        <div class="form-group label-static">
+                                            <label for="" class="control-label">Cliente*</label>
+                                            <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="row">
-                                <div class="col-12" align="center">
-                                    <br>
-                                    <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
-                                </div>
-                                <div class="col-12" align="center">
-                                    <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
-                                    <button type="button" class="btn btn-info" id="btnArchivo" name="btnArchivo">
-                                        <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
-                                    </button>
-                                    <br><hr>
-                                    <div id="VistaPrevia" class="col-12" align="center"></div>
+                            <div role="tabpanel" class="tab-pane fade" id="Datos2">
+                                <div class="row">
+                                    <div class="col-12" align="center">
+                                        <br>
+                                        <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
+                                    </div>
+                                    <div class="col-12" align="center">
+                                        <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
+                                        <button type="button" class="btn btn-info" id="btnArchivo" name="btnArchivo">
+                                            <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
+                                        </button>
+                                        <br><hr>
+                                        <div id="VistaPrevia" class="col-12" align="center"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +139,7 @@
     </div>
 </div>
 <!--PANEL EDITAR DETALLE-->
-<div class="card d-none" id="pnlDetalleEditarEntrega">
+<div class="card border-0 d-none" id="pnlDetalleEditarEntrega">
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
@@ -250,6 +253,7 @@
     var btnEliminar = $("#btnEliminar");
     var btnCleanFilter = $("#btnCleanFilter");
     var btnConcluir = $("#btnConcluir");
+    var btnInconcluir = $("#btnInconcluir");
     var currentDate = new Date();
     var pnlDetalleEditarEntrega = $("#pnlDetalleEditarEntrega");
     var btnNuevoRenglonEntregaEditar = pnlDetalleEditarEntrega.find("#btnNuevoRenglonEntregaEditar");
@@ -265,6 +269,7 @@
     var btnArchivo = pnlDatos.find("#btnArchivo");
     var VistaPrevia = pnlDatos.find("#VistaPrevia");
     var nuevo = true;
+    var Estatus;
     var tblRegistrosX = $("#tblRegistros"), Registros;
     var tblRegistrosDetalleX = $("#tblRegistrosDetalle"), RegistrosDetalle;
     var tblRegistrosTrabajosX = $("#tblRegistrosTrabajos"), RegistrosTrabajos;
@@ -379,7 +384,7 @@
 
         });
         btnEliminar.on("click", function () {
-            if (temp !== 0 && temp !== undefined && temp > 0) {
+            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
                 swal({
                     title: "Confirmar",
                     text: "Deseas eliminar el registro?",
@@ -395,7 +400,7 @@
                             url: master_url + 'onEliminar',
                             type: "POST",
                             data: {
-                                ID: temp
+                                ID: IdMovimiento
                             }
                         }).done(function (data, x, jq) {
                             menuTablero.removeClass("d-none");
@@ -428,6 +433,12 @@
             pnlDatos.find("#Datos").addClass("active show");
             pnlDatos.find("#Datos2").removeClass("active show");
             pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            btnGuardar.removeClass('d-none');
+            btnEliminar.removeClass('d-none');
+            btnConcluir.addClass('d-none');
+            btnInconcluir.addClass('d-none');
+            btnNuevoRenglonEntregaEditar.removeClass('d-none');
+            enableFields();
             if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
                 RegistrosDetalle.destroy();
                 pnlDetalleEditarEntrega.find("#RegistrosDetalle").html("");
@@ -454,7 +465,6 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        console.log(data);
                         Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
                     }).fail(function (x, y, z) {
@@ -477,6 +487,7 @@
                         nuevo = false;
                         IdMovimiento = parseInt(data);
                         pnlDatos.find("#ID").val(IdMovimiento);
+                        btnConcluir.removeClass('d-none');
                         getDetalleByID(IdMovimiento);
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
@@ -486,6 +497,80 @@
             } else {
                 onNotify('<span class="fa fa-times fa-lg"></span>', '* DEBE DE COMPLETAR LOS CAMPOS REQUERIDOS *', 'danger');
             }
+        });
+        btnConcluir.on("click", function () {
+            swal({
+                title: "Confirmar",
+                text: "Estas seguro?",
+                icon: "info",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "POR FAVOR ESPERE..."
+                    });
+                    $.ajax({
+                        url: master_url + 'onModificarEstatus',
+                        type: "POST",
+                        data: {
+                            ID: IdMovimiento,
+                            Estatus: 'Concluido'
+                        }
+                    }).done(function (data, x, jq) {
+                        $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
+                        btnGuardar.addClass('d-none');
+                        btnEliminar.addClass('d-none');
+                        btnConcluir.addClass('d-none');
+                        btnInconcluir.removeClass('d-none');
+                        btnNuevoRenglonEntregaEditar.addClass('d-none');
+                        disableFields();
+                        Estatus = 'Concluido';
+                        Registros.ajax.reload();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            });
+        });
+        btnInconcluir.on("click", function () {
+            swal({
+                title: "Confirmar",
+                text: "Estas seguro?",
+                icon: "info",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "POR FAVOR ESPERE..."
+                    });
+                    $.ajax({
+                        url: master_url + 'onModificarEstatus',
+                        type: "POST",
+                        data: {
+                            ID: IdMovimiento,
+                            Estatus: 'Borrador'
+                        }
+                    }).done(function (data, x, jq) {
+                        $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
+                        btnGuardar.removeClass('d-none');
+                        btnEliminar.removeClass('d-none');
+                        btnConcluir.removeClass('d-none');
+                        btnInconcluir.addClass('d-none');
+                        btnNuevoRenglonEntregaEditar.removeClass('d-none');
+                        enableFields();
+                        Estatus = 'Borrador'
+                        Registros.ajax.reload();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
+            });
         });
         btnArchivo.on("click", function () {
             $('#Adjunto').attr("type", "file");
@@ -590,7 +675,6 @@
                 pnlDatos.find("#Datos2").removeClass("active show");
                 var entrega = data[0];
                 $.each(data[0], function (k, v) {
-
                     if (v !== null && v !== '' && v !== 'null') {
                         if (pnlDatos.find("[name='" + k + "']").is('select')) {
                             pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
@@ -601,7 +685,6 @@
                         }
                     }
                 });
-
                 if (entrega.Adjunto !== null && entrega.Adjunto !== undefined && entrega.Adjunto !== '') {
                     var ext = getExt(entrega.Adjunto);
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
@@ -616,44 +699,45 @@
                 } else {
                     pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                 }
-
                 menuTablero.addClass("d-none");
                 pnlDatos.removeClass("d-none");
                 pnlDetalleEditarEntrega.removeClass("d-none");
                 getDetalleByID(temp);
                 //Control de estatus
-                //                if (entrega.Estatus === 'Concluido') {
-                //                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(entrega.Estatus.toUpperCase());
-                //                    tBtnEditarConcluir.prop('checked', true);
-                //                    btnModificar.addClass('d-none');
-                //                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                //                    btnConfirmarEliminar.attr("disabled", true);
-                //                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                //                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                //                } else if (entrega.Estatus === 'Cancelado') {
-                //                    $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(entrega.Estatus.toUpperCase());
-                //                    tBtnEditarConcluir.addClass('d-none');
-                //                    btnModificar.addClass('d-none');
-                //                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                //                    btnConfirmarEliminar.attr("disabled", true);
-                //                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', true);
-                //                    pnlDetalleEditarEntrega.find("#Conceptos").addClass("disabledDetalle");
-                //                } else {
-                //                    $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(entrega.Estatus.toUpperCase());
-                //                    tBtnEditarConcluir.prop('checked', false);
-                //                    btnModificar.removeClass('d-none');
-                //                    $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                //                    btnConfirmarEliminar.attr("disabled", false);
-                //                    pnlDetalleEditarEntrega.find('input, textarea, button, select').attr('disabled', false);
-                //                    pnlDetalleEditarEntrega.find("#Conceptos").removeClass("disabledDetalle");
-                //                }
-            }).fail(function (x, y, z) {
+                Estatus = entrega.Estatus;
+                if (entrega.Estatus === 'Concluido') {
+                    $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
+                    btnGuardar.addClass('d-none');
+                    btnEliminar.addClass('d-none');
+                    btnConcluir.addClass('d-none');
+                    btnInconcluir.removeClass('d-none');
+                    btnNuevoRenglonEntregaEditar.addClass('d-none');
+                    disableFields();
+                } else {
+                    $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
+                    btnGuardar.removeClass('d-none');
+                    btnEliminar.removeClass('d-none');
+                    btnConcluir.removeClass('d-none');
+                    btnInconcluir.addClass('d-none');
+                    btnNuevoRenglonEntregaEditar.removeClass('d-none');
+                    enableFields();
+                }
+            }
+            ).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
                 HoldOn.close();
             });
         });
         HoldOn.close();
+    }
+    function disableFields() {
+        $('#CapturaDatos').find('input,textarea,select').attr('disabled', true);
+        $('#CapturaDatos').find('select')[0].selectize.disable();
+    }
+    function enableFields() {
+        $('#CapturaDatos').find('input,textarea,select').attr('disabled', false);
+        $('#CapturaDatos').find('select')[0].selectize.enable();
     }
     function getClientes() {
         $.ajax({
@@ -870,28 +954,33 @@
     }
     function onEliminarDetalleEntrega(IDC) {
         if (IDC !== 0 && IDC !== undefined && IDC > 0) {
-            swal({
-                title: "Confirmar",
-                text: "Deseas eliminar el registro?",
-                icon: "warning",
-                buttons: ["Cancelar", "Aceptar"]
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: master_url + 'onEliminarTrabajoDetalle',
-                        type: "POST",
-                        data: {
-                            ID: IDC
-                        }
-                    }).done(function (data, x, jq) {
-                        RegistrosDetalle.ajax.reload();
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                        HoldOn.close();
-                    });
-                }
-            });
+            if (Estatus !== 'Concluido') {
+                swal({
+                    title: "Confirmar",
+                    text: "Deseas eliminar el registro?",
+                    icon: "warning",
+                    buttons: ["Cancelar", "Aceptar"]
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: master_url + 'onEliminarTrabajoDetalle',
+                            type: "POST",
+                            data: {
+                                ID: IDC
+                            }
+                        }).done(function (data, x, jq) {
+                            RegistrosDetalle.ajax.reload();
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            HoldOn.close();
+                        });
+                    }
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
+            }
+
         } else {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
         }

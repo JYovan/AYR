@@ -203,10 +203,29 @@ class Entregas extends CI_Controller {
         }
     }
 
+    public function onModificarEstatus() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Estatus' => $Estatus
+            );
+            $this->entregas_model->onModificar($ID, $data);
+
+
+            //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
+            if ($Estatus == 'Concluido') {
+                $this->trabajo_model->onEntregado($ID);
+            } else {
+                $this->trabajo_model->onCancelarEntregado($ID);
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificarImportePorEntrega() {
         try {
             extract($this->input->post());
-            //var_dump($this->input->post());
             print json_encode($this->entregas_model->onModificarImportePorEntrega($ID, $DATA));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
