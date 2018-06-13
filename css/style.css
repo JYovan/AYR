@@ -1,10 +1,3 @@
-/*CheckBox*/
-/*Color del cuadro checkbox*/
-.custom-control-label::before {
-
-    background-color: #fff;
-}
-
 /*Progress Bar*/
 .progress-indicator>li.completed .bubble, .progress-indicator>li.completed .bubble:after, .progress-indicator>li.completed .bubble:before {
     background-color: #5db969;
@@ -33,8 +26,8 @@ html{
 
 body{
     background-color: #DCE1E5;
-    line-height: 1.4;
-    font-size: 0.8375rem;
+/*    line-height: 1.4;*/
+    font-size: 0.8875rem;
 }
 .card-body {
     background-color: #DCE1E5;
@@ -62,6 +55,11 @@ table tbody tr{
 
 }
 table thead tr{
+    cursor: pointer;
+    background-color: white;
+}
+
+table tfoot tr{
     cursor: pointer;
     background-color: white;
 }

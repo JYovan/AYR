@@ -104,19 +104,44 @@ class Entregas extends CI_Controller {
                 'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
             );
             $ID = $this->entregas_model->onAgregar($data);
+
+            /* SUBIR AJUNTO */
+            $URL_DOC = 'uploads/Entregas/AdjuntoEncabezado';
+            $master_url = $URL_DOC . '/';
+            if (isset($_FILES["Adjunto"]["name"])) {
+                if (!file_exists($URL_DOC)) {
+                    mkdir($URL_DOC, 0777, true);
+                }
+                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                }
+                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                    $DATA = array(
+                        'Adjunto' => ($img),
+                    );
+                    $this->entregas_model->onModificar($ID, $DATA);
+                } else {
+                    $DATA = array(
+                        'Adjunto' => (null),
+                    );
+                    $this->entregas_model->onModificar($ID, $DATA);
+                }
+            }
+
             echo $ID;
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public function onAgregarDetalleEditar() {
+    public function onAgregarDetalle() {
         try {
             extract($this->input->post());
             $data = array(
                 'Entrega_ID' => $Entrega_ID,
                 'Trabajo_ID' => $Trabajo_ID,
-                'Renglon' => $Renglon
+                'Renglon' => 0
             );
             $ID = $this->entregas_model->onAgregarDetalle($data);
         } catch (Exception $exc) {
@@ -139,35 +164,11 @@ class Entregas extends CI_Controller {
             extract($this->input->post());
             $data = array(
                 'Cliente_ID' => $Cliente_ID,
-                'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0
+                'NoEntrega' => (isset($NoEntrega) && $NoEntrega !== '') ? $NoEntrega : NULL
             );
             $this->entregas_model->onModificar($ID, $data);
 
-            //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
-            if ($Estatus == 'Concluido') {
-                $this->trabajo_model->onEntregado($ID);
-            } else {
-                $this->trabajo_model->onCancelarEntregado($ID);
-            }
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onModificarImportePorEntrega() {
-        try {
-            extract($this->input->post());
-            //var_dump($this->input->post());
-            print json_encode($this->entregas_model->onModificarImportePorEntrega($ID, $DATA));
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function onModificarAdjunto() {
-        try {
-            extract($this->input->post());
+            /* SUBIR AJUNTO */
             $URL_DOC = 'uploads/Entregas/AdjuntoEncabezado';
             $master_url = $URL_DOC . '/';
             if (isset($_FILES["Adjunto"]["name"])) {
@@ -180,17 +181,33 @@ class Entregas extends CI_Controller {
                 if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
                     $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
                     $DATA = array(
-                        'Adjunto' => ($img)
+                        'Adjunto' => ($img),
                     );
                     $this->entregas_model->onModificar($ID, $DATA);
                 } else {
                     $DATA = array(
-                        'Adjunto' => (NULL)
+                        'Adjunto' => (null),
                     );
                     $this->entregas_model->onModificar($ID, $DATA);
-                    echo "NO SE PUDO SUBIR EL ARCHIVO";
                 }
             }
+
+            //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
+//            if ($Estatus == 'Concluido') {
+//                $this->trabajo_model->onEntregado($ID);
+//            } else {
+//                $this->trabajo_model->onCancelarEntregado($ID);
+//            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarImportePorEntrega() {
+        try {
+            extract($this->input->post());
+            //var_dump($this->input->post());
+            print json_encode($this->entregas_model->onModificarImportePorEntrega($ID, $DATA));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

@@ -144,12 +144,14 @@ INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  ", false);
 
     public function getDetalleByID($IDX) {
         try {
-            $this->db->select('ED.ID, T.ID AS "Folio Interno",
-                CONCAT("<strong>",T.FolioCliente,"</strong>") AS "Folio Cliente" ,
-                T.TrabajoRequerido AS "Trabajo Requerido",
+            $this->db->select('ED.ID AS ID,
+                T.ID AS FolioInterno,
+                CONCAT("<strong>",T.FolioCliente,"</strong>") AS FolioCliente ,
+                T.TrabajoRequerido AS TrabajoRequerido,
                 S.Nombre AS Sucursal,
-S.Region,CONCAT("<span class=\'badge badge-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
-CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarDetalleEntrega(",ED.ID,")\"></span>") AS Eliminar,
+S.Region,
+CONCAT("<span style=\'font-size:14px;\' class=\'badge badge-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe,
+CONCAT("<span class=\"fa fa-times fa-lg\" onclick=\"onEliminarDetalleEntrega(",ED.ID,")\"></span>") AS Eliminar,
 T.Importe AS ImporteSF
 from entregasdetalle ED
 left join entregas E on  Ed.Entrega_ID = E.ID

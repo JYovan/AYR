@@ -1,52 +1,58 @@
+
 <div class="card " id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6 float-left">
-                <legend class="float-left">Explorador Servicios</legend>
+                <legend class="float-left">Explorador de Servicios</legend>
+            </div>
+            <div class="col-sm-6 float-right" align="right">
+                <button type="button" class="btn btn-primary" id="btnRefrescar" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><span class="fa fa-sync"></span><br></button>
             </div>
         </div>
         <div class="row">
-            <div class="card-block">
-                <div class="col-md-12 table-responsive" id="Registros">
-                    <table id="tblRegistros" class="table table-sm " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio Cliente</th>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Sucursal</th>
-                                <th>Trabajo Ruequerido</th>
-                                <th>Importe</th>
-                                <th>Estatus Trabajo</th>
-                                <th>Estatus Entrega</th>
-                                <th>No. Entrega</th>
-                                <th>Factura Intelisis</th>
-                                <th>Orden Compra</th>
-                                <th>Forma Pago</th>
-                                <th>Fecha Pago</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio Cliente</th>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Sucursal</th>
-                                <th>Trabajo Ruequerido</th>
-                                <th>Importe</th>
-                                <th>Estatus Trabajo</th>
-                                <th>Estatus Entrega</th>
-                                <th>No. Entrega</th>
-                                <th>Factura Intelisis</th>
-                                <th>Orden Compra</th>
-                                <th>Forma Pago</th>
-                                <th>Fecha Pago</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+            <div class="col-sm-12">
+                <div class="card-block">
+                    <div class="table-responsive" id="Registros">
+                        <table id="tblRegistros" class="table table-sm " style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Folio Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Nombre</th>
+                                    <th>Sucursal</th>
+                                    <th>Trabajo Ruequerido</th>
+                                    <th>Importe</th>
+                                    <th>Estatus Trabajo</th>
+                                    <th>Estatus Entrega</th>
+                                    <th>No. Entrega</th>
+                                    <th>Factura Intelisis</th>
+                                    <th>Orden Compra</th>
+                                    <th>Forma Pago</th>
+                                    <th>Fecha Pago</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Folio Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Nombre</th>
+                                    <th>Sucursal</th>
+                                    <th>Trabajo Ruequerido</th>
+                                    <th>Importe</th>
+                                    <th>Estatus Trabajo</th>
+                                    <th>Estatus Entrega</th>
+                                    <th>No. Entrega</th>
+                                    <th>Factura Intelisis</th>
+                                    <th>Orden Compra</th>
+                                    <th>Forma Pago</th>
+                                    <th>Fecha Pago</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

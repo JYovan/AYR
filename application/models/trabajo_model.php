@@ -1589,7 +1589,7 @@ class trabajo_model extends CI_Model {
 
     public function getTrabajosControlEntregasByCliente($ID) {
         try {
-            $this->db->select('T.ID AS "Folio Interno",T.FolioCliente AS "Folio Cliente" ,'
+            $this->db->select('T.ID AS "FolioInterno",T.FolioCliente AS "FolioCliente" ,'
                     . ' STR_TO_DATE( T.FechaCreacion ,"%d/%m/%Y" )   AS Fecha,'
                     . 'S.Nombre AS Sucursal,S.Region,'
                     . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe, '
