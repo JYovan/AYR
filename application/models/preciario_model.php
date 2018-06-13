@@ -94,9 +94,9 @@ class preciario_model extends CI_Model {
                     . 'PC.Unidad AS Unidad, '
                     . 'CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
                     . 'PC.Moneda AS Moneda,'
-                    . 'CONCAT("<span class=\"fa fa-cog customButtonDetalleEdicion\" '
+                    . 'CONCAT("<span class=\"fa fa-cog fa-lg\" '
                     . 'onclick=\"onEditarConceptoPreciarioXID(",PC.ID,")\"></span>") AS Editar,'
-                    . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoPreciario(this,",PC.ID,")\"></span>") AS Eliminar', false);
+                    . 'CONCAT("<span class=\"fa fa-times fa-lg\" onclick=\"onEliminarConceptoPreciario(this,",PC.ID,")\"></span>") AS Eliminar', false);
             $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
             $this->db->order_by('PC.ID', 'ASC');
