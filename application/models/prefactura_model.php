@@ -43,7 +43,7 @@ class prefactura_model extends CI_Model {
 
     public function getRecords() {
         try {
-            $this->db->select("P.ID, P.Movimiento,P.FechaCreacion AS 'Fecha',P.ClienteNombre AS 'Cliente',P.ProyectoIntelisis AS 'Proyecto Intelisis' ,"
+            $this->db->select("P.ID, P.Movimiento,P.FechaCreacion AS 'Fecha',P.ClienteNombre AS 'Cliente',P.ProyectoIntelisis AS 'ProyectoIntelisis' ,"
                     . "(CASE WHEN  P.Referencia IS NULL OR P.Referencia =' ' "
                     . "THEN ' -- ' "
                     . "ELSE CONCAT('<strong>',P.Referencia,'</strong>')  END) AS 'Referencia', "
@@ -140,13 +140,13 @@ class prefactura_model extends CI_Model {
             $this->db->select('
                 PD.ID,
                 E.ID E_ID,
-                CONCAT("<strong>",E.FolioCliente,"</strong>") AS "Folio Cliente" ,
-                E.TrabajoRequerido AS "Trabajo Requerido",
+                CONCAT("<strong>",E.FolioCliente,"</strong>") AS FolioCliente  ,
+                E.TrabajoRequerido AS "TrabajoRequerido",
                 S.Nombre AS Sucursal,
                 C.Nombre AS Cliente,
                 CONCAT("<span style=\'font-size:14px;\' class=\'badge badge-success\'>$",FORMAT(E.Importe,2),"</span>") AS Importe,
-                E.Importe AS ImporteSF,
-                CONCAT("<span class=\"fa fa-times \" onclick=\"onEliminarPrefacturaDetalle(this,",PD.ID,")\"></span>") AS Eliminar
+                CONCAT("<span class=\"fa fa-times \" onclick=\"onEliminarPrefacturaDetalle(this,",PD.ID,")\"></span>") AS Eliminar,
+                E.Importe AS ImporteSF
 from prefacturasdetalle PD
 left join prefacturas P on  PD.Prefactura_ID = P.ID
 left join trabajos E on E.ID = PD.Trabajo_ID

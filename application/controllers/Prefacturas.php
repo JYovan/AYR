@@ -229,6 +229,18 @@ class Prefacturas extends CI_Controller {
                 'OrdenCompra' => (isset($OrdenCompra) && $OrdenCompra !== '') ? $OrdenCompra : NULL
             );
             $this->prefactura_model->onModificar($ID, $this->input->post());
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function onModificarEstatus() {
+        try {
+            extract($this->input->post());
+            $data = array(
+                'Estatus' => $Estatus
+            );
+            $this->prefactura_model->onModificar($ID, $data);
             //AQUI SE INSERTA EL ID DE LA PREFACTURA PARA PODER HACER EL JOIN QUE NOS TRAIGA LA REF Y LA OC
             if ($Estatus == 'Concluido') {
 

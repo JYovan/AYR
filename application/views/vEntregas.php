@@ -258,7 +258,6 @@
     var currentDate = new Date();
     var pnlDetalleEditarEntrega = $("#pnlDetalleEditarEntrega");
     var btnNuevoRenglonEntregaEditar = pnlDetalleEditarEntrega.find("#btnNuevoRenglonEntregaEditar");
-    var tblRegistrosXDetalleXEntrega = pnlDetalleEditarEntrega.find("#tblRegistrosXDetalleXEntrega");
     var mdlSeleccionarTrabajosEditar = $("#mdlSeleccionarTrabajosEditar");
     var btnImprimirReportesEditarEntrega = pnlDatos.find("#btnImprimirReportesEditarEntrega");
     var mdlReportesEditarEntrega = $("#mdlReportesEditarEntrega");
@@ -382,7 +381,6 @@
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
             }
-
         });
         btnEliminar.on("click", function () {
             if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
@@ -434,6 +432,7 @@
             pnlDatos.find("#Datos").addClass("active show");
             pnlDatos.find("#Datos2").removeClass("active show");
             pnlDatos.find("#FechaCreacion").inputmask({alias: "date"});
+            pnlDatos.find('#FechaCreacion').val(getToday());
             btnGuardar.removeClass('d-none');
             btnEliminar.removeClass('d-none');
             btnConcluir.addClass('d-none');
@@ -832,6 +831,7 @@
                             }
                         }).done(function (data, x, jq) {
                             RegistrosDetalle.ajax.reload();
+                            onNotifyOld('fa fa-check', 'Registro Agregado', 'success');
                         }).fail(function (x, y, z) {
                             console.log(x, y, z);
                         }).always(function () {
@@ -916,17 +916,17 @@
                 }, 0));
 
             },
-//            language: lang,
-//            "autoWidth": true,
-//            "colReorder": true,
-//            "displayLength": 20,
-//            "bLengthChange": false,
-//            "deferRender": true,
-//            "scrollCollapse": false,
-//            "bSort": true,
-//            "aaSorting": [
-//                [0, 'desc']/*ID*/
-//            ],
+            language: lang,
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 20,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ],
             "columnDefs": [
                 {
                     "targets": [0],

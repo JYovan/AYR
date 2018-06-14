@@ -94,10 +94,8 @@
     <script>
         var base_url = "<?php print base_url(); ?>";
         $(function () {
-
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
-
             $('.numbersOnly').keypress(function (event) {
                 var charCode = (event.which) ? event.which : event.keyCode;
                 if (
@@ -108,36 +106,20 @@
 
                 return true;
             });
-
-
-
             $(window).click(function () {
                 if (parseInt($('#myNav').width()) > 0) {
                     closeNav();
                 }
             });
-
-
-//            $("select").select2({
-//                placeholder: "Selecciona una opción",
-//                allowClear: true,
-//                autofocusInputOnOpen: false
-//            });
-
             $("select").selectize({
                 hideSelected: true
             });
-
-
             $('.modal').on('shown.bs.modal', function (e) {
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
-
             $('[data-provide="datepicker"]').inputmask({alias: "date"});
             $('[data-provide="datepicker"]').addClass("notEnter");
             $('[data-provide="datepicker"]').val();
-            
-
             $('[data-provide="timepicker"]').timepicker({
                 disableFocus: true,
                 showInputs: false,
@@ -149,6 +131,24 @@
         });
         function onNotify(span, message, type) {
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');
+        }
+        function onNotifyOld(icon, message, type) {
+            $.notify({
+                icon: icon,
+                message: message
+            }, {
+                type: type,
+                z_index: 3031,
+                delay: 2000,
+                placement: {
+                    from: "bottom",
+                    align: "right"
+                },
+                animate: {
+                    enter: 'animated fadeInUp',
+                    exit: 'animated fadeOutDown'
+                }
+            });
         }
         function isValid(p) {
             var inputs = $('#' + p).find("input.form-control:required").length;
