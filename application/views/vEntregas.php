@@ -1,4 +1,4 @@
-<div class="card " id="MenuTablero">
+<div class="card border-0" id="MenuTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5 float-left">
@@ -17,7 +17,6 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Movimiento</th>
                             <th>Entrega</th>
                             <th>Estatus</th>
                             <th>Importe</th>
@@ -167,7 +166,8 @@
                             </tr>
                         </thead>
                         <tbody></tbody>
-                        <tfoot><tr>
+                        <tfoot>
+                            <tr>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -177,7 +177,8 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                            </tr></tfoot>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -625,7 +626,6 @@
             },
             "columns": [
                 {"data": "ID"},
-                {"data": "Movimiento"},
                 {"data": "Entrega"},
                 {"data": "Estatus"},
                 {"data": "Importe"},
@@ -641,7 +641,6 @@
             "bLengthChange": false,
             "deferRender": true,
             "scrollCollapse": false,
-            keys: true,
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
@@ -667,7 +666,6 @@
                     ID: temp
                 }
             }).done(function (data, x, jq) {
-                pnlDatos.find("input").val("");
                 pnlDatos.find("input").val("");
                 pnlDatos.find(".nav-tabs li").removeClass("active show");
                 $(pnlDatos.find(".nav-tabs li")[0]).addClass("active show");
@@ -702,7 +700,7 @@
                 menuTablero.addClass("d-none");
                 pnlDatos.removeClass("d-none");
                 pnlDetalleEditarEntrega.removeClass("d-none");
-                getDetalleByID(temp);
+                getDetalleByID(IdMovimiento);
                 //Control de estatus
                 Estatus = entrega.Estatus;
                 if (entrega.Estatus === 'Concluido') {
@@ -867,10 +865,6 @@
     }
     function getDetalleByID(IDX) {
         pnlDetalleEditarEntrega.find('#RegistrosDetalle').removeClass('d-none');
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
             tblRegistrosDetalleX.DataTable().destroy();
@@ -897,30 +891,6 @@
                 {"data": "Eliminar"},
                 {"data": "ImporteSF"}
             ],
-            "columnDefs": [
-                {
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                },
-                {
-                    "targets": [8],
-                    "visible": false,
-                    "searchable": false
-                }],
-            language: lang,
-            "autoWidth": true,
-            "bStateSave": true,
-            "colReorder": true,
-            "displayLength": 20,
-            "bLengthChange": false,
-            "deferRender": true,
-            "scrollCollapse": false,
-            keys: true,
-            "bSort": true,
-            "aaSorting": [
-                [0, 'desc']/*ID*/
-            ],
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api();
                 var Importe = api.column(8).data().reduce(function (a, b) {
@@ -941,12 +911,33 @@
                     console.log(x, y, z);
                 }).always(function () {
                 });
-
                 $(api.column(6).footer()).html(api.column(8, {page: 'current'}).data().reduce(function (a, b) {
                     return '$' + $.number(Importe, 2, '.', ', ');
                 }, 0));
 
             },
+//            language: lang,
+//            "autoWidth": true,
+//            "colReorder": true,
+//            "displayLength": 20,
+//            "bLengthChange": false,
+//            "deferRender": true,
+//            "scrollCollapse": false,
+//            "bSort": true,
+//            "aaSorting": [
+//                [0, 'desc']/*ID*/
+//            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [8],
+                    "visible": false,
+                    "searchable": false
+                }],
             "initComplete": function (settings, json) {
                 HoldOn.close();
             }
