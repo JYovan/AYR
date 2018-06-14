@@ -71,9 +71,7 @@
 
         <!--Notifiers-->
         <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
-        <!--Date picker-->
-        <link href="<?php echo base_url(); ?>js/datepicker/datepicker3.css" rel="stylesheet"/>
-        <script src="<?php echo base_url(); ?>js/datepicker/bootstrap-datepicker.min.js"></script>
+
         <!--Time picker-->
         <link href="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
         <script src="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.js"></script>
@@ -135,12 +133,9 @@
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
 
-            $('[data-provide="datepicker"]').datepicker({
-                todayBtn: true,
-                autoclose: true,
-                todayHighlight: true
-            });
-
+            $('[data-provide="datepicker"]').inputmask({alias: "date"})
+            $('[data-provide="datepicker"]').addClass("notEnter");
+            
             $('[data-provide="timepicker"]').timepicker(
                     {
                         disableFocus: true,

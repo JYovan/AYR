@@ -10,48 +10,46 @@
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>VER TODOS</button>
             </div> 
-            <div class="card-block">
-                <div class="table-responsive" id="Trabajos">
-                    <table id="tblTrabajos" class="table table-sm" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio</th>
-                                <th>Estatus2</th>
-                                <th>Estatus</th>
-                                <th>Fecha</th>
+            <div class="table-responsive" id="Trabajos">
+                <table id="tblTrabajos" class="table table-sm" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Folio</th>
+                            <th>Estatus2</th>
+                            <th>Estatus</th>
+                            <th>Fecha</th>
 
-                                <th>Adjunto</th>
-                                <th>Cliente</th>
-                                <th>Sucursal</th>
-                                <th>Importe</th>
-                                <th>Trabajo Requerido</th>
-                                <th>Usuario</th>
+                            <th>Adjunto</th>
+                            <th>Cliente</th>
+                            <th>Sucursal</th>
+                            <th>Importe</th>
+                            <th>Trabajo Requerido</th>
+                            <th>Usuario</th>
 
-                                <th>ImporteSinFormato</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Estatus2" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
+                            <th>ImporteSinFormato</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Estatus2" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
 
-                                <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th> 
-                                <th><input type="text" placeholder="Buscar por Cliente" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Trabajo Requerido" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th> 
+                            <th><input type="text" placeholder="Buscar por Cliente" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Trabajo Requerido" class="form-control form-control-sm"/></th>
+                            <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
 
-                                <th><input type="text" placeholder="Buscar por ImporteSinFormato" class="form-control form-control-sm"/></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                            <th><input type="text" placeholder="Buscar por ImporteSinFormato" class="form-control form-control-sm"/></th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
@@ -379,7 +377,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Atención</label>
-                                        <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker">
                                     </div>
                                 </div>
                                 <div class=" col-6 col-6">
@@ -393,7 +391,7 @@
                                         <div class="col-6 col-3">
                                             <div class="form-group label-static">
                                                 <label for="" class="control-label">Fecha Origen</label>
-                                                <input type="text" id="FechaOrigen" required="" name="FechaOrigen" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                                <input type="text" id="FechaOrigen" required="" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                             </div>
                                         </div>
                                         <div class="col-6 col-3">
@@ -407,7 +405,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Visita</label>
-                                        <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
@@ -419,7 +417,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Fin Visita</label>
-                                        <input type="text" id="FechaSalida" name="FechaSalida" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
@@ -605,7 +603,7 @@
                             <div class="col-6 col-3">
                                 <div class="form-group label-static">
                                     <label for="FechaVisita" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
                             <div class=" col-6 col-6">
@@ -880,7 +878,7 @@
                             <div class="col-6 col-3">
                                 <div class="form-group label-static">
                                     <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
                             <div class="col-3 col-3">
@@ -973,7 +971,7 @@
                             <div class="col-6 col-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Fecha Atención</label>
-                                    <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
                             <div class=" col-6 col-6">
@@ -987,7 +985,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Fecha Origen</label>
-                                            <input type="text" required="" id="FechaOrigen" name="FechaOrigen" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                            <input type="text" required="" id="FechaOrigen" name="FechaOrigen" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                         </div>
                                     </div>
                                     <div class="col-6 col-3">
@@ -1001,7 +999,7 @@
                             <div class="col-6 col-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" >
+                                    <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                 </div>
                             </div>
                             <div class="col-6 col-3">
@@ -1013,7 +1011,7 @@
                             <div class="col-6 col-3">
                                 <div class="form-group label-static">
                                     <label for="" class="control-label">Fecha Fin Visita</label>
-                                    <input type="text" id="FechaSalida" name="FechaSalida" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" >
+                                    <input type="text" id="FechaSalida" name="FechaSalida" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 </div>
                             </div>
                             <div class="col-6 col-3">
@@ -3159,8 +3157,6 @@
             pnlDetalleEditarTrabajo.addClass("d-none");
         });
         btnNuevo.on("click", function () {
-            pnlNuevoTrabajo.find('#pEstatusTrabajo').find('li').removeClass('completed active');
-            pnlNuevoTrabajo.find('#pEstatusTrabajo').find('#stsPedido').addClass('active').html('').html('<span class="bubble"></span> 1. Pedido <br><small>(activo)</small>');
             pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
             $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
             pnlNuevoTrabajo.find("#Datos").addClass("active show");
@@ -3183,7 +3179,7 @@
             pnlNuevoTrabajo.find("select").val(null).trigger("change");
 //            pnlNuevoTrabajo.find("select").select2("val", "");
             pnlNuevoTrabajo.find("select")[0].selectize.clear(true);
-            //pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
+            pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
             pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
             pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
         });
@@ -3569,6 +3565,8 @@
                                 pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
                                 pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
                                 $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                                pnlDatos.find('#pEstatusTrabajo').find('li').removeClass('completed active');
+                                pnlDatos.find('#pEstatusTrabajo').find('#Pedido').addClass('active').html('').html('<span class="bubble"></span> 1. Pedido <br><small>(activo)</small>');
 
                             } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
                                 tBtnEditarConcluir.prop('checked', true);
@@ -3649,6 +3647,7 @@
     var Trabajos;
 
     function getRecords() {
+
         temp = 0;
         HoldOn.open({
             theme: 'sk-cube',
@@ -3672,11 +3671,13 @@
                 {"data": "Estatus2"},
                 {"data": "Estatus"},
                 {"data": "Fecha"},
+
                 {"data": "Adjunto"},
                 {"data": "Cliente"},
                 {"data": "Sucursal"},
                 {"data": "Importe"},
                 {"data": "TrabajoRequerido"},
+
                 {"data": "Usuario"},
                 {"data": "ImporteSinFormato"}
             ],
@@ -3810,10 +3811,11 @@
                     }
                 }).done(function (data, x, jq) {
                     var options = '<option></option>';
-                    $.each(data, function (k, v) { 
-                        pnlEditarTrabajo.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
-                    }); 
-                    pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                    $.each(data, function (k, v) {
+                        options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                    });
+                    pnlEditarTrabajo.find("#Especialidad_ID").html(options);
+                    pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3829,10 +3831,10 @@
                 }).done(function (data, x, jq) {
                     var options = '<option></option>';
                     $.each(data, function (k, v) {
-                        pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                        options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
                     });
-                    pnlEditarTrabajo.find("#Area_ID").html(options); 
-                    pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                    pnlEditarTrabajo.find("#Area_ID").html(options);
+                    pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -5071,6 +5073,7 @@
                     row += '<div class="col-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
                     $.each(data, function (k, d) {
                         if (tu === d.Tiempo) {
+
                             row += '<div class="col-3">' +
                                     '<div class="thumbnail">' +
                                     '<div class="pull-left caption col-11 Customcaption" >' +
@@ -5086,6 +5089,8 @@
                                     '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a>' +
                                     '</div>' +
                                     '</div>';
+
+
                         }
                     });
                     /*BREAK*/

@@ -86,7 +86,7 @@
                             <!-- PANEL DE DATOS GENERALES-->
                             <div role="tabpanel" class="tab-pane fade active show" id="Datos">
                                 <div class="row">
-                                    <div class=" col-2 col-md-2">
+                                    <div class=" col-2 col-md-2 ">
                                         <div class="form-group label-static">
                                             <label for="ID" class="control-label">ID</label>
                                             <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
@@ -95,7 +95,6 @@
                                     <div class="col-2 col-md-2">
                                         <div class="form-group label-static">
                                             <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
                                         </div>
                                     </div>
                                     <div class="col-2 col-md-4">
@@ -433,7 +432,7 @@
             $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
             pnlDatos.find("#Datos2").removeClass("active show");
-            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            pnlDatos.find("#FechaCreacion").inputmask({alias: "date"});
             btnGuardar.removeClass('d-none');
             btnEliminar.removeClass('d-none');
             btnConcluir.addClass('d-none');
@@ -563,7 +562,7 @@
                         btnInconcluir.addClass('d-none');
                         btnNuevoRenglonEntregaEditar.removeClass('d-none');
                         enableFields();
-                        Estatus = 'Borrador'
+                        Estatus = 'Borrador';
                         Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);

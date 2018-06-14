@@ -225,13 +225,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group label-static">
                                         <label for="FechaInicio" class="control-label">Fecha Inicio</label>
-                                        <input type="text" id="FechaInicio" name="FechaInicio" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                        <input type="text" id="FechaInicio" name="FechaInicio" class="form-control form-control-sm" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group label-static">
                                         <label for="FechaFin" class="control-label">Fecha Fin</label>
-                                        <input type="text" id="FechaFin" name="FechaFin" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                        <input type="text" id="FechaFin" name="FechaFin" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-md-3">

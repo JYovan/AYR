@@ -11,27 +11,17 @@ class Trabajos extends CI_Controller {
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
         $this->load->library('session');
-        $this->load->model('sucursal_model');
-        $this->load->model('cliente_model');
-        $this->load->model('preciario_model');
-        $this->load->model('codigoppta_model');
-        $this->load->model('cuadrilla_model');
-        $this->load->model('trabajo_model');
-        $this->load->model('centrocostos_model');
-        $this->load->helper('reportes_helper');
-        $this->load->helper('file');
-        $this->load->model('especialidades_model');
-        $this->load->model('areas_model');
-        $this->load->model('registroUsuarios_model');
+        $this->load->model('sucursal_model')->model('cliente_model')->model('preciario_model')
+                ->model('codigoppta_model')->model('cuadrilla_model')
+                ->model('trabajo_model')->model('centrocostos_model')
+                ->helper('reportes_helper')->helper('file')->model('especialidades_model')
+                ->model('areas_model')->model('registroUsuarios_model');
     }
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "SUPER ADMINISTRADOR", "ADMINISTRADOR", "RESIDENTE"))) {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vTrabajos');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vTrabajos')->view('vFooter');
 
                 $dataRegistrarAccion = array(
                     'Accion' => 'ACCESO A TRABAJOS',
@@ -40,21 +30,16 @@ class Trabajos extends CI_Controller {
                 );
                 $this->registroUsuarios_model->onAgregar($dataRegistrarAccion);
             } else {
-                $this->load->view('vEncabezado');
-                $this->load->view('vNavegacion');
-                $this->load->view('vFooter');
+                $this->load->view('vEncabezado')->view('vNavegacion')->view('vFooter');
             }
         } else {
-            $this->load->view('vEncabezado');
-            $this->load->view('vSesion');
-            $this->load->view('vFooter');
+            $this->load->view('vEncabezado')->view('vSesion')->view('vFooter');
         }
     }
 
     public function getRecordsFirme() {
         try {
-            $data = $this->trabajo_model->getRecordsFirme();
-            print json_encode($data);
+            print json_encode($this->trabajo_model->getRecordsFirme());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -62,8 +47,7 @@ class Trabajos extends CI_Controller {
 
     public function getRecords() {
         try {
-            $data = $this->trabajo_model->getRecords();
-            print json_encode($data);
+            print json_encode($this->trabajo_model->getRecords());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -80,9 +64,7 @@ class Trabajos extends CI_Controller {
 
     public function getTrabajoByID() {
         try {
-            extract($this->input->post());
-            $data = $this->trabajo_model->getTrabajoByID($ID);
-            print json_encode($data);
+            print json_encode($this->trabajo_model->getTrabajoByID($this->input->post('ID')));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -90,8 +72,7 @@ class Trabajos extends CI_Controller {
 
     public function getCC() {
         try {
-            $data = $this->centrocostos_model->getCC();
-            print json_encode($data);
+            print json_encode($this->centrocostos_model->getCC());
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -1799,7 +1780,7 @@ class Trabajos extends CI_Controller {
                 $file_name = "REPORTE_FIN49_CONCEPTOS " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
                 $url = $path . '/' . $file_name . '.pdf';
                 if (delete_files('uploads/Reportes/' . $ID)) {
-
+                    
                 }
                 $pdf->Output($url);
                 print base_url() . $url;
@@ -1875,7 +1856,7 @@ class Trabajos extends CI_Controller {
             $file_name = "PRESUPUESTO " . $encabezado->Cliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -1943,7 +1924,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE_PRESUPUESTO A&R " . $pdf->Cliente = $encabezado->Cliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -2268,7 +2249,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE_FIN49 " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
 
             $pdf->Output($url);
@@ -2673,7 +2654,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -2767,7 +2748,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -3250,7 +3231,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
 
             $pdf->Output($url);
@@ -3418,7 +3399,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
 
             $pdf->Output($url);
@@ -3530,7 +3511,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
 
                     $pdf->Output($url);
@@ -3638,7 +3619,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
 
                     $pdf->Output($url);
@@ -3746,7 +3727,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3869,7 +3850,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4166,7 +4147,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4496,7 +4477,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4604,7 +4585,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4711,7 +4692,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
 
                     $pdf->Output($url);
@@ -4836,7 +4817,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
 
                     $pdf->Output($url);
@@ -5132,7 +5113,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
 
                     $pdf->Output($url);
@@ -5252,7 +5233,7 @@ class Trabajos extends CI_Controller {
             $file_name = "ACTA RECEPCION " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
 
             $pdf->Output($url);
@@ -5326,7 +5307,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE TABLEROS NORDES " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
 
             $pdf->Output($url);
@@ -5410,7 +5391,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-
+                
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -5635,7 +5616,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -5812,7 +5793,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-
+                        
                     }
                     $pdf->Output($url);
                     print base_url() . $url;

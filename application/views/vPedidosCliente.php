@@ -163,13 +163,13 @@
                                     <div class="col-md-2">
                                         <div class="form-group label-static">
                                             <label for="FechaOrigen" class="control-label">Fecha Origen*</label>
-                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group label-static">
                                             <label for="HoraOrigen" class="control-label">Hora Origen*</label>
-                                            <input type="text"  class="form-control form-control-sm" required="" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
+                                            <input type="text"  class="form-control form-control-sm" required="" name="HoraOrigen" id="HoraOrigen" data-inputmask="'alias': 'datetime'" data-minute-step="1"/>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -304,8 +304,8 @@
             pnlDatos.removeClass("d-none");
             pnlDatos.find("input").val("");
             pnlDatos.find("textarea").val("");
-            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlDatos.find("#FechaOrigen").datepicker("setDate", currentDate);
+           // pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            //pnlDatos.find("#FechaOrigen").datepicker("setDate", currentDate);
             pnlDatos.find("#HoraOrigen").timepicker("setTime", currentDate);
             pnlDatos.find(".nav-tabs a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");

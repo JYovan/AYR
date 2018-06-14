@@ -58,7 +58,7 @@
                         <div class="col-6">
                             <div class="form-group label-static">
                                 <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm " placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
                             </div>
                         </div>
                         <div class="col-6">
@@ -941,7 +941,7 @@
             tblConceptos.html("");
             pnlDatos.find("select")[0].selectize.clear(true);
             pnlDatos.find("input").val("");
-            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            //pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
             pnlDatos.removeClass('d-none');
             pnlPreciario.addClass("d-none");
             pnlDatos.find("#dAdvertencia").removeClass('d-none');

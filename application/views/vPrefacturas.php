@@ -395,7 +395,6 @@
             $.each(pnlDatos.find("select"), function (k, v) {
                 pnlDatos.find("select")[k].selectize.clear(true);
             });
-            pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
             nuevo = true;
             $(':input:text:enabled:visible:first').focus();
         });
