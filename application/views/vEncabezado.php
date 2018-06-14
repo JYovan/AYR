@@ -133,17 +133,18 @@
                 $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
             });
 
-            $('[data-provide="datepicker"]').inputmask({alias: "date"})
+            $('[data-provide="datepicker"]').inputmask({alias: "date"});
             $('[data-provide="datepicker"]').addClass("notEnter");
+            $('[data-provide="datepicker"]').val();
             
-            $('[data-provide="timepicker"]').timepicker(
-                    {
-                        disableFocus: true,
-                        showInputs: false,
-                        showSeconds: true,
-                        showMeridian: false,
-                        defaultValue: '12:45:30'
-                    }
+
+            $('[data-provide="timepicker"]').timepicker({
+                disableFocus: true,
+                showInputs: false,
+                showSeconds: true,
+                showMeridian: false,
+                defaultValue: '12:45:30'
+            }
             );
         });
         function onNotify(span, message, type) {

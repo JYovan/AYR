@@ -95,6 +95,7 @@
                                     <div class="col-2 col-md-2">
                                         <div class="form-group label-static">
                                             <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                            <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" data-provide="datepicker">
                                         </div>
                                     </div>
                                     <div class="col-2 col-md-4">
