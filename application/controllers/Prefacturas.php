@@ -131,15 +131,15 @@ class Prefacturas extends CI_Controller {
             /* TRABAJO */
             extract($this->input->post());
             $data = array(
-                'Movimiento' => $Movimiento,
+                'Movimiento' => 'Prefactura',
                 'FechaCreacion' => $FechaCreacion,
                 'ClienteIntelisis' => $ClienteIntelisis,
                 'ClienteNombre' => $ClienteNombre,
                 'Referencia' => (isset($Referencia) && $Referencia !== '') ? $Referencia : NULL,
                 'ProyectoIntelisis' => (isset($ProyectoIntelisis) && $ProyectoIntelisis !== '') ? $ProyectoIntelisis : NULL,
-                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : NULL,
-                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : NULL,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : 0,
+                'Usuario_ID' => $this->session->userdata('ID'),
+                'Estatus' => 'Borrador',
+                'Importe' => 0,
                 'Comentarios' => (isset($Comentarios) && $Comentarios !== '') ? $Comentarios : NULL,
                 'OrdenCompra' => (isset($OrdenCompra) && $OrdenCompra !== '') ? $OrdenCompra : NULL
             );
@@ -220,6 +220,14 @@ class Prefacturas extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
+            $data = array(
+                'ClienteIntelisis' => $ClienteIntelisis,
+                'ClienteNombre' => $ClienteNombre,
+                'Referencia' => (isset($Referencia) && $Referencia !== '') ? $Referencia : NULL,
+                'ProyectoIntelisis' => (isset($ProyectoIntelisis) && $ProyectoIntelisis !== '') ? $ProyectoIntelisis : NULL,
+                'Comentarios' => (isset($Comentarios) && $Comentarios !== '') ? $Comentarios : NULL,
+                'OrdenCompra' => (isset($OrdenCompra) && $OrdenCompra !== '') ? $OrdenCompra : NULL
+            );
             $this->prefactura_model->onModificar($ID, $this->input->post());
             //AQUI SE INSERTA EL ID DE LA PREFACTURA PARA PODER HACER EL JOIN QUE NOS TRAIGA LA REF Y LA OC
             if ($Estatus == 'Concluido') {

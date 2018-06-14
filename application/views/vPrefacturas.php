@@ -12,11 +12,27 @@
             </div>
         </div>
         <div class="card-block">
-            <div class="col-md-12 table-responsive" id="tblRegistros"></div>
+            <div id="Registros" class="table-responsive">
+                <table id="tblRegistros" class="table table-sm display " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>Proyecto</th>
+                            <th>Referencia</th>
+                            <th>Estatus</th>
+                            <th>Importe</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
 <!--MODAL CAPTURA PAGO-->
 <div id="mdlCapturarInfoPago" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
@@ -65,24 +81,6 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnGuardarDatosPago">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--MODAL DE CONFIRMACION PARA EXPORTAR A INTELISIS-->
-<div id="mdlConfirmarExportarIntelisis" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <h5 class="modal-title">Exportar Prefactura</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            Deseas exportar la prefactura a Intelisis?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnExportar">ACEPTAR</button>
         </div>
     </div>
 </div>
@@ -213,10 +211,11 @@
             <div class="modal-body">
                 <fieldset>
                     <div class="col-md-12" align="right">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="chkMultiple" value="ON"> Varios
-                            </label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox float-right">
+                                <input type="checkbox" class="custom-control-input float-right" id="chkMultiple" >
+                                <label class="custom-control-label" for="chkMultiple"> <h6>Seleccionar Varios</h6></label>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
@@ -238,34 +237,23 @@
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
     var pnlDatos = $("#pnlDatos");
-    var pnlDetalleNuevaPrefactura = $("#pnlDetalleNuevaPrefactura");
-    var btnNuevoRenglonPrefacturaNuevo = pnlDetalleNuevaPrefactura.find('#btnNuevoRenglonPrefacturaNuevo')
     var btnCancelar = $("#btnCancelar");
     var btnGuardar = $("#btnGuardar");
-    var tBtnConcluir = pnlDatos.find("#Concluir");
     var currentDate = new Date();
-//editar
-    var pnlDatos = $('#pnlDatos');
-    var btnCancelarModificar = $("#btnCancelarModificar");
     var pnlDetalleEditarPrefactura = $("#pnlDetalleEditarPrefactura");
-    var tBtnEditarConcluir = pnlDatos.find("#Concluir");
     var btnEliminar = $("#btnEliminar");
-    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
-    var mdlConfirmar = $("#mdlConfirmar");
     var btnModificar = $("#btnModificarPrefactura");
     var btnExportarIntelisis = $('#btnExportarIntelisis');
-    var mdlConfirmarExportarIntelisis = $('#mdlConfirmarExportarIntelisis');
-    var btnExportar = mdlConfirmarExportarIntelisis.find('#btnExportar');
     var btnCapturarPago = $('#btnCapturarPago');
     var mdlCapturarInfoPago = $('#mdlCapturarInfoPago');
     var btnGuardarDatosPago = mdlCapturarInfoPago.find('#btnGuardarDatosPago');
-
-//detalle editar
     var btnNuevoRenglonPrefacturaEditar = pnlDetalleEditarPrefactura.find("#btnNuevoRenglonPrefacturaEditar");
     var mdlSeleccionarEntregasEditar = $("#mdlSeleccionarEntregasEditar");
     var nuevo = true;
-
     var IdMovimiento = 0;
+    var tblRegistrosX = $("#tblRegistros"), Registros;
+    var tblRegistrosDetalleX = $("#tblRegistrosDetalle"), RegistrosDetalle;
+    var tblRegistrosTrabajosX = $("#tblRegistrosTrabajos"), RegistrosTrabajos;
     $(document).ready(function () {
         btnVerMisMovimientos.on("click", function () {
             verMovs = 'getMyRecords';
@@ -276,30 +264,33 @@
             getRecords();
         });
         /*Boton que inserta a intelisis*/
-        btnExportar.on("click", function () {
+        btnExportarIntelisis.on("click", function () {
             var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
             frm.append('Importe', ImporteTotalGlobal);
-            $.ajax({
-                url: master_url + 'onAgregarIntelisis',
-                type: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: frm
-            }).done(function (data, x, jq) {
-                console.log(data);
-                mdlConfirmarExportarIntelisis.modal('d-none');
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'PREFACTURA EXPORTADA CORRECTAMENTE', 'success');
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
+            swal({
+                title: "Confirmar",
+                text: "Estás seguro?",
+                icon: "warning",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: master_url + 'onAgregarIntelisis',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'PREFACTURA EXPORTADA CORRECTAMENTE', 'success');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
+                }
             });
-        });
-        btnExportarIntelisis.on("click", function () {
-            mdlConfirmarExportarIntelisis.modal('show');
-        });
 
+        });
         /*Boton que captura el pago*/
         btnGuardarDatosPago.on("click", function () {
             var frm = new FormData($('#mdlCapturarInfoPago').find("#frmAgregarDatosPagos")[0]);
@@ -322,7 +313,6 @@
             });
         });
         btnCapturarPago.on("click", function () {
-
             HoldOn.open({
                 theme: "sk-bounce",
                 message: "CARGANDO DATOS..."
@@ -351,63 +341,61 @@
 
         });
         btnNuevoRenglonPrefacturaEditar.on("click", function () {
-            /*Trae los movimientos para el detalle*/
-            getTrabajosEntregadosParaPrefactura();
-        });
-        pnlDatos.find("#ClienteIntelisis").change(function () {
-            getClienteNombrebyCliente(pnlDatos.find("#ClienteIntelisis").val(), $(this).val());
-        });
-        pnlDatos.find("#ClienteIntelisis").change(function () {
-            getClienteNombrebyCliente(pnlDatos.find("#ClienteIntelisis").val(), $(this).val());
-        });
-        tBtnEditarConcluir.on("click", function () {
-            if (!$(this).is(':checked')) {
-                $('#frmNuevo').find('input, textarea, button, select').attr('disabled', false);
-                btnModificar.removeClass('d-none');
+            if (!nuevo) {
+                getTrabajosEntregadosParaPrefactura();
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
             }
         });
-        btnConfirmarEliminar.on("click", function () {
+        pnlDatos.find("#ClienteIntelisis").change(function () {
+            getClienteNombrebyCliente(pnlDatos.find("#ClienteIntelisis").val(), $(this).val());
+        });
+        btnEliminar.on("click", function () {
             if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
-                //Muestra el modal
-                mdlConfirmar.modal('show');
+                swal({
+                    title: "Confirmar",
+                    text: "Deseas eliminar el registro?",
+                    icon: "warning",
+                    buttons: ["Cancelar", "Aceptar"]
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        HoldOn.open({
+                            theme: "sk-bounce",
+                            message: "POR FAVOR ESPERE..."
+                        });
+                        $.ajax({
+                            url: master_url + 'onEliminar',
+                            type: "POST",
+                            data: {
+                                ID: IdMovimiento
+                            }
+                        }).done(function (data, x, jq) {
+                            menuTablero.removeClass("d-none");
+                            pnlDatos.addClass("d-none");
+                            pnlDetalleEditarEntrega.addClass("d-none");
+                            getRecords();
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            HoldOn.close();
+                        });
+                    }
+                });
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
-        });
-        btnEliminar.on("click", function () {
-            HoldOn.open({
-                theme: "sk-bounce",
-                message: "CARGANDO DATOS..."
-            });
-            $.ajax({
-                url: master_url + 'onEliminar',
-                type: "POST",
-                data: {
-                    ID: IdMovimiento
-                }
-            }).done(function (data, x, jq) {
-                mdlConfirmar.modal('d-none');
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'PREFACTURA ELIMINADA', 'danger');
-                pnlDatos.addClass("d-none");
-                pnlDetalleEditarPrefactura.addClass("d-none");
-                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-                getRecords();
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
+
+
         });
         btnNuevo.on('click', function () {
             pnlDatos.removeClass('d-none');
             menuTablero.addClass('d-none');
-            pnlDetalleNuevaPrefactura.removeClass('d-none');
             pnlDatos.find("input").val("");
             pnlDatos.find("textarea").val("");
-            pnlDatos.find("select").val(null).trigger("change");
+            $.each(pnlDatos.find("select"), function (k, v) {
+                pnlDatos.find("select")[k].selectize.clear(true);
+            });
             pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlDatos.find("#Movimiento").val("PREFACTURA");
-            pnlDatos.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
             nuevo = true;
             $(':input:text:enabled:visible:first').focus();
         });
@@ -417,87 +405,73 @@
             pnlDatos.addClass("d-none");
             pnlDetalleEditarPrefactura.addClass('d-none');
         });
-        btnGuardar.on("click", function () {
-            //Si es verdadero que hacer
-            if (pnlDatos.find('#frmNuevo').valid()) {
+        btnGuardar.click(function () {
+            isValid('pnlDatos');
+            if (valido) {
                 var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
-                if (tBtnConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
+                if (!nuevo) {
+                    $.ajax({
+                        url: master_url + 'onModificar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        getRecords();
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
+                        //                    if (tBtnEditarConcluir.is(':checked')) {
+//                        btnModificar.addClass('d-none');
+//                        btnExportarIntelisis.removeClass('d-none');
+//                        btnCapturarPago.removeClass('d-none');
+//                        $('#frmNuevo').find('input, textarea, button, select').attr('readonly', true);
+//                        $('#frmNuevo').find('select').addClass('disabledDetalle');
+//                        $('#frmNuevo').find("#FechaCreacion").addClass('disabledDetalle');
+//                        btnConfirmarEliminar.attr("disabled", true);
+//                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
+//                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
+//                        pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
+//                    } else {
+//                        btnExportarIntelisis.addClass('d-none');
+//                        btnCapturarPago.addClass('d-none');
+//                        $('#frmNuevo').find('#Referencia').attr('readonly', false);
+//                        $('#frmNuevo').find('#Comentarios').attr('readonly', false);
+//                        $('#frmNuevo').find('select').removeClass('disabledDetalle');
+//                        $('#frmNuevo').find("#FechaCreacion").removeClass('disabledDetalle');
+//                        btnConfirmarEliminar.attr("disabled", false);
+//                        $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
+//                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
+//                        pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
+//                    }
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
                 } else {
-                    frm.append('Estatus', 'Borrador');
+                    $.ajax({
+                        url: master_url + 'onAgregar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        getRecords();
+                        onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
+                        nuevo = false;
+                        IdMovimiento = parseInt(data);
+                        pnlDatos.find("#ID").val(IdMovimiento);
+                        pnlDetalleEditarPrefactura.removeClass('d-none')
+                        //btnConcluir.removeClass('d-none');
+                        //getDetalleByID(IdMovimiento);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
                 }
-                // Agregar Importe total
-                frm.append('Importe', 0);
-                /*DESCOMENTAR PARA AGREGAR*/
-                $.ajax({
-                    url: master_url + 'onAgregar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    nuevo = false;
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVA PREFACTURA', 'success');
-                    // Funcion que regarga el panel de editar con el nuevo registro
-                    despuesDeGuardar(data);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
-        btnModificar.on("click", function () {
-            //Si es verdadero que hacer
-            if ($('#frmNuevo').valid()) {
-                var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
-                //  Para los checkbox
-                if (tBtnEditarConcluir.is(':checked')) {
-                    frm.append('Estatus', 'Concluido');
-                } else {
-                    frm.append('Estatus', 'Borrador');
-                }
-                frm.append('Importe', ImporteTotalGlobal);
-                $.ajax({
-                    url: master_url + 'onModificar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    console.log(data);
-                    getRecords();
-                    onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
-                    if (tBtnEditarConcluir.is(':checked')) {
-                        btnModificar.addClass('d-none');
-                        btnExportarIntelisis.removeClass('d-none');
-                        btnCapturarPago.removeClass('d-none');
-                        $('#frmNuevo').find('input, textarea, button, select').attr('readonly', true);
-                        $('#frmNuevo').find('select').addClass('disabledDetalle');
-                        $('#frmNuevo').find("#FechaCreacion").addClass('disabledDetalle');
-                        btnConfirmarEliminar.attr("disabled", true);
-                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
-                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
-                        pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
-                    } else {
-                        btnExportarIntelisis.addClass('d-none');
-                        btnCapturarPago.addClass('d-none');
-                        $('#frmNuevo').find('#Referencia').attr('readonly', false);
-                        $('#frmNuevo').find('#Comentarios').attr('readonly', false);
-                        $('#frmNuevo').find('select').removeClass('disabledDetalle');
-                        $('#frmNuevo').find("#FechaCreacion").removeClass('disabledDetalle');
-                        btnConfirmarEliminar.attr("disabled", false);
-                        $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
-                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
-                        pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
-                    }
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
+            } else {
+                onNotify('<span class="fa fa-times fa-lg"></span>', '* DEBE DE COMPLETAR LOS CAMPOS REQUERIDOS *', 'danger');
             }
         });
         getClientes();
@@ -506,31 +480,19 @@
         handleEnter();
     });
     function getClientes() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getClientesIntelisis',
             type: "POST", dataType: "JSON"
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                pnlDatos.find("[name='ProyectoIntelisis']")[0].selectize.addOption({text: v.Nombre, value: v.Cliente});
+                pnlDatos.find("[name='ClienteIntelisis']")[0].selectize.addOption({text: v.Nombre, value: v.Cliente});
             });
-            pnlDatos.find("#ClienteIntelisis").html(options);
-            pnlDatos.find("#ClienteIntelisis").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
     }
     function getProyectos() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getProyectosIntelisis',
             type: "POST", dataType: "JSON"
@@ -541,10 +503,144 @@
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
     }
+
     function getRecords() {
+        HoldOn.open({
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblRegistros')) {
+            tblRegistrosX.DataTable().destroy();
+        }
+        Registros = tblRegistrosX.DataTable({
+            "dom": 'Bfrtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + verMovs,
+                "dataType": "json",
+                "dataSrc": ""
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Fecha"},
+                {"data": "Cliente"},
+                {"data": "Proyecto"},
+                {"data": "Referencia"},
+                {"data": "Estatus"},
+                {"data": "Importe"},
+                {"data": "Usuario"}
+            ],
+            language: lang,
+            "autoWidth": true,
+            "bStateSave": true,
+            "colReorder": true,
+            "displayLength": 12,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ]
+        });
+        $('#tblRegistros_filter input[type=search]').focus();
+        tblRegistrosX.find('tbody').on('click', 'tr', function () {
+            tblRegistrosX.find("tbody tr").removeClass("success");
+            $(this).addClass("success");
+            nuevo = false;
+            var dtm = Registros.row(this).data();
+            temp = parseInt(dtm.ID);
+            IdMovimiento = parseInt(dtm.ID);
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'getPrefacturaByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: IdMovimiento
+                }
+            }).done(function (data, x, jq) {
+                pnlDatos.find("input").val("");
+                $.each(pnlDatos.find("select"), function (k, v) {
+                    pnlDatos.find("select")[k].selectize.clear(true);
+                });
+                var prefactura = data[0];
+                if (prefactura.Estatus === 'Concluido') {
+                    $.ajax({
+                        url: master_url + 'getAllProyectosIntelisis',
+                        type: "POST", dataType: "JSON"
+                    }).done(function (data, x, jq) {
+                        var options = '<option></option>';
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='ProyectoIntelisis']")[0].selectize.addOption({text: v.Descripcion, value: v.Proyecto});
+                        });
+                        pnlDatos.find("[name='ProyectoIntelisis']")[0].selectize.setValue(prefactura.ProyectoIntelisis);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
+                } else {
+                    pnlDatos.find("[name='ProyectoIntelisis']")[0].selectize.setValue(prefactura.ProyectoIntelisis);
+                }
+                $.each(data[0], function (k, v) {
+                    if (v !== null && v !== '' && v !== 'null') {
+                        if (pnlDatos.find("[name='" + k + "']").is('select')) {
+                            pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
+                        } else {
+                            pnlDatos.find("[name='" + k + "']").val(v);
+                        }
+                    }
+                });
+                menuTablero.addClass("d-none");
+                pnlDatos.removeClass("d-none");
+                pnlDetalleEditarPrefactura.removeClass("d-none");
+                getDetalleByID(IdMovimiento);
+                //Control de estatus
+//                            if (prefactura.Estatus === 'Concluido') {
+//                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text(prefactura.Estatus.toUpperCase());
+//                                tBtnEditarConcluir.prop('checked', true);
+//                                btnModificar.addClass('d-none');
+//                                $('#frmNuevo').find('input, textarea, button, select').attr('readonly', true);
+//                                $('#frmNuevo').find('select').addClass('disabledDetalle');
+//                                $('#frmNuevo').find("#FechaCreacion").addClass('disabledDetalle');
+//                                btnConfirmarEliminar.attr("disabled", true);
+//                                pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
+//                                pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
+//                                btnExportarIntelisis.removeClass('d-none');
+//                                btnCapturarPago.removeClass('d-none');
+//                            } else if (prefactura.Estatus === 'Cancelado') {
+//                                $(".spanEditarEstatus").removeClass('label-default').addClass('label-danger').text(prefactura.Estatus.toUpperCase());
+//                                tBtnEditarConcluir.addClass('d-none');
+//                                btnModificar.addClass('d-none');
+//                                $('#frmNuevo').find('input, textarea, button, select').attr('disabled', true);
+//                                btnConfirmarEliminar.attr("disabled", true);
+//                                pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
+//                                pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
+//                            } else {
+//                                $(".spanEditarEstatus").removeClass('label-danger label-success').addClass('label-default').text(prefactura.Estatus.toUpperCase());
+//                                tBtnEditarConcluir.prop('checked', false);
+//                                btnModificar.removeClass('d-none');
+//                                $('#frmNuevo').find('input, textarea, button, select').attr('disabled', false);
+//                                $('#frmNuevo').find('select').removeClass('disabledDetalle');
+//                                $('#frmNuevo').find("#FechaCreacion").removeClass('disabledDetalle');
+//                                btnConfirmarEliminar.attr("disabled", false);
+//                                pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
+//                                pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
+//                            }
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+
+        });
+        HoldOn.close();
+    }
+
+    function getRecordsA() {
         temp = 0;
         HoldOn.open({
             theme: "sk-bounce",
@@ -591,15 +687,12 @@
                                 ID: IdMovimiento
                             }
                         }).done(function (data, x, jq) {
-                            console.log(data);
                             pnlDatos.find("input").val("");
                             $.each(pnlDatos.find("select"), function (k, v) {
                                 pnlDatos.find("select")[k].selectize.clear(true);
                             });
                             var prefactura = data[0];
-
                             if (prefactura.Estatus === 'Concluido') {
-
                                 $.ajax({
                                     url: master_url + 'getAllProyectosIntelisis',
                                     type: "POST", dataType: "JSON"
@@ -613,26 +706,18 @@
                                     console.log(x, y, z);
                                 }).always(function () {
                                 });
-
                             } else {
                                 pnlDatos.find("[name='ProyectoIntelisis']")[0].selectize.setValue(prefactura.ProyectoIntelisis);
-
                             }
-
-
                             $.each(data[0], function (k, v) {
                                 if (v !== null && v !== '' && v !== 'null') {
                                     if (pnlDatos.find("[name='" + k + "']").is('select')) {
                                         pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
                                     } else {
                                         pnlDatos.find("[name='" + k + "']").val(v);
-
                                     }
                                 }
                             });
-
-
-
                             menuTablero.addClass("d-none");
                             pnlDatos.removeClass("d-none");
                             pnlDetalleEditarPrefactura.removeClass("d-none");
@@ -802,14 +887,14 @@
                                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'LA PREFACTURA NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                                 }
                             }).fail(function (x, y, z) {
-                                mdlSeleccionarEntregasEditar.modal('d-none');
+                                mdlSeleccionarEntregasEditar.modal('hide');
                                 HoldOn.close();
                                 console.log(x, y, z);
                             }).always(function () {
                                 HoldOn.close();
                             });
                             if (!mdlSeleccionarEntregasEditar.find("#chkMultiple").is(":checked")) {
-                                mdlSeleccionarEntregasEditar.modal('d-none');
+                                mdlSeleccionarEntregasEditar.modal('hide');
                             }
                         }
                     }).fail(function (x, y, z) {
@@ -927,26 +1012,37 @@
             HoldOn.close();
         });
     }
-    function onEliminarPrefacturaDetalle(evt, IDX) {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ELIMINANDO...'
-        });
-        $.ajax({
-            url: master_url + 'onEliminarPrefacturaDetalle',
-            type: "POST",
-            data: {
-                ID: IDX
+    function onEliminarPrefacturaDetalle(evt, IDC) {
+        if (IDC !== 0 && IDC !== undefined && IDC > 0) {
+            if (Estatus !== 'Concluido') {
+                swal({
+                    title: "Confirmar",
+                    text: "Deseas eliminar el registro?",
+                    icon: "warning",
+                    buttons: ["Cancelar", "Aceptar"]
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: master_url + 'onEliminarPrefacturaDetalle',
+                            type: "POST",
+                            data: {
+                                ID: IDC
+                            }
+                        }).done(function (data, x, jq) {
+                            getDetalleByID(IdMovimiento);
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                        }).always(function () {
+                            HoldOn.close();
+                        });
+                    }
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
             }
-        }).done(function (data, x, jq) {
-            var row = $(evt).parent().parent().find("td");
-            $(evt).parent().parent().remove();
-            getDetalleByID(IdMovimiento);
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'REGISTRO NO ELIMINADO', 'danger');
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
 
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+        }
+    }
 </script>
