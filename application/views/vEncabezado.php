@@ -71,15 +71,9 @@
 
         <!--Notifiers-->
         <script src="<?php echo base_url(); ?>js/notify/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
-
-        <!--Time picker-->
-        <link href="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
-        <script src="<?php echo base_url(); ?>js/timepicker/bootstrap-timepicker.min.js"></script>
         <!--jQuery Number Format-->
         <script src="<?php echo base_url(); ?>js/jnumber/jquery.number.min.js"></script>
         <!--JS XLXS API-->
-        <script src="<?php echo base_url(); ?>js/js-xlsx/dist/cpexcel.js"></script>
-        <script src="<?php echo base_url(); ?>js/js-xlsx/shim.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/jszip.js"></script>
         <script src="<?php echo base_url(); ?>js/js-xlsx/xlsx.js"></script>
 
@@ -120,14 +114,7 @@
             $('[data-provide="datepicker"]').inputmask({alias: "date"});
             $('[data-provide="datepicker"]').addClass("notEnter");
             $('[data-provide="datepicker"]').val();
-            $('[data-provide="timepicker"]').timepicker({
-                disableFocus: true,
-                showInputs: false,
-                showSeconds: true,
-                showMeridian: false,
-                defaultValue: '12:45:30'
-            }
-            );
+
         });
         function onNotify(span, message, type) {
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');

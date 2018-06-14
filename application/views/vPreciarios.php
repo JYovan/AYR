@@ -58,7 +58,7 @@
                         <div class="col-6">
                             <div class="form-group label-static">
                                 <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm " placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="" required="">
+                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm " placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
                             </div>
                         </div>
                         <div class="col-6">
