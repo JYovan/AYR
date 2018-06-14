@@ -84,7 +84,7 @@
         </div>
     </div>
 </div>
-<!--PANEL EDITAR-->
+<!--PANEL DATOS-->
 <div id="" class="container-fluid">
     <div class="card border-0  d-none" id="pnlDatos">
         <div class="card-body text-dark">
@@ -104,7 +104,6 @@
                         </button>
                         <button type="button" class="btn  btn-primary btn-sm d-none" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="bottom" title="Exportar a Intelisis" ><span class="fa fa-cloud-upload "></span> </button>
                         <button type="button" class="btn  btn-primary btn-sm d-none" id="btnCapturarPago" data-toggle="tooltip" data-placement="bottom" title="Capturar Pago"><span class="fa fa-dollar-sign "></span> </button>
-
                         <button type="button" class="btn btn-warning btn-sm" id="btnImprimirReportesEditarEntrega"><span class="fa fa-print "></span> IMPRIMIR</button>
                         <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
                         <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
@@ -130,7 +129,7 @@
                             <div class="col-6 col-md-3">
                                 <div class="form-group label-static">
                                     <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" readonly="">
+                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -395,6 +394,7 @@
             $.each(pnlDatos.find("select"), function (k, v) {
                 pnlDatos.find("select")[k].selectize.clear(true);
             });
+            pnlDatos.find('#FechaCreacion').val(getToday());
             nuevo = true;
             $(':input:text:enabled:visible:first').focus();
         });
@@ -526,7 +526,7 @@
                 {"data": "ID"},
                 {"data": "Fecha"},
                 {"data": "Cliente"},
-                {"data": "Proyecto"},
+                {"data": "ProyectoIntelisis"},
                 {"data": "Referencia"},
                 {"data": "Estatus"},
                 {"data": "Importe"},
