@@ -166,10 +166,10 @@ left join clientes c ON c.ID = E.Cliente_ID', false);
         }
     }
 
-    public function getTrabajosEntregadosParaPrefactura() {
+    public function getTrabajosEntregadosParaPrefactura($ID_Prefactura) {
         try {
-            $this->db->select('T.ID AS "Folio Interno",'
-                    . 'T.FolioCliente AS "Folio Cliente" , '
+            $this->db->select('T.ID AS "FolioInterno",'
+                    . 'T.FolioCliente AS "FolioCliente" , '
                     . ' STR_TO_DATE( T.FechaCreacion ,"%d/%m/%Y" )  AS Fecha,'
                     . 'Cte.Nombre As Cliente,'
                     . 'S.Nombre AS Sucursal,S.Region,'
@@ -182,6 +182,7 @@ left join clientes c ON c.ID = E.Cliente_ID', false);
             $this->db->where('T.Prefactura_ID IS NULL');
             $this->db->where_in('T.Estatus', array('Entregado'));
             $this->db->where_in('T.EstatusTrabajo', array('Finalizado'));
+            $this->db->where("T.ID NOT IN(SELECT PD.Trabajo_ID FROM prefacturasdetalle PD WHERE  PD.Prefactura_ID = $ID_Prefactura ) ", null, false);
 
             $query = $this->db->get();
             /*

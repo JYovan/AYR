@@ -109,7 +109,7 @@
                 <ul class="dropdown-menu">
                     <li  class="d-none" id="liPedidoCliente"><a class="dropdown-item" href="<?php print base_url('PedidoCliente.py') ?>">Pedidos Cliente</a></li>
                     <div class="dropdown-divider" ></div>
-                    <li class="d-none" id="liServicios"><a class="dropdown-item" href="<?php print base_url('Trabajos.py') ?>">Servicio</a></li>
+                    <li class="d-none" id="liServicios"><a class="dropdown-item" href="<?php print base_url('Trabajos.py') ?>">Servicios</a></li>
                 </ul>
             </li>
 
@@ -187,21 +187,18 @@
 
 <div class="container-fluid bg-primary" style="background-color: rgb(166,175,179);">
     <div class="row">
-        <div class="col-4 ">
+        <div class="col-2 ">
             <button class="btn btn-primary btn-sm mt-1 mb-1" onclick="openNav()">
-                <i class="fa fa-bars"></i> Menú Principal
+                <i class="fa fa-bars"></i> Menú
             </button>
         </div>
-        <div class="col-8 " align="right">
-
+        <div class="col-10 float-right" align="right">
             <span class="text-light">
                 <img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
                 <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
             </span>
-
             <a  class="btn btn-primary btn-sm" href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">
                 <i class="fa fa-sign-out-alt"></i> Salir</a>
-
         </div>
     </div>
 </div>

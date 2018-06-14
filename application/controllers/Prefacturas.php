@@ -119,7 +119,8 @@ class Prefacturas extends CI_Controller {
 
     public function getTrabajosEntregadosParaPrefactura() {
         try {
-            $data = $this->prefactura_model->getTrabajosEntregadosParaPrefactura();
+            extract($this->input->post());
+            $data = $this->prefactura_model->getTrabajosEntregadosParaPrefactura($ID_Prefactura);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -194,7 +195,7 @@ class Prefacturas extends CI_Controller {
         }
     }
 
-    public function onAgregarDetalleEditar() {
+    public function onAgregarDetalle() {
         try {
             extract($this->input->post());
             $data = array(
@@ -284,7 +285,6 @@ class Prefacturas extends CI_Controller {
     public function onModificarImportePorPrefactura() {
         try {
             extract($this->input->post());
-
             print json_encode($this->prefactura_model->onModificarImportePorPrefactura($ID, $DATA));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

@@ -56,7 +56,7 @@
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
-                    <div class="col-md-5 float-left">
+                    <div class="col-md-4 float-left">
                         <legend >Entrega</legend>
                     </div>
                     <div class="col-md-2" align="right" id="spanEstatus">
@@ -64,7 +64,7 @@
                             BORRADOR
                         </span>
                     </div>
-                    <div class="col-md-5" align="right">
+                    <div class="col-md-6" align="right">
                         <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                             <span class="fa fa-arrow-left" ></span>
                         </button>
@@ -86,25 +86,25 @@
                             <!-- PANEL DE DATOS GENERALES-->
                             <div role="tabpanel" class="tab-pane fade active show" id="Datos">
                                 <div class="row">
-                                    <div class=" col-2 col-md-2 ">
+                                    <div class=" col-12 col-md-2 ">
                                         <div class="form-group label-static">
                                             <label for="ID" class="control-label">ID</label>
                                             <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
                                         </div>
                                     </div>
-                                    <div class="col-2 col-md-2">
+                                    <div class="col-12 col-md-2">
                                         <div class="form-group label-static">
                                             <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" data-provide="datepicker">
                                         </div>
                                     </div>
-                                    <div class="col-2 col-md-4">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group label-static">
                                             <label for="NoEntrega" class="control-label">Entrega*</label>
                                             <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control form-control-sm" placeholder="" required="">
                                         </div>
                                     </div>
-                                    <div class="col-4 col-md-4">
+                                    <div class="col-14 col-md-4">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Cliente*</label>
                                             <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
