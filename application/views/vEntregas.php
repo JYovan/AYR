@@ -274,6 +274,41 @@
     var tblRegistrosDetalleX = $("#tblRegistrosDetalle"), RegistrosDetalle;
     var tblRegistrosTrabajosX = $("#tblRegistrosTrabajos"), RegistrosTrabajos;
     $(document).ready(function () {
+        tblRegistrosTrabajosX.find('tbody').on('click', 'tr', function () {
+            var dtm = RegistrosTrabajos.row(this).data();
+            temp = parseInt(dtm.FolioInterno);
+            $.ajax({
+                url: master_url + 'getTrabajoByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: temp
+                }
+            }).done(function (data, x, jq) {
+                var dtm = data[0];
+                $.ajax({
+                    url: master_url + 'onAgregarDetalle',
+                    type: "POST",
+                    data: {
+                        Entrega_ID: pnlDatos.find("#ID").val(),
+                        Trabajo_ID: dtm.ID
+                    }
+                }).done(function (data, x, jq) {
+                    RegistrosDetalle.ajax.reload();
+                    RegistrosTrabajos.ajax.reload();
+                    onNotifyOld('fa fa-check', 'Registro Agregado', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+                if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
+                    mdlSeleccionarTrabajosEditar.modal('hide');
+                }
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+            });
+        });
         btnCleanFilter.on("click", function () {
             Registros.state.clear();
             window.location.reload();
@@ -766,7 +801,8 @@
                 type: "POST",
                 "dataSrc": "",
                 "data": {
-                    Cliente_ID: Cliente_ID
+                    Cliente_ID: Cliente_ID,
+                    ID_Entrega: IdMovimiento
                 }
             },
             "columns": [
@@ -801,52 +837,7 @@
         if (parseInt(json.length) > 0) {
             mdlSeleccionarTrabajosEditar.modal('show');
             $('#tblRegistrosTrabajos_filter input[type=search]').focus();
-            tblRegistrosTrabajosX.find('tbody').on('click', 'tr', function () {
-                var dtm = RegistrosTrabajos.row(this).data();
-                temp = parseInt(dtm.FolioInterno);
-                $.ajax({
-                    url: master_url + 'getTrabajoByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: temp
-                    }
-                }).done(function (data, x, jq) {
-                    /**AQUI  VALIDA QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
-                    var existe_trabajo = false;
-                    RegistrosDetalle.column(1).data().each(function (value, index) {
-                        if (parseInt(value) === parseInt(temp)) {
-                            existe_trabajo = true;
-                            return false;
-                        }
-                    });
-                    if (!existe_trabajo) {
-                        var dtm = data[0];
-                        $.ajax({
-                            url: master_url + 'onAgregarDetalle',
-                            type: "POST",
-                            data: {
-                                Entrega_ID: pnlDatos.find("#ID").val(),
-                                Trabajo_ID: dtm.ID
-                            }
-                        }).done(function (data, x, jq) {
-                            RegistrosDetalle.ajax.reload();
-                            onNotifyOld('fa fa-check', 'Registro Agregado', 'success');
-                        }).fail(function (x, y, z) {
-                            console.log(x, y, z);
-                        }).always(function () {
-                        });
-                    } else {
-                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ESTE TRABAJO YA HA SIDO AGREGADO', 'danger');
-                    }
-                    if (!mdlSeleccionarTrabajosEditar.find("#chkMultiple").is(":checked")) {
-                        mdlSeleccionarTrabajosEditar.modal('hide');
-                    }
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            });
+
             $('#tblRegistrosTrabajos tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" />');

@@ -170,6 +170,33 @@ left join SUCURSALES S ON S.ID = T.Sucursal_ID ', false);
         }
     }
 
+    public function getTrabajosControlEntregasByCliente($Cliente_ID, $ID_Entrega) {
+        try {
+            $this->db->select('T.ID AS "FolioInterno",T.FolioCliente AS "FolioCliente" ,'
+                    . ' STR_TO_DATE( T.FechaCreacion ,"%d/%m/%Y" )   AS Fecha,'
+                    . 'S.Nombre AS Sucursal,S.Region,'
+                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe, '
+                    . 'ifnull(E.Descripcion,"N/E") AS Especialidad '
+                    . 'FROM Trabajos T '
+                    . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID '
+                    . 'LEFT JOIN ESPECIALIDADES E ON T.Especialidad_ID = E.ID', false);
+            $this->db->where_in('T.Estatus', array('Concluido'));
+            $this->db->where_in('T.EstatusTrabajo', array('Finalizado'));
+            $this->db->where("T.ID NOT IN(SELECT ED.Trabajo_ID FROM entregasdetalle ED WHERE  ED.Entrega_ID = $ID_Entrega ) ", null, false);
+            $this->db->where('T.Cliente_ID', $Cliente_ID);
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+            // print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificar($ID, $DATA) {
         try {
             $this->db->where('ID', $ID);

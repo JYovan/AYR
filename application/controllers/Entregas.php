@@ -83,7 +83,7 @@ class Entregas extends CI_Controller {
     public function getTrabajosControlEntregasByCliente() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getTrabajosControlEntregasByCliente($Cliente_ID);
+            $data = $this->entregas_model->getTrabajosControlEntregasByCliente($Cliente_ID, $ID_Entrega);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

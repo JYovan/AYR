@@ -119,7 +119,7 @@ class Prefacturas extends CI_Controller {
 
     public function getTrabajosEntregadosParaPrefactura() {
         try {
-            $data = $this->trabajo_model->getTrabajosEntregadosParaPrefactura();
+            $data = $this->prefactura_model->getTrabajosEntregadosParaPrefactura();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

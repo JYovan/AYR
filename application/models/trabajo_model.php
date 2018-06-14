@@ -1613,36 +1613,6 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function getTrabajosEntregadosParaPrefactura() {
-        try {
-            $this->db->select('T.ID AS "Folio Interno",'
-                    . 'T.FolioCliente AS "Folio Cliente" , '
-                    . ' STR_TO_DATE( T.FechaCreacion ,"%d/%m/%Y" )  AS Fecha,'
-                    . 'Cte.Nombre As Cliente,'
-                    . 'S.Nombre AS Sucursal,S.Region,'
-                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe, '
-                    . 'ifnull(E.Descripcion,"N/E") AS Especialidad '
-                    . 'FROM Trabajos T '
-                    . 'INNER join Clientes Cte ON Cte.ID = T.Cliente_ID '
-                    . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID '
-                    . 'LEFT JOIN ESPECIALIDADES E ON T.Especialidad_ID = E.ID', false);
-            $this->db->where('T.Prefactura_ID IS NULL');
-            $this->db->where_in('T.Estatus', array('Entregado'));
-            $this->db->where_in('T.EstatusTrabajo', array('Finalizado'));
-
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            // print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function onEntregado($ID) {
         try {
 //            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
