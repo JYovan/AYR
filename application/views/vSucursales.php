@@ -14,21 +14,19 @@
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div class="row">
-            <div id="Registros" class="table-responsive d-none">
-                <table id="tblRegistros" class="table table-sm display " style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>CR</th>
-                            <th>Sucursal</th>
-                            <th>Región</th>
-                            <th>Cliente</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+        <div id="Registros" class="d-none">
+            <table id="tblRegistros" class="table table-sm display " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CR</th>
+                        <th>Sucursal</th>
+                        <th>Región</th>
+                        <th>Cliente</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -430,7 +428,6 @@
     var Registros;
     var tblRegistros = $('#tblRegistros');
     $(document).ready(function () {
-
         $("[name='sCliente']").change(function () {
             getRecords($(this).val());
             cliente = $(this).val();
@@ -582,6 +579,7 @@
                 "autoWidth": true,
                 "colReorder": true,
                 "displayLength": 12,
+                "scrollX": true,
                 "bLengthChange": false,
                 "deferRender": true,
                 "scrollCollapse": false,

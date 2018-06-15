@@ -2,22 +2,17 @@
 <div id="mdlOlvideContrasena" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
+            <h5 class="modal-title">Confirmar</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Olvidé Contraseña</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body">
             <form id="frmEditarContrasena">
                 Ingresa el correo con el que accesas a la aplicación:
-                <div class="col-md-12">
-                    <br>
-                </div>
-                <div class=" col-6 col-md-12">
+                <div class=" col-12 col-md-12">
                     <label for="">Correo*</label>
                     <input type="email" id="ocUsuario" name="ocUsuario"  class="form-control" required="" placeholder="" >
-                </div>
-                <div class="col-md-12">
-                    <br>
                 </div>
             </form>
         </div>

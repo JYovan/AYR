@@ -52,7 +52,6 @@ class CentroCostos extends CI_Controller {
     public function getClientes() {
         try {
             print json_encode($this->cliente_model->getClientes());
-            print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

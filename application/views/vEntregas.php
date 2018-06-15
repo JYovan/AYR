@@ -11,23 +11,21 @@
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
-        <div class="card-block">
-            <div id="Registros" class="table-responsive">
-                <table id="tblRegistros" class="table table-sm display " style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Entrega</th>
-                            <th>Estatus</th>
-                            <th>Importe</th>
-                            <th>Cliente</th>
-                            <th>Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-            </div>
+        <div id="Registros" >
+            <table id="tblRegistros" class="table table-sm display " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Entrega</th>
+                        <th>Estatus</th>
+                        <th>Importe</th>
+                        <th>Cliente</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
         </div>
     </div>
 </div>
@@ -149,8 +147,8 @@
                     <button type="button" class="btn btn-primary btn-sm" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus "></span></button>
                 </div>
             </div>
-            <div class="row">
-                <div id="RegistrosDetalle" class="table-responsive d-none">
+            <div id="RegistrosDetalle" class="d-none">
+                <div class="row">
                     <table id="tblRegistrosDetalle" class="table table-sm" style="width:100%">
                         <thead>
                             <tr>
@@ -205,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="RegistrosTrabajos" class="table-responsive">
+                    <div id="RegistrosTrabajos">
                         <table id="tblRegistrosTrabajos" class="table table-sm " style="width:100%">
                             <thead>
                                 <tr>
@@ -671,6 +669,7 @@
             "autoWidth": true,
             "bStateSave": true,
             "colReorder": true,
+            "scrollX": true,
             "displayLength": 12,
             "bLengthChange": false,
             "deferRender": true,
@@ -820,6 +819,7 @@
             "colReorder": true,
             "displayLength": 10,
             "bLengthChange": false,
+            "scrollX": true,
             "deferRender": true,
             "scrollCollapse": false,
             keys: true,
@@ -913,6 +913,7 @@
             "displayLength": 20,
             "bLengthChange": false,
             "deferRender": true,
+            "scrollX": true,
             "scrollCollapse": false,
             "bSort": true,
             "aaSorting": [

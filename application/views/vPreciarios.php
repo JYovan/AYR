@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="card-block">
-            <div id="Preciarios" class="table-responsive">
+            <div id="Preciarios">
                 <table id="tblPreciarios" class="table table-sm display " style="width:100%">
                     <thead>
                         <tr>
@@ -120,7 +120,7 @@
     </div>
 </div>
 <!--PANEL DETALLE-->
-<div class="card d-none" id="pnlDetalleConceptos">
+<div class="card border-0 d-none" id="pnlDetalleConceptos">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6" align="left">
@@ -131,8 +131,8 @@
                 <button type="button" class="btn btn-primary btn-sm d-none" id="btnRefrescarConceptos"><span class="fa fa-refresh"></span><br>ACTUALIZAR</button>
             </div>
         </div>
-        <div class="row">
-            <div id="PreciarioEspecifico" class="table-responsive">
+        <div id="PreciarioEspecifico" class="">
+            <div class="row">
                 <table id="tblPreciarioEspecifico" class="table table-sm" style="width:100%">
                     <thead>
                         <tr>
@@ -1091,6 +1091,7 @@
             "displayLength": 12,
             "bLengthChange": false,
             "deferRender": true,
+            "scrollX": true,
             "scrollCollapse": false,
             "bSort": true,
             "bStateSave": true,
@@ -1216,6 +1217,7 @@
             "deferRender": true,
             "scrollCollapse": false,
             "bSort": true,
+            "scrollX": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
             ],
@@ -1340,3 +1342,9 @@
         to_html(wb);
     }
 </script>
+<style>
+    p.CustomDetalleDescripcion{
+        height: 100px !important;
+        overflow: auto !important;
+    }
+</style>

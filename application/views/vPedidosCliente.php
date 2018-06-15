@@ -1,4 +1,4 @@
-<div class="card " id="MenuTablero">
+<div class="card border-0" id="MenuTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5 float-left">
@@ -14,42 +14,40 @@
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
-        <div class="card-block">
-            <div class="table-responsive" id="Registros">
-                <table id="tblRegistros" class="table table-sm" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Folio</th>
-                            <th>Sucursal</th>
-                            <th>Fecha</th>
-                            <th>Trabajo Solicitado</th>
-                            <th>Estatus</th>
-                            <th>Importe</th>
-                            <th>Orden C.</th>
-                            <th>Fecha Pago</th>
-                            <th>Folio Fact.</th>
-                            <th>Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot>
-                        <tr>
-                            <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por T. Solicitado" class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
-                            <th></th>
-                            <th><input type="text" placeholder="Buscar por O.C." class="form-control form-control-sm"/></th>
-                            <th></th>
-                            <th><input type="text" placeholder="Buscar por Folio Fact." class="form-control form-control-sm"/></th>
-                            <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+        <div  id="Registros">
+            <table id="tblRegistros" class="table table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Folio</th>
+                        <th>Sucursal</th>
+                        <th>Fecha</th>
+                        <th>Trabajo Solicitado</th>
+                        <th>Estatus</th>
+                        <th>Importe</th>
+                        <th>Orden C.</th>
+                        <th>Fecha Pago</th>
+                        <th>Folio Fact.</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por T. Solicitado" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
+                        <th></th>
+                        <th><input type="text" placeholder="Buscar por O.C." class="form-control form-control-sm"/></th>
+                        <th></th>
+                        <th><input type="text" placeholder="Buscar por Folio Fact." class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>
@@ -304,7 +302,7 @@
             pnlDatos.removeClass("d-none");
             pnlDatos.find("input").val("");
             pnlDatos.find("textarea").val("");
-           // pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            // pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
             //pnlDatos.find("#FechaOrigen").datepicker("setDate", currentDate);
             pnlDatos.find("#HoraOrigen").timepicker("setTime", currentDate);
             pnlDatos.find(".nav-tabs a").removeClass("active show");
@@ -507,6 +505,7 @@
             "displayLength": 12,
             "bLengthChange": false,
             "deferRender": true,
+            "scrollX": true,
             "scrollCollapse": false,
             keys: true,
             "bSort": true,

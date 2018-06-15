@@ -90,7 +90,7 @@ class preciario_model extends CI_Model {
         try {
 
             $this->db->select('PC.ID,CONCAT("<span style=\'font-size:14px;\' class=\"badge badge-danger\">",PC.Clave,"</span>") AS Clave, '
-                    . 'CONCAT("<p class=\" \">",UPPER(PC.Descripcion),"</p>") AS Descripcion, '
+                    . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(PC.Descripcion),"</p>") AS Descripcion, '
                     . 'PC.Unidad AS Unidad, '
                     . 'CONCAT("<span style=\'font-size:14px;\' class=\"badge badge-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, '
                     . 'PC.Moneda AS Moneda,'

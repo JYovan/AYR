@@ -1,4 +1,4 @@
-<div class="card" id="pnlTablero">
+<div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6 float-left">
@@ -14,18 +14,16 @@
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div class="row">
-            <div id="Areas" class="table-responsive d-none">
-                <table id="tblAreas" class="table table-sm display " style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+        <div id="Areas" class="d-none">
+            <table id="tblAreas" class="table table-sm display " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -222,6 +220,7 @@
                 "autoWidth": true,
                 "colReorder": true,
                 "displayLength": 20,
+                "scrollX": true,
                 "bLengthChange": false,
                 "deferRender": true,
                 "scrollCollapse": false,

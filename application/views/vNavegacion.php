@@ -242,7 +242,7 @@
 
     function getLogoByID() {
         $.ajax({
-            url: 'http://127.0.0.1/AYR/Sesion/getLogoByID',
+            url: base_url + 'Sesion/getLogoByID',
             type: "POST",
             dataType: "JSON"
         }).done(function (data, x, jq) {

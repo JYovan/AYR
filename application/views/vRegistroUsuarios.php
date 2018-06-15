@@ -1,4 +1,3 @@
-
 <div class="card " id="pnlTablero">
     <div class="card-body">
         <div class="row">
@@ -11,32 +10,30 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="card-block">
-                    <div class="table-responsive" id="Registros">
-                        <table id="tblRegistros" class="table table-sm" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Usuario</th>
-                                    <th>Registro</th>
-                                    <th>Acción</th>
-                                    <th>Cliente</th>
-                                    <th>Empresa</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>Usuario</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>Cliente</th>
-                                    <th>Empresa</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                <div c id="Registros">
+                    <table id="tblRegistros" class="table table-sm" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Registro</th>
+                                <th>Acción</th>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th></th>
+                                <th></th>
+                                <th>Cliente</th>
+                                <th>Empresa</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -104,6 +101,7 @@
             "bStateSave": true,
             "colReorder": true,
             "displayLength": 15,
+            "scrollX": true,
             "bLengthChange": false,
             "deferRender": true,
             "scrollCollapse": false,

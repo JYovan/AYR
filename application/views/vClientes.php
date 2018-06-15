@@ -8,9 +8,7 @@
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div class="card-block">
-            <div class="table-responsive" id="tblRegistros"></div>
-        </div>
+        <div  id="tblRegistros"></div>
     </div>
 </div>
 <div id="" class="container-fluid">
