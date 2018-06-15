@@ -615,7 +615,7 @@
                     var ext = getExt(trabajo.Adjunto);
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
                         pnlDatos.find("#VistaPrevia").html('<img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" \n\
-                                    class ="img-responsive" width="600px"    \n\
+                                    class ="img-fluid"    \n\
                                     onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
                     }
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {

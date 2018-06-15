@@ -157,7 +157,7 @@
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        var preview = '<button type="button" class="btn btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><br><img src="' + reader.result + '" class="img-responsive" width="400px"><div class="caption"><p>' + Archivo[0].files[0].name + '</p></div>';
+                        var preview = '<button type="button" class="btn btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><br><img src="' + reader.result + '" class="img-fluid" ><div class="caption"><p>' + Archivo[0].files[0].name + '</p></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
@@ -328,7 +328,7 @@
                         if (empresa.RutaLogo !== null && empresa.RutaLogo !== undefined && empresa.RutaLogo !== '') {
                             var ext = getExt(empresa.RutaLogo);
                             if (ext === "gif" || ext === "jpg" || ext === "png") {
-                                pnlDatos.find("#VistaPrevia").html('<div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" width="400px"/>');
+                                pnlDatos.find("#VistaPrevia").html('<div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + empresa.RutaLogo + '" class="img-fluid"/>');
                             }
                             if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
                                 pnlDatos.find("#VistaPrevia").html('<div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + empresa.RutaLogo + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');

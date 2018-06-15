@@ -517,29 +517,6 @@
                     }).done(function (data, x, jq) {
                         Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
-                        //                    if (tBtnEditarConcluir.is(':checked')) {
-//                        btnModificar.addClass('d-none');
-//                        btnExportarIntelisis.removeClass('d-none');
-//                        btnCapturarPago.removeClass('d-none');
-//                        $('#frmNuevo').find('input, textarea, button, select').attr('readonly', true);
-//                        $('#frmNuevo').find('select').addClass('disabledDetalle');
-//                        $('#frmNuevo').find("#FechaCreacion").addClass('disabledDetalle');
-//                        btnConfirmarEliminar.attr("disabled", true);
-//                        $(".spanEditarEstatus").removeClass('label-default').addClass('label-success').text('Concluido'.toUpperCase());
-//                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', true);
-//                        pnlDetalleEditarPrefactura.find("#Conceptos").addClass("disabledDetalle");
-//                    } else {
-//                        btnExportarIntelisis.addClass('d-none');
-//                        btnCapturarPago.addClass('d-none');
-//                        $('#frmNuevo').find('#Referencia').attr('readonly', false);
-//                        $('#frmNuevo').find('#Comentarios').attr('readonly', false);
-//                        $('#frmNuevo').find('select').removeClass('disabledDetalle');
-//                        $('#frmNuevo').find("#FechaCreacion").removeClass('disabledDetalle');
-//                        btnConfirmarEliminar.attr("disabled", false);
-//                        $(".spanEditarEstatus").removeClass('label-success').addClass('label-default').text('Borrador'.toUpperCase());
-//                        pnlDetalleEditarPrefactura.find('input, textarea, button, select').attr('disabled', false);
-//                        pnlDetalleEditarPrefactura.find("#Conceptos").removeClass("disabledDetalle");
-//                    }
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
