@@ -1,14 +1,14 @@
-<div class="card " id="pnlTablero">
+<div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
+            <div class="col-6 col-sm-6 float-left">
                 <legend class="float-left">Clientes</legend>
             </div>
-            <div class="col-sm-6 float-right" align="right">
+            <div class="col-6 col-sm-6  float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div  id="tblRegistros"></div>
+        <div  id="tblRegistros" class="row"></div>
     </div>
 </div>
 <div id="" class="container-fluid">
@@ -17,15 +17,15 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="row">
-                        <div class="col-md-4 float-left">
+                        <div class="col-12 col-sm-6 col-md-4 float-left">
                             <legend >Cliente</legend>
                         </div>
-                        <div class="col-md-8" align="right">
+                        <div class="col-12 col-sm-6 col-md-8" align="right">
                             <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                                 <span class="fa fa-arrow-left" ></span>
                             </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
+                            <button type="button" class="btn btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -39,13 +39,13 @@
                                 <input type="text"  name="ID" class="form-control form-control-sm">
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Nombre" class="control-label">Nombre*</label>
                                         <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="NombreCorto" class="control-label">Nombre Corto*</label>
                                         <input type="text" id="NombreCorto" name="NombreCorto" class="form-control form-control-sm" placeholder="" required>
@@ -53,13 +53,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Calle" class="control-label">Calle</label>
                                         <input type="text" id="Calle" name="Calle" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="NoExterior" class="control-label">No Exterior</label>
                                         <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="" >
@@ -67,7 +67,7 @@
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="NoInterior" class="control-label">No Interior</label>
                                         <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="" >
@@ -75,25 +75,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="CodigoPostal" class="control-label">Código Postal</label>
                                         <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Colonia" class="control-label">Colonia</label>
                                         <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Ciudad" class="control-label">Ciudad</label>
                                         <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Estado" class="control-label">Estado</label>
                                         <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="" >
@@ -101,19 +101,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Contacto1" class="control-label">Contacto 1</label>
                                         <input type="text" id="Contacto1" name="Contacto1" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Contacto2" class="control-label">Contacto 2</label>
                                         <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Contacto3" class="control-label">Contacto 3</label>
                                         <input type="text" id="Contacto3" name="Contacto3" class="form-control form-control-sm" placeholder="" >
@@ -123,7 +123,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Datos2">
                             <div class="row">
-                                <div class="col-6 col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Leyenda Reportes</label>
                                         <textarea class="col-md-12 form-control" id="LeyendaReporte" name="LeyendaReporte" rows="3" ></textarea>

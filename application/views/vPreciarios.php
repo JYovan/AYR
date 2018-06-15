@@ -1,32 +1,30 @@
-<div class="card " id="pnlPreciario">
+<div class="card border-0" id="pnlPreciario">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5 float-left">
+            <div class="col-6 col-sm-3 float-left">
                 <legend class="float-left">Preciarios</legend>
             </div>
-            <div class="col-md-7" align="right">
+            <div class="col-6 col-sm-9" align="right">
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                 <button type="button" class="btn btn-primary btn-sm d-none" id="btnEditar"><span class="fa fa-pencil fa-1x"></span><br>EDITAR</button>
                 <button type="button" class="btn btn-primary btn-sm d-none" ><span class="fa fa-trash fa-1x"></span><br>ELIMINAR</button>
                 <button type="button" class="btn btn-primary btn-sm d-none" id="btnRefrescar"><span class="fa fa-refresh fa-1x"></span><br>ACTUALIZAR</button>
             </div>
         </div>
-        <div class="card-block">
-            <div id="Preciarios">
-                <table id="tblPreciarios" class="table table-sm display " style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Fecha de creación</th>
-                            <th>Cliente</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-            </div>
+        <div clas id="Preciarios" class="row">
+            <table id="tblPreciarios" class="table table-sm " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Fecha de creación</th>
+                        <th>Cliente</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
         </div>
     </div>
 </div>
@@ -37,41 +35,31 @@
             <div class="card-body text-dark">
                 <form id="frmNuevo">
                     <div class="row">
-                        <div class="col-md-4 float-left">
-                            <legend>Preciario</legend>
+                        <div class="col-12 col-sm-6 col-md-4 float-left">
+                            <legend >Preciario</legend>
                         </div>
-                        <div class="col-md-8" align="right">
+                        <div class="col-12 col-sm-6 col-md-8" align="right">
                             <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                                 <span class="fa fa-arrow-left" ></span>
                             </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
                             <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 col-12">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="form-group label-static">
                                 <label for="Nombre" class="control-label">Nombre*</label>
                                 <input type="text" class="form-control form-control-sm" id="Nombre" name="Nombre"  required="">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="form-group label-static">
                                 <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
                                 <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm " placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Estatus*</label>
-                                <select id="Estatus" name="Estatus" class="form-control form-control-sm required" required="">
-                                    <option value=""></option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Tipo*</label>
                                 <select id="Tipo" name="Tipo" class="form-control form-control-sm required" required="">
@@ -81,7 +69,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="form-group label-static">
                                 <label for="" class="control-label">Cliente*</label>
                                 <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" required="">
@@ -89,11 +77,21 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="form-group label-static">
+                                <label for="" class="control-label">Estatus*</label>
+                                <select id="Estatus" name="Estatus" class="form-control form-control-sm required" required="">
+                                    <option value=""></option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="d-none" style="background-color: #DCE1E5;" id="dAdvertencia">
+        <div class="d-none" style="background-color:#f5f5f5;" id="dAdvertencia">
             <div class="alert alert-dismissible alert-warning">
                 <h4><strong>IMPORTANTE!</strong></h4>
                 <p>Todas las columnas deben de estar sin espacios, caracteres especiales, guiones, acentos, etc.</p>
@@ -123,10 +121,10 @@
 <div class="card border-0 d-none" id="pnlDetalleConceptos">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6" align="left">
+            <div class="col-6 col-md-6" align="left">
                 <legend>Conceptos</legend>
             </div>
-            <div class="col-md-6" align="right">
+            <div class="col-6 col-md-6" align="right">
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
                 <button type="button" class="btn btn-primary btn-sm d-none" id="btnRefrescarConceptos"><span class="fa fa-refresh"></span><br>ACTUALIZAR</button>
             </div>
@@ -681,7 +679,6 @@
             pnlPreciario.removeClass("d-none");
             pnlDatos.addClass("d-none");
             pnlDetalleConceptos.addClass("d-none");
-            btnRefrescar.trigger('click');
         });
         btnCancelarSubSubCategoria.click(function () {
             pnlConceptos.find("#pSubSubCategorias").removeClass("active show");
@@ -1033,10 +1030,6 @@
     });
     var is_filled = false;
     function getClientes() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getClientes',
             type: "POST",
@@ -1049,7 +1042,6 @@
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
     }
     var tblPreciarios = $('#tblPreciarios');
@@ -1097,7 +1089,10 @@
             "bStateSave": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
-            ]
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
         });
 
         tblPreciarios.find('tbody').on('click', 'tr', function () {
@@ -1182,7 +1177,6 @@
     var tblPreciarioEspecifico = $('#tblPreciarioEspecifico');
     var PreciarioEspecifico;
     function getConceptosXPreciarioID(IDX) {
-
         temp = 0;
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblPreciarioEspecifico')) {

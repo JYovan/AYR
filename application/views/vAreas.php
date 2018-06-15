@@ -1,20 +1,20 @@
 <div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
+            <div class="col-12 col-sm-12 col-md-5 float-left">
                 <legend class="float-left">Areas por Cliente</legend>
             </div>
-            <div class="col-md-3" >
+            <div class="col-9 col-sm-6 col-md-5" >
                 <label for="" class="control-label">Cliente</label>
                 <select id="sCliente" name="sCliente" class="form-control " >
                     <option value=""></option>
                 </select>
             </div>
-            <div class="col-sm-3 float-right" align="right">
+            <div class="col-3 col-sm-6 col-md-2 float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div id="Areas" class="d-none">
+        <div id="Areas" class="row d-none">
             <table id="tblAreas" class="table table-sm display " style="width:100%">
                 <thead>
                     <tr>
@@ -33,22 +33,22 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="row">
-                        <div class="col-md-4 float-left">
+                        <div class="col-12 col-md-6 float-left">
                             <legend >Area</legend>
                         </div>
-                        <div class="col-md-8" align="right">
+                        <div class="col-12 col-md-6" align="right">
                             <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                                 <span class="fa fa-arrow-left" ></span>
                             </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ><span class="fa fa-trash fa-1x"></span> </button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" ><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 d-none">
                             <input type="text"  name="ID" class="form-control">
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-12 col-sm-6">
                             <div class="form-group label-static">
                                 <label for="Descripcion" class="control-label">Descripción*</label>
                                 <input type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" required>
@@ -197,7 +197,6 @@
                 message: 'CARGANDO...'
             });
             $.fn.dataTable.ext.errMode = 'throw';
-
             if ($.fn.DataTable.isDataTable('#tblAreas')) {
                 tblAreas.DataTable().destroy();
             }
@@ -227,7 +226,10 @@
                 "bSort": true,
                 "aaSorting": [
                     [0, 'desc']/*ID*/
-                ]
+                ],
+                "initComplete": function (settings, json) {
+                    HoldOn.close();
+                }
             });
 
             tblAreas.find('tbody').on('click', 'tr', function () {
@@ -268,7 +270,7 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
                 }
             });
-            HoldOn.close();
+
         }
     }
 

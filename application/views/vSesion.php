@@ -1,4 +1,25 @@
+<style>
+    html,
+    body {
+        height: 100%;
+    }
 
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .div-login {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+</style>
 <div id="mdlOlvideContrasena" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
         <div class="modal-header">
@@ -9,10 +30,9 @@
         </div>
         <div class="modal-body">
             <form id="frmEditarContrasena">
-                Ingresa el correo con el que accesas a la aplicación:
                 <div class=" col-12 col-md-12">
-                    <label for="">Correo*</label>
-                    <input type="email" id="ocUsuario" name="ocUsuario"  class="form-control" required="" placeholder="" >
+                    <label for="">Correo con el que accesas: *</label>
+                    <input type="email" id="ocUsuario" autofocus name="ocUsuario"  class="form-control" required="" placeholder="" >
                 </div>
             </form>
         </div>
@@ -22,55 +42,22 @@
         </div>
     </div>
 </div>
-
-<div id="mdlEnviado" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Mensaje enviado con éxito</h4>
-        </div>
-        <div class="modal-body">
-            Se ha enviado la contraseña al correo especificado. <br>
-            En caso de no ver el correo, favor de revisar la bandeja de SPAM.
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" >ACEPTAR</button>
-        </div>
-    </div>
-</div>
-
-<div class="container ">
-    <div class="row ">
-        <div class="Absolute-Center is-Responsive panel">
-            <form id="frmIngresar" class="form-horizontal ">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="Usuario" name="Usuario" placeholder="Email*" >
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="Contrasena" name="Contrasena" placeholder="Contraseña*">
-                </div>
-                <div align="right">
-                    <button id="btnIngresar" type="button" class="btn btn-raised btn-primary">INGRESAR</button>
-                    <hr>
-                </div>
-                <div class=" dt-buttons" align="left">
-                    <button id="btnOlvidasteContrasena" type="button"  class="btn btn-warning">Olvidaste tu contraseña?</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+<form id="frmIngresar" class="div-login text-center">
+    <h4 class="mb-3">Control de Acceso</h4>
+    <input type="email" id="Usuario" name="Usuario" class="form-control" placeholder="Usuario" required autofocus>
+    <input type="password" id="Contrasena" name="Contrasena" class="form-control" placeholder="Contraseña" required>
+    <br>
+    <button class="btn btn-primary btn-block" id="btnIngresar" type="button">Ingresar</button>
+    <hr>
+    <button class="btn btn-warning btn-block" id="btnOlvidasteContrasena" type="button">Olvidaste tu contraseña?</button>
+    <p class="mt-3 mb-3 text-muted">&copy; <?php echo date("Y") . ' All Rights Reserved for <br> A&R Construcciones SA de CV'; ?></p>
+</form>
 <script>
     var master_url = base_url + "Sesion/";
     var btnResetear = $("#btnResetear");
     var btnIngresar = $("#btnIngresar");
     var Usuario = $("#Usuario");
     var Contrasena = $("#Contrasena");
-    //var chkRobot = $("#chkRobot");
-
-    var mdlEnviado = $("#mdlEnviado");
     var mdlOlvideContrasena = $("#mdlOlvideContrasena");
     var btnEnviar = $("#btnEnviar");
     var btnOlvidasteContrasena = $("#btnOlvidasteContrasena");
@@ -101,7 +88,6 @@
                     console.log(x, y, z);
                     HoldOn.close();
                 }).always(function () {
-
                 });
             }, 1000);
         } else {
@@ -111,8 +97,6 @@
     $(document).ready(function () {
 
         handleEnter();
-        Usuario.focus();
-        Usuario.select();
         Usuario.val("");
         Contrasena.val("");
         btnIngresar.click(function () {
@@ -124,15 +108,11 @@
             }
             e.preventDefault();
         });
-
         mdlOlvideContrasena.on('shown.bs.modal', function () {
             $("#ocUsuario").focus();
         });
-
         btnOlvidasteContrasena.on("click", function () {
             mdlOlvideContrasena.modal('show');
-            $("#ocUsuario").val("");
-
             btnEnviar.on("click", function () {
                 if ($("#ocUsuario").val() !== '') {
                     HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
@@ -146,7 +126,7 @@
                         console.log(data);
                         if (parseInt(data) === 1) {
                             mdlOlvideContrasena.modal('d-none');
-                            mdlEnviado.modal('show');
+                            swal('GRACIAS', 'SU PETICION HA SIDO ENVIADA CON ÉXITO', 'success');
                         } else if (parseInt(data) === 0) {
                             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'OCURRIÓ UN ERROR, EL CORREO NO FUE ENVIADO', 'danger');
                         } else if (parseInt(data) === 2) {
@@ -157,15 +137,11 @@
                     }).always(function () {
                         HoldOn.close();
                     });
-
                 } else {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES INGRESAR EL CORREO DE USUARIO', 'danger');
                 }
-
             });
-
         });
-
     });
 </script>
 

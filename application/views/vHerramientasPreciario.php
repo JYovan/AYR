@@ -1,10 +1,10 @@
 <div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
+            <div class="col-12 col-sm-10 col-md-6 float-left">
                 <legend class="float-left">Importar Preciario a Trabajo, ambos previamente creados</legend>
             </div>
-            <div class="col-sm-6 float-right" align="right">
+            <div class="col-12 col-sm-2 col-md-6 float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="left" title="Agregar"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="form-group label-static">
                                 <label for="idPreciario" class="control-label">ID Preciario*</label>
-                                <input type="text" id="idPreciario" name="idPreciario" class="form-control form-control-sm numbersOnly" required="">
+                                <input type="text" id="idPreciario" name="idPreciario" autofocus="" class="form-control form-control-sm numbersOnly" required="">
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -5,7 +5,7 @@
         color: #FAFAFA;
     }
     .overlay .dropdown-item {
-        padding: 0.25rem 1rem !important;
+        padding: 0.45rem 1rem !important;
         font-size: 14.5px !important;
         color: #A6A6A6;
     }
@@ -193,12 +193,12 @@
             </button>
         </div>
         <div class="col-10 float-right" align="right">
-            <span class="text-light">
-                <img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
-                <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
-            </span>
             <a  class="btn btn-primary btn-sm" href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">
                 <i class="fa fa-sign-out-alt"></i> Salir</a>
+            <span class="text-light">
+                <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
+                <img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
+            </span>
         </div>
     </div>
 </div>

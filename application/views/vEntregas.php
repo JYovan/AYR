@@ -1,18 +1,18 @@
 <div class="card border-0" id="MenuTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5 float-left">
+            <div class="col-12 col-sm-3 float-left">
                 <legend class="float-left">Entregas</legend>
             </div>
-            <div class="col-md-7" align="right">
+            <div class="col-12 col-sm-9" align="right">
                 <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye "></span><br>EN FIRME</button>
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
-        <div id="Registros" >
-            <table id="tblRegistros" class="table table-sm display " style="width:100%">
+        <div clas id="Registros" class="row">
+            <table id="tblRegistros" class="table table-sm " style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -54,23 +54,23 @@
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
-                    <div class="col-md-4 float-left">
+                    <div class="col-6 col-sm-3 col-md-4 float-left">
                         <legend >Entrega</legend>
                     </div>
-                    <div class="col-md-2" align="right" id="spanEstatus">
+                    <div class="col-6 col-sm-2 col-md-2" align="right" id="spanEstatus">
                         <span style="font-size: 15px;" class="badge badge-secondary">
                             BORRADOR
                         </span>
                     </div>
-                    <div class="col-md-6" align="right">
+                    <div class="col-12 col-sm-7 col-md-6" align="right">
                         <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                             <span class="fa fa-arrow-left" ></span>
                         </button>
-                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarEntrega"><span class="fa fa-print "></span> IMPRIMIR</button>
+                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarEntrega" data-toggle="tooltip" data-placement="bottom" title="Imprimir"><span class="fa fa-print "></span> </button>
+                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash "></span> </button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                         <button type="button" class="btn btn-raised btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
                         <button type="button" class="btn btn-raised btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
-                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash "></span> ELIMINAR</button>
-                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                     </div>
                 </div>
                 <fieldset>
@@ -84,25 +84,25 @@
                             <!-- PANEL DE DATOS GENERALES-->
                             <div role="tabpanel" class="tab-pane fade active show" id="Datos">
                                 <div class="row">
-                                    <div class=" col-12 col-md-2 ">
+                                    <div class=" col-12 col-sm-3 col-md-2 ">
                                         <div class="form-group label-static">
                                             <label for="ID" class="control-label">ID</label>
                                             <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-2">
+                                    <div class="col-12 col-sm-4 col-md-2">
                                         <div class="form-group label-static">
-                                            <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                            <label for="FechaCreacion" class="control-label">Fecha*</label>
                                             <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" data-provide="datepicker">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-sm-5 col-md-4">
                                         <div class="form-group label-static">
                                             <label for="NoEntrega" class="control-label">Entrega*</label>
                                             <input type="text" id="NoEntrega" name="NoEntrega"  class="form-control form-control-sm" placeholder="" required="">
                                         </div>
                                     </div>
-                                    <div class="col-14 col-md-4">
+                                    <div class="col-14 col-sm-12 col-md-4">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Cliente*</label>
                                             <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
@@ -140,45 +140,43 @@
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6" align="left">
+                <div class="col-6 col-md-6" align="left">
                     <legend>Trabajos</legend>
                 </div>
-                <div class="col-md-6" align="right">
+                <div class="col-6 col-md-6" align="right">
                     <button type="button" class="btn btn-primary btn-sm" id="btnNuevoRenglonEntregaEditar"><span class="fa fa-plus "></span></button>
                 </div>
             </div>
-            <div id="RegistrosDetalle" class="d-none">
-                <div class="row">
-                    <table id="tblRegistrosDetalle" class="table table-sm" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio Interno</th>
-                                <th>Folio Cliente</th>
-                                <th>Trabajo Requerido</th>
-                                <th>Sucursal</th>
-                                <th>Region</th>
-                                <th>Importe</th>
-                                <th>Eliminar</th>
-                                <th>ImporteSF</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Total: </th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+            <div id="RegistrosDetalle" class="row d-none">
+                <table id="tblRegistrosDetalle" class="table table-sm" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Folio Interno</th>
+                            <th>Folio Cliente</th>
+                            <th>Trabajo Requerido</th>
+                            <th>Sucursal</th>
+                            <th>Region</th>
+                            <th>Importe</th>
+                            <th>Eliminar</th>
+                            <th>ImporteSF</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Total: </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
@@ -677,7 +675,10 @@
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
-            ]
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
         });
         $('#tblRegistros_filter input[type=search]').focus();
         tblRegistrosX.find('tbody').on('click', 'tr', function () {
@@ -733,7 +734,7 @@
                 menuTablero.addClass("d-none");
                 pnlDatos.removeClass("d-none");
                 pnlDetalleEditarEntrega.removeClass("d-none");
-                getDetalleByID(IdMovimiento);
+
                 //Control de estatus
                 Estatus = entrega.Estatus;
                 if (entrega.Estatus === 'Concluido') {
@@ -753,14 +754,13 @@
                     btnNuevoRenglonEntregaEditar.removeClass('d-none');
                     enableFields();
                 }
+                getDetalleByID(IdMovimiento);
             }
             ).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
-                HoldOn.close();
             });
         });
-        HoldOn.close();
     }
     function disableFields() {
         $('#CapturaDatos').find('input,textarea,select').attr('disabled', true);

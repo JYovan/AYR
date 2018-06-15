@@ -1,41 +1,37 @@
 <div class="card " id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
-                <legend class="float-left">Registro de Acciones</legend>
+            <div class="col-8 col-sm-6 float-left">
+                <legend class="float-left">Log de Usuarios</legend>
             </div>
-            <div class="col-sm-6 float-right" align="right">
+            <div class="col-4 col-sm-6 float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnRefrescar" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><span class="fa fa-sync"></span><br></button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div c id="Registros">
-                    <table id="tblRegistros" class="table table-sm" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Usuario</th>
-                                <th>Registro</th>
-                                <th>Acción</th>
-                                <th>Cliente</th>
-                                <th>Empresa</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th></th>
-                                <th></th>
-                                <th>Cliente</th>
-                                <th>Empresa</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+        <div class="row" id="Registros">
+            <table id="tblRegistros" class="table table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Registro</th>
+                        <th>Acción</th>
+                        <th>Cliente</th>
+                        <th>Empresa</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th></th>
+                        <th></th>
+                        <th>Cliente</th>
+                        <th>Empresa</th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>

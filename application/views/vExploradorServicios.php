@@ -1,57 +1,53 @@
 <div class="card " id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
-                <legend class="float-left">Explorador de Servicios</legend>
+            <div class="col-8 col-sm-6 float-left">
+                <legend class="float-left">Explorador Servicios</legend>
             </div>
-            <div class="col-sm-6 float-right" align="right">
+            <div class="col-4 col-sm-6 float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnRefrescar" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><span class="fa fa-sync"></span><br></button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="" id="Registros">
-                    <table id="tblRegistros" class="table table-sm " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio Cliente</th>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Sucursal</th>
-                                <th>Trabajo Ruequerido</th>
-                                <th>Importe</th>
-                                <th>Estatus Trabajo</th>
-                                <th>Estatus Entrega</th>
-                                <th>No. Entrega</th>
-                                <th>Factura Intelisis</th>
-                                <th>Orden Compra</th>
-                                <th>Forma Pago</th>
-                                <th>Fecha Pago</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio Cliente</th>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Sucursal</th>
-                                <th>Trabajo Ruequerido</th>
-                                <th>Importe</th>
-                                <th>Estatus Trabajo</th>
-                                <th>Estatus Entrega</th>
-                                <th>No. Entrega</th>
-                                <th>Factura Intelisis</th>
-                                <th>Orden Compra</th>
-                                <th>Forma Pago</th>
-                                <th>Fecha Pago</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+        <div class="row" id="Registros">
+            <table id="tblRegistros" class="table table-sm ">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Folio Cliente</th>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Sucursal</th>
+                        <th>Trabajo Ruequerido</th>
+                        <th>Importe</th>
+                        <th>Estatus Trabajo</th>
+                        <th>Estatus Entrega</th>
+                        <th>No. Entrega</th>
+                        <th>Fac. Intelisis</th>
+                        <th>Orden Compra</th>
+                        <th>Forma Pago</th>
+                        <th>Fecha Pago</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Folio Cliente" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Nombre" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Trabajo Ruequerido" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus Trabajo" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus Entrega" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por No. Entrega" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Factura Intelisis" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Orden Compra" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Forma Pago" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Fecha Pago" class="form-control form-control-sm"/></th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>
@@ -107,6 +103,7 @@
                 [0, 'desc']/*ID*/
             ],
             "columnDefs": [
+                {"width": "90px", "targets": 2},
                 {"width": "250px", "targets": 3},
                 {"width": "300px", "targets": 4},
                 {"width": "320px", "targets": 5}
@@ -117,13 +114,6 @@
             tblRegistrosX.find("tbody tr").removeClass("success");
             $(this).addClass("success");
         });
-
-
-        $('#tblRegistros tfoot th').each(function () {
-            var title = $(this).text();
-            $(this).html('<div  style="overflow-x:auto; "><div class="form-group "><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
-        });
-
         Registros.columns().every(function () {
             var that = this;
             $('input', this.footer()).on('keyup change', function () {

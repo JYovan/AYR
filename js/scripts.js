@@ -309,9 +309,9 @@ function getExt(filename) {
 }
 
 function handleEnter() {
-    $('input:not(.notEnter), textarea , select').keyup(function () {
-        $(this).val($(this).val().toUpperCase());
-    });
+//    $('input:not(.notEnter), textarea , select').keyup(function () {
+//        $(this).val($(this).val().toUpperCase());
+//    });
     $('body').on('keydown', 'input, select, textarea', function (e) {
         var self = $(this)
                 , form = self.parents('body')

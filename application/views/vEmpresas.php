@@ -1,14 +1,14 @@
-<div class="card " id="pnlTablero">
+<div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
+            <div class="col-6 col-sm-6 float-left">
                 <legend class="float-left">Empresas</legend>
             </div>
-            <div class="col-sm-6 float-right" align="right">
+            <div class="col-6 col-sm-6  float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div  id="tblRegistros"></div>
+        <div  id="tblRegistros" class="row"></div>
     </div>
 </div>
 <div id="" class="container-fluid">
@@ -16,15 +16,15 @@
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
-                    <div class="col-md-4 float-left">
+                    <div class="col-12 col-sm-6 col-md-4 float-left">
                         <legend >Empresa</legend>
                     </div>
-                    <div class="col-md-8" align="right">
+                    <div class="col-12 col-sm-6 col-md-8" align="right">
                         <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                             <span class="fa fa-arrow-left" ></span>
                         </button>
-                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
+                        <button type="button" class="btn btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                     </div>
                 </div>
                 <hr>
@@ -32,13 +32,13 @@
                     <div class="col-12 d-none">
                         <input type="text"  name="ID" class="form-control form-control-sm">
                     </div>
-                    <div class="col-6 col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="form-group label-static">
                             <label for="Nombre" class="control-label">Nombre*</label>
                             <input type="text" class="form-control form-control-sm" id="Nombre" name="Nombre" required="">
                         </div>
                     </div>
-                    <div class="col-6 col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="form-group label-static">
                             <label for="Rfc" class="control-label">RFC*</label>
                             <input type="text" class="form-control form-control-sm" id="Rfc" name="Rfc" required="">
@@ -46,13 +46,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="form-group label-static">
                             <label for="ContactoNombre" class="control-label">Contacto Nombre</label>
                             <input type="text" id="ContactoNombre" name="ContactoNombre" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="form-group label-static">
                             <label for="ContactoApellidos" class="control-label">Contacto Apellidos</label>
                             <input type="text" id="ContactoApellidos" name="ContactoApellidos" class="form-control form-control-sm" placeholder="">
@@ -60,19 +60,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6 col-md-6">
                         <div class="form-group label-static">
                             <label for="Direccion" class="control-label">Dirección</label>
                             <input type="text" id="Direccion" name="Direccion" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3 col-md-3">
                         <div class="form-group label-static">
                             <label for="NoExterior" class="control-label">N°</label>
                             <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3 col-md-3">
                         <div class="form-group label-static">
                             <label for="NoInterior" class="control-label">N° Int.</label>
                             <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="">
@@ -80,32 +80,31 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group label-static">
                             <label for="CodigoPostal" class="control-label">Código Postal</label>
                             <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group label-static">
                             <label for="Colonia" class="control-label">Colonia</label>
                             <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group label-static">
                             <label for="Ciudad" class="control-label">Ciudad</label>
                             <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-md-3">
                         <div class="form-group label-static">
                             <label for="Estado" class="control-label">Estado</label>
                             <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="">
                         </div>
                     </div>
                 </div>
-
                 <!-- FOTO -->
                 <div class="row">
                     <div class="col-12" align="center">

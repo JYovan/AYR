@@ -1,20 +1,20 @@
-<div class="card" id="pnlTablero">
+<div class="card border-0" id="pnlTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-6 float-left">
+            <div class="col-12 col-sm-12 col-md-5 float-left">
                 <legend class="float-left">Sucursales por Cliente</legend>
             </div>
-            <div class="col-md-3" >
+            <div class="col-9 col-sm-6 col-md-5" >
                 <label for="" class="control-label">Cliente</label>
                 <select id="sCliente" name="sCliente" class="form-control " >
                     <option value=""></option>
                 </select>
             </div>
-            <div class="col-sm-3 float-right" align="right">
+            <div class="col-3 col-sm-6 col-md-2 float-right" align="right">
                 <button type="button" class="btn btn-primary" id="btnNuevo" data-toggle="tooltip" data-placement="bottom" title="Nuevo"><span class="fa fa-plus"></span><br></button>
             </div>
         </div>
-        <div id="Registros" class="d-none">
+        <div id="Registros" class="row d-none">
             <table id="tblRegistros" class="table table-sm display " style="width:100%">
                 <thead>
                     <tr>
@@ -36,19 +36,19 @@
             <form id="frmNuevo">
                 <fieldset>
                     <div class="row">
-                        <div class="col-md-4 float-left">
+                        <div class="col-12 col-md-6 float-left">
                             <legend >Sucursal</legend>
                         </div>
-                        <div class="col-md-8" align="right">
+                        <div class="col-12 col-md-6" align="right">
                             <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                                 <span class="fa fa-arrow-left" ></span>
                             </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash fa-1x"></span> ELIMINAR</button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ><span class="fa fa-trash fa-1x"></span> </button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" ><span class="fa fa-save fa-1x"></span> GUARDAR</button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 col-md-12">
+                        <div class="col-12 col-md-12">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                                 <li class="nav-item"><a href="#DatosGenerales" class="nav-link active show"  data-toggle="tab">Datos Generales</a></li>
@@ -69,19 +69,19 @@
                                         <option value=""></option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4 col-sm-10">
                                     <div class="form-group label-static">
                                         <label for="Nombre" class="control-label">Sucursal*</label>
                                         <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="EJ: PLAZA CENTRO SUR" required>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2 col-sm-2">
                                     <div class="form-group label-static">
                                         <label for="CR" class="control-label">CR*</label>
-                                        <input type="number" id="CR" name="CR" class="form-control form-control-sm" placeholder="" required>
+                                        <input type="text" id="CR" name="CR" maxlength="4" class="form-control form-control-sm numbersOnly" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-6 col-sm-12 col-lg-6">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Region*</label>
                                         <select id="Region" name="Region" class="form-control required" required="">
@@ -97,7 +97,10 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Contratista*</label>
                                         <select id="Empresa_ID" name="Empresa_ID" class="form-control required" required="">
@@ -107,51 +110,53 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Calle" class="control-label">Calle*</label>
                                         <input type="text" id="Calle" name="Calle" class="form-control form-control-sm" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="NoExterior" class="control-label">No Exterior*</label>
                                         <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="NoInterior" class="control-label">No Interior</label>
                                         <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="EntreCalles" class="control-label">Entre Calles</label>
                                         <input type="text" id="EntreCalles" name="EntreCalles" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="CodigoPostal" class="control-label">Código Postal</label>
                                         <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group label-static">
                                         <label for="Colonia" class="control-label">Colonia</label>
                                         <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Ciudad"class="control-label">Ciudad</label>
                                         <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Estado" class="control-label">Estado</label>
                                         <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="" >
@@ -159,13 +164,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Contacto1" class="control-label">Contacto 1</label>
                                         <input type="text" id="Contacto1" name="Contacto1" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group label-static">
                                         <label for="Contacto2" class="control-label">Contacto 2</label>
                                         <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="" >
@@ -175,7 +180,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="InformacionObra">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Tipo de Obra</label>
                                         <select id="TipoObra" name="TipoObra" class="form-control form-control-sm">
@@ -188,13 +193,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="Contrato" class="control-label">Contrato</label>
                                         <input type="text" id="Contrato" name="Contrato" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Tipo de Concepto</label>
                                         <select id="TipoConcepto" name="TipoConcepto" class="form-control form-control-sm">
@@ -204,7 +209,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Empresa Supervisora</label>
                                         <select id="EmpresaSupervisora_ID" name="EmpresaSupervisora_ID" class="form-control form-control-sm">
@@ -212,58 +219,57 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Superficie" class="control-label">Superficie</label>
-                                        <input type="number" id="Superficie" name="Superficie" class="form-control form-control-sm" placeholder="0">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="FechaInicio" class="control-label">Fecha Inicio</label>
-                                        <input type="text" id="FechaInicio" name="FechaInicio" class="form-control form-control-sm" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="FechaFin" class="control-label">Fecha Fin</label>
-                                        <input type="text" id="FechaFin" name="FechaFin" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Dias" class="control-label">Días</label>
-                                        <input type="number" id="Dias" name="Dias" class="form-control form-control-sm" placeholder="EJ: 1" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="NumeroSemanas" class="control-label">Número de Semanas</label>
-                                        <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control form-control-sm" placeholder="EJ: 1" >
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="Cordinador" class="control-label">Coordinador</label>
                                         <input type="text" id="Cordinador" name="Cordinador" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group label-static">
                                         <label for="Supervisor" class="control-label">Supervisor</label>
                                         <input type="text" id="Supervisor" name="Supervisor" class="form-control form-control-sm" placeholder="" >
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="Superficie" class="control-label">Superficie</label>
+                                        <input type="text" id="Superficie" name="Superficie" class="form-control form-control-sm numbersOnly" placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="FechaInicio" class="control-label">Fecha Inicio</label>
+                                        <input type="text" id="FechaInicio" name="FechaInicio" class="form-control form-control-sm" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="FechaFin" class="control-label">Fecha Fin</label>
+                                        <input type="text" id="FechaFin" name="FechaFin" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="Dias" class="control-label">Días</label>
+                                        <input type="text" id="Dias" name="Dias" class="form-control form-control-sm numbersOnly" placeholder="EJ: 1" >
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="NumeroSemanas" class="control-label">Número de Semanas</label>
+                                        <input type="number" id="NumeroSemanas" name="NumeroSemanas" class="form-control form-control-sm" placeholder="EJ: 1" >
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Firmas">
-
                             <div  id="aFMantto" align="center">
-                                <a class="btn btn-info text-light" data-toggle="collapse" data-target="#FiMantto" aria-expanded="true" aria-controls="collapseOne">
+                                <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiMantto" aria-expanded="true" aria-controls="collapseOne">
                                     Firmas de Mantenimiento
                                 </a>
                             </div>
@@ -331,7 +337,7 @@
                             </div>
                             <br>
                             <div id="aFObra" align="center">
-                                <a class="btn btn-info text-light" data-toggle="collapse" data-target="#FiObra" aria-expanded="true" aria-controls="collapseOne">
+                                <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiObra" aria-expanded="true" aria-controls="collapseOne">
                                     Firmas de Obra
                                 </a>
                             </div>
@@ -450,7 +456,6 @@
             } else {
                 swal('INFO', 'Debes de seleccionar un cliente', 'info')
             }
-
         });
         btnCancelar.click(function () {
             pnlTablero.removeClass("d-none");
@@ -586,7 +591,10 @@
                 "bSort": true,
                 "aaSorting": [
                     [0, 'desc']/*ID*/
-                ]
+                ],
+                "initComplete": function (settings, json) {
+                    HoldOn.close();
+                }
             });
 
             tblRegistros.find('tbody').on('click', 'tr', function () {
@@ -637,10 +645,8 @@
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
                 }
             });
-            HoldOn.close();
         }
     }
-
     function getClientes() {
         $.ajax({
             url: master_url + 'getClientes',
@@ -656,12 +662,7 @@
         }).always(function () {
         });
     }
-
     function getContratistas() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getContratistas',
             type: "POST",
@@ -677,10 +678,6 @@
         });
     }
     function getEmpresasSupervisoras() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         $.ajax({
             url: master_url + 'getEmpresasSupervisoras',
             type: "POST",
@@ -692,10 +689,7 @@
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
-        getClientes();
-        getContratistas();
     }
 
 </script>

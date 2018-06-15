@@ -1,10 +1,10 @@
 <div class="card border-0" id="MenuTablero">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5 float-left">
+            <div class="col-12 col-sm-3 float-left">
                 <legend class="float-left">Pedidos del Cliente</legend>
             </div>
-            <div class="col-md-7" align="right">
+            <div class="col-12 col-sm-9" align="right">
                 <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-clipboard-list"></span><br>EN FIRME</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnAutorizacion"><span class="fa fa-check-square "></span><br>POR AUTORIZAR</button>
@@ -14,7 +14,7 @@
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
-        <div  id="Registros">
+        <div  id="Registros" class="row">
             <table id="tblRegistros" class="table table-sm" style="width:100%">
                 <thead>
                     <tr>
@@ -101,20 +101,20 @@
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
-                    <div class="col-md-5 float-left">
+                    <div class="col-6 col-sm-3 col-md-4 float-left">
                         <legend >Datos del Pedido</legend>
                     </div>
-                    <div class="col-md-2" align="right">
+                    <div class="col-6 col-sm-2 col-md-2" align="right">
                         <button type="button" class="btn btn-raised btn-success btn-sm d-none" id="btnAutorizar" data-toggle="tooltip" data-placement="bottom" title="Sí esta de acuerdo con el presupuesto haga click aquí" >
                             <span class="fa fa-check-square "></span> AUTORIZAR PRESUPUESTO
                         </button>
                     </div>
-                    <div class="col-md-5" align="right">
+                    <div class="col-12 col-sm-7 col-md-6" align="right">
                         <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                             <span class="fa fa-arrow-left" ></span>
                         </button>
-                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo"><span class="fa fa-print "></span> IMPRIMIR</button>
-                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash "></span> ELIMINAR</button>
+                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="bottom" title="Imprimir"><span class="fa fa-print "></span> </button>
+                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash " ></span></button>
                         <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                         <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Adjunto</a></li>
                     </ul>
                     <br>
-                    <ul class="progress-indicator pt-3 pb-3" style="background-color: white; border-radius: 3px;" id="pEstatusTrabajo">
+                    <ul class="progress-indicator pt-3 pb-3 table-responsive" style="background-color: white; border-radius: 3px;" id="pEstatusTrabajo">
                         <li id="pPedido">
                             <span class="bubble"></span>
                             1. Pedido
@@ -152,31 +152,31 @@
                             <div role="tabpanel" class="tab-pane fade active show" id="Datos">
                                 <!-- PANEL DE DATOS GENERALES-->
                                 <div class="row">
-                                    <div class=" col-12 col-md-2">
+                                    <div class=" col-12 col-sm-4 col-md-4 col-lg-2">
                                         <div class="form-group label-static">
                                             <label for="ID" class="control-label">Folio</label>
-                                            <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
+                                            <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" autofocus="">
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-12 col-sm-4 col-md-4 col-lg-2">
                                         <div class="form-group label-static">
                                             <label for="FechaOrigen" class="control-label">Fecha Origen*</label>
                                             <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-12 col-sm-4 col-md-4 col-lg-2">
                                         <div class="form-group label-static">
                                             <label for="HoraOrigen" class="control-label">Hora Origen*</label>
                                             <input type="text"  class="form-control form-control-sm" required="" name="HoraOrigen" id="HoraOrigen" data-inputmask="'alias': 'datetime'" data-minute-step="1"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group label-static">
                                             <label for="Cliente_ID" class="control-label">Cliente</label>
                                             <input type="text" id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm"  placeholder="" readonly="">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-12 col-sm-6  col-md-6 col-lg-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Sucursal*</label>
                                             <select id="Sucursal_ID" name="Sucursal_ID" class="form-control form-control-sm required" >
@@ -195,7 +195,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 col-md-6">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Especialidad</label>
                                             <select id="Especialidad_ID" name="Especialidad_ID" class="form-control form-control-sm" >
@@ -203,7 +203,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-sm-6 col-md-6">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Área</label>
                                             <select id="Area_ID" name="Area_ID" class="form-control form-control-sm" >
@@ -211,7 +211,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-12">
+                                    <div class="col-12 col-md-12">
                                         <div class="form-group label-static">
                                             <label for="TrabajoSolicitado" class="control-label">Trabajo Solicitado*</label>
                                             <textarea class="col-md-12 form-control required" placeholder="Introduzca aquí el trabajo que solicita" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="5" required="" ></textarea>
@@ -228,10 +228,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6 col-md-6"><br>
+                            <div class="col-6 col-md-6">
                                 <h6>Los campos con * son obligatorios</h6>
                             </div>
-                            <div id="ImporteTotal" class="col-md-6" align="right">
+                            <div class="col-6 col-md-6" id="ImporteTotal"  align="right">
                                 <strong>Importe :<h5 class="text-success">$ 0.0</h5></strong>
                             </div>
                         </div>
