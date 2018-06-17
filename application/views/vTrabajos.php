@@ -755,10 +755,11 @@
 <!--MODAL AGREGAR CONCEPTO ABIERTO-->
 <div id="mdlAgregarConceptoAbierto" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
-        <div class="modal-header modal-headerFull">
+        <div class="modal-header">
+            <h5 class="modal-title">Agregar Concepto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Agregar Concepto</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmAgregarConceptoDetalleAbierto">
@@ -823,10 +824,11 @@
 <!--MODAL EDITAR CONCEPTO ABIERTO-->
 <div id="mdlEditarConceptoAbierto" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
-        <div class="modal-header modal-headerFull">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Concepto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Editar Concepto</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmEditarConceptoDetalleAbierto">
@@ -893,10 +895,11 @@
 <!--MODAL AGREGAR CONCEPTO CAJERO-->
 <div id="mdlAgregarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
-        <div class="modal-header modal-headerFull">
+        <div class="modal-header">
+            <h5 class="modal-title">Nuevo Concepto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Nuevo</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmAgregarConceptoDetalleCajero">
@@ -927,10 +930,11 @@
 <!--MODAL EDITAR CONCEPTO CAJERO-->
 <div id="mdlEditarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
-        <div class="modal-header modal-headerFull">
+        <div class="modal-header">
+            <h5 class="modal-title">Edición</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Edición</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmEditarConceptoDetalleCajero">
@@ -965,9 +969,11 @@
 <div id="mdlTrabajoEditarFotosCajeroPorConceptoCajero" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Fotos Cajero</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos cajero</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -992,9 +998,11 @@
 <div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull  fade ">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Generador</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Generador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <ul class="nav nav-tabs" style="">
@@ -1090,9 +1098,8 @@
 <div id="mdlTrabajoNuevoConceptoEditar" class="modal modalFull animated fadeInUp">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-
             <div class="modal-header">
-                <h5 class="modal-title">Seleccione un concepto</h5>
+                <h5 class="modal-title">Seleccione un Concepto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1115,8 +1122,11 @@
 <div id="mdlTrabajoEditarFotosPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">Fotos</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1141,9 +1151,11 @@
 <div id="mdlTrabajoEditarFotosAntesPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Fotos Antes</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos Antes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1168,9 +1180,11 @@
 <div id="mdlTrabajoEditarFotosDespuesPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Fotos Después</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos Después</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1195,9 +1209,11 @@
 <div id="mdlTrabajoEditarFotosProcesoPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Fotos en Proceso</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos Proceso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1230,9 +1246,11 @@
 <div id="mdlTrabajoEditarCroquisPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Croquis</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Croquis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1255,9 +1273,11 @@
 <div id="mdlTrabajoEditarAnexosPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Anexos</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Anexos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1287,9 +1307,11 @@
 <div id="mdlTrabajoEditarAnexosDosPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Anexos</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Anexos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -1318,10 +1340,11 @@
 <!--MODAL TIPO CAMBIO-->
 <div id="mdlAgregarTipoCambio" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content  ">
-        <div class="modal-header ">
+        <div class="modal-header">
+            <h5 class="modal-title">Tipo Cambio</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title ">Tipo de Cambio</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body ">
             <form id="frmAgregarTipoCambio">
@@ -1344,10 +1367,11 @@
 <!--MODAL EDITAR CONCEPTO PRECIARIO-->
 <div id="mdlEditarConcepto" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
-        <div class="modal-header modal-headerFull">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Concepto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title modal-titleFull">Editar Concepto</h4>
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body modal-bodyFull">
             <form id="frmEditarConceptoDetalle">
@@ -1399,9 +1423,11 @@
 <div id="mdlTrabajoReemplazarConceptoEditar" class="modal modalFull fade ">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Seleccione un concepto</h4>
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccione un Concepto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <div class="col-12" id="ConceptosReemplazarXPreciarioID"></div>
@@ -3032,7 +3058,7 @@
             select: true,
             "autoWidth": true,
             "colReorder": true,
-            "displayLength": 20,
+            "displayLength": 12,
             "bLengthChange": false,
             "deferRender": true,
             "scrollCollapse": false,
