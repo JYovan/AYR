@@ -155,7 +155,7 @@
 <div id="mdlNuevoConcepto" class="modal modal-fullscreen fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-content">
         <div class="modal-header ">
-            <h5 class="modal-title">Nuevo</h5>
+            <h5 class="modal-title">Nuevo Concepto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
         </div>
@@ -172,37 +172,33 @@
                         <li class="nav-item"><a href="#pSubSubCategorias" data-toggle="tab" class="nav-link">Sub Sub Categorías</a></li>
                     </ul>
                 </div>
-                <div class="col-12"></div>
-                <div class="col-12"><span><br></span></div>
+                <br>
                 <div id="pnlTabConceptos" class="tab-content">
                     <div class="tab-pane fade active show" id="pConceptos">
                         <div class="row">
                             <div class="col-12 d-none">
                                 <input type="text" id="IDConcepto" name="IDConcepto" class="form-control form-control-sm">
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4">
                                 <div class="form-group label-static">
                                     <label for="Clave" class="control-label">Clave</label>
                                     <input type="text" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                                 </div>
                             </div>
-                            <div class="col-8">
+                            <div class="col-12 col-sm-8">
                                 <div class="form-group label-static">
                                     <label for="Descripcion" class="control-label">Descripción</label>
                                     <textarea type="text" id="Descripcion" name="Descripcion" class="form-control form-control-sm" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="4" cols="20">
                                     </textarea>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
+                            <div class="col-6 col-sm-4">
                                 <div class="form-group label-static">
                                     <label for="Costo" class="control-label">Costo</label>
                                     <input type="text" id="Costo" name="Costo" class="form-control form-control-sm numbersOnly" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6 col-sm-4">
                                 <div class="form-group label-static">
                                     <label for="Moneda" class="control-label">Moneda</label>
                                     <select id="Moneda" name="Moneda" class="form-control form-control-sm" required="">
@@ -212,15 +208,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6 col-sm-4">
                                 <div class="form-group label-static">
                                     <label for="Unidad" class="control-label">Unidad</label>
                                     <input type="text" id="Unidad" name="Unidad" class="form-control form-control-sm" required="" placeholder="EJ: PZA">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
+                            <div class="col-12 col-sm-12 col-md-4">
                                 <div class="form-group label-static">
                                     <label for="Categoria" class="control-label">Categoría</label>
                                     <select id="Categoria" name="Categoria" class="form-control form-control-sm">
@@ -228,7 +222,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-12 col-md-4">
                                 <div class="form-group label-static">
                                     <label for="SubCategoria" class="control-label">Sub Categoría</label>
                                     <select id="SubCategoria" name="SubCategoria" class="form-control form-control-sm">
@@ -236,7 +230,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-12 col-md-4">
                                 <div class="form-group label-static">
                                     <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
                                     <select id="SubSubCategoria" name="SubSubCategoria" class="form-control form-control-sm">
@@ -250,57 +244,79 @@
                             <hr>
                         </div>
                         <DIV class="row">
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="Contrato" class="control-label">Contrato</label>
-                                    <input type="number" id="Contrato" name="Contrato" class="form-control form-control-sm" >
+                                    <input type="number"  name="Contrato" class="form-control form-control-sm" >
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="Posicion" class="control-label">Posición</label>
-                                    <input type="number" id="Posicion" name="Posicion" class="form-control form-control-sm" >
+                                    <input type="number"  name="Posicion" class="form-control form-control-sm" >
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="Material" class="control-label">Material</label>
-                                    <input type="text" id="Material" name="Material" class="form-control form-control-sm">
+                                    <input type="text"  name="Material" class="form-control form-control-sm">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="TextoMaterial" class="control-label">Texto Material</label>
-                                    <input type="text" id="TextoMaterial" name="TextoMaterial" class="form-control form-control-sm">
+                                    <input type="text"  name="TextoMaterial" class="form-control form-control-sm">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="Familia" class="control-label">Familia</label>
-                                    <input type="text" id="Familia" name="Familia" class="form-control form-control-sm">
+                                    <input type="text"  name="Familia" class="form-control form-control-sm">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
                                 <div class="form-group label-static">
                                     <label for="UnidadFichero" class="control-label">Unidad Fichero</label>
-                                    <input type="text" id="UnidadFichero" name="UnidadFichero" class="form-control form-control-sm" placeholder="EJ: PZA">
+                                    <input type="text"  name="UnidadFichero" class="form-control form-control-sm" placeholder="EJ: PZA">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pCategorias">
                         <div class="" id="mdlNuevaCategoria">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group label-static">
-                                            <label for="Clave" class="control-label">Clave</label>
-                                            <input type="text" class="form-control form-control-sm" name="Clave" placeholder="EJ: XYZ">
-                                        </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-4 col-md-4">
+                                    <div class="form-group label-static">
+                                        <label for="Clave" class="control-label">Clave</label>
+                                        <input type="text" class="form-control form-control-sm" name="Clave" placeholder="EJ: XYZ">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-8">
+                                    <div class="form-group label-static">
+                                        <label for="Descripcion" class="control-label">Descripción</label>
+                                        <textarea type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pSubCategorias">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
+                                    <select name="PreciarioCategoria_ID" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
+                                    <input type="text" class="form-control form-control-sm"  name="Clave" placeholder="EJ: XYZ">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12">
                                 <div class="form-group label-static">
                                     <label for="Descripcion" class="control-label">Descripción</label>
                                     <textarea type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
@@ -308,63 +324,35 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pSubCategorias">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group label-static">
-                                        <label for="Clave" class="control-label">Clave</label>
-                                        <input type="text" class="form-control form-control-sm"  name="Clave" placeholder="EJ: XYZ">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción</label>
-                                <textarea type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
-                                <select name="PreciarioCategoria_ID" class="form-control form-control-sm">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="pSubSubCategorias">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group label-static">
-                                        <label for="Clave" class="control-label">Clave</label>
-                                        <input type="text" class="form-control form-control-sm"  name="Clave" placeholder="EJ: XYZ">
-                                    </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
+                                    <select name="PreciarioCategoria_ID" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción</label>
-                                <textarea type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="PreciarioSubCategorias_ID" class="control-label">Sub Categoría</label>
+                                    <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="PreciarioCategoria_ID" class="control-label">Categoría</label>
-                                <select name="PreciarioCategoria_ID" class="form-control form-control-sm">
-                                    <option value=""></option>
-                                </select>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="Clave" class="control-label">Clave</label>
+                                    <input type="text" class="form-control form-control-sm"  name="Clave" placeholder="EJ: XYZ">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group label-static">
-                                <label for="PreciarioSubCategorias_ID" class="control-label">Sub Categoría</label>
-                                <select id="PreciarioSubCategorias_ID" name="PreciarioSubCategorias_ID" class="form-control form-control-sm">
-                                    <option value=""></option>
-                                </select>
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="form-group label-static">
+                                    <label for="Descripcion" class="control-label">Descripción</label>
+                                    <textarea type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" rows="2" cols="10"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -373,140 +361,142 @@
         </div>
         <div class="modal-footer " >
             <!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary" id="btnGuardarConcepto" name="btnGuardarConcepto">GUARDAR</button>
+            <button type="button" class="btn btn-default" id="btnCancelarConcepto" name="btnCancelarConcepto" data-dismiss="modal">CANCELAR</button>
             <!--BOTONES CATEGORIA-->
-            <button type="button" class="btn btn-default d-none" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarCategoria" name="btnGuardarCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarCategoria" name="btnCancelarCategoria" data-dismiss="modal">CANCELAR</button>
             <!--BOTONES SUBCATEGORIA-->
-            <button type="button" class="btn btn-default d-none" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarSubCategoria" name="btnGuardarSubCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarSubCategoria" name="btnCancelarSubCategoria" data-dismiss="modal">CANCELAR</button>
             <!--BOTONES SUBSUBCATEGORIA-->
-            <button type="button" class="btn btn-default d-none" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
             <button type="button" class="btn btn-raised btn-primary d-none" id="btnGuardarSubSubCategoria" name="btnGuardarSubSubCategoria">GUARDAR</button>
+            <button type="button" class="btn btn-default d-none" id="btnCancelarSubSubCategoria" name="btnCancelarSubSubCategoria" data-dismiss="modal">CANCELAR</button>
         </div>
     </div>
 </div>
 <!--EDITAR CONCEPTO-->
 <div id="mdlEditarConcepto" class="modal fade modal-fullscreen" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header ">
-            <h5 class="modal-title ">Editar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-            <form id="frmEditar">
-                <div class="row">
-                    <div class="col-md-12 d-none">
-                        <input type="text"  name="IDConcepto" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Clave" class="control-label">Clave</label>
-                            <input type="text"  name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
+    <div class="modal-dialog   ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title ">Editar Concepto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmEditar">
+                    <div class="row">
+                        <div class="col-md-12 d-none">
+                            <input type="text"  name="IDConcepto" class="form-control form-control-sm">
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción</label>
-                            <textarea type="text"  name="Descripcion" class="form-control form-control-sm" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
-                            </textarea>
+                        <div class="col-12 col-sm-4">
+                            <div class="form-group label-static">
+                                <label for="Clave" class="control-label">Clave</label>
+                                <input type="text"  name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Costo" class="control-label">Costo</label>
-                            <input type="number"  name="Costo" class="form-control form-control-sm" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                        <div class="col-12 col-sm-8">
+                            <div class="form-group label-static">
+                                <label for="Descripcion" class="control-label">Descripción</label>
+                                <textarea type="text"  name="Descripcion" class="form-control form-control-sm" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20">
+                                </textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Moneda" class="control-label">Moneda</label>
-                            <select  name="Moneda" class="form-control form-control-sm" required="">
-                                <option value=""></option>
-                                <option value="USD">USD</option>
-                                <option value="MXN">MXN</option>
-                            </select>
+                        <div class="col-6 col-sm-4">
+                            <div class="form-group label-static">
+                                <label for="Costo" class="control-label">Costo</label>
+                                <input type="number"  name="Costo" class="form-control form-control-sm" required="" placeholder="SIN SIGNOS, NI COMAS. EJ: 150.01234">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Unidad" class="control-label">Unidad</label>
-                            <input type="text"  name="Unidad" class="form-control form-control-sm" required="" placeholder="EJ: PZA">
+                        <div class="col-6 col-sm-4">
+                            <div class="form-group label-static">
+                                <label for="Moneda" class="control-label">Moneda</label>
+                                <select  name="Moneda" class="form-control form-control-sm" required="">
+                                    <option value=""></option>
+                                    <option value="USD">USD</option>
+                                    <option value="MXN">MXN</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Categoria" class="control-label">Categoría</label>
-                            <select  name="Categoria" class="form-control form-control-sm">
-                                <option value=""></option>
-                            </select>
+                        <div class="col-6 col-sm-4">
+                            <div class="form-group label-static">
+                                <label for="Unidad" class="control-label">Unidad</label>
+                                <input type="text"  name="Unidad" class="form-control form-control-sm" required="" placeholder="EJ: PZA">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="SubCategoria" class="control-label">Sub Categoría</label>
-                            <select  name="SubCategoria" class="form-control form-control-sm">
-                                <option value=""></option>
-                            </select>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="form-group label-static">
+                                <label for="Categoria" class="control-label">Categoría</label>
+                                <select  name="Categoria" class="form-control form-control-sm">
+                                    <option value=""></option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
-                            <select  name="SubSubCategoria" class="form-control form-control-sm">
-                                <option value=""></option>
-                            </select>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="form-group label-static">
+                                <label for="SubCategoria" class="control-label">Sub Categoría</label>
+                                <select  name="SubCategoria" class="form-control form-control-sm">
+                                    <option value=""></option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="form-group label-static">
+                                <label for="SubSubCategoria" class="control-label">Sub Sub Categoría</label>
+                                <select  name="SubSubCategoria" class="form-control form-control-sm">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
 
-                    <div class="col-md-12">
-                        <center><h5>Datos para fichero</h5></center>
-                        <hr>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Contrato" class="control-label">Contrato</label>
-                            <input type="number"  name="Contrato" class="form-control form-control-sm" >
+                        <div class="col-md-12">
+                            <center><h5>Datos para fichero</h5></center>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="Contrato" class="control-label">Contrato</label>
+                                <input type="number"  name="Contrato" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="Posicion" class="control-label">Posición</label>
+                                <input type="number"  name="Posicion" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="Material" class="control-label">Material</label>
+                                <input type="text"  name="Material" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="TextoMaterial" class="control-label">Texto Material</label>
+                                <input type="text"  name="TextoMaterial" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="Familia" class="control-label">Familia</label>
+                                <input type="text"  name="Familia" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                            <div class="form-group label-static">
+                                <label for="UnidadFichero" class="control-label">Unidad Fichero</label>
+                                <input type="text"  name="UnidadFichero" class="form-control form-control-sm" placeholder="EJ: PZA">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Posicion" class="control-label">Posición</label>
-                            <input type="number"  name="Posicion" class="form-control form-control-sm" >
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Material" class="control-label">Material</label>
-                            <input type="text"  name="Material" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="TextoMaterial" class="control-label">Texto Material</label>
-                            <input type="text"  name="TextoMaterial" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="Familia" class="control-label">Familia</label>
-                            <input type="text"  name="Familia" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group label-static">
-                            <label for="UnidadFichero" class="control-label">Unidad Fichero</label>
-                            <input type="text"  name="UnidadFichero" class="form-control form-control-sm" placeholder="EJ: PZA">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-raised btn-primary" id="btnModificarConcepto" name="btnModificarConcepto">GUARDAR</button>
-            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnModificarConcepto" name="btnModificarConcepto">GUARDAR</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+            </div>
         </div>
     </div>
 </div>

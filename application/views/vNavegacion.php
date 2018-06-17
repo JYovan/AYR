@@ -54,6 +54,26 @@
         transform: scale(1.15);
         margin-left: 20px !important;
     }
+
+
+
+    #watermark {
+        height: 100%;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        height: 100%;
+        opacity: 0.2;
+    }
+    .fixedWatermark{
+        padding-top: 90px;
+        align-items: center;
+        position:absolute;
+
+    }
 </style>
 <div id="mdlCambiarContrasena" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
@@ -90,6 +110,7 @@
             <br>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-circle mr-1"></i>
                     <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -104,7 +125,7 @@
             <br>
             <li class="nav-item dropdown " >
                 <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Mesa de Trabajo
+                    <i class="fas fa-chalkboard-teacher mr-1"></i>Mesa de Trabajo
                 </a>
                 <ul class="dropdown-menu">
                     <li  class="d-none" id="liPedidoCliente"><a class="dropdown-item" href="<?php print base_url('PedidoCliente.py') ?>">Pedidos Cliente</a></li>
@@ -115,7 +136,7 @@
 
             <li class="nav-item dropdown d-none" id="liControl">
                 <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Control
+                    <i class="fa fa-clipboard-check mr-1"></i> Control
                 </a>
                 <ul class="dropdown-menu">
                     <li id="liEntregas"><a class="dropdown-item" href="<?php print base_url('Entregas.py') ?>">Entregas</a></li>
@@ -125,7 +146,7 @@
 
             <li class="nav-item dropdown d-none" id="liExploradores">
                 <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Exploradores
+                    <i class="fa fa-binoculars mr-1"></i>Exploradores
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php print base_url('ExploradorServicios.py') ?>">Servicios</a></li>
@@ -134,12 +155,12 @@
 
             <li class="nav-item dropdown d-none" id="liCatalogos">
                 <a class="nav-link dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Catálogos
+                    <i class="fa fa-folder-open mr-1"></i>Catálogos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li class="nav-item dropdown dropdown-submenu" id="liPreciarios">
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Clientes
+                            <i class="fa fa-user-tie mr-1"></i>Clientes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li id="liClientes"><a class="dropdown-item" href="<?php print base_url('Clientes.py') ?>">Clientes</a></li>
@@ -158,11 +179,9 @@
 
                 </ul>
             </li>
-
-
             <li class="nav-item dropdown d-none" id="liUsuarios">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Usuarios
+                    <i class="fa fa-users mr-1"></i>Usuarios
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php print base_url('Usuario.py') ?>">Usuarios</a></li>
@@ -175,7 +194,7 @@
 
             <li class="nav-item dropdown d-none" id="liHerramiendas">
                 <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Herr. de Preciarios
+                    <i class="fa fa-wrench mr-1"></i>Herramientas
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php print base_url('HerramientasPreciario.py') ?>">Servicios</a></li>
@@ -184,7 +203,6 @@
         </ul>
     </div>
 </div>
-
 <div class="container-fluid bg-primary" style="background-color: rgb(166,175,179);">
     <div class="row">
         <div class="col-2 ">
@@ -193,17 +211,16 @@
             </button>
         </div>
         <div class="col-10 float-right" align="right">
-            <a  class="btn btn-primary btn-sm" href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">
+            <a  class="btn btn-primary btn-sm mt-1 mb-1" href="<?php print base_url('Sesion/onSalir'); ?>" onclick="onRegistrarAccion('SALIÓ DEL SISTEMA');">
                 <i class="fa fa-sign-out-alt"></i> Salir</a>
-            <span class="text-light">
-                <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
-                <img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
-            </span>
+
+<!--            <span class="text-light">
+            <?php echo $this->session->userdata('Nombre') . ' ' . $this->session->userdata('Apellidos'); ?>
+<img src="<?php print base_url(); ?>img/logo.png" width="50px" class="mt-1 mb-1">
+</span>-->
         </div>
     </div>
 </div>
-
-
 <script>
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     if (TipoAcceso === 'RESIDENTE') {
@@ -325,3 +342,9 @@
         });
     }
 </script>
+<div id="watermark">
+    <div class="card-body text-center mt-5 fixedWatermark" >
+        <img src="<?php print base_url(); ?>img/watermark.png"  class="img-fluid">
+    </div>
+</div>
+
