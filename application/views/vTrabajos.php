@@ -1,5 +1,5 @@
 <div class="card " id="MenuTablero">
-    <div class="card-body">
+    <div class="card-body"> 
         <div class="row">
             <div class="col-sm-5 float-left">
                 <legend class="float-left">Trabajos</legend>
@@ -9,53 +9,51 @@
                 <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>MIS MOVIMIENTOS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>VER TODOS</button>
-            </div> 
-            <div class="card-block">
-                <div class="table-responsive" id="Trabajos">
-                    <table id="tblTrabajos" class="table table-sm" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio</th>
-                                <th>Estatus2</th>
-                                <th>Estatus</th>
-                                <th>Fecha</th>
-
-                                <th>Adjunto</th>
-                                <th>Cliente</th>
-                                <th>Sucursal</th>
-                                <th>Importe</th>
-                                <th>Trabajo Requerido</th>
-                                <th>Usuario</th>
-
-                                <th>ImporteSinFormato</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Estatus2" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
-
-                                <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th> 
-                                <th><input type="text" placeholder="Buscar por Cliente" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Trabajo Requerido" class="form-control form-control-sm"/></th>
-                                <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
-
-                                <th><input type="text" placeholder="Buscar por ImporteSinFormato" class="form-control form-control-sm"/></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="row" id="Trabajos">
+            <table id="tblTrabajos" class="table table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Folio</th>
+                        <th>Estatus2</th>
+                        <th>Estatus</th>
+                        <th>Fecha</th>
+
+                        <th>Adjunto</th>
+                        <th>Cliente</th>
+                        <th>Sucursal</th>
+                        <th>Importe</th>
+                        <th>Trabajo Requerido</th>
+                        <th>Usuario</th>
+
+                        <th>ImporteSinFormato</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus2" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
+
+                        <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th> 
+                        <th><input type="text" placeholder="Buscar por Cliente" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Trabajo Requerido" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
+
+                        <th><input type="text" placeholder="Buscar por ImporteSinFormato" class="form-control form-control-sm"/></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div> 
+</div> 
 
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
@@ -170,7 +168,7 @@
 </div>
 <!--PANEL NUEVO--> 
 <div id="" class="container-fluid">
-    <div class="card border-0  d-none" id="pnlNuevoTrabajo">
+    <div class="card border-0  d-none" id="pnlDatos">
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
@@ -260,7 +258,7 @@
                             </li>
                             <li id="stsPagado">
                                 <span class="bubble"></span>
-                                5. Pagado
+                                6. Pagado
                             </li>
                         </ul>
                     </div>
@@ -283,7 +281,7 @@
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
-                                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                        <label for="FechaCreacion" class="control-label">Fecha *</label>
                                         <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
@@ -447,11 +445,7 @@
                                             <label for="" class="control-label">Días</label>
                                             <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row ">
+                                    </div> 
                                     <div class=" col-3 col-3">
                                         <div class="form-group label-static">
                                             <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
@@ -464,252 +458,256 @@
                                             <input type="text" id="TextoCausa" name="TextoCausa" class="form-control"  placeholder="" >
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal1" class="control-label">Calificación 1</label>
-                                    <select id="Cal1" name="Cal1" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal2" class="control-label">Calificación 2</label>
-                                    <select id="Cal2" name="Cal2" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal3" class="control-label">Calificación 3</label>
-                                    <select id="Cal3" name="Cal3" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal4" class="control-label">Calificación 4</label>
-                                    <select id="Cal4" name="Cal4" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal5" class="control-label">Calificación 5</label>
-                                    <select id="Cal5" name="Cal5" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
+                                    <div class="col-6 col-3">
+                                        <div class="form-group label-static">
+                                            <label for="Cal1" class="control-label">Calificación 1</label>
+                                            <select id="Cal1" name="Cal1" class="form-control" >
+                                                <option value=""></option>
+                                                <option value="EXCELENTE">EXCELENTE</option>
+                                                <option value="BUENO">BUENO</option>
+                                                <option value="REGULAR">REGULAR</option>
+                                                <option value="MALO">MALO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-3">
+                                        <div class="form-group label-static">
+                                            <label for="Cal2" class="control-label">Calificación 2</label>
+                                            <select id="Cal2" name="Cal2" class="form-control" >
+                                                <option value=""></option>
+                                                <option value="EXCELENTE">EXCELENTE</option>
+                                                <option value="BUENO">BUENO</option>
+                                                <option value="REGULAR">REGULAR</option>
+                                                <option value="MALO">MALO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-3">
+                                        <div class="form-group label-static">
+                                            <label for="Cal3" class="control-label">Calificación 3</label>
+                                            <select id="Cal3" name="Cal3" class="form-control" >
+                                                <option value=""></option>
+                                                <option value="EXCELENTE">EXCELENTE</option>
+                                                <option value="BUENO">BUENO</option>
+                                                <option value="REGULAR">REGULAR</option>
+                                                <option value="MALO">MALO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-3">
+                                        <div class="form-group label-static">
+                                            <label for="Cal4" class="control-label">Calificación 4</label>
+                                            <select id="Cal4" name="Cal4" class="form-control" >
+                                                <option value=""></option>
+                                                <option value="EXCELENTE">EXCELENTE</option>
+                                                <option value="BUENO">BUENO</option>
+                                                <option value="REGULAR">REGULAR</option>
+                                                <option value="MALO">MALO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-3">
+                                        <div class="form-group label-static">
+                                            <label for="Cal5" class="control-label">Calificación 5</label>
+                                            <select id="Cal5" name="Cal5" class="form-control" >
+                                                <option value=""></option>
+                                                <option value="EXCELENTE">EXCELENTE</option>
+                                                <option value="BUENO">BUENO</option>
+                                                <option value="REGULAR">REGULAR</option>
+                                                <option value="MALO">MALO</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!--PANEL DE OTROS DATOS-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos4">
-                            <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="d-none" readonly="" placeholder="" >
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Impacto en el Plazo</label>
-                                    <div class="togglebutton">
-                                        <label><input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" ></label>
+                            <div class="row">
+                                <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="d-none" readonly="" placeholder="" >
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Impacto en el Plazo</label>
+                                        <div class="togglebutton">
+                                            <label><input type="checkbox" id="NuevoImpactoEnPlazo" name="NuevoImpactoEnPlazo" ></label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Días de Impacto</label>
-                                    <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                <div class=" col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Días de Impacto</label>
+                                        <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Causa del trabajo</label>
-                                    <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="MP">MP - MEJORAS AL PROYECTO</option>
-                                        <option value="EP">EP - ERROR DEL PROYECTO</option>
-                                        <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
-                                        <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
-                                        <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
-                                        <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
-                                        <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
-                                        <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
-                                        <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
-                                        <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
-                                        <option value="OTR">OTR - OTROS</option>
-                                    </select>
+                                <div class="col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Causa del trabajo</label>
+                                        <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="MP">MP - MEJORAS AL PROYECTO</option>
+                                            <option value="EP">EP - ERROR DEL PROYECTO</option>
+                                            <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
+                                            <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
+                                            <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
+                                            <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
+                                            <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
+                                            <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
+                                            <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
+                                            <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
+                                            <option value="OTR">OTR - OTROS</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Clave Origen</label>
-                                    <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="CONTR">CONTR - CONTRATISTA</option>
-                                        <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
-                                        <option value="BBVA">CTE - CLIENTE</option>
-                                        <option value="OTRO">OTRO - OTRO</option>
-                                    </select>
+                                <div class="col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Clave Origen</label>
+                                        <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="CONTR">CONTR - CONTRATISTA</option>
+                                            <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
+                                            <option value="BBVA">CTE - CLIENTE</option>
+                                            <option value="OTRO">OTRO - OTRO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
-                                    <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                <div class=" col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
+                                        <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Origen del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                                <div class="col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Origen del Trabajo</label>
+                                        <textarea class="col-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Riesgo del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                                <div class="col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Riesgo del Trabajo</label>
+                                        <textarea class="col-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-12">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Alcance del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                                <div class="col-6 col-12">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Alcance del Trabajo</label>
+                                        <textarea class="col-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- PANEL DE DATOS DE CAJERO-->
                         <div role="tabpanel" class="tab-pane fade" id="Datos5">
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="FechaVisita" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            <div class="row">
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="FechaVisita" class="control-label">Fecha Visita</label>
+                                        <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
-                                    <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                                <div class=" col-6 col-6">
+                                    <div class="form-group label-static">
+                                        <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
+                                        <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Horario de Atención</label>
-                                    <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
+                                <div class=" col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="" class="control-label">Horario de Atención</label>
+                                        <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
-                                    <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
+                                        <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
-                                    <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
+                                        <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Carcasa" class="control-label">Carcasa?</label>
-                                    <select id="Carcasa" name="Carcasa" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="Carcasa" class="control-label">Carcasa?</label>
+                                        <select id="Carcasa" name="Carcasa" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
-                                    <select id="UPS" name="UPS" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
+                                        <select id="UPS" name="UPS" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
-                                    <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
+                                        <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
-                                    <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
+                                        <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
-                                    <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
+                                        <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
-                                    <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
+                                <div class="col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
+                                        <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
+                                            <option value=""></option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
-                                    <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
+                                <div class=" col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
+                                        <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="TipoPiso" class="control-label">Tipo Piso</label>
-                                    <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
+                                <div class=" col-6 col-3">
+                                    <div class="form-group label-static">
+                                        <label for="TipoPiso" class="control-label">Tipo Piso</label>
+                                        <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -736,7 +734,7 @@
 </div>
 <!--PANEL NUEVO DETALLE-->
 <div class="col-6 col-12">
-    <div class="panel panel-default d-none" id="pnlDetalleNuevoTrabajo">
+    <div class="panel panel-default d-none" id="pnlDetalleTrabajo">
         <div class="Custompanel-heading" >
             <div class="Custompanel-heading row">
                 <div id="ImporteTotal" class="col-12" align="right">
@@ -751,626 +749,59 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <fieldset>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade show active" id="Presupuesto">
-                        <fieldset>
-                            <div class="col-12" align="right">
-                                <button type="button" class="btn btn-info" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                            <div class="col-12 table-responsive" id="Conceptos"></div>
-                        </fieldset>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Levantamiento">
-                        <fieldset>
-                            <div class="col-12" align="right">
-                                <button type="button" class="btn btn-info" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Cajeros">
-                        <fieldset>
-                            <div class="col-12" align="right">
-                                <button type="button" class="btn btn-info" id="btnNuevoConceptoCajero"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-</div>
-<!--PANEL EDITAR-->
-<div class="col-6 col-12">
-    <div class="panel panel-default d-none" id="pnlEditarTrabajo">
-        <div class="Custompanel-heading dt-EncabezadoControles" >
-            <div class="Custompanel-heading clearfix">
-                <div class="panel-title pull-left cursor-hand" >
-                    <button type="button" class="btn btn-default " id="btnCancelarModificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar">
-                        <span class="fa fa-arrow-left CustomColorIcon" ></span>
-                    </button>Editar Trabajo
-                </div>
-                <div class="input-group pull-right" align="center">
-                    <span class="dt-EncabezadoControles">
-                        <button type="button" class="btn btn-default CustomColorIcon" id="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Copiar Movimiento">
-                            <span class="fa fa-clone" ></span>
-                        </button>
-                        <button type="button" class="btn btn-default CustomColorIcon" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" >
-                            <span class="fa fa-print " ></span>
-                        </button>
-                    </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class=""> </span>
-                    <button type="button" class="btn btn-default CustomColorEliminarRegistro" id="btnConfirmarEliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar"><span class="fa fa-trash fa-1x"></span><br></button>
-                    <span class="togglebutton customLabelToggle" >
-                        <label><input type="checkbox" id="Concluir" name="Concluir" >Concluir</label>
-                    </span>
-                    <span>&nbsp;&nbsp;</span>
-                    <button type="button" class="btn btn-raised btn-primary" id="btnModificarTrabajo" >GUARDAR</button>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <form id="frmEditar">
-                <fieldset>
-                    <div class="col-6 col-12">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                            <li role="presentation" class="nav-item active"><a href="#EditarDatos" aria-controls="EditarDatos" role="tab" data-toggle="tab" class="nav-link">Datos Generales</a></li>
-                            <li role="presentation"  class="nav-item"><a href="#EditarDatos2" aria-controls="EditarDatos2" role="tab" data-toggle="tab" class="nav-link">Datos del trabajo</a></li>
-                            <li id="eBBVAMantenimiento" class="d-none nav-item" role="presentation" ><a href="#EditarDatos3" aria-controls="EditarDatos3" role="tab" data-toggle="tab" class="nav-link">Mantenimiento BBVA</a></li>
-                            <li id="eBBVAObra" class="d-none" role="presentation" class="nav-item"><a href="#EditarDatos4" aria-controls="EditarDatos4" role="tab" data-toggle="tab" class="nav-link">Obra BBVA</a></li>
-                            <li id="eBBVACajeros" class="d-none" role="presentation" class="nav-item"><a href="#EditarDatos5" aria-controls="EditarDatos5" role="tab" data-toggle="tab" class="nav-link">Cajeros BBVA</a></li>
-                            <li role="presentation" class="nav-item"><a href="#EditarDatos6" aria-controls="EditarDatos6" role="tab" data-toggle="tab" class="nav-link">Adjunto</a></li>
-                        </ul>
-                    </div>
-                    <!-- Estatus -->
-                    <div class="col-12 col-12">
-                        <center>
-                            <div class="form-group label-static">
-                                <label class="radio-inline ">
-                                    <input  type="radio" name="EstatusTrabajo" id="inlineRadio1" value="Pedido">
-                                    <label class="label-Pedido" for="inlineRadio1">1. Pedido</label>
-                                </label>
-                                <label class="radio-inline radio-inline-Presupuesto">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio2" value="Presupuesto">
-                                    <label class="label-Presupuesto" for="inlineRadio2">2. Presupuesto</label>
-                                </label>
-                                <label class="radio-inline radio-inline-Autorizacion">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio3" value="Autorización">
-                                    <label class="label-Autorizacion" for="inlineRadio3">3. Autorización Del Cliente</label>
-                                </label>
-                                <label class="radio-inline radio-inline-NoAutorizado">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio4" value="No Autorizado">
-                                    <label class="label-NoAutorizado" for="inlineRadio4">4. No Autorizado</label>
-                                </label>
-                                <label class="radio-inline radio-inline-Ejecucion">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio5" value="Ejecución">
-                                    <label class="label-Ejecucion" for="inlineRadio5">5. Ejecución</label>
-                                </label>
-                                <label class="radio-inline radio-inline-Finalizado">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio6" value="Finalizado">
-                                    <label class="label-Finalizado" for="inlineRadio6">6. Finalizado</label>
-                                </label>
-                                <label class="radio-inline radio-inline-Pagado">
-                                    <input type="radio" name="EstatusTrabajo" id="inlineRadio7" value="Pagado">
-                                    <label class="label-Pagado" for="inlineRadio7">7. Pagado</label>
-                                </label>
-                            </div>
-                        </center>
-                        <hr>
-                    </div>
-                    <div class="tab-content">
-                        <!-- PANEL DE DATOS GENERALES-->
-                        <div role="tabpanel" class="tab-pane fade show active" id="EditarDatos">
-                            <div class=" col-1 col-1">
-                                <div class="form-group label-static">
-                                    <label for="ID" class="control-label">Folio Interno</label>
-                                    <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-2 col-2">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Folio Cliente</label>
-                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                            </div>
-                            <div class="col-3 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Cliente*</label>
-                                    <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Sucursal*</label>
-                                    <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Preciario*</label>
-                                    <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Centro de Costos</label>
-                                    <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
+        <div class="card-body"> 
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade show active" id="Presupuesto">
+                    <fieldset>
+                        <div class="col-12" align="right">
+                            <button type="button" class="btn btn-primary" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                            <br>
+                        </div>
+                        <div class="table-responsive" id="Conceptos"></div>
 
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Especialidad</label>
-                                    <select id="Especialidad_ID" name="Especialidad_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Área</label>
-                                    <select id="Area_ID" name="Area_ID" class="form-control" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="Observaciones" class="control-label">Observaciones</label>
-                                    <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
-                                </div>
-                            </div>
-                            <div id="ControlProcesoEditar" class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Control de proceso</label>
-                                    <select id="ControlTiempoProceso" name="ControlProceso" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="Dias">DÍAS</option>
-                                        <option value="Semanas">SEMANAS</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Solicitado</label>
-                                    <textarea class="col-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" required=""></textarea>
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Trabajo Requerido</label>
-                                    <textarea class="col-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" required=""></textarea>
-                                </div>
-                            </div>
+                        <!--NUEVA TABLA CONCEPTOS-->
+                        <div id="ConceptosX" class="table-responsive">
+                            <table id="tblConceptosX" class="table table-sm display " style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Clave</th>
+                                        <th>Int/Ext</th>
+                                        <th>Descripción</th>
+                                        <th>Cantidad</th>
+                                        <th>Unidad</th>
+                                        <th>Precio</th>
+                                        <th>Importe</th>
+                                        <th>Moneda</th>
+                                        <th>Fotos</th>
+                                        <th>Croquis</th>
+                                        <th>Anexos</th>
+                                        <th>PCID</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
-                        <!-- PANEL DE DATOS DEL TRABAJO-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos2">
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Cuadrilla</label>
-                                    <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" ><option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Fecha Atención</label>
-                                    <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                            </div>
-                            <div class=" col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Solicitante</label>
-                                    <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-12">
-                                <div class="row ">
-                                    <div class="col-6 col-3">
-                                        <div class="form-group label-static">
-                                            <label for="" class="control-label">Fecha Origen</label>
-                                            <input type="text" required="" id="FechaOrigen" name="FechaOrigen" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-3">
-                                        <div class="form-group label-static">
-                                            <label for="" class="control-label">Hora Origen</label>
-                                            <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Hora Visita</label>
-                                    <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Fecha Fin Visita</label>
-                                    <input type="text" id="FechaSalida" name="FechaSalida" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Hora Fin Visita</label>
-                                    <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--PANEL DE MANTENIMIENTO BBVA-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos3">
-                            <div class="col-12">
-                                <div class="row ">
-                                    <div class="col-6 col-3">
-                                        <div class="form-group label-static">
-                                            <label for="" class="control-label">Codigo PPTA</label>
-                                            <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-3">
-                                        <div class="form-group label-static">
-                                            <label for="" class="control-label">Días</label>
-                                            <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row ">
-                                    <div class=" col-3 col-3">
-                                        <div class="form-group label-static">
-                                            <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
-                                            <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class=" col-3 col-6">
-                                        <div class="form-group label-static">
-                                            <label for="TextoCausa" class="control-label">Texto Causa</label>
-                                            <input type="text" id="TextoCausa" name="TextoCausa" class="form-control"  placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal1" class="control-label">Calificación 1</label>
-                                    <select id="Cal1" name="Cal1" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal2" class="control-label">Calificación 2</label>
-                                    <select id="Cal2" name="Cal2" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal3" class="control-label">Calificación 3</label>
-                                    <select id="Cal3" name="Cal3" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal4" class="control-label">Calificación 4</label>
-                                    <select id="Cal4" name="Cal4" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Cal5" class="control-label">Calificación 5</label>
-                                    <select id="Cal5" name="Cal5" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!--PANEL DE OBRA BBVA-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos4">
-                            <input type="text" id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="d-none" readonly="" placeholder="" >
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Impacto en el Plazo</label>
-                                    <div class="togglebutton">
-                                        <label><input type="checkbox" id="EditarImpactoEnPlazo" name="" ></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Días de Impacto</label>
-                                    <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Causa del trabajo</label>
-                                    <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="MP">MP - MEJORAS AL PROYECTO</option>
-                                        <option value="EP">EP - ERROR DEL PROYECTO</option>
-                                        <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
-                                        <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
-                                        <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
-                                        <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
-                                        <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
-                                        <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
-                                        <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
-                                        <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
-                                        <option value="OTR">OTR - OTROS</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Clave Origen</label>
-                                    <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="CONTR">CONTR - CONTRATISTA</option>
-                                        <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
-                                        <option value="BBVA">CTE - CLIENTE</option>
-                                        <option value="OTRO">OTRO - OTRO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class=" col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
-                                    <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Origen del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
-                                </div>
-                            </div>
-                            <div class="col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Riesgo del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
-                                </div>
-                            </div>
-                            <div class="col-6 col-12">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Alcance del Trabajo</label>
-                                    <textarea class="col-12 form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- PANEL DE DATOS DE CAJEROS-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos5">
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="FechaVisita" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy" >
-                                </div>
-                            </div>
-                            <div class=" col-6 col-6">
-                                <div class="form-group label-static">
-                                    <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
-                                    <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
-                                </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="" class="control-label">Horario de Atención</label>
-                                    <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
-                                    <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
-                                    <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="Carcasa" class="control-label">Carcasa?</label>
-                                    <select id="Carcasa" name="Carcasa" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
-                                    <select id="UPS" name="UPS" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
-                                    <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
-                                    <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
-                                    <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
-                                    <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
-                                    <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
-                                </div>
-                            </div>
-                            <div class=" col-6 col-3">
-                                <div class="form-group label-static">
-                                    <label for="TipoPiso" class="control-label">Tipo Piso</label>
-                                    <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
-                                </div>
-                            </div>
-                        </div>
-                        <!--PANEL DE ARCHIVO ADJUNTO-->
-                        <div role="tabpanel" class="tab-pane fade" id="EditarDatos6">
-                            <center><label for="" class="control-label">Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</label></center>
-                            <div class="col-12" align="center">
-                                <input type="file" id="Adjunto" name="" class="d-none">
-                                <button type="button" class="btn btn-info btn-sm" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
-                                </button>
-                                <div id="VistaPrevia" class="col-12" align="center"></div>
-                            </div>
-                            <div class="col-12 d-none">
-                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-6 col-12"><br><h6>Los campos con * son obligatorios</h6></div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
-<!--PANEL EDITAR DETALLE-->
-<div class="col-6 col-12">
-    <div class="panel panel-default d-none " id="pnlDetalleEditarTrabajo">
-        <div class="Custompanel-heading" >
-            <div class="Custompanel-heading row">
-                <div id="ImporteTotal" class="col-12" align="right">
-                    <span class="text-success">$ 0.0</span>
+                        <!--FIN NUEVA TABLA DE CONCEPTOS-->
+
+                    </fieldset>
                 </div>
-                <div class="col-6 col-12">
-                    <ul class="nav nav-tabs" role="tablist" id="tbDetalleEditar">
-                        <li role="presentation" class="nav-item"><a href="#PresupuestoEditar" class="nav-link show active" aria-controls="PresupuestoEditar" role="tab" data-toggle="tab" aria-selected="true">Conceptos Presupuesto</a></li>
-                        <li role="presentation" class="nav-item"><a href="#LevantamientoEditar" class="nav-link" aria-controls="LevantamientoEditar" role="tab" data-toggle="tab">Conceptos Levantamiento</a></li>
-                        <li class="d-none nav-item" role="presentation" id="peCajeros"><a href="#CajerosEditar" aria-controls="CajerosEditar" role="tab" data-toggle="tab">Conceptos Cajeros</a></li>
-                    </ul>
+                <div role="tabpanel" class="tab-pane fade" id="Levantamiento">
+                    <fieldset>
+                        <div class="col-12" align="right">
+                            <button type="button" class="btn btn-info" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                        </div>
+                    </fieldset>
                 </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <fieldset>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade show active" id="PresupuestoEditar">
-                        <fieldset>
-                            <div class="col-12" align="right">
-                                <button type="button" class="btn btn-default" id="btnNuevoConcepto"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                            <div class="col-12 table-responsive" id="Conceptos" ></div>
-                        </fieldset>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="LevantamientoEditar">
-                        <fieldset>
-                            <div class="col-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoAbiertoEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                            <div class="col-12 table-responsive " id="ConceptosAbierto" ></div>
-                        </fieldset>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="CajerosEditar">
-                        <fieldset>
-                            <div class="col-12" align="right"><button type="button" class="btn btn-default" id="btnNuevoConceptoCajeroEditar"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
-                            </div>
-                            <div class="col-12 table-responsive " id="ConceptosCajero" ></div>
-                        </fieldset>
-                    </div>
+                <div role="tabpanel" class="tab-pane fade" id="Cajeros">
+                    <fieldset>
+                        <div class="col-12" align="right">
+                            <button type="button" class="btn btn-info" id="btnNuevoConceptoCajero"><span class="fa fa-plus fa-1x" ></span><br>AGREGAR</button>
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
+            </div> 
         </div>
     </div>
 </div>
@@ -1711,10 +1142,13 @@
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
 <div id="mdlTrabajoNuevoConceptoEditar" class="modal modalFull animated fadeInUp">
     <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header modal-headerFull">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title modal-titleFull">Seleccione un concepto</h4>
+        <div class="modal-content modal-contentFull"> 
+
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccione un concepto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body modal-bodyFull">
                 <fieldset>
@@ -2035,7 +1469,6 @@
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
-
     var verMovs = 'getMyRecords';
     var btnNuevo = $("#btnNuevo");
     var btnVerTodos = $("#btnVerTodos");
@@ -2045,28 +1478,26 @@
     var btnCancelarModificar = $("#btnCancelarModificar");
     var btnGuardar = $("#btnGuardar");
     var btnModificar = $("#btnModificarTrabajo");
-    var pnlNuevoTrabajo = $("#pnlNuevoTrabajo");
-    var pnlEditarTrabajo = $("#pnlEditarTrabajo");
+    var pnlDatos = $("#pnlDatos");
     var menuTablero = $('#MenuTablero');
     var Archivo = $("#Adjunto");
     var btnArchivo = $("#btnArchivo");
     var VistaPrevia = $("#VistaPrevia");
-    var ModificarArchivo = pnlEditarTrabajo.find("#Adjunto");
-    var btnModificarArchivo = pnlEditarTrabajo.find("#btnArchivo");
-    var ModificarVistaPrevia = pnlEditarTrabajo.find("#VistaPrevia");
+    var ModificarArchivo = pnlDatos.find("#Adjunto");
+    var btnModificarArchivo = pnlDatos.find("#btnArchivo");
+    var ModificarVistaPrevia = pnlDatos.find("#VistaPrevia");
     var btnEliminar = $("#btnEliminar");
     var btnConfirmarEliminar = $("#btnConfirmarEliminar");
     var mdlConfirmar = $("#mdlConfirmar");
-    var pnlDetalleNuevoTrabajo = $("#pnlDetalleNuevoTrabajo");
-    var btnNuevoConcepto = pnlDetalleNuevoTrabajo.find("#btnNuevoConcepto");
-    var btnEliminarConcepto = pnlDetalleNuevoTrabajo.find("#btnEliminarConcepto");
-    var Conceptos = pnlDetalleNuevoTrabajo.find("#Conceptos");
-    var tbtnEditarImpactoEnPlazo = pnlEditarTrabajo.find("#EditarImpactoEnPlazo");
-    var tbtnNuevoImpactoEnPlazo = pnlNuevoTrabajo.find("#NuevoImpactoEnPlazo");
+    var pnlDetalleTrabajo = $("#pnlDetalleTrabajo");
+    var btnNuevoConcepto = pnlDetalleTrabajo.find("#btnNuevoConcepto");
+    var btnEliminarConcepto = pnlDetalleTrabajo.find("#btnEliminarConcepto");
+    var Conceptos = pnlDetalleTrabajo.find("#Conceptos");
+    var tbtnEditarImpactoEnPlazo = pnlDatos.find("#EditarImpactoEnPlazo");
+    var tbtnNuevoImpactoEnPlazo = pnlDatos.find("#NuevoImpactoEnPlazo");
     /*Detalle Normal*/
-    var tBtnConcluir = pnlNuevoTrabajo.find("#Concluir");
-    var tBtnEditarConcluir = pnlEditarTrabajo.find("#Concluir");
-    var pnlDetalleEditarTrabajo = $("#pnlDetalleEditarTrabajo");
+    var tBtnConcluir = pnlDatos.find("#Concluir");
+    var tBtnEditarConcluir = pnlDatos.find("#Concluir");
     var currentDate = new Date();
     /*EDICION*/
     var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
@@ -2077,7 +1508,7 @@
     var mdlTrabajoNuevoConceptoEditar = $("#mdlTrabajoNuevoConceptoEditar");
     var ConceptosXPreciarioID = mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID");
     /*BOTON PARA AGREGAR UN NUEVO CONCEPTO*/
-    var btnNuevoConceptoEditar = pnlDetalleEditarTrabajo.find("#btnNuevoConcepto");
+    var btnNuevoConceptoEditar = pnlDetalleTrabajo.find("#btnNuevoConcepto");
     /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
     var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
@@ -2086,12 +1517,12 @@
     var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
     var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
     /******ABIERTO*/
-    var btnNuevoConceptoAbierto = pnlDetalleNuevoTrabajo.find('#btnNuevoConceptoAbierto');
-    var btnNuevoConceptoAbiertoEditar = pnlDetalleEditarTrabajo.find('#btnNuevoConceptoAbiertoEditar');
+    var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find('#btnNuevoConceptoAbierto');
+    var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
-    var btnNuevoConceptoCajero = pnlDetalleNuevoTrabajo.find("#btnNuevoConceptoCajero");
-    var btnNuevoConceptoCajeroEditar = pnlDetalleEditarTrabajo.find('#btnNuevoConceptoCajeroEditar');
+    var btnNuevoConceptoCajero = pnlDetalleTrabajo.find("#btnNuevoConceptoCajero");
+    var btnNuevoConceptoCajeroEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoCajeroEditar');
     var btnAgregarConceptoCajero = $('#btnAgregarConceptoCajero');
     var btnEditarConceptoCajero = $('#btnEditarConceptoCajero');
     /*fOTOS*/
@@ -2109,6 +1540,7 @@
     /*Reportes*/
     var btnImprimirReportesEditarTrabajo = $("#btnImprimirReportesEditarTrabajo");
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
+    var nuevo = false;
     $(document).ready(function () {
         //RadionButtonSelectedValueSet('NuevoEstatusTrabajo', 'Presupuesto');
         $('.numbersOnly').keypress(function () {
@@ -2169,7 +1601,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    $('#mdlEditarConceptoAbierto').modal('d-none');
+                    $('#mdlEditarConceptoAbierto').modal('hide');
                     getDetalleAbiertoByID(IdMovimiento);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -2207,7 +1639,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    $('#mdlAgregarConceptoAbierto').modal('d-none');
+                    $('#mdlAgregarConceptoAbierto').modal('hide');
                     getDetalleAbiertoByID(IdMovimiento);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -2262,7 +1694,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    $('#mdlEditarConceptoCajero').modal('d-none');
+                    $('#mdlEditarConceptoCajero').modal('hide');
                     getDetalleCajerosByID(IdMovimiento);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -2300,7 +1732,7 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    $('#mdlAgregarConceptoCajero').modal('d-none');
+                    $('#mdlAgregarConceptoCajero').modal('hide');
                     getDetalleCajerosByID(IdMovimiento);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -2310,53 +1742,53 @@
             }
         });
         /*Funcion que trae los catalogos en base al cliente*/
-        pnlNuevoTrabajo.find("#Cliente_ID").change(function () {
-            pnlNuevoTrabajo.find("#Sucursal_ID").val(null).trigger("change");
-            pnlNuevoTrabajo.find("#Preciario_ID").val(null).trigger("change");
-            getSucursalesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getPreciariosActivosbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getEspecialidadesbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getAreasbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getCCbyCliente(pnlNuevoTrabajo.find("#Cliente_ID").val(), $(this).val());
+        pnlDatos.find("#Cliente_ID").change(function () {
+            pnlDatos.find("#Sucursal_ID").val(null).trigger("change");
+            pnlDatos.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosActivosbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getEspecialidadesbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getAreasbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getCCbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
             if ($(this).val() === '1') {
-                pnlNuevoTrabajo.find("#nBBVAMantenimiento").removeClass("d-none");
-                pnlNuevoTrabajo.find("#nBBVAObra").removeClass("d-none");
-                pnlNuevoTrabajo.find("#nBBVACajeros").removeClass("d-none");
-                pnlDetalleNuevoTrabajo.find("#pnCajeros").removeClass("d-none");
+                pnlDatos.find("#nBBVAMantenimiento").removeClass("d-none");
+                pnlDatos.find("#nBBVAObra").removeClass("d-none");
+                pnlDatos.find("#nBBVACajeros").removeClass("d-none");
+                pnlDetalleTrabajo.find("#pnCajeros").removeClass("d-none");
                 mdlReportesEditarTrabajo.find("#rNordes").addClass("d-none");
             } else if ($(this).val() === '16') {
                 mdlReportesEditarTrabajo.find("#rNordes").removeClass("d-none");
             } else {
-                pnlNuevoTrabajo.find("#nBBVAMantenimiento").addClass("d-none");
-                pnlNuevoTrabajo.find("#nBBVAObra").addClass("d-none");
-                pnlNuevoTrabajo.find("#nBBVACajeros").addClass("d-none");
-                pnlDetalleNuevoTrabajo.find("#pnCajeros").addClass("d-none");
+                pnlDatos.find("#nBBVAMantenimiento").addClass("d-none");
+                pnlDatos.find("#nBBVAObra").addClass("d-none");
+                pnlDatos.find("#nBBVACajeros").addClass("d-none");
+                pnlDetalleTrabajo.find("#pnCajeros").addClass("d-none");
                 mdlReportesEditarTrabajo.find("#rNordes").addClass("d-none");
             }
         });
         /*Funciones que traen los catalogos en base a un select*/
-        pnlEditarTrabajo.find("#Cliente_ID").change(function () {
+        pnlDatos.find("#Cliente_ID").change(function () {
             Cliente = this.value;
-            pnlEditarTrabajo.find("#Sucursal_ID").val(null).trigger("change");
-            pnlEditarTrabajo.find("#Preciario_ID").val(null).trigger("change");
-            getSucursalesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getPreciariosActivosbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getEspecialidadesbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getAreasbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
-            getCCbyCliente(pnlEditarTrabajo.find("#Cliente_ID").val(), $(this).val());
+            pnlDatos.find("#Sucursal_ID").val(null).trigger("change");
+            pnlDatos.find("#Preciario_ID").val(null).trigger("change");
+            getSucursalesbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getPreciariosActivosbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getEspecialidadesbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getAreasbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
+            getCCbyCliente(pnlDatos.find("#Cliente_ID").val(), $(this).val());
             if ($(this).val() === '1') {
-                pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("d-none");
-                pnlEditarTrabajo.find("#eBBVAObra").removeClass("d-none");
-                pnlEditarTrabajo.find("#eBBVACajeros").removeClass("d-none");
-                pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("d-none");
+                pnlDatos.find("#eBBVAMantenimiento").removeClass("d-none");
+                pnlDatos.find("#eBBVAObra").removeClass("d-none");
+                pnlDatos.find("#eBBVACajeros").removeClass("d-none");
+                pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
                 mdlReportesEditarTrabajo.find("#rNordes").addClass("d-none");
             } else if ($(this).val() === '16') {
                 mdlReportesEditarTrabajo.find("#rNordes").removeClass("d-none");
             } else {
-                pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("d-none");
-                pnlEditarTrabajo.find("#eBBVAObra").addClass("d-none");
-                pnlEditarTrabajo.find("#eBBVACajeros").addClass("d-none");
-                pnlDetalleEditarTrabajo.find("#peCajeros").addClass("d-none");
+                pnlDatos.find("#eBBVAMantenimiento").addClass("d-none");
+                pnlDatos.find("#eBBVAObra").addClass("d-none");
+                pnlDatos.find("#eBBVACajeros").addClass("d-none");
+                pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
                 mdlReportesEditarTrabajo.find("#rNordes").addClass("d-none");
             }
         });
@@ -2955,23 +2387,10 @@
         btnImprimirReportesEditarTrabajo.on("click", function () {
             mdlReportesEditarTrabajo.modal('show');
         });
-        /*FUNCIONES DETALLE NUEVO*/
-        btnNuevoConceptoAbierto.on("click", function () {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
-        });
-        btnNuevoConceptoCajero.on("click", function () {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
-        });
-        /*Agregar nuevo concepto en detalle nuevo*/
-        btnNuevoConcepto.on("click", function () {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
-        });
-
         btnVerTodosEnFirme.on("click", function () {
             verMovs = 'getRecordsFirme';
             getRecords();
         });
-
         btnVerMisMovimientos.on("click", function () {
             verMovs = 'getMyRecords';
             getRecords();
@@ -2997,11 +2416,11 @@
                     ID: IdMovimiento
                 }
             }).done(function (data, x, jq) {
-                mdlConfirmar.modal('d-none');
+                mdlConfirmar.modal('hide');
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
                 menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-                pnlEditarTrabajo.addClass("d-none");
-                pnlDetalleEditarTrabajo.addClass("d-none");
+                pnlDatos.addClass("d-none");
+                pnlDetalleTrabajo.addClass("d-none");
                 getRecords();
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -3011,16 +2430,16 @@
         });
         tbtnEditarImpactoEnPlazo.change(function () {
             if (this.checked) {
-                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                pnlDatos.find("#ImpactoEnPlazo").val('Si');
             } else {
-                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
+                pnlDatos.find("#ImpactoEnPlazo").val('No');
             }
         });
         tbtnNuevoImpactoEnPlazo.change(function () {
             if (this.checked) {
-                pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('Si');
+                pnlDatos.find("#ImpactoEnPlazo").val('Si');
             } else {
-                pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
+                pnlDatos.find("#ImpactoEnPlazo").val('No');
             }
         });
         tBtnEditarConcluir.on("click", function () {
@@ -3056,7 +2475,7 @@
                     $(this).valid();
                 });
                 if ($('#frmEditar').valid()) {
-                    var frm = new FormData(pnlEditarTrabajo.find("#frmEditar")[0]);
+                    var frm = new FormData(pnlDatos.find("#frmEditar")[0]);
                     /*  Para los checkbox*/
                     if (tBtnEditarConcluir.is(':checked')) {
                         frm.append('Estatus', 'Concluido');
@@ -3076,16 +2495,16 @@
                             btnModificar.addClass('d-none');
                             $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                             btnConfirmarEliminar.attr("disabled", true);
-                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                            pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                            pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                            pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
                         } else {
                             btnConfirmarEliminar.attr("disabled", false);
-                            pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                            pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                            pnlDetalleEditarTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
-                            pnlDetalleEditarTrabajo.find("#ConceptosCajero").removeClass("disabledDetalle");
+                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                            pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosCajero").removeClass("disabledDetalle");
                         }
                         getRecords();
                     }).fail(function (x, y, z) {
@@ -3097,30 +2516,10 @@
             }
         });
         btnGuardar.on("click", function () {
+            isValid('pnlDatos');
             if ($("input:radio[name='NuevoEstatusTrabajo']").is(":checked")) {
-                $.validator.setDefaults({ignore: []});
-                $('#frmNuevo').validate({
-                    errorElement: 'span',
-                    errorClass: 'help-block',
-                    rules: {
-                        Movimiento: 'required',
-                        FechaCreacion: 'required',
-                        Cliente_ID: 'required',
-                        Sucursal_ID: 'required',
-                        Preciario_ID: 'required'
-                    },
-                    highlight: function (element, errorClass, validClass) {
-                        $(element).closest('.form-group').addClass('has-error');
-                    },
-                    unhighlight: function (element, errorClass, validClass) {
-                        $(element).closest('.form-group').removeClass('has-error');
-                    }
-                });
-                $('select').on('change', function () {
-                    $(this).valid();
-                });
-                if (pnlNuevoTrabajo.find('#frmNuevo').valid()) {
-                    var frm = new FormData(pnlNuevoTrabajo.find("#frmNuevo")[0]);
+                if (pnlDatos.find('#frmNuevo').valid()) {
+                    var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
                     if (tBtnConcluir.is(':checked')) {
                         frm.append('Estatus', 'Concluido');
                     } else {
@@ -3150,48 +2549,48 @@
         });
         btnCancelar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-            pnlNuevoTrabajo.addClass("d-none");
-            pnlDetalleNuevoTrabajo.addClass("d-none");
+            pnlDatos.addClass("d-none");
+            pnlDetalleTrabajo.addClass("d-none");
         });
         btnCancelarModificar.on("click", function () {
             menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-            pnlEditarTrabajo.addClass("d-none");
-            pnlDetalleEditarTrabajo.addClass("d-none");
+            pnlDatos.addClass("d-none");
+            pnlDetalleTrabajo.addClass("d-none");
         });
         btnNuevo.on("click", function () {
-            pnlNuevoTrabajo.find('#pEstatusTrabajo').find('li').removeClass('completed active');
-            pnlNuevoTrabajo.find('#pEstatusTrabajo').find('#stsPedido').addClass('active').html('').html('<span class="bubble"></span> 1. Pedido <br><small>(activo)</small>');
-            pnlNuevoTrabajo.find(".nav-tabs li").removeClass("active");
-            $(pnlNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
-            pnlNuevoTrabajo.find("#Datos").addClass("active show");
-            pnlNuevoTrabajo.find("#Datos2").removeClass("active show");
-            pnlNuevoTrabajo.find("#Datos3").removeClass("active show");
-            pnlNuevoTrabajo.find("#Datos4").removeClass("active show");
+            pnlDatos.find('#pEstatusTrabajo').find('li').removeClass('completed active');
+            pnlDatos.find('#pEstatusTrabajo').find('#stsPedido').addClass('active').html('').html('<span class="bubble"></span> 1. Pedido <br><small>(activo)</small>');
+            pnlDatos.find(".nav-tabs li").removeClass("active");
+            $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+            pnlDatos.find("#Datos").addClass("active show");
+            pnlDatos.find("#Datos2").removeClass("active show");
+            pnlDatos.find("#Datos3").removeClass("active show");
+            pnlDatos.find("#Datos4").removeClass("active show");
             menuTablero.addClass("d-none");
-            pnlNuevoTrabajo.removeClass("d-none");
-            pnlDetalleNuevoTrabajo.removeClass("d-none");
-            pnlDetalleNuevoTrabajo.find(".nav-tabs li").removeClass("active");
-            $(pnlDetalleNuevoTrabajo.find(".nav-tabs li")[0]).addClass("active");
-            pnlDetalleNuevoTrabajo.find("#Presupuesto").addClass("active show");
-            pnlDetalleNuevoTrabajo.find("#Levantamiento").removeClass("active show");
-            pnlDetalleNuevoTrabajo.find("#Cajeros").removeClass("active show");
-            pnlNuevoTrabajo.find("input").not('[type=radio]').val('');
+            pnlDatos.removeClass("d-none");
+            pnlDetalleTrabajo.removeClass("d-none");
+            pnlDetalleTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlDetalleTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlDetalleTrabajo.find("#Presupuesto").addClass("active show");
+            pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
+            pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
+            pnlDatos.find("input").not('[type=radio]').val('');
             $("input:radio[name='NuevoEstatusTrabajo']").each(function (i) {
                 this.checked = false;
             });
-            pnlNuevoTrabajo.find("textarea").val("");
-            pnlNuevoTrabajo.find("select").val(null).trigger("change");
-//            pnlNuevoTrabajo.find("select").select2("val", "");
-            pnlNuevoTrabajo.find("select")[0].selectize.clear(true);
-            //pnlNuevoTrabajo.find("#FechaCreacion").datepicker("setDate", currentDate);
-            pnlNuevoTrabajo.find("#ImpactoEnPlazo").val('No');
-            pnlNuevoTrabajo.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
+            pnlDatos.find("textarea").val("");
+            pnlDatos.find("select").val(null).trigger("change");
+            pnlDatos.find("select")[0].selectize.clear(true);
+            //pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            pnlDatos.find("#ImpactoEnPlazo").val('No');
+            pnlDatos.find("#Usuario_ID").val("<?php echo $this->session->userdata('ID'); ?>");
+            pnlDetalleTrabajo.find("#Conceptos").html("");
         });
-        pnlNuevoTrabajo.find("#Codigoppta_ID").change(function () {
-            getCodigoPPTAbyID(pnlNuevoTrabajo.find("#Codigoppta_ID").val(), $(this).val());
+        pnlDatos.find("#Codigoppta_ID").change(function () {
+            getCodigoPPTAbyID(pnlDatos.find("#Codigoppta_ID").val(), $(this).val());
         });
-        pnlEditarTrabajo.find("#Codigoppta_ID").change(function () {
-            getCodigoPPTAbyID(pnlEditarTrabajo.find("#Codigoppta_ID").val(), $(this).val());
+        pnlDatos.find("#Codigoppta_ID").change(function () {
+            getCodigoPPTAbyID(pnlDatos.find("#Codigoppta_ID").val(), $(this).val());
         });
         btnArchivo.on("click", function () {
             Archivo.change(function () {
@@ -3276,7 +2675,6 @@
         getCuadrillas();
     });
     IdMovimiento = 0;
-
     function getRecordsz() {
 
         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -3286,7 +2684,6 @@
             dataType: "JSON"
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-
                 $("#tblTrabajos").html(getTable('tblTrabajos', data));
                 var thead = $('#tblTrabajos').find('thead th');
                 var tfoot = $('#tblTrabajos').find('tfoot th');
@@ -3325,19 +2722,19 @@
                     $(this).addClass('success');
                     var dtm = tblSelected.row(this).data();
                     IdMovimiento = parseInt(dtm[0]);
-                    pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
-                    $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-                    pnlEditarTrabajo.find("#EditarDatos").addClass("active show");
-                    pnlEditarTrabajo.find("#EditarDatos2").removeClass("active show");
-                    pnlEditarTrabajo.find("#EditarDatos3").removeClass("active show");
-                    pnlEditarTrabajo.find("#EditarDatos4").removeClass("active show");
-                    pnlEditarTrabajo.find("#EditarDatos5").removeClass("active show");
-                    pnlEditarTrabajo.find("#EditarDatos6").removeClass("active show");
-                    pnlDetalleEditarTrabajo.find(".nav-tabs li").removeClass("active");
-                    $(pnlDetalleEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-                    pnlDetalleEditarTrabajo.find("#PresupuestoEditar").addClass("active show");
-                    pnlDetalleEditarTrabajo.find("#LevantamientoEditar").removeClass("active show");
-                    pnlDetalleEditarTrabajo.find("#CajerosEditar").removeClass("active show");
+                    pnlDatos.find(".nav-tabs li").removeClass("active");
+                    $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+                    pnlDatos.find("#EditarDatos").addClass("active show");
+                    pnlDatos.find("#EditarDatos2").removeClass("active show");
+                    pnlDatos.find("#EditarDatos3").removeClass("active show");
+                    pnlDatos.find("#EditarDatos4").removeClass("active show");
+                    pnlDatos.find("#EditarDatos5").removeClass("active show");
+                    pnlDatos.find("#EditarDatos6").removeClass("active show");
+                    pnlDetalleTrabajo.find(".nav-tabs li").removeClass("active");
+                    $(pnlDetalleTrabajo.find(".nav-tabs li")[0]).addClass("active");
+                    pnlDetalleTrabajo.find("#PresupuestoEditar").addClass("active show");
+                    pnlDetalleTrabajo.find("#LevantamientoEditar").removeClass("active show");
+                    pnlDetalleTrabajo.find("#CajerosEditar").removeClass("active show");
                     if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
                         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                         $.ajax({
@@ -3349,24 +2746,23 @@
                             }
                         }).done(function (data, x, jq) {
                             var trabajo = data[0];
-                            //pnlEditarTrabajo.find("input").val("");
-                            pnlEditarTrabajo.find("input").not('[type=radio]').val('');
-                            pnlEditarTrabajo.find("select").val(null).trigger("change");
-                            pnlEditarTrabajo.find("select").select2("val", "");
-                            pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.clear(true);
-                            pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
+                            //pnlDatos.find("input").val("");
+                            pnlDatos.find("input").not('[type=radio]').val('');
+                            pnlDatos.find("select").val(null).trigger("change");
+                            pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
+                            pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
                             RadionButtonSelectedValueSet('EstatusTrabajo', trabajo.EstatusTrabajo);
                             if (trabajo.Cliente_ID === '1') {
-                                pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("d-none");
-                                pnlEditarTrabajo.find("#eBBVAObra").removeClass("d-none");
-                                pnlEditarTrabajo.find("#eBBVACajeros").removeClass("d-none");
-                                pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("d-none");
+                                pnlDatos.find("#eBBVAMantenimiento").removeClass("d-none");
+                                pnlDatos.find("#eBBVAObra").removeClass("d-none");
+                                pnlDatos.find("#eBBVACajeros").removeClass("d-none");
+                                pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
                             } else if (trabajo.Cliente_ID === '16') {
                                 mdlReportesEditarTrabajo.find("#rNordes").removeClass('d-none');
                             } else {
-                                pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("d-none");
-                                pnlEditarTrabajo.find("#eBBVAObra").addClass("d-none");
-                                pnlDetalleEditarTrabajo.find("#peCajeros").addClass("d-none");
+                                pnlDatos.find("#eBBVAMantenimiento").addClass("d-none");
+                                pnlDatos.find("#eBBVAObra").addClass("d-none");
+                                pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
                             }
                             $.ajax({
                                 url: master_url + 'getSucursalesByCliente',
@@ -3376,14 +2772,14 @@
                                     ID: trabajo.Cliente_ID
                                 }
                             }).done(function (data, x, jq) {
-                                pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.clear(true);
-                                pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
+                                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
+                                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
                                 $.each(data, function (k, v) {
-                                    pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
+                                    pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
                                 });
-                                pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
-//                                pnlEditarTrabajo.find("#Sucursal_ID").html(options);
-//                                pnlEditarTrabajo.find("#Sucursal_ID").select2("val", trabajo.Sucursal_ID);
+                                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
+//                                pnlDatos.find("#Sucursal_ID").html(options);
+//                                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
                             }).fail(function (x, y, z) {
                                 console.log(x, y, z);
                             }).always(function () {
@@ -3397,15 +2793,12 @@
                                     Cliente_ID: trabajo.Cliente_ID
                                 }
                             }).done(function (data, x, jq) {
-                                pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.clear(true);
-                                pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.clearOptions();
+                                pnlDatos.find("[name='Preciario_ID']")[0].selectize.clear(true);
+                                pnlDatos.find("[name='Preciario_ID']")[0].selectize.clearOptions();
                                 $.each(data, function (k, v) {
-//                                    options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
-                                    pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
+                                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
                                 });
-                                pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
-//                                pnlEditarTrabajo.find("#Preciario_ID").html(options);
-//                                pnlEditarTrabajo.find("#Preciario_ID").select2("val", trabajo.Preciario_ID);
+                                pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
                             }).fail(function (x, y, z) {
                                 console.log(x, y, z);
                             }).always(function () {
@@ -3419,15 +2812,12 @@
                                     ID: trabajo.Cliente_ID
                                 }
                             }).done(function (data, x, jq) {
-                                pnlEditarTrabajo.find("[name='Especialidad_ID']")[0].selectize.clear(true);
-                                pnlEditarTrabajo.find("[name='Especialidad_ID']")[0].selectize.clearOptions();
+                                pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clear(true);
+                                pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clearOptions();
                                 $.each(data, function (k, v) {
-                                    pnlEditarTrabajo.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
-//                                    options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                                    pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
                                 });
-                                pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
-//                                pnlEditarTrabajo.find("#Especialidad_ID").html(options);
-//                                pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
+                                pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
                             }).fail(function (x, y, z) {
                                 console.log(x, y, z);
                             }).always(function () {
@@ -3441,15 +2831,12 @@
                                     ID: trabajo.Cliente_ID
                                 }
                             }).done(function (data, x, jq) {
-                                pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.clear(true);
-                                pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.clearOptions();
+                                pnlDatos.find("[name='Area_ID']")[0].selectize.clear(true);
+                                pnlDatos.find("[name='Area_ID']")[0].selectize.clearOptions();
                                 $.each(data, function (k, v) {
-//                                    options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
-                                    pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                                    pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
                                 });
-                                pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
-//                                pnlEditarTrabajo.find("#Area_ID").html(options);
-//                                pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
+                                pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
                             }).fail(function (x, y, z) {
                                 console.log(x, y, z);
                             }).always(function () {
@@ -3463,98 +2850,95 @@
                                     ID: trabajo.Cliente_ID
                                 }
                             }).done(function (data, x, jq) {
-                                pnlEditarTrabajo.find("[name='CentroCostos_ID']")[0].selectize.clear(true);
-                                pnlEditarTrabajo.find("[name='CentroCostos_ID']")[0].selectize.clearOptions();
+                                pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clear(true);
+                                pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clearOptions();
                                 $.each(data, function (k, v) {
-//                                    options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
-                                    pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
+                                    pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
                                 });
-                                pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
-//                                pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
-//                                pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
+                                pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
                             }).fail(function (x, y, z) {
                                 console.log(x, y, z);
                             }).always(function () {
                                 //HoldOn.close();
                             });
-                            getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
+                            getCodigoPPTAbyID(trabajo.Codigoppta_ID); /*trae los días*/
                             Cliente = trabajo.Cliente_ID;
-                            pnlEditarTrabajo.removeClass("d-none");
-                            pnlDetalleEditarTrabajo.removeClass("d-none");
+                            pnlDatos.removeClass("d-none");
+                            pnlDetalleTrabajo.removeClass("d-none");
                             getTrabajoDetalleByID(trabajo.ID);
                             getDetalleAbiertoByID(trabajo.ID);
                             getDetalleCajerosByID(trabajo.ID);
-                            pnlEditarTrabajo.find("#ID").val(trabajo.ID);
-                            pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
-                            pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-                            pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
-                            pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
-                            pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
-                            pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
-                            pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
-                            pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
-                            pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
-                            pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
-                            pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
-                            pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
-                            pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
-                            pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
-                            pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
-                            pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
-                            pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
-                            pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                            pnlDatos.find("#ID").val(trabajo.ID);
+                            pnlDatos.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                            pnlDatos.find("[name='Cliente_ID']")[0].selectize.setValue(trabajo.Cliente_ID);
+                            pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                            pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                            pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
+                            pnlDatos.find("[name='Cuadrilla_ID']")[0].selectize.setValue(trabajo.Cuadrilla_ID);
+                            pnlDatos.find("#FolioCliente").val(trabajo.FolioCliente);
+                            pnlDatos.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                            pnlDatos.find("[name='Codigoppta_ID']")[0].selectize.setValue(trabajo.Codigoppta_ID);
+                            pnlDatos.find("#Solicitante").val(trabajo.Solicitante);
+                            pnlDatos.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                            pnlDatos.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                            pnlDatos.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                            pnlDatos.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                            pnlDatos.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                            pnlDatos.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                            pnlDatos.find("#FechaSalida").val(trabajo.FechaSalida);
+                            pnlDatos.find("#HoraSalida").val(trabajo.HoraSalida);
                             if (trabajo.ImpactoEnPlazo === 'Si') {
-                                pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
-                                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                                pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', true);
+                                pnlDatos.find("#ImpactoEnPlazo").val('Si');
                             }
                             if (trabajo.ImpactoEnPlazo === 'No') {
-                                pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
-                                pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
+                                pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', false);
+                                pnlDatos.find("#ImpactoEnPlazo").val('No');
                             }
-                            pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
-                            pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
-                            pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
-                            pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
-                            pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
-                            pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
-                            pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
-                            pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-                            pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
-                            pnlEditarTrabajo.find("#ControlTiempoProceso").select2("val", trabajo.ControlProceso);
-                            pnlEditarTrabajo.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
-                            pnlEditarTrabajo.find("#TextoCausa").val(trabajo.TextoCausa);
-                            pnlEditarTrabajo.find("#Cal1").select2("val", trabajo.Cal1);
-                            pnlEditarTrabajo.find("#Cal2").select2("val", trabajo.Cal2);
-                            pnlEditarTrabajo.find("#Cal3").select2("val", trabajo.Cal3);
-                            pnlEditarTrabajo.find("#Cal4").select2("val", trabajo.Cal4);
-                            pnlEditarTrabajo.find("#Cal5").select2("val", trabajo.Cal5);
+                            pnlDatos.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                            pnlDatos.find("[name='CausaTrabajo']")[0].selectize.setValue(trabajo.CausaTrabajo);
+                            pnlDatos.find("[name='ClaveOrigenTrabajo']")[0].selectize.setValue(trabajo.ClaveOrigenTrabajo);
+                            pnlDatos.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                            pnlDatos.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                            pnlDatos.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                            pnlDatos.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                            pnlDatos.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                            pnlDatos.find("#Observaciones").val(trabajo.Observaciones);
+                            pnlDatos.find("[name='ControlProceso']")[0].selectize.setValue(trabajo.ControlProceso);
+                            pnlDatos.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
+                            pnlDatos.find("#TextoCausa").val(trabajo.TextoCausa);
+                            pnlDatos.find("[name='Cal1']")[0].selectize.setValue(trabajo.Cal1);
+                            pnlDatos.find("[name='Cal2']")[0].selectize.setValue(trabajo.Cal2);
+                            pnlDatos.find("[name='Cal3']")[0].selectize.setValue(trabajo.Cal3);
+                            pnlDatos.find("[name='Cal4']")[0].selectize.setValue(trabajo.Cal4);
+                            pnlDatos.find("[name='Cal5']")[0].selectize.setValue(trabajo.Cal5);
                             /*Cajeros*/
-                            pnlEditarTrabajo.find("#FechaVisita").val(trabajo.FechaVisita);
-                            pnlEditarTrabajo.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
-                            pnlEditarTrabajo.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
-                            pnlEditarTrabajo.find("#RestriccionAcceso").select2("val", trabajo.RestriccionAcceso);
-                            pnlEditarTrabajo.find("#AireAcondicionado").select2("val", trabajo.AireAcondicionado);
-                            pnlEditarTrabajo.find("#Carcasa").select2("val", trabajo.Carcasa);
-                            pnlEditarTrabajo.find("#UPS").select2("val", trabajo.UPS);
-                            pnlEditarTrabajo.find("#SenalizacionInterior").select2("val", trabajo.SenalizacionInterior);
-                            pnlEditarTrabajo.find("#SenalizacionExterior").select2("val", trabajo.SenalizacionExterior);
-                            pnlEditarTrabajo.find("#CanalizacionDatos").select2("val", trabajo.CanalizacionDatos);
-                            pnlEditarTrabajo.find("#CanalizacionSeguridad").select2("val", trabajo.CanalizacionSeguridad);
-                            pnlEditarTrabajo.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
-                            pnlEditarTrabajo.find("#TipoPiso").val(trabajo.TipoPiso);
+                            pnlDatos.find("#FechaVisita").val(trabajo.FechaVisita);
+                            pnlDatos.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
+                            pnlDatos.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
+                            pnlDatos.find("[name='RestriccionAcceso']")[0].selectize.setValue(trabajo.RestriccionAcceso);
+                            pnlDatos.find("[name='AireAcondicionado']")[0].selectize.setValue(trabajo.AireAcondicionado);
+                            pnlDatos.find("[name='Carcasa']")[0].selectize.setValue(trabajo.Carcasa);
+                            pnlDatos.find("[name='UPS']")[0].selectize.setValue(trabajo.UPS);
+                            pnlDatos.find("[name='SenalizacionInterior']")[0].selectize.setValue(trabajo.SenalizacionInterior);
+                            pnlDatos.find("[name='SenalizacionExterior']")[0].selectize.setValue(trabajo.SenalizacionExterior);
+                            pnlDatos.find("[name='CanalizacionDatos']")[0].selectize.setValue(trabajo.CanalizacionDatos);
+                            pnlDatos.find("[name='CanalizacionSeguridad']")[0].selectize.setValue(trabajo.CanalizacionSeguridad);
+                            pnlDatos.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
+                            pnlDatos.find("#TipoPiso").val(trabajo.TipoPiso);
                             if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                                 var ext = getExt(trabajo.Adjunto);
                                 if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                                    pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
+                                    pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
                                 }
                                 if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                                    pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                                    pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                                 }
                                 if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                                    pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                                    pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
                                 }
                             } else {
-                                pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                                pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                             }
                             menuTablero.addClass("d-none");
                             console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
@@ -3563,23 +2947,22 @@
                                 btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
-                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
                                 $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-
                             } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
                                 tBtnEditarConcluir.prop('checked', true);
                                 btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
-                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
                                 $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
                             } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
                                 if (TipoAcceso === 'SUPER ADMINISTRADOR') {
@@ -3587,11 +2970,11 @@
                                     btnModificar.addClass('d-none');
                                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                     btnConfirmarEliminar.attr("disabled", true);
-                                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                                    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                    pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
                                     $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
                                 } else {
                                     tBtnEditarConcluir.prop('disabled', true);
@@ -3599,11 +2982,11 @@
                                     btnModificar.addClass('d-none');
                                     $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                     btnConfirmarEliminar.attr("disabled", true);
-                                    pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                                    pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                                    pnlDetalleEditarTrabajo.find('table').addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                    pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                                    pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
                                     $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
                                 }
                             } else if (trabajo.Estatus === 'Cancelado') {
@@ -3611,17 +2994,17 @@
                                 btnModificar.addClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
                                 btnConfirmarEliminar.attr("disabled", true);
-                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                                pnlDetalleEditarTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                                pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
                             } else {
                                 tBtnEditarConcluir.prop('checked', false);
                                 btnModificar.removeClass('d-none');
                                 $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
                                 btnConfirmarEliminar.attr("disabled", false);
-                                pnlDetalleEditarTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                                pnlDetalleEditarTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                                pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                                pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                                pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
                             }
                             getImporteTotalDelTrabajoByID(trabajo.ID);
                         }).fail(function (x, y, z) {
@@ -3633,10 +3016,8 @@
                         onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
                     }
                 });
-
             } else {
                 $("#tblTrabajos").html('<br><hr><div class="col-12"><center><h3>NO EXISTEN REGISTROS</h3></center></div> ');
-
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -3647,7 +3028,6 @@
 
     var tblTrabajos = $("#tblTrabajos");
     var Trabajos;
-
     function getRecords() {
         temp = 0;
         HoldOn.open({
@@ -3655,7 +3035,6 @@
             message: 'CARGANDO...'
         });
         $.fn.dataTable.ext.errMode = 'throw';
-
         if ($.fn.DataTable.isDataTable('#tblTrabajos')) {
             tblTrabajos.DataTable().destroy();
         }
@@ -3667,23 +3046,33 @@
                 "dataSrc": ""
             },
             "columns": [
-                {"data": "ID"},
-                {"data": "Folio"},
-                {"data": "Estatus2"},
-                {"data": "Estatus"},
-                {"data": "Fecha"},
-                {"data": "Adjunto"},
-                {"data": "Cliente"},
-                {"data": "Sucursal"},
-                {"data": "Importe"},
-                {"data": "TrabajoRequerido"},
-                {"data": "Usuario"},
-                {"data": "ImporteSinFormato"}
+                {"data": "ID"}, //0
+                {"data": "Folio"}, //1
+                {"data": "Estatus2"}, //2
+                {"data": "Estatus"}, //3
+                {"data": "Fecha"}, //4
+                {"data": "Adjunto"}, //5
+                {"data": "Cliente"}, //6
+                {"data": "Sucursal"}, //7
+                {"data": "Importe"}, //8
+                {"data": "TrabajoRequerido"}, //9
+                {"data": "Usuario"}, //10
+                {"data": "ImporteSinFormato"}//11
             ],
             "columnDefs": [
                 {
                     "targets": [0],
-                    "visible": true,
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [3],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [11],
+                    "visible": false,
                     "searchable": false
                 }
             ],
@@ -3701,10 +3090,305 @@
             ]
         });
         tblTrabajos.find('tbody').on('click', 'tr', function () {
+            menuTablero.addClass("d-none");
             tblTrabajos.find("tbody tr").removeClass("success");
             $(this).addClass("success");
             var dtm = Trabajos.row(this).data();
-            temp = parseInt(dtm.ID);
+            console.log("\n DTM \n", dtm);
+            IdMovimiento = parseInt(dtm.ID);
+            /*OLD CODE*/
+            pnlDatos.find(".nav-tabs li").removeClass("active");
+            $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+            pnlDatos.find("#EditarDatos").addClass("active show");
+            pnlDatos.find("#EditarDatos2").removeClass("active show");
+            pnlDatos.find("#EditarDatos3").removeClass("active show");
+            pnlDatos.find("#EditarDatos4").removeClass("active show");
+            pnlDatos.find("#EditarDatos5").removeClass("active show");
+            pnlDatos.find("#EditarDatos6").removeClass("active show");
+            pnlDetalleTrabajo.find(".nav-tabs li").removeClass("active");
+            $(pnlDetalleTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlDetalleTrabajo.find("#PresupuestoEditar").addClass("active show");
+            pnlDetalleTrabajo.find("#LevantamientoEditar").removeClass("active show");
+            pnlDetalleTrabajo.find("#CajerosEditar").removeClass("active show");
+            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
+                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+                $.ajax({
+                    url: master_url + 'getTrabajoByID',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    var trabajo = data[0];
+                    console.log('TRABAJO', data, "\n")
+                    pnlDatos.find("input").not('[type=radio]').val('');
+                    pnlDatos.find("select").val(null).trigger("change");
+                    pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
+                    pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
+                    RadionButtonSelectedValueSet('EstatusTrabajo', trabajo.EstatusTrabajo);
+                    if (trabajo.Cliente_ID === '1') {
+                        pnlDatos.find("#eBBVAMantenimiento").removeClass("d-none");
+                        pnlDatos.find("#eBBVAObra").removeClass("d-none");
+                        pnlDatos.find("#eBBVACajeros").removeClass("d-none");
+                        pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
+                    } else if (trabajo.Cliente_ID === '16') {
+                        mdlReportesEditarTrabajo.find("#rNordes").removeClass('d-none');
+                    } else {
+                        pnlDatos.find("#eBBVAMantenimiento").addClass("d-none");
+                        pnlDatos.find("#eBBVAObra").addClass("d-none");
+                        pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
+                    }
+                    $.ajax({
+                        url: master_url + 'getSucursalesByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
+                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
+                        });
+                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        //HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getPreciariosByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            Cliente_ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.clear(true);
+                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.clearOptions();
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
+                        });
+                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        //HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getEspecialidadesByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clear(true);
+                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clearOptions();
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                        });
+                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        //HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getAreasByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("[name='Area_ID']")[0].selectize.clear(true);
+                        pnlDatos.find("[name='Area_ID']")[0].selectize.clearOptions();
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                        });
+                        pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        //HoldOn.close();
+                    });
+                    $.ajax({
+                        url: master_url + 'getCCByCliente',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: trabajo.Cliente_ID
+                        }
+                    }).done(function (data, x, jq) {
+                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clear(true);
+                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clearOptions();
+                        $.each(data, function (k, v) {
+                            pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
+                        });
+                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        //HoldOn.close();
+                    });
+                    getCodigoPPTAbyID(trabajo.Codigoppta_ID); /*trae los días*/
+                    Cliente = trabajo.Cliente_ID;
+                    pnlDatos.removeClass("d-none");
+                    pnlDetalleTrabajo.removeClass("d-none");
+                    getTrabajoDetalleByID(trabajo.ID);
+                    getDetalleAbiertoByID(trabajo.ID);
+                    getDetalleCajerosByID(trabajo.ID);
+                    pnlDatos.find("#ID").val(trabajo.ID);
+                    pnlDatos.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                    pnlDatos.find("[name='Cliente_ID']")[0].selectize.setValue(trabajo.Cliente_ID);
+                    pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                    pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                    pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
+                    pnlDatos.find("[name='Cuadrilla_ID']")[0].selectize.setValue(trabajo.Cuadrilla_ID);
+                    pnlDatos.find("#FolioCliente").val(trabajo.FolioCliente);
+                    pnlDatos.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                    pnlDatos.find("[name='Codigoppta_ID']")[0].selectize.setValue(trabajo.Codigoppta_ID);
+                    pnlDatos.find("#Solicitante").val(trabajo.Solicitante);
+                    pnlDatos.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                    pnlDatos.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                    pnlDatos.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                    pnlDatos.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                    pnlDatos.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                    pnlDatos.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                    pnlDatos.find("#FechaSalida").val(trabajo.FechaSalida);
+                    pnlDatos.find("#HoraSalida").val(trabajo.HoraSalida);
+                    if (trabajo.ImpactoEnPlazo === 'Si') {
+                        pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', true);
+                        pnlDatos.find("#ImpactoEnPlazo").val('Si');
+                    }
+                    if (trabajo.ImpactoEnPlazo === 'No') {
+                        pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', false);
+                        pnlDatos.find("#ImpactoEnPlazo").val('No');
+                    }
+                    pnlDatos.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                    pnlDatos.find("[name='CausaTrabajo']")[0].selectize.setValue(trabajo.CausaTrabajo);
+                    pnlDatos.find("[name='ClaveOrigenTrabajo']")[0].selectize.setValue(trabajo.ClaveOrigenTrabajo);
+                    pnlDatos.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                    pnlDatos.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                    pnlDatos.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                    pnlDatos.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                    pnlDatos.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                    pnlDatos.find("#Observaciones").val(trabajo.Observaciones);
+                    pnlDatos.find("[name='ControlProceso']")[0].selectize.setValue(trabajo.ControlProceso);
+                    pnlDatos.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
+                    pnlDatos.find("#TextoCausa").val(trabajo.TextoCausa);
+                    pnlDatos.find("[name='Cal1']")[0].selectize.setValue(trabajo.Cal1);
+                    pnlDatos.find("[name='Cal2']")[0].selectize.setValue(trabajo.Cal2);
+                    pnlDatos.find("[name='Cal3']")[0].selectize.setValue(trabajo.Cal3);
+                    pnlDatos.find("[name='Cal4']")[0].selectize.setValue(trabajo.Cal4);
+                    pnlDatos.find("[name='Cal5']")[0].selectize.setValue(trabajo.Cal5);
+                    /*Cajeros*/
+                    pnlDatos.find("#FechaVisita").val(trabajo.FechaVisita);
+                    pnlDatos.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
+                    pnlDatos.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
+                    pnlDatos.find("[name='RestriccionAcceso']")[0].selectize.setValue(trabajo.RestriccionAcceso);
+                    pnlDatos.find("[name='AireAcondicionado']")[0].selectize.setValue(trabajo.AireAcondicionado);
+                    pnlDatos.find("[name='Carcasa']")[0].selectize.setValue(trabajo.Carcasa);
+                    pnlDatos.find("[name='UPS']")[0].selectize.setValue(trabajo.UPS);
+                    pnlDatos.find("[name='SenalizacionInterior']")[0].selectize.setValue(trabajo.SenalizacionInterior);
+                    pnlDatos.find("[name='SenalizacionExterior']")[0].selectize.setValue(trabajo.SenalizacionExterior);
+                    pnlDatos.find("[name='CanalizacionDatos']")[0].selectize.setValue(trabajo.CanalizacionDatos);
+                    pnlDatos.find("[name='CanalizacionSeguridad']")[0].selectize.setValue(trabajo.CanalizacionSeguridad);
+                    pnlDatos.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
+                    pnlDatos.find("#TipoPiso").val(trabajo.TipoPiso);
+                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                        var ext = getExt(trabajo.Adjunto);
+                        if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                            pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
+                        }
+                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                            pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        }
+                        if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                            pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                        }
+                    } else {
+                        pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                    }
+                    menuTablero.addClass("d-none");
+                    console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
+                    if (trabajo.Estatus === 'Concluido' && trabajo.EstatusTrabajo !== 'Pagado' && trabajo.Estatus !== 'Entregado') {
+                        tBtnEditarConcluir.prop('checked', true);
+                        btnModificar.addClass('d-none');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                        btnConfirmarEliminar.attr("disabled", true);
+                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
+                        tBtnEditarConcluir.prop('checked', true);
+                        btnModificar.addClass('d-none');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                        btnConfirmarEliminar.attr("disabled", true);
+                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
+                        if (TipoAcceso === 'SUPER ADMINISTRADOR') {
+                            tBtnEditarConcluir.prop('checked', true);
+                            btnModificar.addClass('d-none');
+                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                            btnConfirmarEliminar.attr("disabled", true);
+                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                        } else {
+                            tBtnEditarConcluir.prop('disabled', true);
+                            tBtnEditarConcluir.prop('checked', true);
+                            btnModificar.addClass('d-none');
+                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                            btnConfirmarEliminar.attr("disabled", true);
+                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                        }
+                    } else if (trabajo.Estatus === 'Cancelado') {
+                        tBtnEditarConcluir.addClass('d-none');
+                        btnModificar.addClass('d-none');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                        btnConfirmarEliminar.attr("disabled", true);
+                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    } else {
+                        tBtnEditarConcluir.prop('checked', false);
+                        btnModificar.removeClass('d-none');
+                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                        btnConfirmarEliminar.attr("disabled", false);
+                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                        pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                    }
+                    getImporteTotalDelTrabajoByID(trabajo.ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    //HoldOn.close();
+                });
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+            }
+            /*END OLD CODE*/
         });
         Trabajos.columns().every(function () {
             var that = this;
@@ -3728,16 +3412,16 @@
     /*Para despues de insertar pro primera vez se cargue el panel de editar*/
     function despuesDeGuardar(IDTrabajo) {
         IdMovimiento = IDTrabajo;
-        pnlNuevoTrabajo.addClass("d-none");
-        pnlDetalleNuevoTrabajo.addClass("d-none");
-        pnlEditarTrabajo.find(".nav-tabs li").removeClass("active");
-        $(pnlEditarTrabajo.find(".nav-tabs li")[0]).addClass("active");
-        pnlEditarTrabajo.find("#EditarDatos").addClass("active show");
-        pnlEditarTrabajo.find("#EditarDatos2").removeClass("active show");
-        pnlEditarTrabajo.find("#EditarDatos3").removeClass("active show");
-        pnlEditarTrabajo.find("#EditarDatos4").removeClass("active show");
-        pnlEditarTrabajo.find("#EditarDatos5").removeClass("active show");
-        pnlEditarTrabajo.find("#EditarDatos5").removeClass("active show");
+        pnlDatos.addClass("d-none");
+        pnlDetalleTrabajo.addClass("d-none");
+        pnlDatos.find(".nav-tabs li").removeClass("active");
+        $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+        pnlDatos.find("#EditarDatos").addClass("active show");
+        pnlDatos.find("#EditarDatos2").removeClass("active show");
+        pnlDatos.find("#EditarDatos3").removeClass("active show");
+        pnlDatos.find("#EditarDatos4").removeClass("active show");
+        pnlDatos.find("#EditarDatos5").removeClass("active show");
+        pnlDatos.find("#EditarDatos5").removeClass("active show");
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."
             });
@@ -3750,20 +3434,19 @@
                 }
             }).done(function (data, x, jq) {
                 var trabajo = data[0];
-                //pnlEditarTrabajo.find("input").val("");
-                pnlEditarTrabajo.find("input").not('[type=radio]').val('');
-                pnlEditarTrabajo.find("select").val(null).trigger("change");
-                pnlEditarTrabajo.find("select").select2("val", "");
+                //pnlDatos.find("input").val("");
+                pnlDatos.find("input").not('[type=radio]').val('');
+                pnlDatos.find("select").val(null).trigger("change");
                 RadionButtonSelectedValueSet('EstatusTrabajo', trabajo.EstatusTrabajo);
                 if (trabajo.Cliente_ID === '1') {
-                    pnlEditarTrabajo.find("#eBBVAMantenimiento").removeClass("d-none");
-                    pnlEditarTrabajo.find("#eBBVAObra").removeClass("d-none");
-                    pnlEditarTrabajo.find("#eBBVACajeros").removeClass("d-none");
-                    pnlDetalleEditarTrabajo.find("#peCajeros").removeClass("d-none");
+                    pnlDatos.find("#eBBVAMantenimiento").removeClass("d-none");
+                    pnlDatos.find("#eBBVAObra").removeClass("d-none");
+                    pnlDatos.find("#eBBVACajeros").removeClass("d-none");
+                    pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
                 } else {
-                    pnlEditarTrabajo.find("#eBBVAMantenimiento").addClass("d-none");
-                    pnlEditarTrabajo.find("#eBBVAObra").addClass("d-none");
-                    pnlDetalleEditarTrabajo.find("#peCajeros").addClass("d-none");
+                    pnlDatos.find("#eBBVAMantenimiento").addClass("d-none");
+                    pnlDatos.find("#eBBVAObra").addClass("d-none");
+                    pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
                 }
                 $.ajax({
                     url: master_url + 'getSucursalesByCliente',
@@ -3774,9 +3457,9 @@
                     }
                 }).done(function (data, x, jq) {
                     $.each(data, function (k, v) {
-                        pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
+                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
                     });
-                    pnlEditarTrabajo.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
+                    pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3790,12 +3473,10 @@
                         Cliente_ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-                    var options = '<option></option>';
                     $.each(data, function (k, v) {
-                        options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
-                        pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
+                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
                     });
-                    pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
+                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3809,11 +3490,10 @@
                         ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-                    var options = '<option></option>';
-                    $.each(data, function (k, v) { 
-                        pnlEditarTrabajo.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
-                    }); 
-                    pnlEditarTrabajo.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                    });
+                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3827,12 +3507,10 @@
                         ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-                    var options = '<option></option>';
                     $.each(data, function (k, v) {
-                        pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                        pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
                     });
-                    pnlEditarTrabajo.find("#Area_ID").html(options); 
-                    pnlEditarTrabajo.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                    pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3846,100 +3524,100 @@
                         ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-                    var options = '<option></option>';
                     $.each(data, function (k, v) {
-                        options += '<option value="' + v.ID + '">' + v.Nombre + '</option>';
+                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
                     });
-                    pnlEditarTrabajo.find("#CentroCostos_ID").html(options);
-                    pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
+                    pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
                 });
-                getCodigoPPTAbyID(trabajo.Codigoppta_ID);/*trae los días*/
+                getCodigoPPTAbyID(trabajo.Codigoppta_ID); /*trae los días*/
                 Cliente = trabajo.Cliente_ID;
-                pnlEditarTrabajo.find("#ID").val(trabajo.ID);
-                pnlEditarTrabajo.find("#FechaCreacion").val(trabajo.FechaCreacion);
-                pnlEditarTrabajo.find("#Cliente_ID").select2("val", trabajo.Cliente_ID);
-                pnlEditarTrabajo.find("#Especialidad_ID").select2("val", trabajo.Especialidad_ID);
-                pnlEditarTrabajo.find("#Area_ID").select2("val", trabajo.Area_ID);
-                pnlEditarTrabajo.find("#CentroCostos_ID").select2("val", trabajo.CentroCostos_ID);
-                pnlEditarTrabajo.find("#Cuadrilla_ID").select2("val", trabajo.Cuadrilla_ID);
-                pnlEditarTrabajo.find("#FolioCliente").val(trabajo.FolioCliente);
-                pnlEditarTrabajo.find("#FechaAtencion").val(trabajo.FechaAtencion);
-                pnlEditarTrabajo.find("#Codigoppta_ID").select2("val", trabajo.Codigoppta_ID);
-                pnlEditarTrabajo.find("#Solicitante").val(trabajo.Solicitante);
-                pnlEditarTrabajo.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
-                pnlEditarTrabajo.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
-                pnlEditarTrabajo.find("#FechaOrigen").val(trabajo.FechaOrigen);
-                pnlEditarTrabajo.find("#HoraOrigen").val(trabajo.HoraOrigen);
-                pnlEditarTrabajo.find("#FechaLlegada").val(trabajo.FechaLlegada);
-                pnlEditarTrabajo.find("#HoraLlegada").val(trabajo.HoraLlegada);
-                pnlEditarTrabajo.find("#FechaSalida").val(trabajo.FechaSalida);
-                pnlEditarTrabajo.find("#HoraSalida").val(trabajo.HoraSalida);
+                pnlDatos.find("#ID").val(trabajo.ID);
+                pnlDatos.find("#FechaCreacion").val(trabajo.FechaCreacion);
+                pnlDatos.find("[name='Cliente_ID']")[0].selectize.setValue(trabajo.Cliente_ID);
+                pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                pnlDatos.find("[name='Cliente_ID']")[0].selectize.setValue(trabajo.Cliente_ID);
+                pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
+                pnlDatos.find("[name='Cuadrilla_ID']")[0].selectize.setValue(trabajo.Cuadrilla_ID);
+                pnlDatos.find("#FolioCliente").val(trabajo.FolioCliente);
+                pnlDatos.find("#FechaAtencion").val(trabajo.FechaAtencion);
+                pnlDatos.find("[name='Codigoppta_ID']")[0].selectize.setValue(trabajo.Codigoppta_ID);
+                pnlDatos.find("#Solicitante").val(trabajo.Solicitante);
+                pnlDatos.find("#TrabajoSolicitado").val(trabajo.TrabajoSolicitado);
+                pnlDatos.find("#TrabajoRequerido").val(trabajo.TrabajoRequerido);
+                pnlDatos.find("#FechaOrigen").val(trabajo.FechaOrigen);
+                pnlDatos.find("#HoraOrigen").val(trabajo.HoraOrigen);
+                pnlDatos.find("#FechaLlegada").val(trabajo.FechaLlegada);
+                pnlDatos.find("#HoraLlegada").val(trabajo.HoraLlegada);
+                pnlDatos.find("#FechaSalida").val(trabajo.FechaSalida);
+                pnlDatos.find("#HoraSalida").val(trabajo.HoraSalida);
                 if (trabajo.ImpactoEnPlazo === 'Si') {
-                    pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', true);
-                    pnlEditarTrabajo.find("#ImpactoEnPlazo").val('Si');
+                    pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', true);
+                    pnlDatos.find("#ImpactoEnPlazo").val('Si');
                 }
                 if (trabajo.ImpactoEnPlazo === 'No') {
-                    pnlEditarTrabajo.find("#EditarImpactoEnPlazo").prop('checked', false);
-                    pnlEditarTrabajo.find("#ImpactoEnPlazo").val('No');
+                    pnlDatos.find("#EditarImpactoEnPlazo").prop('checked', false);
+                    pnlDatos.find("#ImpactoEnPlazo").val('No');
                 }
-                pnlEditarTrabajo.find("#DiasImpacto").val(trabajo.DiasImpacto);
-                pnlEditarTrabajo.find("#CausaTrabajo").select2("val", trabajo.CausaTrabajo);
-                pnlEditarTrabajo.find("#ClaveOrigenTrabajo").select2("val", trabajo.ClaveOrigenTrabajo);
-                pnlEditarTrabajo.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
-                pnlEditarTrabajo.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
-                pnlEditarTrabajo.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
-                pnlEditarTrabajo.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
-                pnlEditarTrabajo.find("#Usuario_ID").val(trabajo.Usuario_ID);
-                pnlEditarTrabajo.find("#Observaciones").val(trabajo.Observaciones);
-                pnlEditarTrabajo.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
-                pnlEditarTrabajo.find("#TextoCausa").val(trabajo.TextoCausa);
-                pnlEditarTrabajo.find("#Cal1").select2("val", trabajo.Cal1);
-                pnlEditarTrabajo.find("#Cal2").select2("val", trabajo.Cal2);
-                pnlEditarTrabajo.find("#Cal3").select2("val", trabajo.Cal3);
-                pnlEditarTrabajo.find("#Cal4").select2("val", trabajo.Cal4);
-                pnlEditarTrabajo.find("#Cal5").select2("val", trabajo.Cal5);
+                pnlDatos.find("#DiasImpacto").val(trabajo.DiasImpacto);
+                pnlDatos.find("[name='CausaTrabajo']")[0].selectize.setValue(trabajo.CausaTrabajo);
+                pnlDatos.find("[name='ClaveOrigenTrabajo']")[0].selectize.setValue(trabajo.ClaveOrigenTrabajo);
+                pnlDatos.find("#EspecificaOrigenTrabajo").val(trabajo.EspecificaOrigenTrabajo);
+                pnlDatos.find("#DescripcionOrigenTrabajo").val(trabajo.DescripcionOrigenTrabajo);
+                pnlDatos.find("#DescripcionRiesgoTrabajo").val(trabajo.DescripcionRiesgoTrabajo);
+                pnlDatos.find("#DescripcionAlcanceTrabajo").val(trabajo.DescripcionAlcanceTrabajo);
+                pnlDatos.find("#Usuario_ID").val(trabajo.Usuario_ID);
+                pnlDatos.find("#Observaciones").val(trabajo.Observaciones);
+                pnlDatos.find("#CausaActuacionSintoma").val(trabajo.CausaActuacionSintoma);
+                pnlDatos.find("#TextoCausa").val(trabajo.TextoCausa);
+                pnlDatos.find("[name='Cal1']")[0].selectize.setValue(trabajo.Cal1);
+                pnlDatos.find("[name='Cal2']")[0].selectize.setValue(trabajo.Cal2);
+                pnlDatos.find("[name='Cal3']")[0].selectize.setValue(trabajo.Cal3);
+                pnlDatos.find("[name='Cal4']")[0].selectize.setValue(trabajo.Cal4);
+                pnlDatos.find("[name='Cal5']")[0].selectize.setValue(trabajo.Cal5);
                 /*Cajeros*/
-                pnlEditarTrabajo.find("#FechaVisita").val(trabajo.FechaVisita);
-                pnlEditarTrabajo.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
-                pnlEditarTrabajo.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
-                pnlEditarTrabajo.find("#RestriccionAcceso").select2("val", trabajo.RestriccionAcceso);
-                pnlEditarTrabajo.find("#AireAcondicionado").select2("val", trabajo.AireAcondicionado);
-                pnlEditarTrabajo.find("#Carcasa").select2("val", trabajo.Carcasa);
-                pnlEditarTrabajo.find("#UPS").select2("val", trabajo.UPS);
-                pnlEditarTrabajo.find("#SenalizacionInterior").select2("val", trabajo.SenalizacionInterior);
-                pnlEditarTrabajo.find("#SenalizacionExterior").select2("val", trabajo.SenalizacionExterior);
-                pnlEditarTrabajo.find("#CanalizacionDatos").select2("val", trabajo.CanalizacionDatos);
-                pnlEditarTrabajo.find("#CanalizacionSeguridad").select2("val", trabajo.CanalizacionSeguridad);
-                pnlEditarTrabajo.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
-                pnlEditarTrabajo.find("#TipoPiso").val(trabajo.TipoPiso);
+                pnlDatos.find("#FechaVisita").val(trabajo.FechaVisita);
+                pnlDatos.find("#EncargadoSitio").val(trabajo.EncargadoSitio);
+                pnlDatos.find("#HorarioAtencion").val(trabajo.HorarioAtencion);
+                pnlDatos.find("[name='RestriccionAcceso']")[0].selectize.setValue(trabajo.RestriccionAcceso);
+                pnlDatos.find("[name='AireAcondicionado']")[0].selectize.setValue(trabajo.AireAcondicionado);
+                pnlDatos.find("[name='Carcasa']")[0].selectize.setValue(trabajo.Carcasa);
+                pnlDatos.find("[name='UPS']")[0].selectize.setValue(trabajo.UPS);
+                pnlDatos.find("[name='SenalizacionInterior']")[0].selectize.setValue(trabajo.SenalizacionInterior);
+                pnlDatos.find("[name='SenalizacionExterior']")[0].selectize.setValue(trabajo.SenalizacionExterior);
+                pnlDatos.find("[name='CanalizacionDatos']")[0].selectize.setValue(trabajo.CanalizacionDatos);
+                pnlDatos.find("[name='CanalizacionSeguridad']")[0].selectize.setValue(trabajo.CanalizacionSeguridad);
+                pnlDatos.find("#PruebaCalaFirme").val(trabajo.PruebaCalaFirme);
+                pnlDatos.find("#TipoPiso").val(trabajo.TipoPiso);
                 if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                     var ext = getExt(trabajo.Adjunto);
                     console.log(ext);
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive"/>');
                     }
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        pnlEditarTrabajo.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                     }
                     if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                        pnlEditarTrabajo.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                        pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
                     }
                 } else {
-                    pnlEditarTrabajo.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                    pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
                 }
                 tBtnEditarConcluir.prop('checked', false);
                 btnModificar.removeClass('d-none');
-                pnlEditarTrabajo.removeClass("d-none");
-                pnlDetalleEditarTrabajo.removeClass("d-none");
+                pnlDatos.removeClass("d-none");
+                pnlDetalleTrabajo.removeClass("d-none");
                 getTrabajoDetalleByID(trabajo.ID);
                 getDetalleAbiertoByID(trabajo.ID);
                 getDetalleCajerosByID(trabajo.ID);
                 /*Setea el importe total*/
-                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$' + parseFloat(trabajo.Importe) + '</span>');
+                pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$' + parseFloat(trabajo.Importe) + '</span>');
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
             }).always(function () {
@@ -3956,12 +3634,9 @@
             url: master_url + 'getClientes',
             type: "POST", dataType: "JSON"
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Cliente + '</option>';
+                pnlDatos.find("[name='Cliente_ID']")[0].selectize.addOption({text: v.Cliente, value: v.ID});
             });
-            pnlNuevoTrabajo.find("#Cliente_ID").html(options);
-            pnlEditarTrabajo.find("#Cliente_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -3978,12 +3653,9 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.CR + ' - ' + v.Sucursal + '</option>';
+                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
             });
-            pnlNuevoTrabajo.find("#Sucursal_ID").html(options);
-            pnlEditarTrabajo.find("#Sucursal_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4000,12 +3672,9 @@
                 Cliente_ID: Cliente_ID
             }
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Preciario + '</option>';
+                pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
             });
-            pnlNuevoTrabajo.find("#Preciario_ID").html(options);
-            pnlEditarTrabajo.find("#Preciario_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4022,12 +3691,9 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
             });
-            pnlNuevoTrabajo.find("#Especialidad_ID").html(options);
-            pnlEditarTrabajo.find("#Especialidad_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4044,12 +3710,9 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
-            var options = '<option></option>';
             $.each(data, function (k, v) {
-                options += '<option value="' + v.ID + '">' + v.Descripcion + '</option>';
+                pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
             });
-            pnlNuevoTrabajo.find("#Area_ID").html(options);
-            pnlEditarTrabajo.find("#Area_ID").html(options);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -4067,8 +3730,7 @@
             }
         }).done(function (data, x, jq) {
             $.each(data, function (k, v) {
-                pnlNuevoTrabajo.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
-                pnlEditarTrabajo.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
+                pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4083,8 +3745,7 @@
             type: "POST", dataType: "JSON"
         }).done(function (data, x, jq) {
             $.each(data, function (k, v) {
-                pnlNuevoTrabajo.find("[name='Codigoppta_ID']")[0].selectize.addOption({text: v.Código, value: v.ID});
-                pnlEditarTrabajo.find("[name='Codigoppta_ID']")[0].selectize.addOption({text: v.Código, value: v.ID});
+                pnlDatos.find("[name='Codigoppta_ID']")[0].selectize.addOption({text: v.Código, value: v.ID});
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4098,8 +3759,7 @@
             type: "POST",
             dataType: "JSON"}).done(function (data, x, jq) {
             $.each(data, function (k, v) {
-                pnlNuevoTrabajo.find("[name='Cuadrilla_ID']")[0].selectize.addOption({text: v.Cuadrilla, value: v.ID});
-                pnlEditarTrabajo.find("[name='Cuadrilla_ID']")[0].selectize.addOption({text: v.Cuadrilla, value: v.ID});
+                pnlDatos.find("[name='Cuadrilla_ID']")[0].selectize.addOption({text: v.Cuadrilla, value: v.ID});
             });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4119,8 +3779,7 @@
         }).done(function (data, x, jq) {
             if (data[0] !== undefined) {
                 var codigoppta = data[0];
-                pnlNuevoTrabajo.find("#Dias").val(codigoppta.Dias);
-                pnlEditarTrabajo.find("#Dias").val(codigoppta.Dias);
+                pnlDatos.find("#Dias").val(codigoppta.Dias);
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -4137,9 +3796,9 @@
     }
     var ImporteTotalGlobal = 0;
     function getImporteTotal() {
-        var ImporteTotalE = pnlDetalleEditarTrabajo.find("#ImporteTotal");
+        var ImporteTotalE = pnlDetalleTrabajo.find("#ImporteTotal");
         var total = 0.0;
-        $.each(pnlDetalleEditarTrabajo.find("tbody tr"), function () {
+        $.each(pnlDetalleTrabajo.find("tbody tr"), function () {
             total += parseFloat($(this).find("td").eq(10).text());
             ImporteTotalGlobal = total;
         });
@@ -4147,7 +3806,9 @@
     }
     /*PANEL EDITAR DETALLE */
     var tempDetalle = 0;
+    var DetalleTrabajo, tblDetalleTrabajo = pnlDetalleTrabajo.find("#Conceptos");
     function getTrabajoDetalleByID(IDX) {
+        console.log(IDX);
         $.ajax({
             url: master_url + 'getTrabajoDetalleByID',
             type: "POST",
@@ -4156,31 +3817,54 @@
                 ID: IDX
             }
         }).done(function (data, x, jq) {
+            console.log(IDX);
+            pnlDetalleTrabajo.find("#Conceptos").removeClass("d-none");
             if (data.length > 0) {
-                pnlDetalleEditarTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
-                var thead = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo thead th');
-                var tfoot = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tfoot th');
-                thead.eq(0).addClass("d-none");
-                tfoot.eq(0).addClass("d-none");
-                thead.eq(12).addClass("d-none");
-                tfoot.eq(12).addClass("d-none");
-                $.each(pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody tr'), function (k, v) {
-                    var td = $(v).find("td");
-                    td.eq(0).addClass("d-none");
-                    td.eq(12).addClass("d-none");
-                });
-                var tblSelected = pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptionsDetalle);
-                pnlDetalleEditarTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
+                pnlDetalleTrabajo.find("#Conceptos").html(getTable('tblConceptosXTrabajo', data));
+                var tblSelected = pnlDetalleTrabajo.find('#tblConceptosXTrabajo').DataTable(tableOptionsDetalle);
+                pnlDetalleTrabajo.find('#tblConceptosXTrabajo tbody').on('click', 'tr', function () {
                     var dtm = tblSelected.row(this).data();
                     tempDetalle = parseInt(dtm[0]);
                 });
             } else {
-                pnlDetalleEditarTrabajo.find("#Conceptos").html("");
+                pnlDetalleTrabajo.find("#Conceptos").html("");
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
             HoldOn.close();
+        });
+        if ($.fn.DataTable.isDataTable('#Conceptos')) {
+            tblDetalleTrabajo.DataTable().destroy();
+        }
+        DetalleTrabajo = tblDetalleTrabajo.DataTable({
+            "ajax": {
+                "url": master_url + 'getTrabajoDetalleByID',
+                type: "POST",
+                "dataSrc": "",
+                "data": {
+                    ID: IDX
+                }
+            },
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 35,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "bStateSave": true,
+            //"scrollY":true,
+            "bLengthChange": true,
+            "deferRender": true,
+            "scrollCollapse": false,
+            "aaSorting": [
+                [0, 'desc']
+            ],
+            language: lang,
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }]
         });
     }
     $('#btnEliminarConcepto').on("click", function () {
@@ -4201,16 +3885,16 @@
                 type: "POST",
                 dataType: "JSON",
                 data: {
-                    ID: pnlEditarTrabajo.find("#ID").val()
+                    ID: pnlDatos.find("#ID").val()
                 }
             }).done(function (data, x, jq) {
-                $('#mdlConfirmarEliminarConcepto').modal('d-none');
+                $('#mdlConfirmarEliminarConcepto').modal('hide');
                 if (data !== undefined && data.length > 0) {
                     var dtm = data[0];
                     if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                        pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                        pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                     } else {
-                        pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                        pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
                     }
                 }
             }).fail(function (x, y, z) {
@@ -4235,7 +3919,7 @@
             }
         }).done(function (data, x, jq) {
             console.log(data);
-            $('#mdlConfirmarEliminarConceptoAbierto').modal('d-none');
+            $('#mdlConfirmarEliminarConceptoAbierto').modal('hide');
             $(evtEliminarConceptoAbierto).parent().parent().remove();
         }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
@@ -4253,7 +3937,7 @@
                 IDT: IdMovimiento
             }
         }).done(function (data, x, jq) {
-            $('#mdlConfirmarEliminarConceptoCajero').modal('d-none');
+            $('#mdlConfirmarEliminarConceptoCajero').modal('hide');
             $(evtEliminarConceptoCajero).parent().parent().remove();
         }).fail(function (x, y, z) {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
@@ -4403,7 +4087,7 @@
                 }).done(function (data, x, jq) {
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
-                        pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                        pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                     }
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
@@ -4451,10 +4135,10 @@
                 ID: IDTD
             }
         }).done(function (data, x, jq) {
-            mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(IDT);/*ID DEL TRABAJO*/
-            mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(IDTD);/*ID DEL TRABAJODETALLE*/
-            mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val(IDCO);/*ID DEL CONCEPTO*/
-            mdlTrabajoEditarGeneradorPorConcepto.find("#TipoCambioGenerador").val(TipoCambio);/*Tipo Cambio*/
+            mdlTrabajoEditarGeneradorPorConcepto.find("#IDT").val(IDT); /*ID DEL TRABAJO*/
+            mdlTrabajoEditarGeneradorPorConcepto.find("#IdTrabajoDetalle").val(IDTD); /*ID DEL TRABAJODETALLE*/
+            mdlTrabajoEditarGeneradorPorConcepto.find("#Concepto_ID").val(IDCO); /*ID DEL CONCEPTO*/
+            mdlTrabajoEditarGeneradorPorConcepto.find("#TipoCambioGenerador").val(TipoCambio); /*Tipo Cambio*/
             var precio = 0;
             var cantidadTotal = 0;
             /*CREAR TABLA DE GENERADORES*/
@@ -4782,8 +4466,8 @@
                 }).done(function (data, x, jq) {
                     /**VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
                     var has_id = true;
-                    if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
-                        $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
+                    if (pnlDetalleTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
+                        $.each(pnlDetalleTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
                             var row_status = $(this).find("td").eq(12).text();
                             if (parseInt(row_status) === parseInt(temp)) {
                                 has_id = false;
@@ -4804,9 +4488,9 @@
                             if (data[0] !== undefined && data.length > 0) {
                                 var dtm = data[0];
                                 var frm = new FormData();
-                                frm.append('Trabajo_ID', pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
+                                frm.append('Trabajo_ID', pnlDatos.find("#EditarDatos").find("#ID").val());
                                 frm.append('PreciarioConcepto_ID', dtm.ID);
-                                frm.append('Renglon', pnlDetalleEditarTrabajo.find("table tr").length);
+                                frm.append('Renglon', pnlDetalleTrabajo.find("table tr").length);
                                 frm.append('Unidad', dtm.Unidad);
                                 frm.append('Precio', dtm.Costo);
                                 frm.append('Moneda', dtm.Moneda);
@@ -4820,7 +4504,7 @@
                                     processData: false,
                                     data: frm
                                 }).done(function (data, x, jq) {
-                                    getTrabajoDetalleByID(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
+                                    getTrabajoDetalleByID(pnlDatos.find("#EditarDatos").find("#ID").val());
                                 }).fail(function (x, y, z) {
                                     console.log(x, y, z);
                                 }).always(function () {
@@ -4836,7 +4520,7 @@
                             HoldOn.close();
                         });
                         if (!mdlTrabajoNuevoConceptoEditar.find("#chkMultiple").is(":checked")) {
-                            mdlTrabajoNuevoConceptoEditar.modal('d-none');
+                            mdlTrabajoNuevoConceptoEditar.modal('hide');
                         }
                     }
                 }).fail(function (x, y, z) {
@@ -4852,7 +4536,7 @@
         });
     }
     btnNuevoConceptoEditar.on("click", function () {
-        var Preciario_ID = pnlEditarTrabajo.find("#Preciario_ID").val();
+        var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
         if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
             getConceptosXPreciarioIDEditar(Preciario_ID);
             mdlTrabajoNuevoConceptoEditar.modal('show');
@@ -4872,9 +4556,9 @@
         }).done(function (data, x, jq) {
             if (data !== undefined && data.length > 0 && data[0] !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== undefined && data[0].IMPORTE_TOTAL_TRABAJO !== null) {
                 var dtm = data[0];
-                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
             } else {
-                pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ 0.0</span>');
+                pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle">$ 0.0</span>');
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -5041,9 +4725,9 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 var TextoAgrupador = "";
-                if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Dias') {
+                if (pnlDatos.find("[name='ControlProceso']").val() === 'Dias') {
                     TextoAgrupador = 'Día No. ';
-                } else if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Semanas') {
+                } else if (pnlDatos.find("[name='ControlProceso']").val() === 'Semanas') {
                     TextoAgrupador = 'Semana No. ';
                 }
                 var row = "";
@@ -5104,15 +4788,15 @@
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTiempoProceso").val('');
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdPorcentajeProceso").val('');
         $('#idSubirFotosProceso').addClass('d-none');
-        if ($('#ControlTiempoProceso').val() === 'Dias') {
+        if ($("[name='ControlProceso']").val() === 'Dias') {
             $(".Tiempo").empty();
             $(".Tiempo").append("No. Día*");
             mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
-        } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+        } else if ($("[name='ControlProceso']").val() === 'Semanas') {
             $(".Tiempo").empty();
             $(".Tiempo").append("No. Semana*");
             mdlTrabajoEditarFotosProcesoPorConcepto.modal('show');
-        } else if ($('#ControlTiempoProceso').val() === '') {
+        } else if ($("[name='ControlProceso']").val() === '') {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBELES DE SELECCIONAR UN CONTROL DE TIEMPO', 'danger');
         }
     }
@@ -5405,9 +5089,9 @@
         }).done(function (data, x, jq) {
             if (data.length > 0) {
                 var TextoAgrupador = "";
-                if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Dias') {
+                if (pnlDatos.find("[name='ControlProceso']").val() === 'Dias') {
                     TextoAgrupador = 'Día No. ';
-                } else if (pnlEditarTrabajo.find('#ControlTiempoProceso').val() === 'Semanas') {
+                } else if (pnlDatos.find("[name='ControlProceso']").val() === 'Semanas') {
                     TextoAgrupador = 'Semana No. ';
                 }
                 var row = "";
@@ -5852,19 +5536,19 @@
             data: {ID: IDX}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").html(getTable('tblTrabajosXDetalleAbierto', data));
-                var thead = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleAbierto thead th');
-                var tfoot = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleAbierto tfoot th');
+                pnlDetalleTrabajo.find("#ConceptosAbierto").html(getTable('tblTrabajosXDetalleAbierto', data));
+                var thead = pnlDetalleTrabajo.find('#tblTrabajosXDetalleAbierto thead th');
+                var tfoot = pnlDetalleTrabajo.find('#tblTrabajosXDetalleAbierto tfoot th');
                 thead.eq(0).addClass("d-none");
                 tfoot.eq(0).addClass("d-none");
-                $.each(pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleAbierto tbody tr'), function (k, v) {
+                $.each(pnlDetalleTrabajo.find('#tblTrabajosXDetalleAbierto tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("d-none");
                 });
-                var tblSelected = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleAbierto').DataTable(tableOptionsDetalle);
-                pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleAbierto tbody').on('click', 'tr', function () {
-                    pnlDetalleEditarTrabajo.find("#tblTrabajosXDetalleAbierto").find("tr").removeClass("success");
-                    pnlDetalleEditarTrabajo.find("#tblTrabajosXDetalleAbierto").find("tr").removeClass("warning");
+                var tblSelected = pnlDetalleTrabajo.find('#tblTrabajosXDetalleAbierto').DataTable(tableOptionsDetalle);
+                pnlDetalleTrabajo.find('#tblTrabajosXDetalleAbierto tbody').on('click', 'tr', function () {
+                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleAbierto").find("tr").removeClass("success");
+                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleAbierto").find("tr").removeClass("warning");
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -5877,7 +5561,7 @@
                     tempDetalleAbierto = parseInt(dtm[0]);
                 });
             } else {
-                pnlDetalleEditarTrabajo.find("#ConceptosAbierto").html("");
+                pnlDetalleTrabajo.find("#ConceptosAbierto").html("");
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -5941,19 +5625,19 @@
             data: {ID: IDX}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                pnlDetalleEditarTrabajo.find("#ConceptosCajero").html(getTable('tblTrabajosXDetalleCajeros', data));
-                var thead = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleCajeros thead th');
-                var tfoot = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleCajeros tfoot th');
+                pnlDetalleTrabajo.find("#ConceptosCajero").html(getTable('tblTrabajosXDetalleCajeros', data));
+                var thead = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros thead th');
+                var tfoot = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tfoot th');
                 thead.eq(0).addClass("d-none");
                 tfoot.eq(0).addClass("d-none");
-                $.each(pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleCajeros tbody tr'), function (k, v) {
+                $.each(pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tbody tr'), function (k, v) {
                     var td = $(v).find("td");
                     td.eq(0).addClass("d-none");
                 });
-                var tblSelected = pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleCajeros').DataTable(tableOptionsDetalle);
-                pnlDetalleEditarTrabajo.find('#tblTrabajosXDetalleCajeros tbody').on('click', 'tr', function () {
-                    pnlDetalleEditarTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("success");
-                    pnlDetalleEditarTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("warning");
+                var tblSelected = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros').DataTable(tableOptionsDetalle);
+                pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tbody').on('click', 'tr', function () {
+                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("success");
+                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("warning");
                     var id = this.id;
                     var index = $.inArray(id, selected);
                     if (index === -1) {
@@ -5966,7 +5650,7 @@
                     tempDetalleCajero = parseInt(dtm[0]);
                 });
             } else {
-                pnlDetalleEditarTrabajo.find("#ConceptosCajero").html("");
+                pnlDetalleTrabajo.find("#ConceptosCajero").html("");
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
@@ -6051,7 +5735,7 @@
                     Importe: nuevoImporte
                 }
             }).done(function (data, x, jq) {
-                $('#mdlAgregarTipoCambio').modal('d-none');
+                $('#mdlAgregarTipoCambio').modal('hide');
                 getTrabajoDetalleByID(IdMovimiento);
                 /*MODIFICAR EL IMPORTE DEL TRABAJO*/
                 $.ajax({
@@ -6065,9 +5749,9 @@
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                         } else {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
                         }
                     }
                 }).fail(function (x, y, z) {
@@ -6116,9 +5800,9 @@
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                         } else {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
                         }
                     }
                 }).fail(function (x, y, z) {
@@ -6126,7 +5810,7 @@
                 }).always(function () {
                     HoldOn.close();
                 });
-                $('#mdlAgregarTipoCambio').modal('d-none');
+                $('#mdlAgregarTipoCambio').modal('hide');
                 getTrabajoDetalleByID(IdMovimiento);
             }).fail(function (x, y, z) {
                 console.log(x, y, z);
@@ -6153,7 +5837,7 @@
             $("#txtEditarClave").val(concepto.Clave);
             $("#txtEditarUnidad").val(concepto.Unidad);
             $("#txtEditarPrecio").val(concepto.Precio);
-            $("#txtEditarMoneda").select2("val", concepto.Moneda);
+            $("#txtEditarMoneda")[0].selectize.setValue(concepto.Moneda);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -6174,7 +5858,7 @@
                     Importe: $("#txtEditarPrecio").val() * cantidad
                 }
             }).done(function (data, x, jq) {
-                $('#mdlEditarConcepto').modal('d-none');
+                $('#mdlEditarConcepto').modal('hide');
                 getTrabajoDetalleByID(IdMovimiento);
                 /*MODIFICAR EL IMPORTE DEL TRABAJO*/
                 $.ajax({
@@ -6188,9 +5872,9 @@
                     if (data !== undefined && data.length > 0) {
                         var dtm = data[0];
                         if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                         } else {
-                            pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                            pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
                         }
                     }
                 }).fail(function (x, y, z) {
@@ -6206,7 +5890,7 @@
         });
     }
     function onReemplazarConcepto(IDX, Cantidad) {
-        var Preciario_ID = pnlEditarTrabajo.find("#Preciario_ID").val();
+        var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
         temp = 0;
         if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
             getConceptosXPreciarioIDEditar(Preciario_ID);
@@ -6262,8 +5946,8 @@
                     }).done(function (data, x, jq) {
                         /**VALIDAR QUE EL CONCEPTO NO HAYA SIDO AGREGADO CON ANTERIORIDAD**/
                         var has_id = true;
-                        if (pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
-                            $.each(pnlDetalleEditarTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
+                        if (pnlDetalleTrabajo.find("#tblConceptosXTrabajo tbody tr").length > 0) {
+                            $.each(pnlDetalleTrabajo.find("#tblConceptosXTrabajo tbody tr"), function () {
                                 var row_status = $(this).find("td").eq(12).text();
                                 if (parseInt(row_status) === parseInt(temp)) {
                                     has_id = false;
@@ -6302,8 +5986,8 @@
                                         processData: false,
                                         data: frm
                                     }).done(function (data, x, jq) {
-                                        getTrabajoDetalleByID(pnlEditarTrabajo.find("#EditarDatos").find("#ID").val());
-                                        $('#mdlTrabajoReemplazarConceptoEditar').modal('d-none');
+                                        getTrabajoDetalleByID(pnlDatos.find("#EditarDatos").find("#ID").val());
+                                        $('#mdlTrabajoReemplazarConceptoEditar').modal('hide');
                                         /*Actualizar Importe Total*/
                                         $.ajax({
                                             url: master_url + 'onModificarImportePorTrabajo',
@@ -6316,9 +6000,9 @@
                                             if (data !== undefined && data.length > 0) {
                                                 var dtm = data[0];
                                                 if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                                                    pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                                                    pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
                                                 } else {
-                                                    pnlDetalleEditarTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                                                    pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
                                                 }
                                             }
                                         }).fail(function (x, y, z) {
@@ -6371,7 +6055,7 @@
                 var frm = new FormData();
                 frm.append('Trabajo_ID', IdMovimiento);
                 frm.append('PreciarioConcepto_ID', dtm.PreciarioConcepto_ID);
-                frm.append('Renglon', pnlDetalleEditarTrabajo.find("table tr").length);
+                frm.append('Renglon', pnlDetalleTrabajo.find("table tr").length);
                 frm.append('Cantidad', dtm.Cantidad);
                 frm.append('Unidad', dtm.Unidad);
                 frm.append('Precio', dtm.Precio);
@@ -6603,7 +6287,7 @@
         });
     }
     function onReporteFotografico() {
-        var mov = pnlEditarTrabajo.find("#Movimiento").val();
+        var mov = pnlDatos.find("#Movimiento").val();
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'onReporteFotografico',
@@ -6885,6 +6569,14 @@
         }).always(function () {
             HoldOn.close();
         });
-
     }
 </script>
+<style>
+    td span.badge{
+        font-size: 14px !important;
+    }
+    table tbody tr td > p.CustomDetalleDescripcion{
+        height: 100px !important;
+        overflow: auto !important;
+    }
+</style>

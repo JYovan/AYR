@@ -82,4 +82,23 @@ class centrocostos_model extends CI_Model {
         }
     }
 
+    public function getCentrosCostosByCliente($ID) {
+        try {
+            $this->db->select('E.ID,E.Nombre, E.Descripcion', false);
+            $this->db->from('centrocostos AS E');
+            $this->db->where('E.Cliente_ID', $ID);
+            $this->db->where_in('E.Estatus', 'ACTIVO');
+            $query = $this->db->get();
+            /*
+             * FOR DEBUG ONLY
+             */
+            $str = $this->db->last_query();
+//        print $str;
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
 }

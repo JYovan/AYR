@@ -15,17 +15,18 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select("T.ID,"
                     . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS Folio, "
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'label label-primary\'>','PEDIDO','</span>') "
-                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'label label-warning\'>','PRESUPUESTO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'label label-info\'>','AUTORIZACIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'label label-danger\'>','EJECUCIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'label label-success\'>','FINALIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'label label-NoAutorizadoTablero\'>','NO AUTORIZADO','</span>')"
+                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-primary\'>','PEDIDO','</span>') "
+                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-warning\'>','FINALIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-info\'>','NO AUTORIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-danger badge-light\'>','PAGADO','</span>')"
                     . "END) AS Estatus2 ,"
-                    . "upper(T.EstatusTrabajo) AS Estatus, "
+                    . "upper(T.Estatus) AS Estatus, "
                     . "T.FechaCreacion as Fecha,"
-                    // . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS Atendido ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
+                    // . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
+                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as Cliente, "
                     . "concat(S.CR,' ',S.Nombre) as Sucursal,"
                     . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
@@ -57,18 +58,18 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select("T.ID, "
                     . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'Folio', "
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'label label-primary\'>','PEDIDO','</span>') "
-                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'label label-warning\'>','PRESUPUESTO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'label label-info\'>','AUTORIZACIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'label label-danger\'>','EJECUCIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'label label-success\'>','FINALIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'label label-NoAutorizadoTablero\'>','NO AUTORIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'label label-danger label-pagado\'>','PAGADO','</span>')"
+                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-primary\'>','PEDIDO','</span>') "
+                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-warning\'>','FINALIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-info\'>','NO AUTORIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-danger badge-light\'>','PAGADO','</span>')"
                     . " END) AS Estatus2 ,"
-                    . "upper(T.EstatusTrabajo) AS Estatus, "
+                    . "upper(T.Estatus) AS Estatus, "
                     . "T.FechaCreacion as 'Fecha' ,"
-                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS Atendido ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
+                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
+                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
                     . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
@@ -97,17 +98,18 @@ class trabajo_model extends CI_Model {
         try {
             $this->db->select("T.ID, "
                     . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'Folio', "
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'label label-primary\'>','PEDIDO','</span>') "
-                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'label label-warning\'>','PRESUPUESTO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'label label-info\'>','AUTORIZACIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'label label-danger\'>','EJECUCIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'label label-success\'>','FINALIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'label label-NoAutorizadoTablero\'>','NO AUTORIZADO','</span>')"
+                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-primary\'>','PEDIDO','</span>') "
+                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-warning\'>','FINALIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-info\'>','NO AUTORIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-danger badge-light\'>','PAGADO','</span>')"
                     . " END) AS Estatus2 ,"
-                    . "upper(T.EstatusTrabajo) AS Estatus, "
+                    . "upper(T.Estatus) AS Estatus, "
                     . "T.FechaCreacion as 'Fecha' ,"
-                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'label label-success\'>','SI','</span>') ELSE CONCAT('<span class=\'label label-danger\'>','NO','</span>') END) AS Atendido ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'label label-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'label label-success\'>','SI','</span>') END) AS Adjunto ,"
+                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
+                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
                     . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
@@ -140,9 +142,9 @@ class trabajo_model extends CI_Model {
             $this->db->select('TD.ID AS ID,'
                     . '(CASE '
                     . 'WHEN ifnull(PC.Posicion,"") = "" THEN '
-                    . 'CONCAT("<span class=\'label label-info \'>",TD.Clave,"</span>")'
+                    . 'CONCAT("<span class=\'badge badge-info \'>",TD.Clave,"</span>")'
                     . 'ELSE '
-                    . 'CONCAT("<span class=\'label label-info \'>",TD.Clave," (",IFNULL(PC.Posicion,""),")</span>") '
+                    . 'CONCAT("<span class=\'badge badge-info \'>",TD.Clave," (",IFNULL(PC.Posicion,""),")</span>") '
                     . ' END) AS "Clave",'
                     . '(CASE '
                     . 'WHEN ifnull(TD.IntExt,"") = "" THEN '
@@ -157,14 +159,14 @@ class trabajo_model extends CI_Model {
                     . '(CASE '
                     . 'WHEN TD.Cantidad > 0 THEN '
                     . 'TD.Cantidad '
-                    . 'ELSE CONCAT("<span class=\'label label-danger \'>",TD.Cantidad,"</span>") '
+                    . 'ELSE CONCAT("<span class=\'badge badge-danger \'>",TD.Cantidad,"</span>") '
                     . 'END) AS "Cantidad", '
                     . 'TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio,'
-                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
+                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
                     . '(CASE '
                     . 'WHEN TD.TipoCambio = 1 AND TD.Moneda = "USD" THEN '
-                    . 'CONCAT("<span class=\'label label-danger \'>",TD.Moneda,"</span>") '
+                    . 'CONCAT("<span class=\'badge badge-danger \'>",TD.Moneda,"</span>") '
                     . 'ELSE CONCAT("<span class=\'  \'>",TD.Moneda,"</span>") '
                     . 'END) AS "Moneda", '
 //                    . '(CASE '
@@ -253,7 +255,7 @@ class trabajo_model extends CI_Model {
     public function getTrabajoDetalleAbiertoByID($IDX) {
         try {
             $this->db->select('tda.ID AS ID,'
-                    . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
+                    . 'CONCAT("<span class=\'badge badge-danger\'>",tda.Clave,"</span>") AS Clave, '
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(tda.Descripcion),"</p>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotosantes AS TDFA WHERE TDFA.IdTrabajoDetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID)>0 THEN '
@@ -300,7 +302,7 @@ class trabajo_model extends CI_Model {
     public function getTrabajoDetalleCajeroByID($IDX) {
         try {
             $this->db->select('tda.ID AS ID,'
-                    . 'CONCAT("<span class=\'label label-danger\'>",tda.Clave,"</span>") AS Clave, '
+                    . 'CONCAT("<span class=\'badge badge-danger\'>",tda.Clave,"</span>") AS Clave, '
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(tda.Descripcion),"</p>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM cajerosbbvadetallefotos AS TDFA WHERE TDFA.IdCajeroBBVADetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID)>0 THEN '
@@ -1270,7 +1272,7 @@ class trabajo_model extends CI_Model {
 
     public function getConceptosXPreciarioID($ID) {
         try {
-            $this->db->select('PC.ID,CONCAT("<span class=\"label label-danger\">",PC.Clave,"</span>") AS Clave, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"label label-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, PC.Moneda AS Moneda', false);
+            $this->db->select('PC.ID,CONCAT("<span class=\"badge badge-danger\">",PC.Clave,"</span>") AS Clave, PC.Descripcion AS "Descripción", PC.Unidad AS Unidad, CONCAT("<span class=\"badge badge-success\">$",FORMAT(PC.Costo,2),"</span>") AS Costo, PC.Moneda AS Moneda', false);
             $this->db->from('preciarioconceptos AS PC');
             $this->db->where('PC.Preciarios_ID', $ID);
             $query = $this->db->get();
@@ -1592,7 +1594,7 @@ class trabajo_model extends CI_Model {
             $this->db->select('T.ID AS "FolioInterno",T.FolioCliente AS "FolioCliente" ,'
                     . ' STR_TO_DATE( T.FechaCreacion ,"%d/%m/%Y" )   AS Fecha,'
                     . 'S.Nombre AS Sucursal,S.Region,'
-                    . 'CONCAT("<span class=\'label label-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe, '
+                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(T.Importe,2),"</span>") AS Importe, '
                     . 'ifnull(E.Descripcion,"N/E") AS Especialidad '
                     . 'FROM Trabajos T '
                     . 'INNER join SUCURSALES S ON S.ID = T.Sucursal_ID '
