@@ -302,9 +302,10 @@
             pnlDatos.removeClass("d-none");
             pnlDatos.find("input").val("");
             pnlDatos.find("textarea").val("");
-            // pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
-            //pnlDatos.find("#FechaOrigen").datepicker("setDate", currentDate);
-            pnlDatos.find("#HoraOrigen").timepicker("setTime", currentDate);
+            pnlDatos.find('#HoraOrigen').inputmask({mask: "h:s t\\m",
+                placeholder: "hh:mm xm - hh:mm xm",
+                alias: "datetime",
+                hourFormat: "12"});
             pnlDatos.find(".nav-tabs a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");

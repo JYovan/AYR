@@ -37,8 +37,7 @@ class Sesion extends CI_Controller {
 
     public function onIngreso() {
         try {
-            extract(filter_input_array(INPUT_POST));
-            $data = $this->usuario_model->getAcceso($USUARIO, $CONTRASENA);
+            $data = $this->usuario_model->getAcceso($this->input->post('USUARIO'), $this->input->post('CONTRASENA'));
             if (count($data) > 0) {
                 $newdata = array(
                     'USERNAME' => $data[0]->Usuario,

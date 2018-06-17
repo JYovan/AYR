@@ -63,11 +63,11 @@
     var btnOlvidasteContrasena = $("#btnOlvidasteContrasena");
 
     function login() {
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'ESPERE...'
-        });
         if (Usuario.val() !== '' && Contrasena.val() !== '') {
+            HoldOn.open({
+                theme: 'sk-bounce',
+                message: 'ESPERE...'
+            });
             setTimeout(function () {
                 var frm = $("#frmIngresar");
                 $.ajax({
@@ -95,7 +95,6 @@
     }
 
     $(document).ready(function () {
-
         handleEnter();
         Usuario.val("");
         Contrasena.val("");
@@ -123,7 +122,6 @@
                             USUARIO: $("#ocUsuario").val()
                         }
                     }).done(function (data, x, jq) {
-                        console.log(data);
                         if (parseInt(data) === 1) {
                             mdlOlvideContrasena.modal('d-none');
                             swal('GRACIAS', 'SU PETICION HA SIDO ENVIADA CON ÉXITO', 'success');

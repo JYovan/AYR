@@ -66,7 +66,7 @@
         max-width: 800px;
         margin: auto;
         height: 100%;
-        opacity: 0.2;
+        opacity: 0.5;
     }
     .fixedWatermark{
         padding-top: 90px;
