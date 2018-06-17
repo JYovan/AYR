@@ -115,6 +115,11 @@
             $('[data-provide="datepicker"]').addClass("notEnter");
             $('[data-provide="datepicker"]').val();
 
+            $('[data-provide="timepicker"]').inputmask({mask: "h:s t\\m",
+                placeholder: "hh:mm xm - hh:mm xm",
+                alias: "datetime",
+                hourFormat: "12"});
+
         });
         function onNotify(span, message, type) {
             swal((type === 'danger') ? 'ERROR' : 'ATENCIÓN', message, (type === 'danger') ? 'warning' : 'info');

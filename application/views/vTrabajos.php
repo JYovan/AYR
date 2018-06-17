@@ -1,10 +1,10 @@
-<div class="card " id="MenuTablero">
-    <div class="card-body"> 
+<div class="card border-0" id="MenuTablero">
+    <div class="card-body">
         <div class="row">
-            <div class="col-sm-5 float-left">
-                <legend class="float-left">Trabajos</legend>
+            <div class="col-12 col-sm-3 float-left">
+                <legend class="float-left">Servicios al Cliente</legend>
             </div>
-            <div class="col-7" align="right">
+            <div class="col-12 col-sm-9" align="right">
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>MIS MOVIMIENTOS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
@@ -40,7 +40,7 @@
                         <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
 
-                        <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th> 
+                        <th><input type="text" placeholder="Buscar por Adjunto" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Cliente" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Importe" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
@@ -52,128 +52,74 @@
                 </tfoot>
             </table>
         </div>
-    </div> 
-</div> 
-
+    </div>
+</div>
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-content ">
-        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Imprimir Reportes</h4>
+        <div class="modal-header">
+            <h5 class="modal-title">Seleccionar Reporte</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <div class="modal-body">Selecciona el reporte que deseas imprimir
-            <div class="col-12"><br></div>
-            <div id="reportesPresupuesto" class="dt-buttons">
-                <div class="col-6 col-12">
+        <div class="modal-body">
+            <div id="reportesPresupuesto">
+                <div class="col-12 col-12">
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                        <li role="presentation" class="active"><a href="#Generales" aria-controls="Generales" role="tab" data-toggle="tab">Generales</a></li>
-                        <li role="presentation"><a href="#Obras" aria-controls="Obras" role="tab" data-toggle="tab">Obras</a></li>
-                        <li role="presentation"><a href="#Mantenimientos" aria-controls="Mantenimientos" role="tab" data-toggle="tab">Mantenimiento</a></li>
-                        <li role="presentation"><a href="#Presentaciones" aria-controls="Presentaciones" role="tab" data-toggle="tab">Presentaciones</a></li>
-                        <li role="presentation" id="rNordes" class="d-none"><a href="#Nordes" aria-controls="Nordes" role="tab" data-toggle="tab">Nordes</a></li>
+                        <li class="nav-item"><a href="#Generales" class="nav-link active show"  data-toggle="tab">Generales</a></li>
+                        <li class="nav-item"><a href="#Obras" class="nav-link"  data-toggle="tab">Obras</a></li>
+                        <li class="nav-item"><a href="#Mantenimientos" class="nav-link" data-toggle="tab">Mantenimiento</a></li>
+                        <li class="nav-item"><a href="#Presentaciones" class="nav-link" data-toggle="tab">Presentaciones</a></li>
+                        <li class="nav-item d-none" id="rNordes"><a href="#Nordes" class="nav-link" data-toggle="tab">Nordes</a></li>
                     </ul>
                 </div>
+                <br>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="Generales">
-                        <button onclick="onReportePresupuesto()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R</button>
-                        <button onclick="onReportePresupuestoIng()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO A&R INGLÉS</button>
-                        <button onclick="onReporteGenerador()" class="btn btn-default"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
-                        <button onclick="onReporteCroquis()" class="btn btn-default"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
-                        <button onclick="onReporteFotografico()" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS</button>
+                        <button onclick="onReportePresupuesto()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO A&R</button>
+                        <button onclick="onReportePresupuestoIng()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO A&R INGLÉS</button>
+                        <button onclick="onReporteGenerador()" class="btn btn-primary btn-sm"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
+                        <button onclick="onReporteCroquis()" class="btn btn-primary btn-sm"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
+                        <button onclick="onReporteFotografico()" class="btn btn-primary btn-sm"><span class="fa fa-camera fa-1x"></span><br>FOTOS</button>
                     </div>
                     <div role="tabpanel" class="tab-pane fade " id="Obras">
-                        <button onclick="onReporteFin49()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49 POC</button>
-                        <button onclick="onReporteFin49Conceptos()" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>FIN 49 O.C</button>
-                        <button onclick="onReportePresupuestoBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>PRESUPUESTO BBVA</button>
+                        <button onclick="onReporteFin49()" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>FIN 49 POC</button>
+                        <button onclick="onReporteFin49Conceptos()" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>FIN 49 O.C</button>
+                        <button onclick="onReportePresupuestoBBVA()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO BBVA</button>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Mantenimientos">
-                        <button onclick="onReporteResumenPartidas()" class="btn btn-default"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
-                        <button onclick="onReporteExcelTarifarioXMov()" class="btn btn-default"><span class="fa fa-download fa-1x"></span><br>TARIFARIO</button>
-                        <button onclick="onReporteExcelFicheroXMov()" class="btn btn-default"><span class="fa fa-download fa-1x"></span><br>FICHEROS</button>
-                        <button onclick="onReporteCaratulaBBVA()" class="btn btn-default"><span class="fa fa-usd fa-1x"></span><br>CARÁTULA BBVA</button>
+                        <button onclick="onReporteResumenPartidas()" class="btn btn-primary btn-sm"><span class="fa fa-list-ol fa-1x"></span><br>RESUMEN DE PARTIDAS</button>
+                        <button onclick="onReporteExcelTarifarioXMov()" class="btn btn-primary btn-sm"><span class="fa fa-download fa-1x"></span><br>TARIFARIO</button>
+                        <button onclick="onReporteExcelFicheroXMov()" class="btn btn-primary btn-sm"><span class="fa fa-download fa-1x"></span><br>FICHEROS</button>
+                        <button onclick="onReporteCaratulaBBVA()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>CARÁTULA BBVA</button>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Presentaciones">
-                        <button onclick="onReporteLevantamientoAntes();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
-                        <button onclick="onReporteLevantamientoProceso();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS PROCESO</button>
-                        <button onclick="onReporteLevantamientoDespues();" class="btn btn-default"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
-                        <button onclick="onReporteLevantamientoCompleto()" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
-                        <button onclick="onReportePresentacionCajeros();" class="btn btn-default"><span class="fa fa-image fa-1x"></span><br>PRESENTACIÓN DE CAJEROS</button>
+                        <button onclick="onReporteLevantamientoAntes();" class="btn btn-primary btn-sm"><span class="fa fa-camera fa-1x"></span><br>FOTOS ANTES</button>
+                        <button onclick="onReporteLevantamientoProceso();" class="btn btn-primary btn-sm"><span class="fa fa-camera fa-1x"></span><br>FOTOS PROCESO</button>
+                        <button onclick="onReporteLevantamientoDespues();" class="btn btn-primary btn-sm"><span class="fa fa-camera fa-1x"></span><br>FOTOS DESPUÉS</button>
+                        <button onclick="onReporteLevantamientoCompleto()" class="btn btn-primary btn-sm"><span class="fa fa-image fa-1x"></span><br>GENERAL</button>
+                        <button onclick="onReportePresentacionCajeros();" class="btn btn-primary btn-sm"><span class="fa fa-image fa-1x"></span><br>PRESENTACIÓN DE CAJEROS</button>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Nordes">
-                        <button onclick="onReporteNordesActaRecepcion();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Acta Recepción Trabajos Extras</button>
-                        <button onclick="onReporteNordesHojaServicio();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Hoja de Servicio Diario</button>
-                        <button onclick="onReporteNordesReporteTableros();" class="btn btn-default"><span class="fa fa-file-text fa-1x"></span><br>Reporte Tableros Iguala</button>
+                        <button onclick="onReporteNordesActaRecepcion();" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>Acta Recepción Trabajos Extras</button>
+                        <button onclick="onReporteNordesHojaServicio();" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>Hoja de Servicio Diario</button>
+                        <button onclick="onReporteNordesReporteTableros();" class="btn btn-primary btn-sm"><span class="fa fa-file-pdf fa-1x"></span><br>Reporte Tableros Iguala</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--Confirmacion-->
-<div id="mdlConfirmar" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">Deseas eliminar el registro?</div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminar">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--Confirmacion Eliminar Concepto-->
-<div id="mdlConfirmarEliminarConcepto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">Deseas eliminar el registro?</div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConcepto">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--Confirmacion Concepto Cajero-->
-<div id="mdlConfirmarEliminarConceptoCajero" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">Deseas eliminar el registro?</div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConceptoCajero">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--Confirmacion-->
-<div id="mdlConfirmarEliminarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Confirmar</h4>
-        </div>
-        <div class="modal-body">Deseas eliminar el registro?</div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" >CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEliminarConceptoAbierto">ACEPTAR</button>
-        </div>
-    </div>
-</div>
-<!--PANEL NUEVO--> 
+<!--PANEL NUEVO-->
 <div id="" class="container-fluid">
     <div class="card border-0  d-none" id="pnlDatos">
         <div class="card-body text-dark">
             <form id="frmNuevo">
                 <div class="row">
                     <div class="col-md-5 float-left">
-                        <legend >Nuevo Trabajo</legend>
+                        <legend>Trabajo</legend>
                     </div>
                     <div class="col-md-2" align="right">
                         <button type="button" class="btn btn-raised btn-success btn-sm d-none" id="btnAutorizar" data-toggle="tooltip" data-placement="bottom" title="Sí esta de acuerdo con el presupuesto haga click aquí" >
@@ -184,11 +130,12 @@
                         <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
                             <span class="fa fa-arrow-left" ></span>
                         </button>
-                        <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo"><span class="fa fa-clone "></span> COPIAR</button>
-                        <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar"><span class="fa fa-print"></span> IMPRIMIR</button>
-                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
+                        <button type="button" class="btn btn-light btn-sm" id=""data-toggle="tooltip" data-placement="top" title="Copiar"><span class="fa fa-clone "></span> </button>
+                        <button type="button" class="btn btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" ><span class="fa fa-print " ></span></button>
+                        <button type="button" class="btn btn-danger btn-sm" id="btnEliminar"><span class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></span> </button>
+                        <button type="button" class="btn btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
                     </div>
-                </div>  
+                </div>
                 <fieldset>
                     <div class="col-6 col-12">
                         <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -233,7 +180,7 @@
                                     <label class="label-Pagado" for="inlineRadio7">7. Pagado</label>
                                 </label>
                             </div>
-                        </center> 
+                        </center>
                         <br>
                         <ul class="progress-indicator pt-3 pb-3" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
                             <li id="stsPedido">
@@ -270,25 +217,25 @@
                                 <div class=" col-1 col-1">
                                     <div class="form-group label-static">
                                         <label for="ID" class="control-label">Folio Interno</label>
-                                        <input type="text" id="ID" name="ID" class="form-control" readonly="" placeholder="" >
+                                        <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
                                     </div>
                                 </div>
                                 <div class="col-2 col-2">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Folio Cliente</label>
-                                        <input type="text" id="FolioCliente" name="FolioCliente" class="form-control"  placeholder="" >
+                                        <input type="text" id="FolioCliente" name="FolioCliente" class="form-control form-control-sm"  placeholder="" autofocus="">
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="FechaCreacion" class="control-label">Fecha *</label>
-                                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-3 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Cliente*</label>
-                                        <select id="Cliente_ID" name="Cliente_ID" class="form-control" >
+                                        <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -296,7 +243,7 @@
                                 <div class="col-3 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Sucursal*</label>
-                                        <select id="Sucursal_ID" name="Sucursal_ID" class="form-control" >
+                                        <select id="Sucursal_ID" name="Sucursal_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -304,7 +251,7 @@
                                 <div class="col-3 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Preciario*</label>
-                                        <select id="Preciario_ID" name="Preciario_ID" class="form-control" >
+                                        <select id="Preciario_ID" name="Preciario_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -312,7 +259,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Centro de Costos</label>
-                                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control" >
+                                        <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -321,7 +268,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Especialidad</label>
-                                        <select id="Especialidad_ID" name="Especialidad_ID" class="form-control" >
+                                        <select id="Especialidad_ID" name="Especialidad_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -329,7 +276,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Área</label>
-                                        <select id="Area_ID" name="Area_ID" class="form-control" >
+                                        <select id="Area_ID" name="Area_ID" class="form-control form-control-sm" >
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -337,7 +284,7 @@
                                 <div class="col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="Observaciones" class="control-label">Observaciones</label>
-                                        <input type="text" id="Observaciones" name="Observaciones" class="form-control"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                                        <input type="text" id="Observaciones" name="Observaciones" class="form-control form-control-sm"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
                                     </div>
                                 </div>
                                 <div id="ControlProceso" class="col-6 col-3">
@@ -370,20 +317,20 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Cuadrilla</label>
-                                        <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control" ><option value=""></option>
+                                        <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control form-control-sm" ><option value=""></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Atención</label>
-                                        <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class=" col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Solicitante</label>
-                                        <input type="text" id="Solicitante" name="Solicitante" class="form-control"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
+                                        <input type="text" id="Solicitante" name="Solicitante" class="form-control form-control-sm"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
                                     </div>
                                 </div>
                                 <div class="col-6 col-12">
@@ -391,13 +338,13 @@
                                         <div class="col-6 col-3">
                                             <div class="form-group label-static">
                                                 <label for="" class="control-label">Fecha Origen</label>
-                                                <input type="text" id="FechaOrigen" required="" name="FechaOrigen" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                                <input type="text" id="FechaOrigen" required="" name="FechaOrigen" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             </div>
                                         </div>
                                         <div class="col-6 col-3">
                                             <div class="form-group label-static">
                                                 <label for="" class="control-label">Hora Origen</label>
-                                                <input type="text"  class="form-control" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" data-second-step="1"/>
+                                                <input type="text"  class="form-control form-control-sm" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" data-second-step="1"/>
                                             </div>
                                         </div>
                                     </div>
@@ -405,25 +352,25 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Visita</label>
-                                        <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Hora Visita</label>
-                                        <input type="text"  class="form-control" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
+                                        <input type="text"  class="form-control form-control-sm" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Fecha Fin Visita</label>
-                                        <input type="text" id="FechaSalida" name="FechaSalida" class="form-control notEnter" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaSalida" name="FechaSalida" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Hora Fin Visita</label>
-                                        <input type="text"  class="form-control" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
+                                        <input type="text"  class="form-control form-control-sm" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
                                     </div>
                                 </div>
                             </div>
@@ -435,7 +382,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Codigo PPTA</label>
-                                            <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control" >
+                                            <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                             </select>
                                         </div>
@@ -443,25 +390,25 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="" class="control-label">Días</label>
-                                            <input type="text" id="Dias" name="" class="form-control" readonly="" placeholder="" >
+                                            <input type="text" id="Dias" name="" class="form-control form-control-sm" readonly="" placeholder="" >
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class=" col-3 col-3">
                                         <div class="form-group label-static">
                                             <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
-                                            <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control" placeholder="" >
+                                            <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control form-control-sm" placeholder="" >
                                         </div>
                                     </div>
                                     <div class=" col-3 col-6">
                                         <div class="form-group label-static">
                                             <label for="TextoCausa" class="control-label">Texto Causa</label>
-                                            <input type="text" id="TextoCausa" name="TextoCausa" class="form-control"  placeholder="" >
+                                            <input type="text" id="TextoCausa" name="TextoCausa" class="form-control form-control-sm"  placeholder="" >
                                         </div>
                                     </div>
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="Cal1" class="control-label">Calificación 1</label>
-                                            <select id="Cal1" name="Cal1" class="form-control" >
+                                            <select id="Cal1" name="Cal1" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                                 <option value="EXCELENTE">EXCELENTE</option>
                                                 <option value="BUENO">BUENO</option>
@@ -473,7 +420,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="Cal2" class="control-label">Calificación 2</label>
-                                            <select id="Cal2" name="Cal2" class="form-control" >
+                                            <select id="Cal2" name="Cal2" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                                 <option value="EXCELENTE">EXCELENTE</option>
                                                 <option value="BUENO">BUENO</option>
@@ -485,7 +432,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="Cal3" class="control-label">Calificación 3</label>
-                                            <select id="Cal3" name="Cal3" class="form-control" >
+                                            <select id="Cal3" name="Cal3" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                                 <option value="EXCELENTE">EXCELENTE</option>
                                                 <option value="BUENO">BUENO</option>
@@ -497,7 +444,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="Cal4" class="control-label">Calificación 4</label>
-                                            <select id="Cal4" name="Cal4" class="form-control" >
+                                            <select id="Cal4" name="Cal4" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                                 <option value="EXCELENTE">EXCELENTE</option>
                                                 <option value="BUENO">BUENO</option>
@@ -509,7 +456,7 @@
                                     <div class="col-6 col-3">
                                         <div class="form-group label-static">
                                             <label for="Cal5" class="control-label">Calificación 5</label>
-                                            <select id="Cal5" name="Cal5" class="form-control" >
+                                            <select id="Cal5" name="Cal5" class="form-control form-control-sm" >
                                                 <option value=""></option>
                                                 <option value="EXCELENTE">EXCELENTE</option>
                                                 <option value="BUENO">BUENO</option>
@@ -536,13 +483,13 @@
                                 <div class=" col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Días de Impacto</label>
-                                        <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control"  placeholder="" >
+                                        <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control form-control-sm"  placeholder="" >
                                     </div>
                                 </div>
                                 <div class="col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Causa del trabajo</label>
-                                        <select id="CausaTrabajo" name="CausaTrabajo" class="form-control" >
+                                        <select id="CausaTrabajo" name="CausaTrabajo" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="MP">MP - MEJORAS AL PROYECTO</option>
                                             <option value="EP">EP - ERROR DEL PROYECTO</option>
@@ -561,7 +508,7 @@
                                 <div class="col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Clave Origen</label>
-                                        <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control" >
+                                        <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="CONTR">CONTR - CONTRATISTA</option>
                                             <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
@@ -573,7 +520,7 @@
                                 <div class=" col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
-                                        <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control"  placeholder="" >
+                                        <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control form-control-sm"  placeholder="" >
                                     </div>
                                 </div>
                                 <div class="col-6 col-6">
@@ -602,25 +549,25 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="FechaVisita" class="control-label">Fecha Visita</label>
-                                        <input type="text" id="FechaVisita" name="FechaVisita" class="form-control" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <input type="text" id="FechaVisita" name="FechaVisita" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class=" col-6 col-6">
                                     <div class="form-group label-static">
                                         <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
-                                        <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                                        <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control form-control-sm"  placeholder="PERSONA ENCARGADA DEL SITIO" >
                                     </div>
                                 </div>
                                 <div class=" col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="" class="control-label">Horario de Atención</label>
-                                        <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control"   >
+                                        <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control form-control-sm"   >
                                     </div>
                                 </div>
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
-                                        <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control" >
+                                        <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -630,7 +577,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
-                                        <select id="AireAcondicionado" name="AireAcondicionado" class="form-control" >
+                                        <select id="AireAcondicionado" name="AireAcondicionado" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -640,7 +587,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="Carcasa" class="control-label">Carcasa?</label>
-                                        <select id="Carcasa" name="Carcasa" class="form-control" >
+                                        <select id="Carcasa" name="Carcasa" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -650,7 +597,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
-                                        <select id="UPS" name="UPS" class="form-control" >
+                                        <select id="UPS" name="UPS" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -660,7 +607,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
-                                        <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control" >
+                                        <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -670,7 +617,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
-                                        <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control" >
+                                        <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -680,7 +627,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
-                                        <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control" >
+                                        <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -690,7 +637,7 @@
                                 <div class="col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
-                                        <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control" >
+                                        <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control form-control-sm" >
                                             <option value=""></option>
                                             <option value="SI">SI</option>
                                             <option value="NO">NO</option>
@@ -700,13 +647,13 @@
                                 <div class=" col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
-                                        <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control"  placeholder="" >
+                                        <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control form-control-sm"  placeholder="" >
                                     </div>
                                 </div>
                                 <div class=" col-6 col-3">
                                     <div class="form-group label-static">
                                         <label for="TipoPiso" class="control-label">Tipo Piso</label>
-                                        <input type="text" id="TipoPiso" name="TipoPiso" class="form-control"  placeholder="" >
+                                        <input type="text" id="TipoPiso" name="TipoPiso" class="form-control form-control-sm"  placeholder="" >
                                     </div>
                                 </div>
                             </div>
@@ -722,7 +669,7 @@
                                 <div id="VistaPrevia" class="col-12" align="center"></div>
                             </div>
                             <div class="col-12 d-none">
-                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control" >
+                                <input type="text" id="Usuario_ID"  name="Usuario_ID"    class="form-control form-control-sm" >
                             </div>
                         </div>
                         <div class="col-6 col-12"><br><h6>Los campos con * son obligatorios</h6></div>
@@ -749,7 +696,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body"> 
+        <div class="card-body">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade show active" id="Presupuesto">
                     <fieldset>
@@ -801,7 +748,7 @@
                         </div>
                     </fieldset>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -816,17 +763,17 @@
         <div class="modal-body modal-bodyFull">
             <form id="frmAgregarConceptoDetalleAbierto">
                 <fieldset>
-                    <div class=" d-none"><input type="text" id="ID" name="ID" class="form-control"></div>
+                    <div class=" d-none"><input type="text" id="ID" name="ID" class="form-control form-control-sm"></div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Semana/Dia*</label>
-                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control" required="" placeholder="">
+                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control form-control-sm" required="" placeholder="">
                         </div>
                     </div>
                     <div class="col-12">
@@ -840,13 +787,13 @@
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Clave" class="control-label">Inicio/Fin*</label>
-                                <input type="text" id="InicioFin" name="InicioFin" class="form-control"placeholder="EJ: 01 de Enero Al 07 Enero">
+                                <input type="text" id="InicioFin" name="InicioFin" class="form-control form-control-sm"placeholder="EJ: 01 de Enero Al 07 Enero">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Clave" class="control-label">Inicio/Fin Proxima Semana*</label>
-                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control"  placeholder="EJ: 07 de Enero Al 14 Enero">
+                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control form-control-sm"  placeholder="EJ: 07 de Enero Al 14 Enero">
                             </div>
                         </div>
 
@@ -885,19 +832,19 @@
             <form id="frmEditarConceptoDetalleAbierto">
                 <fieldset>
                     <div class=" d-none">
-                        <input type="text" id="ID" name="ID" class="form-control">
-                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control">
+                        <input type="text" id="ID" name="ID" class="form-control form-control-sm">
+                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control form-control-sm">
                     </div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Semana/Dia*</label>
-                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control" required="" placeholder="">
+                            <input type="number" id="SemanaDia" name="SemanaDia" class="form-control form-control-sm" required="" placeholder="">
                         </div>
                     </div>
                     <div class="col-12">
@@ -910,13 +857,13 @@
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Clave" class="control-label">Inicio/Fin*</label>
-                                <input type="text" id="InicioFin" name="InicioFin" class="form-control"placeholder="EJ: 01 de Enero Al 07 Enero">
+                                <input type="text" id="InicioFin" name="InicioFin" class="form-control form-control-sm"placeholder="EJ: 01 de Enero Al 07 Enero">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Clave" class="control-label">Inicio/Fin Proxima Semana*</label>
-                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control"  placeholder="EJ: 07 de Enero Al 14 Enero">
+                                <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control form-control-sm"  placeholder="EJ: 07 de Enero Al 14 Enero">
                             </div>
                         </div>
 
@@ -954,11 +901,11 @@
         <div class="modal-body modal-bodyFull">
             <form id="frmAgregarConceptoDetalleCajero">
                 <fieldset>
-                    <div class=" d-none"><input type="text" id="ID" name="ID" class="form-control"></div>
+                    <div class=" d-none"><input type="text" id="ID" name="ID" class="form-control form-control-sm"></div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
                     <div class="col-12">
@@ -989,13 +936,13 @@
             <form id="frmEditarConceptoDetalleCajero">
                 <fieldset>
                     <div class=" d-none">
-                        <input type="text" id="ID" name="ID" class="form-control">
-                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control">
+                        <input type="text" id="ID" name="ID" class="form-control form-control-sm">
+                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control form-control-sm">
                     </div>
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control" required="" placeholder="EJ: TRP10">
+                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                         </div>
                     </div>
                     <div class="col-12">
@@ -1064,64 +1011,64 @@
                     <div class="tab-pane fade" id="EditarGenerador">
                         <div class="col-12 d-none">
                             <input type="text" id="IDT" name="IDT" class="form-control ">
-                            <input type="text" id="IDG" name="IDG" class="form-control">
+                            <input type="text" id="IDG" name="IDG" class="form-control form-control-sm">
                             <input type="text" id="Concepto_ID" name="Concepto_ID" class="form-control ">
                             <input type="text" id="IdTrabajoDetalle" name="IdTrabajoDetalle" class="form-control ">
-                            <input type="text" id="Precio" name="Precio" class="form-control">
-                            <input type="text" id="TipoCambioGenerador" name="TipoCambio" class="form-control">
+                            <input type="text" id="Precio" name="Precio" class="form-control form-control-sm">
+                            <input type="text" id="TipoCambioGenerador" name="TipoCambio" class="form-control form-control-sm">
                         </div>
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Area" class="control-label">Area</label>
-                                <input type="text" id="Area" name="Area" class="form-control">
+                                <input type="text" id="Area" name="Area" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="EstimacionNo" class="control-label">No. Estimación</label>
-                                <input type="number" id="EstimacionNo" name="EstimacionNo" class="form-control">
+                                <input type="number" id="EstimacionNo" name="EstimacionNo" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group label-static">
                                 <label for="Eje" class="control-label">Eje</label>
-                                <input type="text" id="Eje" name="Eje" class="form-control">
+                                <input type="text" id="Eje" name="Eje" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="EntreEje1" class="control-label">Entre Eje 1</label>
-                                <input type="text" id="EntreEje1" name="EntreEje1" class="form-control">
+                                <input type="text" id="EntreEje1" name="EntreEje1" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="EntreEje2" class="control-label">Entre Eje 2</label>
-                                <input type="text" id="EntreEje2" name="EntreEje2" class="form-control">
+                                <input type="text" id="EntreEje2" name="EntreEje2" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="Largo" class="control-label">Largo</label>
-                                <input type="number" id="Largo" min="0" name="Largo" class="form-control">
+                                <input type="number" id="Largo" min="0" name="Largo" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="Ancho" class="control-label">Ancho</label>
-                                <input type="number" id="Ancho" min="0" name="Ancho" class="form-control">
+                                <input type="number" id="Ancho" min="0" name="Ancho" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="Alto" class="control-label">Alto</label>
-                                <input type="number" id="Alto" min="0" name="Alto" class="form-control">
+                                <input type="number" id="Alto" min="0" name="Alto" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group label-static">
                                 <label for="Cantidad" class="control-label">Cantidad</label>
-                                <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control">
+                                <input type="number" id="Cantidad" min="0" name="Cantidad" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="modal-footer modal-footerFull">
@@ -1142,7 +1089,7 @@
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
 <div id="mdlTrabajoNuevoConceptoEditar" class="modal modalFull animated fadeInUp">
     <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull"> 
+        <div class="modal-content modal-contentFull">
 
             <div class="modal-header">
                 <h5 class="modal-title">Seleccione un concepto</h5>
@@ -1259,7 +1206,7 @@
                     <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="d-none">
                     <div class="col-6">
                         <label class="Tiempo" for="">Debe de elegir un control de tiempo*</label>
-                        <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control">
+                        <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control form-control-sm">
                     </div>
                     <div class="col-6">
                         <label for="" class="control-label">Porcentaje*</label>
@@ -1316,8 +1263,8 @@
                 <fieldset>
                     <div class="col-12"><br></div>
                     <div class="col-12 d-none">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control form-control-sm">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control form-control-sm">
                         <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
                     </div>
                 </fieldset>
@@ -1348,8 +1295,8 @@
                 <fieldset>
                     <div class="col-12"><br></div>
                     <div class="col-12 d-none">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control form-control-sm">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control form-control-sm">
                         <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
                     </div>
                 </fieldset>
@@ -1382,7 +1329,7 @@
                     <div class="col-12">
                         <div class="form-group label-static">
                             <label for="TipoCambio" class="control-label">Tipo de Cambio*</label>
-                            <input type="text" id="TipoCambio" name="TipoCambio" class="form-control" required="" >
+                            <input type="text" id="TipoCambio" name="TipoCambio" class="form-control form-control-sm" required="" >
                         </div>
                     </div>
                 </fieldset>
@@ -1408,7 +1355,7 @@
                     <div class="col-3">
                         <div class="form-group label-static">
                             <label for="txtEditarClave" class="control-label">Clave</label>
-                            <input type="text" id="txtEditarClave" name="txtEditarClave" class="form-control" >
+                            <input type="text" id="txtEditarClave" name="txtEditarClave" class="form-control form-control-sm" >
                         </div>
                     </div>
                     <div class="col-12">
@@ -1420,19 +1367,19 @@
                     <div class="col-2">
                         <div class="form-group label-static">
                             <label for="txtEditarUnidad" class="control-label">Unidad</label>
-                            <input type="text" id="txtEditarUnidad" name="txtEditarUnidad" class="form-control">
+                            <input type="text" id="txtEditarUnidad" name="txtEditarUnidad" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group label-static">
                             <label for="txtEditarPrecio" class="control-label">Precio</label>
-                            <input type="number" id="txtEditarPrecio" name="txtEditarPrecio" class="form-control">
+                            <input type="number" id="txtEditarPrecio" name="txtEditarPrecio" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group label-static">
                             <label for="txtEditarMoneda" class="control-label">Moneda</label>
-                            <select id="txtEditarMoneda" name="txtEditarMoneda" class="form-control" required="">
+                            <select id="txtEditarMoneda" name="txtEditarMoneda" class="form-control form-control-sm" required="">
                                 <option value=""></option>
                                 <option value="USD">USD</option>
                                 <option value="MXN">MXN</option>
@@ -1486,11 +1433,9 @@
     var ModificarArchivo = pnlDatos.find("#Adjunto");
     var btnModificarArchivo = pnlDatos.find("#btnArchivo");
     var ModificarVistaPrevia = pnlDatos.find("#VistaPrevia");
-    var btnEliminar = $("#btnEliminar");
-    var btnConfirmarEliminar = $("#btnConfirmarEliminar");
-    var mdlConfirmar = $("#mdlConfirmar");
     var pnlDetalleTrabajo = $("#pnlDetalleTrabajo");
     var btnNuevoConcepto = pnlDetalleTrabajo.find("#btnNuevoConcepto");
+    var btnEliminar = pnlDatos.find("#btnEliminar");
     var btnEliminarConcepto = pnlDetalleTrabajo.find("#btnEliminarConcepto");
     var Conceptos = pnlDetalleTrabajo.find("#Conceptos");
     var tbtnEditarImpactoEnPlazo = pnlDatos.find("#EditarImpactoEnPlazo");
@@ -1543,9 +1488,6 @@
     var nuevo = false;
     $(document).ready(function () {
         //RadionButtonSelectedValueSet('NuevoEstatusTrabajo', 'Presupuesto');
-        $('.numbersOnly').keypress(function () {
-            this.value = this.value.replace(/[^0-9\.]/g, '');
-        });
         $("#IdTiempoProceso").change(function () {
             if ($('#IdTiempoProceso').val() !== '' && $('#IdPorcentajeProceso').val() !== '') {
                 $('#idSubirFotosProceso').removeClass('d-none');
@@ -2400,33 +2342,35 @@
             getRecords();
         });
         /*Evento clic del boton confirmar borrar*/
-        btnConfirmarEliminar.on("click", function () {
-            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
-                mdlConfirmar.modal('show');
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-        });
         btnEliminar.on("click", function () {
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            $.ajax({
-                url: master_url + 'onEliminar',
-                type: "POST",
-                data: {
-                    ID: IdMovimiento
+            swal({
+                title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    HoldOn.open({
+                        theme: "sk-bounce",
+                        message: "CARGANDO DATOS..."
+                    });
+                    $.ajax({
+                        url: master_url + 'onEliminar',
+                        type: "POST",
+                        data: {
+                            ID: IdMovimiento
+                        }
+                    }).done(function (data, x, jq) {
+                        onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
+                        menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+                        pnlDatos.addClass("d-none");
+                        pnlDetalleTrabajo.addClass("d-none");
+                        getRecords();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
                 }
-            }).done(function (data, x, jq) {
-                mdlConfirmar.modal('hide');
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
-                menuTablero.addClass("animated slideInLeft").removeClass("d-none");
-                pnlDatos.addClass("d-none");
-                pnlDetalleTrabajo.addClass("d-none");
-                getRecords();
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
             });
+
         });
         tbtnEditarImpactoEnPlazo.change(function () {
             if (this.checked) {
@@ -2669,6 +2613,15 @@
             });
             ModificarArchivo.trigger('click');
         });
+        btnNuevoConceptoEditar.on("click", function () {
+            var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
+            if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+                getConceptosXPreciarioIDEditar(Preciario_ID);
+                mdlTrabajoNuevoConceptoEditar.modal('show');
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+            }
+        });
         getClientes();
         getCodigosPPTA();
         getRecords();
@@ -2698,7 +2651,7 @@
                 });
                 $('#tblTrabajos tfoot th').each(function () {
                     var title = $(this).text();
-                    $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                    $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblTrabajos').DataTable(tableOptionsTrabajos);
                 tblSelected.columns().every(function () {
@@ -3025,7 +2978,6 @@
             HoldOn.close();
         });
     }
-
     var tblTrabajos = $("#tblTrabajos");
     var Trabajos;
     function getRecords() {
@@ -3400,7 +3352,6 @@
         });
         HoldOn.close();
     }
-
     $('#Encabezado a').on("click", function (e) {
         e.preventDefault();
         $(this).tab('show');
@@ -3867,97 +3818,78 @@
                 }]
         });
     }
-    $('#btnEliminarConcepto').on("click", function () {
-        HoldOn.open({theme: 'sk-bounce', message: 'ELIMINANDO...'
-        });
-        $.ajax({
-            url: master_url + 'onEliminarConceptoXDetalle',
-            type: "POST",
-            data: {
-                ID: IdEliminarConcepto,
-                IDT: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            getTrabajoDetalleByID(IdMovimiento);
-            /*MODIFICAR EL IMPORTE DEL TRABAJO*/
-            $.ajax({
-                url: master_url + 'onModificarImportePorTrabajo',
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    ID: pnlDatos.find("#ID").val()
-                }
-            }).done(function (data, x, jq) {
-                $('#mdlConfirmarEliminarConcepto').modal('hide');
-                if (data !== undefined && data.length > 0) {
-                    var dtm = data[0];
-                    if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
-                        pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
-                    } else {
-                        pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
-                    }
-                }
-            }).fail(function (x, y, z) {
-                console.log(x, y, z);
-            }).always(function () {
-                HoldOn.close();
-            });
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
-        }).always(function () {
-            HoldOn.close();
-        });
-    });
-    $('#btnEliminarConceptoAbierto').on("click", function () {
-        HoldOn.open({theme: 'sk-bounce', message: 'ELIMINANDO...'});
-        $.ajax({
-            url: master_url + 'onEliminarConceptoXDetalleAbierto',
-            type: "POST",
-            data: {
-                ID: IdEliminarConceptoAbierto,
-                IDT: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            console.log(data);
-            $('#mdlConfirmarEliminarConceptoAbierto').modal('hide');
-            $(evtEliminarConceptoAbierto).parent().parent().remove();
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
-        }).always(function () {
-            HoldOn.close();
-        });
-    });
-    $('#btnEliminarConceptoCajero').on("click", function () {
-        HoldOn.open({theme: 'sk-bounce', message: 'ELIMINANDO...'});
-        $.ajax({
-            url: master_url + 'onEliminarConceptoXDetalleCajero',
-            type: "POST",
-            data: {
-                ID: IdEliminarConceptoCajero,
-                IDT: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            $('#mdlConfirmarEliminarConceptoCajero').modal('hide');
-            $(evtEliminarConceptoCajero).parent().parent().remove();
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ELIMINADO', 'danger');
-        }).always(function () {
-            HoldOn.close();
-        });
-    });
-    IdEliminarConcepto = 0;
-    evtEliminarConcepto = '';
     function onEliminarConceptoXDetalle(evt, IDX) {
-        IdEliminarConcepto = IDX;
-        evtEliminarConcepto = evt;
-        $('#mdlConfirmarEliminarConcepto').modal('show');
+        swal({
+            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+        }).then((willDelete) => {
+            if (willDelete) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminarConceptoXDetalle',
+                    type: "POST",
+                    data: {
+                        ID: IDX,
+                        IDT: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    getTrabajoDetalleByID(IdMovimiento);
+                    /*MODIFICAR EL IMPORTE DEL TRABAJO*/
+                    $.ajax({
+                        url: master_url + 'onModificarImportePorTrabajo',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: IdMovimiento
+                        }
+                    }).done(function (data, x, jq) {
+                        if (data !== undefined && data.length > 0) {
+                            var dtm = data[0];
+                            if (dtm.IMPORTE_TOTAL_TRABAJO !== null) {
+                                pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + dtm.IMPORTE_TOTAL_TRABAJO + '</span>');
+                            } else {
+                                pnlDetalleTrabajo.find("#ImporteTotal").html('<strong class="spanTotalesDetalle">Importe total: </strong><span class="text-success spanTotalesDetalle"> ' + 0.0 + '</span>');
+                            }
+                        }
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
     }
-    IdEliminarConceptoAbierto = 0;
-    evtEliminarConceptoAbierto = '';
     function onEliminarConceptoXDetalleAbierto(evt, IDX) {
-        IdEliminarConceptoAbierto = IDX;
-        evtEliminarConceptoAbierto = evt;
-        $('#mdlConfirmarEliminarConceptoAbierto').modal('show');
+        swal({
+            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+        }).then((willDelete) => {
+            if (willDelete) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminarConceptoXDetalleAbierto',
+                    type: "POST",
+                    data: {
+                        ID: IDX,
+                        IDT: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    getDetalleAbiertoByID(IdMovimiento)
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
     }
     function getReloadGeneradoresDetalleXConcepto(IDX) {
         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -4432,7 +4364,7 @@
             mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID").html(getTable('tblConceptosXPreciarioID', data));
             mdlTrabajoNuevoConceptoEditar.find('#tblConceptosXPreciarioID tfoot th').each(function () {
                 var title = $(this).text();
-                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
             });
             var tblSelected = $('#tblConceptosXPreciarioID').DataTable(tableOptions);
             tblSelected.columns().every(function () {
@@ -4535,15 +4467,6 @@
             HoldOn.close();
         });
     }
-    btnNuevoConceptoEditar.on("click", function () {
-        var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
-        if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
-            getConceptosXPreciarioIDEditar(Preciario_ID);
-            mdlTrabajoNuevoConceptoEditar.modal('show');
-        } else {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
-        }
-    });
     /*MODIFICAR EL IMPORTE DEL TRABAJO*/
     function getImporteTotalDelTrabajoByID(IDX) {
         $.ajax({
@@ -4760,7 +4683,7 @@
                                     '<div class="pull-left caption col-11 Customcaption" >' +
                                     '<div class="form-group Customform-group">' +
                                     '<label for="ObservacionesxFotoProceso" class="control-label customFormLabel">Observaciones</label>' +
-                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
+                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
                                     '</div>' +
                                     '</div>' +
                                     '<div class="pull-right" >' +
@@ -5124,7 +5047,7 @@
                                     '<div class="pull-left caption col-11 Customcaption" >' +
                                     '<div class="form-group Customform-group">' +
                                     '<label for="ObservacionesxFotoProceso" class="control-label customFormLabel">Observaciones</label>' +
-                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
+                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
                                     '</div>' +
                                     '</div>' +
                                     '<div class="pull-right" >' +
@@ -5409,7 +5332,7 @@
                             '<div class="pull-left caption col-11 Customcaption" >' +
                             '<div class="form-group Customform-group">' +
                             '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
-                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control form-control-sm"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
                             '</div>' +
                             '</div>' +
                             '<div class="pull-right" >' +
@@ -5458,7 +5381,7 @@
                             '<div class="pull-left caption col-11 Customcaption" >' +
                             '<div class="form-group Customform-group">' +
                             '<label for="ObservacionesxFoto" class="control-label customFormLabel">Observaciones</label>' +
-                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '<input id="ObservacionesxFoto" name="ObservacionesxFoto" type="text" class="form-control form-control-sm"  onchange="onModificarObservaciones(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
                             '</div>' +
                             '</div>' +
                             '<div class="pull-right" >' +
@@ -5692,12 +5615,31 @@
         }).always(function () {
         });
     }
-    IdEliminarConceptoCajero = 0;
-    evtEliminarConceptoCajero = '';
     function onEliminarConceptoXDetalleCajero(evt, IDX) {
-        IdEliminarConceptoCajero = IDX;
-        evtEliminarConceptoCajero = evt;
-        $('#mdlConfirmarEliminarConceptoCajero').modal('show');
+        swal({
+            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+        }).then((willDelete) => {
+            if (willDelete) {
+                HoldOn.open({
+                    theme: "sk-bounce",
+                    message: "CARGANDO DATOS..."
+                });
+                $.ajax({
+                    url: master_url + 'onEliminarConceptoXDetalleCajero',
+                    type: "POST",
+                    data: {
+                        ID: IDX,
+                        IDT: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    getDetalleCajerosByID(IdMovimiento);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
     }
     function minmax(value, min, max) {
         if (parseInt(value) < min || isNaN(parseInt(value))) {
@@ -5912,7 +5854,7 @@
                 $('#mdlTrabajoReemplazarConceptoEditar').find("#ConceptosReemplazarXPreciarioID").html(getTable('tblConceptosReemplazarXPreciarioID', data));
                 $('#mdlTrabajoReemplazarConceptoEditar').find('#tblConceptosReemplazarXPreciarioID tfoot th').each(function () {
                     var title = $(this).text();
-                    $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control" style="width: 100%;"/></div></div>');
+                    $(this).html('<div class="col-12" style="overflow-x:auto; "><div class="form-group Customform-group"><input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" style="width: 100%;"/></div></div>');
                 });
                 var tblSelected = $('#tblConceptosReemplazarXPreciarioID').DataTable(tableOptions);
                 tblSelected.columns().every(function () {
@@ -6444,7 +6386,6 @@
             HoldOn.close();
         });
     }
-    /*Reporte cajero*/
     function onReportePresentacionCajeros() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
@@ -6464,7 +6405,6 @@
             HoldOn.close();
         });
     }
-    /*Reportes NORDES*/
     function onReporteNordesActaRecepcion() {
         HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
@@ -6542,7 +6482,6 @@
             HoldOn.close();
         });
     }
-
     function onReporteProceso(DetalleID, IDX) {
         var reporte = '';
         if (parseFloat(Cliente) === 8) {

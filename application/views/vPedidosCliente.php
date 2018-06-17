@@ -56,13 +56,13 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title">Confirmar</h5>
+                <h5 class="modal-title">Seleccionar Reporte</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Selecciona el reporte que deseas imprimir: <br><br>
-                <div class="col-6 col-md-12 " >
+            <div class="modal-body">
+                <div class="col-12 col-md-12 " >
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                         <li class="nav-item"><a href="#Generales" class="nav-link active show"  data-toggle="tab">Presupuesto</a></li>
                         <li class="nav-item"><a href="#Estimacion" class="nav-link" data-toggle="tab">Fotográfico</a></li>
