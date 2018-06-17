@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row" id="Registros">
-            <table id="tblRegistros" class="table table-sm ">
+            <table id="tblRegistros" class="table table-sm " style="width: 100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -103,9 +103,7 @@
                 [0, 'desc']/*ID*/
             ],
             "columnDefs": [
-                {"width": "90px", "targets": 2},
-                {"width": "250px", "targets": 3},
-                {"width": "300px", "targets": 4},
+                {"width": "70px", "targets": 2},
                 {"width": "320px", "targets": 5}
             ]
         });
