@@ -596,7 +596,7 @@
                     </div>
                     <!--NUEVA TABLA CONCEPTOS-->
                     <div id="ConceptosPresupuesto" class="row d-none">
-                        <table id="tblConceptosPresupuesto" class="table table-sm display " style="width:100%">
+                        <table id="tblConceptosPresupuesto" class="table table-sm display" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -616,6 +616,28 @@
                                 </tr>
                             </thead>
                             <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+
+                                    <th>Importe</th>
+                                    <th></th>
+                                    <th></th>
+
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!--FIN NUEVA TABLA DE CONCEPTOS-->
@@ -971,7 +993,7 @@
                 {"data": "PCID"},
                 {"data": "Editar"}
             ],
-
+            keys: true,
             language: lang,
             "autoWidth": true,
             "colReorder": true,
@@ -991,6 +1013,12 @@
                     "searchable": false
                 },
                 {
+                    "targets": [2],
+                    "visible": true,
+                    "searchable": false,
+                    "width": "100px"
+                },
+                {
                     "targets": [12],
                     "visible": false,
                     "searchable": false
@@ -998,9 +1026,192 @@
             ],
             "initComplete": function (settings, json) {
                 HoldOn.close();
+            },
+            "createdRow": function (row, data, index) {
+                $.each($(row).find("td"), function (k, v) {
+                    var c = $(v);
+                    var index = parseInt(k);
+                    switch (index) {
+                        case 0:
+                            /*CLAVE*/
+                            c.addClass('Clave');
+                            break;
+                        case 1:
+                            /*INTEXT*/
+                            c.addClass('IntExt');
+                            break;
+                        case 2:
+                            /*DESCRIPCION*/
+                            c.addClass('Descripcion');
+                            break;
+                        case 3:
+                            /*CANTIDAD*/
+                            c.addClass('Cantidad');
+                            break;
+                        case 4:
+                            /*UNIDAD*/
+                            c.addClass('Unidad');
+                            break;
+                        case 5:
+                            /*PRECIO*/
+                            c.addClass('Precio');
+                            break;
+                        case 6:
+                            /*IMPORTE*/
+                            c.addClass('Importe');
+                            break;
+                        case 7:
+                            /*MONEDA*/
+                            c.addClass('Moneda');
+                            break;
+                        case 8:
+                            /*FOTOS*/
+                            c.addClass('Fotos');
+                            break;
+                        case 9:
+                            /*CROQUIS*/
+                            c.addClass('Croquis');
+                            break;
+                        case 10:
+                            /*ANEXOS*/
+                            c.addClass('Anexos');
+                            break;
+                        case 11:
+                            /*ANEXOS*/
+                            c.addClass('Editar');
+                            break;
+                    }
+                });
+            },
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api();//Get access to Datatable API 
+                // Update footer
+                var total = api.column(7).data().reduce(function (a, b) {
+                    var ax = 0, bx = 0;
+                    ax = $.isNumeric((a)) ? parseFloat(a) : 0;
+                    bx = $.isNumeric(getNumberFloat($(b).text())) ? getNumberFloat($(b).text()) : 0;
+                    return  (ax + bx);
+                }, 0);
+                $(api.column(7).footer()).html(api.column(7, {page: 'current'}).data().reduce(function (a, b) {
+                    return '$' + $.number(parseFloat(total), 2, '.', ',');
+                }, 0));
             }
         });
-
+        /*EDITOR*/
+        ConceptosPresupuesto.on('key', function (e, datatable, key, cell, originalEvent) {
+            var cell_td = $(this).find("td.focus:not(.IntExt):not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
+            if (key === 13) {
+                if (cell_td.hasClass("Clave")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
+                    cell_td.html(g).find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Descripcion")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus();
+                } else if (cell_td.hasClass("Unidad")) {
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Precio")) {
+                    var txt = getNumberFloat(cell.data());
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Moneda")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus().select();
+                }
+            }
+        }).on('key-blur', function (e, datatable, cell) {
+            var t = $('#tblConceptosPresupuesto > tbody');
+            var a = t.find("#Editor");
+            if (a.val() !== 'undefined' && a.val() !== undefined) {
+                var b = ConceptosPresupuesto.cell(a.parent()).index();
+                var d = a.parent();
+                var row = ConceptosPresupuesto.row(a.parent().parent()).data();// SOLO OBTENDRA EL ID
+                var params;
+                if (d.hasClass('Clave')) {
+                    d.html('<span class="badge badge-info ">' + a.val() + '</span>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'CLAVE',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<span class="badge badge-info ">' + a.val() + '</span>').draw();
+                } else if (d.hasClass('Descripcion')) {
+                    d.html('<p>' + a.val() + '</p>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'DESCRIPCION',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<p class="CustomDetalleDescripcion">' + a.val() + '</p>').draw();
+                } else if (d.hasClass('Precio')) {
+                    var precio = getNumberFloat(a.val());
+                    var precio_format = '$' + $.number(precio, 6, '.', ',');
+                    d.html(precio_format);
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell($(d).parent(), 6).data(precio_format).draw();
+                    var tr = ConceptosPresupuesto.row($(d).parent()).data();
+                    var cantidad = parseFloat(tr.Cantidad);
+                    var importe_total = cantidad * precio;
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell($(d).parent(), 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
+                    //SHORT POST
+                    params = {ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total};
+                } else if (d.hasClass('Unidad')) {
+                    d.html(a.val());
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'UNIDAD',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data(a.val()).draw();
+                } else if (d.hasClass('Moneda')) {
+                    d.html('<span class="' + (a.val().toUpperCase() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val().toUpperCase() + '</span>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'MONEDA',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (a.val().toUpperCase() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val().toUpperCase() + '</span>').draw();
+                }
+                $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
+                    $.notify({
+                        // options
+                        message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
+                    }, {
+                        // settings
+                        type: 'info',
+                        delay: 500,
+                        animate: {
+                            enter: 'animated flipInX',
+                            exit: 'animated flipOutX'
+                        },
+                        placement: {
+                            from: "top",
+                            align: "right"
+                        }
+                    });
+                }).fail(function (x, y, z) {
+                    console.log('ERROR', x, y, z);
+                }).always(function () {
+                    console.log('DATOS ACTUALIZADOS');
+                });
+            }
+        });
     }
     function getRecords() {
         temp = 0;
@@ -1469,6 +1680,26 @@
         });
     }
 
+    /*MODIFICAR INTERIOR Y EXTERIOR TRABAJO DETALLE*/
+    function onChangeIntExtByID(IntExt, IDX) {
+        HoldOn.open({
+            theme: "sk-bounce",
+            message: "CARGANDO DATOS..."
+        });
+        $.ajax({
+            url: master_url + 'onChangeIntExtByDetalleID',
+            type: "POST",
+            data: {
+                ID: IDX,
+                IntExt: IntExt
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 </script>
 <style>
     td span.badge{
@@ -1477,5 +1708,8 @@
     table tbody tr td > p.CustomDetalleDescripcion{
         height: 100px !important;
         overflow: auto !important;
+    }
+    table tbody tr td > input[type="text"]{
+        width: 100% !important;
     }
 </style>

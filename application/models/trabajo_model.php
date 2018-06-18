@@ -148,11 +148,11 @@ class trabajo_model extends CI_Model {
                     . ' END) AS "Clave",'
                     . '(CASE '
                     . 'WHEN ifnull(TD.IntExt,"") = "" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"\"></option><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control form-control-sm notEnter\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"\"></option><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
                     . 'WHEN TD.IntExt = "Interior" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" value=\"Interior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control  form-control-sm notEnter\" value=\"Interior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
                     . 'WHEN TD.IntExt = "Exterior" THEN '
-                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
+                    . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control  form-control-sm notEnter\" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
                     . ' END) AS "IntExt",'
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(TD.Concepto),"</p>") AS Descripcion, '
                     //. 'TD.Cantidad, '
@@ -162,12 +162,12 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\'badge badge-danger \'>",TD.Cantidad,"</span>") '
                     . 'END) AS "Cantidad", '
                     . 'TD.Unidad, '
-                    . 'CONCAT("$",FORMAT(TD.Precio,2)) AS Precio,'
-                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(TD.Importe,2),"</span>") AS Importe, '
+                    . 'CONCAT("$",FORMAT(TD.Precio,6)) AS Precio,'
+                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(TD.Importe,3),"</span>") AS Importe, '
                     . '(CASE '
                     . 'WHEN TD.TipoCambio = 1 AND TD.Moneda = "USD" THEN '
-                    . 'CONCAT("<span class=\'badge badge-danger \'>",TD.Moneda,"</span>") '
-                    . 'ELSE CONCAT("<span class=\'  \'>",TD.Moneda,"</span>") '
+                    . 'CONCAT("<span class=\'badge badge-danger\'>",TD.Moneda,"</span>") '
+                    . 'ELSE CONCAT("<span class=\'\'>",TD.Moneda,"</span>") '
                     . 'END) AS "Moneda", '
 //                    . '(CASE '
 //                    . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
@@ -176,18 +176,18 @@ class trabajo_model extends CI_Model {
 //                    . 'END) AS Generador, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID  )>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
-                    . 'ELSE CONCAT("<span class=\"fa fa-camera customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'CONCAT("<span class=\"fa fa-camera fa-lg customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
+                    . 'ELSE CONCAT("<span class=\"fa fa-camera fa-lg customButtonDetalleGenerador\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Fotos, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID)> 0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador has-items\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID),")") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-map customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'CONCAT("<span class=\"fa fa-map fa-lg customButtonDetalleGenerador has-items\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-map fa-lg customButtonDetalleGenerador\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Croquis, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID )>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID ),")") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
+                    . 'CONCAT("<span class=\"fa fa-paperclip fa-lg customButtonDetalleGenerador has-items\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID ),")") '
+                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip fa-lg customButtonDetalleGenerador\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
                     //   . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
                     . 'TD.PreciarioConcepto_ID AS "PCID",'
@@ -195,8 +195,8 @@ class trabajo_model extends CI_Model {
                         CONCAT("
                             <div class=\"btn-group custonNav navbar  \">
                                 <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
-                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
-                                <ul class=\"dropdown-menu customDropdown-menu\">
+                                <b class=\"fa fa-cog fa-lg customButtonDetalleEdicion \"></b></a>
+                                <ul class=\"dropdown-menu dropdown-menu-right customDropdown-menu\">
                                   <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
                                   <li><a href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a></li>
                                   <li><a href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a></li>

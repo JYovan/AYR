@@ -4515,26 +4515,6 @@
             HoldOn.close();
         });
     }
-    /*MODIFICAR INTERIOR Y EXTERIOR TRABAJO DETALLE*/
-    function onChangeIntExtByID(IntExt, IDX) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
-        $.ajax({
-            url: master_url + 'onChangeIntExtByDetalleID',
-            type: "POST",
-            data: {
-                ID: IDX,
-                IntExt: IntExt
-            }
-        }).done(function (data, x, jq) {
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
     /*Multimedia*/
     function getFotosXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
