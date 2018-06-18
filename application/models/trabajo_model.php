@@ -153,7 +153,7 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" value=\"Interior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Interior\">Interior</option><option value=\"Exterior\">Exterior</option></select>") '
                     . 'WHEN TD.IntExt = "Exterior" THEN '
                     . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control \" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
-                    . ' END) AS "Int/Ext",'
+                    . ' END) AS "IntExt",'
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(TD.Concepto),"</p>") AS Descripcion, '
                     //. 'TD.Cantidad, '
                     . '(CASE '

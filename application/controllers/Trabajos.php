@@ -208,9 +208,9 @@ class Trabajos extends CI_Controller {
                 'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : null,
                 'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
-                'Usuario_ID' => (isset($Usuario_ID) && $Usuario_ID !== '') ? $Usuario_ID : null,
-                'Estatus' => (isset($Estatus) && $Estatus !== '') ? $Estatus : null,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : null,
+                'Usuario_ID' => $this->session->userdata('ID'),
+                'Estatus' => 'BORRADOR',
+                'Importe' => 0,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== '') ? $Observaciones : null,
                 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,
                 'ControlProceso' => (isset($ControlProceso) && $ControlProceso !== 0) ? $ControlProceso : null,
@@ -221,7 +221,7 @@ class Trabajos extends CI_Controller {
                 'Cal3' => (isset($Cal3) && $Cal3 !== '') ? $Cal3 : null,
                 'Cal4' => (isset($Cal4) && $Cal4 !== '') ? $Cal4 : null,
                 'Cal5' => (isset($Cal5) && $Cal5 !== '') ? $Cal5 : null,
-                'EstatusTrabajo' => (isset($NuevoEstatusTrabajo) && $NuevoEstatusTrabajo !== '') ? $NuevoEstatusTrabajo : null,
+                'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
                 'FechaVisita' => (isset($FechaVisita) && $FechaVisita !== '') ? $FechaVisita : null,
                 'EncargadoSitio' => (isset($EncargadoSitio) && $EncargadoSitio !== '') ? $EncargadoSitio : null,
                 'HorarioAtencion' => (isset($HorarioAtencion) && $HorarioAtencion !== '') ? $HorarioAtencion : null,
@@ -379,7 +379,61 @@ class Trabajos extends CI_Controller {
     public function onModificar() {
         try {
             extract($this->input->post());
-            $this->trabajo_model->onModificar($ID, $this->input->post());
+            $data = array(
+                'FechaCreacion' => $FechaCreacion,
+                'Cliente_ID' => $Cliente_ID,
+                'Sucursal_ID' => $Sucursal_ID,
+                'Preciario_ID' => (isset($Preciario_ID) && $Preciario_ID !== '') ? $Preciario_ID : null,
+                'Especialidad_ID' => (isset($Especialidad_ID) && $Especialidad_ID !== '') ? $Especialidad_ID : null,
+                'Area_ID' => (isset($Area_ID) && $Area_ID !== '') ? $Area_ID : null,
+                'Cuadrilla_ID' => (isset($Cuadrilla_ID) && $Cuadrilla_ID !== '') ? $Cuadrilla_ID : null,
+                'FolioCliente' => (isset($FolioCliente) && $FolioCliente !== '') ? $FolioCliente : null,
+                'FechaAtencion' => (isset($FechaAtencion) && $FechaAtencion !== '') ? $FechaAtencion : null,
+                'Codigoppta_ID' => (isset($Codigoppta_ID) && $Codigoppta_ID !== '') ? $Codigoppta_ID : null,
+                'Solicitante' => (isset($Solicitante) && $Solicitante !== '') ? $Solicitante : null,
+                'TrabajoSolicitado' => (isset($TrabajoSolicitado) && $TrabajoSolicitado !== '') ? $TrabajoSolicitado : null,
+                'TrabajoRequerido' => (isset($TrabajoRequerido) && $TrabajoRequerido !== '') ? $TrabajoRequerido : null,
+                'FechaOrigen' => (isset($FechaOrigen) && $FechaOrigen !== '') ? $FechaOrigen : null,
+                'HoraOrigen' => (isset($HoraOrigen) && $HoraOrigen !== '') ? $HoraOrigen : null,
+                'FechaLlegada' => (isset($FechaLlegada) && $FechaLlegada !== '') ? $FechaLlegada : null,
+                'HoraLlegada' => (isset($HoraLlegada) && $HoraLlegada !== '') ? $HoraLlegada : null,
+                'FechaSalida' => (isset($FechaSalida) && $FechaSalida !== '') ? $FechaSalida : null,
+                'HoraSalida' => (isset($HoraSalida) && $HoraSalida !== '') ? $HoraSalida : null,
+                'ImpactoEnPlazo' => (isset($ImpactoEnPlazo) && $ImpactoEnPlazo !== '') ? $ImpactoEnPlazo : 'No',
+                'DiasImpacto' => (isset($DiasImpacto) && $DiasImpacto !== '') ? $DiasImpacto : null,
+                'CausaTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : null,
+                'ClaveOrigenTrabajo' => (isset($ClaveOrigenTrabajo) && $ClaveOrigenTrabajo !== '') ? $ClaveOrigenTrabajo : null,
+                'EspecificaOrigenTrabajo' => (isset($EspecificaOrigenTrabajo) && $EspecificaOrigenTrabajo !== '') ? $EspecificaOrigenTrabajo : null,
+                'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : null,
+                'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
+                'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
+                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : null,
+                'Observaciones' => (isset($Observaciones) && $Observaciones !== '') ? $Observaciones : null,
+                'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,
+                'ControlProceso' => (isset($ControlProceso) && $ControlProceso !== 0) ? $ControlProceso : null,
+                'CausaActuacionSintoma' => (isset($CausaActuacionSintoma) && $CausaActuacionSintoma !== '') ? $CausaActuacionSintoma : null,
+                'TextoCausa' => (isset($TextoCausa) && $TextoCausa !== '') ? $TextoCausa : null,
+                'Cal1' => (isset($Cal1) && $Cal1 !== '') ? $Cal1 : null,
+                'Cal2' => (isset($Cal2) && $Cal2 !== '') ? $Cal2 : null,
+                'Cal3' => (isset($Cal3) && $Cal3 !== '') ? $Cal3 : null,
+                'Cal4' => (isset($Cal4) && $Cal4 !== '') ? $Cal4 : null,
+                'Cal5' => (isset($Cal5) && $Cal5 !== '') ? $Cal5 : null,
+                'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
+                'FechaVisita' => (isset($FechaVisita) && $FechaVisita !== '') ? $FechaVisita : null,
+                'EncargadoSitio' => (isset($EncargadoSitio) && $EncargadoSitio !== '') ? $EncargadoSitio : null,
+                'HorarioAtencion' => (isset($HorarioAtencion) && $HorarioAtencion !== '') ? $HorarioAtencion : null,
+                'RestriccionAcceso' => (isset($RestriccionAcceso) && $RestriccionAcceso !== '') ? $RestriccionAcceso : null,
+                'AireAcondicionado' => (isset($AireAcondicionado) && $AireAcondicionado !== '') ? $AireAcondicionado : null,
+                'Carcasa' => (isset($Carcasa) && $Carcasa !== '') ? $Carcasa : null,
+                'UPS' => (isset($UPS) && $UPS !== '') ? $UPS : null,
+                'SenalizacionInterior' => (isset($SenalizacionInterior) && $SenalizacionInterior !== '') ? $SenalizacionInterior : null,
+                'SenalizacionExterior' => (isset($SenalizacionExterior) && $SenalizacionExterior !== '') ? $SenalizacionExterior : null,
+                'CanalizacionDatos' => (isset($CanalizacionDatos) && $CanalizacionDatos !== '') ? $CanalizacionDatos : null,
+                'CanalizacionSeguridad' => (isset($CanalizacionSeguridad) && $CanalizacionSeguridad !== '') ? $CanalizacionSeguridad : null,
+                'PruebaCalaFirme' => (isset($PruebaCalaFirme) && $PruebaCalaFirme !== '') ? $PruebaCalaFirme : null,
+                'TipoPiso' => (isset($TipoPiso) && $TipoPiso !== '') ? $TipoPiso : null
+            );
+            $this->trabajo_model->onModificar($ID, $data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -1780,7 +1834,7 @@ class Trabajos extends CI_Controller {
                 $file_name = "REPORTE_FIN49_CONCEPTOS " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
                 $url = $path . '/' . $file_name . '.pdf';
                 if (delete_files('uploads/Reportes/' . $ID)) {
-                    
+
                 }
                 $pdf->Output($url);
                 print base_url() . $url;
@@ -1856,7 +1910,7 @@ class Trabajos extends CI_Controller {
             $file_name = "PRESUPUESTO " . $encabezado->Cliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -1924,7 +1978,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE_PRESUPUESTO A&R " . $pdf->Cliente = $encabezado->Cliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -2249,7 +2303,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE_FIN49 " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
 
             $pdf->Output($url);
@@ -2654,7 +2708,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -2748,7 +2802,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -3231,7 +3285,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
 
             $pdf->Output($url);
@@ -3399,7 +3453,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
 
             $pdf->Output($url);
@@ -3511,7 +3565,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
 
                     $pdf->Output($url);
@@ -3619,7 +3673,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
 
                     $pdf->Output($url);
@@ -3727,7 +3781,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -3850,7 +3904,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4147,7 +4201,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4477,7 +4531,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4585,7 +4639,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -4692,7 +4746,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
 
                     $pdf->Output($url);
@@ -4817,7 +4871,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
 
                     $pdf->Output($url);
@@ -5113,7 +5167,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
 
                     $pdf->Output($url);
@@ -5233,7 +5287,7 @@ class Trabajos extends CI_Controller {
             $file_name = "ACTA RECEPCION " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
 
             $pdf->Output($url);
@@ -5307,7 +5361,7 @@ class Trabajos extends CI_Controller {
             $file_name = "REPORTE TABLEROS NORDES " . $trabajo[0]->NombreCliente . " " . date("Y-m-d His");
             $url = $path . '/' . $file_name . '.pdf';
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
 
             $pdf->Output($url);
@@ -5391,7 +5445,7 @@ class Trabajos extends CI_Controller {
             $url = $path . '/' . $file_name . '.pdf';
             /* Borramos el archivo anterior */
             if (delete_files('uploads/Reportes/' . $ID)) {
-                
+
             }
             $pdf->Output($url);
             print base_url() . $url;
@@ -5616,7 +5670,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
@@ -5793,7 +5847,7 @@ class Trabajos extends CI_Controller {
                     $url = $path . '/' . $file_name . '.pdf';
                     /* Borramos el archivo anterior */
                     if (delete_files('uploads/Reportes/' . $ID)) {
-                        
+
                     }
                     $pdf->Output($url);
                     print base_url() . $url;
