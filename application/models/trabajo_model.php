@@ -193,18 +193,18 @@ class trabajo_model extends CI_Model {
                     . 'TD.PreciarioConcepto_ID AS "PCID",'
                     . 'CASE WHEN TD.Moneda = "MXN" THEN
                         CONCAT("
-                            <div class=\"btn-group custonNav navbar  \">
-                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
-                                <b class=\"fa fa-cog fa-lg customButtonDetalleEdicion \"></b></a>
-                                <ul class=\"dropdown-menu dropdown-menu-right customDropdown-menu\">
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a></li>
-                                  <li class=\"divider\"></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li>
-                                </ul>
-                              </li>
+                            <div class=\"btn-group dropleft \">
+                                <button  class=\"btn btn-secondary  dropdown-toggle \" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >
+                                <i class=\"fa fa-cog fa-lg \"></i>
+                                </button>
+                                <div  class=\"dropdown-menu\">
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-edit fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
+                                  <div class=\"dropdown-divider\"></div>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a>
+                                </div>
                             </div>")
                         WHEN TD.Moneda = "USD"  AND TD.TipoCambio <> 1 THEN
                          CONCAT("<div class=\"btn-group custonNav navbar\">

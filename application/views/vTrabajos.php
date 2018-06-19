@@ -17,7 +17,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Folio</th>
-                        <th>Estatus2</th>
+                        <th>Estatus</th>
                         <th>Estatus</th>
                         <th>Fecha</th>
 
@@ -112,7 +112,7 @@
         </div>
     </div>
 </div>
-<!--PANEL NUEVO-->
+<!--PANEL DATOS-->
 <div id="" class="container-fluid">
     <div class="card border-0 d-none" id="pnlDatos">
         <div class="card-body text-dark">
@@ -555,7 +555,7 @@
                             </div>
                             <div class="col-12" align="center">
                                 <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
-                                <button type="button" class="btn btn-info" id="btnArchivo" name="btnArchivo">
+                                <button type="button" class="btn btn-info btn-sm" id="btnArchivo" name="btnArchivo">
                                     <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                                 </button>
                                 <br><hr>
@@ -699,12 +699,9 @@
     var btnModificar = $("#btnModificarTrabajo");
     var pnlDatos = $("#pnlDatos");
     var menuTablero = $('#MenuTablero');
-    var Archivo = $("#Adjunto");
-    var btnArchivo = $("#btnArchivo");
-    var VistaPrevia = $("#VistaPrevia");
-    var ModificarArchivo = pnlDatos.find("#Adjunto");
-    var btnModificarArchivo = pnlDatos.find("#btnArchivo");
-    var ModificarVistaPrevia = pnlDatos.find("#VistaPrevia");
+    var Archivo = pnlDatos.find("#Adjunto");
+    var btnArchivo = pnlDatos.find("#btnArchivo");
+    var VistaPrevia = pnlDatos.find("#VistaPrevia");
     var pnlDetalleTrabajo = $("#pnlDetalleTrabajo");
     var btnNuevoConcepto = pnlDetalleTrabajo.find("#btnNuevoConcepto");
     var btnEliminar = pnlDatos.find("#btnEliminar");
@@ -856,6 +853,7 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
+                        console.log(data);
                         Trabajos.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     }).fail(function (x, y, z) {
@@ -927,26 +925,23 @@
             getCodigoPPTAbyID(pnlDatos.find("#Codigoppta_ID").val(), $(this).val());
         });
         btnArchivo.on("click", function () {
+            $('#Adjunto').attr("type", "file");
+            $('#Adjunto').val('');
             Archivo.change(function () {
                 HoldOn.open({theme: "sk-bounce", message: "POR FAVOR ESPERE..."});
                 var imageType = /image.*/;
                 if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match(imageType)) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        console.log(Archivo[0].files[0]);
-                        var preview = '<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><img src="' + reader.result + '" class="img-responsive" width="600px">\n\
-            <div class="caption">\n\
-            <p>' + Archivo[0].files[0].name + '</p>\n\
-            </div></div>';
+                        var preview = '<button type="button" class="btn btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><br><img src="' + reader.result + '" class="img-responsive" width="400px"><div class="caption"><p>' + Archivo[0].files[0].name + '</p></div>';
                         VistaPrevia.html(preview);
                     };
                     reader.readAsDataURL(Archivo[0].files[0]);
                 } else {
                     if (Archivo[0].files[0] !== undefined && Archivo[0].files[0].type.match('application/pdf')) {
-                        console.log('ES UN PDF');
                         var readerpdf = new FileReader();
                         readerpdf.onload = function (e) {
-                            VistaPrevia.html('<div><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><hr> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
+                            VistaPrevia.html('<div><button type="button" class="btn btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button><br> <embed src="' + readerpdf.result + '" type="application/pdf" width="90%" height="800px"' +
                                     ' pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></div>');
                         };
                         readerpdf.readAsDataURL(Archivo[0].files[0]);
@@ -1084,7 +1079,7 @@
                 });
             },
             "footerCallback": function (row, data, start, end, display) {
-                var api = this.api();//Get access to Datatable API 
+                var api = this.api();//Get access to Datatable API
                 // Update footer
                 var total = api.column(7).data().reduce(function (a, b) {
                     var ax = 0, bx = 0;
@@ -1440,10 +1435,10 @@
                             pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
                         }
                         if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                            pnlDatos.find("#VistaPrevia").html('<h1>NO EXISTE ARCHIVO ADJUNTO</h1>');
+                            pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
                         }
                     } else {
-                        pnlDatos.find("#VistaPrevia").html('<h3>NO EXISTE ARCHIVO ADJUNTO</h3>');
+                        pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
                     }
                     menuTablero.addClass("d-none");
 //                    console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
@@ -1661,7 +1656,6 @@
         });
     }
     function getCodigoPPTAbyID(CodigoID) {
-        //HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
         $.ajax({
             url: master_url + 'getCodigoPPTAbyID',
             type: "POST",
@@ -1679,8 +1673,6 @@
         }).always(function () {
         });
     }
-
-    /*MODIFICAR INTERIOR Y EXTERIOR TRABAJO DETALLE*/
     function onChangeIntExtByID(IntExt, IDX) {
         HoldOn.open({
             theme: "sk-bounce",
@@ -1699,6 +1691,11 @@
         }).always(function () {
             HoldOn.close();
         });
+    }
+    function onRemovePreview(e) {
+        $(e).parent().parent("#VistaPrevia").html("");
+        Archivo.attr("type", "text");
+        Archivo.val('N');
     }
 </script>
 <style>

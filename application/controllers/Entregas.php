@@ -168,36 +168,40 @@ class Entregas extends CI_Controller {
             );
             $this->entregas_model->onModificar($ID, $data);
 
-            /* SUBIR AJUNTO */
-            $URL_DOC = 'uploads/Entregas/AdjuntoEncabezado';
-            $master_url = $URL_DOC . '/';
-            if (isset($_FILES["Adjunto"]["name"])) {
-                if (!file_exists($URL_DOC)) {
-                    mkdir($URL_DOC, 0777, true);
-                }
-                if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
-                    mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
-                }
-                if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
-                    $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
-                    $DATA = array(
-                        'Adjunto' => ($img),
-                    );
-                    $this->entregas_model->onModificar($ID, $DATA);
-                } else {
-                    $DATA = array(
-                        'Adjunto' => (null),
-                    );
-                    $this->entregas_model->onModificar($ID, $DATA);
-                }
-            }
 
-            //AQUI SE INSERTA EL ID DE LA ENTREGA PARA PODERNOS TRAER SU INFORMACION
-//            if ($Estatus == 'Concluido') {
-//                $this->trabajo_model->onEntregado($ID);
-//            } else {
-//                $this->trabajo_model->onCancelarEntregado($ID);
-//            }
+            /* MODIFICAR ADJUNTO */
+            $AdjuntoP = $this->input->post('Adjunto');
+            if (empty($AdjuntoP)) {
+                if ($_FILES["Adjunto"]["tmp_name"] !== "") {
+                    $URL_DOC = 'uploads/Entregas/AdjuntoEncabezado';
+                    $master_url = $URL_DOC . '/';
+                    if (isset($_FILES["Adjunto"]["name"])) {
+                        if (!file_exists($URL_DOC)) {
+                            mkdir($URL_DOC, 0777, true);
+                        }
+                        if (!file_exists(utf8_decode($URL_DOC . '/' . $ID))) {
+                            mkdir(utf8_decode($URL_DOC . '/' . $ID), 0777, true);
+                        }
+                        if (move_uploaded_file($_FILES["Adjunto"]["tmp_name"], $URL_DOC . '/' . $ID . '/' . utf8_decode($_FILES["Adjunto"]["name"]))) {
+                            $img = $master_url . $ID . '/' . $_FILES["Adjunto"]["name"];
+                            $DATA = array(
+                                'Adjunto' => ($img),
+                            );
+                            $this->entregas_model->onModificar($ID, $DATA);
+                        } else {
+                            $DATA = array(
+                                'Adjunto' => (null),
+                            );
+                            $this->entregas_model->onModificar($ID, $DATA);
+                        }
+                    }
+                }
+            } else {
+                $DATA = array(
+                    'Adjunto' => (null),
+                );
+                $this->entregas_model->onModificar($ID, $DATA);
+            }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
