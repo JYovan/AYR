@@ -1119,14 +1119,15 @@
                     cell_td.find("#Editor").focus().select();
                 } else if (cell_td.hasClass("Moneda")) {
                     var txt = $(cell.data()).text();
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
+                    var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
                     cell_td.html(g);
-                    cell_td.find("#Editor").focus().select();
+                    $(this).find("#Moneda").val(txt);
                 }
             }
         }).on('key-blur', function (e, datatable, cell) {
             var t = $('#tblConceptosPresupuesto > tbody');
             var a = t.find("#Editor");
+            var m = t.find("#Moneda");
             if (a.val() !== 'undefined' && a.val() !== undefined) {
                 var b = ConceptosPresupuesto.cell(a.parent()).index();
                 var d = a.parent();
@@ -1175,42 +1176,58 @@
                     };
                     //DRAW NEW DATA
                     ConceptosPresupuesto.cell(d, b).data(a.val()).draw();
-                } else if (d.hasClass('Moneda')) {
-                    d.html('<span class="' + (a.val().toUpperCase() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val().toUpperCase() + '</span>');
+                }
+                onEditarTrabajoDetalle(params);
+            }
+
+            if (m.val() !== 'undefined' && m.val() !== undefined) {
+                var b = ConceptosPresupuesto.cell(m.parent()).index();
+                var d = m.parent();
+                var row = ConceptosPresupuesto.row(m.parent().parent()).data();// SOLO OBTENDRA EL ID
+                if (d.hasClass('Moneda')) {
+                    console.log('MONEDA', m)
+                    var m = t.find("#Moneda");
+                    d.html('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val() + '</span>');
                     //SHORT POST
                     params = {
                         ID: row.ID,
                         CELDA: 'MONEDA',
-                        VALOR: a.val()
+                        VALOR: m.val()
                     };
                     //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (a.val().toUpperCase() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val().toUpperCase() + '</span>').draw();
+                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + m.val() + '</span>').draw();
                 }
-                $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
-                    $.notify({
-                        // options
-                        message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
-                    }, {
-                        // settings
-                        type: 'info',
-                        delay: 500,
-                        animate: {
-                            enter: 'animated flipInX',
-                            exit: 'animated flipOutX'
-                        },
-                        placement: {
-                            from: "top",
-                            align: "right"
-                        }
-                    });
-                }).fail(function (x, y, z) {
-                    console.log('ERROR', x, y, z);
-                }).always(function () {
-                    console.log('DATOS ACTUALIZADOS');
-                });
+                onEditarTrabajoDetalle(params);
             }
         });
     }
+
+    function onEditarTrabajoDetalle(params) {
+        $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
+            $.notify({
+                // options
+                message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
+            }, {
+                // settings
+                type: 'info',
+                delay: 500,
+                animate: {
+                    enter: 'animated flipInX',
+                    exit: 'animated flipOutX'
+                },
+                placement: {
+                    from: "top",
+                    align: "right"
+                }
+            });
+        }).fail(function (x, y, z) {
+            console.log('ERROR', x, y, z);
+        }).always(function () {
+            console.log('DATOS ACTUALIZADOS');
+            ConceptosPresupuesto.ajax.reload();
+        });
+    }
+
     function getRecords() {
         temp = 0;
         HoldOn.open({
