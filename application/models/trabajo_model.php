@@ -108,8 +108,7 @@ class trabajo_model extends CI_Model {
                                 </span>
                                 <div  class=\"dropdown-menu\" style=\" heigth 100px; \">
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-edit fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <div class=\"dropdown-divider\"></div>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a>
@@ -123,8 +122,7 @@ class trabajo_model extends CI_Model {
                                 </span>
                                 <div class=\"dropdown-menu \">
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
                                   <div class=\"dropdown-divider\"></div>","
@@ -141,8 +139,7 @@ class trabajo_model extends CI_Model {
                                 </span>
                                 <div class=\"dropdown-menu \">
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
                                   <div class=\"dropdown-divider\"></div>","
