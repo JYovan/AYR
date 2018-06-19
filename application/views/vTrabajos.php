@@ -1674,10 +1674,6 @@
         });
     }
     function onChangeIntExtByID(IntExt, IDX) {
-        HoldOn.open({
-            theme: "sk-bounce",
-            message: "CARGANDO DATOS..."
-        });
         $.ajax({
             url: master_url + 'onChangeIntExtByDetalleID',
             type: "POST",
@@ -1686,10 +1682,25 @@
                 IntExt: IntExt
             }
         }).done(function (data, x, jq) {
+            $.notify({
+                // options
+                message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
+            }, {
+                // settings
+                type: 'info',
+                delay: 500,
+                animate: {
+                    enter: 'animated flipInX',
+                    exit: 'animated flipOutX'
+                },
+                placement: {
+                    from: "top",
+                    align: "right"
+                }
+            });
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
-            HoldOn.close();
         });
     }
     function onRemovePreview(e) {
