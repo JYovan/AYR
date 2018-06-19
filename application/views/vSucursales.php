@@ -268,143 +268,143 @@
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Firmas">
-                            <div  id="aFMantto" align="center">
-                                <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiMantto" aria-expanded="true" aria-controls="collapseOne">
-                                    Firmas de Mantenimiento
-                                </a>
+                            <div id="accordion">
+                                <div  id="aFMantto" align="center">
+                                    <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiMantto" aria-expanded="true" aria-controls="collapseOne">
+                                        Firmas de Mantenimiento
+                                    </a>
+                                </div>
+                                <div id="FiMantto" class="collapse " aria-labelledby="aFMantto" data-parent="#accordion">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoNombres1" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoApellidos1" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoPuesto1" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoNombres2" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoApellidos2" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoPuesto2" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoNombres3" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoApellidos3" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaManttoPuesto3" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div id="aFObra" align="center">
+                                    <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiObra" aria-expanded="true" aria-controls="collapseOne">
+                                        Firmas de Obra
+                                    </a>
+                                </div>
+                                <div id="FiObra" class="collapse " aria-labelledby="aFObra" data-parent="#accordion">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraNombres1" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraApellidos1" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaNombrePuesto1" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraNombres2" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraApellidos2" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaNombrePuesto2" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraNombres3" class="control-label">Nombre</label>
+                                                <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaObraApellidos3" class="control-label">Apellidos</label>
+                                                <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-static">
+                                                <label for="FirmaNombrePuesto3" class="control-label">Puesto</label>
+                                                <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control form-control-sm" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="FiMantto" class="collapse " aria-labelledby="aFMantto" data-parent="#accordion">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoNombres1" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaManttoNombres1" name="FirmaManttoNombres1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoApellidos1" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaManttoApellidos1" name="FirmaManttoApellidos1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoPuesto1" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaManttoPuesto1" name="FirmaManttoPuesto1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoNombres2" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaManttoNombres2" name="FirmaManttoNombres2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoApellidos2" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaManttoApellidos2" name="FirmaManttoApellidos2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoPuesto2" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaManttoPuesto2" name="FirmaManttoPuesto2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoNombres3" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaManttoNombres3" name="FirmaManttoNombres3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoApellidos3" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaManttoApellidos3" name="FirmaManttoApellidos3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaManttoPuesto3" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaManttoPuesto3" name="FirmaManttoPuesto3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="aFObra" align="center">
-                                <a class="btn btn-info text-light btn-block" data-toggle="collapse" data-target="#FiObra" aria-expanded="true" aria-controls="collapseOne">
-                                    Firmas de Obra
-                                </a>
-                            </div>
-                            <div id="FiObra" class="collapse " aria-labelledby="aFObra" data-parent="#accordion">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraNombres1" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaObraNombres1" name="FirmaObraNombres1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraApellidos1" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaObraApellidos1" name="FirmaObraApellidos1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaNombrePuesto1" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaNombrePuesto1" name="FirmaNombrePuesto1" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraNombres2" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaObraNombres2" name="FirmaObraNombres2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraApellidos2" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaObraApellidos2" name="FirmaObraApellidos2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaNombrePuesto2" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaNombrePuesto2" name="FirmaNombrePuesto2" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraNombres3" class="control-label">Nombre</label>
-                                            <input type="text" id="FirmaObraNombres3" name="FirmaObraNombres3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaObraApellidos3" class="control-label">Apellidos</label>
-                                            <input type="text" id="FirmaObraApellidos3" name="FirmaObraApellidos3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-static">
-                                            <label for="FirmaNombrePuesto3" class="control-label">Puesto</label>
-                                            <input type="text" id="FirmaNombrePuesto3" name="FirmaNombrePuesto3" class="form-control form-control-sm" placeholder="" >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                     <div class="row">

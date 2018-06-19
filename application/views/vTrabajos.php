@@ -11,7 +11,7 @@
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
             </div>
         </div>
-        <div class="row d-none" id="Trabajos">
+        <div class="row" id="Trabajos">
             <table id="tblTrabajos" class="table table-sm" style="width:100%">
                 <thead>
                     <tr>
@@ -29,6 +29,7 @@
                         <th>Usuario</th>
 
                         <th>ImporteSinFormato</th>
+                        <th>Usuario_ID</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -46,8 +47,8 @@
                         <th><input type="text" placeholder="Buscar por Sucursal" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Trabajo Requerido" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Usuario" class="form-control form-control-sm"/></th>
-
-                        <th><input type="text" placeholder="Buscar por ImporteSinFormato" class="form-control form-control-sm"/></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </tfoot>
             </table>
@@ -571,7 +572,7 @@
         </div>
     </div>
 </div>
-<!--PANEL NUEVO DETALLE-->
+<!--PANEL DETALLE-->
 <div class="card border-0 d-none" id="pnlDetalleTrabajo">
     <div class="card-body">
         <div class="col-md-12">
@@ -595,10 +596,10 @@
                         </div>
                     </div>
                     <!--NUEVA TABLA CONCEPTOS-->
-                    <div id="ConceptosPresupuesto" class="row d-none">
-                        <table id="tblConceptosPresupuesto" class="table table-sm display" style="width:100%">
+                    <div id="ConceptosPresupuesto" class="row d-none" >
+                        <table id="tblConceptosPresupuesto" class="table table-sm display" style="width:100% " >
                             <thead>
-                                <tr>
+                                <tr >
                                     <th>ID</th>
                                     <th>Clave</th>
                                     <th>Int/Ext</th>
@@ -615,7 +616,7 @@
                                     <th>Editar</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody style="overflow-y: auto;"></tbody>
                             <tfoot>
                                 <tr>
                                     <th></th>
@@ -688,7 +689,6 @@
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
-    var verMovs = 'getMyRecords';
     var btnNuevo = $("#btnNuevo");
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
@@ -797,16 +797,18 @@
             mdlReportesEditarTrabajo.modal('show');
         });
         btnVerTodosEnFirme.on("click", function () {
-            verMovs = 'getRecordsFirme';
-            getRecords();
+            tblTrabajos.DataTable().columns().search('').draw();
+            tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
+            tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
         });
         btnVerMisMovimientos.on("click", function () {
-            verMovs = 'getMyRecords';
-            getRecords();
+            tblTrabajos.DataTable().columns().search('').draw();
+            Trabajos.column(12).search("1" ? '^' + "<?php print $this->session->userdata('ID') ?>" + '$' : '', true, false).draw();
+            tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
+            tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
         });
         btnVerTodos.on("click", function () {
-            verMovs = 'getRecords';
-            getRecords();
+            tblTrabajos.DataTable().columns().search('').draw();
         });
         btnEliminar.on("click", function () {
             if (!nuevo) {
@@ -910,6 +912,7 @@
             pnlDetalleTrabajo.find("#Presupuesto").addClass("active show");
             pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
             pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
+            ConceptosPresupuesto.clear().draw();
             pnlDatos.find("input").not('[type=radio]').val('');
             $("input:radio[name='NuevoEstatusTrabajo']").each(function (i) {
                 this.checked = false;
@@ -1222,7 +1225,7 @@
             "dom": 'Bfrtip',
             buttons: buttons,
             "ajax": {
-                "url": master_url + verMovs,
+                "url": master_url + 'getRecords',
                 "dataSrc": ""
             },
             "columns": [
@@ -1237,40 +1240,55 @@
                 {"data": "Importe"}, //8
                 {"data": "TrabajoRequerido"}, //9
                 {"data": "Usuario"}, //10
-                {"data": "ImporteSinFormato"}//11
+                {"data": "ImporteSinFormato"}, //11
+                {"data": "Usuario_ID"} //12
             ],
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                },
+
                 {
                     "targets": [3],
                     "visible": false,
-                    "searchable": false
+                    "searchable": true
+                },
+                {
+                    "width": "200px",
+                    "targets": 7
+                },
+                {
+                    "width": "200px",
+                    "targets": 9
                 },
                 {
                     "targets": [11],
                     "visible": false,
                     "searchable": false
+                },
+                {
+                    "targets": [12],
+                    "visible": false,
+                    "searchable": true
                 }
             ],
             language: lang,
             select: true,
             "autoWidth": true,
             "colReorder": true,
-            "displayLength": 12,
+            "displayLength": 10,
             "bLengthChange": false,
             "deferRender": true,
+            "scrollX": true,
             "scrollCollapse": false,
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
             ],
             "initComplete": function (settings, json) {
+                Trabajos.column(12).search("1" ? '^' + "<?php print $this->session->userdata('ID') ?>" + '$' : '', true, false).draw();
+                tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
+                tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
+
                 HoldOn.close();
-                $('#Trabajos').removeClass('d-none');
+
             }
         });
         tblTrabajos.find('tbody').on('click', 'tr', function () {
@@ -1505,11 +1523,11 @@
 //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
 //                        pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
 //                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
-//                    }
+                    //                    }
                     //getImporteTotalDelTrabajoByID(trabajo.ID);
-                    getTrabajoDetalleByID(trabajo.ID);
+                    getTrabajoDetalleByID(IdMovimiento);
 //                    getDetalleAbiertoByID(trabajo.ID);
-//                    getDetalleCajerosByID(trabajo.ID);
+                    //                    getDetalleCajerosByID(trabajo.ID);
                     pnlDatos.removeClass("d-none");
                     pnlDetalleTrabajo.removeClass("d-none");
 

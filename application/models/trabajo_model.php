@@ -11,49 +11,6 @@ class trabajo_model extends CI_Model {
         date_default_timezone_set('America/Mexico_City');
     }
 
-    public function getMyRecords() {
-        try {
-            $this->db->select("T.ID,"
-                    . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS Folio, "
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-primary\'>','PEDIDO','</span>') "
-                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-warning\'>','FINALIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-info\'>','NO AUTORIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-danger badge-light\'>','PAGADO','</span>')"
-                    . "END) AS Estatus2 ,"
-                    . "upper(T.Estatus) AS Estatus, "
-                    . "T.FechaCreacion as Fecha,"
-                    // . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
-                    . "Ct.Nombre as Cliente, "
-                    . "concat(S.CR,' ',S.Nombre) as Sucursal,"
-                    . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS TrabajoRequerido ,"
-                    . "concat(u.nombre,' ',u.apellidos)as Usuario, "
-                    . "ifnull(T.Importe,0) AS ImporteSinFormato "
-                    . "FROM TRABAJOS T  "
-                    . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
-                    . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
-                    . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID  "
-                    . "INNER JOIN USUARIOS U ON U.ID = T.Usuario_ID "
-                    . "WHERE T.ESTATUS in ('Borrador','Concluido') "
-                    . "AND T.ESTATUSTRABAJO in ('Pedido','Presupuesto','Autorización','Ejecución') "
-                    . "AND T.USUARIO_ID = " . $this->session->userdata('ID') . " ", false);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getRecords() {
         try {
             $this->db->select("T.ID, "
@@ -68,62 +25,20 @@ class trabajo_model extends CI_Model {
                     . " END) AS Estatus2 ,"
                     . "upper(T.Estatus) AS Estatus, "
                     . "T.FechaCreacion as 'Fecha' ,"
-                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
                     . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
                     . "Ct.Nombre as 'Cliente', "
                     . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
                     . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
                     . "IFNULL(T.TrabajoRequerido,'') AS 'TrabajoRequerido' ,"
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario', "
-                    . "ifnull(T.Importe,0) AS ImporteSinFormato "
+                    . "ifnull(T.Importe,0) AS ImporteSinFormato,"
+                    . "T.Usuario_ID AS Usuario_ID "
                     . "FROM TRABAJOS T "
                     . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID "
                     . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
                     . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID "
-                    . "INNER JOIN USUARIOS U ON U.ID = T.Usuario_ID WHERE T.ESTATUS in ('Borrador','Concluido','Entregado') ", false);
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getRecordsFirme() {
-        try {
-            $this->db->select("T.ID, "
-                    . "(CASE WHEN  T.FolioCliente IS NULL OR T.FolioCliente =' ' THEN ' -- ' ELSE T.FolioCliente  END) AS 'Folio', "
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-primary\'>','PEDIDO','</span>') "
-                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-warning\'>','FINALIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-info\'>','NO AUTORIZADO','</span>')"
-                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-danger badge-light\'>','PAGADO','</span>')"
-                    . " END) AS Estatus2 ,"
-                    . "upper(T.Estatus) AS Estatus, "
-                    . "T.FechaCreacion as 'Fecha' ,"
-                    //     . "(CASE WHEN  T.Atendido ='Si' THEN CONCAT('<span class=\'badge badge-success\'>','SI','</span>') ELSE CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') END) AS Atendido ,"
-                    . "(CASE WHEN  T.Adjunto IS NULL THEN CONCAT('<span class=\'badge badge-danger\'>','NO','</span>') ELSE CONCAT('<span class=\'badge badge-success\'>','SI','</span>') END) AS Adjunto ,"
-                    . "Ct.Nombre as 'Cliente', "
-                    . "concat(S.CR,' ',S.Nombre) as 'Sucursal' ,"
-                    . "CONCAT('<strong>$',FORMAT(ifnull(T.Importe,0),2),'</strong>') AS Importe,"
-                    . "IFNULL(T.TrabajoRequerido,'') AS 'TrabajoRequerido' ,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario', "
-                    . "ifnull(T.Importe,0) AS ImporteSinFormato "
-                    . "FROM TRABAJOS T  "
-                    . "INNER JOIN CLIENTES CT on CT.ID = T.Cliente_ID  "
-                    . "INNER JOIN SUCURSALES S on S.ID = T.Sucursal_ID "
-                    . "LEFT JOIN CUADRILLAS Cd on Cd.ID = T.Cuadrilla_ID  "
                     . "INNER JOIN USUARIOS U ON U.ID = T.Usuario_ID "
-                    . "WHERE T.ESTATUS in ('Borrador','Concluido') "
-                    . "AND T.ESTATUSTRABAJO in ('Pedido','Presupuesto','Autorización','Ejecución') "
-                    . " ", false);
+                    . "WHERE T.ESTATUS in ('Borrador','Concluido','Entregado') ", false);
             $query = $this->db->get();
             /*
              * FOR DEBUG ONLY
@@ -155,7 +70,6 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<select id=\"#IntExtM\" class=\"form-control  form-control-sm notEnter\" value=\"Exterior\" onchange=\"onChangeIntExtByID(this.value,",TD.ID,")\"><option value=\"Exterior\">Exterior</option><option value=\"Interior\">Interior</option></select>") '
                     . ' END) AS "IntExt",'
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(TD.Concepto),"</p>") AS Descripcion, '
-                    //. 'TD.Cantidad, '
                     . '(CASE '
                     . 'WHEN TD.Cantidad > 0 THEN '
                     . 'TD.Cantidad '
@@ -169,11 +83,6 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\'badge badge-danger\'>",TD.Moneda,"</span>") '
                     . 'ELSE CONCAT("<span class=\'\'>",TD.Moneda,"</span>") '
                     . 'END) AS "Moneda", '
-//                    . '(CASE '
-//                    . 'WHEN (SELECT COUNT(*) FROM generadortrabajosdetalle AS GTDC WHERE GTDC.IdTrabajoDetalle = TD.ID)> 0 THEN '
-//                    . 'CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador has-items\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span> ") '
-//                    . 'ELSE CONCAT("<span class=\"fa fa-calculator customButtonDetalleGenerador\" onclick=\"getGeneradoresDetalleXConceptoID(",TD.ID,",",TD.Trabajo_ID,",",TD.PreciarioConcepto_ID,",this)\"></span>") '
-//                    . 'END) AS Generador, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID  )>0 THEN '
                     . 'CONCAT("<span class=\"fa fa-camera fa-lg customButtonDetalleGenerador has-items\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
@@ -193,11 +102,11 @@ class trabajo_model extends CI_Model {
                     . 'TD.PreciarioConcepto_ID AS "PCID",'
                     . 'CASE WHEN TD.Moneda = "MXN" THEN
                         CONCAT("
-                            <div class=\"btn-group dropleft \">
-                                <button  class=\"btn btn-secondary  dropdown-toggle \" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >
+                            <div class=\"dropdown \">
+                                <span  class=\"  dropdown-toggle \" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >
                                 <i class=\"fa fa-cog fa-lg \"></i>
-                                </button>
-                                <div  class=\"dropdown-menu\">
+                                </span>
+                                <div  class=\"dropdown-menu\" style=\" heigth 100px; \">
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-edit fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
@@ -207,36 +116,43 @@ class trabajo_model extends CI_Model {
                                 </div>
                             </div>")
                         WHEN TD.Moneda = "USD"  AND TD.TipoCambio <> 1 THEN
-                         CONCAT("<div class=\"btn-group custonNav navbar\">
-                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
-                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
-                                <ul class=\"dropdown-menu customDropdown-menu\">
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a></li>
-                                  <li class=\"divider\"></li>","
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li></ul></li></div>")
+                         CONCAT("
+                                <div class=\"dropdown \">
+                                <span  class=\"  dropdown-toggle \" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >
+                                <i class=\"fa fa-cog fa-lg \"></i>
+                                </span>
+                                <div class=\"dropdown-menu \">
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
+                                  <div class=\"dropdown-divider\"></div>","
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a>
+                                  </div>
+                                  </div>
+                                  ")
                         WHEN TD.Moneda = "USD" AND TD.TipoCambio = 1 THEN
 
-                        CONCAT("<div class=\"btn-group custonNav navbar\">
-                                <a href=\"#\" class=\" dropdown-toggle \" data-toggle=\"dropdown\" >
-                                <b class=\"fa fa-cog customButtonDetalleEdicion \"></b></a>
-                                <ul class=\"dropdown-menu customDropdown-menu\">
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onAgregarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ")\" ><span class=\"fa fa-usd fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Tipo de Cambio</a></li>
-                                  <li class=\"divider\"></li>
-                                  <li><a href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a></li>
-                                </ul>
-                              </li>
-                            </div>")
+                        CONCAT("
+                                <div class=\"dropdown \">
+                                <span  class=\"  dropdown-toggle \" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >
+                                <i class=\"fa fa-cog fa-lg \"></i>
+                                </span>
+                                <div class=\"dropdown-menu \">
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoEditarXDetalle(", TD.ID , ")\"><span class=\"fa fa-pencil fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Editar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
+                                  <div class=\"dropdown-divider\"></div>","
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onEliminarConceptoXDetalle(this, ", TD.ID, ")\"><span class=\"fa fa-trash fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Eliminar</a>
+                                  </div>
+                                  </div>
+                        ")
             END AS "Editar"', false);
             $this->db->from("trabajosdetalle AS TD");
-            $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID");
+            $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID", 'LEFT');
             $this->db->where("TD.Trabajo_ID", $IDX);
             $this->db->order_by('TD.ID', 'DESC');
             $query = $this->db->get();

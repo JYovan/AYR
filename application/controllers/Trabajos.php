@@ -37,26 +37,9 @@ class Trabajos extends CI_Controller {
         }
     }
 
-    public function getRecordsFirme() {
-        try {
-            print json_encode($this->trabajo_model->getRecordsFirme());
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getRecords() {
         try {
             print json_encode($this->trabajo_model->getRecords());
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getMyRecords() {
-        try {
-            $data = $this->trabajo_model->getMyRecords();
-            print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -209,7 +192,7 @@ class Trabajos extends CI_Controller {
                 'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
                 'Usuario_ID' => $this->session->userdata('ID'),
-                'Estatus' => 'BORRADOR',
+                'Estatus' => 'Borrador',
                 'Importe' => 0,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== '') ? $Observaciones : null,
                 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,

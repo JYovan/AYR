@@ -105,7 +105,10 @@
             "columnDefs": [
                 {"width": "70px", "targets": 2},
                 {"width": "320px", "targets": 5}
-            ]
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
         });
         $('#tblRegistros_filter input[type=search]').focus();
         tblRegistrosX.find('tbody').on('click', 'tr', function () {
@@ -121,7 +124,6 @@
             });
         });
 
-        HoldOn.close();
     }
 
 </script>
