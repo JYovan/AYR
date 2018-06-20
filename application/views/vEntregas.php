@@ -445,7 +445,6 @@
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
             }
-
         });
         btnNuevo.on('click', function () {
             pnlDatos.removeClass('d-none');
@@ -886,7 +885,6 @@
                 var Importe = api.column(8).data().reduce(function (a, b) {
                     return  parseFloat(a) + parseFloat(b);
                 }, 0);
-
                 /*Modificamos el importe*/
                 $.ajax({
                     url: master_url + 'onModificarImportePorEntrega',

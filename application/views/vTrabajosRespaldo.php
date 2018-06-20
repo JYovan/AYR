@@ -1,4 +1,3 @@
-
 <!--MODAL AGREGAR CONCEPTO ABIERTO-->
 <div id="mdlAgregarConceptoAbierto" class="modal modalFull fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
@@ -241,8 +240,7 @@
         </div>
     </div>
 </div>
-<!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO-->
-<div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull  fade ">
+<!--MODAL DETALLE - EDITAR GENERADOR POR CONCEPTO--><div id="mdlTrabajoEditarGeneradorPorConcepto" class="modal modalFull  fade ">
     <div class="modal-dialog modal-dialogFull">
         <div class="modal-content modal-contentFull">
             <div class="modal-header">
@@ -334,35 +332,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--MODAL EDITAR - VER FOTOS ADJUNTAS-->
-<div id="mdlTrabajoEditarFotosPorConcepto" class="modal modalFull animated bounceInDown">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header">
-                <h5 class="modal-title">Fotos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-bodyFull">
-                <fieldset>
-                    <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="d-none">
-                    <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="d-none">
-                    <input type="file" accept='image/*' id="fFotos" name="fFotos[]" multiple="" class="d-none">
-                    <div class="col-12" id="" align="center"  onclick="setFotosEditar(this)">
-                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>
-                    </div>
-                    <div class="col-12"><br><br></div>
-                    <div class="col-12 row" id="Fotos"></div>
-                </fieldset>
             </div>
             <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
@@ -465,67 +434,6 @@
         </div>
     </div>
 </div>
-<!--MODAL EDITAR - VER CROQUIS ADJUNTAS-->
-<div id="mdlTrabajoEditarCroquisPorConcepto" class="modal modalFull animated bounceInDown">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header">
-                <h5 class="modal-title">Croquis</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-bodyFull">
-                <fieldset>
-                    <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="d-none">
-                    <div class="col-12" id="" align="center"  onclick="setCroquisEditar(this)">
-                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>
-                    </div>
-                    <div class="col-12"><br><br></div>
-                    <div class="col-12" id="Croquis"></div>
-                </fieldset>
-            </div>
-            <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--MODAL EDITAR - VER ANEXOS ADJUNTOS-->
-<div id="mdlTrabajoEditarAnexosPorConcepto" class="modal modalFull animated bounceInDown">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header">
-                <h5 class="modal-title">Anexos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-bodyFull">
-                <fieldset>
-                    <div class="col-12"><br></div>
-                    <div class="col-12 d-none">
-                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control form-control-sm">
-                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control form-control-sm">
-                        <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div class="col-12" id="" align="center"  onclick="setAnexosEditar(this)">
-                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
-                        </div>
-                    </div>
-                    <div class="col-12"><br><br></div>
-                    <div class="col-12" id="Anexos"></div>
-                </fieldset>
-            </div>
-            <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!--MODAL EDITAR - VER ANEXOS DOS ADJUNTOS-->
 <div id="mdlTrabajoEditarAnexosDosPorConcepto" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
@@ -553,25 +461,6 @@
                     <div class="col-12"><br><br></div>
                     <div class="col-12" id="Anexos"></div>
                 </fieldset>
-            </div>
-            <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--MODAL DETALLE - REEMPLAZAR CONCEPTO-->
-<div id="mdlTrabajoReemplazarConceptoEditar" class="modal modalFull fade ">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
-            <div class="modal-header">
-                <h5 class="modal-title">Seleccione un Concepto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-bodyFull">
-                <div class="col-12" id="ConceptosReemplazarXPreciarioID"></div>
             </div>
             <div class="modal-footer modal-footerFull">
                 <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
@@ -671,15 +560,6 @@
             } else {
                 $('#idSubirFotosProceso').addClass('d-none');
             }
-        });
-        /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
-        $('.file_drag_area').on('dragover', function () {
-            $(this).addClass('file_drag_over');
-            return false;
-        });
-        $('.file_drag_area').on('dragleave', function () {
-            $(this).removeClass('file_drag_over');
-            return false;
         });
         /**FIN FUNCIONES DE EDICION **/
         btnEditarConceptoAbierto.on("click", function () {
@@ -852,9 +732,6 @@
         });
 
         /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
-        mdlTrabajoEditarFotosPorConcepto.on('shown.bs.modal', function () {
-            EditarFotosPorConcepto.val('');
-        });
         mdlTrabajoEditarFotosAntesPorConcepto.on('shown.bs.modal', function () {
             EditarFotosAntesPorConcepto.val('');
         });
@@ -868,34 +745,6 @@
             EditarFotosCajeroPorConcepto.val('');
         });
         /*Eventos DRAG and DROP de MULTIMEDIA*/
-        mdlTrabajoEditarFotosPorConcepto.find('.file_drag_area').on('drop', function (e) {
-            e.preventDefault();
-            $(this).removeClass('file_drag_over');
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            var frm = new FormData();
-            frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-            frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
-            var files_list = e.originalEvent.dataTransfer.files;
-            for (var i = 0; i < files_list.length; i++)
-            {
-                frm.append('FOTO', files_list[i]);
-                frm.append('Observaciones', files_list[i].name);
-                $.ajax({
-                    url: master_url + 'onAgregarFotosEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            }
-        });
         mdlTrabajoEditarFotosAntesPorConcepto.find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
@@ -977,63 +826,6 @@
                     onReloadFotosProcesoXConcepto(mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosProcesoPorConcepto.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            }
-        });
-        mdlTrabajoEditarCroquisPorConcepto.find('.file_drag_area').on('drop', function (e) {
-            e.preventDefault();
-            $(this).removeClass('file_drag_over');
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            var frm = new FormData();
-            frm.append('IdTrabajo', IdMovimiento);
-            frm.append('IdTrabajoDetalle', tempDetalle);
-            var files_list = e.originalEvent.dataTransfer.files;
-            for (var i = 0; i < files_list.length; i++)
-            {
-                frm.append('CROQUIS', files_list[i]);
-                frm.append('Observaciones', files_list[i].name);
-                $.ajax({
-                    url: master_url + 'onAgregarCroquisEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadCroquisXConcepto(tempDetalle, IdMovimiento);
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + files_list[i].name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            }
-        });
-        mdlTrabajoEditarAnexosPorConcepto.find('.file_drag_area').on('drop', function (e) {
-            e.preventDefault();
-            $(this).removeClass('file_drag_over');
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            var frm = new FormData();
-            frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
-            frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
-            var files_list = e.originalEvent.dataTransfer.files;
-            for (var i = 0; i < files_list.length; i++)
-            {
-                frm.append('ANEXOS', files_list[i]);
-                frm.append('Observaciones', files_list[i].name);
-                $.ajax({
-                    url: master_url + 'onAgregarAnexosEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
-                    getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + files_list[i].name, 'danger');
                     console.log(x, y, z);
                 }).always(function () {
                 });
@@ -1128,107 +920,6 @@
                     console.log(x, y, z);
                 }).always(function () {
                     HoldOn.close();
-                });
-            });
-        });
-        EditarAnexosPorConcepto.change(function () {
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            console.log(EditarAnexosPorConcepto[0].files);
-            var img = "";
-            var nimg = 0;
-            $.each(EditarAnexosPorConcepto[0].files, function (k, file) {
-                img = "";
-                if (nimg === 3) {
-                    img += '<div class="col-12" align="center"><br><hr><br></div>';
-                    nimg = 0;
-                }
-                nimg++;
-                var frm = new FormData();
-                frm.append('IdTrabajo', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
-                frm.append('IdTrabajoDetalle', mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val());
-                frm.append('Observaciones', file.name);
-                frm.append('ANEXOS', file);
-                $.ajax({
-                    url: master_url + 'onAgregarAnexosEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadAnexosXConcepto(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").val(), IdMovimiento);
-                    getTrabajoDetalleByID(mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").val());
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            });
-        });
-        EditarCroquisPorConcepto.change(function () {
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            var imageType = /image.*/;
-            var img = "";
-            var nimg = 0;
-            $.each(EditarCroquisPorConcepto[0].files, function (k, file) {
-                console.log(file.name);
-                img = "";
-                if (nimg === 3) {
-                    img += '<div class="col-12" align="center"><br><hr><br></div>';
-                    nimg = 0;
-                }
-                nimg++;
-                var frm = new FormData();
-                frm.append('IdTrabajo', IdMovimiento);
-                frm.append('IdTrabajoDetalle', tempDetalle);
-                frm.append('Observaciones', file.name);
-                frm.append('CROQUIS', file);
-                $.ajax({
-                    url: master_url + 'onAgregarCroquisEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadCroquisXConcepto(tempDetalle, IdMovimiento);
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            });
-        });
-        EditarFotosPorConcepto.change(function () {
-            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-            var img = "";
-            var nimg = 0;
-            $.each(EditarFotosPorConcepto[0].files, function (k, file) {
-                img = "";
-                if (nimg === 3) {
-                    img += '<div class="col-12" align="center"><br><hr><br></div>';
-                    nimg = 0;
-                }
-                nimg++;
-                var frm = new FormData();
-                frm.append('IdTrabajo', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-                frm.append('IdTrabajoDetalle', mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val());
-                frm.append('Observaciones', file.name);
-                frm.append('FOTO', file);
-                $.ajax({
-                    url: master_url + 'onAgregarFotosEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    onReloadFotosXConcepto(mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").val(), mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").val());
-                }).fail(function (x, y, z) {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
-                    console.log(x, y, z);
-                }).always(function () {
                 });
             });
         });
@@ -1927,50 +1618,6 @@
         });
     }
     /*Multimedia*/
-    function getFotosXConceptoID(IDX, IDT) {
-        mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
-        mdlTrabajoEditarFotosPorConcepto.find("#IdTrabajoDetalle").addClass("d-none").val(IDX);
-        mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("");
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'CARGANDO FOTOS...'
-        });
-        $.ajax({
-            url: master_url + 'getTrabajoFotosDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX,
-                IDT: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var picthumbnail = "";
-                var nimg = 0;
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 4) {
-                        picthumbnail += '<div class="col-12" align="center"></div>';
-                        nimg = 0;
-                    }
-                    picthumbnail += '<div class="col-3"><div class="thumbnail">' +
-                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
-                            '<div class="pull-right" >' +
-                            '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
-                    mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
-                    nimg++;
-                });
-            } else {
-            }
-        }).fail(function (x, y, z) {
-        }).always(function () {
-            HoldOn.close();
-        });
-        mdlTrabajoEditarFotosPorConcepto.modal('show');
-    }
     function getFotosAntesXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
         mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajoDetalle").addClass("d-none").val(IDX);
@@ -2140,101 +1787,6 @@
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBELES DE SELECCIONAR UN CONTROL DE TIEMPO', 'danger');
         }
     }
-    function getCroquisXConceptoID(IDX, IDT) {
-        tempDetalle = IDX;
-        mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-        HoldOn.open({
-            theme: 'sk-bounce',
-            message: 'CARGANDO CROQUIS...'
-        });
-        $.ajax({
-            url: master_url + 'getTrabajoCroquisDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: tempDetalle
-            }
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
-                var picthumbnail = "";
-                var nimg = 0;
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 2) {
-                        picthumbnail += '<div class="col-12" align="center"></div>';
-                        nimg = 0;
-                    }
-                    picthumbnail += '<div class="col-6">';
-                    picthumbnail += '<div class="thumbnail">' +
-                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
-                            '<div class="pull-right" >' +
-                            '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
-                    mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
-                    nimg++;
-                });
-            }
-        }).fail(function (x, y, z) {
-        }).always(function () {
-            HoldOn.close();
-        });
-        mdlTrabajoEditarCroquisPorConcepto.modal('show');
-    }
-    function getAnexosXConceptoID(IDX, IDT) {
-        mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
-        mdlTrabajoEditarAnexosPorConcepto.find("#IdTrabajoDetalle").addClass("d-none").val(IDX);
-        mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("Anexos").html("");
-        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO ANEXOS...'
-        });
-        $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX,
-                IDT: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            console.log(data);
-            mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
-            if (data.length > 0) {
-                $.each(data, function (k, v) {
-                    var url_file = base_url + v.Url;
-                    var ext = getExt(url_file);
-                    if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    }
-                });
-            } else {
-                mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
-            }
-        }).fail(function (x, y, z) {
-        }).always(function () {
-            HoldOn.close();
-        });
-        mdlTrabajoEditarAnexosPorConcepto.modal('show');
-    }
     function getAnexosDosXConceptoID(IDX, IDT) {
         mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
         mdlTrabajoEditarAnexosDosPorConcepto.find("#IdTrabajoDetalle").addClass("d-none").val(IDX);
@@ -2287,9 +1839,6 @@
         });
         mdlTrabajoEditarAnexosDosPorConcepto.modal('show');
     }
-    function setFotosEditar(evt) {
-        mdlTrabajoEditarFotosPorConcepto.find("#fFotos").trigger('click');
-    }
     function setFotosAntesEditar(evt) {
         mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos").trigger('click');
     }
@@ -2299,52 +1848,8 @@
     function setFotosProcesoEditar(evt) {
         mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos").trigger('click');
     }
-    function setCroquisEditar(evt) {
-        mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis").trigger('click');
-    }
-    function setAnexosEditar(evt) {
-        mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos").trigger('click');
-    }
     function setAnexosDosEditar(evt) {
         mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos").trigger('click');
-    }
-    function onReloadFotosXConcepto(IDX, IDT) {
-        $.ajax({
-            url: master_url + 'getTrabajoFotosDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX,
-                IDT: IDT
-            }
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("<fieldset></fieldset>");
-                var picthumbnail = "";
-                var nimg = 0;
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 4) {
-                        picthumbnail += '<div class="col-12" align="center"></div>';
-                        nimg = 0;
-                    }
-                    picthumbnail += '<div class="col-3"><div class="thumbnail">' +
-                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
-                            '<div class="pull-right" >' +
-                            '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
-                    mdlTrabajoEditarFotosPorConcepto.find("#Fotos").find("fieldset").append(picthumbnail);
-                    nimg++;
-                });
-            } else {
-                mdlTrabajoEditarFotosPorConcepto.find("#Fotos").html("");
-            }
-            HoldOn.close();
-            getTrabajoDetalleByID(IDT);
-        }).fail(function (x, y, z) {
-        }).always(function () {
-        });
     }
     function onReloadFotosAntesXConcepto(IDX, IDT) {
         $.ajax({
@@ -2491,90 +1996,6 @@
         getDetalleAbiertoByID(IDT);
         HoldOn.close();
     }
-    function onReloadCroquisXConcepto(IDX, IDT) {
-        $.ajax({
-            url: master_url + 'getTrabajoCroquisDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("<fieldset></fieldset>");
-                var picthumbnail = "";
-                var nimg = 0;
-                $.each(data, function (k, v) {
-                    picthumbnail = "";
-                    if (nimg === 2) {
-                        picthumbnail += '<div class="col-12" align="center"></div>';
-                        nimg = 0;
-                    }
-                    picthumbnail += '<div class="col-6"><div class="thumbnail">' +
-                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
-                            '<div class="pull-right" >' +
-                            '<button class="close closeFotos customButtonEliminarFoto"' +
-                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
-                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
-                    mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").find("fieldset").append(picthumbnail);
-                    nimg++;
-                });
-            } else {
-                mdlTrabajoEditarCroquisPorConcepto.find("#Croquis").html("");
-            }
-            getTrabajoDetalleByID(IDT);
-            HoldOn.close();
-        }).fail(function (x, y, z) {
-        }).always(function () {
-        });
-    }
-    function onReloadAnexosXConcepto(IDX, IDT) {
-        $.ajax({url: master_url + 'getTrabajoAnexosDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IDX,
-                IDT: IDT
-            }
-        }).done(function (data, x, jq) {
-            mdlTrabajoEditarAnexosPorConcepto.find("fieldset").find("div#Anexos").html("");
-            if (data.length > 0) {
-                $.each(data, function (k, v) {
-                    var url_file = base_url + v.Url;
-                    var ext = getExt(url_file);
-                    if (ext === "txt" || ext === "dat") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text-o fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "zip" || ext === "rar") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "mp4" || ext === "flv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "doc" || ext === "docx") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else
-                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf-o fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    } else {
-                        mdlTrabajoEditarAnexosPorConcepto.find("#Anexos").append('<div class="col-2" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
-                    }
-                });
-            } else {
-                mdlTrabajoEditarAnexosPorConcepto.find("div#Anexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
-            }
-            getTrabajoDetalleByID(IdMovimiento);
-            HoldOn.close();
-        }).fail(function (x, y, z) {
-        }).always(function () {
-        });
-    }
     function onReloadAnexosDosXConcepto(IDX, IDT) {
         $.ajax({url: master_url + 'getTrabajoAnexosDosDetalleByID',
             type: "POST",
@@ -2622,20 +2043,6 @@
         }).always(function () {
         });
     }
-    function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
-        $.ajax({
-            url: master_url + 'onEliminarFotoXConcepto',
-            type: "POST",
-            data: {ID: IDX, IDT: IdMovimiento}
-        }).done(function (data, x, jq) {
-            onReloadFotosXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
     function onEliminarFotoAntesXConcepto(IDX, IDTD, IDT) {
         HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
         $.ajax({
@@ -2672,35 +2079,6 @@
             data: {ID: IDX}
         }).done(function (data, x, jq) {
             onReloadFotosProcesoXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-    function onEliminarCroquisXID(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
-        $.ajax({
-            url: master_url + 'onEliminarCroquisXID',
-            type: "POST",
-            data: {ID: IDX}
-        }).done(function (data, x, jq) {
-            onReloadCroquisXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-    function onEliminarAnexoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
-        $.ajax({
-            url: master_url + 'onEliminarAnexoXConcepto ',
-            type: "POST",
-            data: {ID: IDX, IDT: IDT}
-        }).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
-            onReloadAnexosXConcepto(IDTD, IDT);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
