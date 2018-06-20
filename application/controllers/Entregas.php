@@ -51,15 +51,6 @@ class Entregas extends CI_Controller {
         }
     }
 
-    public function getMyRecords() {
-        try {
-            $data = $this->entregas_model->getMyRecords();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getEntregaByID() {
         try {
             extract($this->input->post());

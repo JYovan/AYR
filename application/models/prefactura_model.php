@@ -10,7 +10,7 @@ class prefactura_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getMyRecords() {
+    public function getRecords() {
         try {
             $this->db->select("P.ID, "
                     . "P.FechaCreacion AS 'Fecha',"
@@ -25,35 +25,7 @@ class prefactura_model extends CI_Model {
                     . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-info\'>$',FORMAT(P.Importe,2),'</span> ') AS Importe,"
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
                     . "FROM PREFACTURAS P  "
-                    . "INNER JOIN USUARIOS U ON U.ID = P.Usuario_ID WHERE P.ESTATUS in ('Borrador') "
-                    . " ", false);
-
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-            //print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getRecords() {
-        try {
-            $this->db->select("P.ID, P.Movimiento,P.FechaCreacion AS 'Fecha',P.ClienteNombre AS 'Cliente',P.ProyectoIntelisis AS 'ProyectoIntelisis' ,"
-                    . "(CASE WHEN  P.Referencia IS NULL OR P.Referencia =' ' "
-                    . "THEN ' -- ' "
-                    . "ELSE CONCAT('<strong>',P.Referencia,'</strong>')  END) AS 'Referencia', "
-                    . "(CASE WHEN  P.Estatus ='Concluido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','CONCLUIDO','</span>') "
-                    . "WHEN  P.Estatus ='Borrador' THEN CONCAT('<span class=\'badge badge-secondary\'>','BORRADOR','</span>')"
-                    . "ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','Cancelado','</span>') END) AS Estatus ,"
-                    . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-info\'>$',FORMAT(P.Importe,2),'</span> ') AS Importe,"
-                    . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
-                    . "FROM PREFACTURAS P  "
-                    . "INNER JOIN USUARIOS U ON U.ID = P.Usuario_ID WHERE P.ESTATUS in ('Concluido') ", false);
+                    . "INNER JOIN USUARIOS U ON U.ID = P.Usuario_ID WHERE P.ESTATUS in ('Concluido','Borrador') ", false);
 
             $query = $this->db->get();
             /*

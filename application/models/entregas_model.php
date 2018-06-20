@@ -17,35 +17,6 @@ class entregas_model extends CI_Model {
         date_default_timezone_set('America/Mexico_City');
     }
 
-    public function getMyRecords() {
-        try {
-            $this->db->select("E.ID as ID, "
-                    . "(CASE WHEN  E.NoEntrega IS NULL OR E.NoEntrega =' ' THEN ' -- ' ELSE E.NoEntrega  END) AS Entrega, "
-                    . "(CASE WHEN  E.Estatus ='Concluido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','CONCLUIDO','</span>') "
-                    . "WHEN  E.Estatus ='Borrador' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','BORRADOR','</span>')"
-                    . "ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','Cancelado','</span>') END) AS Estatus ,"
-                    . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-info\'>$',FORMAT(E.Importe,2),'</span> ') AS Importe,"
-                    . "Ct.Nombre as Cliente, "
-                    . "concat(u.nombre,' ',u.apellidos) as Usuario "
-                    . "FROM ENTREGAS E  "
-                    . "INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  "
-                    //. "LEFT JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID "
-                    . "INNER JOIN USUARIOS U ON U.ID = E.Usuario_ID WHERE E.ESTATUS in ('Borrador') "
-                    . " ", false);
-
-            $query = $this->db->get();
-            /*
-             * FOR DEBUG ONLY
-             */
-            $str = $this->db->last_query();
-//        print $str;
-            $data = $query->result();
-            return $data;
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getRecords() {
         try {
             $this->db->select("E.ID as ID, "
@@ -59,7 +30,7 @@ class entregas_model extends CI_Model {
                     . "FROM ENTREGAS E  "
                     . "INNER JOIN CLIENTES CT on CT.ID = E.Cliente_ID  "
                     // . "LEFT JOIN CENTROCOSTOS CC on CC.ID = E.CentroCostos_ID "
-                    . "INNER JOIN USUARIOS U ON U.ID = E.Usuario_ID WHERE E.ESTATUS in ('Concluido') ", false);
+                    . "INNER JOIN USUARIOS U ON U.ID = E.Usuario_ID WHERE E.ESTATUS in ('Concluido','Borrador') ", false);
 
             $query = $this->db->get();
             /*

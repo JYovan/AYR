@@ -5,7 +5,6 @@
                 <legend class="float-left">Pedidos del Cliente</legend>
             </div>
             <div class="col-12 col-sm-9" align="right">
-                <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-clipboard-list"></span><br>EN FIRME</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnAutorizacion"><span class="fa fa-check-square "></span><br>POR AUTORIZAR</button>
                 <button type="button" class="btn btn-info btn-sm" id="btnFinalizadosPagados"><span class="fa fa-dollar-sign "></span><br>PAGADOS</button>
@@ -24,6 +23,7 @@
                         <th>Fecha</th>
                         <th>Trabajo Solicitado</th>
                         <th>Estatus</th>
+                        <th>Estatus2</th>
                         <th>Importe</th>
                         <th>Orden C.</th>
                         <th>Fecha Pago</th>
@@ -40,6 +40,7 @@
                         <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por T. Solicitado" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
+                        <th></th>
                         <th></th>
                         <th><input type="text" placeholder="Buscar por O.C." class="form-control form-control-sm"/></th>
                         <th></th>
@@ -245,7 +246,7 @@
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/PedidoCliente/';
-    var verMovs = 'getRecordsEnFirme';
+
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
     var btnAutorizacion = $("#btnAutorizacion");
@@ -267,35 +268,33 @@
     var tblRegistrosX = $("#tblRegistros"), Registros;
     $(document).ready(function () {
         btnVerMisMovimientos.on("click", function () {
-            verMovs = 'getRecordsEnFirme';
-            getRecords();
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Pedido|Presupuesto|Ejecución", true, false).draw();
+            tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar", true, false).draw();
         });
         btnVerTodos.on("click", function () {
-            verMovs = 'getRecords';
-            getRecords();
+            tblRegistrosX.DataTable().columns().search('').draw();
         });
 
         btnAutorizacion.on("click", function () {
-            verMovs = 'getRecordsAutorizacion';
-            getRecords();
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Autorización", true, false).draw();
+            tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
         btnFinalizadosPagados.on("click", function () {
-            verMovs = 'getRecordsFinalizadosPagados';
-            getRecords();
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Pagado", true, false).draw();
+            tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
 
         btnFinalizadosNoPagados.on("click", function () {
-            verMovs = 'getRecordsFinalizadosNoPagados';
-            getRecords();
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Finalizado", true, false).draw();
+            tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
         /*Modal de reportes*/
         btnImprimirReportesEditarTrabajo.on("click", function () {
             mdlReportesEditarTrabajo.modal('show');
-        });
-        //Limpia los filtros creados
-        btnCleanFilter.on("click", function () {
-            Registros.state.clear();
-            window.location.reload();
         });
         btnNuevo.on("click", function () {
             menuTablero.addClass("d-none");
@@ -481,7 +480,7 @@
             "dom": 'Bfrtip',
             buttons: buttons,
             "ajax": {
-                "url": master_url + verMovs,
+                "url": master_url + 'getRecords',
                 "dataType": "json",
                 "dataSrc": ""
             },
@@ -492,12 +491,20 @@
                 {"data": "Fecha"},
                 {"data": "TrabajoSolicitado"},
                 {"data": "Estatus"},
+                {"data": "Estatus2"},
                 {"data": "Importe"},
                 {"data": "OrdenCompra"},
                 {"data": "FechaPago"},
                 {"data": "FolioFactura"},
                 {"data": "Usuario"}
 
+            ],
+            "columnDefs": [
+                {
+                    "targets": [6],
+                    "visible": false,
+                    "searchable": true
+                }
             ],
             language: lang,
             "autoWidth": true,
@@ -512,7 +519,13 @@
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
-            ]
+            ],
+            "initComplete": function (settings, json) {
+                tblRegistrosX.DataTable().columns().search('').draw();
+                tblRegistrosX.DataTable().column(5).search("Pedido|Presupuesto|Ejecución", true, false).draw();
+                tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar", true, false).draw();
+                HoldOn.close();
+            }
         });
         $('#tblRegistros_filter input[type=search]').focus();
 
@@ -726,7 +739,7 @@
             });
 
         });
-        HoldOn.close();
+
     }
     function disableFields() {
         $('#CapturaDatos').find('input,textarea,select').attr('disabled', true);

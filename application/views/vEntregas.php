@@ -5,9 +5,8 @@
                 <legend class="float-left">Entregas</legend>
             </div>
             <div class="col-12 col-sm-9" align="right">
-                <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerEnFirme"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerConcluidos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
@@ -244,9 +243,8 @@
     var master_url = base_url + 'index.php/Entregas/';
     var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
-    var verMovs = 'getMyRecords';
-    var btnVerTodos = $("#btnVerTodos");
-    var btnVerMisMovimientos = $("#btnVerMisMovimientos");
+    var btnVerConcluidos = $("#btnVerConcluidos");
+    var btnVerEnFirme = $("#btnVerEnFirme");
     var pnlDatos = $("#pnlDatos");
     var btnCancelar = $("#btnCancelar");
     var btnGuardar = $("#btnGuardar");
@@ -309,17 +307,13 @@
             }).always(function () {
             });
         });
-        btnCleanFilter.on("click", function () {
-            Registros.state.clear();
-            window.location.reload();
+        btnVerEnFirme.on("click", function () {
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(2).search("Borrador", true, false).draw();
         });
-        btnVerMisMovimientos.on("click", function () {
-            verMovs = 'getMyRecords';
-            getRecords();
-        });
-        btnVerTodos.on("click", function () {
-            verMovs = 'getRecords';
-            getRecords();
+        btnVerConcluidos.on("click", function () {
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(2).search("Concluido", true, false).draw();
         });
         btnImprimirReportesEditarEntrega.on("click", function () {
             mdlReportesEditarEntrega.modal('show');
@@ -486,6 +480,7 @@
             menuTablero.removeClass("d-none");
             pnlDatos.addClass("d-none");
             pnlDetalleEditarEntrega.addClass('d-none');
+            Registros.ajax.reload();
         });
         btnGuardar.click(function () {
             isValid('pnlDatos');
@@ -500,7 +495,7 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        Registros.ajax.reload();
+                        //Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
@@ -517,7 +512,7 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        Registros.ajax.reload();
+                        //Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                         nuevo = false;
                         IdMovimiento = parseInt(data);
@@ -642,10 +637,7 @@
     });
     IdMovimiento = 0;
     function getRecords() {
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
+        HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblRegistros')) {
             tblRegistrosX.DataTable().destroy();
@@ -654,7 +646,7 @@
             "dom": 'Bfrtip',
             buttons: buttons,
             "ajax": {
-                "url": master_url + verMovs,
+                "url": master_url + 'getRecords',
                 "dataType": "json",
                 "dataSrc": ""
             },
@@ -681,6 +673,8 @@
                 [0, 'desc']/*ID*/
             ],
             "initComplete": function (settings, json) {
+                tblRegistrosX.DataTable().columns().search('').draw();
+                tblRegistrosX.DataTable().column(2).search("Borrador", true, false).draw();
                 HoldOn.close();
             }
         });

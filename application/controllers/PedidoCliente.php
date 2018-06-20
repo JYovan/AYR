@@ -47,45 +47,9 @@ class PedidoCliente extends CI_Controller {
         }
     }
 
-    public function getRecordsAutorizacion() {
-        try {
-            $data = $this->pedidocliente_model->getRecordsAutorizacion();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getRecordsFinalizadosPagados() {
-        try {
-            $data = $this->pedidocliente_model->getRecordsFinalizadosPagados();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getRecordsFinalizadosNoPagados() {
-        try {
-            $data = $this->pedidocliente_model->getRecordsFinalizadosNoPagados();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
     public function getRecords() {
         try {
             $data = $this->pedidocliente_model->getRecords();
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getRecordsEnFirme() {
-        try {
-            $data = $this->pedidocliente_model->getRecordsEnFirme();
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

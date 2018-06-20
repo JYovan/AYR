@@ -5,14 +5,13 @@
                 <legend class="float-left">Prefacturas</legend>
             </div>
             <div class="col-12 col-sm-9" align="right">
-                <button type="button" class="btn btn-warning btn-sm" id="btnCleanFilter"><span class="fa fa-eraser " ></span><br>LIMPIAR FILTROS</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerEnFirme"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm" id="btnVerConcluidos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
         <div id="Registros" class="row">
-            <table id="tblRegistros" class="table table-sm display " style="width:100%">
+            <table id="tblRegistros" class="table table-sm " style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -240,7 +239,7 @@
                 </div>
                 <br>
                 <div id="RegistrosTrabajos">
-                    <table id="tblRegistrosTrabajos" class="table table-sm " style="width:100%">
+                    <table id="tblRegistrosTrabajos" class="table table-sm display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Folio Interno</th>
@@ -278,9 +277,8 @@
     var master_url = base_url + 'index.php/Prefacturas/';
     var menuTablero = $('#MenuTablero');
     var btnNuevo = $("#btnNuevo");
-    var verMovs = 'getMyRecords';
-    var btnVerTodos = $("#btnVerTodos");
-    var btnVerMisMovimientos = $("#btnVerMisMovimientos");
+    var btnVerConcluidos = $("#btnVerConcluidos");
+    var btnVerEnFirme = $("#btnVerEnFirme");
     var pnlDatos = $("#pnlDatos");
     var btnCancelar = $("#btnCancelar");
     var btnGuardar = $("#btnGuardar");
@@ -340,17 +338,13 @@
             }).always(function () {
             });
         });
-        btnCleanFilter.on("click", function () {
-            Registros.state.clear();
-            window.location.reload();
+        btnVerEnFirme.on("click", function () {
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Borrador", true, false).draw();
         });
-        btnVerMisMovimientos.on("click", function () {
-            verMovs = 'getMyRecords';
-            getRecords();
-        });
-        btnVerTodos.on("click", function () {
-            verMovs = 'getRecords';
-            getRecords();
+        btnVerConcluidos.on("click", function () {
+            tblRegistrosX.DataTable().columns().search('').draw();
+            tblRegistrosX.DataTable().column(5).search("Concluido", true, false).draw();
         });
         btnExportarIntelisis.on("click", function () {
             swal({
@@ -501,6 +495,7 @@
             menuTablero.removeClass("d-none");
             pnlDatos.addClass("d-none");
             pnlDetalleEditarPrefactura.addClass('d-none');
+            Registros.ajax.reload();
         });
         btnGuardar.click(function () {
             isValid('pnlDatos');
@@ -515,8 +510,8 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
+                        //Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -531,7 +526,7 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        Registros.ajax.reload();
+                        //Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                         nuevo = false;
                         IdMovimiento = parseInt(data);
@@ -667,7 +662,7 @@
             "dom": 'Bfrtip',
             buttons: buttons,
             "ajax": {
-                "url": master_url + verMovs,
+                "url": master_url + 'getRecords',
                 "dataType": "json",
                 "dataSrc": ""
             },
@@ -695,6 +690,8 @@
                 [0, 'desc']/*ID*/
             ],
             "initComplete": function (settings, json) {
+                tblRegistrosX.DataTable().columns().search('').draw();
+                tblRegistrosX.DataTable().column(5).search("Borrador", true, false).draw();
                 HoldOn.close();
             }
         });
