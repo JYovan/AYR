@@ -609,9 +609,7 @@
                                     <th>Precio</th>
                                     <th>Importe</th>
                                     <th>Moneda</th>
-                                    <th>Fotos</th>
-                                    <th>Croquis</th>
-                                    <th>Anexos</th>
+                                    <th>Adjuntos</th>
                                     <th>PCID</th>
                                     <th>Editar</th>
                                 </tr>
@@ -631,8 +629,6 @@
                                     <th></th>
                                     <th></th>
 
-                                    <th></th>
-                                    <th></th>
                                     <th></th>
 
                                     <th></th>
@@ -681,7 +677,6 @@
                     </div>
                 </div>
                 <br>
-
                 <div id="RegistrosConceptosPreciario">
                     <table id="tblRegistrosConceptosPreciario" class="table table-sm " style="width:100%">
                         <thead>
@@ -700,6 +695,104 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Adjuntos" class="modal  modal-fullscreen animated slideInDown">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adjuntos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row d-none">
+                    <div class="col">
+                        <input type="text" readonly="" id="IdTrabajo" name="IdTrabajo"  class="form-control">
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly="" id="IdTrabajoDetalle" name="IdTrabajoDetalle"  class="form-control">
+                    </div>
+                </div>
+                <div class="accordion" id="AccordionAdjuntos">
+                    <div class="card  border-0">
+                        <div class="" id="cardFotos">
+                            <h5 class="mb-0">
+                                <a id="load_fotos" class="btn btn-info btn-block text-light collapsed mb-3" data-toggle="collapse" data-target="#Fotos" aria-expanded="true" aria-controls="Fotos">
+                                    <span class="fa fa-camera fa-lg"></span> Fotos
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="Fotos" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntos">
+                            <div class="card-body">
+                                <fieldset>
+                                    <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotos" name="fFotos[]" multiple="" class="d-none">
+                                    <div class="col-12" id="" align="center"  onclick="setFotosEditar(this)">
+                                        <div class="file_drag_area"><p> Arrastre aquí los archivos a subir ó click para seleccionarlos</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12"><br><br></div>
+                                    <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotos"></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-0">
+                        <div class="" id="cardCroquis">
+                            <h5 class="mb-0">
+                                <a id="load_croquis"  class="btn btn-info btn-block text-light collapsed  mb-3"  data-toggle="collapse" data-target="#Croquis" aria-expanded="false" aria-controls="Croquis">
+                                    <span class="fa fa-map fa-lg"></span> Croquis
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="Croquis" class="collapse" aria-labelledby="cardCroquis" data-parent="#AccordionAdjuntos">
+                            <div class="card-body">
+                                <fieldset>
+                                    <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="d-none">                                    
+                                    <div class="col-12" id="" align="center"  onclick="setCroquisEditar(this)">
+                                        <div class="file_drag_area"><p> Arrastre aquí los archivos a subir ó click para seleccionarlos</p>
+                                        </div>
+                                    </div>                                    
+                                    <div class="col-12"><br><br></div>
+                                    <div class="col-12" style="height: 350px; overflow-y: auto;"  id="vCroquis"></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card  border-0">
+                        <div class="" id="cardAnexos">
+                            <h5 class="mb-0">
+                                <a id="load_anexos" class="btn btn-info btn-block text-light collapsed"  data-toggle="collapse" data-target="#Anexos" aria-expanded="false" aria-controls="Anexos">
+                                    <span class="fa fa-paperclip fa-lg"></span> Anexos
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="Anexos" class="collapse" aria-labelledby="cardAnexos" data-parent="#AccordionAdjuntos">
+                            <div class="card-body">
+                                <fieldset>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-12 d-none">
+                                        <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="col-12" id="" align="center"  onclick="setAnexosEditar(this)">
+                                        <div class="file_drag_area"><p></p><p> Arrastre aquí los archivos a subir </p><p>ó </p><p>click para seleccionarlos</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-12"  style="height: 350px; overflow-y: auto;" id="vAnexos"></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -736,12 +829,10 @@
     var btnEditarCancelarNuevoGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
 
     /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
-    var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
-    var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
-    var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
-    var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
-    var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
-    var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
+    var mdlAdjuntos = $("#mdlAdjuntos");
+    var EditarFotosPorConcepto = mdlAdjuntos.find("#fFotos");
+    var EditarCroquisPorConcepto = mdlAdjuntos.find("#fCroquis");
+    var EditarAnexosPorConcepto = mdlAdjuntos.find("#fAnexos");
     /******ABIERTO*/
     var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find('#btnNuevoConceptoAbierto');
     var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
@@ -759,10 +850,6 @@
     var mdlTrabajoEditarFotosDespuesPorConcepto = $("#mdlTrabajoEditarFotosDespuesPorConcepto");
     var mdlTrabajoEditarFotosProcesoPorConcepto = $("#mdlTrabajoEditarFotosProcesoPorConcepto");
     var mdlTrabajoEditarAnexosDosPorConcepto = $("#mdlTrabajoEditarAnexosDosPorConcepto");
-    var EditarAnexosDosPorConcepto = mdlTrabajoEditarAnexosDosPorConcepto.find("#fAnexos");
-    var EditarFotosAntesPorConcepto = mdlTrabajoEditarFotosAntesPorConcepto.find("#fFotos");
-    var EditarFotosDespuesPorConcepto = mdlTrabajoEditarFotosDespuesPorConcepto.find("#fFotos");
-    var EditarFotosProcesoPorConcepto = mdlTrabajoEditarFotosProcesoPorConcepto.find("#fFotos");
     /*Reportes*/
     var btnImprimirReportes = $("#btnImprimirReportes");
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
@@ -778,6 +865,234 @@
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
+
+        mdlAdjuntos.on('hidden.bs.modal', function (e) {
+            mdlAdjuntos.find("#Fotos, #Croquis, #Anexos").removeClass("show");
+            mdlAdjuntos.find("#vFotos, #vCroquis, #vAnexos").html("");
+            ConceptosPresupuesto.ajax.reload();
+        });
+
+        /*ANEXOS*/
+        mdlAdjuntos.find("#load_anexos").click(function () {
+            onReloadAnexosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+        });
+
+        mdlAdjuntos.find("#fAnexos").change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(mdlAdjuntos.find("#fAnexos")[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('ANEXOS', file);
+                $.ajax({
+                    url: master_url + 'onAgregarAnexosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadAnexosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+        });
+
+        mdlAdjuntos.find('#Anexos').find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('ANEXOS', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarAnexosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadAnexosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL ANEXOS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*FIN ANEXOS*/
+
+        /*CROQUIS*/
+        mdlAdjuntos.find("#load_croquis").click(function () {
+            onReloadCroquisXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+        });
+
+        mdlAdjuntos.find("#fCroquis").change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var imageType = /image.*/;
+            var img = "";
+            var nimg = 0;
+            $.each(mdlAdjuntos.find("#fCroquis")[0].files, function (k, file) {
+                console.log(file.name);
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('CROQUIS', file);
+                $.ajax({
+                    url: master_url + 'onAgregarCroquisEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadCroquisXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+        });
+
+        mdlAdjuntos.find('#Croquis').find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('CROQUIS', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarCroquisEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadCroquisXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR EL CROQUIS: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
+        /*FIN CROQUIS*/
+
+        /*FOTOS*/
+        mdlAdjuntos.find("#load_fotos").click(function () {
+            onReloadFotosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+        });
+
+        mdlAdjuntos.find("#fFotos").change(function () {
+            console.log('CONCEPTOS', mdlAdjuntos.find("#fFotos")[0].files);
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(mdlAdjuntos.find("#fFotos")[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+                frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            });
+        });
+
+        mdlAdjuntos.find('#Fotos').find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlAdjuntos.find("#IdTrabajo").val());
+            frm.append('IdTrabajoDetalle', mdlAdjuntos.find("#IdTrabajoDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        /*FIN FOTOS*/
+
+        /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
+        $('.file_drag_area').on('dragover', function () {
+            $(this).addClass('file_drag_over');
+            return false;
+        });
+        $('.file_drag_area').on('dragleave', function () {
+            $(this).removeClass('file_drag_over');
+            return false;
+        });
+
         pnlDatos.find("#Cliente_ID").change(function () {
             pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
             pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
@@ -1169,7 +1484,7 @@
                     }
                 }).done(function (data, x, jq) {
                     var trabajo = data[0];
-                    console.log('TRABAJO', data, "\n")
+                    console.log('TRABAJO', data, "\n");
                     pnlDatos.find("input").not('[type=radio]').val('');
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
@@ -1305,74 +1620,74 @@
                         pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
                     }
                     menuTablero.addClass("d-none");
-//                    console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
-//                    if (trabajo.Estatus === 'Concluido' && trabajo.EstatusTrabajo !== 'Pagado' && trabajo.Estatus !== 'Entregado') {
-//                        tBtnEditarConcluir.prop('checked', true);
-//                        btnModificar.addClass('d-none');
-//                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-//                        btnEliminar.attr("disabled", true);
-//                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-//                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-//                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-//                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
-//                        tBtnEditarConcluir.prop('checked', true);
-//                        btnModificar.addClass('d-none');
-//                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-//                        btnEliminar.attr("disabled", true);
-//                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-//                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-//                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-//                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
-//                        if (TipoAcceso === 'SUPER ADMINISTRADOR') {
-//                            tBtnEditarConcluir.prop('checked', true);
-//                            btnModificar.addClass('d-none');
-//                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-//                            btnEliminar.attr("disabled", true);
-//                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-//                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-//                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-//                        } else {
-//                            tBtnEditarConcluir.prop('disabled', true);
-//                            tBtnEditarConcluir.prop('checked', true);
-//                            btnModificar.addClass('d-none');
-//                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-//                            btnEliminar.attr("disabled", true);
-//                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-//                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-//                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-//                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-//                        }
-//                    } else if (trabajo.Estatus === 'Cancelado') {
-//                        tBtnEditarConcluir.addClass('d-none');
-//                        btnModificar.addClass('d-none');
-//                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-//                        btnEliminar.attr("disabled", true);
-//                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-//                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-//                    } else {
-//                        tBtnEditarConcluir.prop('checked', false);
-//                        btnModificar.removeClass('d-none');
-//                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-//                        btnEliminar.attr("disabled", false);
-//                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
-//                        pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-//                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
+                    //                    console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
+                    //                    if (trabajo.Estatus === 'Concluido' && trabajo.EstatusTrabajo !== 'Pagado' && trabajo.Estatus !== 'Entregado') {
+                    //                        tBtnEditarConcluir.prop('checked', true);
+                    //                        btnModificar.addClass('d-none');
+                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    //                        btnEliminar.attr("disabled", true);
+                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                    //                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    //                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
+                    //                        tBtnEditarConcluir.prop('checked', true);
+                    //                        btnModificar.addClass('d-none');
+                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    //                        btnEliminar.attr("disabled", true);
+                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                    //                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    //                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
+                    //                        if (TipoAcceso === 'SUPER ADMINISTRADOR') {
+                    //                            tBtnEditarConcluir.prop('checked', true);
+                    //                            btnModificar.addClass('d-none');
+                    //                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    //                            btnEliminar.attr("disabled", true);
+                    //                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                    //                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                    //                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    //                        } else {
+                    //                            tBtnEditarConcluir.prop('disabled', true);
+                    //                            tBtnEditarConcluir.prop('checked', true);
+                    //                            btnModificar.addClass('d-none');
+                    //                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    //                            btnEliminar.attr("disabled", true);
+                    //                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                    //                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
+                    //                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
+                    //                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
+                    //                        }
+                    //                    } else if (trabajo.Estatus === 'Cancelado') {
+                    //                        tBtnEditarConcluir.addClass('d-none');
+                    //                        btnModificar.addClass('d-none');
+                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
+                    //                        btnEliminar.attr("disabled", true);
+                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
+                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
+                    //                    } else {
+                    //                        tBtnEditarConcluir.prop('checked', false);
+                    //                        btnModificar.removeClass('d-none');
+                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
+                    //                        btnEliminar.attr("disabled", false);
+                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
+                    //                        pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
+                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
                     //                    }
                     //getImporteTotalDelTrabajoByID(trabajo.ID);
                     getTrabajoDetalleByID(IdMovimiento);
-//                    getDetalleAbiertoByID(trabajo.ID);
+                    //                    getDetalleAbiertoByID(trabajo.ID);
                     //                    getDetalleCajerosByID(trabajo.ID);
                     pnlDatos.removeClass("d-none");
                     pnlDetalleTrabajo.removeClass("d-none");
@@ -1422,9 +1737,7 @@
                 {"data": "Precio"},
                 {"data": "Importe"},
                 {"data": "Moneda"},
-                {"data": "Fotos"},
-                {"data": "Croquis"},
-                {"data": "Anexos"},
+                {"data": "Adjuntos"},
                 {"data": "PCID"},
                 {"data": "Editar"}
             ],
@@ -1448,7 +1761,7 @@
                     "searchable": false
                 },
                 {
-                    "targets": [12],
+                    "targets": [10],
                     "visible": false,
                     "searchable": false
                 }
@@ -1493,19 +1806,12 @@
                             /*MONEDA*/
                             c.addClass('Moneda');
                             break;
+                            break;
                         case 8:
-                            /*FOTOS*/
-                            c.addClass('Fotos');
-                            break;
-                        case 9:
-                            /*CROQUIS*/
-                            c.addClass('Croquis');
-                            break;
-                        case 10:
                             /*ANEXOS*/
                             c.addClass('Anexos');
                             break;
-                        case 11:
+                        case 9:
                             /*ANEXOS*/
                             c.addClass('Editar');
                             break;
@@ -2042,6 +2348,172 @@
         win.document.write('<img src="' + url + '" onload="window.print();window.close()" />');
         win.focus();
     }
+
+    var mdlAdjuntos = $("#Adjuntos");
+    function getAdjuntosByID(IDX, IDXX) {
+        mdlAdjuntos.find("#IdTrabajo").val(IDXX);
+        mdlAdjuntos.find("#IdTrabajoDetalle").val(IDX);
+        $.getJSON(master_url + 'getTotalFotosCroquisAnexos', {ID: IDXX, IDD: IDX}).done(function (data, x, jq) {
+            var x = data[0];
+            mdlAdjuntos.find("#load_fotos").html('<span class="fa fa-camera fa-lg"></span> Fotos (' + x.FOTOS + ')');
+            mdlAdjuntos.find("#load_croquis").html('<span class="fa fa-map fa-lg"></span> Croquis (' + x.CROQUIS + ')');
+            mdlAdjuntos.find("#load_anexos").html('<span class="fa fa-paperclip fa-lg"></span> Anexos (' + x.ANEXOS + ')');
+        }).fail(function (x, y, z) {
+            console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
+        }).always(function () {
+            mdlAdjuntos.modal('show');
+        });
+    }
+    function setFotosEditar(evt) {
+        mdlAdjuntos.find("#fFotos").trigger('click');
+    }
+    function setCroquisEditar(evt) {
+        mdlAdjuntos.find("#fCroquis").trigger('click');
+    }
+    function setAnexosEditar(evt) {
+        mdlAdjuntos.find("#fAnexos").trigger('click');
+    }
+
+    function onReloadCroquisXConcepto(IDX, IDT) {
+        $.post(master_url + 'getTrabajoCroquisDetalleByID', {ID: IDX}).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlAdjuntos.find("#vCroquis").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(JSON.parse(data), function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 2) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-4"><div class="thumbnail">' +
+                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarCroquisXID(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                    mdlAdjuntos.find("#vCroquis").find("div.row").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlAdjuntos.find("#vCroquis").html("");
+            }
+            getTrabajoDetalleByID(IDT);
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            var total_croquis = mdlAdjuntos.find("#vCroquis").find("div.thumbnail").length;
+            mdlAdjuntos.find("#load_croquis").html('<span class="fa fa-map fa-lg"></span> Croquis (' + total_croquis + ')');
+        });
+    }
+    function onReloadAnexosXConcepto(IDX, IDT) {
+        $.post(master_url + 'getTrabajoAnexosDetalleByID', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
+            mdlAdjuntos.find("#vAnexos").html("<div class=\"row\"></div>");
+            if (data.length > 0) {
+                $.each(JSON.parse(data), function (k, v) {
+                    var url_file = base_url + v.Url;
+                    var ext = getExt(url_file);
+                    if (ext === "txt" || ext === "dat") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "zip" || ext === "rar") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "mp4" || ext === "flv") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "doc" || ext === "docx") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "xls" || ext === "xlsx" || ext === "csv") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    } else {
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-4" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                    }
+                });
+            } else {
+                mdlAdjuntos.find("div#vAnexos").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
+            }
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            var total_anexos = mdlAdjuntos.find("#vAnexos").find("div.row a").length;
+            mdlAdjuntos.find("#load_anexos").html('<span class="fa fa-paperclip fa-lg"></span> Anexos (' + total_anexos + ')');
+        });
+    }
+
+    function onReloadFotosXConcepto(IDX, IDT) {
+        $.post(master_url + 'getTrabajoFotosDetalleByID', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlAdjuntos.find("#vFotos").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(JSON.parse(data), function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-4"><div class="thumbnail">' +
+                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                    mdlAdjuntos.find("#vFotos").find("div.row").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlAdjuntos.find("#vFotos").html("");
+            }
+            HoldOn.close();
+            getTrabajoDetalleByID(IDT);
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            var total_fotos = mdlAdjuntos.find("#vFotos").find("div.thumbnail").length;
+            mdlAdjuntos.find("#load_fotos").html('<span class="fa fa-camera fa-lg"></span> Fotos (' + total_fotos + ')');
+        });
+    }
+
+    function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.post(master_url + 'onEliminarFotoXConcepto', {ID: IDX, IDT: IdMovimiento}).done(function (data, x, jq) {
+            onReloadFotosXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function onEliminarAnexoXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
+        $.post(master_url + 'onEliminarAnexoXConcepto ', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
+            onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
+            onReloadAnexosXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+
+    function onEliminarCroquisXID(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
+        $.post(master_url + 'onEliminarCroquisXID', {ID: IDX}).done(function (data, x, jq) {
+            onReloadCroquisXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
 </script>
 <style>
     td span.badge{
@@ -2056,5 +2528,27 @@
     }
     .hasItems{
         color: #18BC9C !important;
+    }
+    /*Drag and drop*/
+    .file_drag_area  
+    {  
+        background: #f8f8f8;
+        border: 5px dashed #ddd;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 18px;
+        cursor: pointer;
+        position: relative;
+        font-size: 16px;
+    } 
+    .file_drag_area:hover  
+    {  
+        border-color:#002c4c !important;
+    }
+    .file_drag_over{  
+        color:#B0B0B0;  
+        border-color:#002c4c;  
     }
 </style>

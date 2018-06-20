@@ -76,21 +76,7 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<span class=\'badge badge-danger\'>",TD.Moneda,"</span>") '
                     . 'ELSE CONCAT("<span class=\'\'>",TD.Moneda,"</span>") '
                     . 'END) AS "Moneda", '
-                    . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID  )>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera fa-lg  hasItems\" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajoDetalle = TD.ID AND TDF.IdTrabajo = TD.Trabajo_ID),")")'
-                    . 'ELSE CONCAT("<span class=\"fa fa-camera fa-lg \" onclick=\"getFotosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
-                    . 'END) AS Fotos, '
-                    . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID)> 0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-map fa-lg  hasItems\" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetallecroquis AS TDCRO WHERE TDCRO.IdTrabajoDetalle = TD.ID),")") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-map fa-lg \" onclick=\"getCroquisXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
-                    . 'END) AS Croquis, '
-                    . '(CASE '
-                    . 'WHEN (SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID )>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-paperclip fa-lg  hasItems\" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM trabajodetalleanexos AS TDANE WHERE TDANE.IdTrabajoDetalle = TD.ID AND TDANE.IdTrabajo = TD.Trabajo_ID ),")") '
-                    . 'ELSE CONCAT("<span class=\"fa fa-paperclip fa-lg \" onclick=\"getAnexosXConceptoID(",TD.ID,",",TD.Trabajo_ID,")\"></span>") '
-                    . 'END) AS Anexos, '
+                    . 'CONCAT("<span class=\"fa fa-paperclip fa-lg \" onclick=\"getAdjuntosByID(",TD.ID,",",TD.Trabajo_ID,")\"></span>")  AS Adjuntos, '
                     //   . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar,'
                     . 'TD.PreciarioConcepto_ID AS "PCID",'
                     . 'CASE WHEN TD.Moneda = "MXN" THEN
@@ -154,6 +140,16 @@ class trabajo_model extends CI_Model {
             $data = $query->result();
             return $data;
         } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getTotalFotosCroquisAnexos($ID, $IDD) {
+        try {
+            return $this->db->select("(SELECT COUNT(TDF.ID) FROM trabajodetallefotos AS TDF WHERE TDF.IdTrabajo = $ID AND TDF.IdTrabajoDetalle = $IDD) AS FOTOS,
+(SELECT COUNT(TDC.ID) FROM trabajodetallecroquis AS TDC WHERE TDC.IdTrabajo = $ID AND TDC.IdTrabajoDetalle = $IDD) AS CROQUIS,
+(SELECT COUNT(TDA.ID) FROM trabajodetalleanexos AS TDA WHERE TDA.IdTrabajo = $ID AND TDA.IdTrabajoDetalle = $IDD) AS ANEXOS", false)->get()->result();
+        } catch (Exception $ex) {
             echo $exc->getTraceAsString();
         }
     }
