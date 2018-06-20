@@ -193,14 +193,17 @@
             </div>
             <div class="modal-body">
                 <fieldset>
-                    <div class="col-md-12" align="right">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox float-right">
-                                <input type="checkbox" class="custom-control-input float-right" id="chkMultiple" >
-                                <label class="custom-control-label" for="chkMultiple"> <h6>Seleccionar Varios</h6></label>
+                    <div class="row">
+                        <div class="col-md-12" align="right">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox float-right">
+                                    <input type="checkbox" class="custom-control-input float-right" id="chkMultiple" >
+                                    <label class="custom-control-label" for="chkMultiple"> <h6>Seleccionar Varios</h6></label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div id="RegistrosTrabajos">
                         <table id="tblRegistrosTrabajos" class="table table-sm " style="width:100%">
                             <thead>
@@ -785,6 +788,7 @@
         });
     }
     function getTrabajosControlByClienteXClasificacion(Cliente_ID) {
+        mdlSeleccionarTrabajosEditar.modal('show');
         HoldOn.open({
             theme: 'sk-cube',
             message: 'CARGANDO...'
@@ -836,7 +840,7 @@
     }
     function onSeleccionarTrabajo(json) {
         if (parseInt(json.length) > 0) {
-            mdlSeleccionarTrabajosEditar.modal('show');
+
             $('#tblRegistrosTrabajos_filter input[type=search]').focus();
 
             $('#tblRegistrosTrabajos tfoot th').each(function () {

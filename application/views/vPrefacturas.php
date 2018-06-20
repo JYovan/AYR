@@ -228,7 +228,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <fieldset>
+                <div class="row">
                     <div class="col-md-12" align="right">
                         <div class="form-group">
                             <div class="custom-control custom-checkbox float-right">
@@ -237,7 +237,8 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
+                </div>
+                <br>
                 <div id="RegistrosTrabajos">
                     <table id="tblRegistrosTrabajos" class="table table-sm " style="width:100%">
                         <thead>
@@ -800,6 +801,7 @@
         });
     }
     function getTrabajosEntregadosParaPrefactura() {
+        mdlSeleccionarEntregasEditar.modal('show');
         HoldOn.open({
             theme: 'sk-cube',
             message: 'CARGANDO...'
@@ -850,7 +852,7 @@
     }
     function onSeleccionarTrabajo(json) {
         if (parseInt(json.length) > 0) {
-            mdlSeleccionarEntregasEditar.modal('show');
+
             $('#tblRegistrosTrabajos_filter input[type=search]').focus();
 
             $('#tblRegistrosTrabajos tfoot th').each(function () {
