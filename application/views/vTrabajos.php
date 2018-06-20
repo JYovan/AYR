@@ -37,7 +37,7 @@
                     <tr>
                         <th><input type="text" placeholder="Buscar por ID" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Folio" class="form-control form-control-sm"/></th>
-                        <th><input type="text" placeholder="Buscar por Estatus2" class="form-control form-control-sm"/></th>
+                        <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Estatus" class="form-control form-control-sm"/></th>
                         <th><input type="text" placeholder="Buscar por Fecha" class="form-control form-control-sm"/></th>
 
@@ -708,6 +708,7 @@
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
+    var IdMovimiento = 0;
     var btnNuevo = $("#btnNuevo");
     var btnVerTodos = $("#btnVerTodos");
     var btnVerMisMovimientos = $("#btnVerMisMovimientos");
@@ -769,6 +770,8 @@
     var tblTrabajos = $("#tblTrabajos"), Trabajos;
     var tblConceptosPresupuesto = $("#tblConceptosPresupuesto"), ConceptosPresupuesto;
     var tblRegistrosConceptosPreciario = $("#tblRegistrosConceptosPreciario"), RegistrosConceptosPreciario;
+    var ReemplazaConcepto = false;
+    var CantidadReemplaza, IdReemplaza;
 
     $(document).ready(function () {
         getRecords();
@@ -977,6 +980,7 @@
             if (!nuevo) {
                 var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
                 if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+                    ReemplazaConcepto = false;
                     getConceptosPreciarioByPreciario(Preciario_ID);
                 } else {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
@@ -986,7 +990,6 @@
             }
         });
         tblRegistrosConceptosPreciario.find('tbody').on('click', 'tr', function () {
-
             HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
             var dtm = RegistrosConceptosPreciario.row(this).data();
             RegistrosConceptosPreciario.row($(this)).remove().draw();
@@ -1009,23 +1012,44 @@
                     frm.append('Moneda', dtm.Moneda);
                     frm.append('Concepto', dtm.Descripcion);
                     frm.append('Clave', dtm.Clave);
-                    $.ajax({
-                        url: master_url + 'onAgregarDetalleEditar',
-                        type: "POST",
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        data: frm
-                    }).done(function (data, x, jq) {
-
-                        ConceptosPresupuesto.ajax.reload();
-                        RegistrosConceptosPreciario.ajax.reload();
-                        HoldOn.close();
-                        onNotifyOld('fa fa-check', 'Concepto Agregado', 'success');
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                        HoldOn.close();
-                    });
+                    if (!ReemplazaConcepto) {
+                        $.ajax({
+                            url: master_url + 'onAgregarDetalleEditar',
+                            type: "POST",
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            data: frm
+                        }).done(function (data, x, jq) {
+                            ConceptosPresupuesto.ajax.reload();
+                            RegistrosConceptosPreciario.ajax.reload();
+                            HoldOn.close();
+                            onNotifyOld('fa fa-check', 'Concepto Agregado', 'success');
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                            HoldOn.close();
+                        });
+                    } else {
+                        var NuevoImporte = dtm.Costo * CantidadReemplaza;
+                        frm.append('ID', IdReemplaza);
+                        frm.append('Importe', NuevoImporte);
+                        $.ajax({
+                            url: master_url + 'onReemplazarTrabajoDetalle',
+                            type: "POST",
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            data: frm
+                        }).done(function (data, x, jq) {
+                            ConceptosPresupuesto.ajax.reload();
+                            RegistrosConceptosPreciario.ajax.reload();
+                            HoldOn.close();
+                            onNotifyOld('fa fa-check', 'Concepto Agregado', 'success');
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                            HoldOn.close();
+                        });
+                    }
                 } else {
                     onNotify('fa fa-exclamation fa-lg', 'EL CONCEPTO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
                 }
@@ -1038,7 +1062,6 @@
             });
         });
     });
-    IdMovimiento = 0;
     /*Funciones de tablas*/
     function getRecords() {
         temp = 0;
@@ -1690,6 +1713,17 @@
         });
     }
     /*Edición de Detalle*/
+    function onReemplazarConcepto(IDX, Cantidad) {
+        IdReemplaza = IDX;
+        CantidadReemplaza = Cantidad;
+        var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
+        if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+            ReemplazaConcepto = true;
+            getConceptosPreciarioByPreciario(Preciario_ID);
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+        }
+    }
     function getConceptoCopiarXDetalle(IDX) {
         var id_nuevoConcepto = 0;
         HoldOn.open({theme: "sk-bounce", message: "POR FAVOR, ESPERE..."});
