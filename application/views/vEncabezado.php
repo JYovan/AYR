@@ -126,7 +126,7 @@
         }
         function onNotifyOld(icon, message, type) {
             $.notify({
-                icon: icon,
+                icon: 'fas fa-check',
                 message: message
             }, {
                 type: type,
@@ -137,9 +137,10 @@
                     align: "right"
                 },
                 animate: {
-                    enter: 'animated fadeInUp',
-                    exit: 'animated fadeOutDown'
-                }
+                    enter: 'animated flipInX',
+                    exit: 'animated flipOutX'
+                },
+
             });
         }
         function isValid(p) {

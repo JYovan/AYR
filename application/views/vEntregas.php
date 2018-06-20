@@ -272,6 +272,7 @@
     $(document).ready(function () {
         tblRegistrosTrabajosX.find('tbody').on('click', 'tr', function () {
             var dtm = RegistrosTrabajos.row(this).data();
+            RegistrosTrabajos.row($(this)).remove().draw();
             temp = parseInt(dtm.FolioInterno);
             $.ajax({
                 url: master_url + 'getTrabajoByID',

@@ -64,17 +64,7 @@ class Trabajos extends CI_Controller {
     public function getConceptosXPreciarioID() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getConceptosXPreciarioID($ID);
-            print json_encode($data);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    public function getConceptoByID() {
-        try {
-            extract($this->input->post());
-            $data = $this->trabajo_model->getConceptoByID($ID);
+            $data = $this->trabajo_model->getConceptosXPreciarioID($ID, $TrabajoID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -561,7 +551,6 @@ class Trabajos extends CI_Controller {
     public function onModificarImporteConcepto() {
         try {
             extract($this->input->post());
-
             $data = array(
                 'Importe' => (isset($Importe) && $Importe !== '') ? $Importe : null,
                 'TipoCambio' => (isset($TipoCambio) && $TipoCambio !== '' && $TipoCambio !== 0) ? $TipoCambio : 1,
@@ -953,10 +942,10 @@ class Trabajos extends CI_Controller {
         }
     }
 
-    public function getConceptoByIDSinFormato() {
+    public function getConceptoByID() {
         try {
             extract($this->input->post());
-            $data = $this->trabajo_model->getConceptoByIDSinFormato($ID);
+            $data = $this->trabajo_model->getConceptoByID($ID);
             print json_encode($data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -5873,6 +5862,9 @@ class Trabajos extends CI_Controller {
                     break;
                 case 'MONEDA':
                     $this->db->set('Moneda', strtoupper($row->post('VALOR')))->where('ID', $row->post('ID'))->update('trabajosdetalle');
+                    break;
+                case 'INTEXT':
+                    $this->db->set('IntExt', strtoupper($row->post('VALOR')))->where('ID', $row->post('ID'))->update('trabajosdetalle');
                     break;
             }
         } catch (Exception $exc) {

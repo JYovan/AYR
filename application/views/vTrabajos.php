@@ -662,25 +662,44 @@
     </div>
 </div>
 <!--MODAL DETALLE - NUEVO CONCEPTO-->
-<div id="mdlTrabajoNuevoConceptoEditar" class="modal modalFull animated fadeInUp">
-    <div class="modal-dialog modal-dialogFull">
-        <div class="modal-content modal-contentFull">
+<div id="mdlSeleccionarConceptos" class="modal modal-fullscreen">
+    <div class="modal-dialog ">
+        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Seleccione un Concepto</h5>
+                <h5 class="modal-title">Seleccionar Conceptos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body modal-bodyFull">
-                <fieldset>
+            <div class="modal-body">
+                <div class="row">
                     <div class="col-12" align="right">
-                        <div class="checkbox"><label><input type="checkbox" id="chkMultiple" value="ON"> Varios</label></div>
+                        <div class="custom-control custom-checkbox float-right">
+                            <input type="checkbox" class="custom-control-input float-right" id="chkMultiple" >
+                            <label class="custom-control-label" for="chkMultiple"> <h6>Seleccionar Varios</h6></label>
+                        </div>
                     </div>
-                </fieldset>
-                <div class="col-12" id="ConceptosXPreciarioID"></div>
+                </div>
+                <br>
+
+                <div id="RegistrosConceptosPreciario">
+                    <table id="tblRegistrosConceptosPreciario" class="table table-sm " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Clave</th>
+                                <th>Descripción</th>
+                                <th>Unidad</th>
+                                <th>Costo</th>
+                                <th>Moneda</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-            <div class="modal-footer modal-footerFull">
-                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">TERMINAR</button>
             </div>
         </div>
     </div>
@@ -702,25 +721,19 @@
     var Archivo = pnlDatos.find("#Adjunto");
     var btnArchivo = pnlDatos.find("#btnArchivo");
     var VistaPrevia = pnlDatos.find("#VistaPrevia");
+    var btnEliminar = pnlDatos.find("#btnEliminar");
+    /*Detalle PRESUPUESTO*/
     var pnlDetalleTrabajo = $("#pnlDetalleTrabajo");
     var btnNuevoConcepto = pnlDetalleTrabajo.find("#btnNuevoConcepto");
-    var btnEliminar = pnlDatos.find("#btnEliminar");
-    var btnEliminarConcepto = pnlDetalleTrabajo.find("#btnEliminarConcepto");
+    var mdlSeleccionarConceptos = $("#mdlSeleccionarConceptos");
     var Conceptos = pnlDetalleTrabajo.find("#Conceptos");
-    /*Detalle Normal*/
-    var tBtnConcluir = pnlDatos.find("#Concluir");
-    var tBtnEditarConcluir = pnlDatos.find("#Concluir");
-    var currentDate = new Date();
-    /*EDICION*/
+    /*GENERADOR*/
     var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
     var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
     var btnCancelarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador");
     var btnMoficarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar");
     var btnEditarCancelarNuevoGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
-    var mdlTrabajoNuevoConceptoEditar = $("#mdlTrabajoNuevoConceptoEditar");
-    var ConceptosXPreciarioID = mdlTrabajoNuevoConceptoEditar.find("#ConceptosXPreciarioID");
-    /*BOTON PARA AGREGAR UN NUEVO CONCEPTO*/
-    var btnNuevoConceptoEditar = pnlDetalleTrabajo.find("#btnNuevoConcepto");
+
     /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
     var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
     var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
@@ -755,6 +768,7 @@
     var nuevo = false;
     var tblTrabajos = $("#tblTrabajos"), Trabajos;
     var tblConceptosPresupuesto = $("#tblConceptosPresupuesto"), ConceptosPresupuesto;
+    var tblRegistrosConceptosPreciario = $("#tblRegistrosConceptosPreciario"), RegistrosConceptosPreciario;
 
     $(document).ready(function () {
         getRecords();
@@ -912,7 +926,9 @@
             pnlDetalleTrabajo.find("#Presupuesto").addClass("active show");
             pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
             pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
-            ConceptosPresupuesto.clear().draw();
+            if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
+                ConceptosPresupuesto.clear().draw();
+            }
             pnlDatos.find("input").not('[type=radio]').val('');
             $("input:radio[name='NuevoEstatusTrabajo']").each(function (i) {
                 this.checked = false;
@@ -956,284 +972,77 @@
             });
             Archivo.trigger('click');
         });
+        /*DETALLE*/
+        btnNuevoConcepto.on("click", function () {
+            if (!nuevo) {
+                var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
+                if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+                    getConceptosPreciarioByPreciario(Preciario_ID);
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+                }
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
+            }
+        });
+        tblRegistrosConceptosPreciario.find('tbody').on('click', 'tr', function () {
+
+            HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
+            var dtm = RegistrosConceptosPreciario.row(this).data();
+            RegistrosConceptosPreciario.row($(this)).remove().draw();
+            $.ajax({
+                url: master_url + 'getConceptoByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: dtm.ID
+                }
+            }).done(function (data, x, jq) {
+                if (data[0] !== undefined && data.length > 0) {
+                    var dtm = data[0];
+                    var frm = new FormData();
+                    frm.append('Trabajo_ID', IdMovimiento);
+                    frm.append('PreciarioConcepto_ID', dtm.ID);
+                    frm.append('Renglon', 0);
+                    frm.append('Unidad', dtm.Unidad);
+                    frm.append('Precio', dtm.Costo);
+                    frm.append('Moneda', dtm.Moneda);
+                    frm.append('Concepto', dtm.Descripcion);
+                    frm.append('Clave', dtm.Clave);
+                    $.ajax({
+                        url: master_url + 'onAgregarDetalleEditar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+
+                        ConceptosPresupuesto.ajax.reload();
+                        RegistrosConceptosPreciario.ajax.reload();
+                        HoldOn.close();
+                        onNotifyOld('fa fa-check', 'Concepto Agregado', 'success');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                        HoldOn.close();
+                    });
+                } else {
+                    onNotify('fa fa-exclamation fa-lg', 'EL CONCEPTO NO SE AGREGO, INTENTE DE NUEVO', 'danger');
+                }
+                if (!mdlSeleccionarConceptos.find("#chkMultiple").is(":checked")) {
+                    mdlSeleccionarConceptos.modal('hide');
+                }
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+            });
+        });
     });
     IdMovimiento = 0;
-    function getTrabajoDetalleByID(IDX) {
-        pnlDetalleTrabajo.find('#ConceptosPresupuesto').removeClass('d-none');
-        $.fn.dataTable.ext.errMode = 'throw';
-        if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
-            tblConceptosPresupuesto.DataTable().destroy();
-        }
-        ConceptosPresupuesto = tblConceptosPresupuesto.DataTable({
-            "dom": 'frtip',
-            buttons: buttons,
-            "ajax": {
-                "url": master_url + 'getTrabajoDetalleByID',
-                type: "POST",
-                "dataSrc": "",
-                "data": {
-                    ID: IDX
-                }
-            },
-            "columns": [
-                {"data": "ID"},
-                {"data": "Clave"},
-                {"data": "IntExt"},
-                {"data": "Descripcion"},
-                {"data": "Cantidad"},
-                {"data": "Unidad"},
-                {"data": "Precio"},
-                {"data": "Importe"},
-                {"data": "Moneda"},
-                {"data": "Fotos"},
-                {"data": "Croquis"},
-                {"data": "Anexos"},
-                {"data": "PCID"},
-                {"data": "Editar"}
-            ],
-            keys: true,
-            language: lang,
-            "autoWidth": true,
-            "colReorder": true,
-            "displayLength": 15,
-            "bLengthChange": false,
-            "deferRender": true,
-            "scrollX": true,
-            "scrollCollapse": false,
-            "bSort": true,
-            "aaSorting": [
-                [0, 'desc']/*ID*/
-            ],
-            "columnDefs": [
-                {
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                },
-                {
-                    "targets": [2],
-                    "visible": true,
-                    "searchable": false,
-                    "width": "100px"
-                },
-                {
-                    "targets": [12],
-                    "visible": false,
-                    "searchable": false
-                }
-            ],
-            "initComplete": function (settings, json) {
-                HoldOn.close();
-            },
-            "createdRow": function (row, data, index) {
-                $.each($(row).find("td"), function (k, v) {
-                    var c = $(v);
-                    var index = parseInt(k);
-                    switch (index) {
-                        case 0:
-                            /*CLAVE*/
-                            c.addClass('Clave');
-                            break;
-                        case 1:
-                            /*INTEXT*/
-                            c.addClass('IntExt');
-                            break;
-                        case 2:
-                            /*DESCRIPCION*/
-                            c.addClass('Descripcion');
-                            break;
-                        case 3:
-                            /*CANTIDAD*/
-                            c.addClass('Cantidad');
-                            break;
-                        case 4:
-                            /*UNIDAD*/
-                            c.addClass('Unidad');
-                            break;
-                        case 5:
-                            /*PRECIO*/
-                            c.addClass('Precio');
-                            break;
-                        case 6:
-                            /*IMPORTE*/
-                            c.addClass('Importe');
-                            break;
-                        case 7:
-                            /*MONEDA*/
-                            c.addClass('Moneda');
-                            break;
-                        case 8:
-                            /*FOTOS*/
-                            c.addClass('Fotos');
-                            break;
-                        case 9:
-                            /*CROQUIS*/
-                            c.addClass('Croquis');
-                            break;
-                        case 10:
-                            /*ANEXOS*/
-                            c.addClass('Anexos');
-                            break;
-                        case 11:
-                            /*ANEXOS*/
-                            c.addClass('Editar');
-                            break;
-                    }
-                });
-            },
-            "footerCallback": function (row, data, start, end, display) {
-                var api = this.api();//Get access to Datatable API
-                // Update footer
-                var total = api.column(7).data().reduce(function (a, b) {
-                    var ax = 0, bx = 0;
-                    ax = $.isNumeric((a)) ? parseFloat(a) : 0;
-                    bx = $.isNumeric(getNumberFloat($(b).text())) ? getNumberFloat($(b).text()) : 0;
-                    return  (ax + bx);
-                }, 0);
-                $(api.column(7).footer()).html(api.column(7, {page: 'current'}).data().reduce(function (a, b) {
-                    return '$' + $.number(parseFloat(total), 2, '.', ',');
-                }, 0));
-            }
-        });
-        /*EDITOR*/
-        ConceptosPresupuesto.on('key', function (e, datatable, key, cell, originalEvent) {
-            var cell_td = $(this).find("td.focus:not(.IntExt):not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
-            if (key === 13) {
-                if (cell_td.hasClass("Clave")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
-                    cell_td.html(g).find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Descripcion")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus();
-                } else if (cell_td.hasClass("Unidad")) {
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Precio")) {
-                    var txt = getNumberFloat(cell.data());
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Moneda")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
-                    cell_td.html(g);
-                    $(this).find("#Moneda").val(txt);
-                }
-            }
-        }).on('key-blur', function (e, datatable, cell) {
-            var t = $('#tblConceptosPresupuesto > tbody');
-            var a = t.find("#Editor");
-            var m = t.find("#Moneda");
-            if (a.val() !== 'undefined' && a.val() !== undefined) {
-                var b = ConceptosPresupuesto.cell(a.parent()).index();
-                var d = a.parent();
-                var row = ConceptosPresupuesto.row(a.parent().parent()).data();// SOLO OBTENDRA EL ID
-                var params;
-                if (d.hasClass('Clave')) {
-                    d.html('<span class="badge badge-info ">' + a.val() + '</span>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'CLAVE',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<span class="badge badge-info ">' + a.val() + '</span>').draw();
-                } else if (d.hasClass('Descripcion')) {
-                    d.html('<p>' + a.val() + '</p>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'DESCRIPCION',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<p class="CustomDetalleDescripcion">' + a.val() + '</p>').draw();
-                } else if (d.hasClass('Precio')) {
-                    var precio = getNumberFloat(a.val());
-                    var precio_format = '$' + $.number(precio, 6, '.', ',');
-                    d.html(precio_format);
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell($(d).parent(), 6).data(precio_format).draw();
-                    var tr = ConceptosPresupuesto.row($(d).parent()).data();
-                    var cantidad = parseFloat(tr.Cantidad);
-                    var importe_total = cantidad * precio;
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell($(d).parent(), 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
-                    //SHORT POST
-                    params = {ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total};
-                } else if (d.hasClass('Unidad')) {
-                    d.html(a.val());
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'UNIDAD',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data(a.val()).draw();
-                }
-                onEditarTrabajoDetalle(params);
-            }
-
-            if (m.val() !== 'undefined' && m.val() !== undefined) {
-                var b = ConceptosPresupuesto.cell(m.parent()).index();
-                var d = m.parent();
-                var row = ConceptosPresupuesto.row(m.parent().parent()).data();// SOLO OBTENDRA EL ID
-                if (d.hasClass('Moneda')) {
-                    console.log('MONEDA', m)
-                    var m = t.find("#Moneda");
-                    d.html('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val() + '</span>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'MONEDA',
-                        VALOR: m.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + m.val() + '</span>').draw();
-                }
-                onEditarTrabajoDetalle(params);
-            }
-        });
-    }
-
-    function onEditarTrabajoDetalle(params) {
-        $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
-            $.notify({
-                // options
-                message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
-            }, {
-                // settings
-                type: 'info',
-                delay: 500,
-                animate: {
-                    enter: 'animated flipInX',
-                    exit: 'animated flipOutX'
-                },
-                placement: {
-                    from: "top",
-                    align: "right"
-                }
-            });
-        }).fail(function (x, y, z) {
-            console.log('ERROR', x, y, z);
-        }).always(function () {
-            console.log('DATOS ACTUALIZADOS');
-            ConceptosPresupuesto.ajax.reload();
-        });
-    }
-
+    /*Funciones de tablas*/
     function getRecords() {
         temp = 0;
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
+        HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblTrabajos')) {
             tblTrabajos.DataTable().destroy();
@@ -1261,7 +1070,6 @@
                 {"data": "Usuario_ID"} //12
             ],
             "columnDefs": [
-
                 {
                     "targets": [3],
                     "visible": false,
@@ -1303,9 +1111,7 @@
                 Trabajos.column(12).search("1" ? '^' + "<?php print $this->session->userdata('ID') ?>" + '$' : '', true, false).draw();
                 tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
                 tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
-
                 HoldOn.close();
-
             }
         });
         tblTrabajos.find('tbody').on('click', 'tr', function () {
@@ -1565,7 +1371,476 @@
                 }
             });
         });
+    }
+    function getTrabajoDetalleByID(IDX) {
+        pnlDetalleTrabajo.find('#ConceptosPresupuesto').removeClass('d-none');
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
+            tblConceptosPresupuesto.DataTable().destroy();
+        }
+        ConceptosPresupuesto = tblConceptosPresupuesto.DataTable({
+            "dom": 'frtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getTrabajoDetalleByID',
+                type: "POST",
+                "dataSrc": "",
+                "data": {
+                    ID: IDX
+                }
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Clave"},
+                {"data": "IntExt"},
+                {"data": "Descripcion"},
+                {"data": "Cantidad"},
+                {"data": "Unidad"},
+                {"data": "Precio"},
+                {"data": "Importe"},
+                {"data": "Moneda"},
+                {"data": "Fotos"},
+                {"data": "Croquis"},
+                {"data": "Anexos"},
+                {"data": "PCID"},
+                {"data": "Editar"}
+            ],
+            keys: true,
+            language: lang,
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 15,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollX": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [12],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            },
+            "createdRow": function (row, data, index) {
+                $.each($(row).find("td"), function (k, v) {
+                    var c = $(v);
+                    var index = parseInt(k);
+                    switch (index) {
+                        case 0:
+                            /*CLAVE*/
+                            c.addClass('Clave');
+                            break;
+                        case 1:
+                            /*INTEXT*/
+                            c.addClass('IntExt');
+                            break;
+                        case 2:
+                            /*DESCRIPCION*/
+                            c.addClass('Descripcion');
+                            break;
+                        case 3:
+                            /*CANTIDAD*/
+                            c.addClass('Cantidad');
+                            break;
+                        case 4:
+                            /*UNIDAD*/
+                            c.addClass('Unidad');
+                            break;
+                        case 5:
+                            /*PRECIO*/
+                            c.addClass('Precio');
+                            break;
+                        case 6:
+                            /*IMPORTE*/
+                            c.addClass('Importe');
+                            break;
+                        case 7:
+                            /*MONEDA*/
+                            c.addClass('Moneda');
+                            break;
+                        case 8:
+                            /*FOTOS*/
+                            c.addClass('Fotos');
+                            break;
+                        case 9:
+                            /*CROQUIS*/
+                            c.addClass('Croquis');
+                            break;
+                        case 10:
+                            /*ANEXOS*/
+                            c.addClass('Anexos');
+                            break;
+                        case 11:
+                            /*ANEXOS*/
+                            c.addClass('Editar');
+                            break;
+                    }
+                });
+            },
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api();//Get access to Datatable API
+                // Update footer
+                var total = api.column(7).data().reduce(function (a, b) {
+                    var ax = 0, bx = 0;
+                    ax = $.isNumeric((a)) ? parseFloat(a) : 0;
+                    bx = $.isNumeric(getNumberFloat($(b).text())) ? getNumberFloat($(b).text()) : 0;
+                    return  (ax + bx);
+                }, 0);
+                $(api.column(7).footer()).html(api.column(7, {page: 'current'}).data().reduce(function (a, b) {
+                    return '$' + $.number(parseFloat(total), 2, '.', ',');
+                }, 0));
+            }
+        });
+        /*EDITOR*/
+        ConceptosPresupuesto.on('key', function (e, datatable, key, cell, originalEvent) {
 
+            var cell_td = $(this).find("td.focus:not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
+            if (key === 13) {
+                if (cell_td.hasClass("Clave")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
+                    cell_td.html(g).find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Descripcion")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus();
+                } else if (cell_td.hasClass("Unidad")) {
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Precio")) {
+                    var txt = getNumberFloat(cell.data());
+                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
+                    cell_td.html(g);
+                    cell_td.find("#Editor").focus().select();
+                } else if (cell_td.hasClass("Moneda")) {
+                    var txt = $(cell.data()).text();
+                    var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
+                    cell_td.html(g);
+                    $(this).find("#Moneda").val(txt);
+                } else if (cell_td.hasClass("IntExt")) {
+                    var g = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
+                    cell_td.html(g);
+                    $(this).find("#IntExt").val(cell.data());
+                    $(this).find("#IntExt").select();
+                }
+            }
+        }).on('key-blur', function (e, datatable, cell) {
+            var t = $('#tblConceptosPresupuesto > tbody');
+            var a = t.find("#Editor");
+            var m = t.find("#Moneda");
+            var ie = t.find("#IntExt");
+            if (a.val() !== 'undefined' && a.val() !== undefined) {
+                var b = ConceptosPresupuesto.cell(a.parent()).index();
+                var d = a.parent();
+                var row = ConceptosPresupuesto.row(a.parent().parent()).data();// SOLO OBTENDRA EL ID
+                var params;
+                if (d.hasClass('Clave')) {
+                    d.html('<span class="badge badge-info ">' + a.val() + '</span>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'CLAVE',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<span class="badge badge-info ">' + a.val() + '</span>').draw();
+                } else if (d.hasClass('Descripcion')) {
+                    d.html('<p>' + a.val() + '</p>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'DESCRIPCION',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<p class="CustomDetalleDescripcion">' + a.val() + '</p>').draw();
+                } else if (d.hasClass('Precio')) {
+                    var precio = getNumberFloat(a.val());
+                    var precio_format = '$' + $.number(precio, 6, '.', ',');
+                    d.html(precio_format);
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell($(d).parent(), 6).data(precio_format).draw();
+                    var tr = ConceptosPresupuesto.row($(d).parent()).data();
+                    var cantidad = parseFloat(tr.Cantidad);
+                    var importe_total = cantidad * precio;
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell($(d).parent(), 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
+                    //SHORT POST
+                    params = {ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total};
+                } else if (d.hasClass('Unidad')) {
+                    d.html(a.val());
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'UNIDAD',
+                        VALOR: a.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data(a.val()).draw();
+                }
+                onEditarTrabajoDetalle(params);
+            }
+
+            if (m.val() !== 'undefined' && m.val() !== undefined) {
+                var b = ConceptosPresupuesto.cell(m.parent()).index();
+                var d = m.parent();
+                var row = ConceptosPresupuesto.row(m.parent().parent()).data();// SOLO OBTENDRA EL ID
+                if (d.hasClass('Moneda')) {
+                    console.log('MONEDA', m);
+                    var m = t.find("#Moneda");
+                    d.html('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val() + '</span>');
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'MONEDA',
+                        VALOR: m.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + m.val() + '</span>').draw();
+                }
+                onEditarTrabajoDetalle(params);
+            }
+            if (ie.val() !== 'undefined' && ie.val() !== undefined) {
+                var b = ConceptosPresupuesto.cell(ie.parent()).index();
+                var d = ie.parent();
+                var row = ConceptosPresupuesto.row(ie.parent().parent()).data();// SOLO OBTENDRA EL ID
+                if (d.hasClass('IntExt')) {
+                    console.log('IntExt', ie);
+                    var m = t.find("#IntExt");
+                    d.html(ie.val());
+                    //SHORT POST
+                    params = {
+                        ID: row.ID,
+                        CELDA: 'INTEXT',
+                        VALOR: ie.val()
+                    };
+                    //DRAW NEW DATA
+                    ConceptosPresupuesto.cell(d, b).data(m.val()).draw();
+                }
+                onEditarTrabajoDetalle(params);
+            }
+        });
+    }
+    function getConceptosPreciarioByPreciario(Preciario_ID) {
+        HoldOn.open({
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblRegistrosConceptosPreciario')) {
+            tblRegistrosConceptosPreciario.DataTable().destroy();
+        }
+        RegistrosConceptosPreciario = tblRegistrosConceptosPreciario.DataTable({
+            "dom": 'frtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getConceptosXPreciarioID',
+                type: "POST",
+                "dataSrc": "",
+                "data": {
+                    ID: Preciario_ID,
+                    TrabajoID: IdMovimiento
+                }
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Clave"},
+                {"data": "Descripcion"},
+                {"data": "Unidad"},
+                {"data": "Costo"},
+                {"data": "Moneda"}
+            ],
+            language: lang,
+            "autoWidth": true,
+            "bStateSave": true,
+            "colReorder": true,
+            "displayLength": 10,
+            "bLengthChange": false,
+            "scrollX": true,
+            "deferRender": true,
+            "scrollCollapse": false,
+            keys: true,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ],
+            "initComplete": function (settings, json) {
+                if (parseInt(json.length) > 0) {
+                    mdlSeleccionarConceptos.modal('show');
+                    $('#tblRegistrosConceptosPreciario_filter input[type=search]').focus();
+                } else {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS FINALIZADOS PARA ESTE CLIENTE', 'danger');
+                }
+                HoldOn.close();
+            }
+        });
+    }
+    /*Edición de Detalle*/
+    function getConceptoCopiarXDetalle(IDX) {
+        var id_nuevoConcepto = 0;
+        HoldOn.open({theme: "sk-bounce", message: "POR FAVOR, ESPERE..."});
+        $.ajax({
+            url: master_url + 'getDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {ID: IDX}
+        }).done(function (data, x, jq) {
+            if (data[0] !== undefined && data.length > 0) {
+                var dtm = data[0];
+                var frm = new FormData();
+                frm.append('Trabajo_ID', IdMovimiento);
+                frm.append('PreciarioConcepto_ID', dtm.PreciarioConcepto_ID);
+                frm.append('Renglon', pnlDetalleTrabajo.find("table tr").length);
+                frm.append('Cantidad', dtm.Cantidad);
+                frm.append('Unidad', dtm.Unidad);
+                frm.append('Precio', dtm.Precio);
+                frm.append('Importe', dtm.Importe);
+                frm.append('IntExt', dtm.IntExt);
+                frm.append('Moneda', dtm.Moneda);
+                frm.append('TipoCambio', dtm.TipoCambio);
+                frm.append('Concepto', dtm.Concepto);
+                frm.append('Clave', dtm.Clave);
+                $.ajax({
+                    url: master_url + 'onCopiarDetalleEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    id_nuevoConcepto = data;
+                    $.ajax({
+                        url: master_url + 'getGeneradoresXDetalleID',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {ID: IDX}
+                    }).done(function (datax, x, jq) {
+                        $.each(datax, function (i, v) {
+                            var frmGen = new FormData();
+                            frmGen.append('Concepto_ID', v.Concepto_ID);
+                            frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
+                            frmGen.append('Area', v.Area);
+                            frmGen.append('EstimacionNo', v.EstimacionNo);
+                            frmGen.append('Eje', v.Eje);
+                            frmGen.append('EntreEje1', v.EntreEje1);
+                            frmGen.append('EntreEje2', v.EntreEje2);
+                            frmGen.append('Largo', v.Largo);
+                            frmGen.append('Ancho', v.Ancho);
+                            frmGen.append('Alto', v.Alto);
+                            frmGen.append('Cantidad', v.Cantidad);
+                            frmGen.append('Total', v.Total);
+                            $.ajax({
+                                url: master_url + 'onCopiarGenerador',
+                                type: "POST",
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                data: frmGen
+                            }).done(function (data, x, jq) {
+                                console.log(data);
+                                ConceptosPresupuesto.ajax.reload();
+                                onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
+                                HoldOn.close();
+                            }).fail(function (x, y, z) {
+                                console.log(x, y, z);
+                                HoldOn.close();
+                                onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                            });
+                        });
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                        HoldOn.close();
+                        onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                    });
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                    HoldOn.close();
+                    onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                });
+            } else {
+                onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+            HoldOn.close();
+        });
+    }
+    function onModificarTipoCambio(IDX, Precio, Cantidad, TipoCambioBD) {
+        var Importe = 0;
+        swal({
+            title: "Captura el tipo de cambio:",
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "00.00",
+                    type: "number"
+                }
+            },
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        }).then((TipoCambio) => {
+            if ($.isNumeric(TipoCambio) && parseFloat(TipoCambio) > 0) {
+                Importe = (TipoCambio * Precio) * Cantidad;
+                $.ajax({
+                    url: master_url + 'onModificarImporteConcepto',
+                    type: "POST",
+                    data: {
+                        ID: IDX,
+                        TipoCambio: TipoCambio,
+                        Importe: Importe
+                    }
+                }).done(function (data, x, jq) {
+                    ConceptosPresupuesto.ajax.reload();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                });
+            }
+        });
+    }
+    function onEditarTrabajoDetalle(params) {
+        $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
+            onNotifyOld('fas fa-check', 'DATOS ACTUALIZDOS', 'info');
+        }).fail(function (x, y, z) {
+            console.log('ERROR', x, y, z);
+        }).always(function () {
+            ConceptosPresupuesto.ajax.reload();
+        });
+    }
+    function onEliminarConceptoXDetalle(evt, IDX) {
+        swal({
+            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: master_url + 'onEliminarConceptoXDetalle',
+                    type: "POST",
+                    data: {
+                        ID: IDX,
+                        IDT: IdMovimiento
+                    }
+                }).done(function (data, x, jq) {
+                    ConceptosPresupuesto.ajax.reload();
+                    onNotifyOld('fa fa-check', 'REGISTRO ELIMINADO', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
     }
     function getClientes() {
         $.ajax({
@@ -1717,22 +1992,7 @@
                 IntExt: IntExt
             }
         }).done(function (data, x, jq) {
-            $.notify({
-                // options
-                message: 'LOS DATOS HAN SIDO ACTUALIZADOS'
-            }, {
-                // settings
-                type: 'info',
-                delay: 500,
-                animate: {
-                    enter: 'animated flipInX',
-                    exit: 'animated flipOutX'
-                },
-                placement: {
-                    from: "top",
-                    align: "right"
-                }
-            });
+            onNotifyOld('fas fa-check', 'DATOS ACTUALIZDOS', 'info');
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -1742,6 +2002,11 @@
         $(e).parent().parent("#VistaPrevia").html("");
         Archivo.attr("type", "text");
         Archivo.val('N');
+    }
+    function printImg(url) {
+        var win = window.open('');
+        win.document.write('<img src="' + url + '" onload="window.print();window.close()" />');
+        win.focus();
     }
 </script>
 <style>
@@ -1754,5 +2019,8 @@
     }
     table tbody tr td > input[type="text"]{
         width: 100% !important;
+    }
+    .hasItems{
+        color: #18BC9C !important;
     }
 </style>
