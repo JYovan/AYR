@@ -3145,5 +3145,11 @@
     }
     .progress-indicator li:hover{
         cursor:pointer !important;
+    }   
+    @media only screen and (max-width: 700px)  {
+        .progress-indicator {
+            width: 100% !important;
+            display: inline-block  !important;
+        }
     }
 </style>
