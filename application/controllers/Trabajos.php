@@ -600,10 +600,10 @@ class Trabajos extends CI_Controller {
         }
     }
 
-    public function onEliminarGeneradorEditar() {
+    public function onEliminarRenglonGenerador() {
         try {
             extract($this->input->post());
-            $this->trabajo_model->onEliminarGeneradorEditar($ID);
+            $this->trabajo_model->onEliminarRenglonGenerador($ID);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

@@ -790,6 +790,107 @@
         </div>
     </div>
 </div>
+<!--MODAL GENERADOR-->
+<div id="mdlGeneradorConcepto" class="modal modal-fullscreen">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Generador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="pnlGenerador">
+                <form id="frmGenerador">
+                    <div class="row">
+                        <div class="d-none">
+                            <input type="text" name="Concepto_ID" class="form-control hide">
+                            <input type="text" name="IdTrabajoDetalle" class="form-control hide">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="Area" class="control-label">Area</label>
+                            <input type="text" id="Area" name="Area" class="form-control form-control-sm" >
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="EstimacionNo" class="control-label"># Estim.</label>
+                            <input type="text" id="EstimacionNo" name="EstimacionNo" class="form-control form-control-sm numbersOnly">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="Eje" class="control-label">Eje</label>
+                            <input type="text" id="Eje" name="Eje" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="EntreEje1" class="control-label">Ent. Eje 1</label>
+                            <input type="text" id="EntreEje1" name="EntreEje1" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="EntreEje2" class="control-label">Ent. Eje 2</label>
+                            <input type="text" id="EntreEje2" name="EntreEje2" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="Largo" class="control-label">Largo</label>
+                            <input type="text" id="Largo" min="0" name="Largo" class="form-control form-control-sm numbersOnly">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="Ancho" class="control-label">Ancho</label>
+                            <input type="text" id="Ancho" min="0" name="Ancho" class="form-control form-control-sm numbersOnly">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="Alto" class="control-label">Alto</label>
+                            <input type="text" id="Alto" min="0" name="Alto" class="form-control form-control-sm numbersOnly">
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-2 col-lg-1">
+                            <label for="Cantidad" class="control-label">Cantidad</label>
+                            <input type="text" id="Cantidad" min="0" name="Cantidad" class="form-control form-control-sm numbersOnly" required="">
+                        </div>
+
+                        <div class="col-12 col-md-1 col-sm-1">
+                            <br>
+                            <button  class="btn btn-primary btn-sm" id="btnAgregarGenerador" type="button" data-toggle="tooltip" data-placement="top" title="Agregar" >
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div id="RegistrosGenerador">
+                    <table id="tblRegistrosGenerador" class="table table-sm " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Area</th>
+                                <th>Estimacion</th>
+                                <th>Largo</th>
+                                <th>Ancho</th>
+                                <th>Alto</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Total: </th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
@@ -817,11 +918,8 @@
     var mdlSeleccionarConceptos = $("#mdlSeleccionarConceptos");
     var Conceptos = pnlDetalleTrabajo.find("#Conceptos");
     /*GENERADOR*/
-    var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
-    var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
-    var btnCancelarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador");
-    var btnMoficarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar");
-    var btnEditarCancelarNuevoGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
+    var mdlGeneradorConcepto = $("#mdlGeneradorConcepto");
+    var btnAgregarGenerador = mdlGeneradorConcepto.find("#btnAgregarGenerador");
     /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
     var mdlAdjuntos = $("#Adjuntos");
     var EditarFotosPorConcepto = mdlAdjuntos.find("#fFotos");
@@ -851,6 +949,7 @@
     var tblTrabajos = $("#tblTrabajos"), Trabajos;
     var tblConceptosPresupuesto = $("#tblConceptosPresupuesto"), ConceptosPresupuesto;
     var tblRegistrosConceptosPreciario = $("#tblRegistrosConceptosPreciario"), RegistrosConceptosPreciario;
+    var tblRegistrosGenerador = $("#tblRegistrosGenerador"), RegistrosGenerador;
     var ReemplazaConcepto = false;
     var CantidadReemplaza, IdReemplaza;
     var Estatus;
@@ -860,6 +959,36 @@
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
+        /*GENERADOR CONCEPTO*/
+        btnAgregarGenerador.on("click", function () {
+            isValid('pnlGenerador');
+            if (valido) {
+                var frm = new FormData(mdlGeneradorConcepto.find("#frmGenerador")[0]);
+                var generador_largo = parseFloat((mdlGeneradorConcepto.find("#Largo").val() !== '' && parseFloat(mdlGeneradorConcepto.find("#Largo").val()) !== 0) ? mdlGeneradorConcepto.find("#Largo").val() : 1);
+                var generador_ancho = parseFloat((mdlGeneradorConcepto.find("#Ancho").val() !== '' && parseFloat(mdlGeneradorConcepto.find("#Ancho").val()) !== 0) ? mdlGeneradorConcepto.find("#Ancho").val() : 1);
+                var generador_alto = parseFloat((mdlGeneradorConcepto.find("#Alto").val() !== '' && parseFloat(mdlGeneradorConcepto.find("#Alto").val()) !== 0) ? mdlGeneradorConcepto.find("#Alto").val() : 1);
+                var generador_cantidad = parseFloat((mdlGeneradorConcepto.find("#Cantidad").val() !== '' && parseFloat(mdlGeneradorConcepto.find("#Cantidad").val()) !== 0) ? mdlGeneradorConcepto.find("#Cantidad").val() : 1);
+                var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                frm.append('Total', total_generador);
+
+                $.ajax({
+                    url: master_url + 'onAgregarGenerador',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    mdlGeneradorConcepto.find('input').not('.hide').val('');
+                    RegistrosGenerador.ajax.reload();
+                    ConceptosPresupuesto.ajax.reload();
+                    mdlGeneradorConcepto.find('#Area').focus();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                });
+
+            }
+        });
         /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
         $('.file_drag_area').on('dragover', function () {
             $(this).addClass('file_drag_over');
@@ -1107,6 +1236,7 @@
             btnCopiar.addClass('d-none');
             btnConcluir.addClass('d-none');
             btnInconcluir.addClass('d-none');
+            pnlDatos.find('#FechaCreacion').val(getToday());
             enableFields();
             if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
                 ConceptosPresupuesto.clear().draw();
@@ -2085,6 +2215,7 @@
         });
     }
     function getConceptosPreciarioByPreciario(Preciario_ID) {
+        mdlSeleccionarConceptos.modal('show');
         HoldOn.open({
             theme: 'sk-cube',
             message: 'CARGANDO...'
@@ -2129,10 +2260,9 @@
             ],
             "initComplete": function (settings, json) {
                 if (parseInt(json.length) > 0) {
-                    mdlSeleccionarConceptos.modal('show');
                     $('#tblRegistrosConceptosPreciario_filter input[type=search]').focus();
                 } else {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS FINALIZADOS PARA ESTE CLIENTE', 'danger');
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN CONCEPTOS EN ESTE PRECIARIO', 'danger');
                 }
                 HoldOn.close();
             }
@@ -2632,6 +2762,101 @@
         HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
         $.post(master_url + 'onEliminarCroquisXID', {ID: IDX}).done(function (data, x, jq) {
             onReloadCroquisXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+    }
+    /*GENERADOR PRESUPUESTO*/
+    function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO, Precio, TipoCambio) {
+        mdlGeneradorConcepto.modal('show');
+        mdlGeneradorConcepto.find('#Area').focus();
+        mdlGeneradorConcepto.find("[name='Concepto_ID']").val(IDCO);
+        mdlGeneradorConcepto.find("[name='IdTrabajoDetalle']").val(IDTD);
+        HoldOn.open({
+            theme: 'sk-cube',
+            message: 'CARGANDO...'
+        });
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblRegistrosGenerador')) {
+            tblRegistrosGenerador.DataTable().destroy();
+        }
+        RegistrosGenerador = tblRegistrosGenerador.DataTable({
+            "dom": 'frtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getGeneradoresDetalleXConceptoID',
+                type: "POST",
+                "dataSrc": "",
+                "data": {
+                    ID: IDTD
+                }
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Area"},
+                {"data": "EstimacionNo"},
+                {"data": "Largo"},
+                {"data": "Ancho"},
+                {"data": "Alto"},
+                {"data": "Cantidad"},
+                {"data": "Total"},
+                {"data": "Eliminar"}
+            ],
+            language: lang,
+            "autoWidth": true,
+            "bStateSave": true,
+            "colReorder": true,
+            "displayLength": 10,
+            "bLengthChange": false,
+            "scrollX": true,
+            "deferRender": true,
+            "scrollCollapse": false,
+            keys: true,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ],
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api();
+                var Total = api.column(7).data().reduce(function (a, b) {
+                    return  parseFloat(a) + parseFloat(b);
+                }, 0);
+                /*Modificamos el importe*/
+                var Importe = (TipoCambio * Precio) * Total;
+                $.ajax({
+                    url: master_url + 'onModificarConceptoCantidadEImporte',
+                    type: "POST",
+                    data: {
+                        ID: IDTD,
+                        Importe: Importe,
+                        Cantidad: Total
+                    }
+                }).done(function (data, x, jq) {
+                    ConceptosPresupuesto.ajax.reload();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                });
+                $(api.column(7).footer()).html(api.column(7, {page: 'current'}).data().reduce(function (a, b) {
+                    return Total;
+                }, 0));
+            },
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
+        });
+    }
+    function onEliminarRenglonGenerador(IDX) {
+        $.ajax({
+            url: master_url + 'onEliminarRenglonGenerador',
+            type: "POST",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            RegistrosGenerador.ajax.reload();
+            ConceptosPresupuesto.ajax.reload();
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {

@@ -928,7 +928,7 @@
             tblConceptos.html("");
             pnlDatos.find("select")[0].selectize.clear(true);
             pnlDatos.find("input").val("");
-            //pnlDatos.find("#FechaCreacion").datepicker("setDate", currentDate);
+            pnlDatos.find('#FechaCreacion').val(getToday());
             pnlDatos.removeClass('d-none');
             pnlPreciario.addClass("d-none");
             pnlDatos.find("#dAdvertencia").removeClass('d-none');

@@ -86,7 +86,7 @@ class trabajo_model extends CI_Model {
                                 <i class=\"fa fa-cog fa-lg \"></i>
                                 </span>
                                 <div  class=\"dropdown-menu\" style=\" heigth 100px; \">
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ",   TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.Precio, ", ",TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
                                    <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <div class=\"dropdown-divider\"></div>
@@ -100,7 +100,7 @@ class trabajo_model extends CI_Model {
                                 <i class=\"fa fa-cog fa-lg \"></i>
                                 </span>
                                 <div class=\"dropdown-menu \">
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.Precio, ", ",TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
                                    <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-hand-holding-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
@@ -117,7 +117,7 @@ class trabajo_model extends CI_Model {
                                 <i class=\"fa fa-cog fa-lg \"></i>
                                 </span>
                                 <div class=\"dropdown-menu \">
-                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
+                                  <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getGeneradoresDetalleXConceptoID(", TD.ID, ", ", TD.Trabajo_ID, ", ", TD.PreciarioConcepto_ID, ", ", TD.Precio, ", ",TD.TipoCambio, ", this)\"><span class=\"fa fa-plus fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Generador</a>
                                    <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onReemplazarConcepto(", TD.ID, ", ", TD.Cantidad, ")\"><span class=\"fa fa-object-ungroup fa-1x\" ></span>&nbsp; Reemplazar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"getConceptoCopiarXDetalle(", TD.ID , ")\"><span class=\"fa fa-clone fa-1x\" ></span>&nbsp;&nbsp;&nbsp;Copiar Concepto</a>
                                   <a class=\"dropdown-item\" href=\"javascript:void(0)\" onclick=\"onModificarTipoCambio(", TD.ID, ", ", TD.Precio, ", ", TD.Cantidad, ", ", TD.TipoCambio, ")\" ><span class=\"fa fa-hand-holding-usd fa-1x\" ></span> &nbsp;&nbsp;&nbsp;Tipo de Cambio</a>
@@ -254,7 +254,9 @@ class trabajo_model extends CI_Model {
 
     public function getGeneradoresDetalleXConceptoID($IDX) {
         try {
-            $this->db->select('(SELECT TD.Trabajo_ID FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS TRABAJOID, GD.*, (SELECT TD.Precio FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS Precio,(SELECT TD.Cantidad FROM trabajosdetalle AS TD WHERE TD.ID =GD.IdTrabajoDetalle ) AS CantidadTotal', false);
+            $this->db->select('GD.*, '
+                    . 'CONCAT("<span class=\"fa fa-times text-danger fa-lg\" onclick=\"onEliminarRenglonGenerador(",GD.ID,")\"></span>") AS Eliminar,'
+                    . '', false);
             $this->db->from("generadortrabajosdetalle AS GD");
             $this->db->where("GD.IdTrabajoDetalle", $IDX);
             $query = $this->db->get();
@@ -1051,7 +1053,7 @@ class trabajo_model extends CI_Model {
         }
     }
 
-    public function onEliminarGeneradorEditar($ID) {
+    public function onEliminarRenglonGenerador($ID) {
         try {
             $this->db->where('ID', $ID);
             $this->db->delete("generadortrabajosdetalle");

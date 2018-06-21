@@ -309,9 +309,6 @@ function getExt(filename) {
 }
 
 function handleEnter() {
-//    $('input:not(.notEnter), textarea , select').keyup(function () {
-//        $(this).val($(this).val().toUpperCase());
-//    });
     $('body').on('keydown', 'input, select, textarea', function (e) {
         var self = $(this)
                 , form = self.parents('body')
@@ -319,7 +316,7 @@ function handleEnter() {
                 , next
                 ;
         if (e.keyCode === 13) {
-            focusable = form.find('input,a,select,button,textarea').filter(':visible:enabled').not('.disabledForms').not('.notEnter');
+            focusable = form.find('input,a,select,button,textarea').filter(':visible:enabled').not('.disabledForms');
             next = focusable.eq(focusable.index(this) + 1);
             if (next.length) {
                 next.focus();

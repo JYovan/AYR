@@ -162,7 +162,7 @@
                                     <div class="col-12 col-sm-4 col-md-4 col-lg-2">
                                         <div class="form-group label-static">
                                             <label for="FechaOrigen" class="control-label">Fecha Origen*</label>
-                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm" placeholder="XX/XX/XXXX" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                            <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4 col-md-4 col-lg-2">
@@ -305,6 +305,7 @@
                 placeholder: "hh:mm xm - hh:mm xm",
                 alias: "datetime",
                 hourFormat: "12"});
+            pnlDatos.find('#FechaOrigen').val(getToday());
             pnlDatos.find(".nav-tabs a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
