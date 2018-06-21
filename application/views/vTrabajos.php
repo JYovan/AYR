@@ -148,40 +148,8 @@
                             </ul>
                         </div>
                         <div class="col-12">
-                            <center>
-                                <div class="form-group label-static d-none">
-                                    <label class="radio-inline ">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio1" value="Pedido">
-                                        <label class="label-Pedido" for="inlineRadio1">1. Pedido</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-Presupuesto">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio2" value="Presupuesto">
-                                        <label class="label-Presupuesto" for="inlineRadio2">2.Presupuesto</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-Autorizacion">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio3" value="Autorización">
-                                        <label class="label-Autorizacion" for="inlineRadio3">3. Autorización Del Cliente</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-NoAutorizado">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio4" value="No Autorizado">
-                                        <label class="label-NoAutorizado" for="inlineRadio4">4. No Autorizado</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-Ejecucion">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio5" value="Ejecución">
-                                        <label class="label-Ejecucion" for="inlineRadio5">5. Ejecución</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-Finalizado">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio6" value="Finalizado">
-                                        <label class="label-Finalizado" for="inlineRadio6">6. Finalizado</label>
-                                    </label>
-                                    <label class="radio-inline radio-inline-Pagado">
-                                        <input type="radio" name="NuevoEstatusTrabajo" id="inlineRadio7" value="Pagado">
-                                        <label class="label-Pagado" for="inlineRadio7">7. Pagado</label>
-                                    </label>
-                                </div>
-                            </center>
                             <br>
-                            <ul class="progress-indicator pt-3 pb-3" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
+                            <ul class="progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
                                 <li id="stsPedido" step="1"><span class="bubble"></span>1. Pedido
                                 </li>
                                 <li id="stsPresupuesto" step="2"><span class="bubble"></span>2. Presupuesto
@@ -714,19 +682,17 @@
                             </h5>
                         </div>
                         <div id="Fotos" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntos">
-                            <div class="card-body">
-                                <fieldset>
-                                    <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotos" name="fFotos[]" multiple="" class="d-none">
-                                    <div class="col-12" id="" align="center"  onclick="setFotosEditar(this)">
-                                        <div class="file_drag_area">
-                                            <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
-                                            <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
-                                        </div>
+                            <fieldset>
+                                <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotos" name="fFotos[]" multiple="" class="d-none">
+                                <div class="col-12" id="" align="center"  onclick="setFotosEditar(this)">
+                                    <div class="file_drag_area">
+                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
-                                    <div class="col-12"><br><br></div>
-                                    <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotos"></div>
-                                </fieldset>
-                            </div>
+                                </div>
+                                <div class="col-12"><br><br></div>
+                                <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotos"></div>
+                            </fieldset>
                         </div>
                     </div>
                     <div class="card border-0">
@@ -738,19 +704,17 @@
                             </h5>
                         </div>
                         <div id="Croquis" class="collapse" aria-labelledby="cardCroquis" data-parent="#AccordionAdjuntos">
-                            <div class="card-body">
-                                <fieldset>
-                                    <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="d-none">
-                                    <div class="col-12" id="" align="center"  onclick="setCroquisEditar(this)">
-                                        <div class="file_drag_area">
-                                            <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
-                                            <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
-                                        </div>
+                            <fieldset>
+                                <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="d-none">
+                                <div class="col-12" id="" align="center"  onclick="setCroquisEditar(this)">
+                                    <div class="file_drag_area">
+                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
-                                    <div class="col-12"><br><br></div>
-                                    <div class="col-12" style="height: 350px; overflow-y: auto;"  id="vCroquis"></div>
-                                </fieldset>
-                            </div>
+                                </div>
+                                <div class="col-12"><br><br></div>
+                                <div class="col-12" style="height: 350px; overflow-y: auto;"  id="vCroquis"></div>
+                            </fieldset>
                         </div>
                     </div>
                     <div class="card  border-0">
@@ -762,24 +726,22 @@
                             </h5>
                         </div>
                         <div id="Anexos" class="collapse" aria-labelledby="cardAnexos" data-parent="#AccordionAdjuntos">
-                            <div class="card-body">
-                                <fieldset>
-                                    <div class="col-12"><br></div>
-                                    <div class="col-12 d-none">
-                                        <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
+                            <fieldset>
+                                <div class="col-12"><br></div>
+                                <div class="col-12 d-none">
+                                    <input type="file" id="fAnexos" name="fAnexos[]" multiple="" class="d-none">
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="col-12" id="" align="center"  onclick="setAnexosEditar(this)">
+                                    <div class="file_drag_area">
+                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
-                                </fieldset>
-                                <fieldset>
-                                    <div class="col-12" id="" align="center"  onclick="setAnexosEditar(this)">
-                                        <div class="file_drag_area">
-                                            <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
-                                            <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-12"><br></div>
-                                    <div class="col-12"  style="height: 350px; overflow-y: auto;" id="vAnexos"></div>
-                                </fieldset>
-                            </div>
+                                </div>
+                                <div class="col-12"><br></div>
+                                <div class="col-12"  style="height: 350px; overflow-y: auto;" id="vAnexos"></div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -959,7 +921,6 @@
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
-
         pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
             var li = $(this);
             var text = '';
@@ -1011,8 +972,148 @@
                 });
             }
         });
-
         /*GENERADOR CONCEPTO*/
+        $('#tblRegistrosGenerador').on('draw.dt', function () {
+            $.each(tblRegistrosGenerador.find('tbody tr'), function () {
+                /*Edicion Area*/
+                $(this).find("td:eq(0)").on('dblclick', function () {
+                    var input = '<input id="Area" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#Area').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#Area").focus();
+                    $(this).find("#Area").focusout(function () {
+                        var v = $(this).val().toUpperCase();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 1).data(v).draw();
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var params = {
+                            ID: Datos.ID,
+                            CAMPO: 'Area',
+                            VALOR: Datos.Area
+                        };
+                        onModificarGenerador(params);
+                    });
+                });
+                /*Edicion Estimacion*/
+                $(this).find("td:eq(1)").on('dblclick', function () {
+                    var input = '<input id="EstimacionNo" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#EstimacionNo').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#EstimacionNo").focus();
+                    $(this).find("#EstimacionNo").focusout(function () {
+                        var v = $(this).val().toUpperCase();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 2).data(v).draw();
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var params = {
+                            ID: Datos.ID,
+                            CAMPO: 'EstimacionNo',
+                            VALOR: Datos.EstimacionNo
+                        };
+                        onModificarGenerador(params);
+                    });
+                });
+                /*Edicion Largo*/
+                $(this).find("td:eq(2)").on('dblclick', function () {
+                    var input = '<input id="Largo" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#Largo').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#Largo").focus();
+                    $(this).find("#Largo").focusout(function () {
+                        var v = $(this).val();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 3).data(v).draw();
+                        /*Calculo de nuevo Total*/
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                        onModificarCantidadesGenerador(Datos.ID, 'Largo', generador_largo, total_generador);
+                    });
+                });
+                /*Edicion Ancho*/
+                $(this).find("td:eq(3)").on('dblclick', function () {
+                    var input = '<input id="Ancho" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#Ancho').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#Ancho").focus();
+                    $(this).find("#Ancho").focusout(function () {
+                        var v = $(this).val();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 4).data(v).draw();
+                        /*Calculo de nuevo Total*/
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                        onModificarCantidadesGenerador(Datos.ID, 'Ancho', generador_ancho, total_generador);
+                    });
+                });
+                /*Edicion Alto*/
+                $(this).find("td:eq(4)").on('dblclick', function () {
+                    var input = '<input id="Alto" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#Alto').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#Alto").focus();
+                    $(this).find("#Alto").focusout(function () {
+                        var v = $(this).val();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 5).data(v).draw();
+                        /*Calculo de nuevo Total*/
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                        onModificarCantidadesGenerador(Datos.ID, 'Alto', generador_alto, total_generador);
+                    });
+                });
+                /*Edicion Cantidad*/
+                $(this).find("td:eq(5)").on('dblclick', function () {
+                    var input = '<input id="Cantidad" type="text" class="form-control form-control-sm">';
+                    var vActual = $(this).text();
+                    $(this).html(input);
+                    $(this).find('#Cantidad').val(vActual);
+                    var celda = $(this);
+                    var padre = $(this).parent();
+                    $(this).find("#Cantidad").focus();
+                    $(this).find("#Cantidad").focusout(function () {
+                        var v = $(this).val();
+                        celda.html(v);
+                        RegistrosGenerador.cell(padre, 6).data(v).draw();
+                        /*Calculo de nuevo Total*/
+                        var Datos = RegistrosGenerador.row(padre).data();
+                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                        onModificarCantidadesGenerador(Datos.ID, 'Cantidad', generador_cantidad, total_generador);
+                    });
+                });
+
+            });
+        });
         btnAgregarGenerador.on("click", function () {
             isValid('pnlGenerador');
             if (valido) {
@@ -1335,11 +1436,9 @@
             pnlDatos.find("#EstatusTrabajo > li:first-child").html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
 
         });
-
         pnlDatos.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlDatos.find("#Codigoppta_ID").val(), $(this).val());
         });
-
         btnArchivo.on("click", function () {
             $('#Adjunto').attr("type", "file");
             $('#Adjunto').val('');
@@ -1369,7 +1468,6 @@
             });
             Archivo.trigger('click');
         });
-
         /*DETALLE*/
         btnNuevoConcepto.on("click", function () {
             if (!nuevo) {
@@ -2020,6 +2118,12 @@
                         text = $(this).text();
                         if (text.includes(trabajo.EstatusTrabajo)) {
                             pnlDatos.find('#EstatusTrabajo > li').slice(0, $(this).index()).addClass("completed");
+
+                            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                                text = $(this).text();
+                                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                            });
+
                             text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
                             if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === $(this).index() ||
                                     pnlDatos.find("#EstatusTrabajo > li:last-child").index() === $(this).index()) {
@@ -2882,15 +2986,8 @@
         });
     }
     /*GENERADOR PRESUPUESTO*/
-    function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO, Precio, TipoCambio) {
-        mdlGeneradorConcepto.modal('show');
-        mdlGeneradorConcepto.find('#Area').focus();
-        mdlGeneradorConcepto.find("[name='Concepto_ID']").val(IDCO);
-        mdlGeneradorConcepto.find("[name='IdTrabajoDetalle']").val(IDTD);
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
+    function getRegistrosGenerador(IDTD, TipoCambio, Precio) {
+        HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblRegistrosGenerador')) {
             tblRegistrosGenerador.DataTable().destroy();
@@ -2916,6 +3013,13 @@
                 {"data": "Cantidad"},
                 {"data": "Total"},
                 {"data": "Eliminar"}
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
             ],
             language: lang,
             "autoWidth": true,
@@ -2958,6 +3062,34 @@
             "initComplete": function (settings, json) {
                 HoldOn.close();
             }
+        });
+    }
+    function getGeneradoresDetalleXConceptoID(IDTD, IDT, IDCO, Precio, TipoCambio) {
+        mdlGeneradorConcepto.modal('show');
+        mdlGeneradorConcepto.find('#Area').focus();
+        mdlGeneradorConcepto.find("[name='Concepto_ID']").val(IDCO);
+        mdlGeneradorConcepto.find("[name='IdTrabajoDetalle']").val(IDTD);
+        getRegistrosGenerador(IDTD, TipoCambio, Precio);
+    }
+    function onModificarGenerador(params) {
+        $.post(master_url + 'onModificarGenerador', params).done(function (data, x, jq) {
+            RegistrosGenerador.ajax.reload();
+        }).fail(function (x, y, z) {
+            console.log('ERROR', x, y, z);
+        });
+    }
+    function onModificarCantidadesGenerador(ID, NombreAALC, ValorAALC, Total) {
+        $.post(master_url + 'onModificarCantidadesGenerador',
+                {
+                    ID: ID,
+                    ValorAALC: ValorAALC,
+                    NombreAALC: NombreAALC,
+                    Total: Total
+                }
+        ).done(function (data, x, jq) {
+            RegistrosGenerador.ajax.reload();
+        }).fail(function (x, y, z) {
+            console.log('ERROR', x, y, z);
         });
     }
     function onEliminarRenglonGenerador(IDX) {
@@ -3013,7 +3145,6 @@
         color:#B0B0B0;
         border-color:#002c4c;
     }
-
     .progress-indicator li:hover{
         cursor:pointer !important;
     }
