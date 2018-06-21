@@ -182,29 +182,29 @@
                             </center>
                             <br>
                             <ul class="progress-indicator pt-3 pb-3" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
-                                <li id="stsPedido">
-                                    <span class="bubble"></span>
-                                    1. Pedido
+                                <li id="stsPedido" step="1"><span class="bubble"></span>1. Pedido
                                 </li>
-                                <li id="stsPresupuesto">
-                                    <span class="bubble"></span>
-                                    2. Presupuesto
+                                <li id="stsPresupuesto" step="2"><span class="bubble"></span>2. Presupuesto
                                 </li>
-                                <li id="stsAutorizacion">
+                                <li id="stsAutorizacion" step="3">
                                     <span class="bubble"></span>
                                     3. Autorización del cliente
                                 </li>
-                                <li id="stsEjecucion">
+                                <li id="stsNoAutorizado" step="4">
                                     <span class="bubble"></span>
-                                    4. Ejecución
+                                    4. No Autorizado
                                 </li>
-                                <li id="stsFinalizado">
+                                <li id="stsEjecucion" step="5">
                                     <span class="bubble"></span>
-                                    5. Finalizado
+                                    5. Ejecución
                                 </li>
-                                <li id="stsPagado">
+                                <li id="stsFinalizado" step="6">
                                     <span class="bubble"></span>
-                                    6. Pagado
+                                    6. Finalizado
+                                </li>
+                                <li id="stsPagado" step="7">
+                                    <span class="bubble"></span>
+                                    7. Pagado
                                 </li>
                             </ul>
                         </div>
@@ -959,6 +959,59 @@
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
+
+        pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
+            var li = $(this);
+            var text = '';
+            $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                text = $(this).text();
+                text = text.replace("(COMPLETADO)", "");
+                text = text.replace("(ACTIVO)", "");
+                $(this).html("<span class=\"bubble\"></span>" + text);
+            });
+            pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+            pnlDatos.find('#EstatusTrabajo > li').slice(0, li.index()).addClass("completed");
+            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                text = $(this).text();
+                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+            });
+            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === li.index()
+                    || pnlDatos.find("#EstatusTrabajo > li:last-child").index() === li.index()) {
+                li.addClass("completed");
+                li.html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+            } else {
+                li.addClass("active");
+                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+            }
+            if (!nuevo) {
+                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                var sts = '';
+                if (text.includes('Pedido')) {
+                    sts = 'Pedido';
+                } else if (text.includes('Presupuesto')) {
+                    sts = 'Presupuesto';
+                } else if (text.includes('Autorización')) {
+                    sts = 'Autorización';
+                } else if (text.includes('No Autorizado')) {
+                    sts = 'No Autorizado';
+                } else if (text.includes('Ejecución')) {
+                    sts = 'Ejecución';
+                } else if (text.includes('Finalizado')) {
+                    sts = 'Finalizado';
+                }
+                $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
+                    console.log(data);
+                    onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z, "\n ERROR \n", x.responseText);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
+
         /*GENERADOR CONCEPTO*/
         btnAgregarGenerador.on("click", function () {
             isValid('pnlGenerador');
@@ -1101,7 +1154,23 @@
                         HoldOn.close();
                     });
                 } else {
+                    var text = (pnlDatos.find('#EstatusTrabajo > li.active').text() !== '') ? pnlDatos.find('#EstatusTrabajo > li.active').text() : pnlDatos.find('#EstatusTrabajo > li.completed').text();
+                    var sts = '';
+                    if (text.includes('Pedido')) {
+                        sts = 'Pedido';
+                    } else if (text.includes('Presupuesto')) {
+                        sts = 'Presupuesto';
+                    } else if (text.includes('Autorización')) {
+                        sts = 'Autorización';
+                    } else if (text.includes('No Autorizado')) {
+                        sts = 'No Autorizado';
+                    } else if (text.includes('Ejecución')) {
+                        sts = 'Ejecución';
+                    } else if (text.includes('Finalizado')) {
+                        sts = 'Finalizado';
+                    }
                     frm.append('Importe', 0);
+                    frm.append('EstatusTrabajo', sts);
                     $.ajax({
                         url: master_url + 'onAgregar',
                         type: "POST",
@@ -1251,10 +1320,26 @@
             });
             pnlDatos.find('#FolioCliente').focus();
             pnlDetalleTrabajo.find("#Conceptos").html("");
+            /*SET ESTATUS*/
+            var text = '';
+            $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                text = $(this).text();
+                text = text.replace("(COMPLETADO)", "");
+                text = text.replace("(ACTIVO)", "");
+                $(this).html("<span class=\"bubble\"></span>" + text);
+            });
+            pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+            pnlDatos.find("#EstatusTrabajo > li:first-child").addClass("completed");
+
+            text = pnlDatos.find('#EstatusTrabajo > li:first-child').text();
+            pnlDatos.find("#EstatusTrabajo > li:first-child").html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+
         });
+
         pnlDatos.find("#Codigoppta_ID").change(function () {
             getCodigoPPTAbyID(pnlDatos.find("#Codigoppta_ID").val(), $(this).val());
         });
+
         btnArchivo.on("click", function () {
             $('#Adjunto').attr("type", "file");
             $('#Adjunto').val('');
@@ -1284,6 +1369,7 @@
             });
             Archivo.trigger('click');
         });
+
         /*DETALLE*/
         btnNuevoConcepto.on("click", function () {
             if (!nuevo) {
@@ -1919,6 +2005,33 @@
                     //                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
                     //                    }
 
+                    /*ACTUALIZAR ESTATUS*/
+
+                    /*SET ESTATUS*/
+                    var text = '';
+                    $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                        text = $(this).text();
+                        text = text.replace("(COMPLETADO)", "");
+                        text = text.replace("(ACTIVO)", "");
+                        $(this).html("<span class=\"bubble\"></span>" + text);
+                    });
+                    pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+                    $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                        text = $(this).text();
+                        if (text.includes(trabajo.EstatusTrabajo)) {
+                            pnlDatos.find('#EstatusTrabajo > li').slice(0, $(this).index()).addClass("completed");
+                            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
+                            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === $(this).index() ||
+                                    pnlDatos.find("#EstatusTrabajo > li:last-child").index() === $(this).index()) {
+                                $(this).addClass("completed");
+                                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                            } else {
+                                $(this).addClass("active");
+                                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
+                                pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                            }
+                        }
+                    });
                     getTrabajoDetalleByID(IdMovimiento);
                     //                    getDetalleAbiertoByID(trabajo.ID);
                     //                    getDetalleCajerosByID(trabajo.ID);
@@ -2899,5 +3012,9 @@
     .file_drag_over{
         color:#B0B0B0;
         border-color:#002c4c;
+    }
+
+    .progress-indicator li:hover{
+        cursor:pointer !important;
     }
 </style>

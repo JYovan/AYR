@@ -127,7 +127,7 @@
         }
         function onNotifyOld(icon, message, type) {
             $.notify({
-                icon: 'fas fa-check',
+                icon: icon,
                 message: message
             }, {
                 type: type,
