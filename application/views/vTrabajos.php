@@ -149,7 +149,7 @@
                         </div>
                         <div class="col-12">
                             <br>
-                            <ul class="progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
+                            <ul class="table-responsive progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
                                 <li id="stsPedido" step="1"><span class="bubble"></span>1. Pedido
                                 </li>
                                 <li id="stsPresupuesto" step="2"><span class="bubble"></span>2. Presupuesto
@@ -921,57 +921,6 @@
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
-        pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
-            var li = $(this);
-            var text = '';
-            $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
-                text = $(this).text();
-                text = text.replace("(COMPLETADO)", "");
-                text = text.replace("(ACTIVO)", "");
-                $(this).html("<span class=\"bubble\"></span>" + text);
-            });
-            pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
-            pnlDatos.find('#EstatusTrabajo > li').slice(0, li.index()).addClass("completed");
-            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
-                text = $(this).text();
-                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-            });
-            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === li.index()
-                    || pnlDatos.find("#EstatusTrabajo > li:last-child").index() === li.index()) {
-                li.addClass("completed");
-                li.html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-            } else {
-                li.addClass("active");
-                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-                pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
-            }
-            if (!nuevo) {
-                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-                var sts = '';
-                if (text.includes('Pedido')) {
-                    sts = 'Pedido';
-                } else if (text.includes('Presupuesto')) {
-                    sts = 'Presupuesto';
-                } else if (text.includes('Autorización')) {
-                    sts = 'Autorización';
-                } else if (text.includes('No Autorizado')) {
-                    sts = 'No Autorizado';
-                } else if (text.includes('Ejecución')) {
-                    sts = 'Ejecución';
-                } else if (text.includes('Finalizado')) {
-                    sts = 'Finalizado';
-                }
-                $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
-                    console.log(data);
-                    onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z, "\n ERROR \n", x.responseText);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
         /*GENERADOR CONCEPTO*/
         $('#tblRegistrosGenerador').on('draw.dt', function () {
             $.each(tblRegistrosGenerador.find('tbody tr'), function () {
@@ -1143,6 +1092,58 @@
 
             }
         });
+        /*EstatusTrabajo*/
+        pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
+            var li = $(this);
+            var text = '';
+            $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                text = $(this).text();
+                text = text.replace("(COMPLETADO)", "");
+                text = text.replace("(ACTIVO)", "");
+                $(this).html("<span class=\"bubble\"></span>" + text);
+            });
+            pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+            pnlDatos.find('#EstatusTrabajo > li').slice(0, li.index()).addClass("completed");
+            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                text = $(this).text();
+                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+            });
+            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === li.index()
+                    || pnlDatos.find("#EstatusTrabajo > li:last-child").index() === li.index()) {
+                li.addClass("completed");
+                li.html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+            } else {
+                li.addClass("active");
+                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+            }
+            if (!nuevo) {
+                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                var sts = '';
+                if (text.includes('Pedido')) {
+                    sts = 'Pedido';
+                } else if (text.includes('Presupuesto')) {
+                    sts = 'Presupuesto';
+                } else if (text.includes('Autorización')) {
+                    sts = 'Autorización';
+                } else if (text.includes('No Autorizado')) {
+                    sts = 'No Autorizado';
+                } else if (text.includes('Ejecución')) {
+                    sts = 'Ejecución';
+                } else if (text.includes('Finalizado')) {
+                    sts = 'Finalizado';
+                }
+                $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
+                    console.log(data);
+                    onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z, "\n ERROR \n", x.responseText);
+                }).always(function () {
+                    HoldOn.close();
+                });
+            }
+        });
         /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
         $('.file_drag_area').on('dragover', function () {
             $(this).addClass('file_drag_over');
@@ -1247,7 +1248,6 @@
                         data: frm
                     }).done(function (data, x, jq) {
                         console.log(data);
-                        Trabajos.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
@@ -1280,7 +1280,6 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        Trabajos.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'SE HA REGISTRADO UN NUEVO TRABAJO', 'success');
                         nuevo = false;
                         IdMovimiento = parseInt(data);
@@ -1329,7 +1328,6 @@
                         btnNuevoConcepto.addClass('d-none');
                         disableFields();
                         Estatus = 'Concluido';
-                        Trabajos.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -1368,7 +1366,6 @@
                         btnNuevoConcepto.removeClass('d-none');
                         enableFields();
                         Estatus = 'Borrador';
-                        Trabajos.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -1381,6 +1378,7 @@
             menuTablero.addClass("animated slideInLeft").removeClass("d-none");
             pnlDatos.addClass("d-none");
             pnlDetalleTrabajo.addClass("d-none");
+            Trabajos.ajax.reload();
         });
         btnNuevo.on("click", function () {
             nuevo = true;

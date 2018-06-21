@@ -511,7 +511,6 @@
                         data: frm
                     }).done(function (data, x, jq) {
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO ACTUALIZADO', 'success');
-                        //Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -526,7 +525,6 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        //Registros.ajax.reload();
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                         nuevo = false;
                         IdMovimiento = parseInt(data);
@@ -573,7 +571,6 @@
                         btnNuevoRenglonPrefacturaEditar.addClass('d-none');
                         disableFields();
                         Estatus = 'Concluido';
-                        Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -612,7 +609,6 @@
                         btnNuevoRenglonPrefacturaEditar.removeClass('d-none');
                         enableFields();
                         Estatus = 'Borrador';
-                        Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {

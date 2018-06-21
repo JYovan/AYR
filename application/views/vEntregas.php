@@ -555,7 +555,6 @@
                         btnNuevoRenglonEntregaEditar.addClass('d-none');
                         disableFields();
                         Estatus = 'Concluido';
-                        Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -592,7 +591,6 @@
                         btnNuevoRenglonEntregaEditar.removeClass('d-none');
                         enableFields();
                         Estatus = 'Borrador';
-                        Registros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
