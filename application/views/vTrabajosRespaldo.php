@@ -298,18 +298,12 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/Trabajos/';
-    var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
     /******ABIERTO*/
     var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find('#btnNuevoConceptoAbierto');
     var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
-    var btnNuevoConceptoCajero = pnlDetalleTrabajo.find("#btnNuevoConceptoCajero");
-    var btnNuevoConceptoCajeroEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoCajeroEditar');
-    var btnAgregarConceptoCajero = $('#btnAgregarConceptoCajero');
-    var btnEditarConceptoCajero = $('#btnEditarConceptoCajero');
-    /*fOTOS*/
+    /*fOTOS CAJERO*/
     var mdlTrabajoEditarFotosCajeroPorConceptoCajero = $("#mdlTrabajoEditarFotosCajeroPorConceptoCajero");
     var EditarFotosCajeroPorConcepto = mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#fFotosCajero");
     /*MULTIMEDIA (EDITAR ABIERTO)*/
