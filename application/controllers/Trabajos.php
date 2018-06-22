@@ -467,8 +467,15 @@ class Trabajos extends CI_Controller {
 
     public function onModificarConceptoCajero() {
         try {
-            extract($this->input->post());
-            $this->trabajo_model->onModificarConceptoCajero($ID, $this->input->post());
+            $row = $this->input;
+            switch ($row->post('CAMPO')) {
+                case 'Clave':
+                    $this->db->set('Clave', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('cajerosbbvadetalle');
+                    break;
+                case 'Descripcion':
+                    $this->db->set('Descripcion', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('cajerosbbvadetalle');
+                    break;
+            }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -1065,8 +1072,10 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $_FILES["FOTO"]["name"];
+                $FILE_EXT = pathinfo($_FILES["FOTO"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
@@ -1077,7 +1086,7 @@ class Trabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto . '-' . $ID,
+                        'Observaciones' => $_FILES["FOTO"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleFoto($ID, $DATA);
                 } else {
@@ -1115,8 +1124,10 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $_FILES["FOTO"]["name"];
+                $FILE_EXT = pathinfo($_FILES["FOTO"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
@@ -1127,7 +1138,7 @@ class Trabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto . '-' . $ID,
+                        'Observaciones' => $_FILES["FOTO"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleFotoAntes($ID, $DATA);
                 } else {
@@ -1166,8 +1177,10 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $_FILES["FOTO"]["name"];
+                $FILE_EXT = pathinfo($_FILES["FOTO"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
@@ -1177,7 +1190,7 @@ class Trabajos extends CI_Controller {
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
-                        'Url' => ($img),
+                        'Url' => ($img)
                     );
                     $this->trabajo_model->onModificarDetalleFotoDespues($ID, $DATA);
                 } else {
@@ -1219,8 +1232,10 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $_FILES["FOTO"]["name"];
+                $FILE_EXT = pathinfo($_FILES["FOTO"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
@@ -1231,7 +1246,7 @@ class Trabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto . '-' . $ID,
+                        'Observaciones' => $_FILES["FOTO"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleFotoProceso($ID, $DATA);
                 } else {
@@ -1269,19 +1284,21 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["CROQUIS"]["name"]))) {
-                    $img = $master_url . $_FILES["CROQUIS"]["name"];
+                $FILE_EXT = pathinfo($_FILES["CROQUIS"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["CROQUIS"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
                     $config['maintain_ratio'] = true;
-                    $config['width'] = 800;
-                    $config['height'] = 600;
+                    $config['width'] = 900;
+                    $config['height'] = 700;
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto . '-' . $ID,
+                        'Observaciones' => $_FILES["CROQUIS"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleCroquis($ID, $DATA);
                 } else {
@@ -1399,19 +1416,21 @@ class Trabajos extends CI_Controller {
                 if (!file_exists(utf8_decode($URL_DOC . '/'))) {
                     mkdir(utf8_decode($URL_DOC . '/'), 0777, true);
                 }
-                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . utf8_decode($_FILES["FOTO"]["name"]))) {
-                    $img = $master_url . $_FILES["FOTO"]["name"];
+                $FILE_EXT = pathinfo($_FILES["FOTO"]["name"], PATHINFO_EXTENSION);
+                $NEW_NAME = $nombre_foto . '-' . $ID . "." . $FILE_EXT;
+                if (move_uploaded_file($_FILES["FOTO"]["tmp_name"], $URL_DOC . '/' . $NEW_NAME)) {
+                    $img = $master_url . $NEW_NAME;
                     $this->load->library('image_lib');
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = $img;
-                    $config['maintain_ratio'] = TRUE;
+                    $config['maintain_ratio'] = true;
                     $config['width'] = 900;
                     $config['height'] = 700;
                     $this->image_lib->initialize($config);
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $nombre_foto . '-' . $ID
+                        'Observaciones' => $_FILES["CROQUIS"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleFotoCajero($ID, $DATA);
                 } else {

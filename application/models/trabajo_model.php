@@ -208,12 +208,10 @@ class trabajo_model extends CI_Model {
                     . 'CONCAT("<p class=\" CustomDetalleDescripcion \">",UPPER(tda.Descripcion),"</p>") AS Descripcion, '
                     . '(CASE '
                     . 'WHEN (SELECT COUNT(*) FROM cajerosbbvadetallefotos AS TDFA WHERE TDFA.IdCajeroBBVADetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID)>0 THEN '
-                    . 'CONCAT("<span class=\"fa fa-camera  hasItems\" onclick=\"getFotosCajeroXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM cajerosbbvadetallefotos AS TDFA WHERE TDFA.IdCajeroBBVADetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID),")")'
-                    . 'ELSE CONCAT("<span class=\"fa fa-camera \" onclick=\"getFotosCajeroXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
-                    . 'END) AS "Fotos ", '
-                    . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleEdicion\" '
-                    . 'onclick=\"onEditarConceptoXDetalleCajero(",tda.ID,")\"></span>") AS Editar,'
-                    . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" '
+                    . 'CONCAT("<span class=\"fa fa-camera fa-lg hasItems\" onclick=\"getFotosCajeroXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span> (",(SELECT COUNT(*) FROM cajerosbbvadetallefotos AS TDFA WHERE TDFA.IdCajeroBBVADetalle = tda.ID AND TDFA.IdTrabajo = tda.Trabajo_ID),")")'
+                    . 'ELSE CONCAT("<span class=\"fa fa-camera fa-lg \" onclick=\"getFotosCajeroXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
+                    . 'END) AS "Fotos", '
+                    . 'CONCAT("<span class=\"fa fa-times fa-lg\" '
                     . 'onclick=\"onEliminarConceptoXDetalleCajero(this,",tda.ID,")\"></span>") AS Eliminar', false);
             $this->db->from("cajerosbbvadetalle AS tda");
             $this->db->join("trabajos AS t", "t.ID =tda.Trabajo_ID");

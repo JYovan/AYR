@@ -138,79 +138,6 @@
         </div>
     </div>
 </div>
-<!--MODAL AGREGAR CONCEPTO CAJERO-->
-<div id="mdlAgregarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
-        <div class="modal-header">
-            <h5 class="modal-title">Nuevo Concepto</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body modal-bodyFull">
-            <form id="frmAgregarConceptoDetalleCajero">
-                <fieldset>
-                    <div class=" d-none"><input type="text" id="ID" name="ID" class="form-control form-control-sm"></div>
-                    <div class="col-3">
-                        <div class="form-group label-static">
-                            <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción*</label>
-                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-6 col-6"><br><h6>Los campos con * son obligatorios</h6></div>
-                </fieldset>
-            </form>
-        </div>
-        <div class="modal-footer modal-footerFull">
-            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnAgregarConceptoCajero" name="btnAgregarConceptoCajero">GUARDAR</button>
-        </div>
-    </div>
-</div>
-<!--MODAL EDITAR CONCEPTO CAJERO-->
-<div id="mdlEditarConceptoCajero" class="modal modalFull fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialogFull modal-content modal-contentFull modal-lg">
-        <div class="modal-header">
-            <h5 class="modal-title">Edición</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body modal-bodyFull">
-            <form id="frmEditarConceptoDetalleCajero">
-                <fieldset>
-                    <div class=" d-none">
-                        <input type="text" id="ID" name="ID" class="form-control form-control-sm">
-                        <input type="text" id="Trabajo_ID" name="Trabajo_ID" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group label-static">
-                            <label for="Clave" class="control-label">Clave*</label>
-                            <input type="text" id="Clave" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group label-static">
-                            <label for="Descripcion" class="control-label">Descripción*</label>
-                            <textarea type="text" id="Descripcion" name="Descripcion" class="form-control CustomUppercase" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-6 col-6"><br><h6>Los campos con * son obligatorios</h6></div>
-                </fieldset>
-            </form>
-        </div>
-        <div class="modal-footer modal-footerFull"><!--BOTONES CONCEPTO-->
-            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-raised btn-primary" id="btnEditarConceptoCajero" name="btnEditarConceptoCajero">MODIFICAR</button>
-        </div>
-    </div>
-</div>
 <!--MODAL EDITAR - VER FOTOS CAJERO ADJUNTAS-->
 <div id="mdlTrabajoEditarFotosCajeroPorConceptoCajero" class="modal modalFull animated bounceInDown">
     <div class="modal-dialog modal-dialogFull">
@@ -373,21 +300,6 @@
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
     var TipoAcceso = "<?php echo $this->session->userdata('TipoAcceso'); ?>";
-    /*EDICION*/
-    var mdlTrabajoEditarGeneradorPorConcepto = $("#mdlTrabajoEditarGeneradorPorConcepto");
-    var btnGuardarModificarGeneradorXConcepto = mdlTrabajoEditarGeneradorPorConcepto.find("#btnGuardar");
-    var btnCancelarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelarEditarGenerador");
-    var btnMoficarEditarGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnModificar");
-    var btnEditarCancelarNuevoGenerador = mdlTrabajoEditarGeneradorPorConcepto.find("#btnCancelar");
-    var mdlTrabajoNuevoConceptoEditar = $("#mdlTrabajoNuevoConceptoEditar");
-
-    /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
-    var mdlTrabajoEditarFotosPorConcepto = $("#mdlTrabajoEditarFotosPorConcepto");
-    var mdlTrabajoEditarCroquisPorConcepto = $("#mdlTrabajoEditarCroquisPorConcepto");
-    var mdlTrabajoEditarAnexosPorConcepto = $("#mdlTrabajoEditarAnexosPorConcepto");
-    var EditarFotosPorConcepto = mdlTrabajoEditarFotosPorConcepto.find("#fFotos");
-    var EditarCroquisPorConcepto = mdlTrabajoEditarCroquisPorConcepto.find("#fCroquis");
-    var EditarAnexosPorConcepto = mdlTrabajoEditarAnexosPorConcepto.find("#fAnexos");
     /******ABIERTO*/
     var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find('#btnNuevoConceptoAbierto');
     var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
@@ -516,90 +428,7 @@
             } else {
                 $("#CamposMeor").addClass("d-none");
             }
-
         });
-        btnNuevoConceptoCajeroEditar.on("click", function () {
-            $('#mdlAgregarConceptoCajero').find("input").val("");
-            $('#mdlAgregarConceptoCajero').find("textarea").val("");
-            $('#mdlAgregarConceptoCajero').find("select").val(null).trigger("change");
-            $('#mdlAgregarConceptoCajero').modal('show');
-        });
-        btnEditarConceptoCajero.on("click", function () {
-            $.validator.setDefaults({ignore: []});
-            $('#frmEditarConceptoDetalleCajero').validate({
-                errorElement: 'span', errorClass: 'help-block',
-                rules: {Clave: 'required', Descripcion: 'required'},
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            /*Regresa si es valido para los select2*/
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            /*Si es verdadero que hacer*/
-            if ($('#frmEditarConceptoDetalleCajero').valid()) {
-                var frm = new FormData($("#frmEditarConceptoDetalleCajero")[0]);
-                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
-                $.ajax({
-                    url: master_url + 'onModificarConceptoCajero',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    $('#mdlEditarConceptoCajero').modal('hide');
-                    getDetalleCajerosByID(IdMovimiento);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
-        btnAgregarConceptoCajero.on("click", function () {
-            $.validator.setDefaults({ignore: []});
-            $('#frmAgregarConceptoDetalleCajero').validate({
-                errorElement: 'span', errorClass: 'help-block',
-                rules: {Clave: 'required', Descripcion: 'required'},
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').addClass('has-error');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest('.form-group').removeClass('has-error');
-                }
-            });
-            /*Regresa si es valido para los select2*/
-            $('select').on('change', function () {
-                $(this).valid();
-            });
-            /*Si es verdadero que hacer*/
-            if ($('#frmAgregarConceptoDetalleCajero').valid()) {
-                var frm = new FormData($("#frmAgregarConceptoDetalleCajero")[0]);
-                frm.append('Trabajo_ID', IdMovimiento);
-                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
-                $.ajax({
-                    url: master_url + 'onAgregarDetalleCajeroEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    $('#mdlAgregarConceptoCajero').modal('hide');
-                    getDetalleCajerosByID(IdMovimiento);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
-
         /*CARGA DE ARCHIVOS DETALLE DRAG AND DROP*/
         mdlTrabajoEditarFotosAntesPorConcepto.on('shown.bs.modal', function () {
             EditarFotosAntesPorConcepto.val('');
@@ -923,8 +752,6 @@
                 });
             });
         });
-
-
     });
     IdMovimiento = 0;
     function onEliminarConceptoXDetalleAbierto(evt, IDX) {
@@ -953,7 +780,6 @@
             }
         });
     }
-
     /*Multimedia*/
     function getFotosAntesXConceptoID(IDX, IDT) {
         mdlTrabajoEditarFotosAntesPorConcepto.find("#IdTrabajo").addClass("d-none").val(IDT);
@@ -1671,107 +1497,4 @@
         }).always(function () {
         });
     }
-    var tempDetalleCajero = 0;
-    function getDetalleCajerosByID(IDX) {
-        $.ajax({
-            url: master_url + 'getTrabajoDetalleCajeroByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {ID: IDX}
-        }).done(function (data, x, jq) {
-            if (data.length > 0) {
-                pnlDetalleTrabajo.find("#ConceptosCajero").html(getTable('tblTrabajosXDetalleCajeros', data));
-                var thead = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros thead th');
-                var tfoot = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tfoot th');
-                thead.eq(0).addClass("d-none");
-                tfoot.eq(0).addClass("d-none");
-                $.each(pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tbody tr'), function (k, v) {
-                    var td = $(v).find("td");
-                    td.eq(0).addClass("d-none");
-                });
-                var tblSelected = pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros').DataTable(tableOptionsDetalle);
-                pnlDetalleTrabajo.find('#tblTrabajosXDetalleCajeros tbody').on('click', 'tr', function () {
-                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("success");
-                    pnlDetalleTrabajo.find("#tblTrabajosXDetalleCajeros").find("tr").removeClass("warning");
-                    var id = this.id;
-                    var index = $.inArray(id, selected);
-                    if (index === -1) {
-                        selected.push(id);
-                    } else {
-                        selected.splice(index, 1);
-                    }
-                    $(this).addClass('success');
-                    var dtm = tblSelected.row(this).data();
-                    tempDetalleCajero = parseInt(dtm[0]);
-                });
-            } else {
-                pnlDetalleTrabajo.find("#ConceptosCajero").html("");
-            }
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
-    }
-    function onEditarConceptoXDetalleCajero(IDX) {
-        $.ajax({
-            url: master_url + 'getTrabajoDetalleCajeroByID',
-            type: "POST",
-            data: {ID: IDX}
-        }).done(function (data, x, jq) {
-            if (IDX !== 0 && IDX !== undefined && IDX > 0) {
-                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-                $.ajax({
-                    url: master_url + 'getDetalleCajeroByID',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {ID: IDX}
-                }).done(function (data, x, jq) {
-                    $('#mdlEditarConceptoCajero').find("input").val("");
-                    var concepto = data[0];
-                    $('#mdlEditarConceptoCajero').find("#ID").val(concepto.ID);
-                    $('#mdlEditarConceptoCajero').find("#Trabajo_ID").val(concepto.Trabajo_ID);
-                    $('#mdlEditarConceptoCajero').find("#Clave").val(concepto.Clave);
-                    $('#mdlEditarConceptoCajero').find("#Descripcion").val(concepto.Descripcion);
-                    $('#mdlEditarConceptoCajero').modal('show');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-        }).fail(function (x, y, z) {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'CONCEPTO NO ENCONTRADO', 'danger');
-        }).always(function () {
-        });
-    }
-    function onEliminarConceptoXDetalleCajero(evt, IDX) {
-        swal({
-            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
-        }).then((willDelete) => {
-            if (willDelete) {
-                HoldOn.open({
-                    theme: "sk-bounce",
-                    message: "CARGANDO DATOS..."
-                });
-                $.ajax({
-                    url: master_url + 'onEliminarConceptoXDetalleCajero',
-                    type: "POST",
-                    data: {
-                        ID: IDX,
-                        IDT: IdMovimiento
-                    }
-                }).done(function (data, x, jq) {
-                    getDetalleCajerosByID(IdMovimiento);
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                    HoldOn.close();
-                });
-            }
-        });
-    }
-
 </script>

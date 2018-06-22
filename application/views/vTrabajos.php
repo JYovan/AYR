@@ -594,18 +594,64 @@
                     <!--FIN NUEVA TABLA DE CONCEPTOS-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="Levantamiento">
-                    <fieldset>
-                        <div class="col-12" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConceptoAbierto"><span class="fa fa-plus fa-1x" ></span></button>
+                    <div class="row mb-3">
+                        <div class="col-6 col-md-6" align="left">
+                            <legend></legend>
                         </div>
-                    </fieldset>
+                        <div class="col-6 col-md-6" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConceptoAbierto"><span class="fa fa-plus "></span></button>
+                        </div>
+                    </div>
+                    <!--NUEVA TABLA CONCEPTOS-->
+                    <div id="ConceptosAbiertos" class="row d-none" >
+                        <table id="tblConceptosAbiertos" class="table table-sm display" style="width:100% " >
+                            <thead>
+                                <tr >
+                                    <th>ID</th>
+                                    <th>Clave</th>
+                                    <th>Int/Ext</th>
+                                    <th>Descripción</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                    <th>Precio</th>
+                                    <th>Importe</th>
+                                    <th>Moneda</th>
+                                    <th>Adjuntos</th>
+                                    <th>PCID</th>
+                                    <th>Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y: auto;"></tbody>
+
+                        </table>
+                    </div>
+                    <!--FIN NUEVA TABLA DE CONCEPTOS-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="Cajeros">
-                    <fieldset>
-                        <div class="col-12" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConceptoCajero"><span class="fa fa-plus fa-1x" ></span></button>
+                    <div class="row mb-3">
+                        <div class="col-6 col-md-6" align="left">
+                            <legend></legend>
                         </div>
-                    </fieldset>
+                        <div class="col-6 col-md-6" align="right">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConceptoCajero"><span class="fa fa-plus "></span></button>
+                        </div>
+                    </div>
+                    <!--NUEVA TABLA CONCEPTOS-->
+                    <div id="ConceptosCajeros" class="row" >
+                        <table id="tblConceptosCajeros" class="table table-sm display" style="width:100% " >
+                            <thead>
+                                <tr >
+                                    <th>ID</th>
+                                    <th>Clave</th>
+                                    <th>Descripción</th>
+                                    <th>Fotos</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!--FIN NUEVA TABLA DE CONCEPTOS-->
                 </div>
             </div>
         </div>
@@ -684,9 +730,9 @@
                         <div id="Fotos" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntos">
                             <fieldset>
                                 <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotos" name="fFotos[]" multiple="" class="d-none">
-                                <div class="col-12" id="" align="center"  onclick="setFotosEditar(this)">
+                                <div class="col-12" id="inputFotos" align="center"  onclick="setFotosEditar(this)">
                                     <div class="file_drag_area">
-                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
                                         <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
                                 </div>
@@ -706,9 +752,9 @@
                         <div id="Croquis" class="collapse" aria-labelledby="cardCroquis" data-parent="#AccordionAdjuntos">
                             <fieldset>
                                 <input type="file" accept='image/*' id="fCroquis" name="fCroquis[]" multiple="" class="d-none">
-                                <div class="col-12" id="" align="center"  onclick="setCroquisEditar(this)">
+                                <div class="col-12" id="inputCroquis" align="center"  onclick="setCroquisEditar(this)">
                                     <div class="file_drag_area">
-                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
                                         <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
                                 </div>
@@ -733,9 +779,9 @@
                                 </div>
                             </fieldset>
                             <fieldset>
-                                <div class="col-12" id="" align="center"  onclick="setAnexosEditar(this)">
+                                <div class="col-12" id="inputAnexos" align="center"  onclick="setAnexosEditar(this)">
                                     <div class="file_drag_area">
-                                        <h5> Arrastre aquí los archivos a subir ó click para seleccionarlos</h5>
+                                        <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
                                         <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
                                 </div>
@@ -764,7 +810,7 @@
             </div>
             <div class="modal-body" id="pnlGenerador">
                 <form id="frmGenerador">
-                    <div class="row">
+                    <div class="row" id="CapturaGenerador">
                         <div class="d-none">
                             <input type="text" name="Concepto_ID" class="form-control hide">
                             <input type="text" name="IdTrabajoDetalle" class="form-control hide">
@@ -853,6 +899,40 @@
         </div>
     </div>
 </div>
+<!--MODAL AGREGAR CONCEPTO CAJERO-->
+<div id="mdlAgregarConceptoCajero" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
+        <div class="modal-header">
+            <h5 class="modal-title">Agregar Concepto Cajero</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="pnlDatosCajero">
+            <form id="frmConcepoCajero">
+                <fieldset>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="form-group label-static">
+                            <label for="Clave"  class="control-label">Clave*</label>
+                            <input type="text" id="ClaveCajero" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción*</label>
+                            <textarea type="text" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12"><br><h6>Los campos con * son obligatorios</h6></div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer modal-footerFull">
+            <button type="button" class="btn btn-primary" id="btnGuardarConceptoCajero" name="btnGuardarConceptoCajero">GUARDAR</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
@@ -892,11 +972,10 @@
     var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
     var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
     var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
+    /*CAJERO*/
     var btnNuevoConceptoCajero = pnlDetalleTrabajo.find("#btnNuevoConceptoCajero");
-    var btnNuevoConceptoCajeroEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoCajeroEditar');
-    var btnAgregarConceptoCajero = $('#btnAgregarConceptoCajero');
-    var btnEditarConceptoCajero = $('#btnEditarConceptoCajero');
-    /*fOTOS*/
+    var mdlAgregarConceptoCajero = $('#mdlAgregarConceptoCajero');
+    var btnGuardarConceptoCajero = mdlAgregarConceptoCajero.find('#btnGuardarConceptoCajero');
     var mdlTrabajoEditarFotosCajeroPorConceptoCajero = $("#mdlTrabajoEditarFotosCajeroPorConceptoCajero");
     var EditarFotosCajeroPorConcepto = mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#fFotosCajero");
     /*MULTIMEDIA (EDITAR ABIERTO)*/
@@ -905,11 +984,11 @@
     var mdlTrabajoEditarFotosProcesoPorConcepto = $("#mdlTrabajoEditarFotosProcesoPorConcepto");
     var mdlTrabajoEditarAnexosDosPorConcepto = $("#mdlTrabajoEditarAnexosDosPorConcepto");
     /*Reportes*/
-
     var mdlReportesEditarTrabajo = $("#mdlReportesEditarTrabajo");
     var nuevo = false;
     var tblTrabajos = $("#tblTrabajos"), Trabajos;
     var tblConceptosPresupuesto = $("#tblConceptosPresupuesto"), ConceptosPresupuesto;
+    var tblConceptosCajeros = $("#tblConceptosCajeros"), ConceptosCajeros;
     var tblRegistrosConceptosPreciario = $("#tblRegistrosConceptosPreciario"), RegistrosConceptosPreciario;
     var tblRegistrosGenerador = $("#tblRegistrosGenerador"), RegistrosGenerador;
     var ReemplazaConcepto = false;
@@ -917,150 +996,246 @@
     var Estatus;
     var ImporteTotal;
     $(document).ready(function () {
+        /*EVENTOS CAJERO*/
+        $('#tblConceptosCajeros').on('draw.dt', function () {
+            $.each(tblConceptosCajeros.find('tbody tr'), function () {
+                if (Estatus === 'Borrador') {
+                    /*Edicion Area*/
+                    $(this).find("td:eq(0)").on('dblclick', function () {
+                        var input = '<input id="Clave" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Clave').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Clave").focus();
+                        $(this).find("#Clave").focusout(function () {
+                            var v = $(this).val().toUpperCase();
+                            celda.html(v);
+                            ConceptosCajeros.cell(padre, 1).data(v).draw();
+                            var Datos = ConceptosCajeros.row(padre).data();
+                            var params = {
+                                ID: Datos.ID,
+                                CAMPO: 'Clave',
+                                VALOR: Datos.Clave
+                            };
+                            onmodificarConceptoCajero(params);
+                        });
+                    });
+                    /*Edicion Estimacion*/
+                    $(this).find("td:eq(1)").on('dblclick', function () {
+                        var input = '<input id="Descripcion" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Descripcion').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Descripcion").focus();
+                        $(this).find("#Descripcion").focusout(function () {
+                            var v = $(this).val().toUpperCase();
+                            celda.html(v);
+                            ConceptosCajeros.cell(padre, 2).data(v).draw();
+                            var Datos = ConceptosCajeros.row(padre).data();
+                            var params = {
+                                ID: Datos.ID,
+                                CAMPO: 'Descripcion',
+                                VALOR: Datos.Descripcion
+                            };
+                            onmodificarConceptoCajero(params);
+                        });
+                    });
+                }
+            });
+        });
+        btnGuardarConceptoCajero.on("click", function () {
+            isValid('pnlDatosCajero');
+            if (valido) {
+                var frm = new FormData($("#frmConcepoCajero")[0]);
+                frm.append('Trabajo_ID', IdMovimiento);
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onAgregarDetalleCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    HoldOn.close();
+                    mdlAgregarConceptoCajero.modal('hide');
+                    ConceptosCajeros.ajax.reload();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                    HoldOn.close();
+                });
+            }
+        });
+        mdlAgregarConceptoCajero.on('shown.bs.modal', function () {
+            mdlAgregarConceptoCajero.find("#ClaveCajero").focus();
+        });
+        btnNuevoConceptoCajero.on("click", function () {
+            if (!nuevo) {
+                mdlAgregarConceptoCajero.find("input").val("");
+                mdlAgregarConceptoCajero.find("textarea").val("");
+                mdlAgregarConceptoCajero.modal('show');
+            } else {
+                swal('INFO', 'DEBES GUARDAR EL MOVIMIENTO', 'info');
+            }
+        });
         getRecords();
         getClientes();
         getCodigosPPTA();
         getCuadrillas();
+        /*Traer el detalle cuando se muestra el tab panel*/
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var target = $(e.target).attr("href") // activated tab
+            if (target === '#Cajeros') {
+                getDetalleCajerosByID(IdMovimiento);
+            } else if (target === '#Levantamiento') {
+                //getDetalleAbiertoByID(IdMovimiento);
+            }
+        });
         /*GENERADOR CONCEPTO*/
         $('#tblRegistrosGenerador').on('draw.dt', function () {
             $.each(tblRegistrosGenerador.find('tbody tr'), function () {
-                /*Edicion Area*/
-                $(this).find("td:eq(0)").on('dblclick', function () {
-                    var input = '<input id="Area" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#Area').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#Area").focus();
-                    $(this).find("#Area").focusout(function () {
-                        var v = $(this).val().toUpperCase();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 1).data(v).draw();
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var params = {
-                            ID: Datos.ID,
-                            CAMPO: 'Area',
-                            VALOR: Datos.Area
-                        };
-                        onModificarGenerador(params);
+                if (Estatus === 'Borrador') {
+                    /*Edicion Area*/
+                    $(this).find("td:eq(0)").on('dblclick', function () {
+                        var input = '<input id="Area" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Area').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Area").focus();
+                        $(this).find("#Area").focusout(function () {
+                            var v = $(this).val().toUpperCase();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 1).data(v).draw();
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var params = {
+                                ID: Datos.ID,
+                                CAMPO: 'Area',
+                                VALOR: Datos.Area
+                            };
+                            onModificarGenerador(params);
+                        });
                     });
-                });
-                /*Edicion Estimacion*/
-                $(this).find("td:eq(1)").on('dblclick', function () {
-                    var input = '<input id="EstimacionNo" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#EstimacionNo').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#EstimacionNo").focus();
-                    $(this).find("#EstimacionNo").focusout(function () {
-                        var v = $(this).val().toUpperCase();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 2).data(v).draw();
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var params = {
-                            ID: Datos.ID,
-                            CAMPO: 'EstimacionNo',
-                            VALOR: Datos.EstimacionNo
-                        };
-                        onModificarGenerador(params);
+                    /*Edicion Estimacion*/
+                    $(this).find("td:eq(1)").on('dblclick', function () {
+                        var input = '<input id="EstimacionNo" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#EstimacionNo').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#EstimacionNo").focus();
+                        $(this).find("#EstimacionNo").focusout(function () {
+                            var v = $(this).val().toUpperCase();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 2).data(v).draw();
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var params = {
+                                ID: Datos.ID,
+                                CAMPO: 'EstimacionNo',
+                                VALOR: Datos.EstimacionNo
+                            };
+                            onModificarGenerador(params);
+                        });
                     });
-                });
-                /*Edicion Largo*/
-                $(this).find("td:eq(2)").on('dblclick', function () {
-                    var input = '<input id="Largo" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#Largo').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#Largo").focus();
-                    $(this).find("#Largo").focusout(function () {
-                        var v = $(this).val();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 3).data(v).draw();
-                        /*Calculo de nuevo Total*/
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
-                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
-                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
-                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
-                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
-                        onModificarCantidadesGenerador(Datos.ID, 'Largo', generador_largo, total_generador);
+                    /*Edicion Largo*/
+                    $(this).find("td:eq(2)").on('dblclick', function () {
+                        var input = '<input id="Largo" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Largo').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Largo").focus();
+                        $(this).find("#Largo").focusout(function () {
+                            var v = $(this).val();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 3).data(v).draw();
+                            /*Calculo de nuevo Total*/
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                            var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                            var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                            var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                            var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                            onModificarCantidadesGenerador(Datos.ID, 'Largo', generador_largo, total_generador);
+                        });
                     });
-                });
-                /*Edicion Ancho*/
-                $(this).find("td:eq(3)").on('dblclick', function () {
-                    var input = '<input id="Ancho" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#Ancho').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#Ancho").focus();
-                    $(this).find("#Ancho").focusout(function () {
-                        var v = $(this).val();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 4).data(v).draw();
-                        /*Calculo de nuevo Total*/
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
-                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
-                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
-                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
-                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
-                        onModificarCantidadesGenerador(Datos.ID, 'Ancho', generador_ancho, total_generador);
+                    /*Edicion Ancho*/
+                    $(this).find("td:eq(3)").on('dblclick', function () {
+                        var input = '<input id="Ancho" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Ancho').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Ancho").focus();
+                        $(this).find("#Ancho").focusout(function () {
+                            var v = $(this).val();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 4).data(v).draw();
+                            /*Calculo de nuevo Total*/
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                            var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                            var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                            var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                            var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                            onModificarCantidadesGenerador(Datos.ID, 'Ancho', generador_ancho, total_generador);
+                        });
                     });
-                });
-                /*Edicion Alto*/
-                $(this).find("td:eq(4)").on('dblclick', function () {
-                    var input = '<input id="Alto" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#Alto').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#Alto").focus();
-                    $(this).find("#Alto").focusout(function () {
-                        var v = $(this).val();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 5).data(v).draw();
-                        /*Calculo de nuevo Total*/
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
-                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
-                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
-                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
-                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
-                        onModificarCantidadesGenerador(Datos.ID, 'Alto', generador_alto, total_generador);
+                    /*Edicion Alto*/
+                    $(this).find("td:eq(4)").on('dblclick', function () {
+                        var input = '<input id="Alto" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Alto').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Alto").focus();
+                        $(this).find("#Alto").focusout(function () {
+                            var v = $(this).val();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 5).data(v).draw();
+                            /*Calculo de nuevo Total*/
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                            var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                            var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                            var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                            var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                            onModificarCantidadesGenerador(Datos.ID, 'Alto', generador_alto, total_generador);
+                        });
                     });
-                });
-                /*Edicion Cantidad*/
-                $(this).find("td:eq(5)").on('dblclick', function () {
-                    var input = '<input id="Cantidad" type="text" class="form-control form-control-sm">';
-                    var vActual = $(this).text();
-                    $(this).html(input);
-                    $(this).find('#Cantidad').val(vActual);
-                    var celda = $(this);
-                    var padre = $(this).parent();
-                    $(this).find("#Cantidad").focus();
-                    $(this).find("#Cantidad").focusout(function () {
-                        var v = $(this).val();
-                        celda.html(v);
-                        RegistrosGenerador.cell(padre, 6).data(v).draw();
-                        /*Calculo de nuevo Total*/
-                        var Datos = RegistrosGenerador.row(padre).data();
-                        var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
-                        var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
-                        var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
-                        var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
-                        var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
-                        onModificarCantidadesGenerador(Datos.ID, 'Cantidad', generador_cantidad, total_generador);
+                    /*Edicion Cantidad*/
+                    $(this).find("td:eq(5)").on('dblclick', function () {
+                        var input = '<input id="Cantidad" type="text" class="form-control form-control-sm">';
+                        var vActual = $(this).text();
+                        $(this).html(input);
+                        $(this).find('#Cantidad').val(vActual);
+                        var celda = $(this);
+                        var padre = $(this).parent();
+                        $(this).find("#Cantidad").focus();
+                        $(this).find("#Cantidad").focusout(function () {
+                            var v = $(this).val();
+                            celda.html(v);
+                            RegistrosGenerador.cell(padre, 6).data(v).draw();
+                            /*Calculo de nuevo Total*/
+                            var Datos = RegistrosGenerador.row(padre).data();
+                            var generador_largo = parseFloat((Datos.Largo !== '' && parseFloat(Datos.Largo) !== 0) ? Datos.Largo : 1);
+                            var generador_ancho = parseFloat((Datos.Ancho !== '' && parseFloat(Datos.Ancho) !== 0) ? Datos.Ancho : 1);
+                            var generador_alto = parseFloat((Datos.Alto !== '' && parseFloat(Datos.Alto) !== 0) ? Datos.Alto : 1);
+                            var generador_cantidad = parseFloat((Datos.Cantidad !== '' && parseFloat(Datos.Cantidad) !== 0) ? Datos.Cantidad : 1);
+                            var total_generador = parseFloat((generador_largo * generador_ancho * generador_alto * ((generador_cantidad === 0) ? 1 : generador_cantidad)));
+                            onModificarCantidadesGenerador(Datos.ID, 'Cantidad', generador_cantidad, total_generador);
+                        });
                     });
-                });
-
+                }
             });
         });
         btnAgregarGenerador.on("click", function () {
@@ -1284,6 +1459,7 @@
                         nuevo = false;
                         IdMovimiento = parseInt(data);
                         pnlDatos.find("#ID").val(IdMovimiento);
+                        getTrabajoDetalleByID(IdMovimiento);
                         btnEliminar.removeClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
@@ -1384,36 +1560,36 @@
             nuevo = true;
             pnlDatos.find('#pEstatusTrabajo').find('li').removeClass('completed active');
             pnlDatos.find('#pEstatusTrabajo').find('#stsPedido').addClass('active').html('').html('<span class="bubble"></span> 1. Pedido <br><small>(activo)</small>');
-            pnlDatos.find(".nav-tabs li").removeClass("active");
-            $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+            pnlDatos.find(".nav-tabs li a").removeClass("active show");
+            $(pnlDatos.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
             pnlDatos.find("#Datos2").removeClass("active show");
             pnlDatos.find("#Datos3").removeClass("active show");
             pnlDatos.find("#Datos4").removeClass("active show");
-            menuTablero.addClass("d-none");
-            pnlDatos.removeClass("d-none");
-            pnlDetalleTrabajo.removeClass("d-none");
-            pnlDetalleTrabajo.find(".nav-tabs li").removeClass("active");
-            $(pnlDetalleTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlDetalleTrabajo.find(".nav-tabs li a").removeClass("active show");
+            $(pnlDetalleTrabajo.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDetalleTrabajo.find("#Presupuesto").addClass("active show");
             pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
             pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
+            menuTablero.addClass("d-none");
+            pnlDatos.removeClass("d-none");
+            pnlDetalleTrabajo.removeClass("d-none");
             btnGuardar.removeClass('d-none');
             btnEliminar.addClass('d-none');
             btnImprimirReportes.addClass('d-none');
             btnCopiar.addClass('d-none');
             btnConcluir.addClass('d-none');
             btnInconcluir.addClass('d-none');
-            pnlDatos.find('#FechaCreacion').val(getToday());
             enableFields();
             if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
                 ConceptosPresupuesto.clear().draw();
             }
-            pnlDatos.find("input").not('[type=radio]').val('');
+            pnlDatos.find("input").val('');
+            pnlDatos.find("textarea").val("");
+            pnlDatos.find('#FechaCreacion').val(getToday());
             $("input:radio[name='NuevoEstatusTrabajo']").each(function (i) {
                 this.checked = false;
             });
-            pnlDatos.find("textarea").val("");
             $.each(pnlDatos.find("select"), function (k, v) {
                 pnlDatos.find("select")[k].selectize.clear(true);
             });
@@ -1841,19 +2017,20 @@
             IdMovimiento = parseInt(dtm.ID);
             nuevo = false;
             /*OLD CODE*/
-            pnlDatos.find(".nav-tabs li").removeClass("active");
-            $(pnlDatos.find(".nav-tabs li")[0]).addClass("active");
+            pnlDatos.find(".nav-tabs li a").removeClass("active show");
+            $(pnlDatos.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
             pnlDatos.find("#Datos2").removeClass("active show");
             pnlDatos.find("#Datos3").removeClass("active show");
             pnlDatos.find("#Datos4").removeClass("active show");
             pnlDatos.find("#Datos5").removeClass("active show");
             pnlDatos.find("#Datos6").removeClass("active show");
-            pnlDetalleTrabajo.find(".nav-tabs li").removeClass("active");
-            $(pnlDetalleTrabajo.find(".nav-tabs li")[0]).addClass("active");
+            pnlDetalleTrabajo.find(".nav-tabs li a").removeClass("active show");
+            $(pnlDetalleTrabajo.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDetalleTrabajo.find("#Presupuesto").addClass("active show");
             pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
-            pnlDetalleTrabajo.find("#CajerosEditar").removeClass("active show");
+            pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
+
             if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
                 HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
                 $.ajax({
@@ -1865,7 +2042,6 @@
                     }
                 }).done(function (data, x, jq) {
                     var trabajo = data[0];
-                    console.log('TRABAJO', data, "\n");
                     pnlDatos.find("input").not('[type=radio]').val('');
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
@@ -1896,6 +2072,7 @@
                             pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
                         });
                         pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
+
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     }).always(function () {
@@ -1985,7 +2162,6 @@
                             }
                         }
                     });
-
                     if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
                         var ext = getExt(trabajo.Adjunto);
                         if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
@@ -2033,77 +2209,7 @@
                         $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
                         disableFields();
                     }
-
-
-                    //                    console.log('Estatus: ' + trabajo.Estatus + '-' + trabajo.EstatusTrabajo);
-                    //                    if (trabajo.Estatus === 'Concluido' && trabajo.EstatusTrabajo !== 'Pagado' && trabajo.Estatus !== 'Entregado') {
-                    //                        tBtnEditarConcluir.prop('checked', true);
-                    //                        btnModificar.addClass('d-none');
-                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    //                        btnEliminar.attr("disabled", true);
-                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-                    //                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-                    //                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Finalizado') {
-                    //                        tBtnEditarConcluir.prop('checked', true);
-                    //                        btnModificar.addClass('d-none');
-                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    //                        btnEliminar.attr("disabled", true);
-                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-                    //                        $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-                    //                    } else if (trabajo.Estatus === 'Entregado' && trabajo.EstatusTrabajo === 'Pagado') {
-                    //                        if (TipoAcceso === 'SUPER ADMINISTRADOR') {
-                    //                            tBtnEditarConcluir.prop('checked', true);
-                    //                            btnModificar.addClass('d-none');
-                    //                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    //                            btnEliminar.attr("disabled", true);
-                    //                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-                    //                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-                    //                        } else {
-                    //                            tBtnEditarConcluir.prop('disabled', true);
-                    //                            tBtnEditarConcluir.prop('checked', true);
-                    //                            btnModificar.addClass('d-none');
-                    //                            $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    //                            btnEliminar.attr("disabled", true);
-                    //                            pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //                            pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find("#ConceptosCajero").addClass("disabledDetalle");
-                    //                            pnlDetalleTrabajo.find('table').addClass("disabledDetalle");
-                    //                            $('#tblConceptosXTrabajo tbody tr').addClass("disabledDetalle");
-                    //                        }
-                    //                    } else if (trabajo.Estatus === 'Cancelado') {
-                    //                        tBtnEditarConcluir.addClass('d-none');
-                    //                        btnModificar.addClass('d-none');
-                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', true);
-                    //                        btnEliminar.attr("disabled", true);
-                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', true);
-                    //                        pnlDetalleTrabajo.find("#Conceptos").addClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").addClass("disabledDetalle");
-                    //                    } else {
-                    //                        tBtnEditarConcluir.prop('checked', false);
-                    //                        btnModificar.removeClass('d-none');
-                    //                        $('#frmEditar').find('input, textarea, button, select').attr('disabled', false);
-                    //                        btnEliminar.attr("disabled", false);
-                    //                        pnlDetalleTrabajo.find('input, textarea, button, select').attr('disabled', false);
-                    //                        pnlDetalleTrabajo.find("#Conceptos").removeClass("disabledDetalle");
-                    //                        pnlDetalleTrabajo.find("#ConceptosAbierto").removeClass("disabledDetalle");
-                    //                    }
-
                     /*ACTUALIZAR ESTATUS*/
-
-                    /*SET ESTATUS*/
                     var text = '';
                     $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
                         text = $(this).text();
@@ -2135,8 +2241,6 @@
                         }
                     });
                     getTrabajoDetalleByID(IdMovimiento);
-                    //                    getDetalleAbiertoByID(trabajo.ID);
-                    //                    getDetalleCajerosByID(trabajo.ID);
                     pnlDatos.removeClass("d-none");
                     pnlDetalleTrabajo.removeClass("d-none");
 
@@ -2149,9 +2253,7 @@
             }
             /*END OLD CODE*/
         });
-
         $('#tblTrabajos_filter input[type=search]').focus();
-
         Trabajos.columns().every(function () {
             var that = this;
             $('input,select', this.footer()).on('keyup change', function () {
@@ -2299,39 +2401,41 @@
         });
         /*EDITOR*/
         ConceptosPresupuesto.on('key', function (e, datatable, key, cell, originalEvent) {
-
-            var cell_td = $(this).find("td.focus:not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
-            if (key === 13) {
-                if (cell_td.hasClass("Clave")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
-                    cell_td.html(g).find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Descripcion")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus();
-                } else if (cell_td.hasClass("Unidad")) {
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Precio")) {
-                    var txt = getNumberFloat(cell.data());
-                    var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
-                    cell_td.html(g);
-                    cell_td.find("#Editor").focus().select();
-                } else if (cell_td.hasClass("Moneda")) {
-                    var txt = $(cell.data()).text();
-                    var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
-                    cell_td.html(g);
-                    $(this).find("#Moneda").val(txt);
-                } else if (cell_td.hasClass("IntExt")) {
-                    var g = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
-                    cell_td.html(g);
-                    $(this).find("#IntExt").val(cell.data());
-                    $(this).find("#IntExt").select();
+            if (Estatus === 'Borrador') {
+                var cell_td = $(this).find("td.focus:not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
+                if (key === 13) {
+                    if (cell_td.hasClass("Clave")) {
+                        var txt = $(cell.data()).text();
+                        var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
+                        cell_td.html(g).find("#Editor").focus().select();
+                    } else if (cell_td.hasClass("Descripcion")) {
+                        var txt = $(cell.data()).text();
+                        var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
+                        cell_td.html(g);
+                        cell_td.find("#Editor").focus();
+                    } else if (cell_td.hasClass("Unidad")) {
+                        var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
+                        cell_td.html(g);
+                        cell_td.find("#Editor").focus().select();
+                    } else if (cell_td.hasClass("Precio")) {
+                        var txt = getNumberFloat(cell.data());
+                        var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
+                        cell_td.html(g);
+                        cell_td.find("#Editor").focus().select();
+                    } else if (cell_td.hasClass("Moneda")) {
+                        var txt = $(cell.data()).text();
+                        var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
+                        cell_td.html(g);
+                        $(this).find("#Moneda").val(txt);
+                    } else if (cell_td.hasClass("IntExt")) {
+                        var g = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
+                        cell_td.html(g);
+                        $(this).find("#IntExt").val(cell.data());
+                        $(this).find("#IntExt").select();
+                    }
                 }
             }
+
         }).on('key-blur', function (e, datatable, cell) {
             var t = $('#tblConceptosPresupuesto > tbody');
             var a = t.find("#Editor");
@@ -2388,7 +2492,6 @@
                 }
                 onEditarTrabajoDetalle(params);
             }
-
             if (m.val() !== 'undefined' && m.val() !== undefined) {
                 var b = ConceptosPresupuesto.cell(m.parent()).index();
                 var d = m.parent();
@@ -2429,12 +2532,57 @@
             }
         });
     }
+    function getDetalleCajerosByID(IDX) {
+        $.fn.dataTable.ext.errMode = 'throw';
+        if ($.fn.DataTable.isDataTable('#tblConceptosCajeros')) {
+            tblConceptosCajeros.DataTable().destroy();
+        }
+        ConceptosCajeros = tblConceptosCajeros.DataTable({
+            "dom": 'frtip',
+            buttons: buttons,
+            "ajax": {
+                "url": master_url + 'getTrabajoDetalleCajeroByID',
+                type: "POST",
+                "dataSrc": "",
+                "data": {
+                    ID: IDX
+                }
+            },
+            "columns": [
+                {"data": "ID"},
+                {"data": "Clave"},
+                {"data": "Descripcion"},
+                {"data": "Fotos"},
+                {"data": "Eliminar"}
+            ],
+            keys: true,
+            language: lang,
+            "autoWidth": true,
+            "colReorder": true,
+            "displayLength": 15,
+            "bLengthChange": false,
+            "deferRender": true,
+            "scrollX": true,
+            "scrollCollapse": false,
+            "bSort": true,
+            "aaSorting": [
+                [0, 'desc']/*ID*/
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            "initComplete": function (settings, json) {
+                HoldOn.close();
+            }
+        });
+    }
     function getConceptosPreciarioByPreciario(Preciario_ID) {
         mdlSeleccionarConceptos.modal('show');
-        HoldOn.open({
-            theme: 'sk-cube',
-            message: 'CARGANDO...'
-        });
+        HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblRegistrosConceptosPreciario')) {
             tblRegistrosConceptosPreciario.DataTable().destroy();
@@ -2485,136 +2633,148 @@
     }
     /*Edición de Detalle*/
     function onReemplazarConcepto(IDX, Cantidad) {
-        IdReemplaza = IDX;
-        CantidadReemplaza = Cantidad;
-        var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
-        if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
-            ReemplazaConcepto = true;
-            getConceptosPreciarioByPreciario(Preciario_ID);
+        if (Estatus === 'Borrador') {
+            IdReemplaza = IDX;
+            CantidadReemplaza = Cantidad;
+            var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
+            if (Preciario_ID !== undefined && Preciario_ID !== '' && Preciario_ID > 0) {
+                ReemplazaConcepto = true;
+                getConceptosPreciarioByPreciario(Preciario_ID);
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+            }
         } else {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN PRECIARIO', 'danger');
+            swal('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
         }
     }
     function getConceptoCopiarXDetalle(IDX) {
-        var id_nuevoConcepto = 0;
-        HoldOn.open({theme: "sk-bounce", message: "POR FAVOR, ESPERE..."});
-        $.ajax({
-            url: master_url + 'getDetalleByID',
-            type: "POST",
-            dataType: "JSON",
-            data: {ID: IDX}
-        }).done(function (data, x, jq) {
-            if (data[0] !== undefined && data.length > 0) {
-                var dtm = data[0];
-                var frm = new FormData();
-                frm.append('Trabajo_ID', IdMovimiento);
-                frm.append('PreciarioConcepto_ID', dtm.PreciarioConcepto_ID);
-                frm.append('Renglon', pnlDetalleTrabajo.find("table tr").length);
-                frm.append('Cantidad', dtm.Cantidad);
-                frm.append('Unidad', dtm.Unidad);
-                frm.append('Precio', dtm.Precio);
-                frm.append('Importe', dtm.Importe);
-                frm.append('IntExt', dtm.IntExt);
-                frm.append('Moneda', dtm.Moneda);
-                frm.append('TipoCambio', dtm.TipoCambio);
-                frm.append('Concepto', dtm.Concepto);
-                frm.append('Clave', dtm.Clave);
-                $.ajax({
-                    url: master_url + 'onCopiarDetalleEditar',
-                    type: "POST",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: frm
-                }).done(function (data, x, jq) {
-                    id_nuevoConcepto = data;
+        if (Estatus === 'Borrador') {
+            var id_nuevoConcepto = 0;
+            HoldOn.open({theme: "sk-bounce", message: "POR FAVOR, ESPERE..."});
+            $.ajax({
+                url: master_url + 'getDetalleByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {ID: IDX}
+            }).done(function (data, x, jq) {
+                if (data[0] !== undefined && data.length > 0) {
+                    var dtm = data[0];
+                    var frm = new FormData();
+                    frm.append('Trabajo_ID', IdMovimiento);
+                    frm.append('PreciarioConcepto_ID', dtm.PreciarioConcepto_ID);
+                    frm.append('Renglon', pnlDetalleTrabajo.find("table tr").length);
+                    frm.append('Cantidad', dtm.Cantidad);
+                    frm.append('Unidad', dtm.Unidad);
+                    frm.append('Precio', dtm.Precio);
+                    frm.append('Importe', dtm.Importe);
+                    frm.append('IntExt', dtm.IntExt);
+                    frm.append('Moneda', dtm.Moneda);
+                    frm.append('TipoCambio', dtm.TipoCambio);
+                    frm.append('Concepto', dtm.Concepto);
+                    frm.append('Clave', dtm.Clave);
                     $.ajax({
-                        url: master_url + 'getGeneradoresXDetalleID',
+                        url: master_url + 'onCopiarDetalleEditar',
                         type: "POST",
-                        dataType: "JSON",
-                        data: {ID: IDX}
-                    }).done(function (datax, x, jq) {
-                        $.each(datax, function (i, v) {
-                            var frmGen = new FormData();
-                            frmGen.append('Concepto_ID', v.Concepto_ID);
-                            frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
-                            frmGen.append('Area', v.Area);
-                            frmGen.append('EstimacionNo', v.EstimacionNo);
-                            frmGen.append('Eje', v.Eje);
-                            frmGen.append('EntreEje1', v.EntreEje1);
-                            frmGen.append('EntreEje2', v.EntreEje2);
-                            frmGen.append('Largo', v.Largo);
-                            frmGen.append('Ancho', v.Ancho);
-                            frmGen.append('Alto', v.Alto);
-                            frmGen.append('Cantidad', v.Cantidad);
-                            frmGen.append('Total', v.Total);
-                            $.ajax({
-                                url: master_url + 'onCopiarGenerador',
-                                type: "POST",
-                                cache: false,
-                                contentType: false,
-                                processData: false,
-                                data: frmGen
-                            }).done(function (data, x, jq) {
-                                console.log(data);
-                                ConceptosPresupuesto.ajax.reload();
-                                onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
-                                HoldOn.close();
-                            }).fail(function (x, y, z) {
-                                console.log(x, y, z);
-                                HoldOn.close();
-                                onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        id_nuevoConcepto = data;
+                        $.ajax({
+                            url: master_url + 'getGeneradoresXDetalleID',
+                            type: "POST",
+                            dataType: "JSON",
+                            data: {ID: IDX}
+                        }).done(function (datax, x, jq) {
+                            $.each(datax, function (i, v) {
+                                var frmGen = new FormData();
+                                frmGen.append('Concepto_ID', v.Concepto_ID);
+                                frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
+                                frmGen.append('Area', v.Area);
+                                frmGen.append('EstimacionNo', v.EstimacionNo);
+                                frmGen.append('Eje', v.Eje);
+                                frmGen.append('EntreEje1', v.EntreEje1);
+                                frmGen.append('EntreEje2', v.EntreEje2);
+                                frmGen.append('Largo', v.Largo);
+                                frmGen.append('Ancho', v.Ancho);
+                                frmGen.append('Alto', v.Alto);
+                                frmGen.append('Cantidad', v.Cantidad);
+                                frmGen.append('Total', v.Total);
+                                $.ajax({
+                                    url: master_url + 'onCopiarGenerador',
+                                    type: "POST",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    data: frmGen
+                                }).done(function (data, x, jq) {
+                                    console.log(data);
+                                    ConceptosPresupuesto.ajax.reload();
+                                    onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
+                                    HoldOn.close();
+                                }).fail(function (x, y, z) {
+                                    console.log(x, y, z);
+                                    HoldOn.close();
+                                    onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                                });
                             });
+                        }).fail(function (x, y, z) {
+                            console.log(x, y, z);
+                            HoldOn.close();
+                            onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
                         });
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                         HoldOn.close();
                         onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
                     });
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                    HoldOn.close();
+                } else {
                     onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
-                });
-            } else {
-                onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
-            }
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-            HoldOn.close();
-        });
+                }
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+                HoldOn.close();
+            });
+        } else {
+            swal('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
+        }
     }
     function onModificarTipoCambio(IDX, Precio, Cantidad, TipoCambioBD) {
-        var Importe = 0;
-        swal({
-            title: "Captura el tipo de cambio:",
-            content: {
-                element: "input",
-                attributes: {
-                    placeholder: "00.00",
-                    type: "number"
-                }
-            },
-            closeOnEsc: false,
-            closeOnClickOutside: false
-        }).then((TipoCambio) => {
-            if ($.isNumeric(TipoCambio) && parseFloat(TipoCambio) > 0) {
-                Importe = (TipoCambio * Precio) * Cantidad;
-                $.ajax({
-                    url: master_url + 'onModificarImporteConcepto',
-                    type: "POST",
-                    data: {
-                        ID: IDX,
-                        TipoCambio: TipoCambio,
-                        Importe: Importe
+        if (Estatus === 'Borrador') {
+            var Importe = 0;
+            swal({
+                title: "Captura el tipo de cambio:",
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "00.00",
+                        type: "number"
                     }
-                }).done(function (data, x, jq) {
-                    ConceptosPresupuesto.ajax.reload();
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                });
-            }
-        });
+                },
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            }).then((TipoCambio) => {
+                if ($.isNumeric(TipoCambio) && parseFloat(TipoCambio) > 0) {
+                    Importe = (TipoCambio * Precio) * Cantidad;
+                    $.ajax({
+                        url: master_url + 'onModificarImporteConcepto',
+                        type: "POST",
+                        data: {
+                            ID: IDX,
+                            TipoCambio: TipoCambio,
+                            Importe: Importe
+                        }
+                    }).done(function (data, x, jq) {
+                        ConceptosPresupuesto.ajax.reload();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    });
+                }
+            });
+        } else {
+            swal('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
+        }
     }
     function onEditarTrabajoDetalle(params) {
         $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
@@ -2626,26 +2786,30 @@
         });
     }
     function onEliminarConceptoXDetalle(evt, IDX) {
-        swal({
-            title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
-        }).then((willDelete) => {
-            if (willDelete) {
-                $.ajax({
-                    url: master_url + 'onEliminarConceptoXDetalle',
-                    type: "POST",
-                    data: {
-                        ID: IDX,
-                        IDT: IdMovimiento
-                    }
-                }).done(function (data, x, jq) {
-                    ConceptosPresupuesto.ajax.reload();
-                    onNotifyOld('fa fa-check', 'REGISTRO ELIMINADO', 'success');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                });
-            }
-        });
+        if (Estatus === 'Borrador') {
+            swal({
+                title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: master_url + 'onEliminarConceptoXDetalle',
+                        type: "POST",
+                        data: {
+                            ID: IDX,
+                            IDT: IdMovimiento
+                        }
+                    }).done(function (data, x, jq) {
+                        ConceptosPresupuesto.ajax.reload();
+                        onNotifyOld('fa fa-check', 'REGISTRO ELIMINADO', 'success');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    }).always(function () {
+                    });
+                }
+            });
+        } else {
+            swal('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
+        }
     }
     function getClientes() {
         $.ajax({
@@ -2672,6 +2836,7 @@
             $.each(data, function (k, v) {
                 pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
             });
+            //pnlDatos.find("[name='Sucursal_ID']")[0].selectize.open();
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -2838,6 +3003,15 @@
             console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
         }).always(function () {
             mdlAdjuntos.modal('show');
+            if (Estatus === 'Borrador') {
+                mdlAdjuntos.find("#inputFotos").removeClass('d-none');
+                mdlAdjuntos.find("#inputCroquis").removeClass('d-none');
+                mdlAdjuntos.find("#inputAnexos").removeClass('d-none');
+            } else {
+                mdlAdjuntos.find("#inputFotos").addClass('d-none');
+                mdlAdjuntos.find("#inputCroquis").addClass('d-none');
+                mdlAdjuntos.find("#inputAnexos").addClass('d-none');
+            }
         });
     }
     function setFotosEditar(evt) {
@@ -2888,27 +3062,27 @@
                     var url_file = base_url + v.Url;
                     var ext = getExt(url_file);
                     if (ext === "txt" || ext === "dat") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-text fa-4x"></span><br>' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "zip" || ext === "rar") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-zip fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "mp4" || ext === "flv") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-video fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "doc" || ext === "docx") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-word fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "xls" || ext === "xlsx" || ext === "csv") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-excel fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-image fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else
                     if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file-pdf fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     } else {
-                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
+                        mdlAdjuntos.find("#vAnexos div.row").append('<div class="col-12 col-sm-6 col-md-3 col-lg-3" align="center"><a href="' + url_file + '" target="_blank"><span class="fa fa-file fa-4x"></span><br> ' + v.Observaciones + '</a><br> <button type="button" class="btn btn-danger btn-sm" onclick="onEliminarAnexoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')"><span class="fa fa-times"></span><br>ELIMINAR</button></div>');
                     }
                 });
             } else {
@@ -2953,35 +3127,41 @@
         });
     }
     function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
-        $.post(master_url + 'onEliminarFotoXConcepto', {ID: IDX, IDT: IdMovimiento}).done(function (data, x, jq) {
-            onReloadFotosXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
+        if (Estatus === 'Borrador') {
+            HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+            $.post(master_url + 'onEliminarFotoXConcepto', {ID: IDX, IDT: IdMovimiento}).done(function (data, x, jq) {
+                onReloadFotosXConcepto(IDTD, IDT);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        }
     }
     function onEliminarAnexoXConcepto(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
-        $.post(master_url + 'onEliminarAnexoXConcepto ', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
-            onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
-            onReloadAnexosXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
+        if (Estatus === 'Borrador') {
+            HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
+            $.post(master_url + 'onEliminarAnexoXConcepto ', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
+                onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
+                onReloadAnexosXConcepto(IDTD, IDT);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        }
     }
     function onEliminarCroquisXID(IDX, IDTD, IDT) {
-        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
-        $.post(master_url + 'onEliminarCroquisXID', {ID: IDX}).done(function (data, x, jq) {
-            onReloadCroquisXConcepto(IDTD, IDT);
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
-        });
+        if (Estatus === 'Borrador') {
+            HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
+            $.post(master_url + 'onEliminarCroquisXID', {ID: IDX}).done(function (data, x, jq) {
+                onReloadCroquisXConcepto(IDTD, IDT);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        }
     }
     /*GENERADOR PRESUPUESTO*/
     function getRegistrosGenerador(IDTD, TipoCambio, Precio) {
@@ -3067,6 +3247,11 @@
         mdlGeneradorConcepto.find('#Area').focus();
         mdlGeneradorConcepto.find("[name='Concepto_ID']").val(IDCO);
         mdlGeneradorConcepto.find("[name='IdTrabajoDetalle']").val(IDTD);
+        if (Estatus === 'Borrador') {
+            mdlGeneradorConcepto.find('#CapturaGenerador').removeClass('d-none');
+        } else {
+            mdlGeneradorConcepto.find('#CapturaGenerador').addClass('d-none');
+        }
         getRegistrosGenerador(IDTD, TipoCambio, Precio);
     }
     function onModificarGenerador(params) {
@@ -3091,19 +3276,52 @@
         });
     }
     function onEliminarRenglonGenerador(IDX) {
-        $.ajax({
-            url: master_url + 'onEliminarRenglonGenerador',
-            type: "POST",
-            data: {
-                ID: IDX
-            }
-        }).done(function (data, x, jq) {
-            RegistrosGenerador.ajax.reload();
-            ConceptosPresupuesto.ajax.reload();
+        if (Estatus === 'Borrador') {
+            $.ajax({
+                url: master_url + 'onEliminarRenglonGenerador',
+                type: "POST",
+                data: {
+                    ID: IDX
+                }
+            }).done(function (data, x, jq) {
+                RegistrosGenerador.ajax.reload();
+                ConceptosPresupuesto.ajax.reload();
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            });
+        }
+    }
+    /*FUNCION CAJEROS*/
+    function onEliminarConceptoXDetalleCajero(evt, IDX) {
+        if (Estatus === 'Borrador') {
+            swal({
+                title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: master_url + 'onEliminarConceptoXDetalleCajero',
+                        type: "POST",
+                        data: {
+                            ID: IDX,
+                            IDT: IdMovimiento
+                        }
+                    }).done(function (data, x, jq) {
+                        ConceptosCajeros.ajax.reload()
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    });
+                }
+            });
+        } else {
+            swal('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
+        }
+
+    }
+    function onmodificarConceptoCajero(params) {
+        $.post(master_url + 'onModificarConceptoCajero', params).done(function (data, x, jq) {
+            ConceptosCajeros.ajax.reload();
         }).fail(function (x, y, z) {
-            console.log(x, y, z);
-        }).always(function () {
-            HoldOn.close();
+            console.log('ERROR', x, y, z);
         });
     }
 </script>
@@ -3145,7 +3363,7 @@
     }
     .progress-indicator li:hover{
         cursor:pointer !important;
-    }   
+    }
     @media only screen and (max-width: 700px)  {
         .progress-indicator {
             width: 100% !important;
