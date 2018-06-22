@@ -154,6 +154,18 @@ class trabajo_model extends CI_Model {
         }
     }
 
+    public function getTotalFotosAntesProcesoDespuesAnexos($ID, $IDD) {
+        try {
+            return $this->db->select("(SELECT COUNT(TDC.ID) FROM trabajodetallefotosantes AS TDC WHERE TDC.IdTrabajo = $ID AND TDC.IdTrabajoDetalle = $IDD) AS FOTOSANTES,
+            (SELECT COUNT(TDC.ID) FROM trabajodetallefotosproceso AS TDC WHERE TDC.IdTrabajo = $ID AND TDC.IdTrabajoDetalle = $IDD) AS FOTOSPROCESO,
+            (SELECT COUNT(TDC.ID) FROM trabajodetallefotosdespues AS TDC WHERE TDC.IdTrabajo = $ID AND TDC.IdTrabajoDetalle = $IDD) AS FOTOSDESPUES,
+            (SELECT COUNT(TDA.ID) FROM trabajodetalleanexosdos AS TDA WHERE TDA.IdTrabajo = $ID AND TDA.IdTrabajoDetalle = $IDD) AS ANEXOS", false)
+                            ->get()->result();
+        } catch (Exception $ex) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getTrabajoDetalleAbiertoByID($IDX) {
         try {
             $this->db->select('tda.ID AS ID,'

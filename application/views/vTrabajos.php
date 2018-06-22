@@ -3985,7 +3985,17 @@
         AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val(ID);
         AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(IDD);
         AdjuntosLevantamiento.find(".collapse").removeClass("show");
-        AdjuntosLevantamiento.modal('show');
+        $.getJSON(master_url + 'getTotalFotosAntesProcesoDespuesAnexos', {ID: ID, IDD: IDD}).done(function (data, x, jq) {
+            var x = data[0];
+            AdjuntosLevantamiento.find("#load_fotos_antes").html('<span class="fa fa-camera fa-lg"></span> Fotos Antes(' + x.FOTOSANTES + ')');
+            AdjuntosLevantamiento.find("#load_fotos_proceso").html('<span class="fa fa-camera fa-lg"></span> Fotos Proceso(' + x.FOTOSPROCESO + ')');
+            AdjuntosLevantamiento.find("#load_fotos_despues").html('<span class="fa fa-camera fa-lg"></span> Fotos Despues(' + x.FOTOSDESPUES + ')');
+            AdjuntosLevantamiento.find("#load_anexos_levantamiento").html('<span class="fa fa-paperclip fa-lg"></span> Anexos(' + x.ANEXOS + ')');
+        }).fail(function (x, y, z) {
+            console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
+        }).always(function () {
+            AdjuntosLevantamiento.modal('show');
+        });
     }
     function onReloadFotosAntesXConcepto(IDX, IDT) {
         $.ajax({
@@ -4022,6 +4032,7 @@
             HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
+            onReloadContadoresLevantamientos(IDT, IDX);
         });
     }
     function onReloadFotosDespuesXConcepto(IDX, IDT) {
@@ -4059,6 +4070,7 @@
             HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
+            onReloadContadoresLevantamientos(IDT, IDX);
         });
     }
     function onReloadFotosProcesoXConcepto(IDX, IDT) {
@@ -4141,6 +4153,7 @@
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
+            onReloadContadoresLevantamientos(IDT, IDX);
         });
         HoldOn.close();
     }
@@ -4186,6 +4199,7 @@
                 AdjuntosLevantamiento.find("#vAnexosLevantamiento div.row").html('<h3>NO EXISTEN ANEXOS ADJUNTOS</h3>');
             }
             getDetalleAbiertoByID(IdMovimiento);
+            onReloadContadoresLevantamientos(IDX, IDT);
             HoldOn.close();
         }).fail(function (x, y, z) {
         }).always(function () {
@@ -4262,6 +4276,7 @@
                         console.log(x, y, z);
                     }).always(function () {
                         HoldOn.close();
+                        onReloadContadoresLevantamientos(IDX, IdMovimiento);
                     });
                 }
             });
@@ -4280,6 +4295,19 @@
                 console.log(x, y, z);
             });
         }
+    }
+
+    function onReloadContadoresLevantamientos(ID, IDD) {
+        $.getJSON(master_url + 'getTotalFotosAntesProcesoDespuesAnexos', {ID: ID, IDD: IDD}).done(function (data, x, jq) {
+            var x = data[0];
+            AdjuntosLevantamiento.find("#load_fotos_antes").html('<span class="fa fa-camera fa-lg"></span> Fotos Antes(' + x.FOTOSANTES + ')');
+            AdjuntosLevantamiento.find("#load_fotos_proceso").html('<span class="fa fa-camera fa-lg"></span> Fotos Proceso(' + x.FOTOSPROCESO + ')');
+            AdjuntosLevantamiento.find("#load_fotos_despues").html('<span class="fa fa-camera fa-lg"></span> Fotos Despues(' + x.FOTOSDESPUES + ')');
+            AdjuntosLevantamiento.find("#load_anexos_levantamiento").html('<span class="fa fa-paperclip fa-lg"></span> Anexos(' + x.ANEXOS + ')');
+        }).fail(function (x, y, z) {
+            console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
+        }).always(function () {
+        });
     }
 </script>
 <style>

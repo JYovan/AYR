@@ -5901,6 +5901,14 @@ class Trabajos extends CI_Controller {
         }
     }
 
+    public function getTotalFotosAntesProcesoDespuesAnexos() {
+        try {
+            print json_encode($this->trabajo_model->getTotalFotosAntesProcesoDespuesAnexos($this->input->get('ID'), $this->input->get('IDD')));
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function onModificarEstatusByID() {
         try {
             $this->db->set('EstatusTrabajo', $this->input->post('ESTATUS'))->where('ID', $this->input->post('ID'))->update('trabajos');
