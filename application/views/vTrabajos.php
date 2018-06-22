@@ -232,7 +232,7 @@
                                 </div>
                                 <div class="col-12 col-sm-4 col-lg-3" id="ControlProceso" >
                                     <label for="" class="control-label">Control de fotos proceso</label>
-                                    <select id="" name="ControlProceso" class="form-control " >
+                                    <select id="ControlTiempoProceso" name="ControlProceso" class="form-control " >
                                         <option value=""></option>
                                         <option value="Dias">DÍAS</option>
                                         <option value="Semanas">SEMANAS</option>
@@ -611,7 +611,7 @@
                                     <th>Clave</th>
                                     <th>Descripción</th>
                                     <th>Adjuntos</th>
-                                    <th>Reportes</th> 
+                                    <th>Reportes</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
@@ -895,7 +895,7 @@
 </div>
 <!--MODAL AGREGAR CONCEPTO CAJERO-->
 <div id="mdlAgregarConceptoCajero" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialogFull  modal-content  modal-contentFull  modal-lg">
+    <div class="modal-dialog  modal-content  modal-lg">
         <div class="modal-header">
             <h5 class="modal-title">Agregar Concepto Cajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -905,19 +905,17 @@
         <div class="modal-body" id="pnlDatosCajero">
             <form id="frmConcepoCajero">
                 <fieldset>
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="form-group label-static">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <label for="Clave"  class="control-label">Clave*</label>
                             <input type="text" id="ClaveCajero" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12">
-                        <div class="form-group label-static">
+                        <div class="col-12 col-sm-12 col-md-12">
                             <label for="Descripcion" class="control-label">Descripción*</label>
                             <textarea type="text" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
                         </div>
+                        <div class="col-12"><br><h6>Los campos con * son obligatorios</h6></div>
                     </div>
-                    <div class="col-12"><br><h6>Los campos con * son obligatorios</h6></div>
                 </fieldset>
             </form>
         </div>
@@ -927,8 +925,63 @@
         </div>
     </div>
 </div>
-
-
+<!--MODAL AGREGAR CONCEPTO ABIERTO-->
+<div id="mdlAgregarConceptoAbierto" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-content modal-lg">
+        <div class="modal-header">
+            <h5 class="modal-title">Agregar Concepto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="pnlDatosAbierto">
+            <form id="frmConcepoAbierto">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label for="Clave"  class="control-label">Clave*</label>
+                            <input type="text" id="ClaveAbierto" name="Clave" class="form-control form-control-sm" required="" placeholder="EJ: TRP10">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label for="Clave" class="control-label">Semana/Dia*</label>
+                            <input type="text" id="SemanaDia" name="SemanaDia" class="form-control form-control-sm numbersOnly" required="" placeholder="">
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <label for="Descripcion" class="control-label">Descripción (Actividades Ejecutadas)*</label>
+                            <textarea type="text" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div id="CamposMeor" class="row d-none">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label for="Clave" class="control-label">Inicio/Fin</label>
+                            <input type="text" id="InicioFin" name="InicioFin" class="form-control form-control-sm"placeholder="EJ: 01 de Enero Al 07 Enero">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label for="Clave" class="control-label">Inicio/Fin Proxima Semana</label>
+                            <input type="text" id="InicioFinProximaSemana" name="InicioFinProximaSemana" class="form-control form-control-sm"  placeholder="EJ: 07 de Enero Al 14 Enero">
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6">
+                            <label for="Descripcion2" class="control-label">(Actividades Próxima Semana)</label>
+                            <textarea type="text" id="Descripcion2" name="Descripcion2" class="form-control CustomUppercase"  placeholder=" " rows="3" cols="20"></textarea>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6">
+                            <label for="Descripcion3" class="control-label">Restricciones/Preocupaciones</label>
+                            <textarea type="text" id="Descripcion3" name="Descripcion3" class="form-control CustomUppercase" placeholder=" " rows="3" cols="20"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><br><h6>Los campos con * son obligatorios</h6></div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer modal-footerFull">
+            <button type="button" class="btn btn-primary" id="btnGuardarConceptoAbierto" name="btnGuardarConceptoAbierto">GUARDAR</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        </div>
+    </div>
+</div>
+<!--MODAL AJUNTOS LEVANTAMIENTO-->
 <div id="AdjuntosLevantamiento" class="modal  modal-fullscreen animated slideInDown">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -970,7 +1023,7 @@
                                 <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotosAntes"></div>
                             </fieldset>
                         </div>
-                    </div> 
+                    </div>
                     <!--FOTOS PROCESO-->
                     <div class="card  border-0">
                         <div class="" id="cardFotosProceso">
@@ -982,8 +1035,19 @@
                         </div>
                         <div id="FotosProceso" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntosLevantamiento">
                             <fieldset>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="Tiempo" for="">Debe de elegir un control de tiempo*</label>
+                                        <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="" class="control-label">Porcentaje*</label>
+                                        <input type="text" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 100)" id="IdPorcentajeProceso" name="IdPorcentajeProceso" class="form-control numbersOnly">
+                                    </div>
+                                </div>
+
                                 <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotosProceso" name="fFotosProceso[]" multiple="" class="d-none">
-                                <div class="col-12" id="inputFotosProceso" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosProceso').trigger('click')">
+                                <div class="col-12 d-none" id="inputFotosProceso" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosProceso').trigger('click')">
                                     <div class="file_drag_area">
                                         <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
                                         <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
@@ -994,7 +1058,6 @@
                             </fieldset>
                         </div>
                     </div>
-
                     <!--FOTOS DESPUES-->
                     <div class="card  border-0">
                         <div class="" id="cardFotosDespues">
@@ -1018,7 +1081,6 @@
                             </fieldset>
                         </div>
                     </div>
-
                     <!--ANEXOS-->
                     <div class="card  border-0">
                         <div class="" id="cardAnexosLevantamiento">
@@ -1081,16 +1143,14 @@
     var btnAgregarGenerador = mdlGeneradorConcepto.find("#btnAgregarGenerador");
     /*MULTIMEDIA (EDITAR) MODALES Y BOTONES*/
     var mdlAdjuntos = $("#Adjuntos");
-    var AdjuntosLevantamiento = $("#AdjuntosLevantamiento");
-
     var EditarFotosPorConcepto = mdlAdjuntos.find("#fFotos");
     var EditarCroquisPorConcepto = mdlAdjuntos.find("#fCroquis");
     var EditarAnexosPorConcepto = mdlAdjuntos.find("#fAnexos");
     /******ABIERTO*/
-    var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find('#btnNuevoConceptoAbierto');
-    var btnNuevoConceptoAbiertoEditar = pnlDetalleTrabajo.find('#btnNuevoConceptoAbiertoEditar');
-    var btnAgregarConceptoAbierto = $('#btnAgregarConceptoAbierto');
-    var btnEditarConceptoAbierto = $('#btnEditarConceptoAbierto');
+    var AdjuntosLevantamiento = $("#AdjuntosLevantamiento");
+    var btnNuevoConceptoAbierto = pnlDetalleTrabajo.find("#btnNuevoConceptoAbierto");
+    var mdlAgregarConceptoAbierto = $('#mdlAgregarConceptoAbierto');
+    var btnGuardarConceptoAbierto = mdlAgregarConceptoAbierto.find('#btnGuardarConceptoAbierto');
     /*CAJERO*/
     var btnNuevoConceptoCajero = pnlDetalleTrabajo.find("#btnNuevoConceptoCajero");
     var mdlAgregarConceptoCajero = $('#mdlAgregarConceptoCajero');
@@ -1110,30 +1170,83 @@
     var tblConceptosCajeros = $("#tblConceptosCajeros"), ConceptosCajeros;
     var tblRegistrosConceptosPreciario = $("#tblRegistrosConceptosPreciario"), RegistrosConceptosPreciario;
     var tblRegistrosGenerador = $("#tblRegistrosGenerador"), RegistrosGenerador;
+    var tblConceptosAbiertos = pnlDetalleTrabajo.find("#tblConceptosAbiertos"), ConceptosAbiertos;
     var ReemplazaConcepto = false;
     var CantidadReemplaza, IdReemplaza;
     var Estatus;
     var ImporteTotal;
+    var Cliente;
     $(document).ready(function () {
-
-        /*Eventos DRAG and DROP de MULTIMEDIA*/
-
+        /*EVENTOS LEVANTAMIENTO*/
+        AdjuntosLevantamiento.find("#IdTiempoProceso").change(function () {
+            if ($(this).val() !== '' && $('#IdPorcentajeProceso').val() !== '') {
+                AdjuntosLevantamiento.find('#inputFotosProceso').removeClass('d-none');
+            } else {
+                AdjuntosLevantamiento.find('#inputFotosProceso').addClass('d-none');
+            }
+        });
+        AdjuntosLevantamiento.find("#IdPorcentajeProceso").change(function () {
+            if ($(this).val() !== '') {
+                $(this).val($(this).val() + '%');
+            }
+            if ($('#IdTiempoProceso').val() !== '' && $(this).val() !== '') {
+                AdjuntosLevantamiento.find('#inputFotosProceso').removeClass('d-none');
+            } else {
+                AdjuntosLevantamiento.find('#inputFotosProceso').addClass('d-none');
+            }
+        });
+        btnGuardarConceptoAbierto.on("click", function () {
+            isValid('pnlDatosAbierto');
+            if (valido) {
+                var frm = new FormData($("#frmConcepoAbierto")[0]);
+                frm.append('Trabajo_ID', IdMovimiento);
+                HoldOn.open({theme: "sk-bounce", message: "GUARDANDO..."});
+                $.ajax({
+                    url: master_url + 'onAgregarDetalleAbiertoEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    HoldOn.close();
+                    mdlAgregarConceptoAbierto.modal('hide');
+                    ConceptosAbiertos.ajax.reload();
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                    HoldOn.close();
+                });
+            }
+        });
+        mdlAgregarConceptoAbierto.on('shown.bs.modal', function () {
+            mdlAgregarConceptoAbierto.find("#ClaveAbierto").focus();
+        });
+        btnNuevoConceptoAbierto.on("click", function () {
+            if (!nuevo) {
+                mdlAgregarConceptoAbierto.find("input").val("");
+                mdlAgregarConceptoAbierto.find("textarea").val("");
+                mdlAgregarConceptoAbierto.modal('show');
+                if (Cliente === '8') {
+                    mdlAgregarConceptoAbierto.find("#CamposMeor").removeClass("d-none");
+                } else {
+                    mdlAgregarConceptoAbierto.find("#CamposMeor").addClass("d-none");
+                }
+            } else {
+                swal('INFO', 'DEBES GUARDAR EL MOVIMIENTO', 'info');
+            }
+        });
         AdjuntosLevantamiento.find("#load_fotos_antes").click(function () {
             onReloadFotosAntesXConcepto(AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(), AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val());
         });
-
         AdjuntosLevantamiento.find("#load_fotos_proceso").click(function () {
             onReloadFotosProcesoXConcepto(AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(), AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val());
         });
-
         AdjuntosLevantamiento.find("#load_fotos_despues").click(function () {
             onReloadFotosDespuesXConcepto(AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(), AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val());
         });
-
         AdjuntosLevantamiento.find("#load_anexos_levantamiento").click(function () {
             onReloadAnexosDosXConcepto(AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(), AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val());
         });
-
         AdjuntosLevantamiento.find('#FotosAntes').find('.file_drag_area').on('drop', function (e) {
             e.preventDefault();
             $(this).removeClass('file_drag_over');
@@ -1277,7 +1390,6 @@
                 });
             }
         });
-        /*CARGA DE ARCHIVOS NORMAL*/
         AdjuntosLevantamiento.find("#fAnexosLevantamiento").change(function () {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
@@ -1410,7 +1522,6 @@
                 });
             });
         });
-
         $('#tblConceptosAbiertos').on('draw.dt', function () {
             $.each(tblConceptosAbiertos.find('tbody tr'), function () {
                 if (Estatus === 'Borrador') {
@@ -1461,7 +1572,6 @@
                 }
             });
         });
-
         /*EVENTOS CAJERO*/
         $('#tblConceptosCajeros').on('draw.dt', function () {
             $.each(tblConceptosCajeros.find('tbody tr'), function () {
@@ -1554,7 +1664,7 @@
         getCuadrillas();
         /*Traer el detalle cuando se muestra el tab panel*/
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            var target = $(e.target).attr("href") // activated tab
+            var target = $(e.target).attr("href"); // activated tab
             if (target === '#Cajeros') {
                 getDetalleCajerosByID(IdMovimiento);
             } else if (target === '#Levantamiento') {
@@ -1795,6 +1905,7 @@
             return false;
         });
         pnlDatos.find("#Cliente_ID").change(function () {
+            Cliente = $(this).val();
             pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
             pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
             pnlDatos.find("[name='Preciario_ID']")[0].selectize.clear(true);
@@ -2109,7 +2220,7 @@
             });
             Archivo.trigger('click');
         });
-        /*DETALLE*/
+        /*EVENTOS DETALLE PRESUPUESTO*/
         btnNuevoConcepto.on("click", function () {
             if (!nuevo) {
                 var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
@@ -2195,7 +2306,6 @@
             }).always(function () {
             });
         });
-        /*ADJUNTOS DETALLE*/
         mdlAdjuntos.on('hidden.bs.modal', function (e) {
             mdlAdjuntos.find("#Fotos, #Croquis, #Anexos").removeClass("show");
             mdlAdjuntos.find("#vFotos, #vCroquis, #vAnexos").html("");
@@ -2265,7 +2375,6 @@
                 });
             }
         });
-        /*FIN ANEXOS*/
         /*CROQUIS*/
         mdlAdjuntos.find("#load_croquis").click(function () {
             onReloadCroquisXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
@@ -2333,7 +2442,6 @@
                 });
             }
         });
-        /*FIN CROQUIS*/
         /*FOTOS*/
         mdlAdjuntos.find("#load_fotos").click(function () {
             onReloadFotosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
@@ -2399,7 +2507,6 @@
                 });
             }
         });
-        /*FIN FOTOS*/
     });
     /*Funciones de tablas*/
     function getRecords() {
@@ -2999,7 +3106,6 @@
             }
         });
     }
-    var tblConceptosAbiertos = pnlDetalleTrabajo.find("#tblConceptosAbiertos"), ConceptosAbiertos;
     function getDetalleAbiertoByID(IDX) {
         pnlDetalleTrabajo.find('#ConceptosPresupuesto').removeClass('d-none');
         $.fn.dataTable.ext.errMode = 'throw';
@@ -3065,7 +3171,6 @@
             tempDetalleAbierto = parseInt(dtm.ID);
         });
     }
-
     function getDetalleCajerosByID(IDX) {
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblConceptosCajeros')) {
@@ -3165,7 +3270,7 @@
             }
         });
     }
-    /*Edición de Detalle*/
+    /*Funciones Presupuesto*/
     function onReemplazarConcepto(IDX, Cantidad) {
         if (Estatus === 'Borrador') {
             IdReemplaza = IDX;
@@ -3512,6 +3617,16 @@
         win.document.write('<img src="' + url + '" onload="window.print();window.close()" />');
         win.focus();
     }
+    function minmax(value, min, max) {
+        if (parseInt(value) < min || isNaN(parseInt(value))) {
+            return "";
+        } else if (parseInt(value) > max) {
+            return 100;
+        } else
+        {
+            return value;
+        }
+    }
     function disableFields() {
         $('#CapturaDatos').find('input,textarea,select').attr('disabled', true);
         $.each($('#CapturaDatos').find("select"), function (k, v) {
@@ -3825,7 +3940,7 @@
             });
         }
     }
-    /*FUNCION CAJEROS*/
+    /*FUNCIONES CAJEROS*/
     function onEliminarConceptoXDetalleCajero(evt, IDX) {
         if (Estatus === 'Borrador') {
             swal({
@@ -3851,13 +3966,6 @@
         }
 
     }
-    function onmodificarConceptoLevantamiento(params) {
-        $.post(master_url + 'onModificarConceptoLevantamiento', params).done(function (data, x, jq) {
-            ConceptosAbiertos.ajax.reload();
-        }).fail(function (x, y, z) {
-            console.log('ERROR', x, y, z);
-        });
-    }
     function onmodificarConceptoCajero(params) {
         $.post(master_url + 'onModificarConceptoCajero', params).done(function (data, x, jq) {
             ConceptosCajeros.ajax.reload();
@@ -3865,15 +3973,20 @@
             console.log('ERROR', x, y, z);
         });
     }
-
+    /*FUNCIONES LEVANTAMIENTOS*/
+    function onmodificarConceptoLevantamiento(params) {
+        $.post(master_url + 'onModificarConceptoLevantamiento', params).done(function (data, x, jq) {
+            ConceptosAbiertos.ajax.reload();
+        }).fail(function (x, y, z) {
+            console.log('ERROR', x, y, z);
+        });
+    }
     function onMostrarFotosAntesProcesoDespuesByID(ID, IDD) {
         AdjuntosLevantamiento.find("#IdTrabajoLevantamiento").val(ID);
         AdjuntosLevantamiento.find("#IdTrabajoDetalleLevantamiento").val(IDD);
         AdjuntosLevantamiento.find(".collapse").removeClass("show");
         AdjuntosLevantamiento.modal('show');
     }
-
-
     function onReloadFotosAntesXConcepto(IDX, IDT) {
         $.ajax({
             url: master_url + 'getTrabajoFotosAntesDetalleByID',
@@ -3896,7 +4009,7 @@
                     picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-3"><div class="thumbnail">' +
                             '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
                             '<div class="pull-right" >' +
-                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            '<button class="close"' +
                             'data-tooltip="Eliminar" onclick="onEliminarFotoAntesXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button></div>' +
                             '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
                     AdjuntosLevantamiento.find("#vFotosAntes").find("div.row").append(picthumbnail);
@@ -3949,6 +4062,19 @@
         });
     }
     function onReloadFotosProcesoXConcepto(IDX, IDT) {
+        AdjuntosLevantamiento.find("#IdTiempoProceso").val('');
+        AdjuntosLevantamiento.find("#IdPorcentajeProceso").val('');
+        $('#inputFotosProceso').addClass('d-none');
+        if ($('#ControlTiempoProceso').val() === 'Dias') {
+            AdjuntosLevantamiento.find(".Tiempo").empty();
+            AdjuntosLevantamiento.find(".Tiempo").append("No. Día*");
+        } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
+            AdjuntosLevantamiento.find(".Tiempo").empty();
+            AdjuntosLevantamiento.find(".Tiempo").append("No. Semana*");
+        } else if ($('#ControlTiempoProceso').val() === '') {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBELES DE SELECCIONAR UN CONTROL DE TIEMPO', 'danger');
+            AdjuntosLevantamiento.modal('hide');
+        }
         $.getJSON({
             url: master_url + 'getTiempoFotosProcesoXTrabajoDetalleID',
             data: {
@@ -3988,19 +4114,17 @@
                     $.each(data, function (k, d) {
                         if (tu === d.Tiempo) {
                             row += '<div class="col-12 col-sm-6 col-md-3 col-lg-3">' +
-                                    '<div class="thumbnail">' +
-                                    '<div class="pull-left caption col-11 Customcaption" >' +
-                                    '<div class="form-group Customform-group">' +
-                                    '<label for="ObservacionesxFotoProceso" class="control-label customFormLabel">Observaciones</label>' +
-                                    '<input id="ObservacionesxFotoProceso" name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="pull-right" >' +
-                                    '<button class="close closeFotos customButtonEliminarFoto"' +
+                                    '<figure class="figure">' +
+                                    '<div class="float-right" >' +
+                                    '<button class="close "' +
                                     'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button>' +
                                     '</div>' +
                                     '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a>' +
-                                    '</div>' +
+                                    '<figcaption class="figure-caption text-left">' +
+                                    '<label for="ObservacionesxFotoProceso" class="text-dark">Observaciones</label>' +
+                                    '<input  name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
+                                    '</figcaption>' +
+                                    '</figure>' +
                                     '</div>';
                         }
                     });
@@ -4011,12 +4135,13 @@
                 });
                 /*COLOCAR SOLO UNA VEZ EL HTML GENERADO*/
                 AdjuntosLevantamiento.find("#vFotosProceso").html("<div class=\"row\">" + row + "</div>");
+            } else {
+                AdjuntosLevantamiento.find("#vFotosProceso").html('');
             }
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
         });
-        getDetalleAbiertoByID(IDT);
         HoldOn.close();
     }
     function onReloadAnexosDosXConcepto(IDX, IDT) {
@@ -4139,6 +4264,20 @@
                         HoldOn.close();
                     });
                 }
+            });
+        }
+    }
+    function onModificarObservacionesProceso(IDX, IDTD, IDT) {
+        if (Estatus === 'Borrador') {
+            var Observaciones = IDT.value;
+            $.ajax({
+                url: master_url + 'ononModificarObservacionesFotoProcesoXConcepto',
+                type: "POST",
+                data: {ID: IDX, ObservacionesxFoto: Observaciones
+                }
+            }).done(function (data, x, jq) {
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
             });
         }
     }
