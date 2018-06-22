@@ -352,7 +352,6 @@ class Trabajos extends CI_Controller {
                 'Cal3' => (isset($Cal3) && $Cal3 !== '') ? $Cal3 : null,
                 'Cal4' => (isset($Cal4) && $Cal4 !== '') ? $Cal4 : null,
                 'Cal5' => (isset($Cal5) && $Cal5 !== '') ? $Cal5 : null,
-                'EstatusTrabajo' => (isset($EstatusTrabajo) && $EstatusTrabajo !== '') ? $EstatusTrabajo : null,
                 'FechaVisita' => (isset($FechaVisita) && $FechaVisita !== '') ? $FechaVisita : null,
                 'EncargadoSitio' => (isset($EncargadoSitio) && $EncargadoSitio !== '') ? $EncargadoSitio : null,
                 'HorarioAtencion' => (isset($HorarioAtencion) && $HorarioAtencion !== '') ? $HorarioAtencion : null,
@@ -5865,7 +5864,7 @@ class Trabajos extends CI_Controller {
         }
     }
 
-   public function onEditarTrabajoDetalle() {
+    public function onEditarTrabajoDetalle() {
         try {
             $row = $this->input;
             switch ($row->post('CELDA')) {

@@ -134,8 +134,9 @@
                             <button type="button" class="btn btn-warning btn-sm d-none" id="btnImprimirReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" ><span class="fa fa-print " ></span></button>
                             <button type="button" class="btn btn-danger btn-sm d-none" id="btnEliminar"><span class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></span> </button>
                             <button type="button" class="btn btn-info btn-sm d-none" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
-                            <button type="button" class="btn btn-raised btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
+                            <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                            <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
+                            <button type="button" class="btn btn-primary btn-sm d-none" id="btnEdicionMaestra"><span class="fa fa-key "></span> EDITAR</button>
                         </div>
                         <div class="col-12">
                             <ul class="nav nav-tabs" role="tablist" id="Encabezado">
@@ -1160,6 +1161,7 @@
     var btnCopiar = pnlDatos.find("#btnCopiar");
     var btnConcluir = pnlDatos.find("#btnConcluir");
     var btnInconcluir = pnlDatos.find("#btnInconcluir");
+    var btnEdicionMaestra = pnlDatos.find('#btnEdicionMaestra');
     var menuTablero = $('#MenuTablero');
     var Archivo = pnlDatos.find("#Adjunto");
     var btnArchivo = pnlDatos.find("#btnArchivo");
@@ -1207,11 +1209,12 @@
     var Estatus;
     var ImporteTotal;
     var Cliente;
+    var EdicionMaestra = false;
     $(document).ready(function () {
-         tblConceptosPresupuesto.on('draw.dt', function () {
+        tblConceptosPresupuesto.on('draw.dt', function () {
             console.log('DRAW tblConceptosPresupuesto OK');
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
-                if (Estatus === 'Borrador') {
+                if (Estatus === 'Borrador' || EdicionMaestra) {
                     //EDITAR CLAVE
                     $(this).find("td:eq(0)").on('dblclick', function () {
                         console.log('CLICK CLAVE');
@@ -1276,7 +1279,7 @@
                             onEditarTrabajoDetalle(params);
                         });
                     });
-                    
+
                     //EDITAR UNIDAD
                     $(this).find("td:eq(4)").on('dblclick', function () {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
@@ -1695,7 +1698,7 @@
         });
         $('#tblConceptosAbiertos').on('draw.dt', function () {
             $.each(tblConceptosAbiertos.find('tbody tr'), function () {
-                if (Estatus === 'Borrador') {
+                if (Estatus === 'Borrador' || EdicionMaestra) {
                     /*Edicion Area*/
                     $(this).find("td:eq(0)").on('dblclick', function () {
                         var input = '<input id="Clave" type="text" class="form-control form-control-sm">';
@@ -1810,7 +1813,7 @@
         });
         $('#tblConceptosCajeros').on('draw.dt', function () {
             $.each(tblConceptosCajeros.find('tbody tr'), function () {
-                if (Estatus === 'Borrador') {
+                if (Estatus === 'Borrador' || EdicionMaestra) {
                     /*Edicion Area*/
                     $(this).find("td:eq(0)").on('dblclick', function () {
                         var input = '<input id="Clave" type="text" class="form-control form-control-sm">';
@@ -1909,7 +1912,7 @@
         /*GENERADOR CONCEPTO*/
         $('#tblRegistrosGenerador').on('draw.dt', function () {
             $.each(tblRegistrosGenerador.find('tbody tr'), function () {
-                if (Estatus === 'Borrador') {
+                if (Estatus === 'Borrador' || EdicionMaestra) {
                     /*Edicion Area*/
                     $(this).find("td:eq(0)").on('dblclick', function () {
                         var input = '<input id="Area" type="text" class="form-control form-control-sm">';
@@ -2080,54 +2083,56 @@
         });
         /*EstatusTrabajo*/
         pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
-            var li = $(this);
-            var text = '';
-            $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
-                text = $(this).text();
-                text = text.replace("(COMPLETADO)", "");
-                text = text.replace("(ACTIVO)", "");
-                $(this).html("<span class=\"bubble\"></span>" + text);
-            });
-            pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
-            pnlDatos.find('#EstatusTrabajo > li').slice(0, li.index()).addClass("completed");
-            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
-                text = $(this).text();
-                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-            });
-            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === li.index()
-                    || pnlDatos.find("#EstatusTrabajo > li:last-child").index() === li.index()) {
-                li.addClass("completed");
-                li.html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-            } else {
-                li.addClass("active");
-                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-                pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
-            }
-            if (!nuevo) {
-                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
-                var sts = '';
-                if (text.includes('Pedido')) {
-                    sts = 'Pedido';
-                } else if (text.includes('Presupuesto')) {
-                    sts = 'Presupuesto';
-                } else if (text.includes('Autorización')) {
-                    sts = 'Autorización';
-                } else if (text.includes('No Autorizado')) {
-                    sts = 'No Autorizado';
-                } else if (text.includes('Ejecución')) {
-                    sts = 'Ejecución';
-                } else if (text.includes('Finalizado')) {
-                    sts = 'Finalizado';
-                }
-                $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
-                    console.log(data);
-                    onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z, "\n ERROR \n", x.responseText);
-                }).always(function () {
-                    HoldOn.close();
+            if (Estatus === 'Borrador' || EdicionMaestra) {
+                var li = $(this);
+                var text = '';
+                $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                    text = $(this).text();
+                    text = text.replace("(COMPLETADO)", "");
+                    text = text.replace("(ACTIVO)", "");
+                    $(this).html("<span class=\"bubble\"></span>" + text);
                 });
+                pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+                pnlDatos.find('#EstatusTrabajo > li').slice(0, li.index()).addClass("completed");
+                $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                    text = $(this).text();
+                    $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                });
+                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === li.index()
+                        || pnlDatos.find("#EstatusTrabajo > li:last-child").index() === li.index()) {
+                    li.addClass("completed");
+                    li.html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                } else {
+                    li.addClass("active");
+                    text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                    pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                }
+                if (!nuevo) {
+                    text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
+                    var sts = '';
+                    if (text.includes('Pedido')) {
+                        sts = 'Pedido';
+                    } else if (text.includes('Presupuesto')) {
+                        sts = 'Presupuesto';
+                    } else if (text.includes('Autorización')) {
+                        sts = 'Autorización';
+                    } else if (text.includes('No Autorizado')) {
+                        sts = 'No Autorizado';
+                    } else if (text.includes('Ejecución')) {
+                        sts = 'Ejecución';
+                    } else if (text.includes('Finalizado')) {
+                        sts = 'Finalizado';
+                    }
+                    $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
+                        console.log(data);
+                        onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z, "\n ERROR \n", x.responseText);
+                    }).always(function () {
+                        HoldOn.close();
+                    });
+                }
             }
         });
         /*Eventos Generales drag and drop PARA ARCHIVOS QUE SE CARGAN AL SERVER*/
@@ -2224,7 +2229,6 @@
             isValid('pnlDatos');
             if (valido) {
                 var frm = new FormData(pnlDatos.find("#frmNuevo")[0]);
-                frm.append('EstatusTrabajo', 'Presupuesto');
                 if (!nuevo) {
                     $.ajax({
                         url: master_url + 'onModificar',
@@ -2315,6 +2319,8 @@
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
                         btnNuevoConcepto.addClass('d-none');
+                        btnNuevoConceptoAbierto.addClass('d-none');
+                        btnNuevoConceptoCajero.addClass('d-none');
                         disableFields();
                         Estatus = 'Concluido';
                     }).fail(function (x, y, z) {
@@ -2353,6 +2359,8 @@
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
                         btnNuevoConcepto.removeClass('d-none');
+                        btnNuevoConceptoAbierto.removeClass('d-none');
+                        btnNuevoConceptoCajero.removeClass('d-none');
                         enableFields();
                         Estatus = 'Borrador';
                     }).fail(function (x, y, z) {
@@ -2360,6 +2368,24 @@
                     }).always(function () {
                         HoldOn.close();
                     });
+                }
+            });
+        });
+        btnEdicionMaestra.on("click", function () {
+            swal({
+                title: "CUIDADO",
+                text: "Estás seguro que deseas editar un movimiento ya entregado",
+                icon: "warning",
+                buttons: ["Cancelar", "Aceptar"]
+            }).then((willDelete) => {
+                if (willDelete) {
+                    EdicionMaestra = true;
+                    btnGuardar.removeClass('d-none');
+                    btnEliminar.removeClass('d-none');
+                    btnNuevoConcepto.addClass('d-none');
+                    btnNuevoConceptoAbierto.removeClass('d-none');
+                    btnNuevoConceptoCajero.removeClass('d-none');
+                    enableFields();
                 }
             });
         });
@@ -2393,6 +2419,10 @@
             btnCopiar.addClass('d-none');
             btnConcluir.addClass('d-none');
             btnInconcluir.addClass('d-none');
+            btnEdicionMaestra.addClass('d-none');
+            btnNuevoConcepto.removeClass('d-none');
+            btnNuevoConceptoAbierto.removeClass('d-none');
+            btnNuevoConceptoCajero.removeClass('d-none');
             enableFields();
             if ($.fn.DataTable.isDataTable('#tblConceptosPresupuesto')) {
                 ConceptosPresupuesto.clear().draw();
@@ -2986,34 +3016,46 @@
                     }
                     menuTablero.addClass("d-none");
                     Estatus = trabajo.Estatus;
+                    if (trabajo.Estatus === 'Entregado' && TipoAcceso === 'SUPER ADMINISTRADOR') {
+                        btnEdicionMaestra.removeClass('d-none');
+                    } else {
+                        EdicionMaestra = false;
+                        btnEdicionMaestra.addClass('d-none');
+                    }
                     if (trabajo.Estatus === 'Concluido') {
-                        console.log('Concluido');
                         btnGuardar.addClass('d-none');
                         btnEliminar.addClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
                         btnConcluir.addClass('d-none');
                         btnInconcluir.removeClass('d-none');
+                        btnNuevoConcepto.addClass('d-none');
+                        btnNuevoConceptoAbierto.addClass('d-none');
+                        btnNuevoConceptoCajero.addClass('d-none');
                         $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
                         disableFields();
                     } else if (trabajo.Estatus === 'Borrador') {
-                        console.log('Borrador');
                         btnGuardar.removeClass('d-none');
                         btnEliminar.removeClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
                         btnConcluir.removeClass('d-none');
                         btnInconcluir.addClass('d-none');
+                        btnNuevoConcepto.removeClass('d-none');
+                        btnNuevoConceptoAbierto.removeClass('d-none');
+                        btnNuevoConceptoCajero.removeClass('d-none');
                         $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
                         enableFields();
                     } else if (trabajo.Estatus === 'Entregado') {
-                        console.log('Entregado');
                         btnGuardar.addClass('d-none');
                         btnEliminar.addClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
                         btnConcluir.addClass('d-none');
                         btnInconcluir.addClass('d-none');
+                        btnNuevoConcepto.addClass('d-none');
+                        btnNuevoConceptoAbierto.addClass('d-none');
+                        btnNuevoConceptoCajero.addClass('d-none');
                         $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
                         disableFields();
                     }
@@ -3052,7 +3094,6 @@
                     getDetalleAbiertoByID(IdMovimiento);
                     pnlDatos.removeClass("d-none");
                     pnlDetalleTrabajo.removeClass("d-none");
-
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
@@ -3131,55 +3172,7 @@
             "initComplete": function (settings, json) {
                 HoldOn.close();
             },
-            "createdRow": function (row, data, index) {
-                $.each($(row).find("td"), function (k, v) {
-                    var c = $(v);
-                    var index = parseInt(k);
-                    switch (index) {
-                        case 0:
-                            /*CLAVE*/
-                            c.addClass('Clave');
-                            break;
-                        case 1:
-                            /*INTEXT*/
-                            c.addClass('IntExt');
-                            break;
-                        case 2:
-                            /*DESCRIPCION*/
-                            c.addClass('Descripcion');
-                            break;
-                        case 3:
-                            /*CANTIDAD*/
-                            c.addClass('Cantidad');
-                            break;
-                        case 4:
-                            /*UNIDAD*/
-                            c.addClass('Unidad');
-                            break;
-                        case 5:
-                            /*PRECIO*/
-                            c.addClass('Precio');
-                            break;
-                        case 6:
-                            /*IMPORTE*/
-                            c.addClass('Importe');
-                            break;
-                        case 7:
-                            /*MONEDA*/
-                            c.addClass('Moneda');
-                            break;
-                            break;
-                        case 8:
-                            /*ANEXOS*/
-                            c.addClass('Anexos');
-                            break;
-                        case 9:
-                            /*ANEXOS*/
-                            c.addClass('Editar');
-                            break;
-                    }
-                });
-            },
+
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api();//Get access to Datatable API
                 // Update footer
@@ -3208,138 +3201,7 @@
 
             }
         });
-        /*EDITOR*/
-        ConceptosPresupuesto.on('key', function (e, datatable, key, cell, originalEvent) {
-            if (Estatus === 'Borrador') {
-                var cell_td = $(this).find("td.focus:not(.Fotos):not(.Croquis):not(.Anexos):not(.Editar)");
-                if (key === 13) {
-                    if (cell_td.hasClass("Clave")) {
-                        var txt = $(cell.data()).text();
-                        var g = '<input id="Editor" type="text" class="form-control form-control-sm" maxlength="10" value="' + txt + '" autofocus>';
-                        cell_td.html(g).find("#Editor").focus().select();
-                    } else if (cell_td.hasClass("Descripcion")) {
-                        var txt = $(cell.data()).text();
-                        var g = '<textarea id="Editor" name="Editor" class="form-control" rows="4" cols="20">' + txt + '</textarea>';
-                        cell_td.html(g);
-                        cell_td.find("#Editor").focus();
-                    } else if (cell_td.hasClass("Unidad")) {
-                        var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + cell.data() + '" autofocus>';
-                        cell_td.html(g);
-                        cell_td.find("#Editor").focus().select();
-                    } else if (cell_td.hasClass("Precio")) {
-                        var txt = getNumberFloat(cell.data());
-                        var g = '<input id="Editor" type="text" class="form-control form-control-sm numbersOnly" maxlength="10" value="' + txt + '" autofocus>';
-                        cell_td.html(g);
-                        cell_td.find("#Editor").focus().select();
-                    } else if (cell_td.hasClass("Moneda")) {
-                        var txt = $(cell.data()).text();
-                        var g = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
-                        cell_td.html(g);
-                        $(this).find("#Moneda").val(txt);
-                    } else if (cell_td.hasClass("IntExt")) {
-                        var g = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
-                        cell_td.html(g);
-                        $(this).find("#IntExt").val(cell.data());
-                        $(this).find("#IntExt").select();
-                    }
-                }
-            }
 
-        }).on('key-blur', function (e, datatable, cell) {
-            var t = $('#tblConceptosPresupuesto > tbody');
-            var a = t.find("#Editor");
-            var m = t.find("#Moneda");
-            var ie = t.find("#IntExt");
-            if (a.val() !== 'undefined' && a.val() !== undefined) {
-                var b = ConceptosPresupuesto.cell(a.parent()).index();
-                var d = a.parent();
-                var row = ConceptosPresupuesto.row(a.parent().parent()).data();// SOLO OBTENDRA EL ID
-                var params;
-                if (d.hasClass('Clave')) {
-                    d.html('<span class="badge badge-info ">' + a.val() + '</span>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'CLAVE',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<span class="badge badge-info ">' + a.val() + '</span>').draw();
-                } else if (d.hasClass('Descripcion')) {
-                    d.html('<p>' + a.val() + '</p>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'DESCRIPCION',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<p class="CustomDetalleDescripcion">' + a.val() + '</p>').draw();
-                } else if (d.hasClass('Precio')) {
-                    var precio = getNumberFloat(a.val());
-                    var precio_format = '$' + $.number(precio, 6, '.', ',');
-                    d.html(precio_format);
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell($(d).parent(), 6).data(precio_format).draw();
-                    var tr = ConceptosPresupuesto.row($(d).parent()).data();
-                    var cantidad = parseFloat(tr.Cantidad);
-                    var importe_total = cantidad * precio;
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell($(d).parent(), 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
-                    //SHORT POST
-                    params = {ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total};
-                } else if (d.hasClass('Unidad')) {
-                    d.html(a.val());
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'UNIDAD',
-                        VALOR: a.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data(a.val()).draw();
-                }
-                onEditarTrabajoDetalle(params);
-            }
-            if (m.val() !== 'undefined' && m.val() !== undefined) {
-                var b = ConceptosPresupuesto.cell(m.parent()).index();
-                var d = m.parent();
-                var row = ConceptosPresupuesto.row(m.parent().parent()).data();// SOLO OBTENDRA EL ID
-                if (d.hasClass('Moneda')) {
-                    console.log('MONEDA', m);
-                    var m = t.find("#Moneda");
-                    d.html('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + a.val() + '</span>');
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'MONEDA',
-                        VALOR: m.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data('<span class="' + (m.val() === 'USD' ? 'badge badge-danger' : '') + '">' + m.val() + '</span>').draw();
-                }
-                onEditarTrabajoDetalle(params);
-            }
-            if (ie.val() !== 'undefined' && ie.val() !== undefined) {
-                var b = ConceptosPresupuesto.cell(ie.parent()).index();
-                var d = ie.parent();
-                var row = ConceptosPresupuesto.row(ie.parent().parent()).data();// SOLO OBTENDRA EL ID
-                if (d.hasClass('IntExt')) {
-                    console.log('IntExt', ie);
-                    var m = t.find("#IntExt");
-                    d.html(ie.val());
-                    //SHORT POST
-                    params = {
-                        ID: row.ID,
-                        CELDA: 'INTEXT',
-                        VALOR: ie.val()
-                    };
-                    //DRAW NEW DATA
-                    ConceptosPresupuesto.cell(d, b).data(m.val()).draw();
-                }
-                onEditarTrabajoDetalle(params);
-            }
-        });
     }
     function getDetalleAbiertoByID(IDX) {
         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
@@ -3509,7 +3371,7 @@
     }
     /*Funciones Presupuesto*/
     function onReemplazarConcepto(IDX, Cantidad) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             IdReemplaza = IDX;
             CantidadReemplaza = Cantidad;
             var Preciario_ID = pnlDatos.find("#Preciario_ID").val();
@@ -3524,7 +3386,7 @@
         }
     }
     function getConceptoCopiarXDetalle(IDX) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             var id_nuevoConcepto = 0;
             HoldOn.open({theme: "sk-bounce", message: "POR FAVOR, ESPERE..."});
             $.ajax({
@@ -3617,7 +3479,7 @@
         }
     }
     function onModificarTipoCambio(IDX, Precio, Cantidad, TipoCambioBD) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             var Importe = 0;
             swal({
                 title: "Captura el tipo de cambio:",
@@ -3662,7 +3524,7 @@
         });
     }
     function onEliminarConceptoXDetalle(evt, IDX) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             swal({
                 title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
             }).then((willDelete) => {
@@ -3889,7 +3751,7 @@
             console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
         }).always(function () {
             mdlAdjuntos.modal('show');
-            if (Estatus === 'Borrador') {
+            if (Estatus === 'Borrador' || EdicionMaestra) {
                 mdlAdjuntos.find("#inputFotos").removeClass('d-none');
                 mdlAdjuntos.find("#inputCroquis").removeClass('d-none');
                 mdlAdjuntos.find("#inputAnexos").removeClass('d-none');
@@ -4013,7 +3875,7 @@
         });
     }
     function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
             $.post(master_url + 'onEliminarFotoXConcepto', {ID: IDX, IDT: IdMovimiento}).done(function (data, x, jq) {
                 onReloadFotosXConcepto(IDTD, IDT);
@@ -4025,7 +3887,7 @@
         }
     }
     function onEliminarAnexoXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
             $.post(master_url + 'onEliminarAnexoXConcepto ', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
@@ -4038,7 +3900,7 @@
         }
     }
     function onEliminarCroquisXID(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
             $.post(master_url + 'onEliminarCroquisXID', {ID: IDX}).done(function (data, x, jq) {
                 onReloadCroquisXConcepto(IDTD, IDT);
@@ -4133,7 +3995,7 @@
         mdlGeneradorConcepto.find('#Area').focus();
         mdlGeneradorConcepto.find("[name='Concepto_ID']").val(IDCO);
         mdlGeneradorConcepto.find("[name='IdTrabajoDetalle']").val(IDTD);
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             mdlGeneradorConcepto.find('#CapturaGenerador').removeClass('d-none');
         } else {
             mdlGeneradorConcepto.find('#CapturaGenerador').addClass('d-none');
@@ -4162,7 +4024,7 @@
         });
     }
     function onEliminarRenglonGenerador(IDX) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             $.ajax({
                 url: master_url + 'onEliminarRenglonGenerador',
                 type: "POST",
@@ -4179,7 +4041,7 @@
     }
     /*FUNCIONES CAJEROS*/
     function onEliminarConceptoXDetalleCajero(evt, IDX) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             swal({
                 title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
             }).then((willDelete) => {
@@ -4307,7 +4169,7 @@
         });
     }
     function onEliminarFotoCajeroXID(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
             $.ajax({
                 url: master_url + 'onEliminarFotoCajeroXID',
@@ -4323,7 +4185,7 @@
         }
     }
     function onModificarObservaciones(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             var Observaciones = IDT.value;
             $.ajax({
                 url: master_url + 'ononModificarObservacionesFotoXConcepto',
@@ -4569,7 +4431,7 @@
         });
     }
     function onEliminarFotoAntesXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
             $.post(master_url + 'onEliminarFotoAntesXConcepto', {ID: IDX}).done(function (data, x, jq) {
                 onReloadFotosAntesXConcepto(IDTD, IDT);
@@ -4581,7 +4443,7 @@
         }
     }
     function onEliminarFotoDespuesXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
             $.post(master_url + 'onEliminarFotoDespuesXConcepto', {ID: IDX}).done(function (data, x, jq) {
                 onReloadFotosDespuesXConcepto(IDTD, IDT);
@@ -4593,7 +4455,7 @@
         }
     }
     function onEliminarFotoProcesoXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
             $.post(master_url + 'onEliminarFotoProcesoXConcepto', {ID: IDX}).done(function (data, x, jq) {
                 onReloadFotosProcesoXConcepto(IDTD, IDT);
@@ -4605,7 +4467,7 @@
         }
     }
     function onEliminarAnexoDosXConcepto(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO ANEXO..."});
             $.post(master_url + 'onEliminarAnexoDosXConcepto ', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
                 onNotify('<span class="fa fa-check fa-lg"></span>', 'ANEXO, ELIMINADO', 'success');
@@ -4617,7 +4479,7 @@
         }
     }
     function onEliminarConceptoXDetalleAbierto(evt, IDX) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             swal({
                 title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
             }).then((willDelete) => {
@@ -4646,7 +4508,7 @@
         }
     }
     function onModificarObservacionesProceso(IDX, IDTD, IDT) {
-        if (Estatus === 'Borrador') {
+        if (Estatus === 'Borrador' || EdicionMaestra) {
             var Observaciones = IDT.value;
             $.ajax({
                 url: master_url + 'ononModificarObservacionesFotoProcesoXConcepto',
