@@ -1211,7 +1211,6 @@
          tblConceptosPresupuesto.on('draw.dt', function () {
             console.log('DRAW tblConceptosPresupuesto OK');
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
-                console.log('ESTATUS ' + Estatus)
                 if (Estatus === 'Borrador') {
                     //EDITAR CLAVE
                     $(this).find("td:eq(0)").on('dblclick', function () {
@@ -1228,7 +1227,6 @@
                             celda.html(v);
                             ConceptosPresupuesto.cell(padre, 1).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var params = {
                                 ID: row.ID,
                                 CELDA: 'CLAVE',
@@ -1239,7 +1237,6 @@
                     });
                     //EDITAR INTEXT
                     $(this).find("td:eq(1)").on('dblclick', function () {
-                        console.log('CLICK IntExt');
                         var input = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
                         var celda = $(this);
                         var vActual = celda.text();
@@ -1251,7 +1248,6 @@
                             celda.html(v);
                             ConceptosPresupuesto.cell(padre, 2).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var params = {
                                 ID: row.ID,
                                 CELDA: 'INTEXT',
@@ -1262,7 +1258,6 @@
                     });
                     //EDITAR CONCEPTO
                     $(this).find("td:eq(2)").on('dblclick', function () {
-                        console.log("\n 0CLICK Concepto, " + $(this).text());
                         var input = '<textarea id="dbEditor" name="dbEditor" class="form-control" rows="4" cols="20">' + $(this).text() + '</textarea>';
                         var celda = $(this);
                         celda.html(input);
@@ -1273,7 +1268,6 @@
                             celda.html(v);
                             ConceptosPresupuesto.cell(padre, 3).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var params = {
                                 ID: row.ID,
                                 CELDA: 'DESCRIPCION',
@@ -1285,7 +1279,6 @@
                     
                     //EDITAR UNIDAD
                     $(this).find("td:eq(4)").on('dblclick', function () {
-                        console.log("\nUNIDAD " + $(this).text() + "\n");
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var celda = $(this);
                         var vActual = celda.text();
@@ -1298,7 +1291,6 @@
                             celda.html(v);
                             ConceptosPresupuesto.cell(padre, 5).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var params = {
                                 ID: row.ID,
                                 CELDA: 'UNIDAD',
@@ -1323,7 +1315,6 @@
                             celda.html(precio_format);
                             ConceptosPresupuesto.cell(padre, 6).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var precio = v;
                             var cantidad = parseFloat(row.Cantidad);
                             var importe_total = cantidad * precio;
@@ -1346,7 +1337,6 @@
                             celda.html(v);
                             ConceptosPresupuesto.cell(padre, 8).data(v).draw();
                             var row = ConceptosPresupuesto.row(padre).data();
-                            console.log("\n", padre, "\n", row, "\n");
                             var params = {
                                 ID: row.ID,
                                 CELDA: 'MONEDA',
@@ -3664,7 +3654,7 @@
     }
     function onEditarTrabajoDetalle(params) {
         $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
-            onNotifyOld('fas fa-check', 'DATOS ACTUALIZDOS', 'info');
+            onNotifyOld('fas fa-check', 'DATOS ACTUALIZADOS', 'info');
         }).fail(function (x, y, z) {
             console.log('ERROR', x, y, z);
         }).always(function () {
@@ -4202,7 +4192,7 @@
                             IDT: IdMovimiento
                         }
                     }).done(function (data, x, jq) {
-                        ConceptosCajeros.ajax.reload()
+                        ConceptosCajeros.ajax.reload();
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
                     });
