@@ -5865,15 +5865,15 @@ class Trabajos extends CI_Controller {
         }
     }
 
-    public function onEditarTrabajoDetalle() {
+   public function onEditarTrabajoDetalle() {
         try {
             $row = $this->input;
             switch ($row->post('CELDA')) {
                 case 'CLAVE':
-                    $this->db->set('Clave', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('trabajosdetalle');
+                    $this->db->set('Clave', strtoupper($row->post('VALOR')))->where('ID', $row->post('ID'))->update('trabajosdetalle');
                     break;
                 case 'DESCRIPCION':
-                    $this->db->set('Concepto', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('trabajosdetalle');
+                    $this->db->set('Concepto', strtoupper($row->post('VALOR')))->where('ID', $row->post('ID'))->update('trabajosdetalle');
                     break;
                 case 'PRECIO':
                     $this->db->set('Precio', $row->post('VALOR'))->set('Importe', $row->post('IMPORTE'))->where('ID', $row->post('ID'))->update('trabajosdetalle');
