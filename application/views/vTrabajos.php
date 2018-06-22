@@ -1210,143 +1210,195 @@
     var ImporteTotal;
     var Cliente;
     var EdicionMaestra = false;
+    var vtemp = '';
     $(document).ready(function () {
         tblConceptosPresupuesto.on('draw.dt', function () {
-            console.log('DRAW tblConceptosPresupuesto OK');
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
                 if (Estatus === 'Borrador' || EdicionMaestra) {
                     //EDITAR CLAVE
                     $(this).find("td:eq(0)").on('dblclick', function () {
-                        console.log('CLICK CLAVE');
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
-                        var celda = $(this);
-                        var vActual = celda.text();
-                        celda.html(input);
-                        celda.find('#dbEditor').val(vActual);
-                        var padre = celda.parent();
-                        celda.find("#dbEditor").focus().select();
-                        celda.find("#dbEditor").focusout(function () {
-                            var v = $(this).val().toUpperCase();
-                            celda.html(v);
-                            ConceptosPresupuesto.cell(padre, 1).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var params = {
-                                ID: row.ID,
-                                CELDA: 'CLAVE',
-                                VALOR: v
-                            };
-                            onEditarTrabajoDetalle(params);
-                        });
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var padre = celda.parent();
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html('<span class="badge badge-info">' + v + '</span>');
+                                ConceptosPresupuesto.cell(padre, 1).data('<span class="badge badge-info">' + v + '</span>').draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html('<span class="badge badge-info">' + v + '</span>');
+                                ConceptosPresupuesto.cell(padre, 1).data('<span class="badge badge-info">' + v + '</span>').draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CELDA: 'CLAVE',
+                                    VALOR: v
+                                };
+                                if (v !== '') {
+                                    onEditarTrabajoDetalle(params);
+                                }
+                            });
+                        }
                     });
                     //EDITAR INTEXT
                     $(this).find("td:eq(1)").on('dblclick', function () {
-                        var input = '<select id="IntExt" name="IntExt" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
-                        var celda = $(this);
-                        var vActual = celda.text();
-                        celda.html(input);
-                        celda.find('#IntExt').val(vActual);
-                        var padre = celda.parent();
-                        celda.find("#IntExt").change(function () {
-                            var v = $(this).val();
-                            celda.html(v);
-                            ConceptosPresupuesto.cell(padre, 2).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var params = {
-                                ID: row.ID,
-                                CELDA: 'INTEXT',
-                                VALOR: v
-                            };
-                            onEditarTrabajoDetalle(params);
-                        });
+                        var input = '<select id="dbEditor" name="dbEditor" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual).focus();
+                            var padre = celda.parent();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 2).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 2).data(v).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CELDA: 'INTEXT',
+                                    VALOR: v
+                                };
+                                onEditarTrabajoDetalle(params);
+                            });
+                        }
                     });
                     //EDITAR CONCEPTO
                     $(this).find("td:eq(2)").on('dblclick', function () {
                         var input = '<textarea id="dbEditor" name="dbEditor" class="form-control" rows="4" cols="20">' + $(this).text() + '</textarea>';
-                        var celda = $(this);
-                        celda.html(input);
-                        celda.find('#dbEditor').val(celda.text());
-                        var padre = celda.parent();
-                        celda.find("#dbEditor").focusout(function () {
-                            var v = $(this).val();
-                            celda.html(v);
-                            ConceptosPresupuesto.cell(padre, 3).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var params = {
-                                ID: row.ID,
-                                CELDA: 'DESCRIPCION',
-                                VALOR: v
-                            };
-                            onEditarTrabajoDetalle(params);
-                        });
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            celda.html(input);
+                            celda.find('#dbEditor').val(celda.text()).focus().select();
+                            var padre = celda.parent();
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 3).data(v).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CELDA: 'DESCRIPCION',
+                                    VALOR: v
+                                };
+                                onEditarTrabajoDetalle(params);
+                            });
+
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 3).data(v).draw();
+                            });
+                        }
                     });
 
                     //EDITAR UNIDAD
                     $(this).find("td:eq(4)").on('dblclick', function () {
-                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
-                        var celda = $(this);
-                        var vActual = celda.text();
-                        celda.html(input);
-                        celda.find('#dbEditor').val(vActual);
-                        var padre = celda.parent();
-                        celda.find("#dbEditor").focus().select();
-                        celda.find("#dbEditor").focusout(function () {
-                            var v = $(this).val();
-                            celda.html(v);
-                            ConceptosPresupuesto.cell(padre, 5).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var params = {
-                                ID: row.ID,
-                                CELDA: 'UNIDAD',
-                                VALOR: v
-                            };
-                            onEditarTrabajoDetalle(params);
-                        });
+                       var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            var padre = celda.parent();
+                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 5).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosPresupuesto.cell(padre, 5).data(v).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                onEditarTrabajoDetalle({ID: row.ID, CELDA: 'UNIDAD', VALOR: v});
+                            });
+                        }
                     });
                     //EDITAR PRECIO
                     $(this).find("td:eq(5)").on('dblclick', function () {
-                        console.log("\n PRECIO " + $(this).text() + "\n");
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
-                        var celda = $(this);
-                        var vActual = celda.text();
-                        celda.html(input);
-                        celda.find('#dbEditor').val(vActual);
-                        var padre = celda.parent();
-                        celda.find("#dbEditor").focus().select();
-                        celda.find("#dbEditor").focusout(function () {
-                            var v = getNumberFloat($(this).val());
-                            var precio_format = '$' + $.number(v, 6, '.', ',');
-                            celda.html(precio_format);
-                            ConceptosPresupuesto.cell(padre, 6).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var precio = v;
-                            var cantidad = parseFloat(row.Cantidad);
-                            var importe_total = cantidad * precio;
-                            //SHORT POST
-                            onEditarTrabajoDetalle({ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total});
-
-                        });
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            var padre = celda.parent();
+                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = getNumberFloat($(this).val());
+                                var precio_format = '$' + $.number(v, 6, '.', ',');
+                                celda.html(precio_format);
+                                ConceptosPresupuesto.cell(padre, 6).data(precio_format).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var precio = v;
+                                var cantidad = parseFloat(row.Cantidad);
+                                var importe_total = cantidad * precio;
+                                ConceptosPresupuesto.cell(padre, 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = getNumberFloat($(this).val());
+                                var precio_format = '$' + $.number(v, 6, '.', ',');
+                                celda.html(precio_format);
+                                ConceptosPresupuesto.cell(padre, 6).data(precio_format).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var precio = v;
+                                var cantidad = parseFloat(row.Cantidad);
+                                var importe_total = cantidad * precio;
+                                //SHORT POST
+                                onEditarTrabajoDetalle({ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total});
+                                ConceptosPresupuesto.cell(padre, 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
+                            });
+                        }
                     });
                     //EDITAR MONEDA
                     $(this).find("td:eq(7)").on('dblclick', function () {
-                        console.log("\n MONEDA " + $(this).text() + "\n");
-                        var input = '<select id="Moneda" name="Moneda" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
-                        var celda = $(this);
-                        var vActual = celda.text();
-                        celda.html(input);
-                        celda.find('#Moneda').val(vActual);
-                        var padre = celda.parent();
-                        celda.find("#Moneda").change(function () {
-                            var v = $(this).val();
-                            celda.html(v);
-                            ConceptosPresupuesto.cell(padre, 8).data(v).draw();
-                            var row = ConceptosPresupuesto.row(padre).data();
-                            var params = {
-                                ID: row.ID,
-                                CELDA: 'MONEDA',
-                                VALOR: v
-                            };
-                            onEditarTrabajoDetalle(params);
-                        });
+                        var dbEditor = tblConceptosPresupuesto.find('tbody #dbEditor');
+                        var exist = tblConceptosPresupuesto.find('tbody #dbEditor').val();
+                        console.log('EXIST,', exist);
+                        if (exist !== undefined) {
+                            var celda = dbEditor.parent();
+                            celda.html((exist === 'USD') ? '<span class="badge badge-danger">' + exist + '</span>' : exist);
+                        }
+                        var input = '<select id="dbEditor" name="dbEditor" class="form-control form-control-sm"><option></option><option value="USD">USD</option><option value="MXN">MXN</option></select>';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            var padre = celda.parent();
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val();
+                                var cell = (v === 'USD') ? '<span class="badge badge-danger">' + v + '</span>' : v;
+                                celda.html(cell);
+                                ConceptosPresupuesto.cell(padre, 8).data(cell).draw();
+                                var row = ConceptosPresupuesto.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CELDA: 'MONEDA',
+                                    VALOR: v
+                                };
+                                onEditarTrabajoDetalle(params);
+                            });
+                        }
                     });
                 }
             });
@@ -3172,7 +3224,11 @@
             "initComplete": function (settings, json) {
                 HoldOn.close();
             },
-
+            "createdRow": function (row, data, index) {
+                $.each($(row).find("td:eq(2)"), function (k, v) {
+                    $(this).addClass("CustomDetalleDescripcion");
+                });
+            },
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api();//Get access to Datatable API
                 // Update footer
@@ -3520,7 +3576,6 @@
         }).fail(function (x, y, z) {
             console.log('ERROR', x, y, z);
         }).always(function () {
-            ConceptosPresupuesto.ajax.reload();
         });
     }
     function onEliminarConceptoXDetalle(evt, IDX) {
@@ -4538,7 +4593,7 @@
     td span.badge{
         font-size: 14px !important;
     }
-    table tbody tr td > p.CustomDetalleDescripcion{
+    table tbody tr td.CustomDetalleDescripcion{
         height: 100px !important;
         overflow: auto !important;
     }
