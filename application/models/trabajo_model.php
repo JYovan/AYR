@@ -180,10 +180,9 @@ class trabajo_model extends CI_Model {
                     . 'ELSE CONCAT("<span class=\"fa fa-paperclip \" onclick=\"getAnexosDosXConceptoID(",tda.ID,",",tda.Trabajo_ID,")\"></span>") '
                     . 'END) AS Anexos, '
                     . 'CONCAT("<span class=\"fa fa-print \" onclick=\"onReporteProceso(",tda.ID,",",tda.Trabajo_ID,")\"></span> ") AS Reportes, '
-                    . 'CONCAT("<span class=\"fa fa-gear customButtonDetalleEdicion\" '
-                    . 'onclick=\"onEditarConceptoXDetalleAbierto(",tda.ID,")\"></span>") AS Editar,'
-                    . 'CONCAT("<span class=\"fa fa-times customButtonDetalleEliminar\" '
-                    . 'onclick=\"onEliminarConceptoXDetalleAbierto(this,",tda.ID,")\"></span>") AS Eliminar', false);
+                    . 'CONCAT("<span class=\"fa fa-times fa-lg customButtonDetalleEliminar\" '
+                    . 'onclick=\"onEliminarConceptoXDetalleAbierto(this,",tda.ID,")\"></span>") AS Eliminar, '
+                    . 'CONCAT("<span class=\"fa fa-paperclip fa-lg\" onclick=\"onMostrarFotosAntesProcesoDespuesByID(",t.ID,",",tda.ID,")\"></span>") AS Adjuntos', false);
             $this->db->from("trabajosdetalleabierto AS tda");
             $this->db->join("trabajos AS t", "t.ID =tda.Trabajo_ID");
             $this->db->where("tda.Trabajo_ID", $IDX);
@@ -2140,7 +2139,7 @@ TDFP.Observaciones ', false);
             $this->db->join('trabajodetallefotosproceso AS TDFP', 'TDFP.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('trabajodetalleanexosdos AS TDANE', 'TDANE.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido', 'Entregado'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDA.ID', $DetalleID);
             $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);

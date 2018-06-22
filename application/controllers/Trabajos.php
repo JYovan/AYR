@@ -5693,6 +5693,7 @@ class Trabajos extends CI_Controller {
                 $ID = $this->input->post("ID");
                 $DetalleID = $this->input->post("DetalleID");
                 $Concepto = $this->trabajo_model->getDetalleFotosSemana($ID, $DetalleID);
+                
                 $row = $Concepto[0];
                 //
                 if (!empty($Concepto)) {
@@ -5908,4 +5909,19 @@ class Trabajos extends CI_Controller {
         }
     }
 
+    public function onModificarConceptoLevantamiento() {
+        try {
+            $row = $this->input;
+            switch ($row->post('CAMPO')) {
+                case 'Clave':
+                    $this->db->set('Clave', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('trabajosdetalleabierto');
+                    break;
+                case 'Descripcion':
+                    $this->db->set('Descripcion', $row->post('VALOR'))->where('ID', $row->post('ID'))->update('trabajosdetalleabierto');
+                    break;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }

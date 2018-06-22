@@ -413,6 +413,7 @@
         } else {
             reporte = 'onReporteLevantamientoSemanalGenerico';
         }
+        console.log('ID',IDX,', ',DetalleID);
         $.ajax({
             url: master_url + reporte,
             type: "POST",
