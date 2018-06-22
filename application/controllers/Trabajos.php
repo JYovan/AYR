@@ -1430,7 +1430,7 @@ class Trabajos extends CI_Controller {
                     $this->image_lib->resize();
                     $DATA = array(
                         'Url' => ($img),
-                        'Observaciones' => $_FILES["CROQUIS"]["name"],
+                        'Observaciones' => $_FILES["FOTO"]["name"],
                     );
                     $this->trabajo_model->onModificarDetalleFotoCajero($ID, $DATA);
                 } else {
@@ -5693,7 +5693,7 @@ class Trabajos extends CI_Controller {
                 $ID = $this->input->post("ID");
                 $DetalleID = $this->input->post("DetalleID");
                 $Concepto = $this->trabajo_model->getDetalleFotosSemana($ID, $DetalleID);
-                
+
                 $row = $Concepto[0];
                 //
                 if (!empty($Concepto)) {
@@ -5932,4 +5932,5 @@ class Trabajos extends CI_Controller {
             echo $exc->getTraceAsString();
         }
     }
+
 }

@@ -1112,6 +1112,37 @@
         </div>
     </div>
 </div>
+<!--MODAL EDITAR - VER FOTOS CAJERO ADJUNTAS-->
+<div id="mdlTrabajoEditarFotosCajeroPorConceptoCajero" class="modal modal-fullscreen animated bounceInDown">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">FOTOS CAJERO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <input type="text" readonly=""  name="IdTrabajo"  class="d-none">
+                    <input type="text" readonly=""  name="IdCajeroBBVADetalle"  class="d-none">
+                    <input type="file" accept='image/*' id="fFotosCajero" name="fFotosCajero[]" multiple="" class="d-none">
+                    <div class="col-12" id="" align="center"  onclick="setFotosCajeroEditar(this)">
+                        <div class="file_drag_area">
+                            <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
+                            <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
+                        </div>
+                    </div>
+                    <div class="col-12"><br><br></div>
+                    <div class="col-12 row" id="Fotos"></div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-raised btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--SCRIPT-->
 <script>
     var master_url = base_url + 'index.php/Trabajos/';
@@ -1573,6 +1604,70 @@
             });
         });
         /*EVENTOS CAJERO*/
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.on('shown.bs.modal', function () {
+            EditarFotosCajeroPorConcepto.val('');
+        });
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdTrabajo', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdTrabajo']").val());
+            frm.append('IdCajeroBBVADetalle', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosCajeroXConcepto(mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").val(), mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            }
+        });
+        EditarFotosCajeroPorConcepto.change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(EditarFotosCajeroPorConcepto[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdTrabajo', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdTrabajo']").val());
+                frm.append('IdCajeroBBVADetalle', mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    url: master_url + 'onAgregarFotosCajeroEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    console.log(data);
+                    onReloadFotosCajeroXConcepto(mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").val(), mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+            });
+        });
         $('#tblConceptosCajeros').on('draw.dt', function () {
             $.each(tblConceptosCajeros.find('tbody tr'), function () {
                 if (Estatus === 'Borrador') {
@@ -3107,6 +3202,7 @@
         });
     }
     function getDetalleAbiertoByID(IDX) {
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
         pnlDetalleTrabajo.find('#ConceptosPresupuesto').removeClass('d-none');
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblConceptosAbiertos')) {
@@ -3172,6 +3268,7 @@
         });
     }
     function getDetalleCajerosByID(IDX) {
+        HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
         $.fn.dataTable.ext.errMode = 'throw';
         if ($.fn.DataTable.isDataTable('#tblConceptosCajeros')) {
             tblConceptosCajeros.DataTable().destroy();
@@ -3973,6 +4070,132 @@
             console.log('ERROR', x, y, z);
         });
     }
+    function getFotosCajeroXConceptoID(IDX, IDT) {
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdTrabajo']").addClass("d-none").val(IDT);
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").addClass("d-none").val(IDX);
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("");
+        HoldOn.open({theme: 'sk-bounce', message: 'CARGANDO FOTOS...'});
+        $.ajax({
+            url: master_url + 'getTrabajoFotosCajeroDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-3">' +
+                            '<figure class="figure">' +
+                            '<div class="float-right" >' +
+                            '<button class="close "' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoCajeroXID(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '<figcaption class="figure-caption text-left">' +
+                            '<label for="ObservacionesxFoto" class="text-dark">Observaciones</label>' +
+                            '<input  name="ObservacionesxFoto" type="text" class="form-control form-control-sm"  onchange="onModificarObservaciones(' + +v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</figcaption>' +
+                            '</figure>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").find("div.row").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html('');
+            }
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.modal('show');
+    }
+    function setFotosCajeroEditar(evt) {
+        mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#fFotosCajero").trigger('click');
+    }
+    function onReloadFotosCajeroXConcepto(IDX, IDT) {
+        $.ajax({
+            url: master_url + 'getTrabajoFotosCajeroDetalleByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IDX
+            }
+        }).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(data, function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-3">' +
+                            '<figure class="figure">' +
+                            '<div class="float-right" >' +
+                            '<button class="close "' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoCajeroXID(' + v.ID + ',' + v.IdCajeroBBVADetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '<figcaption class="figure-caption text-left">' +
+                            '<label for="ObservacionesxFoto" class="text-dark">Observaciones</label>' +
+                            '<input  name="ObservacionesxFoto" type="text" class="form-control form-control-sm"  onchange="onModificarObservaciones(' + +v.ID + ',' + v.IdCajeroBBVADetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</figcaption>' +
+                            '</figure>' +
+                            '</div>';
+                    mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").find("div.row").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#Fotos").html("");
+            }
+            HoldOn.close();
+            ConceptosCajeros.ajax.reload();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+        });
+    }
+    function onEliminarFotoCajeroXID(IDX, IDTD, IDT) {
+        if (Estatus === 'Borrador') {
+            HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+            $.ajax({
+                url: master_url + 'onEliminarFotoCajeroXID',
+                type: "POST",
+                data: {ID: IDX}
+            }).done(function (data, x, jq) {
+                onReloadFotosCajeroXConcepto(IDTD, IDT);
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
+                HoldOn.close();
+            });
+        }
+    }
+    function onModificarObservaciones(IDX, IDTD, IDT) {
+        if (Estatus === 'Borrador') {
+            var Observaciones = IDT.value;
+            $.ajax({
+                url: master_url + 'ononModificarObservacionesFotoXConcepto',
+                type: "POST",
+                data: {ID: IDX, ObservacionesxFoto: Observaciones
+                }
+            }).done(function (data, x, jq) {
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            });
+        }
+    }
     /*FUNCIONES LEVANTAMIENTOS*/
     function onmodificarConceptoLevantamiento(params) {
         $.post(master_url + 'onModificarConceptoLevantamiento', params).done(function (data, x, jq) {
@@ -4296,7 +4519,6 @@
             });
         }
     }
-
     function onReloadContadoresLevantamientos(ID, IDD) {
         $.getJSON(master_url + 'getTotalFotosAntesProcesoDespuesAnexos', {ID: ID, IDD: IDD}).done(function (data, x, jq) {
             var x = data[0];
