@@ -231,15 +231,7 @@
                                         <option value=""></option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-4 col-lg-3" id="ControlProceso" >
-                                    <label for="" class="control-label">Control de fotos proceso</label>
-                                    <select id="ControlTiempoProceso" name="ControlProceso" class="form-control " >
-                                        <option value=""></option>
-                                        <option value="Dias">DÍAS</option>
-                                        <option value="Semanas">SEMANAS</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-8 col-md-12 col-lg-9">
+                                <div class="col-12 col-sm-8 col-md-12 col-lg-12">
                                     <label for="Observaciones" class="control-label">Observaciones</label>
                                     <input type="text" id="Observaciones" name="Observaciones" class="form-control form-control-sm"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
                                 </div>
@@ -1036,17 +1028,6 @@
                         </div>
                         <div id="FotosProceso" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntosLevantamiento">
                             <fieldset>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <label class="Tiempo" for="">Debe de elegir un control de tiempo*</label>
-                                        <input type="number" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 150)" id="IdTiempoProceso" name="IdTiempoProceso" class="form-control">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="" class="control-label">Porcentaje*</label>
-                                        <input type="text" maxlength="3" minlength="1"  onkeyup="this.value = minmax(this.value, 0, 100)" id="IdPorcentajeProceso" name="IdPorcentajeProceso" class="form-control numbersOnly">
-                                    </div>
-                                </div>
-
                                 <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotosProceso" name="fFotosProceso[]" multiple="" class="d-none">
                                 <div class="col-12 d-none" id="inputFotosProceso" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosProceso').trigger('click')">
                                     <div class="file_drag_area">
@@ -1286,7 +1267,7 @@
                             celda.find('#dbEditor').val(celda.text()).focus().select();
                             var padre = celda.parent();
                             celda.find("#dbEditor").change(function () {
-                                var v = $(this).val();
+                                var v = $(this).val().toUpperCase();
                                 celda.html(v);
                                 ConceptosPresupuesto.cell(padre, 3).data(v).draw();
                                 var row = ConceptosPresupuesto.row(padre).data();
@@ -1299,7 +1280,7 @@
                             });
 
                             celda.find("#dbEditor").focusout(function () {
-                                var v = $(this).val();
+                                var v = $(this).val().toUpperCase();
                                 celda.html(v);
                                 ConceptosPresupuesto.cell(padre, 3).data(v).draw();
                             });
@@ -1308,7 +1289,7 @@
 
                     //EDITAR UNIDAD
                     $(this).find("td:eq(4)").on('dblclick', function () {
-                       var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
                             var celda = $(this);
@@ -1404,23 +1385,6 @@
             });
         });
         /*EVENTOS LEVANTAMIENTO*/
-        AdjuntosLevantamiento.find("#IdTiempoProceso").change(function () {
-            if ($(this).val() !== '' && $('#IdPorcentajeProceso').val() !== '') {
-                AdjuntosLevantamiento.find('#inputFotosProceso').removeClass('d-none');
-            } else {
-                AdjuntosLevantamiento.find('#inputFotosProceso').addClass('d-none');
-            }
-        });
-        AdjuntosLevantamiento.find("#IdPorcentajeProceso").change(function () {
-            if ($(this).val() !== '') {
-                $(this).val($(this).val() + '%');
-            }
-            if ($('#IdTiempoProceso').val() !== '' && $(this).val() !== '') {
-                AdjuntosLevantamiento.find('#inputFotosProceso').removeClass('d-none');
-            } else {
-                AdjuntosLevantamiento.find('#inputFotosProceso').addClass('d-none');
-            }
-        });
         btnGuardarConceptoAbierto.on("click", function () {
             isValid('pnlDatosAbierto');
             if (valido) {
@@ -3572,7 +3536,6 @@
     }
     function onEditarTrabajoDetalle(params) {
         $.post(master_url + 'onEditarTrabajoDetalle', params).done(function (data, x, jq) {
-            onNotifyOld('fas fa-check', 'DATOS ACTUALIZADOS', 'info');
         }).fail(function (x, y, z) {
             console.log('ERROR', x, y, z);
         }).always(function () {
@@ -3770,16 +3733,6 @@
         var win = window.open('');
         win.document.write('<img src="' + url + '" onload="window.print();window.close()" />');
         win.focus();
-    }
-    function minmax(value, min, max) {
-        if (parseInt(value) < min || isNaN(parseInt(value))) {
-            return "";
-        } else if (parseInt(value) > max) {
-            return 100;
-        } else
-        {
-            return value;
-        }
     }
     function disableFields() {
         $('#CapturaDatos').find('input,textarea,select').attr('disabled', true);
@@ -4354,19 +4307,6 @@
         });
     }
     function onReloadFotosProcesoXConcepto(IDX, IDT) {
-        AdjuntosLevantamiento.find("#IdTiempoProceso").val('');
-        AdjuntosLevantamiento.find("#IdPorcentajeProceso").val('');
-        $('#inputFotosProceso').addClass('d-none');
-        if ($('#ControlTiempoProceso').val() === 'Dias') {
-            AdjuntosLevantamiento.find(".Tiempo").empty();
-            AdjuntosLevantamiento.find(".Tiempo").append("No. Día*");
-        } else if ($('#ControlTiempoProceso').val() === 'Semanas') {
-            AdjuntosLevantamiento.find(".Tiempo").empty();
-            AdjuntosLevantamiento.find(".Tiempo").append("No. Semana*");
-        } else if ($('#ControlTiempoProceso').val() === '') {
-            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBELES DE SELECCIONAR UN CONTROL DE TIEMPO', 'danger');
-            AdjuntosLevantamiento.modal('hide');
-        }
         $.getJSON({
             url: master_url + 'getTiempoFotosProcesoXTrabajoDetalleID',
             data: {
@@ -4374,59 +4314,31 @@
             }
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                var TextoAgrupador = "";
-                if (pnlDatos.find("[name='ControlProceso']").val() === 'Dias') {
-                    TextoAgrupador = 'Día No. ';
-                } else if (pnlDatos.find("[name='ControlProceso']").val() === 'Semanas') {
-                    TextoAgrupador = 'Semana No. ';
-                }
-                var row = "";
-                AdjuntosLevantamiento.find("#vFotosProceso").html("");
-                var tiempos = [];
-                var porcentajes = [];
+                AdjuntosLevantamiento.find("#vFotosProceso").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
                 $.each(data, function (k, v) {
-                    tiempos.push(v.Tiempo);
-                    porcentajes.push(v.Porcentaje);
-                });
-                var tiempos_unicos = [];
-                $.each(tiempos, function (i, el) {
-                    if ($.inArray(el, tiempos_unicos) === -1) {
-                        tiempos_unicos.push(el);
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
                     }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-3">' +
+                            '<figure class="figure">' +
+                            '<div class="float-right" >' +
+                            '<button class="close "' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + v.ID + ',' + v.IdTrabajoDetalle + ',' + IDT + ')">×</button>' +
+                            '</div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a>' +
+                            '<figcaption class="figure-caption text-left">' +
+                            '<label for="ObservacionesxFotoProceso" class="text-dark">Observaciones</label>' +
+                            '<input  name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + v.ID + ',' + v.IdTrabajoDetalle + ',this)"  value="' + v.Observaciones + '"></input>' +
+                            '</figcaption>' +
+                            '</figure>' +
+                            '</div>';
+                    AdjuntosLevantamiento.find("#vFotosProceso").find("div.row").append(picthumbnail);
+                    nimg++;
                 });
-                var porcentajes_unicos = [];
-                $.each(porcentajes, function (i, el) {
-                    if ($.inArray(el, porcentajes_unicos) === -1) {
-                        porcentajes_unicos.push(el);
-                    }
-                });
-                var index = 0;
-                $.each(tiempos_unicos, function (k, tu) {
-                    row += '<div class="col-12" align="center"><h4>' + TextoAgrupador + tu + ' Avance: ' + porcentajes_unicos[index] + ' </h4><hr></div>';
-                    $.each(data, function (k, d) {
-                        if (tu === d.Tiempo) {
-                            row += '<div class="col-12 col-sm-6 col-md-3 col-lg-3">' +
-                                    '<figure class="figure">' +
-                                    '<div class="float-right" >' +
-                                    '<button class="close "' +
-                                    'data-tooltip="Eliminar" onclick="onEliminarFotoProcesoXConcepto(' + d.ID + ',' + d.IdTrabajoDetalle + ',' + IDT + ')">×</button>' +
-                                    '</div>' +
-                                    '<a href="' + base_url + d.Url + '" target="_blank">' + '<img src="' + base_url + d.Url + '" alt="' + base_url + d.Url + '" width="100%" ></a>' +
-                                    '<figcaption class="figure-caption text-left">' +
-                                    '<label for="ObservacionesxFotoProceso" class="text-dark">Observaciones</label>' +
-                                    '<input  name="ObservacionesxFotoProceso" type="text" class="form-control form-control-sm"  onchange="onModificarObservacionesProceso(' + d.ID + ',' + d.IdTrabajoDetalle + ',this)"  value="' + d.Observaciones + '"></input>' +
-                                    '</figcaption>' +
-                                    '</figure>' +
-                                    '</div>';
-                        }
-                    });
-                    /*BREAK*/
-                    row += '<div class="col-12"></div>';
-                    /*SUMAR UN RECORRIDO POR EL INDICE*/
-                    index++;
-                });
-                /*COLOCAR SOLO UNA VEZ EL HTML GENERADO*/
-                AdjuntosLevantamiento.find("#vFotosProceso").html("<div class=\"row\">" + row + "</div>");
             } else {
                 AdjuntosLevantamiento.find("#vFotosProceso").html('');
             }
