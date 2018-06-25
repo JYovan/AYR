@@ -11,6 +11,16 @@ class trabajo_model extends CI_Model {
         date_default_timezone_set('America/Mexico_City');
     }
 
+    public function onCopiarMovimiento($ID) {
+        try {
+            $query = $this->db->query("CALL SP_COPIAR_MOVIMIENTO('{$ID}', '{$this->session->userdata('ID')}');");
+            $data = $query->result();
+            return $data;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getRecords() {
         try {
             $this->db->select("T.ID, "

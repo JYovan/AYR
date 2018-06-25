@@ -44,7 +44,7 @@
                                 <span class="fa fa-arrow-left" ></span>
                             </button>
                             <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ><span class="fa fa-trash fa-1x"></span> </button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" ><span class="fa fa-save fa-1x"></span> GUARDAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
                         </div>
                     </div>
                     <div class="row">

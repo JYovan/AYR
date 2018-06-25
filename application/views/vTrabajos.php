@@ -130,10 +130,10 @@
                         </div>
                         <div class="col-12 col-sm-7 col-md-6" align="right">
                             <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" ><span class="fa fa-arrow-left" ></span></button>
-                            <button type="button" class="btn btn-light btn-sm d-none" id="btnCopiar" data-toggle="tooltip" data-placement="top" title="Copiar"><span class="fa fa-clone "></span> </button>
+                            <button type="button" class="btn btn-light btn-sm d-none" id="btnCopiar" onclick="onCopiarMovimiento()" data-toggle="tooltip" data-placement="top" title="Copiar"><span class="fa fa-clone "></span> </button>
                             <button type="button" class="btn btn-warning btn-sm d-none" id="btnImprimirReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" ><span class="fa fa-print " ></span></button>
                             <button type="button" class="btn btn-danger btn-sm d-none" id="btnEliminar"><span class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></span> </button>
-                            <button type="button" class="btn btn-info btn-sm d-none" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
+                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
                             <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
                             <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
                             <button type="button" class="btn btn-primary btn-sm d-none" id="btnEdicionMaestra"><span class="fa fa-key "></span> EDITAR</button>
@@ -1192,6 +1192,26 @@
     var Cliente;
     var EdicionMaestra = false;
     var vtemp = '';
+
+    function onCopiarMovimiento() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onCopiarMovimiento',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IdMovimiento
+            }
+        }).done(function (data, x, jq) {
+            Trabajos.ajax.reload();
+            getTrabajoByID(data[0].ID);
+            swal('ATENCIÓN', 'REGISTRO COPIADO EXITOSAMENTE CON EL ID: ' + data[0].ID, 'success');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+            HoldOn.close();
+        });
+    }
+
     $(document).ready(function () {
         tblConceptosPresupuesto.on('draw.dt', function () {
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
@@ -2227,11 +2247,11 @@
                                 ID: IdMovimiento
                             }
                         }).done(function (data, x, jq) {
-                            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'danger');
-                            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+                            Trabajos.ajax.reload();
+                            menuTablero.removeClass("d-none");
                             pnlDatos.addClass("d-none");
                             pnlDetalleTrabajo.addClass("d-none");
-                            getRecords();
+                            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'TRABAJO ELIMINADO', 'success');
                         }).fail(function (x, y, z) {
                             console.log(x, y, z);
                         }).always(function () {
@@ -2406,7 +2426,7 @@
             });
         });
         btnCancelar.on("click", function () {
-            menuTablero.addClass("animated slideInLeft").removeClass("d-none");
+            menuTablero.removeClass("d-none");
             pnlDatos.addClass("d-none");
             pnlDetalleTrabajo.addClass("d-none");
             Trabajos.ajax.reload();
@@ -2871,7 +2891,24 @@
             var dtm = Trabajos.row(this).data();
             IdMovimiento = parseInt(dtm.ID);
             nuevo = false;
-            /*OLD CODE*/
+            getTrabajoByID(IdMovimiento);
+        });
+        $('#tblTrabajos_filter input[type=search]').focus();
+        Trabajos.columns().every(function () {
+            var that = this;
+            $('input,select', this.footer()).on('keyup change', function () {
+                if (that.search() !== this.value) {
+                    that.search(this.value).draw();
+                }
+            });
+        });
+    }
+    function getTrabajoByID(ID) {
+        IdMovimiento = ID;
+
+        if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+
             pnlDatos.find(".nav-tabs li a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
@@ -2886,248 +2923,235 @@
             pnlDetalleTrabajo.find("#Levantamiento").removeClass("active show");
             pnlDetalleTrabajo.find("#Cajeros").removeClass("active show");
 
-            if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
-                HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            $.ajax({
+                url: master_url + 'getTrabajoByID',
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    ID: IdMovimiento
+                }
+            }).done(function (data, x, jq) {
+                var trabajo = data[0];
+                pnlDatos.find("input").not('[type=radio]').val('');
+                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
+                pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
+                if (trabajo.Cliente_ID === '1') {
+                    pnlDatos.find("#pBBVAMantenimiento").removeClass("d-none");
+                    pnlDatos.find("#pBBVAObra").removeClass("d-none");
+                    pnlDatos.find("#pBBVACajeros").removeClass("d-none");
+                    pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
+                } else if (trabajo.Cliente_ID === '16') {
+                    mdlReportesEditarTrabajo.find("#rNordes").removeClass('d-none');
+                } else {
+                    pnlDatos.find("#peBBVAMantenimiento").addClass("d-none");
+                    pnlDatos.find("#pBBVAObra").addClass("d-none");
+                    pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
+                }
                 $.ajax({
-                    url: master_url + 'getTrabajoByID',
+                    url: master_url + 'getSucursalesByCliente',
                     type: "POST",
                     dataType: "JSON",
                     data: {
-                        ID: IdMovimiento
+                        ID: trabajo.Cliente_ID
                     }
                 }).done(function (data, x, jq) {
-                    var trabajo = data[0];
-                    pnlDatos.find("input").not('[type=radio]').val('');
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
                     pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
-                    if (trabajo.Cliente_ID === '1') {
-                        pnlDatos.find("#pBBVAMantenimiento").removeClass("d-none");
-                        pnlDatos.find("#pBBVAObra").removeClass("d-none");
-                        pnlDatos.find("#pBBVACajeros").removeClass("d-none");
-                        pnlDetalleTrabajo.find("#peCajeros").removeClass("d-none");
-                    } else if (trabajo.Cliente_ID === '16') {
-                        mdlReportesEditarTrabajo.find("#rNordes").removeClass('d-none');
-                    } else {
-                        pnlDatos.find("#peBBVAMantenimiento").addClass("d-none");
-                        pnlDatos.find("#pBBVAObra").addClass("d-none");
-                        pnlDetalleTrabajo.find("#peCajeros").addClass("d-none");
-                    }
-                    $.ajax({
-                        url: master_url + 'getSucursalesByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: trabajo.Cliente_ID
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clear(true);
-                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.clearOptions();
-                        $.each(data, function (k, v) {
-                            pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
-                        });
-                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='Sucursal_ID']")[0].selectize.addOption({text: v.CR + ' - ' + v.Sucursal, value: v.ID});
+                    });
+                    pnlDatos.find("[name='Sucursal_ID']")[0].selectize.setValue(trabajo.Sucursal_ID);
 
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                    });
-                    $.ajax({
-                        url: master_url + 'getPreciariosByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            Cliente_ID: trabajo.Cliente_ID
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.clear(true);
-                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.clearOptions();
-                        $.each(data, function (k, v) {
-                            pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
-                        });
-                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                    });
-                    $.ajax({
-                        url: master_url + 'getEspecialidadesByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: trabajo.Cliente_ID
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clear(true);
-                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clearOptions();
-                        $.each(data, function (k, v) {
-                            pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
-                        });
-                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                    });
-                    $.ajax({
-                        url: master_url + 'getAreasByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: trabajo.Cliente_ID
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlDatos.find("[name='Area_ID']")[0].selectize.clear(true);
-                        pnlDatos.find("[name='Area_ID']")[0].selectize.clearOptions();
-                        $.each(data, function (k, v) {
-                            pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
-                        });
-                        pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                    });
-                    $.ajax({
-                        url: master_url + 'getCCByCliente',
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            ID: trabajo.Cliente_ID
-                        }
-                    }).done(function (data, x, jq) {
-                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clear(true);
-                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clearOptions();
-                        $.each(data, function (k, v) {
-                            pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
-                        });
-                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
-                    }).fail(function (x, y, z) {
-                        console.log(x, y, z);
-                    }).always(function () {
-                    });
-                    getCodigoPPTAbyID(trabajo.Codigoppta_ID); /*trae los días*/
-                    Cliente = trabajo.Cliente_ID;
-                    $.each(data[0], function (k, v) {
-                        if (v !== null && v !== '' && v !== 'null') {
-                            if (pnlDatos.find("[name='" + k + "']").is('select')) {
-                                pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
-                            } else {
-                                if (k !== 'Adjunto') {
-                                    pnlDatos.find("[name='" + k + "']").val(v);
-                                }
-                            }
-                        }
-                    });
-                    if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
-                        var ext = getExt(trabajo.Adjunto);
-                        if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
-                            pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
-                        }
-                        if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
-                            pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-                        }
-                        if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
-                            pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
-                        }
-                    } else {
-                        pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
-                    }
-                    menuTablero.addClass("d-none");
-                    Estatus = trabajo.Estatus;
-                    if (trabajo.Estatus === 'Entregado' && TipoAcceso === 'SUPER ADMINISTRADOR') {
-                        btnEdicionMaestra.removeClass('d-none');
-                    } else {
-                        EdicionMaestra = false;
-                        btnEdicionMaestra.addClass('d-none');
-                    }
-                    if (trabajo.Estatus === 'Concluido') {
-                        btnGuardar.addClass('d-none');
-                        btnEliminar.addClass('d-none');
-                        btnImprimirReportes.removeClass('d-none');
-                        btnCopiar.removeClass('d-none');
-                        btnConcluir.addClass('d-none');
-                        btnInconcluir.removeClass('d-none');
-                        btnNuevoConcepto.addClass('d-none');
-                        btnNuevoConceptoAbierto.addClass('d-none');
-                        btnNuevoConceptoCajero.addClass('d-none');
-                        $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
-                        disableFields();
-                    } else if (trabajo.Estatus === 'Borrador') {
-                        btnGuardar.removeClass('d-none');
-                        btnEliminar.removeClass('d-none');
-                        btnImprimirReportes.removeClass('d-none');
-                        btnCopiar.removeClass('d-none');
-                        btnConcluir.removeClass('d-none');
-                        btnInconcluir.addClass('d-none');
-                        btnNuevoConcepto.removeClass('d-none');
-                        btnNuevoConceptoAbierto.removeClass('d-none');
-                        btnNuevoConceptoCajero.removeClass('d-none');
-                        $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
-                        enableFields();
-                    } else if (trabajo.Estatus === 'Entregado') {
-                        btnGuardar.addClass('d-none');
-                        btnEliminar.addClass('d-none');
-                        btnImprimirReportes.removeClass('d-none');
-                        btnCopiar.removeClass('d-none');
-                        btnConcluir.addClass('d-none');
-                        btnInconcluir.addClass('d-none');
-                        btnNuevoConcepto.addClass('d-none');
-                        btnNuevoConceptoAbierto.addClass('d-none');
-                        btnNuevoConceptoCajero.addClass('d-none');
-                        $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
-                        disableFields();
-                    }
-                    /*ACTUALIZAR ESTATUS*/
-                    var text = '';
-                    $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
-                        text = $(this).text();
-                        text = text.replace("(COMPLETADO)", "");
-                        text = text.replace("(ACTIVO)", "");
-                        $(this).html("<span class=\"bubble\"></span>" + text);
-                    });
-                    pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
-                    $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
-                        text = $(this).text();
-                        if (text.includes(trabajo.EstatusTrabajo)) {
-                            pnlDatos.find('#EstatusTrabajo > li').slice(0, $(this).index()).addClass("completed");
-
-                            $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
-                                text = $(this).text();
-                                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-                            });
-
-                            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
-                            if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === $(this).index() ||
-                                    pnlDatos.find("#EstatusTrabajo > li:last-child").index() === $(this).index()) {
-                                $(this).addClass("completed");
-                                $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-                            } else {
-                                $(this).addClass("active");
-                                text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
-                                pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
-                            }
-                        }
-                    });
-                    getTrabajoDetalleByID(IdMovimiento);
-                    getDetalleAbiertoByID(IdMovimiento);
-                    pnlDatos.removeClass("d-none");
-                    pnlDetalleTrabajo.removeClass("d-none");
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
                 }).always(function () {
                 });
-            } else {
-                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
-            }
-            /*END OLD CODE*/
-        });
-        $('#tblTrabajos_filter input[type=search]').focus();
-        Trabajos.columns().every(function () {
-            var that = this;
-            $('input,select', this.footer()).on('keyup change', function () {
-                if (that.search() !== this.value) {
-                    that.search(this.value).draw();
+                $.ajax({
+                    url: master_url + 'getPreciariosByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        Cliente_ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.clear(true);
+                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.clearOptions();
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='Preciario_ID']")[0].selectize.addOption({text: v.Preciario, value: v.ID});
+                    });
+                    pnlDatos.find("[name='Preciario_ID']")[0].selectize.setValue(trabajo.Preciario_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+                $.ajax({
+                    url: master_url + 'getEspecialidadesByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clear(true);
+                    pnlDatos.find("[name='Especialidad_ID']")[0].selectize.clearOptions();
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='Especialidad_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                    });
+                    pnlDatos.find("[name='Especialidad_ID']")[0].selectize.setValue(trabajo.Especialidad_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+                $.ajax({
+                    url: master_url + 'getAreasByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    pnlDatos.find("[name='Area_ID']")[0].selectize.clear(true);
+                    pnlDatos.find("[name='Area_ID']")[0].selectize.clearOptions();
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='Area_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+                    });
+                    pnlDatos.find("[name='Area_ID']")[0].selectize.setValue(trabajo.Area_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+                $.ajax({
+                    url: master_url + 'getCCByCliente',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        ID: trabajo.Cliente_ID
+                    }
+                }).done(function (data, x, jq) {
+                    pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clear(true);
+                    pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.clearOptions();
+                    $.each(data, function (k, v) {
+                        pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.addOption({text: v.Nombre, value: v.ID});
+                    });
+                    pnlDatos.find("[name='CentroCostos_ID']")[0].selectize.setValue(trabajo.CentroCostos_ID);
+                }).fail(function (x, y, z) {
+                    console.log(x, y, z);
+                }).always(function () {
+                });
+                getCodigoPPTAbyID(trabajo.Codigoppta_ID); /*trae los días*/
+                Cliente = trabajo.Cliente_ID;
+                $.each(data[0], function (k, v) {
+                    if (v !== null && v !== '' && v !== 'null') {
+                        if (pnlDatos.find("[name='" + k + "']").is('select')) {
+                            pnlDatos.find("[name='" + k + "']")[0].selectize.setValue(v);
+                        } else {
+                            if (k !== 'Adjunto') {
+                                pnlDatos.find("[name='" + k + "']").val(v);
+                            }
+                        }
+                    }
+                });
+                if (trabajo.Adjunto !== null && trabajo.Adjunto !== undefined && trabajo.Adjunto !== '') {
+                    var ext = getExt(trabajo.Adjunto);
+                    if (ext === "gif" || ext === "jpg" || ext === "png" || ext === "jpeg") {
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div><div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><img id="trtImagen" src="' + base_url + trabajo.Adjunto + '" class ="img-responsive" width="600px"  onclick="printImg(\' ' + base_url + trabajo.Adjunto + ' \')"  />');
+                    }
+                    if (ext === "PDF" || ext === "Pdf" || ext === "pdf") {
+                        pnlDatos.find("#VistaPrevia").html('<hr><div class="col-8"></div> <div class="col-4"><button type="button" class="btn btn3d btn-default" id="btnQuitarVP" name="btnQuitarVP" onclick="onRemovePreview(this)"><span class="fa fa-times fa-2x danger-icon"></span></button></div><embed src="' + base_url + trabajo.Adjunto + '" type="application/pdf" width="90%" height="800px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+                    }
+                    if (ext !== "gif" && ext !== "jpg" && ext !== "jpeg" && ext !== "png" && ext !== "PDF" && ext !== "Pdf" && ext !== "pdf") {
+                        pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
+                    }
+                } else {
+                    pnlDatos.find("#VistaPrevia").html('<h4>NO EXISTE ARCHIVO ADJUNTO</h4>');
                 }
+                menuTablero.addClass("d-none");
+                Estatus = trabajo.Estatus;
+                if (trabajo.Estatus === 'Entregado' && TipoAcceso === 'SUPER ADMINISTRADOR') {
+                    btnEdicionMaestra.removeClass('d-none');
+                } else {
+                    EdicionMaestra = false;
+                    btnEdicionMaestra.addClass('d-none');
+                }
+                if (trabajo.Estatus === 'Concluido') {
+                    btnGuardar.addClass('d-none');
+                    btnEliminar.addClass('d-none');
+                    btnImprimirReportes.removeClass('d-none');
+                    btnCopiar.removeClass('d-none');
+                    btnConcluir.addClass('d-none');
+                    btnInconcluir.removeClass('d-none');
+                    btnNuevoConcepto.addClass('d-none');
+                    btnNuevoConceptoAbierto.addClass('d-none');
+                    btnNuevoConceptoCajero.addClass('d-none');
+                    $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
+                    disableFields();
+                } else if (trabajo.Estatus === 'Borrador') {
+                    btnGuardar.removeClass('d-none');
+                    btnEliminar.removeClass('d-none');
+                    btnImprimirReportes.removeClass('d-none');
+                    btnCopiar.removeClass('d-none');
+                    btnConcluir.removeClass('d-none');
+                    btnInconcluir.addClass('d-none');
+                    btnNuevoConcepto.removeClass('d-none');
+                    btnNuevoConceptoAbierto.removeClass('d-none');
+                    btnNuevoConceptoCajero.removeClass('d-none');
+                    $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
+                    enableFields();
+                } else if (trabajo.Estatus === 'Entregado') {
+                    btnGuardar.addClass('d-none');
+                    btnEliminar.addClass('d-none');
+                    btnImprimirReportes.removeClass('d-none');
+                    btnCopiar.removeClass('d-none');
+                    btnConcluir.addClass('d-none');
+                    btnInconcluir.addClass('d-none');
+                    btnNuevoConcepto.addClass('d-none');
+                    btnNuevoConceptoAbierto.addClass('d-none');
+                    btnNuevoConceptoCajero.addClass('d-none');
+                    $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
+                    disableFields();
+                }
+                /*ACTUALIZAR ESTATUS*/
+                var text = '';
+                $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                    text = $(this).text();
+                    text = text.replace("(COMPLETADO)", "");
+                    text = text.replace("(ACTIVO)", "");
+                    $(this).html("<span class=\"bubble\"></span>" + text);
+                });
+                pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
+                $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
+                    text = $(this).text();
+                    if (text.includes(trabajo.EstatusTrabajo)) {
+                        pnlDatos.find('#EstatusTrabajo > li').slice(0, $(this).index()).addClass("completed");
+
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+
+                        text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
+                        if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === $(this).index() ||
+                                pnlDatos.find("#EstatusTrabajo > li:last-child").index() === $(this).index()) {
+                            $(this).addClass("completed");
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        } else {
+                            $(this).addClass("active");
+                            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
+                            pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        }
+                    }
+                });
+                getTrabajoDetalleByID(IdMovimiento);
+                getDetalleAbiertoByID(IdMovimiento);
+                pnlDatos.removeClass("d-none");
+                pnlDetalleTrabajo.removeClass("d-none");
+            }).fail(function (x, y, z) {
+                console.log(x, y, z);
+            }).always(function () {
             });
-        });
+        } else {
+            onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UN REGISTRO', 'danger');
+        }
     }
     function getTrabajoDetalleByID(IDX) {
         pnlDetalleTrabajo.find('#ConceptosPresupuesto').removeClass('d-none');

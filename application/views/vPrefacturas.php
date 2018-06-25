@@ -102,7 +102,7 @@
                         <button type="button" class="btn  btn-warning btn-sm d-none" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="bottom" title="Exportar a Intelisis" ><span class="fa fa-cloud-upload-alt "></span> </button>
                         <button type="button" class="btn  btn-warning btn-sm d-none" id="btnCapturarPago" data-toggle="tooltip" data-placement="bottom" title="Capturar Pago"><span class="fa fa-money-bill-alt "></span> </button>
                         <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Regresar"><span class="fa fa-trash "></span></button>
-                        <button type="button" class="btn btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
                         <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
                         <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
                     </div>

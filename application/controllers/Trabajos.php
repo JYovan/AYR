@@ -232,6 +232,16 @@ class Trabajos extends CI_Controller {
         }
     }
 
+    public function onCopiarMovimiento() {
+        try {
+            extract($this->input->post());
+            $data = $this->trabajo_model->onCopiarMovimiento($ID);
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getTrabajoDetalleByID() {
         try {
             print json_encode($this->trabajo_model->getTrabajoDetalleByID($this->input->post('ID')));

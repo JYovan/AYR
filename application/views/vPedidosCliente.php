@@ -116,7 +116,7 @@
                         </button>
                         <button type="button" class="btn btn-raised btn-warning btn-sm" id="btnImprimirReportesEditarTrabajo" data-toggle="tooltip" data-placement="bottom" title="Imprimir"><span class="fa fa-print "></span> </button>
                         <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash " ></span></button>
-                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar"><span class="fa fa-save "></span> GUARDAR</button>
+                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
                     </div>
                 </div>
                 <fieldset>
