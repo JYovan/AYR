@@ -192,6 +192,9 @@ left join clientes c ON c.ID = E.Cliente_ID', false);
     public function onCambiarEstatusTrabajosPrefacturados($ID) {
         try {
 //            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
+
+
+            $this->db->set('E.EstatusTrabajo', 'Facturado');
             $this->db->set('E.Prefactura_ID', $ID);
             $this->db->where('E.ID = PD.EID');
             $this->db->update("trabajos E, (   SELECT  Trabajo_ID EID     FROM prefacturasdetalle     JOIN prefacturas on prefacturas.ID = prefacturasdetalle.Prefactura_ID  where prefacturas.ID = " . $ID . ") PD");
@@ -204,6 +207,7 @@ left join clientes c ON c.ID = E.Cliente_ID', false);
     public function onCancelarCambiarEstatusTrabajosPrefacturados($ID) {
         try {
 //            $query = $this->db->query("CALL SP_ENTREGADO ('{$ID}')");
+            $this->db->set('E.EstatusTrabajo', 'Finalizado');
             $this->db->set('E.Prefactura_ID', NULL);
             $this->db->where('E.ID = PD.EID');
             $this->db->update("trabajos E, (   SELECT  Trabajo_ID EID     FROM prefacturasdetalle     JOIN prefacturas on prefacturas.ID = prefacturasdetalle.Prefactura_ID  where prefacturas.ID = " . $ID . ") PD");

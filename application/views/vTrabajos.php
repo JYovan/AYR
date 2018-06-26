@@ -151,29 +151,37 @@
                         <div class="col-12">
                             <br>
                             <ul class="table-responsive progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
-                                <li id="stsPedido" step="1"><span class="bubble"></span>1. Pedido
+                                <li id="stsPedido" step="1">
+                                    <span class="bubble"></span>
+                                    1. Pe
                                 </li>
-                                <li id="stsPresupuesto" step="2"><span class="bubble"></span>2. Presupuesto
+                                <li id="stsPresupuesto" step="2">
+                                    <span class="bubble"></span>
+                                    2. Pre
                                 </li>
                                 <li id="stsAutorizacion" step="3">
                                     <span class="bubble"></span>
-                                    3. Autorización del cliente
+                                    3. Aut
                                 </li>
                                 <li id="stsNoAutorizado" step="4">
                                     <span class="bubble"></span>
-                                    4. No Autorizado
+                                    4. No Aut
                                 </li>
                                 <li id="stsEjecucion" step="5">
                                     <span class="bubble"></span>
-                                    5. Ejecución
+                                    5. Eje
                                 </li>
                                 <li id="stsFinalizado" step="6">
                                     <span class="bubble"></span>
-                                    6. Finalizado
+                                    6. Fin
                                 </li>
-                                <li id="stsPagado" step="7">
+                                <li id="stsFacturado" step="7">
                                     <span class="bubble"></span>
-                                    7. Pagado
+                                    7. Fact
+                                </li>
+                                <li id="stsPagado" step="8">
+                                    <span class="bubble"></span>
+                                    8. Pag
                                 </li>
                             </ul>
                         </div>
@@ -1192,26 +1200,6 @@
     var Cliente;
     var EdicionMaestra = false;
     var vtemp = '';
-
-    function onCopiarMovimiento() {
-        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
-        $.ajax({
-            url: master_url + 'onCopiarMovimiento',
-            type: "POST",
-            dataType: "JSON",
-            data: {
-                ID: IdMovimiento
-            }
-        }).done(function (data, x, jq) {
-            Trabajos.ajax.reload();
-            getTrabajoByID(data[0].ID);
-            swal('ATENCIÓN', 'REGISTRO COPIADO EXITOSAMENTE CON EL ID: ' + data[0].ID, 'success');
-        }).fail(function (x, y, z) {
-            console.log(x, y, z);
-            HoldOn.close();
-        });
-    }
-
     $(document).ready(function () {
         tblConceptosPresupuesto.on('draw.dt', function () {
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
@@ -2118,8 +2106,9 @@
             }
         });
         /*EstatusTrabajo*/
-        pnlDatos.find("#EstatusTrabajo > li:not(:last-child)").click(function () {
-            if (Estatus === 'Borrador' || EdicionMaestra) {
+        pnlDatos.find("#EstatusTrabajo > li:not(:last-child):not(:nth-last-child(2))").click(function () {
+            //console.log(Estatus);
+            if (Estatus === 'Borrador' || EdicionMaestra || Estatus === undefined) {
                 var li = $(this);
                 var text = '';
                 $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
@@ -2147,21 +2136,20 @@
                 if (!nuevo) {
                     text = pnlDatos.find('#EstatusTrabajo > li:eq(' + li.index() + ')').text();
                     var sts = '';
-                    if (text.includes('Pedido')) {
+                    if (text.includes('1')) {
                         sts = 'Pedido';
-                    } else if (text.includes('Presupuesto')) {
+                    } else if (text.includes('2')) {
                         sts = 'Presupuesto';
-                    } else if (text.includes('Autorización')) {
+                    } else if (text.includes('3')) {
                         sts = 'Autorización';
-                    } else if (text.includes('No Autorizado')) {
+                    } else if (text.includes('4')) {
                         sts = 'No Autorizado';
-                    } else if (text.includes('Ejecución')) {
+                    } else if (text.includes('5')) {
                         sts = 'Ejecución';
-                    } else if (text.includes('Finalizado')) {
+                    } else if (text.includes('6')) {
                         sts = 'Finalizado';
                     }
-                    $.post(master_url + 'onModificarEstatusByID', {ID: pnlDatos.find("#ID").val(), ESTATUS: sts}).done(function (data, x, jq) {
-                        console.log(data);
+                    $.post(master_url + 'onModificarEstatusByID', {ID: IdMovimiento, ESTATUS: sts}).done(function (data, x, jq) {
                         onNotifyOld('fa fa-check', 'EL ESTATUS HA SIDO MODIFICADO', 'success');
                     }).fail(function (x, y, z) {
                         console.log(x, y, z, "\n ERROR \n", x.responseText);
@@ -2274,7 +2262,6 @@
                         processData: false,
                         data: frm
                     }).done(function (data, x, jq) {
-                        console.log(data);
                         onNotify('<span class="fa fa-check fa-lg"></span>', 'MOVIMIENTO GUARDADO', 'success');
                     }).fail(function (x, y, z) {
                         console.log(x, y, z);
@@ -2284,17 +2271,17 @@
                 } else {
                     var text = (pnlDatos.find('#EstatusTrabajo > li.active').text() !== '') ? pnlDatos.find('#EstatusTrabajo > li.active').text() : pnlDatos.find('#EstatusTrabajo > li.completed').text();
                     var sts = '';
-                    if (text.includes('Pedido')) {
+                    if (text.includes('1')) {
                         sts = 'Pedido';
-                    } else if (text.includes('Presupuesto')) {
+                    } else if (text.includes('2')) {
                         sts = 'Presupuesto';
-                    } else if (text.includes('Autorización')) {
+                    } else if (text.includes('3')) {
                         sts = 'Autorización';
-                    } else if (text.includes('No Autorizado')) {
+                    } else if (text.includes('4')) {
                         sts = 'No Autorizado';
-                    } else if (text.includes('Ejecución')) {
+                    } else if (text.includes('5')) {
                         sts = 'Ejecución';
-                    } else if (text.includes('Finalizado')) {
+                    } else if (text.includes('6')) {
                         sts = 'Finalizado';
                     }
                     frm.append('Importe', 0);
@@ -2312,7 +2299,6 @@
                         IdMovimiento = parseInt(data);
                         pnlDatos.find("#ID").val(IdMovimiento);
                         getTrabajoDetalleByID(IdMovimiento);
-                        getDetalleAbiertoByID(IdMovimiento);
                         btnEliminar.removeClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
@@ -2418,7 +2404,7 @@
                     EdicionMaestra = true;
                     btnGuardar.removeClass('d-none');
                     btnEliminar.removeClass('d-none');
-                    btnNuevoConcepto.addClass('d-none');
+                    btnNuevoConcepto.removeClass('d-none');
                     btnNuevoConceptoAbierto.removeClass('d-none');
                     btnNuevoConceptoCajero.removeClass('d-none');
                     enableFields();
@@ -2905,10 +2891,8 @@
     }
     function getTrabajoByID(ID) {
         IdMovimiento = ID;
-
         if (IdMovimiento !== 0 && IdMovimiento !== undefined && IdMovimiento > 0) {
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
-
             pnlDatos.find(".nav-tabs li a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs li a")[0]).addClass("active show");
             pnlDatos.find("#Datos").addClass("active show");
@@ -3110,7 +3094,7 @@
                     $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
                     disableFields();
                 }
-                /*ACTUALIZAR ESTATUS*/
+                /*ACTUALIZAR ESTATUS TRABAJO*/
                 var text = '';
                 $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
                     text = $(this).text();
@@ -3119,30 +3103,85 @@
                     $(this).html("<span class=\"bubble\"></span>" + text);
                 });
                 pnlDatos.find("#EstatusTrabajo > li").removeClass("completed active");
-                $.each(pnlDatos.find('#EstatusTrabajo > li'), function () {
-                    text = $(this).text();
-                    if (text.includes(trabajo.EstatusTrabajo)) {
-                        pnlDatos.find('#EstatusTrabajo > li').slice(0, $(this).index()).addClass("completed");
-
+                var li = pnlDatos.find('#EstatusTrabajo > li');
+                switch (trabajo.EstatusTrabajo) {
+                    case 'Pedido':
+                        li.eq(0).addClass("active");
+                        text = li.eq(0).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(0).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Presupuesto':
+                        li.slice(0, 1).addClass("completed");
                         $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
                             text = $(this).text();
                             $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
                         });
-
-                        text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
-                        if (pnlDatos.find("#EstatusTrabajo > li:first-child").index() === $(this).index() ||
-                                pnlDatos.find("#EstatusTrabajo > li:last-child").index() === $(this).index()) {
-                            $(this).addClass("completed");
+                        li.eq(1).addClass("active");
+                        text = li.eq(1).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(1).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Autorización':
+                        li.slice(0, 2).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
                             $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
-                        } else {
-                            $(this).addClass("active");
-                            text = pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ')').text();
-                            pnlDatos.find('#EstatusTrabajo > li:eq(' + $(this).index() + ').active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
-                        }
-                    }
-                });
+                        });
+                        li.eq(2).addClass("active");
+                        text = li.eq(2).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(2).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'No Autorizado':
+                        li.slice(0, 3).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+                        li.eq(3).addClass("active");
+                        text = li.eq(3).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(3).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Ejecución':
+                        li.slice(0, 4).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+                        li.eq(4).addClass("active");
+                        text = li.eq(4).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(4).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Finalizado':
+                        li.slice(0, 5).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+                        li.eq(5).addClass("active");
+                        text = li.eq(5).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(5).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Facturado':
+                        li.slice(0, 6).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+                        li.eq(6).addClass("active");
+                        text = li.eq(6).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(6).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                    case 'Pagado':
+                        li.slice(0, 7).addClass("completed");
+                        $.each(pnlDatos.find('#EstatusTrabajo > li.completed'), function () {
+                            text = $(this).text();
+                            $(this).html("<span class=\"bubble\"></span><span class=\"fa fa-check-circle\"></span>" + text + "<br><small>(COMPLETADO)</small>");
+                        });
+                        li.eq(7).addClass("active");
+                        text = li.eq(7).text();
+                        pnlDatos.find('#EstatusTrabajo > li:eq(7).active').html("<span class=\"bubble\"></span><span class=\"fa fa-flag\"></span>" + text.replace("(ACTIVO)", "") + "<br><small>(ACTIVO)</small>");
+                        break;
+                }
                 getTrabajoDetalleByID(IdMovimiento);
-                getDetalleAbiertoByID(IdMovimiento);
                 pnlDatos.removeClass("d-none");
                 pnlDetalleTrabajo.removeClass("d-none");
             }).fail(function (x, y, z) {
@@ -3414,6 +3453,24 @@
         });
     }
     /*Funciones Presupuesto*/
+    function onCopiarMovimiento() {
+        HoldOn.open({theme: 'sk-bounce', message: 'ESPERE...'});
+        $.ajax({
+            url: master_url + 'onCopiarMovimiento',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IdMovimiento
+            }
+        }).done(function (data, x, jq) {
+            Trabajos.ajax.reload();
+            getTrabajoByID(data[0].ID);
+            swal('ATENCIÓN', 'REGISTRO COPIADO EXITOSAMENTE CON EL ID: ' + data[0].ID, 'success');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+            HoldOn.close();
+        });
+    }
     function onReemplazarConcepto(IDX, Cantidad) {
         if (Estatus === 'Borrador' || EdicionMaestra) {
             IdReemplaza = IDX;

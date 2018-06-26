@@ -1030,3 +1030,8 @@
         win.focus();
     }
 </script>
+<style>
+    td span.badge{
+        font-size: 14px !important;
+    }
+</style>

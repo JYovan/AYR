@@ -19,13 +19,15 @@ class pedidocliente_model extends CI_Model {
                     . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
                     . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
-                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-primary\'>','PEDIDO','</span>')
-WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','PRESUPUESTO','</span>')
-WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-success\'>','AUTORIZACIÓN','</span>')
-WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','EJECUCIÓN','</span>')
-WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-warning\'>','FINALIZADO','</span>')
-WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-info\'>','NO AUTORIZADO','</span>')
-ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-light \'>','PAGADO','</span>') END) AS Estatus,"
+                    . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-secondary\'>','PEDIDO','</span>') "
+                    . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-primary\'>','PRESUPUESTO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-info\'>','AUTORIZACIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='No Autorizado' THEN CONCAT('<span class=\'badge badge-light\'>','NO AUTORIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Ejecución' THEN CONCAT('<span class=\'badge badge-danger\'>','EJECUCIÓN','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Finalizado' THEN CONCAT('<span class=\'badge badge-success\'>','FINALIZADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Facturado' THEN CONCAT('<span class=\'badge badge-warning badge-warning\'>','FACTURADO','</span>')"
+                    . "WHEN  T.EstatusTrabajo ='Pagado' THEN CONCAT('<span class=\'badge badge-light\'>','PAGADO','</span>')"
+                    . " END) AS Estatus ,"
                     . "T.Estatus AS Estatus2, "
                     . "(CASE "
                     . "WHEN  T.EstatusTrabajo in ('Autorización','Ejecución','Finalizado','Pagado') "

@@ -351,7 +351,6 @@ class Trabajos extends CI_Controller {
                 'DescripcionOrigenTrabajo' => (isset($DescripcionOrigenTrabajo) && $DescripcionOrigenTrabajo !== '') ? $DescripcionOrigenTrabajo : null,
                 'DescripcionRiesgoTrabajo' => (isset($DescripcionRiesgoTrabajo) && $DescripcionRiesgoTrabajo !== '') ? $DescripcionRiesgoTrabajo : null,
                 'DescripcionAlcanceTrabajo' => (isset($DescripcionAlcanceTrabajo) && $DescripcionAlcanceTrabajo !== '') ? $DescripcionAlcanceTrabajo : null,
-                'Importe' => (isset($Importe) && $Importe !== 0) ? $Importe : null,
                 'Observaciones' => (isset($Observaciones) && $Observaciones !== '') ? $Observaciones : null,
                 'CentroCostos_ID' => (isset($CentroCostos_ID) && $CentroCostos_ID !== 0) ? $CentroCostos_ID : null,
                 'ControlProceso' => (isset($ControlProceso) && $ControlProceso !== 0) ? $ControlProceso : null,
