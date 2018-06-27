@@ -87,7 +87,9 @@ class plantillas_model extends CI_Model {
                     . 'END) AS "Moneda", '
                     . 'CONCAT("<span class=\"fa fa-times fa-lg \" onclick=\"onEliminarConceptoXDetalle(this,",TD.ID,")\"></span>") AS Eliminar, '
                     . 'TD.PreciarioConcepto_ID AS PCID,'
-                    . "CONCAT(PCAT.Clave,' - ',PCAT.Descripcion) AS Categoria "
+                    . "CASE WHEN IFNULL(PC.PreciarioCategorias_ID,0) = 0 "
+                    . "THEN 'Z-OTROS' "
+                    . "ELSE CONCAT(PCAT.Clave,' - ',PCAT.Descripcion) END AS Categoria"
                     . '  ', false);
             $this->db->from("plantillasdetalle AS TD");
             $this->db->join("preciarioconceptos AS PC", "PC.ID = TD.PreciarioConcepto_ID", 'LEFT');

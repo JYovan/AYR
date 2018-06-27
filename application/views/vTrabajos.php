@@ -1236,8 +1236,16 @@
         tblConceptosPresupuesto.on('draw.dt', function () {
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
                 if (Estatus === 'Borrador' || EdicionMaestra) {
+                    var event;
+                    if (isMobile) {
+                        $(this).find("td:eq(0)").touch();
+                        event = 'doubleTap';
+                    } else {
+                        event = 'dblclick';
+                    }
                     //EDITAR CLAVE
-                    $(this).find("td:eq(0)").on('dblclick', function () {
+                    $(this).find("td:eq(0)").touch();
+                    $(this).find("td:eq(0)").on(event, function () {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1269,7 +1277,8 @@
                         }
                     });
                     //EDITAR INTEXT
-                    $(this).find("td:eq(1)").on('dblclick', function () {
+                    $(this).find("td:eq(1)").touch();
+                    $(this).find("td:eq(1)").on(event, function () {
                         var input = '<select id="dbEditor" name="dbEditor" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1298,7 +1307,8 @@
                         }
                     });
                     //EDITAR CONCEPTO
-                    $(this).find("td:eq(2)").on('dblclick', function () {
+                    $(this).find("td:eq(2)").touch();
+                    $(this).find("td:eq(2)").on(event, function () {
                         var input = '<textarea id="dbEditor" name="dbEditor" class="form-control" rows="4" cols="20">' + $(this).text() + '</textarea>';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1328,7 +1338,8 @@
                     });
 
                     //EDITAR UNIDAD
-                    $(this).find("td:eq(4)").on('dblclick', function () {
+                    $(this).find("td:eq(4)").touch();
+                    $(this).find("td:eq(4)").on(event, function () {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1353,7 +1364,8 @@
                         }
                     });
                     //EDITAR PRECIO
-                    $(this).find("td:eq(5)").on('dblclick', function () {
+                    $(this).find("td:eq(5)").touch();
+                    $(this).find("td:eq(5)").on(event, function () {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1390,7 +1402,8 @@
                         }
                     });
                     //EDITAR MONEDA
-                    $(this).find("td:eq(7)").on('dblclick', function () {
+                    $(this).find("td:eq(7)").touch();
+                    $(this).find("td:eq(7)").on(event, function () {
                         var dbEditor = tblConceptosPresupuesto.find('tbody #dbEditor');
                         var exist = tblConceptosPresupuesto.find('tbody #dbEditor').val();
                         console.log('EXIST,', exist);
