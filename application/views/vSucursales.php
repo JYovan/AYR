@@ -78,7 +78,7 @@
                                 <div class="col-12 col-md-2 col-sm-2">
                                     <div class="form-group label-static">
                                         <label for="CR" class="control-label">CR*</label>
-                                        <input type="text" id="CR" name="CR" maxlength="4" class="form-control form-control-sm numbersOnly" placeholder="" required>
+                                        <input type="text" id="CR" name="CR" maxlength="6" class="form-control form-control-sm numbersOnly" placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-sm-12 col-lg-6">

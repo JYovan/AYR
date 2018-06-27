@@ -269,7 +269,7 @@
     $(document).ready(function () {
         btnVerMisMovimientos.on("click", function () {
             tblRegistrosX.DataTable().columns().search('').draw();
-            tblRegistrosX.DataTable().column(5).search("Pedido|Presupuesto|Ejecución", true, false).draw();
+            tblRegistrosX.DataTable().column(5).search("Pe|Pre|Eje", true, false).draw();
             tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar", true, false).draw();
         });
         btnVerTodos.on("click", function () {
@@ -278,18 +278,19 @@
 
         btnAutorizacion.on("click", function () {
             tblRegistrosX.DataTable().columns().search('').draw();
-            tblRegistrosX.DataTable().column(5).search("Autorización", true, false).draw();
+            // tblRegistrosX.DataTable().column(5).search("Aut", true, false).draw();
+            tblRegistrosX.DataTable().column(5).search('^Aut$', true, false).draw();
             tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
         btnFinalizadosPagados.on("click", function () {
             tblRegistrosX.DataTable().columns().search('').draw();
-            tblRegistrosX.DataTable().column(5).search("Pagado", true, false).draw();
+            tblRegistrosX.DataTable().column(5).search("Pag", true, false).draw();
             tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
 
         btnFinalizadosNoPagados.on("click", function () {
             tblRegistrosX.DataTable().columns().search('').draw();
-            tblRegistrosX.DataTable().column(5).search("Finalizado", true, false).draw();
+            tblRegistrosX.DataTable().column(5).search("Fin", true, false).draw();
             tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar|Entregado", true, false).draw();
         });
         /*Modal de reportes*/
@@ -523,7 +524,7 @@
             ],
             "initComplete": function (settings, json) {
                 tblRegistrosX.DataTable().columns().search('').draw();
-                tblRegistrosX.DataTable().column(5).search("Pedido|Presupuesto|Ejecución", true, false).draw();
+                tblRegistrosX.DataTable().column(5).search("Pe|Pre|Eje", true, false).draw();
                 tblRegistrosX.DataTable().column(6).search("Concluido|Borrador|SinEnviar", true, false).draw();
                 HoldOn.close();
             }

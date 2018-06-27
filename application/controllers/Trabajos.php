@@ -13,7 +13,7 @@ class Trabajos extends CI_Controller {
         $this->load->library('session');
         $this->load->model('sucursal_model')->model('cliente_model')->model('preciario_model')->model('codigoppta_model')->model('cuadrilla_model')
                 ->model('trabajo_model')->model('centrocostos_model')->helper('reportes_helper')->helper('file')->model('especialidades_model')
-                ->model('areas_model')->model('registroUsuarios_model');
+                ->model('areas_model')->model('registroUsuarios_model')->model('plantillas_model');
     }
 
     public function index() {
@@ -45,6 +45,22 @@ class Trabajos extends CI_Controller {
     public function getTrabajoByID() {
         try {
             print json_encode($this->trabajo_model->getTrabajoByID($this->input->post('ID')));
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getPlantillas() {
+        try {
+            print json_encode($this->plantillas_model->getPlantillas());
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function getConceptosPlantillasByID() {
+        try {
+            print json_encode($this->plantillas_model->getConceptosPlantillasByID($this->input->post('ID')));
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

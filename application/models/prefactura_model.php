@@ -117,7 +117,7 @@ class prefactura_model extends CI_Model {
                 S.Nombre AS Sucursal,
                 C.Nombre AS Cliente,
                 CONCAT("<span style=\'font-size:14px;\' class=\'badge badge-success\'>$",FORMAT(E.Importe,2),"</span>") AS Importe,
-                CONCAT("<span class=\"fa fa-times \" onclick=\"onEliminarPrefacturaDetalle(this,",PD.ID,")\"></span>") AS Eliminar,
+                CONCAT("<span class=\"fa fa-times fa-lg\" onclick=\"onEliminarPrefacturaDetalle(this,",PD.ID,")\"></span>") AS Eliminar,
                 E.Importe AS ImporteSF
 from prefacturasdetalle PD
 left join prefacturas P on  PD.Prefactura_ID = P.ID

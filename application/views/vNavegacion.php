@@ -173,6 +173,7 @@
                     <div class="dropdown-divider" href="#"></div>
                     <li id="liEmpresas"><a class="dropdown-item" href="<?php print base_url('Empresas.py') ?>">Empresas</a></li>
                     <li id="liPreciarios"><a class="dropdown-item" href="<?php print base_url('Preciarios.py') ?>">Preciarios</a></li>
+                    <li id="liPlantillas"><a class="dropdown-item" href="<?php print base_url('Plantillas.py') ?>">Plantillas</a></li>
                     <li id="liEmpresasSupervisoras"><a class="dropdown-item" href="<?php print base_url('EmpresasSupervisoras.py') ?>">Empresas Supervisoras</a></li>
                     <li id="liCuadrillas"><a class="dropdown-item" href="<?php print base_url('Cuadrillas.py') ?>">Cuadrillas</a></li>
                     <li id="liCodigosPPTA"><a class="dropdown-item" href="<?php print base_url('CodigosPPTA.py') ?>">Códigos PPTA</a></li>

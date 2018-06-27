@@ -562,11 +562,12 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade show active" id="Presupuesto">
                     <div class="row mb-3">
-                        <div class="col-6 col-md-6" align="left">
+                        <div class="col-6 col-md-10" align="left">
                             <legend></legend>
                         </div>
-                        <div class="col-6 col-md-6" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
+                        <div class="col-6 col-md-2" align="right">
+                            <button type="button" class="btn btn-info btn-sm" id="btnCargarPlantilla" data-toggle="tooltip" data-placement="top" title="Cargar Plantilla" ><span class="fa fa-magic "></span></button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto" data-toggle="tooltip" data-placement="top" title="Nuevo Concepto"><span class="fa fa-plus "></span></button>
                         </div>
                     </div>
                     <!--NUEVA TABLA CONCEPTOS-->
@@ -690,6 +691,33 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">TERMINAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL DETALLE - NUEVO CONCEPTO-->
+<div id="mdlSeleccionarPlantilla" class="modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar Plantilla</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="" class="control-label">Selecciona Plantilla*</label>
+                        <select id="Plantilla" name="Plantilla" class="form-control form-control-sm" >
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnSeleccionarPlantilla">ACEPTAR</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
             </div>
         </div>
     </div>
@@ -1160,6 +1188,10 @@
     var btnNuevoConcepto = pnlDetalleTrabajo.find("#btnNuevoConcepto");
     var mdlSeleccionarConceptos = $("#mdlSeleccionarConceptos");
     var Conceptos = pnlDetalleTrabajo.find("#Conceptos");
+    /*Seleccionar plantilla presupuestos pre capturados*/
+    var btnCargarPlantilla = pnlDetalleTrabajo.find("#btnCargarPlantilla");
+    var mdlSeleccionarPlantilla = $("#mdlSeleccionarPlantilla");
+    var btnSeleccionarPlantilla = mdlSeleccionarPlantilla.find("#btnSeleccionarPlantilla");
     /*GENERADOR*/
     var mdlGeneradorConcepto = $("#mdlGeneradorConcepto");
     var btnAgregarGenerador = mdlGeneradorConcepto.find("#btnAgregarGenerador");
@@ -1214,7 +1246,7 @@
                             var vActual = celda.text();
                             celda.html(input);
                             celda.find('#dbEditor').val(vActual);
-                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focus();
                             celda.find("#dbEditor").focusout(function () {
                                 var v = $(this).val().toUpperCase();
                                 celda.html('<span class="badge badge-info">' + v + '</span>');
@@ -1272,7 +1304,7 @@
                         if (exist === undefined) {
                             var celda = $(this);
                             celda.html(input);
-                            celda.find('#dbEditor').val(celda.text()).focus().select();
+                            celda.find('#dbEditor').val(celda.text()).focus();
                             var padre = celda.parent();
                             celda.find("#dbEditor").change(function () {
                                 var v = $(this).val().toUpperCase();
@@ -1305,7 +1337,7 @@
                             celda.html(input);
                             celda.find('#dbEditor').val(vActual);
                             var padre = celda.parent();
-                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focus();
                             celda.find("#dbEditor").focusout(function () {
                                 var v = $(this).val().toUpperCase();
                                 celda.html(v);
@@ -1330,7 +1362,7 @@
                             celda.html(input);
                             celda.find('#dbEditor').val(vActual);
                             var padre = celda.parent();
-                            celda.find("#dbEditor").focus().select();
+                            celda.find("#dbEditor").focus();
                             celda.find("#dbEditor").focusout(function () {
                                 var v = getNumberFloat($(this).val());
                                 var precio_format = '$' + $.number(v, 6, '.', ',');
@@ -2207,13 +2239,13 @@
         btnVerTodosEnFirme.on("click", function () {
             tblTrabajos.DataTable().columns().search('').draw();
             tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
-            tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
+            tblTrabajos.DataTable().column(2).search("Pe|Pre|Aut|Eje", true, false).draw();
         });
         btnVerMisMovimientos.on("click", function () {
             tblTrabajos.DataTable().columns().search('').draw();
             Trabajos.column(12).search("1" ? '^' + "<?php print $this->session->userdata('ID') ?>" + '$' : '', true, false).draw();
             tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
-            tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
+            tblTrabajos.DataTable().column(2).search("Pe|Pre|Aut|Eje", true, false).draw();
         });
         btnVerTodos.on("click", function () {
             tblTrabajos.DataTable().columns().search('').draw();
@@ -2521,6 +2553,23 @@
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
             }
         });
+        btnSeleccionarPlantilla.on("click", function () {
+            var plantilla = mdlSeleccionarPlantilla.find("#Plantilla").val();
+            if (plantilla !== undefined && plantilla !== '' && plantilla > 0) {
+                onAgregarConceptosPlantilla(plantilla);
+                HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBE DE ELEGIR UNA PLANTILLA', 'danger');
+            }
+        });
+        btnCargarPlantilla.on("click", function () {
+            if (!nuevo) {
+                mdlSeleccionarPlantilla.modal('show');
+                getPlantillas();
+            } else {
+                onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'DEBES GUARDAR EL MOVIMIENTO', 'danger');
+            }
+        });
         tblRegistrosConceptosPreciario.find('tbody').on('click', 'tr', function () {
             HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
             var dtm = RegistrosConceptosPreciario.row(this).data();
@@ -2796,6 +2845,50 @@
         });
     });
     /*Funciones de tablas*/
+    function onAgregarConceptosPlantilla(plantilla) {
+        $.ajax({
+            url: master_url + 'getConceptosPlantillasByID',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: plantilla
+            }
+        }).done(function (data, x, jq) {
+            if (data[0] !== undefined && data.length > 0) {
+                $.each(data, function (k, v) {
+                    var frm = new FormData();
+                    frm.append('Trabajo_ID', IdMovimiento);
+                    frm.append('PreciarioConcepto_ID', v.PreciarioConcepto_ID);
+                    frm.append('Renglon', 0);
+                    frm.append('Unidad', v.Unidad);
+                    frm.append('Precio', v.Precio);
+                    frm.append('Moneda', v.Moneda);
+                    frm.append('Concepto', v.Concepto);
+                    frm.append('Clave', v.Clave);
+                    $.ajax({
+                        url: master_url + 'onAgregarDetalleEditar',
+                        type: "POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: frm
+                    }).done(function (data, x, jq) {
+                        ConceptosPresupuesto.ajax.reload();
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                        HoldOn.close();
+                    });
+                });
+            }
+            HoldOn.close();
+            mdlSeleccionarPlantilla.modal('hide');
+            onNotifyOld('fa fa-check', 'Plantilla Agregada', 'success');
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        });
+
+
+    }
     function getRecords() {
         temp = 0;
         HoldOn.open({theme: 'sk-cube', message: 'CARGANDO...'});
@@ -2866,7 +2959,7 @@
             "initComplete": function (settings, json) {
                 Trabajos.column(12).search("1" ? '^' + "<?php print $this->session->userdata('ID') ?>" + '$' : '', true, false).draw();
                 tblTrabajos.DataTable().column(3).search("Concluido|Borrador", true, false).draw();
-                tblTrabajos.DataTable().column(2).search("Pedido|Presupuesto|Autorización|Ejecución", true, false).draw();
+                tblTrabajos.DataTable().column(2).search("Pe|Pre|Aut|Eje", true, false).draw();
                 HoldOn.close();
             }
         });
@@ -3251,11 +3344,6 @@
             "initComplete": function (settings, json) {
                 HoldOn.close();
             },
-            "createdRow": function (row, data, index) {
-                $.each($(row).find("td:eq(2)"), function (k, v) {
-                    $(this).addClass("CustomDetalleDescripcion");
-                });
-            },
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api();//Get access to Datatable API
                 // Update footer
@@ -3409,7 +3497,7 @@
             tblRegistrosConceptosPreciario.DataTable().destroy();
         }
         RegistrosConceptosPreciario = tblRegistrosConceptosPreciario.DataTable({
-            "dom": 'frtip',
+            "dom": 'lfrtip',
             buttons: buttons,
             "ajax": {
                 "url": master_url + 'getConceptosXPreciarioID',
@@ -3432,22 +3520,18 @@
             "autoWidth": true,
             "bStateSave": true,
             "colReorder": true,
-            "displayLength": 10,
-            "bLengthChange": false,
+            "bLengthChange": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
             "scrollX": true,
             "deferRender": true,
             "scrollCollapse": false,
-            keys: true,
+            keys: false,
             "bSort": true,
             "aaSorting": [
                 [0, 'desc']/*ID*/
             ],
             "initComplete": function (settings, json) {
-                if (parseInt(json.length) > 0) {
-                    $('#tblRegistrosConceptosPreciario_filter input[type=search]').focus();
-                } else {
-                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN CONCEPTOS EN ESTE PRECIARIO', 'danger');
-                }
+                $('#tblRegistrosConceptosPreciario_filter input[type=search]').focus();
                 HoldOn.close();
             }
         });
@@ -3790,19 +3874,17 @@
         }).always(function () {
         });
     }
-    function onChangeIntExtByID(IntExt, IDX) {
+    function getPlantillas() {
         $.ajax({
-            url: master_url + 'onChangeIntExtByDetalleID',
-            type: "POST",
-            data: {
-                ID: IDX,
-                IntExt: IntExt
-            }
+            url: master_url + 'getPlantillas',
+            type: "POST", dataType: "JSON"
         }).done(function (data, x, jq) {
-            onNotifyOld('fas fa-check', 'DATOS ACTUALIZDOS', 'info');
+            $.each(data, function (k, v) {
+                mdlSeleccionarPlantilla.find("[name='Plantilla']")[0].selectize.addOption({text: v.ID + '-' + v.Nombre, value: v.ID});
+            });
+            mdlSeleccionarPlantilla.find("[name='Plantilla']")[0].selectize.focus();
         }).fail(function (x, y, z) {
             console.log(x, y, z);
-        }).always(function () {
         });
     }
     function onRemovePreview(e) {
@@ -4586,8 +4668,8 @@
     td span.badge{
         font-size: 14px !important;
     }
-    table tbody tr td.CustomDetalleDescripcion{
-        height: 100px !important;
+    table tbody tr td p.CustomDetalleDescripcion{
+        max-height: 100px !important;;
         overflow: auto !important;
     }
     table tbody tr td > input[type="text"]{
