@@ -188,7 +188,7 @@
                 var event;
                 if (isMobile) {
                     $(this).find("td:eq(0)").touch();
-                    event = 'doubleTap';
+                    event = 'tap';
                 } else {
                     event = 'dblclick';
                 }

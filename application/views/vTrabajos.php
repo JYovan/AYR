@@ -941,7 +941,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <label for="Descripcion" class="control-label">Descripción*</label>
-                            <textarea type="text" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                            <textarea type="text" name="Descripcion" class="form-control notEnter" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
                         </div>
                         <div class="col-12"><br><h6>Los campos con * son obligatorios</h6></div>
                     </div>
@@ -977,7 +977,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-12">
                             <label for="Descripcion" class="control-label">Descripción (Actividades Ejecutadas)*</label>
-                            <textarea type="text" name="Descripcion" class="form-control" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
+                            <textarea type="text" name="Descripcion" class="form-control notEnter" required="" placeholder="EJ: LIMPIEZA DE CAJERO AUTOMÁTICO (ATM). " rows="3" cols="20"></textarea>
                         </div>
                     </div>
                     <div id="CamposMeor" class="row d-none">
@@ -1239,7 +1239,7 @@
                     var event;
                     if (isMobile) {
                         $(this).find("td:eq(0)").touch();
-                        event = 'doubleTap';
+                        event = 'tap';
                     } else {
                         event = 'dblclick';
                     }

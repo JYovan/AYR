@@ -168,7 +168,7 @@
                                     <div class="col-12 col-sm-4 col-md-4 col-lg-2">
                                         <div class="form-group label-static">
                                             <label for="HoraOrigen" class="control-label">Hora Origen*</label>
-                                            <input type="text"  class="form-control form-control-sm" required="" name="HoraOrigen" id="HoraOrigen" data-inputmask="'alias': 'datetime'" data-minute-step="1"/>
+                                            <input type="text"  class="form-control form-control-sm" required="" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1"/>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -302,10 +302,6 @@
             pnlDatos.removeClass("d-none");
             pnlDatos.find("input").val("");
             pnlDatos.find("textarea").val("");
-            pnlDatos.find('#HoraOrigen').inputmask({mask: "h:s t\\m",
-                placeholder: "hh:mm xm - hh:mm xm",
-                alias: "datetime",
-                hourFormat: "12"});
             pnlDatos.find('#FechaOrigen').val(getToday());
             pnlDatos.find(".nav-tabs a").removeClass("active show");
             $(pnlDatos.find(".nav-tabs a")[0]).addClass("active show");

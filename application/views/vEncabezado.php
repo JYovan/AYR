@@ -128,10 +128,20 @@
             $('[data-provide="datepicker"]').addClass("notEnter");
             $('[data-provide="datepicker"]').val();
 
-            $('[data-provide="timepicker"]').inputmask({mask: "h:s t\\m",
-                placeholder: "hh:mm xm - hh:mm xm",
-                alias: "datetime",
-                hourFormat: "12"});
+//            $('[data-provide="timepicker"]').inputmask({mask: "h:s t\\m",
+//                placeholder: "hh:mm xm - hh:mm xm",
+//                alias: "datetime",
+//                hourFormat: "12"
+//            });
+
+            $('[data-provide="timepicker"]').inputmask("hh:mm:ss", {
+                hourFormat: "24",
+                placeholder: "HH:MM:SS",
+                insertMode: false,
+                showMaskOnHover: false
+
+            }
+            );
 
         });
         function onNotify(span, message, type) {
