@@ -1,12 +1,21 @@
 <style>
+    .dropdown-item:hover, .dropdown-item:focus {
+        color: #fff;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    .mr-auto, .mx-auto {
+        margin-left: 15px !important;
+    }
+
     .overlay .dropdown {
         cursor:pointer;
-        font-size: 15.5px !important;
+        font-size: 17px !important;
         color: #FAFAFA;
     }
     .overlay .dropdown-item {
-        padding: 0.45rem 1rem !important;
-        font-size: 14.5px !important;
+        padding: 0.65rem .7rem .6rem 1rem !important;
+        font-size: 15.5px !important;
         color: #A6A6A6;
     }
     .overlay .dropdown-menu {
@@ -44,18 +53,6 @@
         color: #fff !important;
         font-size: 30px !important;
     }
-
-    .overlay li a{
-        -webkit-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out;
-    }
-    .overlay li a:hover {
-        -webkit-transform: scale(1.15);
-        transform: scale(1.15);
-        margin-left: 20px !important;
-    }
-
-
 
     #watermark {
         height: 100%;
@@ -272,7 +269,7 @@
     }
 
     function openNav() {
-        $('#myNav').width(230);
+        $('#myNav').width(300);
     }
 
     function closeNav() {
