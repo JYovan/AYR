@@ -328,7 +328,6 @@
                     onNotifyOld('fa fa-check', 'Registro Agregado', 'success');
                 }).fail(function (x, y, z) {
                     console.log(x, y, z);
-                }).always(function () {
                 });
                 if (!mdlSeleccionarEntregasEditar.find("#chkMultiple").is(":checked")) {
                     mdlSeleccionarEntregasEditar.modal('hide');
@@ -484,11 +483,11 @@
             btnCapturarPago.addClass('d-none');
             btnExportarIntelisis.addClass('d-none');
             enableFields();
-            if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
-                RegistrosDetalle.destroy();
-                pnlDetalleEditarPrefactura.find("#RegistrosDetalle").html("");
-            }
             nuevo = true;
+            if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
+                RegistrosDetalle.clear().draw();
+            }
+
             $(':input:text:enabled:visible:first').focus();
         });
         btnCancelar.on("click", function () {
@@ -897,23 +896,13 @@
                 ImporteTotalGlobal = api.column(8).data().reduce(function (a, b) {
                     return  parseFloat(a) + parseFloat(b);
                 }, 0);
-                $.ajax({
-                    url: master_url + 'onModificarImportePorPrefactura',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: IdMovimiento,
-                        DATA: ImporteTotalGlobal
-                    }
-                }).done(function (data, x, jq) {
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                });
+
                 $(api.column(6).footer()).html(api.column(8, {page: 'current'}).data().reduce(function (a, b) {
                     return '$' + $.number(ImporteTotalGlobal, 2, '.', ', ');
                 }, 0));
-
+                if (!nuevo) {
+                    onModificarImporte();
+                }
             },
             language: lang,
             "autoWidth": true,
@@ -951,6 +940,20 @@
             }
         });
     }
+    function onModificarImporte() {
+        $.ajax({
+            url: master_url + 'onModificarImportePorPrefactura',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IdMovimiento,
+                DATA: ImporteTotalGlobal
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        });
+    }
     function onEliminarPrefacturaDetalle(evt, IDC) {
         if (IDC !== 0 && IDC !== undefined && IDC > 0) {
             if (Estatus !== 'Concluido') {
@@ -971,8 +974,6 @@
                             RegistrosDetalle.ajax.reload();
                         }).fail(function (x, y, z) {
                             console.log(x, y, z);
-                        }).always(function () {
-                            HoldOn.close();
                         });
                     }
                 });

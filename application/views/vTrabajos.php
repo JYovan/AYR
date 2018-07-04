@@ -1235,17 +1235,18 @@
     $(document).ready(function () {
         tblConceptosPresupuesto.on('draw.dt', function () {
             $.each(tblConceptosPresupuesto.find('tbody tr'), function () {
-                if (Estatus === 'Borrador' || EdicionMaestra) {
-                    var event;
-                    if (isMobile) {
-                        $(this).find("td:eq(0)").touch();
-                        event = 'tap';
-                    } else {
-                        event = 'dblclick';
-                    }
-                    //EDITAR CLAVE
+
+                var event;
+                if (isMobile) {
                     $(this).find("td:eq(0)").touch();
-                    $(this).find("td:eq(0)").on(event, function () {
+                    event = 'tap';
+                } else {
+                    event = 'dblclick';
+                }
+                //EDITAR CLAVE
+                $(this).find("td:eq(0)").touch();
+                $(this).find("td:eq(0)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1275,10 +1276,12 @@
                                 }
                             });
                         }
-                    });
-                    //EDITAR INTEXT
-                    $(this).find("td:eq(1)").touch();
-                    $(this).find("td:eq(1)").on(event, function () {
+                    }
+                });
+                //EDITAR INTEXT
+                $(this).find("td:eq(1)").touch();
+                $(this).find("td:eq(1)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var input = '<select id="dbEditor" name="dbEditor" class="form-control form-control-sm"><option></option><option value="INTERIOR">INTERIOR</option><option value="EXTERIOR">EXTERIOR</option></select>';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1305,10 +1308,12 @@
                                 onEditarTrabajoDetalle(params);
                             });
                         }
-                    });
-                    //EDITAR CONCEPTO
-                    $(this).find("td:eq(2)").touch();
-                    $(this).find("td:eq(2)").on(event, function () {
+                    }
+                });
+                //EDITAR CONCEPTO
+                $(this).find("td:eq(2)").touch();
+                $(this).find("td:eq(2)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var input = '<textarea id="dbEditor" name="dbEditor" class="form-control" rows="4" cols="20">' + $(this).text() + '</textarea>';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1335,11 +1340,13 @@
                                 ConceptosPresupuesto.cell(padre, 3).data(v).draw();
                             });
                         }
-                    });
+                    }
+                });
 
-                    //EDITAR UNIDAD
-                    $(this).find("td:eq(4)").touch();
-                    $(this).find("td:eq(4)").on(event, function () {
+                //EDITAR UNIDAD
+                $(this).find("td:eq(4)").touch();
+                $(this).find("td:eq(4)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1362,10 +1369,12 @@
                                 onEditarTrabajoDetalle({ID: row.ID, CELDA: 'UNIDAD', VALOR: v});
                             });
                         }
-                    });
-                    //EDITAR PRECIO
-                    $(this).find("td:eq(5)").touch();
-                    $(this).find("td:eq(5)").on(event, function () {
+                    }
+                });
+                //EDITAR PRECIO
+                $(this).find("td:eq(5)").touch();
+                $(this).find("td:eq(5)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
                         var exist = $(this).find("#dbEditor").val();
                         if (exist === undefined) {
@@ -1382,7 +1391,7 @@
                                 ConceptosPresupuesto.cell(padre, 6).data(precio_format).draw();
                                 var row = ConceptosPresupuesto.row(padre).data();
                                 var precio = v;
-                                var cantidad = parseFloat(row.Cantidad);
+                                var cantidad = parseFloat(($(row.Cantidad).text() !== '') ? $(row.Cantidad).text() : row.Cantidad);
                                 var importe_total = cantidad * precio;
                                 ConceptosPresupuesto.cell(padre, 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
                             });
@@ -1393,17 +1402,19 @@
                                 ConceptosPresupuesto.cell(padre, 6).data(precio_format).draw();
                                 var row = ConceptosPresupuesto.row(padre).data();
                                 var precio = v;
-                                var cantidad = parseFloat(row.Cantidad);
+                                var cantidad = parseFloat(($(row.Cantidad).text() !== '') ? $(row.Cantidad).text() : row.Cantidad);
                                 var importe_total = cantidad * precio;
                                 //SHORT POST
                                 onEditarTrabajoDetalle({ID: row.ID, CELDA: 'PRECIO', VALOR: precio, IMPORTE: importe_total});
                                 ConceptosPresupuesto.cell(padre, 7).data('<span class="badge badge-success">$' + $.number(importe_total, 3, '.', ',') + '</span>').draw();
                             });
                         }
-                    });
-                    //EDITAR MONEDA
-                    $(this).find("td:eq(7)").touch();
-                    $(this).find("td:eq(7)").on(event, function () {
+                    }
+                });
+                //EDITAR MONEDA
+                $(this).find("td:eq(7)").touch();
+                $(this).find("td:eq(7)").on(event, function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
                         var dbEditor = tblConceptosPresupuesto.find('tbody #dbEditor');
                         var exist = tblConceptosPresupuesto.find('tbody #dbEditor').val();
                         console.log('EXIST,', exist);
@@ -1433,8 +1444,9 @@
                                 onEditarTrabajoDetalle(params);
                             });
                         }
-                    });
-                }
+                    }
+                });
+
             });
         });
         /*EVENTOS LEVANTAMIENTO*/
@@ -2461,6 +2473,7 @@
             pnlDatos.addClass("d-none");
             pnlDetalleTrabajo.addClass("d-none");
             Trabajos.ajax.reload();
+            EdicionMaestra = false;
         });
         btnNuevo.on("click", function () {
             nuevo = true;
@@ -3366,20 +3379,22 @@
                     bx = $.isNumeric(getNumberFloat($(b).text())) ? getNumberFloat($(b).text()) : 0;
                     return  (ax + bx);
                 }, 0);
+                if (!nuevo) {
+                    /*Modificamos el importe*/
+                    $.ajax({
+                        url: master_url + 'onModificarImporte',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            ID: IdMovimiento,
+                            Importe: ImporteTotal
+                        }
+                    }).done(function (data, x, jq) {
+                    }).fail(function (x, y, z) {
+                        console.log(x, y, z);
+                    });
+                }
 
-                /*Modificamos el importe*/
-                $.ajax({
-                    url: master_url + 'onModificarImporte',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: IdMovimiento,
-                        Importe: ImporteTotal
-                    }
-                }).done(function (data, x, jq) {
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                });
                 var Importe = parseFloat(ImporteTotal).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 pnlDatos.find("#ImporteTotal").html('<strong class="">Importe: <strong><h5 class="text-success">$' + Importe + '</h5>');
 

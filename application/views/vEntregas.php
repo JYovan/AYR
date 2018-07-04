@@ -267,6 +267,7 @@
     var VistaPrevia = pnlDatos.find("#VistaPrevia");
     var nuevo = true;
     var Estatus;
+    var ImporteTotalGlobal;
     var tblRegistrosX = $("#tblRegistros"), Registros;
     var tblRegistrosDetalleX = $("#tblRegistrosDetalle"), RegistrosDetalle;
     var tblRegistrosTrabajosX = $("#tblRegistrosTrabajos"), RegistrosTrabajos;
@@ -467,12 +468,10 @@
             btnInconcluir.addClass('d-none');
             btnNuevoRenglonEntregaEditar.removeClass('d-none');
             enableFields();
-            if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
-                RegistrosDetalle.destroy();
-                pnlDetalleEditarEntrega.find("#RegistrosDetalle").html("");
-            }
-
             nuevo = true;
+            if ($.fn.DataTable.isDataTable('#tblRegistrosDetalle')) {
+                RegistrosDetalle.clear().draw();
+            }
             $(':input:text:enabled:visible:first').focus();
         });
         btnCancelar.on("click", function () {
@@ -880,26 +879,16 @@
             ],
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api();
-                var Importe = api.column(8).data().reduce(function (a, b) {
+                ImporteTotalGlobal = api.column(8).data().reduce(function (a, b) {
                     return  parseFloat(a) + parseFloat(b);
                 }, 0);
-                /*Modificamos el importe*/
-                $.ajax({
-                    url: master_url + 'onModificarImportePorEntrega',
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        ID: IdMovimiento,
-                        DATA: Importe
-                    }
-                }).done(function (data, x, jq) {
-                }).fail(function (x, y, z) {
-                    console.log(x, y, z);
-                }).always(function () {
-                });
                 $(api.column(6).footer()).html(api.column(8, {page: 'current'}).data().reduce(function (a, b) {
-                    return '$' + $.number(Importe, 2, '.', ', ');
+                    return '$' + $.number(ImporteTotalGlobal, 2, '.', ', ');
                 }, 0));
+
+                if (!nuevo) {
+                    onModificarImporte();
+                }
 
             },
             language: lang,
@@ -928,6 +917,20 @@
             "initComplete": function (settings, json) {
                 HoldOn.close();
             }
+        });
+    }
+    function onModificarImporte() {
+        $.ajax({
+            url: master_url + 'onModificarImportePorEntrega',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                ID: IdMovimiento,
+                DATA: ImporteTotalGlobal
+            }
+        }).done(function (data, x, jq) {
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
         });
     }
     function onEliminarDetalleEntrega(IDC) {
