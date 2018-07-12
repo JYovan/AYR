@@ -84,34 +84,32 @@
 <!--PANEL DETALLE-->
 <div class="card border-0 d-none" id="pnlDetalleTrabajo">
     <div class="card-body">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-6 col-md-6" align="left">
-                    <legend>Conceptos</legend>
-                </div>
-                <div class="col-6 col-md-6" align="right">
-                    <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
-                </div>
+        <div class="row">
+            <div class="col-6 col-md-6" align="left">
+                <legend>Conceptos</legend>
             </div>
-            <div id="RegistrosDetalle" class="row d-none">
-                <table id="tblRegistrosDetalle" class="table table-sm display" style="width:100% " >
-                    <thead>
-                        <tr >
-                            <th>ID</th>
-                            <th>Clave</th>
-                            <th>Int/Ext</th>
-                            <th>Descripción</th>
-                            <th>Unidad</th>
-                            <th>Precio</th>
-                            <th>Moneda</th>
-                            <th>Eliminar</th>
-                            <th>PCID</th>
-                            <th>Categoria</th>
-                        </tr>
-                    </thead>
-                    <tbody style="overflow-y: auto;"></tbody>
-                </table>
+            <div class="col-6 col-md-6" align="right">
+                <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
             </div>
+        </div>
+        <div id="RegistrosDetalle" class="row d-none">
+            <table id="tblRegistrosDetalle" class="table table-sm display" style="width:100% " >
+                <thead>
+                    <tr >
+                        <th>ID</th>
+                        <th>Clave</th>
+                        <th>Int/Ext</th>
+                        <th>Descripción</th>
+                        <th>Unidad</th>
+                        <th>Precio</th>
+                        <th>Moneda</th>
+                        <th>Eliminar</th>
+                        <th>PCID</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody style="overflow-y: auto;"></tbody>
+            </table>
         </div>
     </div>
 </div>

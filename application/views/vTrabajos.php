@@ -2397,6 +2397,7 @@
                         btnInconcluir.removeClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
+                        btnCargarPlantilla.addClass('d-none');
                         btnNuevoConcepto.addClass('d-none');
                         btnNuevoConceptoAbierto.addClass('d-none');
                         btnNuevoConceptoCajero.addClass('d-none');
@@ -2437,6 +2438,7 @@
                         btnInconcluir.addClass('d-none');
                         btnImprimirReportes.removeClass('d-none');
                         btnCopiar.removeClass('d-none');
+                        btnCargarPlantilla.removeClass('d-none');
                         btnNuevoConcepto.removeClass('d-none');
                         btnNuevoConceptoAbierto.removeClass('d-none');
                         btnNuevoConceptoCajero.removeClass('d-none');
@@ -3184,6 +3186,7 @@
                     btnConcluir.addClass('d-none');
                     btnInconcluir.removeClass('d-none');
                     btnNuevoConcepto.addClass('d-none');
+                    btnCargarPlantilla.addClass('d-none');
                     btnNuevoConceptoAbierto.addClass('d-none');
                     btnNuevoConceptoCajero.addClass('d-none');
                     $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-success">CONCLUIDO</span>');
@@ -3196,6 +3199,7 @@
                     btnConcluir.removeClass('d-none');
                     btnInconcluir.addClass('d-none');
                     btnNuevoConcepto.removeClass('d-none');
+                    btnCargarPlantilla.removeClass('d-none');
                     btnNuevoConceptoAbierto.removeClass('d-none');
                     btnNuevoConceptoCajero.removeClass('d-none');
                     $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-secondary">BORRADOR</span>');
@@ -3208,6 +3212,7 @@
                     btnConcluir.addClass('d-none');
                     btnInconcluir.addClass('d-none');
                     btnNuevoConcepto.addClass('d-none');
+                    btnCargarPlantilla.addClass('d-none');
                     btnNuevoConceptoAbierto.addClass('d-none');
                     btnNuevoConceptoCajero.addClass('d-none');
                     $("#spanEstatus").html('').html('<span style="font-size: 15px;" class="badge badge-info">ENTREGADO</span>');
@@ -4736,5 +4741,12 @@
             width: 100% !important;
             display: inline-block  !important;
         }
+    }
+
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        color: #0f7864;
+        text-decoration: none;
+        background-color: transparent;
     }
 </style>

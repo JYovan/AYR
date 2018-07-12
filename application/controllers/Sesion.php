@@ -18,6 +18,7 @@ class Sesion extends CI_Controller {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
             $this->load->view('vNavegacion');
+            $this->load->view('vFondo');
             $this->load->view('vFooter');
         } else {
             $this->load->view('vEncabezado');
