@@ -81,7 +81,7 @@ class trabajo_model extends CI_Model {
                     . 'END) AS "Cantidad", '
                     . 'TD.Unidad, '
                     . 'CONCAT("$",FORMAT(TD.Precio,6)) AS Precio,'
-                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(TD.Importe,3),"</span>") AS Importe, '
+                    . 'CONCAT("<span class=\'badge badge-success\'>$",FORMAT(TD.Cantidad*(TD.Precio * TD.TipoCambio) ,3),"</span>") AS Importe, '
                     . '(CASE '
                     . 'WHEN TD.Moneda = "USD" THEN '
                     . 'CONCAT("<span class=\'badge badge-danger\'>",TD.Moneda,"</span>") '
