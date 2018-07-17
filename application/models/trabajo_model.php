@@ -1558,7 +1558,7 @@ class trabajo_model extends CI_Model {
             $this->db->query("set sql_mode=''");
             $this->db->select("T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
-                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,SUM(TD.Importe) AS ImporteRenglon,
+                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,SUM((TD.Precio*TD.TipoCambio)*TD.Cantidad) AS ImporteRenglon,
                                 PCAT.Descripcion AS Categoria,PCAT.Clave AS ClaveCategoria, TD.Concepto AS Concepto,S.Region,S.Ciudad,S.Estado,S.Calle,S.NoExterior,S.NoInterior,S.Colonia
                                 FROM TRABAJOS T
                                 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
@@ -1590,7 +1590,7 @@ class trabajo_model extends CI_Model {
             $this->db->query("set sql_mode=''");
             $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,T.TrabajoSolicitado,T.TrabajoRequerido,T.FechaOrigen,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
-                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Moneda,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Moneda,TD.Precio,TD.IntExt,(TD.Precio*TD.TipoCambio)*TD.Cantidad AS ImporteRenglon,
                                 PCAT.Descripcion AS Categoria,PCAT.Clave AS ClaveCategoria, TD.Concepto AS Concepto,S.Region,S.Ciudad,S.Estado,S.Calle,S.NoExterior,S.NoInterior,S.Colonia
                                 FROM TRABAJOS T
                                 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID

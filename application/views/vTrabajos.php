@@ -57,7 +57,7 @@
 </div>
 <!--Reportes-->
 <div id="mdlReportesEditarTrabajo" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-content ">
+    <div class="modal-dialog  modal-content modal-lg ">
         <div class="modal-header">
             <h5 class="modal-title">Seleccionar Reporte</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -79,7 +79,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="Generales">
-                        <button onclick="onReportePresupuesto()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO A&R</button>
+                        <button onclick="onReportePresupuesto()" class="btn btn-primary btn-sm "><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO A&R</button>
                         <button onclick="onReportePresupuestoIng()" class="btn btn-primary btn-sm"><span class="fa fa-dollar-sign fa-1x"></span><br>PRESUPUESTO A&R INGLÉS</button>
                         <button onclick="onReporteGenerador()" class="btn btn-primary btn-sm"><span class="fa fa-calculator fa-1x"></span><br>GENERADOR</button>
                         <button onclick="onReporteCroquis()" class="btn btn-primary btn-sm"><span class="fa fa-crop fa-1x"></span><br>CROQUIS</button>
@@ -1779,52 +1779,73 @@
         });
         $('#tblConceptosAbiertos').on('draw.dt', function () {
             $.each(tblConceptosAbiertos.find('tbody tr'), function () {
-                if (Estatus === 'Borrador' || EdicionMaestra) {
-                    /*Edicion Area*/
-                    $(this).find("td:eq(0)").on('dblclick', function () {
-                        var input = '<input id="Clave" type="text" class="form-control form-control-sm">';
-                        var vActual = $(this).text();
-                        $(this).html(input);
-                        $(this).find('#Clave').val(vActual);
-                        var celda = $(this);
-                        var padre = $(this).parent();
-                        $(this).find("#Clave").focus();
-                        $(this).find("#Clave").focusout(function () {
-                            var v = $(this).val().toUpperCase();
-                            celda.html(v);
-                            ConceptosAbiertos.cell(padre, 1).data(v).draw();
-                            var Datos = ConceptosAbiertos.row(padre).data();
-                            var params = {
-                                ID: Datos.ID,
-                                CAMPO: 'Clave',
-                                VALOR: Datos.Clave
-                            };
-                            onmodificarConceptoLevantamiento(params);
-                        });
-                    });
-                    /*Edicion Estimacion*/
-                    $(this).find("td:eq(1)").on('dblclick', function () {
-                        var input = '<input id="Descripcion" type="text" class="form-control form-control-sm">';
-                        var vActual = $(this).text();
-                        $(this).html(input);
-                        $(this).find('#Descripcion').val(vActual);
-                        var celda = $(this);
-                        var padre = $(this).parent();
-                        $(this).find("#Descripcion").focus();
-                        $(this).find("#Descripcion").focusout(function () {
-                            var v = $(this).val().toUpperCase();
-                            celda.html(v);
-                            ConceptosAbiertos.cell(padre, 2).data(v).draw();
-                            var Datos = ConceptosAbiertos.row(padre).data();
-                            var params = {
-                                ID: Datos.ID,
-                                CAMPO: 'Descripcion',
-                                VALOR: Datos.Descripcion
-                            };
-                            onmodificarConceptoLevantamiento(params);
-                        });
-                    });
-                }
+                $(this).find("td:eq(0)").on('dblclick', function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
+                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var padre = celda.parent();
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            celda.find("#dbEditor").focus();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosAbiertos.cell(padre, 1).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosAbiertos.cell(padre, 1).data(v).draw();
+                                var row = ConceptosAbiertos.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CAMPO: 'Clave',
+                                    VALOR: row.Clave
+                                };
+                                if (v !== '') {
+                                    onmodificarConceptoLevantamiento(params);
+                                }
+                            });
+                        }
+                    }
+                });
+                /*Edicion Descripcion*/
+                $(this).find("td:eq(1)").on('dblclick', function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
+                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var padre = celda.parent();
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            celda.find("#dbEditor").focus();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosAbiertos.cell(padre, 2).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosAbiertos.cell(padre, 2).data(v).draw();
+                                var row = ConceptosAbiertos.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CAMPO: 'Descripcion',
+                                    VALOR: row.Descripcion
+                                };
+                                if (v !== '') {
+                                    onmodificarConceptoLevantamiento(params);
+                                }
+                            });
+                        }
+                    }
+                });
             });
         });
         /*EVENTOS CAJERO*/
@@ -1894,52 +1915,75 @@
         });
         $('#tblConceptosCajeros').on('draw.dt', function () {
             $.each(tblConceptosCajeros.find('tbody tr'), function () {
-                if (Estatus === 'Borrador' || EdicionMaestra) {
-                    /*Edicion Area*/
-                    $(this).find("td:eq(0)").on('dblclick', function () {
-                        var input = '<input id="Clave" type="text" class="form-control form-control-sm">';
-                        var vActual = $(this).text();
-                        $(this).html(input);
-                        $(this).find('#Clave').val(vActual);
-                        var celda = $(this);
-                        var padre = $(this).parent();
-                        $(this).find("#Clave").focus();
-                        $(this).find("#Clave").focusout(function () {
-                            var v = $(this).val().toUpperCase();
-                            celda.html(v);
-                            ConceptosCajeros.cell(padre, 1).data(v).draw();
-                            var Datos = ConceptosCajeros.row(padre).data();
-                            var params = {
-                                ID: Datos.ID,
-                                CAMPO: 'Clave',
-                                VALOR: Datos.Clave
-                            };
-                            onmodificarConceptoCajero(params);
-                        });
-                    });
-                    /*Edicion Estimacion*/
-                    $(this).find("td:eq(1)").on('dblclick', function () {
-                        var input = '<input id="Descripcion" type="text" class="form-control form-control-sm">';
-                        var vActual = $(this).text();
-                        $(this).html(input);
-                        $(this).find('#Descripcion').val(vActual);
-                        var celda = $(this);
-                        var padre = $(this).parent();
-                        $(this).find("#Descripcion").focus();
-                        $(this).find("#Descripcion").focusout(function () {
-                            var v = $(this).val().toUpperCase();
-                            celda.html(v);
-                            ConceptosCajeros.cell(padre, 2).data(v).draw();
-                            var Datos = ConceptosCajeros.row(padre).data();
-                            var params = {
-                                ID: Datos.ID,
-                                CAMPO: 'Descripcion',
-                                VALOR: Datos.Descripcion
-                            };
-                            onmodificarConceptoCajero(params);
-                        });
-                    });
-                }
+                /*Edicion Clave*/
+
+                $(this).find("td:eq(0)").on('dblclick', function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
+                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var padre = celda.parent();
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            celda.find("#dbEditor").focus();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosCajeros.cell(padre, 1).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosCajeros.cell(padre, 1).data(v).draw();
+                                var row = ConceptosCajeros.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CAMPO: 'Clave',
+                                    VALOR: row.Clave
+                                };
+                                if (v !== '') {
+                                    onmodificarConceptoCajero(params);
+                                }
+                            });
+                        }
+                    }
+                });
+                /*Edicion Descripcion*/
+                $(this).find("td:eq(1)").on('dblclick', function () {
+                    if (Estatus === 'Borrador' || EdicionMaestra) {
+                        var input = '<input id="dbEditor" type="text" class="form-control form-control-sm">';
+                        var exist = $(this).find("#dbEditor").val();
+                        if (exist === undefined) {
+                            var celda = $(this);
+                            var padre = celda.parent();
+                            var vActual = celda.text();
+                            celda.html(input);
+                            celda.find('#dbEditor').val(vActual);
+                            celda.find("#dbEditor").focus();
+                            celda.find("#dbEditor").focusout(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosCajeros.cell(padre, 2).data(v).draw();
+                            });
+                            celda.find("#dbEditor").change(function () {
+                                var v = $(this).val().toUpperCase();
+                                celda.html(v);
+                                ConceptosCajeros.cell(padre, 2).data(v).draw();
+                                var row = ConceptosCajeros.row(padre).data();
+                                var params = {
+                                    ID: row.ID,
+                                    CAMPO: 'Descripcion',
+                                    VALOR: row.Descripcion
+                                };
+                                if (v !== '') {
+                                    onmodificarConceptoCajero(params);
+                                }
+                            });
+                        }
+                    }
+                });
             });
         });
         btnGuardarConceptoCajero.on("click", function () {

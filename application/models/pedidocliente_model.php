@@ -18,7 +18,7 @@ class pedidocliente_model extends CI_Model {
                     . "ifnull(T.FolioCliente,'--') AS Folio,"
                     . "concat(S.CR,' ',S.Nombre) as Sucursal ,"
                     . "T.FechaCreacion as 'Fecha' ,"
-                    . "IFNULL(T.TrabajoSolicitado,'') AS TrabajoSolicitado ,"
+                    . "IFNULL(UPPER(T.TrabajoSolicitado),'') AS TrabajoSolicitado ,"
                     . "(CASE WHEN  T.EstatusTrabajo ='Pedido' THEN CONCAT('<span class=\'badge badge-secondary\'>','PE','</span>') "
                     . "WHEN  T.EstatusTrabajo ='Presupuesto' THEN CONCAT('<span class=\'badge badge-primary\'>','PRE','</span>')"
                     . "WHEN  T.EstatusTrabajo ='Autorización' THEN CONCAT('<span class=\'badge badge-info\'>','AUT','</span>')"

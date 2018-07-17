@@ -10,11 +10,11 @@
 
     .overlay .dropdown {
         cursor:pointer;
-        font-size: 17px !important;
+        font-size: 16px !important;
         color: #FAFAFA;
     }
     .overlay .dropdown-item {
-        padding: 0.65rem .7rem .6rem 1rem !important;
+        padding: 0.5rem .5rem .5rem 1.4rem !important;
         font-size: 15.5px !important;
         color: #A6A6A6;
     }
@@ -253,7 +253,7 @@
     }
 
     function openNav() {
-        $('#myNav').width(270);
+        $('#myNav').width(260);
     }
 
     function closeNav() {
