@@ -252,17 +252,6 @@
                             </tr>
                         </thead>
                         <tbody></tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Folio Interno</th>
-                                <th>Folio Cliente</th>
-                                <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Región</th>
-                                <th>Importe</th>
-                                <th>Especialidad</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -824,7 +813,7 @@
             ],
             language: lang,
             "autoWidth": true,
-            "bStateSave": true,
+            "bStateSave": false,
             "colReorder": true,
             "displayLength": 10,
             "scrollX": true,
@@ -847,18 +836,6 @@
 
             $('#tblRegistrosTrabajos_filter input[type=search]').focus();
 
-            $('#tblRegistrosTrabajos tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Buscar por ' + title + '" class="form-control form-control-sm" />');
-            });
-            RegistrosTrabajos.columns().every(function () {
-                var that = this;
-                $('input', this.footer()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
         } else {
             onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN TRABAJOS FINALIZADOS PARA ESTE CLIENTE', 'danger');
         }

@@ -104,13 +104,21 @@
 
             <div class="dropdown-divider"></div>
             <br>
+            <li class="nav-item dropdown d-none" id="liPanelCliente">
+                <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-street-view mr-1"></i> Panel de Clientes
+                </a>
+                <ul class="dropdown-menu">
+                    <li  class="" id="liPedidoCliente"><a class="dropdown-item" href="<?php print base_url('PedidoCliente.py') ?>">Pedidos Cliente</a></li>
+                    <div class="dropdown-divider" ></div>
+                    <li  class="" id="liVisorCliente"><a class="dropdown-item" href="<?php print base_url('VisorCliente.py') ?>">Analisis de reportes</a></li>
+                </ul>
+            </li>
             <li class="nav-item dropdown " >
                 <a class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-chalkboard-teacher mr-1"></i>Mesa de Trabajo
                 </a>
                 <ul class="dropdown-menu">
-                    <li  class="d-none" id="liPedidoCliente"><a class="dropdown-item" href="<?php print base_url('PedidoCliente.py') ?>">Pedidos Cliente</a></li>
-                    <div class="dropdown-divider" ></div>
                     <li class="d-none" id="liServicios"><a class="dropdown-item" href="<?php print base_url('Trabajos.py') ?>">Servicios</a></li>
                 </ul>
             </li>
@@ -226,10 +234,10 @@
         $('#liServicios').removeClass('d-none');
     }
     if (TipoAcceso === 'CLIENTE') {
-        $('#liPedidoCliente').removeClass('d-none');
+        $('#liPanelCliente').removeClass('d-none');
     }
     if (TipoAcceso === 'SUPER ADMINISTRADOR') {
-        $('#liPedidoCliente').removeClass('d-none');
+        $('#liPanelCliente').removeClass('d-none');
         $('#liControl').removeClass('d-none');
         $('#liExploradores').removeClass('d-none');
         $('#liCatalogos').removeClass('d-none');

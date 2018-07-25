@@ -40,8 +40,14 @@
         <!--select2 control-->
         <script src="<?php echo base_url(); ?>js/selectize/js/standalone/selectize.min.js"></script>
         <link href="<?php echo base_url(); ?>js/selectize/css/selectize.bootstrap.css" rel="stylesheet" />
-<!--        <script src="<?php echo base_url(); ?>js/jquery.validate.min.js"></script>-->
+
         <!--Third Party-->
+
+        <!-- PivotTable.js libs from ../dist -->
+        <script  src="<?php print base_url(); ?>js/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="<?php print base_url(); ?>js/pivot/dist/pivot.css">
+        <script  src="<?php print base_url(); ?>js/pivot/dist/pivot.js"></script>
+
         <!--Pace loading and performance for web applications-->
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
         <link href="<?php print base_url(); ?>css/pace.css" rel="stylesheet" />

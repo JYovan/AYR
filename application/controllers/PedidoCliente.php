@@ -24,7 +24,7 @@ class PedidoCliente extends CI_Controller {
 
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
-            if (in_array($this->session->userdata["TipoAcceso"], array("COORDINADOR DE PROCESOS", "SUPER ADMINISTRADOR", "CLIENTE"))) {
+            if (in_array($this->session->userdata["TipoAcceso"], array("SUPER ADMINISTRADOR", "CLIENTE"))) {
                 $this->load->view('vEncabezado');
                 $this->load->view('vNavegacion');
                 $this->load->view('vPedidosCliente');
