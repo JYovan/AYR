@@ -1,11 +1,19 @@
-.btn {
-    margin-bottom: 0.454rem;
-}
 
 /*Hacer disbaled de selectize igual a bootstrap*/
 .selectize-control .selectize-input.disabled {
     background-color: #ecf0f1;
     opacity: 1;
+}
+
+/*Legend*/
+legend {
+    font-size: 1.3rem;
+}
+
+/*No edición en controles*/
+.disabledForms{
+    opacity: 0.8 ;
+    pointer-events: none;
 }
 /*Progress Bar*/
 .progress-indicator>li.completed .bubble, .progress-indicator>li.completed .bubble:after, .progress-indicator>li.completed .bubble:before {
@@ -16,17 +24,8 @@
 .progress-indicator>li.completed, .progress-indicator>li.completed .bubble {
     color: #386f3f;
 }
-/*Legend*/
-legend {
-    font-size: 1.3rem;
-}
-/*NavTabs*/
-.nav-tabs {
-    border-bottom: 1px solid #99aeb2;
-}
-.nav-tabs a {
-    color: #161c1d;
-}
+
+
 
 /*Fondo aplicacion*/
 html{
@@ -44,7 +43,6 @@ body{
     color: #495057;
     text-align: left;
     background-color: transparent;
-    line-height: 1.4;
     font-size: 0.8875rem;
 }
 .card-body {
@@ -56,10 +54,8 @@ body{
 
 /*Formularios*/
 label {
+    margin-top: 0.596rem;
     margin-bottom: 0rem;
-}
-label, .control-label, .help-block, .checkbox, .radio, .form-control-feedback {
-    font-size: 0.72rem;
 }
 
 .form-control {
@@ -128,4 +124,29 @@ textarea  {
 }
 ::placeholder { /* Recent browsers */
     text-transform: none;
+}
+
+.btn-float{
+    width: 61.1px;
+    height: 61.1px;
+    font-size: 1.625rem;
+    position: fixed;
+    bottom: 35px;
+    right: 30px;
+    margin-bottom: 0;
+    z-index: 99999 ;
+    border-radius: 50%;
+    min-width: 56px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)!important;
+}
+.btn:not(.dropdown-toggle):not(.navbar-brand){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)!important;
+}
+.btn-group > .btn:not(:first-child), .btn-group > .btn-group:not(:first-child) > .btn {
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)!important;
 }

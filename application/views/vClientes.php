@@ -1,4 +1,4 @@
-<div class="card border-0" id="pnlTablero">
+<div class="card border-0 m-3" id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-6 col-sm-6 float-left">
@@ -11,150 +11,151 @@
         <div  id="tblRegistros" class="row"></div>
     </div>
 </div>
-<div id="" class="container-fluid">
-    <div class="card border-0  d-none" id="pnlDatos">
-        <div class="card-body text-dark">
-            <form id="frmNuevo">
-                <fieldset>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4 float-left">
-                            <legend >Cliente</legend>
+<div class="card border-0 m-3 d-none" id="pnlDatos">
+    <div class="card-body text-dark">
+        <form id="frmNuevo">
+            <fieldset>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 float-left">
+                        <legend >Cliente</legend>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-8" align="right">
+                        <button type="button" class="btn btn-primary " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                            <span class="fa fa-arrow-left" ></span>
+                        </button>
+                        <button type="button" class="btn btn-danger " id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
+                        <!--<button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>-->
+                        <button type="button" class="btn btn-info btn-lg btn-float" id="btnGuardar" data-toggle="tooltip" data-placement="left" title="Guardar">
+                            <i class="fa fa-save"></i>
+                        </button>
+                    </div>
+                </div>
+                <ul class="nav nav-tabs" role="tablist" id="Encabezado">
+                    <li class="nav-item"><a href="#Datos" class="nav-link active show"  data-toggle="tab">Datos Generales</a></li>
+                    <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Datos de Reportes</a></li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active show" id="Datos">
+                        <div class="d-none">
+                            <input type="text"  name="ID" class="form-control form-control-sm">
                         </div>
-                        <div class="col-12 col-sm-6 col-md-8" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
-                                <span class="fa fa-arrow-left" ></span>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="Nombre" class="control-label">Nombre*</label>
+                                    <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="NombreCorto" class="control-label">Nombre Corto*</label>
+                                    <input type="text" id="NombreCorto" name="NombreCorto" class="form-control form-control-sm" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="Calle" class="control-label">Calle</label>
+                                    <input type="text" id="Calle" name="Calle" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="NoExterior" class="control-label">No Exterior</label>
+                                    <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="NoInterior" class="control-label">No Interior</label>
+                                    <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="CodigoPostal" class="control-label">Código Postal</label>
+                                    <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Colonia" class="control-label">Colonia</label>
+                                    <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Ciudad" class="control-label">Ciudad</label>
+                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Estado" class="control-label">Estado</label>
+                                    <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Contacto1" class="control-label">Contacto 1</label>
+                                    <input type="text" id="Contacto1" name="Contacto1" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Contacto2" class="control-label">Contacto 2</label>
+                                    <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group label-static">
+                                    <label for="Contacto3" class="control-label">Contacto 3</label>
+                                    <input type="text" id="Contacto3" name="Contacto3" class="form-control form-control-sm" placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Datos2">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group label-static">
+                                    <label for="" class="control-label">Leyenda Reportes</label>
+                                    <textarea class="col-md-12 form-control" id="LeyendaReporte" name="LeyendaReporte" rows="3" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FOTO -->
+
+                        <div class="col-md-12" align="center">
+                            <div for="" align="center">
+                                <br>
+                                <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
+                            </div>
+                            <input type="file" id="RutaLogo" name="RutaLogo" class="d-none">
+                            <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
+                                <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
+                            <br><hr>
+                            <div id="VistaPrevia" class="col-md-12" align="center"></div>
                         </div>
                     </div>
-                    <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                        <li class="nav-item"><a href="#Datos" class="nav-link active show"  data-toggle="tab">Datos Generales</a></li>
-                        <li class="nav-item"><a href="#Datos2" class="nav-link" data-toggle="tab">Datos de Reportes</a></li>
-                    </ul>
-                    <br>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active show" id="Datos">
-                            <div class="d-none">
-                                <input type="text"  name="ID" class="form-control form-control-sm">
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group label-static">
-                                        <label for="Nombre" class="control-label">Nombre*</label>
-                                        <input type="text" id="Nombre" name="Nombre" class="form-control form-control-sm" placeholder="" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group label-static">
-                                        <label for="NombreCorto" class="control-label">Nombre Corto*</label>
-                                        <input type="text" id="NombreCorto" name="NombreCorto" class="form-control form-control-sm" placeholder="" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group label-static">
-                                        <label for="Calle" class="control-label">Calle</label>
-                                        <input type="text" id="Calle" name="Calle" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="NoExterior" class="control-label">No Exterior</label>
-                                        <input type="text" id="NoExterior" name="NoExterior" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="NoInterior" class="control-label">No Interior</label>
-                                        <input type="text" id="NoInterior" name="NoInterior" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="CodigoPostal" class="control-label">Código Postal</label>
-                                        <input type="number" id="CodigoPostal" name="CodigoPostal" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Colonia" class="control-label">Colonia</label>
-                                        <input type="text" id="Colonia" name="Colonia" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Ciudad" class="control-label">Ciudad</label>
-                                        <input type="text" id="Ciudad" name="Ciudad" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Estado" class="control-label">Estado</label>
-                                        <input type="text" id="Estado" name="Estado" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Contacto1" class="control-label">Contacto 1</label>
-                                        <input type="text" id="Contacto1" name="Contacto1" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Contacto2" class="control-label">Contacto 2</label>
-                                        <input type="text" id="Contacto2" name="Contacto2" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="Contacto3" class="control-label">Contacto 3</label>
-                                        <input type="text" id="Contacto3" name="Contacto3" class="form-control form-control-sm" placeholder="" >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Leyenda Reportes</label>
-                                        <textarea class="col-md-12 form-control" id="LeyendaReporte" name="LeyendaReporte" rows="3" ></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- FOTO -->
-
-                            <div class="col-md-12" align="center">
-                                <div for="" align="center">
-                                    <br>
-                                    <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
-                                </div>
-                                <input type="file" id="RutaLogo" name="RutaLogo" class="d-none">
-                                <button type="button" class="btn btn-raised btn-info" id="btnArchivo" name="btnArchivo">
-                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
-                                </button>
-                                <br><hr>
-                                <div id="VistaPrevia" class="col-md-12" align="center"></div>
-                            </div>
-                        </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-12">
+                        <h6 class="text-danger">Los campos con * son obligatorios</h6>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>
-                        </div>
-                    </div>
+                </div>
 
-                </fieldset>
-            </form>
-        </div>
+            </fieldset>
+        </form>
     </div>
 </div>
 <!--SCRIPT-->

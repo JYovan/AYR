@@ -1,4 +1,4 @@
-<div class="card " id="pnlTablero">
+<div class="card m-3" id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-8 col-sm-6 float-left">

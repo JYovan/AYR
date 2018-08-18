@@ -1,14 +1,14 @@
-<div class="card border-0" id="MenuTablero">
+<div class="card border-0 m-3" id="MenuTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-3 float-left">
                 <legend class="float-left">Servicios al Cliente</legend>
             </div>
             <div class="col-12 col-sm-9" align="right">
-                <button type="button" class="btn btn-info btn-sm" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>MIS MOVIMIENTOS</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>VER TODOS</button>
-                <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
+                <button type="button" class="btn btn-info btn-sm mb-2" id="btnVerMisMovimientos"><span class="fa fa-eye fa-1x"></span><br>MIS MOVIMIENTOS</button>
+                <button type="button" class="btn btn-info btn-sm mb-2" id="btnVerTodosEnFirme"><span class="fa fa-eye fa-1x"></span><br>TODOS EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm mb-2" id="btnVerTodos"><span class="fa fa-list-ol fa-1x" ></span><br>VER TODOS</button>
+                <button type="button" class="btn btn-primary btn-sm mb-2" id="btnNuevo"><span class="fa fa-plus fa-1x" ></span><br>NUEVO</button>
             </div>
         </div>
         <div class="row" id="Trabajos">
@@ -114,440 +114,439 @@
     </div>
 </div>
 <!--PANEL DATOS-->
-<div id="" class="container-fluid">
-    <div class="card border-0 d-none" id="pnlDatos">
-        <div class="card-body text-dark">
-            <form id="frmNuevo">
-                <div id="CapturaDatos">
-                    <div class="row">
-                        <div class="col-6 col-sm-3 col-md-4 float-left">
-                            <legend>Trabajo</legend>
-                        </div>
-                        <div class="col-6 col-sm-2 col-md-2" align="right" id="spanEstatus">
-                            <span style="font-size: 15px;" class="badge badge-secondary">
-                                BORRADOR
-                            </span>
-                        </div>
-                        <div class="col-12 col-sm-7 col-md-6" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" ><span class="fa fa-arrow-left" ></span></button>
-                            <button type="button" class="btn btn-light btn-sm d-none" id="btnCopiar" onclick="onCopiarMovimiento()" data-toggle="tooltip" data-placement="top" title="Copiar"><span class="fa fa-clone "></span> </button>
-                            <button type="button" class="btn btn-warning btn-sm d-none" id="btnImprimirReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" ><span class="fa fa-print " ></span></button>
-                            <button type="button" class="btn btn-danger btn-sm d-none" id="btnEliminar"><span class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></span> </button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
-                            <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
-                            <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
-                            <button type="button" class="btn btn-primary btn-sm d-none" id="btnEdicionMaestra"><span class="fa fa-key "></span> EDITAR</button>
-                        </div>
-                        <div class="col-12">
-                            <ul class="nav nav-tabs" role="tablist" id="Encabezado">
-                                <li role="presentation" class="nav-item"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab" class="nav-link show active">Datos Generales</a></li>
-                                <li role="presentation"  class="nav-item"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab" class="nav-link">Datos del trabajo</a></li>
-                                <li id="nBBVAMantenimiento" class="d-none nav-item" role="presentation"><a href="#Datos3" aria-controls="Datos3" role="tab" data-toggle="tab" class="nav-link">Mantenimiento BBVA</a></li>
-                                <li id="nBBVAObra" class="d-none nav-item" role="presentation"><a href="#Datos4" aria-controls="Datos4" role="tab" data-toggle="tab" class="nav-link">Obra BBVA</a></li>
-                                <li id="nBBVACajeros" class="d-none nav-item" role="presentation"><a href="#Datos5" aria-controls="Datos5" role="tab" data-toggle="tab" class="nav-link">Cajeros BBVA</a></li>
-                                <li  role="presentation" class="nav-item"><a href="#Datos6" aria-controls="Datos6" role="tab" data-toggle="tab" class="nav-link">Adjunto</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-12">
-                            <br>
-                            <ul class="table-responsive progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
-                                <li id="stsPedido" step="1">
-                                    <span class="bubble"></span>
-                                    1. Pe
-                                </li>
-                                <li id="stsPresupuesto" step="2">
-                                    <span class="bubble"></span>
-                                    2. Pre
-                                </li>
-                                <li id="stsAutorizacion" step="3">
-                                    <span class="bubble"></span>
-                                    3. Aut
-                                </li>
-                                <li id="stsNoAutorizado" step="4">
-                                    <span class="bubble"></span>
-                                    4. No Aut
-                                </li>
-                                <li id="stsEjecucion" step="5">
-                                    <span class="bubble"></span>
-                                    5. Eje
-                                </li>
-                                <li id="stsFinalizado" step="6">
-                                    <span class="bubble"></span>
-                                    6. Fin
-                                </li>
-                                <li id="stsFacturado" step="7">
-                                    <span class="bubble"></span>
-                                    7. Fact
-                                </li>
-                                <li id="stsPagado" step="8">
-                                    <span class="bubble"></span>
-                                    8. Pag
-                                </li>
-                            </ul>
-                        </div>
+<div class="card border-0 m-3 d-none" id="pnlDatos">
+    <div class="card-body text-dark">
+        <form id="frmNuevo">
+            <div id="CapturaDatos">
+                <div class="row ">
+                    <div class="col-6 col-sm-3 col-md-4 float-left">
+                        <legend>Trabajo</legend>
                     </div>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <!-- PANEL DE DATOS GENERALES-->
-                        <div role="tabpanel" class="tab-pane fade show active" id="Datos">
-                            <div class="row">
-                                <div class="col-5 col-sm-4 col-md-2 col-lg-2 col-xl-1">
-                                    <label for="ID" class="control-label">Folio Interno</label>
-                                    <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
-                                </div>
-                                <div class="col-7 col-sm-4 col-md-2 col-lg-2 col-xl-2">
-                                    <label for="" class="control-label">Folio Cliente</label>
-                                    <input type="text" id="FolioCliente" name="FolioCliente" class="form-control form-control-sm"  placeholder="" autofocus="">
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-2 col-xl-3">
-                                    <label for="FechaCreacion" class="control-label">Fecha *</label>
-                                    <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Cliente*</label>
-                                    <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Sucursal*</label>
-                                    <select id="Sucursal_ID" name="Sucursal_ID" class="form-control form-control-sm required" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Preciario*</label>
-                                    <select id="Preciario_ID" name="Preciario_ID" class="form-control form-control-sm required" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Centro de Costos</label>
-                                    <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Especialidad</label>
-                                    <select id="Especialidad_ID" name="Especialidad_ID" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Área</label>
-                                    <select id="Area_ID" name="Area_ID" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-8 col-md-12 col-lg-12">
-                                    <label for="Observaciones" class="control-label">Observaciones</label>
-                                    <input type="text" id="Observaciones" name="Observaciones" class="form-control form-control-sm"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6">
-                                    <label for="" class="control-label">Trabajo Solicitado</label>
-                                    <textarea class="col-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" required=""></textarea>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6">
-                                    <label for="" class="control-label">Trabajo Requerido</label>
-                                    <textarea class="col-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" required=""></textarea>
-                                </div>
+                    <div class="col-6 col-sm-2 col-md-2" align="right" id="spanEstatus">
+                        <span style="font-size: 15px;" class="badge badge-secondary">
+                            BORRADOR
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-7 col-md-6" align="right">
+                        <button type="button" class="btn btn-primary mb-3" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" ><span class="fa fa-arrow-left" ></span></button>
+                        <button type="button" class="btn btn-light mb-3 d-none" id="btnCopiar" onclick="onCopiarMovimiento()" data-toggle="tooltip" data-placement="top" title="Copiar"><span class="fa fa-clone "></span> </button>
+                        <button type="button" class="btn btn-warning mb-3 d-none" id="btnImprimirReportes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reportes" ><span class="fa fa-print " ></span></button>
+                        <button type="button" class="btn btn-danger mb-3 d-none" id="btnEliminar"><span class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar"></span> </button>
+                        <button type="button" class="btn btn-info mb-3" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
+                        <button type="button" class="btn btn-success mb-3 d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                        <button type="button" class="btn btn-info mb-3 d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
+                        <button type="button" class="btn btn-primary mb-3 d-none" id="btnEdicionMaestra"><span class="fa fa-key "></span> EDITAR</button>
+                    </div>
+                    <div class="col-12">
+                        <ul class="nav nav-tabs" role="tablist" id="Encabezado">
+                            <li role="presentation" class="nav-item"><a href="#Datos" aria-controls="Datos" role="tab" data-toggle="tab" class="nav-link show active">Datos Generales</a></li>
+                            <li role="presentation"  class="nav-item"><a href="#Datos2" aria-controls="Datos2" role="tab" data-toggle="tab" class="nav-link">Datos del trabajo</a></li>
+                            <li id="nBBVAMantenimiento" class="d-none nav-item" role="presentation"><a href="#Datos3" aria-controls="Datos3" role="tab" data-toggle="tab" class="nav-link">Mantenimiento BBVA</a></li>
+                            <li id="nBBVAObra" class="d-none nav-item" role="presentation"><a href="#Datos4" aria-controls="Datos4" role="tab" data-toggle="tab" class="nav-link">Obra BBVA</a></li>
+                            <li id="nBBVACajeros" class="d-none nav-item" role="presentation"><a href="#Datos5" aria-controls="Datos5" role="tab" data-toggle="tab" class="nav-link">Cajeros BBVA</a></li>
+                            <li  role="presentation" class="nav-item"><a href="#Datos6" aria-controls="Datos6" role="tab" data-toggle="tab" class="nav-link">Adjunto</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12">
+                        <br>
+                        <ul class="table-responsive progress-indicator pt-3 pb-2" style="background-color: white; border-radius: 3px;" id="EstatusTrabajo">
+                            <li id="stsPedido" step="1">
+                                <span class="bubble"></span>
+                                1. Pe
+                            </li>
+                            <li id="stsPresupuesto" step="2">
+                                <span class="bubble"></span>
+                                2. Pre
+                            </li>
+                            <li id="stsAutorizacion" step="3">
+                                <span class="bubble"></span>
+                                3. Aut
+                            </li>
+                            <li id="stsNoAutorizado" step="4">
+                                <span class="bubble"></span>
+                                4. No Aut
+                            </li>
+                            <li id="stsEjecucion" step="5">
+                                <span class="bubble"></span>
+                                5. Eje
+                            </li>
+                            <li id="stsFinalizado" step="6">
+                                <span class="bubble"></span>
+                                6. Fin
+                            </li>
+                            <li id="stsFacturado" step="7">
+                                <span class="bubble"></span>
+                                7. Fact
+                            </li>
+                            <li id="stsPagado" step="8">
+                                <span class="bubble"></span>
+                                8. Pag
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- PANEL DE DATOS GENERALES-->
+                    <div role="tabpanel" class="tab-pane fade show active" id="Datos">
+                        <div class="row">
+                            <div class="col-5 col-sm-4 col-md-2 col-lg-2 col-xl-1">
+                                <label for="ID" class="control-label">Folio Interno</label>
+                                <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
                             </div>
-                        </div>
-                        <!-- PANEL DE DATOS DEL TRABAJO-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos2">
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Cuadrilla</label>
-                                    <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control form-control-sm" ><option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="" class="control-label">Fecha Atención</label>
-                                    <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-4 col-lg-6">
-                                    <label for="" class="control-label">Solicitante</label>
-                                    <input type="text" id="Solicitante" name="Solicitante" class="form-control form-control-sm"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Fecha Origen</label>
-                                    <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Hora Origen</label>
-                                    <input type="text"  class="form-control form-control-sm" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" data-second-step="1"/>
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Hora Visita</label>
-                                    <input type="text"  class="form-control form-control-sm" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Fecha Fin Visita</label>
-                                    <input type="text" id="FechaSalida" name="FechaSalida" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                                <div class="col-6 col-sm-6">
-                                    <label for="" class="control-label">Hora Fin Visita</label>
-                                    <input type="text"  class="form-control form-control-sm" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
-                                </div>
+                            <div class="col-7 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                                <label for="" class="control-label">Folio Cliente</label>
+                                <input type="text" id="FolioCliente" name="FolioCliente" class="form-control form-control-sm"  placeholder="" autofocus="">
                             </div>
-                        </div>
-                        <!--PANEL DE MANTENIMIENTO BBVA-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos3">
-                            <div class="row">
-                                <div class="col-12 col-sm-8 col-md-6 col-lg-3">
-                                    <label for="" class="control-label">Codigo PPTA</label>
-                                    <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-4 col-md-6 col-lg-3">
-                                    <label for="" class="control-label">Días</label>
-                                    <input type="text" id="Dias" name="" class="form-control form-control-sm" readonly="" placeholder="" >
-                                </div>
-                                <div class=" col-12 col-sm-6 col-md-6 col-lg-3">
-                                    <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
-                                    <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control form-control-sm" placeholder="" >
-                                </div>
-                                <div class=" col-12 col-sm-6 col-md-6 col-lg-3">
-                                    <label for="TextoCausa" class="control-label">Texto Causa</label>
-                                    <input type="text" id="TextoCausa" name="TextoCausa" class="form-control form-control-sm"  placeholder="" >
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="Cal1" class="control-label">Calificación 1</label>
-                                    <select id="Cal1" name="Cal1" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="Cal2" class="control-label">Calificación 2</label>
-                                    <select id="Cal2" name="Cal2" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="Cal3" class="control-label">Calificación 3</label>
-                                    <select id="Cal3" name="Cal3" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="Cal4" class="control-label">Calificación 4</label>
-                                    <select id="Cal4" name="Cal4" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label for="Cal5" class="control-label">Calificación 5</label>
-                                    <select id="Cal5" name="Cal5" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="EXCELENTE">EXCELENTE</option>
-                                        <option value="BUENO">BUENO</option>
-                                        <option value="REGULAR">REGULAR</option>
-                                        <option value="MALO">MALO</option>
-                                    </select>
-                                </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-2 col-xl-3">
+                                <label for="FechaCreacion" class="control-label">Fecha *</label>
+                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
                             </div>
-                        </div>
-                        <!--PANEL DE OTROS DATOS-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos4">
-                            <div class="row">
-                                <div class="col-6 col-lg-3">
-                                    <label for="ImpactoEnPlazo" class="control-label">Impacto en el Plazo</label>
-                                    <select id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-lg-3">
-                                    <label for="" class="control-label">Días de Impacto</label>
-                                    <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control form-control-sm"  placeholder="" >
-                                </div>
-                                <div class="col-12 col-sm-6 col-lg-3">
-                                    <label for="" class="control-label">Causa del trabajo</label>
-                                    <select id="CausaTrabajo" name="CausaTrabajo" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="MP">MP - MEJORAS AL PROYECTO</option>
-                                        <option value="EP">EP - ERROR DEL PROYECTO</option>
-                                        <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
-                                        <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
-                                        <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
-                                        <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
-                                        <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
-                                        <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
-                                        <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
-                                        <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
-                                        <option value="OTR">OTR - OTROS</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-lg-3">
-                                    <label for="" class="control-label">Clave Origen</label>
-                                    <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="CONTR">CONTR - CONTRATISTA</option>
-                                        <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
-                                        <option value="BBVA">CTE - CLIENTE</option>
-                                        <option value="OTRO">OTRO - OTRO</option>
-                                    </select>
-                                </div>
-                                <div class=" col-12 col-sm-12 col-lg-6">
-                                    <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
-                                    <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control form-control-sm"  placeholder="" >
-                                </div>
-                                <div class="col-12 col-lg-12">
-                                    <label for="" class="control-label">Origen del Trabajo</label>
-                                    <textarea class="form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
-                                </div>
-                                <div class="col-12 col-lg-12">
-                                    <label for="" class="control-label">Riesgo del Trabajo</label>
-                                    <textarea class="form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
-                                </div>
-                                <div class="col-12 col-lg-12">
-                                    <label for="" class="control-label">Alcance del Trabajo</label>
-                                    <textarea class="form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
-                                </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Cliente*</label>
+                                <select id="Cliente_ID" name="Cliente_ID" class="form-control form-control-sm required" >
+                                    <option value=""></option>
+                                </select>
                             </div>
-                        </div>
-                        <!-- PANEL DE DATOS DE CAJERO-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos5">
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="FechaVisita" class="control-label">Fecha Visita</label>
-                                    <input type="text" id="FechaVisita" name="FechaVisita" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
-                                    <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control form-control-sm"  placeholder="PERSONA ENCARGADA DEL SITIO" >
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="" class="control-label">Horario de Atención</label>
-                                    <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control form-control-sm"   >
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
-                                    <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
-                                    <select id="AireAcondicionado" name="AireAcondicionado" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="Carcasa" class="control-label">Carcasa?</label>
-                                    <select id="Carcasa" name="Carcasa" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
-                                    <select id="UPS" name="UPS" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
-                                    <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
-                                    <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
-                                    <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
-                                    <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control form-control-sm" >
-                                        <option value=""></option>
-                                        <option value="SI">SI</option>
-                                        <option value="NO">NO</option>
-                                    </select>
-                                </div>
-                                <div class=" col-12 col-sm-6 col-md-3">
-                                    <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
-                                    <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control form-control-sm"  placeholder="" >
-                                </div>
-                                <div class=" col-12 col-sm-6 col-md-3">
-                                    <label for="TipoPiso" class="control-label">Tipo Piso</label>
-                                    <input type="text" id="TipoPiso" name="TipoPiso" class="form-control form-control-sm"  placeholder="" >
-                                </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Sucursal*</label>
+                                <select id="Sucursal_ID" name="Sucursal_ID" class="form-control form-control-sm required" >
+                                    <option value=""></option>
+                                </select>
                             </div>
-                        </div>
-                        <!-- PANEL DE ARCHIVO ADJUNTO-->
-                        <div role="tabpanel" class="tab-pane fade" id="Datos6">
-                            <div class="row">
-                                <div class="col-12" align="center">
-                                    <br>
-                                    <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
-                                </div>
-                                <div class="col-12" align="center">
-                                    <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
-                                    <button type="button" class="btn btn-info btn-sm" id="btnArchivo" name="btnArchivo">
-                                        <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
-                                    </button>
-                                    <br><hr>
-                                    <div id="VistaPrevia" class="col-12" align="center"></div>
-                                </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Preciario*</label>
+                                <select id="Preciario_ID" name="Preciario_ID" class="form-control form-control-sm required" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Centro de Costos</label>
+                                <select id="CentroCostos_ID" name="CentroCostos_ID" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Especialidad</label>
+                                <select id="Especialidad_ID" name="Especialidad_ID" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Área</label>
+                                <select id="Area_ID" name="Area_ID" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-8 col-md-12 col-lg-12">
+                                <label for="Observaciones" class="control-label">Observaciones</label>
+                                <input type="text" id="Observaciones" name="Observaciones" class="form-control form-control-sm"  placeholder="ALGUNA REFERENCIA, MINUTA, ETC" >
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <label for="" class="control-label">Trabajo Solicitado</label>
+                                <textarea class="col-12 form-control" id="TrabajoSolicitado" name="TrabajoSolicitado" rows="3" required=""></textarea>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <label for="" class="control-label">Trabajo Requerido</label>
+                                <textarea class="col-12 form-control" id="TrabajoRequerido" name="TrabajoRequerido" rows="3" required=""></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-6 col-md-6"><h6>Los campos con * son obligatorios</h6></div>
-                        <div class="col-6 col-md-6" id="ImporteTotal"  align="right">
-                            <strong>Importe :</strong><h5 class="text-success"><strong></strong></h5>
+                    <!-- PANEL DE DATOS DEL TRABAJO-->
+                    <div role="tabpanel" class="tab-pane fade" id="Datos2">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Cuadrilla</label>
+                                <select id="Cuadrilla_ID" name="Cuadrilla_ID" class="form-control form-control-sm" ><option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="" class="control-label">Fecha Atención</label>
+                                <input type="text" id="FechaAtencion" name="FechaAtencion" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-6">
+                                <label for="" class="control-label">Solicitante</label>
+                                <input type="text" id="Solicitante" name="Solicitante" class="form-control form-control-sm"  placeholder="PERSONA QUE SOLICITA EL TRABAJO" >
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Fecha Origen</label>
+                                <input type="text" id="FechaOrigen" name="FechaOrigen" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Hora Origen</label>
+                                <input type="text"  class="form-control form-control-sm" name="HoraOrigen" id="HoraOrigen" data-provide="timepicker" data-minute-step="1" data-second-step="1"/>
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Fecha Visita</label>
+                                <input type="text" id="FechaLlegada" name="FechaLlegada" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Hora Visita</label>
+                                <input type="text"  class="form-control form-control-sm" name="HoraLlegada" id="HoraLlegada" data-provide="timepicker" data-minute-step="1"  data-second-step="1"/>
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Fecha Fin Visita</label>
+                                <input type="text" id="FechaSalida" name="FechaSalida" class="form-control form-control-sm notEnter"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            </div>
+                            <div class="col-6 col-sm-6">
+                                <label for="" class="control-label">Hora Fin Visita</label>
+                                <input type="text"  class="form-control form-control-sm" name="HoraSalida" id="HoraSalida" data-provide="timepicker" data-minute-step="1"   data-second-step="1" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--PANEL DE MANTENIMIENTO BBVA-->
+                    <div role="tabpanel" class="tab-pane fade" id="Datos3">
+                        <div class="row">
+                            <div class="col-12 col-sm-8 col-md-6 col-lg-3">
+                                <label for="" class="control-label">Codigo PPTA</label>
+                                <select id="Codigoppta_ID" name="Codigoppta_ID" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-6 col-lg-3">
+                                <label for="" class="control-label">Días</label>
+                                <input type="text" id="Dias" name="" class="form-control form-control-sm" readonly="" placeholder="" >
+                            </div>
+                            <div class=" col-12 col-sm-6 col-md-6 col-lg-3">
+                                <label for="CausaActuacionSintoma" class="control-label">Causa Síntoma</label>
+                                <input type="text" id="CausaActuacionSintoma" name="CausaActuacionSintoma" class="form-control form-control-sm" placeholder="" >
+                            </div>
+                            <div class=" col-12 col-sm-6 col-md-6 col-lg-3">
+                                <label for="TextoCausa" class="control-label">Texto Causa</label>
+                                <input type="text" id="TextoCausa" name="TextoCausa" class="form-control form-control-sm"  placeholder="" >
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="Cal1" class="control-label">Calificación 1</label>
+                                <select id="Cal1" name="Cal1" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="EXCELENTE">EXCELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="Cal2" class="control-label">Calificación 2</label>
+                                <select id="Cal2" name="Cal2" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="EXCELENTE">EXCELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="Cal3" class="control-label">Calificación 3</label>
+                                <select id="Cal3" name="Cal3" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="EXCELENTE">EXCELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="Cal4" class="control-label">Calificación 4</label>
+                                <select id="Cal4" name="Cal4" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="EXCELENTE">EXCELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="Cal5" class="control-label">Calificación 5</label>
+                                <select id="Cal5" name="Cal5" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="EXCELENTE">EXCELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--PANEL DE OTROS DATOS-->
+                    <div role="tabpanel" class="tab-pane fade" id="Datos4">
+                        <div class="row">
+                            <div class="col-6 col-lg-3">
+                                <label for="ImpactoEnPlazo" class="control-label">Impacto en el Plazo</label>
+                                <select id="ImpactoEnPlazo" name="ImpactoEnPlazo" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <label for="" class="control-label">Días de Impacto</label>
+                                <input type="number" id="DiasImpacto" name="DiasImpacto" class="form-control form-control-sm"  placeholder="" >
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <label for="" class="control-label">Causa del trabajo</label>
+                                <select id="CausaTrabajo" name="CausaTrabajo" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="MP">MP - MEJORAS AL PROYECTO</option>
+                                    <option value="EP">EP - ERROR DEL PROYECTO</option>
+                                    <option value="OP">OP - OMISIÓN EN EL PROYECTO INICIAL</option>
+                                    <option value="RO">RO - REQUERIMIENTOS DE OBRA</option>
+                                    <option value="IP">IP - IMPREVISTOS DEL PROYECTO</option>
+                                    <option value="COP">COP - CAMBIO DE OBJETIVOS DEL PROYECTO</option>
+                                    <option value="CCE">CCE - CAMBIO CONDICIONES DLE ENTORNO</option>
+                                    <option value="CAC">CAC - CAMBIO DE ALCANCE DEL CONTRATISTA</option>
+                                    <option value="ROP">ROP - REQUERIMIENTOS DE ORGANISMOS PÚBLICOS/PRIVADOS</option>
+                                    <option value="RPR">RPR - REQUERIMIENTOS DE LA PROPIEDAD</option>
+                                    <option value="OTR">OTR - OTROS</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <label for="" class="control-label">Clave Origen</label>
+                                <select id="ClaveOrigenTrabajo" name="ClaveOrigenTrabajo" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="CONTR">CONTR - CONTRATISTA</option>
+                                    <option value="GDP">GDP - GERENCIADORA DE PROYECTOS</option>
+                                    <option value="BBVA">CTE - CLIENTE</option>
+                                    <option value="OTRO">OTRO - OTRO</option>
+                                </select>
+                            </div>
+                            <div class=" col-12 col-sm-12 col-lg-6">
+                                <label for="EspecificaOrigenTrabajo" class="control-label">(En caso de otros) Especifica</label>
+                                <input type="text" id="EspecificaOrigenTrabajo" name="EspecificaOrigenTrabajo" class="form-control form-control-sm"  placeholder="" >
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="" class="control-label">Origen del Trabajo</label>
+                                <textarea class="form-control" id="DescripcionOrigenTrabajo" name="DescripcionOrigenTrabajo" rows="3" ></textarea>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="" class="control-label">Riesgo del Trabajo</label>
+                                <textarea class="form-control" id="DescripcionRiesgoTrabajo" name="DescripcionRiesgoTrabajo" rows="3" ></textarea>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="" class="control-label">Alcance del Trabajo</label>
+                                <textarea class="form-control" id="DescripcionAlcanceTrabajo" name="DescripcionAlcanceTrabajo" rows="3" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PANEL DE DATOS DE CAJERO-->
+                    <div role="tabpanel" class="tab-pane fade" id="Datos5">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="FechaVisita" class="control-label">Fecha Visita</label>
+                                <input type="text" id="FechaVisita" name="FechaVisita" class="form-control form-control-sm"  data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="EncargadoSitio" class="control-label">Encargado del Sitio</label>
+                                <input type="text" id="EncargadoSitio" name="EncargadoSitio" class="form-control form-control-sm"  placeholder="PERSONA ENCARGADA DEL SITIO" >
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="" class="control-label">Horario de Atención</label>
+                                <input type="text" id="HorarioAtencion" name="HorarioAtencion" class="form-control form-control-sm"   >
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="RestriccionAcceso" class="control-label">Restricción de Acceso?</label>
+                                <select id="RestriccionAcceso" name="RestriccionAcceso" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="AireAcondicionado" class="control-label">Aire Acondicionado?</label>
+                                <select id="AireAcondicionado" name="AireAcondicionado" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="Carcasa" class="control-label">Carcasa?</label>
+                                <select id="Carcasa" name="Carcasa" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="UPS" class="control-label">UPS/Supresor de Picos?</label>
+                                <select id="UPS" name="UPS" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="SenalizacionInterior" class="control-label">Señalización Interior?</label>
+                                <select id="SenalizacionInterior" name="SenalizacionInterior" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="SenalizacionExterior" class="control-label">Señalización Exterior?</label>
+                                <select id="SenalizacionExterior" name="SenalizacionExterior" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="CanalizacionDatos" class="control-label">Canalización de Datos?</label>
+                                <select id="CanalizacionDatos" name="CanalizacionDatos" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="CanalizacionSeguridad" class="control-label">Canalización de Seguridad?</label>
+                                <select id="CanalizacionSeguridad" name="CanalizacionSeguridad" class="form-control form-control-sm" >
+                                    <option value=""></option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class=" col-12 col-sm-6 col-md-3">
+                                <label for="PruebaCalaFirme" class="control-label">Prueba de Cala de Firme</label>
+                                <input type="text" id="PruebaCalaFirme" name="PruebaCalaFirme" class="form-control form-control-sm"  placeholder="" >
+                            </div>
+                            <div class=" col-12 col-sm-6 col-md-3">
+                                <label for="TipoPiso" class="control-label">Tipo Piso</label>
+                                <input type="text" id="TipoPiso" name="TipoPiso" class="form-control form-control-sm"  placeholder="" >
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PANEL DE ARCHIVO ADJUNTO-->
+                    <div role="tabpanel" class="tab-pane fade" id="Datos6">
+                        <div class="row">
+                            <div class="col-12" align="center">
+                                <br>
+                                <h5>Puede subir un archivo PDF, imagen (JPG,GIF,PNG) etc.</h5>
+                            </div>
+                            <div class="col-12" align="center">
+                                <input type="file" id="Adjunto" name="Adjunto" class="d-none" accept="application/pdf, image/*">
+                                <button type="button" class="btn btn-info btn-sm" id="btnArchivo" name="btnArchivo">
+                                    <span class="fa fa-upload fa-1x"></span> SELECCIONA EL ARCHIVO
+                                </button>
+                                <br><hr>
+                                <div id="VistaPrevia" class="col-12" align="center"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="row mp-2">
+                    <div class="col-6 col-md-6"><h6 class="text-danger">Los campos con * son obligatorios</h6></div>
+                    <div class="col-6 col-md-6" id="ImporteTotal"  align="right">
+                        <strong>Importe :</strong><h5 class="text-success"><strong></strong></h5>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+
 <!--PANEL DETALLE-->
-<div class="card border-0 d-none" id="pnlDetalleTrabajo">
+<div class="card border-0 m-3 d-none" id="pnlDetalleTrabajo">
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
@@ -566,8 +565,8 @@
                             <legend></legend>
                         </div>
                         <div class="col-6 col-md-2" align="right">
-                            <button type="button" class="btn btn-info btn-sm" id="btnCargarPlantilla" data-toggle="tooltip" data-placement="top" title="Cargar Plantilla" ><span class="fa fa-magic "></span></button>
-                            <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto" data-toggle="tooltip" data-placement="top" title="Nuevo Concepto"><span class="fa fa-plus "></span></button>
+                            <button type="button" class="btn btn-info " id="btnCargarPlantilla" data-toggle="tooltip" data-placement="top" title="Cargar Plantilla" ><span class="fa fa-magic "></span></button>
+                            <button type="button" class="btn btn-primary" id="btnNuevoConcepto" data-toggle="tooltip" data-placement="top" title="Nuevo Concepto"><span class="fa fa-plus "></span></button>
                         </div>
                     </div>
                     <!--NUEVA TABLA CONCEPTOS-->

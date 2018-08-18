@@ -1,13 +1,13 @@
-<div class="card border-0" id="MenuTablero">
+<div class="card border-0 m-3" id="MenuTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-3 float-left">
                 <legend class="float-left">Prefacturas</legend>
             </div>
             <div class="col-12 col-sm-9" align="right">
-                <button type="button" class="btn btn-info btn-sm" id="btnVerEnFirme"><span class="fa fa-eye "></span><br>EN FIRME</button>
-                <button type="button" class="btn btn-info btn-sm" id="btnVerConcluidos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
-                <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
+                <button type="button" class="btn btn-info btn-sm pb-2" id="btnVerEnFirme"><span class="fa fa-eye "></span><br>EN FIRME</button>
+                <button type="button" class="btn btn-info btn-sm pb-2" id="btnVerConcluidos"><span class="fa fa-list-ol " ></span><br>CONCLUIDOS</button>
+                <button type="button" class="btn btn-primary btn-sm pb-2" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
         <div id="Registros" class="row">
@@ -82,96 +82,90 @@
     </div>
 </div>
 <!--PANEL DATOS-->
-<div id="" class="container-fluid">
-    <div class="card border-0  d-none" id="pnlDatos">
-        <div class="card-body text-dark">
-            <form id="frmNuevo">
-                <div class="row">
-                    <div class="col-6 col-sm-3 col-md-4 float-left">
-                        <legend >Prefactura</legend>
-                    </div>
-                    <div class="col-6 col-sm-2 col-md-2" align="right" id="spanEstatus">
-                        <span style="font-size: 15px;" class="badge badge-secondary">
-                            BORRADOR
-                        </span>
-                    </div>
-                    <div class="col-12 col-sm-7 col-md-6" align="right">
-                        <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
-                            <span class="fa fa-arrow-left" ></span>
-                        </button>
-                        <button type="button" class="btn  btn-warning btn-sm d-none" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="bottom" title="Exportar a Intelisis" ><span class="fa fa-cloud-upload-alt "></span> </button>
-                        <button type="button" class="btn  btn-warning btn-sm d-none" id="btnCapturarPago" data-toggle="tooltip" data-placement="bottom" title="Capturar Pago"><span class="fa fa-money-bill-alt "></span> </button>
-                        <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Regresar"><span class="fa fa-trash "></span></button>
-                        <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
-                        <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
-                        <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
-                    </div>
+<div class="card border-0 m-3 d-none" id="pnlDatos">
+    <div class="card-body text-dark">
+        <form id="frmNuevo">
+            <div class="row pb-3">
+                <div class="col-6 col-sm-3 col-md-4 float-left">
+                    <legend >Prefactura</legend>
                 </div>
-                <form id="frmNuevo">
-                    <fieldset>
-                        <hr>
-                        <div id="CapturaDatos">
-                            <div class="row">
-                                <div class=" col-4 col-sm-6 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="ID" class="control-label">ID</label>
-                                        <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col-8 col-sm-6 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                        <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Referencia Factura (Intelisis)*</label>
-                                        <input type="text" id="Referencia" name="Referencia"  class="form-control form-control-sm" placeholder="" required="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-3">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Orden de Compra*</label>
-                                        <input type="text" id="OrdenCompra" name="OrdenCompra"  class="form-control form-control-sm" placeholder="" required="">
-                                    </div>
-                                </div>
+                <div class="col-6 col-sm-2 col-md-2" align="right" id="spanEstatus">
+                    <span style="font-size: 15px;" class="badge badge-secondary">
+                        BORRADOR
+                    </span>
+                </div>
+                <div class="col-12 col-sm-7 col-md-6" align="right">
+                    <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                        <span class="fa fa-arrow-left" ></span>
+                    </button>
+                    <button type="button" class="btn  btn-warning btn-sm d-none" id="btnExportarIntelisis" data-toggle="tooltip" data-placement="bottom" title="Exportar a Intelisis" ><span class="fa fa-cloud-upload-alt "></span> </button>
+                    <button type="button" class="btn  btn-warning btn-sm d-none" id="btnCapturarPago" data-toggle="tooltip" data-placement="bottom" title="Capturar Pago"><span class="fa fa-money-bill-alt "></span> </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Regresar"><span class="fa fa-trash "></span></button>
+                    <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
+                    <button type="button" class="btn btn-success btn-sm d-none" id="btnConcluir"><span class="fa fa-check "></span> CONCLUIR</button>
+                    <button type="button" class="btn btn-info btn-sm d-none" id="btnInconcluir"><span class="fa fa-undo "></span> IN-CONCLUIR</button>
+                </div>
+            </div>
+            <form id="frmNuevo">
+                <fieldset>
+                    <hr>
+                    <div id="CapturaDatos">
+                        <div class="row">
+                            <div class=" col-4 col-sm-6 col-md-3">
+                                <label for="ID" class="control-label">ID</label>
+                                <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
+
                             </div>
-                            <div class="row">
-                                <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control d-none" placeholder="" >
-                                <div class="col-12 col-sm-6 ">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Cliente*</label>
-                                        <select id="ClienteIntelisis" name="ClienteIntelisis" class="form-control form-control-sm required" required="">
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group label-static">
-                                        <label for="" class="control-label">Proyecto*</label>
-                                        <select id="ProyectoIntelisis" name="ProyectoIntelisis" class="form-control form-control-sm required" required="">
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-8 col-sm-6 col-md-3">
+                                <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                                <input type="text" id="FechaCreacion" name="FechaCreacion" class="form-control form-control-sm" placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <div class="form-group label-static">
-                                        <label for="Comentarios" class="control-label">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
-                                        <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4"></textarea>
-                                    </div>
-                                </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="" class="control-label">Referencia Factura (Intelisis)*</label>
+                                <input type="text" id="Referencia" name="Referencia"  class="form-control form-control-sm" placeholder="" required="">
+
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label for="" class="control-label">Orden de Compra*</label>
+                                <input type="text" id="OrdenCompra" name="OrdenCompra"  class="form-control form-control-sm" placeholder="" required="">
+
                             </div>
                         </div>
-                    </fieldset>
-                </form>
-        </div>
+                        <div class="row">
+                            <input type="text" id="ClienteNombre" name="ClienteNombre" readonly="" class="form-control d-none" placeholder="" >
+                            <div class="col-12 col-sm-6 ">
+                                <label for="" class="control-label">Cliente*</label>
+                                <select id="ClienteIntelisis" name="ClienteIntelisis" class="form-control form-control-sm required" required="">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="" class="control-label">Proyecto*</label>
+                                <select id="ProyectoIntelisis" name="ProyectoIntelisis" class="form-control form-control-sm required" required="">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <label for="Comentarios" class="control-label">(Opcional) Comentarios   *Texto que aparecera en el cuerpo de la factura*</label>
+                                <textarea class="col-md-12 form-control" id="Comentarios" name="Comentarios" rows="4"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-12 col-md-12">
+                                <h6 class="text-danger">Los campos con * son obligatorios</h6>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
     </div>
 </div>
 <!--PANEL EDITAR DETALLE-->
-<div class="card border-0 d-none" id="pnlDetalleEditarPrefactura">
+<div class="card border-0 m-3 d-none" id="pnlDetalleEditarPrefactura">
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
@@ -179,7 +173,7 @@
                     <legend>Trabajos Entregados</legend>
                 </div>
                 <div class="col-md-6" align="right">
-                    <button type="button" class="btn btn-primary btn-sm" id="btnNuevoRenglonPrefacturaEditar"><span class="fa fa-plus "></span></button>
+                    <button type="button" class="btn btn-primary" id="btnNuevoRenglonPrefacturaEditar"><span class="fa fa-plus "></span></button>
                 </div>
             </div>
             <div id="RegistrosDetalle" class="row d-none">

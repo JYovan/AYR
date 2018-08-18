@@ -1,4 +1,4 @@
-<div class="card border-0" id="pnlTablero">
+<div class="card border-0 m-3" id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-6 col-sm-6 float-left">
@@ -9,6 +9,7 @@
                 <button type="button" class="btn btn-danger" id="Restaurar" data-toggle="tooltip" data-placement="bottom" title="Restaurar"><span class="fa fa-broom"></span><br></button>
             </div>
         </div>
+        <hr>
         <div class=" mt-4">
             <div  id="Registros" class="table-responsive"></div>
         </div>

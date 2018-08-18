@@ -1,4 +1,4 @@
-<div class="card border-0" id="pnlTablero">
+<div class="card border-0 m-3" id="pnlTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-5 float-left">
@@ -27,42 +27,44 @@
         </div>
     </div>
 </div>
-<div id="" class="container-fluid">
-    <div class="card border-0  d-none" id="pnlDatos">
-        <div class="card-body text-dark">
-            <form id="frmNuevo">
-                <fieldset>
-                    <div class="row">
-                        <div class="col-12 col-md-6 float-left">
-                            <legend >Area</legend>
-                        </div>
-                        <div class="col-12 col-md-6" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
-                                <span class="fa fa-arrow-left" ></span>
-                            </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ><span class="fa fa-trash fa-1x"></span> </button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
+<div class="card border-0 m-3 d-none" id="pnlDatos">
+    <div class="card-body text-dark">
+        <form id="frmNuevo">
+            <fieldset>
+                <div class="row">
+                    <div class="col-12 col-md-6 float-left">
+                        <legend >Area</legend>
+                    </div>
+                    <div class="col-12 col-md-6" align="right">
+                        <button type="button" class="btn btn-primary " id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                            <span class="fa fa-arrow-left" ></span>
+                        </button>
+                        <button type="button" class="btn btn-raised btn-danger " id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ><span class="fa fa-trash fa-1x"></span> </button>
+                        <!--<button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>-->
+                        <button type="button" class="btn btn-info btn-lg btn-float" id="btnGuardar" data-toggle="tooltip" data-placement="left" title="Guardar">
+                            <i class="fa fa-save"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 d-none">
+                        <input type="text"  name="ID" class="form-control">
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group label-static">
+                            <label for="Descripcion" class="control-label">Descripción*</label>
+                            <input type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 d-none">
-                            <input type="text"  name="ID" class="form-control">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-group label-static">
-                                <label for="Descripcion" class="control-label">Descripción*</label>
-                                <input type="text" class="form-control form-control-sm" id="Descripcion" name="Descripcion" required>
-                            </div>
-                        </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-12 col-md-12">
+                        <h6  class="text-danger">Los campos con * son obligatorios</h6>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <h6>Los campos con * son obligatorios</h6>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>
 <!--SCRIPT-->

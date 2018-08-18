@@ -17,7 +17,29 @@ class Sesion extends CI_Controller {
     public function index() {
         if (session_status() === 2 && isset($_SESSION["LOGGED"])) {
             $this->load->view('vEncabezado');
-            $this->load->view('vNavegacion');
+
+            switch ($this->session->userdata["TipoAcceso"]) {
+                case 'SUPER ADMINISTRADOR':
+                    $this->load->view('vNavegacion');
+
+                    break;
+                case 'ADMINISTRADOR':
+                    $this->load->view('vMenuAdministrador');
+
+                    break;
+                case 'COORDINADOR DE PROCESOS':
+                    $this->load->view('vMenuCoordinador');
+
+                    break;
+                case 'RESIDENTE':
+                    $this->load->view('vMenuResidente');
+
+                    break;
+                case 'CLIENTE':
+                    $this->load->view('vMenuCliente');
+                    break;
+            }
+
             $this->load->view('vFondo');
             $this->load->view('vFooter');
         } else {

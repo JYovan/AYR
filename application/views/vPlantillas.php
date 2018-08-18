@@ -1,4 +1,4 @@
-<div class="card border-0" id="MenuTablero">
+<div class="card border-0 m-3" id="MenuTablero">
     <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-3 float-left">
@@ -24,72 +24,68 @@
     </div>
 </div>
 <!--PANEL DATOS-->
-<div  class="container-fluid">
-    <div class="card border-0  d-none" id="pnlDatos">
-        <div class="row">
-            <div class="card-body text-dark">
-                <form id="frmNuevo">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4 float-left">
-                            <legend >Plantilla</legend>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-8" align="right">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
-                                <span class="fa fa-arrow-left" ></span>
-                            </button>
-                            <button type="button" class="btn btn-raised btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
-                            <button type="button" class="btn btn-raised btn-info btn-sm" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="d-none">
-                            <input type="text" class="" id="ID" name="ID">
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="form-group label-static">
-                                <label for="Nombre" class="control-label">Nombre*</label>
-                                <input type="text" class="form-control form-control-sm" id="Nombre" name="Nombre"  required="">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="form-group label-static">
-                                <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
-                                <input type="text" id="Fecha" name="Fecha" class="form-control form-control-sm " placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Preciario*</label>
-                                <select id="Preciario" name="Preciario" class="form-control form-control-sm required" required="">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6">
-                            <div class="form-group label-static">
-                                <label for="" class="control-label">Estatus*</label>
-                                <select id="Estatus" name="Estatus" class="form-control form-control-sm required" required="">
-                                    <option value=""></option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+<div class="card border-0 m-3 d-none" id="pnlDatos">
+    <div class="card-body text-dark">
+        <form id="frmNuevo">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 float-left">
+                    <legend >Plantilla</legend>
+                </div>
+                <div class="col-12 col-sm-6 col-md-8" align="right">
+                    <button type="button" class="btn btn-primary" id="btnCancelar" data-toggle="tooltip" data-placement="bottom" title="Regresar" >
+                        <span class="fa fa-arrow-left" ></span>
+                    </button>
+                    <button type="button" class="btn btn-raised btn-danger " id="btnEliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><span class="fa fa-trash fa-1x"></span> </button>
+                    <button type="button" class="btn btn-raised btn-info" id="btnGuardar" data-toggle="tooltip" data-placement="bottom" title="Guardar"><span class="fa fa-save "></span> </button>
+                </div>
             </div>
-        </div>
+            <hr>
+            <div class="row">
+                <div class="d-none">
+                    <input type="text" class="" id="ID" name="ID">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <label for="Nombre" class="control-label">Nombre*</label>
+                    <input type="text" class="form-control form-control-sm" id="Nombre" name="Nombre"  required="">
+
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <label for="FechaCreacion" class="control-label">Fecha de Creación*</label>
+                    <input type="text" id="Fecha" name="Fecha" class="form-control form-control-sm " placeholder="DD/MM/YYYY" data-provide="datepicker" data-date-format="dd/mm/yyyy" required="">
+
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <label for="" class="control-label">Preciario*</label>
+                    <select id="Preciario" name="Preciario" class="form-control form-control-sm required" required="">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <label for="" class="control-label">Estatus*</label>
+                    <select id="Estatus" name="Estatus" class="form-control form-control-sm required" required="">
+                        <option value=""></option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col-12 col-md-12">
+                    <h6 class="text-danger">Los campos con * son obligatorios</h6>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <!--PANEL DETALLE-->
-<div class="card border-0 d-none" id="pnlDetalleTrabajo">
+<div class="card border-0 m-3 d-none" id="pnlDetalleTrabajo">
     <div class="card-body">
         <div class="row">
             <div class="col-6 col-md-6" align="left">
                 <legend>Conceptos</legend>
             </div>
             <div class="col-6 col-md-6" align="right">
-                <button type="button" class="btn btn-primary btn-sm" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
+                <button type="button" class="btn btn-primary" id="btnNuevoConcepto"><span class="fa fa-plus "></span></button>
             </div>
         </div>
         <div id="RegistrosDetalle" class="row d-none">

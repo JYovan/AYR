@@ -177,90 +177,12 @@
         </li>
     </ul>
     <ul class="list-unstyled components">
-        <!--        CLIENTES-->
-        <li class="drop">
-            <a href="#pedidosClientes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fas fa-street-view mr-1"></i>Clientes</a>
-            <ul class="collapse list-unstyled" id="pedidosClientes">
-                <li class="item"><a href="PedidoCliente.py"> Pedidos Cliente</a></li>
-                <li class="item"><a href="CuboCliente.py"> Cubo</a></li>
-            </ul>
-        </li>
         <!--        SERVICIOS-->
         <li class="drop">
             <a href="#Servicios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-chalkboard-teacher mr-1"></i>Mesa de Trabajo</a>
             <ul class="collapse list-unstyled" id="Servicios">
                 <li class="item"><a href="Trabajos.py"> Servicios</a></li>
-            </ul>
-        </li>
-        <!--        CONTROL-->
-        <li class="drop">
-            <a href="#Control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-clipboard-check mr-1"></i> Control</a>
-            <ul class="collapse list-unstyled" id="Control">
-                <li class="item"><a href="Entregas.py"> Entregas</a></li>
-                <li class="item"><a href="Prefacturas.py"> Prefacturas</a></li>
-            </ul>
-        </li>
-        <!--        EXPLORADORES-->
-        <li class="drop">
-            <a href="#Exploradores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-binoculars mr-1"></i> Exploradores</a>
-            <ul class="collapse list-unstyled" id="Exploradores">
-                <li class="item"><a href="ExploradorServicios.py"> Servicios</a></li>
-                <li class="item"><a href="CuboInformacionGeneral.py"> Cubo</a></li>
-            </ul>
-        </li>
-        <!--        CATÁLOGOS-->
-        <li class="drop">
-            <a href="#catalogos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-folder-open"></i> Catálogos</a>
-            <ul class="collapse list-unstyled" id="catalogos">
-                <li class="item">
-                    <a href="#Clientes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fa fa-users"></i> Clientes</a>
-                    <ul class="collapse list-unstyled" id="Clientes">
-                        <li class="item"><a href="Clientes.py"> Clientes</a></li>
-                        <li class="item"><a href="Sucursal.py"> Sucursales</a></li>
-                        <li class="item"><a href="Especialidades.py"> Especialidades</a></li>
-                        <li class="item"><a href="CentroCostos.py"> Centros de Costo</a></li>
-                        <li class="item"><a href="Areas.py"> Areas</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li class="item"><a href="Empresas.py"> Empresas</a></li>
-                <li class="item"><a href="Preciarios.py"> Preciarios</a></li>
-                <li class="item"><a href="Plantillas.py"> Plantillas</a></li>
-                <li class="item"><a href="EmpresasSupervisoras.py"> Empresas Supervisoras</a></li>
-                <li class="item"><a href="Cuadrillas.py"> Cuadrillas</a></li>
-                <li class="item"><a href="CodigosPPTA.py"> Códigos PPTA</a></li>
-            </ul>
-        </li>
-        <!--        CONFIGURACION-->
-        <li class="drop">
-            <a href="#config" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-cogs"></i> Configuración</a>
-            <ul class="collapse list-unstyled" id="config">
-                <li class="item">
-                    <a href="#usuarios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fa fa-users"></i> Usuarios</a>
-                    <ul class="collapse list-unstyled" id="usuarios">
-                        <li class="item"><a href="Usuario.py"><i class="fa fa-users-cog"></i> Usuarios</a></li>
-                        <li class="item"><a href="#"><i class="fa fa-list-ul"></i> Permisos</a></li>
-                        <li class="item"><a href="#"><i class="fa fa-key"></i> Token</a></li>
-                        <div class="dropdown-divider" ></div>
-                        <li class="item"><a href="RegistroUsuarios.py"><i class="fa fa-list"></i> Log de Usuarios</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <!--        HERRAMIENTAS-->
-        <li class="drop">
-            <a href="#Herramientas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-wrench mr-1"></i> Herramientas</a>
-            <ul class="collapse list-unstyled" id="Herramientas">
-                <li class="item"><a href="HerramientasPreciario.py"> Importar Servicios</a></li>
             </ul>
         </li>
     </ul>
@@ -302,7 +224,6 @@
 <div class="overlay"></div>
 
 <script>
-
     var master_url = base_url + 'Sesion/';
     var sidebar = $("#sidebar");
     var components = sidebar.find("ul.list-unstyled.components");
@@ -384,7 +305,6 @@
     });
     function onCambiarContrasena() {
         onRegistrarAccion('INTENTÓ CAMBIAR CONTRASEÑA');
-
         $('#mdlCambiarContrasena').modal('show');
         $("[name='Contrasena']").val("");
         $("[name='Usuario']").val("<?php echo $this->session->userdata('USERNAME'); ?>");
@@ -400,7 +320,6 @@
                 Accion: accion
             }
         }).done(function (data, x, jq) {
-            console.log(data);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
