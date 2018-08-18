@@ -111,7 +111,7 @@
                 <ul class="dropdown-menu">
                     <li  class="" id="liPedidoCliente"><a class="dropdown-item" href="<?php print base_url('PedidoCliente.py') ?>">Pedidos Cliente</a></li>
                     <div class="dropdown-divider" ></div>
-                    <li  class="" id="liVisorCliente"><a class="dropdown-item" href="<?php print base_url('VisorCliente.py') ?>">Analisis de reportes</a></li>
+                    <li  class="" id="liVisorCliente"><a class="dropdown-item" href="<?php print base_url('CuboCliente.py') ?>">Cubo</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown " >
@@ -139,6 +139,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php print base_url('ExploradorServicios.py') ?>">Servicios</a></li>
+                    <li><a class="dropdown-item" href="<?php print base_url('CuboInformacionGeneral.py') ?>">Cubo</a></li>
                 </ul>
             </li>
 

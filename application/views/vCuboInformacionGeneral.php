@@ -2,11 +2,10 @@
     <div class="card-body">
         <div class="row">
             <div class="col-6 col-sm-6 float-left">
-                <legend class="float-left">Análisis de Realización de Servicios</legend>
+                <legend class="float-left">Cubo de Información</legend>
             </div>
             <div class="col-6 col-sm-6  float-right" align="right">
                 <button type="button" class="btn btn-info" id="Actualizar" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><span class="fa fa-sync-alt"></span><br></button>
-                <button type="button" class="btn btn-primary" id="GuardarVista" data-toggle="tooltip" data-placement="bottom" title="Guardar Vista"><span class="fa fa-save"></span><br></button>
                 <button type="button" class="btn btn-danger" id="Restaurar" data-toggle="tooltip" data-placement="bottom" title="Restaurar"><span class="fa fa-broom"></span><br></button>
             </div>
         </div>
@@ -18,9 +17,8 @@
 </div>
 <!--SCRIPT-->
 <script>
-    var master_url = base_url + 'index.php/VisorCliente/';
+    var master_url = base_url + 'index.php/CuboInformacionGeneral/';
     var pnlTablero = $("#pnlTablero");
-
     var nuevo = true;
     $(document).ready(function () {
         $("#Actualizar").on("click", function () {
@@ -35,30 +33,45 @@
                 $.pivotUtilities.d3_renderers,
                 $.pivotUtilities.export_renderers
                 );
+
+
+
+
+
         HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."})
         $.when
                 (
-                        $.getJSON(master_url + 'getRecords').done(function (data, x, jq) {
-                    //Boton para guardar vista en cookie
-                    $("#GuardarVista").on("click", function () {
-                        var config = $("#Registros").data("pivotUIOptions");
-                        var config_copy = JSON.parse(JSON.stringify(config));
-                        //delete some values which will not serialize to JSON
-                        delete config_copy["aggregators"];
-                        delete config_copy["renderers"];
-                        setCookie("pivotConfig", JSON.stringify(config_copy), 30);
-                        onNotifyOld('INFO', 'VISTA GUARDADA', 'success');
-                    });
-                    //Guardar configuraciones en cookie
-                    var pivotConfig = getCookie("pivotConfig");
+                        $.getJSON(master_url + 'getCuboInformacionGeneral').done(function (data, x, jq) {
                     //Guardar configuraciones iniciales
                     var configInicial = {
                         renderers: renderers,
-                        rows: ["Region", "Sucursal"],
-                        cols: ["Centro de Costos"],
-                        vals: ["Importe"],
+                        "rows": ["Region", "Cliente"],
+                        "cols": ["Estatus Del Trabajo"],
+                        "vals": ["Importe"],
+                        "rowOrder": "value_z_to_a",
+                        "colOrder": "key_a_to_z",
                         aggregatorName: "Suma",
-                        rendererName: "Tabla"
+                        rendererName: "Heatmap"
+                    };
+                    configInicial["onRefresh"] = function (config) {
+                        var config_copy = JSON.parse(JSON.stringify(config));
+                        delete config_copy["aggregators"];
+                        delete config_copy["renderers"];
+                        setCookie("pivotConfigCuboGeneral", JSON.stringify(config_copy), 30);
+
+                        if (config.aggregatorName === 'Suma') {
+                            //Formato de moneda
+                            $.each($('#Registros > table > tr > td > table > tbody > tr > td'), function (k, v) {
+                                var celda = $(v);
+                                var val = (celda.text() !== '' && parseFloat(celda.text()) !== 0) ? '$' + celda.text() : '';
+                                celda.text(val);
+                            });
+                        }
+                        //Diseño de bootstrap de select
+                        $('#Registros > table > tr > td > select').addClass('form-control form-control-sm');
+                        //Botones estilo bootstrap
+                        $('div.pvtFilterBox > p > button').addClass('btn btn-primary btn-sm mx-1 my-1');
+                        $('div.pvtFilterBox > p > input').addClass('form-control form-control-sm ml-4').css("width", "250px");
                     };
                     //Evento para borrar la cookie
                     $("#Restaurar").on("click", function () {
@@ -70,20 +83,46 @@
                                 $("#Registros").pivotUI(data, configInicial, true);
                                 setCookie("pivotConfig", "", 30);
                                 swal('INFO', 'LA VISTA HA SIDO RESTAURADA', 'success');
+                                HoldOn.close();
                             }
                         });
                     });
-                    if (pivotConfig !== '') {
-                        pivotConfig = JSON.parse(pivotConfig);
+                    var pivotConfig = getCookie("pivotConfigCuboGeneral");
+                    if (pivotConfig === '') {
+                        $("#Registros").pivotUI(data, configInicial, true);
                     } else {
-                        pivotConfig = configInicial;
+                        var saveConfig = JSON.parse(getCookie("pivotConfigCuboGeneral"));
+                        saveConfig["onRefresh"] = function (config) {
+
+                            var config_copy = JSON.parse(JSON.stringify(config));
+                            delete config_copy["aggregators"];
+                            delete config_copy["renderers"];
+                            setCookie("pivotConfigCuboGeneral", JSON.stringify(config_copy), 30);
+
+                            if (config.aggregatorName === 'Suma') {
+                                //Formato de moneda
+                                $.each($('#Registros > table > tr > td > table > tbody > tr > td'), function (k, v) {
+                                    var celda = $(v);
+                                    var val = (celda.text() !== '' && parseFloat(celda.text()) !== 0) ? '$' + celda.text() : '';
+                                    celda.text(val);
+                                });
+
+                            }
+                            //Diseño de bootstrap de select
+                            $('#Registros > table > tr > td > select').addClass('form-control form-control-sm');
+                            //Botones estilo bootstrap
+                            $('div.pvtFilterBox > p > button').addClass('btn btn-primary btn-sm mx-1 my-1');
+                            $('div.pvtFilterBox > p > input').addClass('form-control form-control-sm ml-4').css("width", "250px");
+
+
+                        };
+                        //Guardar configuraciones en cookie
+                        pivotConfig = saveConfig;
+                        $("#Registros").pivotUI(data, pivotConfig, true);
                     }
-                    $("#Registros").pivotUI(data, pivotConfig, true);
                 })
                         )
                 .done(function () {
-                    $('#Registros > table > tr > td > select').addClass('form-control form-control-sm');
-                    $('div.pvtFilterBox > p > button').addClass('btn btn-primary btn-sm mx-1 my-1');
                     HoldOn.close();
                 });
     }

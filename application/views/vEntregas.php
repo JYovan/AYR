@@ -10,7 +10,7 @@
                 <button type="button" class="btn btn-primary btn-sm" id="btnNuevo"><span class="fa fa-plus " ></span><br>NUEVO</button>
             </div>
         </div>
-        <div clas id="Registros" class="row">
+        <div id="Registros" class="row">
             <table id="tblRegistros" class="table table-sm " style="width:100%">
                 <thead>
                     <tr>

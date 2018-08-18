@@ -104,7 +104,7 @@ var tableOptions = {
     "bStateSave": true,
     "bLengthChange": false,
     "deferRender": true,
-//    "scrollY": false,
+    "scrollY": false,
     "scrollX": true,
     "scrollCollapse": false,
     "aaSorting": [
