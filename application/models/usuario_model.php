@@ -35,8 +35,9 @@ class usuario_model extends CI_Model {
 
     public function getAcceso($USUARIO, $CONTRASENA) {
         try {
-            $this->db->select('U.*', false);
+            $this->db->select('U.*, C.RutaLogo AS LOGO ', false);
             $this->db->from('usuarios AS U');
+            $this->db->join('clientes AS C', 'ON C.ID =  U.Cliente_ID', 'left');
             $this->db->where('U.Usuario', $USUARIO);
             $this->db->where('U.Contrasena', $CONTRASENA);
             $this->db->where_in('U.Estatus', 'Activo');

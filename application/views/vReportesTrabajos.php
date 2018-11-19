@@ -82,9 +82,9 @@
             type: "POST",
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
+            console.log(data);
             if (data.length > 0) {
                 onNotifyOld('fa fa-check', 'PRESUPUESTO A&R, GENERADO', 'success');
-                ;
                 window.open(data, '_blank');
             } else {
                 onNotifyOld('fa fa-exclamation ', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -413,7 +413,7 @@
         } else {
             reporte = 'onReporteLevantamientoSemanalGenerico';
         }
-        console.log('ID',IDX,', ',DetalleID);
+        console.log('ID', IDX, ', ', DetalleID);
         $.ajax({
             url: master_url + reporte,
             type: "POST",

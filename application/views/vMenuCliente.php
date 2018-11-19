@@ -183,7 +183,9 @@
                 <i class="fas fa-street-view mr-1"></i>Clientes</a>
             <ul class="collapse list-unstyled" id="pedidosClientes">
                 <li class="item"><a href="PedidoCliente.py"> Pedidos Cliente</a></li>
+                <li class="item"><a href="TrabajosPreciosUnitariosClientes.py"> Servicios en Firme con Precios Unit.</a></li>
                 <li class="item"><a href="CuboCliente.py"> Cubo</a></li>
+
             </ul>
         </li>
     </ul>

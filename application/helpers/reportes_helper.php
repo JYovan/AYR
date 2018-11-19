@@ -17,8 +17,29 @@ class FotosFPSMeor extends FPDF {
 
 class FotosFPSGenerico extends FPDF {
 
+    public $LogoCliente;
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
 // Page header
     function Header() {
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        /* Imagen de reporte visita previa */
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 230/* X */, 3/* Y */, 25/* W *//* H */);
+            }
+        }
 
         // Logo
         $this->Image(base_url() . 'img/android-icon-192x192.png', 5, 3, 25);
@@ -767,34 +788,60 @@ class FotosFPB extends FPDF {
 
 class PDFCI extends FPDF {
 
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
     function Header() {
+
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        /* Imagen de reporte visita previa */
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 176/* X */, 5/* Y */, 30/* W *//* H */);
+            }
+        }
+
+
 
         // Logo
         $this->Image(base_url() . 'img/watermark.png', 10, 95);
-        $this->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
+        $this->Image(base_url() . 'img/ms-icon-144x144AYR.png', 3, 3, 30);
         $this->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
 
-        // Movernos a la iquierda
+
+
         $this->SetY(3);
-        $this->SetX(3);
+        $this->SetX(205);
 
         $this->SetFont('Arial', '', 7.5);
-        $this->Cell(11, 5, utf8_decode($this->getID()), 0, 0, 'L');
+        $this->Cell(8, 5, utf8_decode($this->getID()), 0, 0, 'L');
 
+        $this->SetX(32);
         $this->SetFont('Arial', 'B', 11);
         $this->Cell(50, 5, utf8_decode("A&R CONSTRUCCIONES SA DE CV"), 0, 0, 'L');
         $this->SetY(9);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->SetFont('Arial', 'B', 7);
         $this->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
         $this->SetY(12);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
         $this->SetY(15);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
         $this->SetY(18);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
         /* INICIO CUERPO */
         $this->SetY(28);
@@ -1137,33 +1184,60 @@ Guadalajara, Jalisco, MÉXICO"), 0, 'L');
 
 class PDFC extends FPDF {
 
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
     function Header() {
+
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        /* Imagen de reporte visita previa */
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 176/* X */, 5/* Y */, 30/* W *//* H */);
+            }
+        }
+
+
 
         // Logo
         $this->Image(base_url() . 'img/watermark.png', 10, 95);
-        $this->Image(base_url() . 'img/ms-icon-144x144AYR.png', 175, 3, 30);
+        $this->Image(base_url() . 'img/ms-icon-144x144AYR.png', 3, 3, 30);
         $this->Image(base_url() . 'img/barra_Presupuesto.png', 5, 21, 210, 6);
 
+
+
         $this->SetY(3);
-        $this->SetX(3);
+        $this->SetX(205);
 
         $this->SetFont('Arial', '', 7.5);
-        $this->Cell(11, 5, utf8_decode($this->getID()), 0, 0, 'L');
+        $this->Cell(8, 5, utf8_decode($this->getID()), 0, 0, 'L');
 
+        $this->SetX(32);
         $this->SetFont('Arial', 'B', 11);
         $this->Cell(50, 5, utf8_decode("A&R CONSTRUCCIONES SA DE CV"), 0, 0, 'L');
         $this->SetY(9);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->SetFont('Arial', 'B', 7);
         $this->Cell(50, 5, utf8_decode("·CONSTRUCCIÓN"), 0, 0, 'L');
         $this->SetY(12);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·MANTENIMIENTO"), 0, 0, 'L');
         $this->SetY(15);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·PROYECTOS EJECUTIVOS"), 0, 0, 'L');
         $this->SetY(18);
-        $this->SetX(18);
+        $this->SetX(32);
         $this->Cell(50, 5, utf8_decode("·PROYECTOS DE AHORRO DE ENERGÍA"), 0, 0, 'L');
         /* INICIO CUERPO */
         $this->SetY(28);
@@ -1917,8 +1991,29 @@ class PDFFin49 extends FPDF {
 
 class FotosFPDLA extends FPDF {
 
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
 // Page header
     function Header() {
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 230/* X */, 5/* Y */, 30/* W *//* H */);
+            }
+        }
+
 
 
         // Logo
@@ -1928,16 +2023,16 @@ class FotosFPDLA extends FPDF {
         $this->SetFont('Arial', '', 15);
         $this->SetTextColor(0, 0, 0);
         $this->SetY(5);
-        $this->SetX(185);
-        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
-        $this->SetY(10);
-        $this->SetX(185);
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
-        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetX(95);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'C');
         $this->SetY(15);
-        $this->SetX(145);
-        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
+        $this->SetX(70);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(130, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'C');
+        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetY(20);
+        $this->SetX(70);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'C');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
@@ -2025,7 +2120,31 @@ class FotosFPDLA extends FPDF {
 class FotosFPDLP extends FPDF {
 
 // Page header
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
+// Page header
     function Header() {
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 230/* X */, 5/* Y */, 30/* W *//* H */);
+            }
+        }
+
+
+
         // Logo
         $this->Image(base_url() . 'img/android-icon-192x192.png', 5, 3, 35);
         $this->Line(5, 26, 270, 26);
@@ -2033,22 +2152,22 @@ class FotosFPDLP extends FPDF {
         $this->SetFont('Arial', '', 15);
         $this->SetTextColor(0, 0, 0);
         $this->SetY(5);
-        $this->SetX(185);
-        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
-        $this->SetY(10);
-        $this->SetX(185);
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
-        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetX(95);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'C');
         $this->SetY(15);
-        $this->SetX(145);
-        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
+        $this->SetX(70);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(130, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'C');
+        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetY(20);
+        $this->SetX(70);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'C');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
         $this->SetY(45);
         $this->SetX(5);
-        $this->Cell(35, 6, utf8_decode("En Proceso "), 0, 1, 'L');
+        $this->Cell(35, 6, utf8_decode("Estado Inicial"), 0, 1, 'L');
         $this->Ln(20);
     }
 
@@ -2130,7 +2249,31 @@ class FotosFPDLP extends FPDF {
 class FotosFPDLD extends FPDF {
 
 // Page header
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
+// Page header
     function Header() {
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 230/* X */, 5/* Y */, 30/* W *//* H */);
+            }
+        }
+
+
+
         // Logo
         $this->Image(base_url() . 'img/android-icon-192x192.png', 5, 3, 35);
         $this->Line(5, 26, 270, 26);
@@ -2138,22 +2281,22 @@ class FotosFPDLD extends FPDF {
         $this->SetFont('Arial', '', 15);
         $this->SetTextColor(0, 0, 0);
         $this->SetY(5);
-        $this->SetX(185);
-        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
-        $this->SetY(10);
-        $this->SetX(185);
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(90, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
-        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetX(95);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'C');
         $this->SetY(15);
-        $this->SetX(145);
-        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'R');
+        $this->SetX(70);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(130, 5, 'CLIENTE: ' . utf8_decode($this->getClienteL()), 0, 1, 'C');
+        /* DESCRIPCION LEVANTAMIENTO */
+        $this->SetY(20);
+        $this->SetX(70);
+        $this->Cell(130, 4, 'DIRECCION: ' . utf8_decode($this->getDireccionL()), 0, 1, 'C');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);
         $this->SetY(45);
         $this->SetX(5);
-        $this->Cell(35, 6, utf8_decode("Estado Final "), 0, 1, 'L');
+        $this->Cell(35, 6, utf8_decode("Estado Inicial"), 0, 1, 'L');
         $this->Ln(20);
     }
 
@@ -2306,25 +2449,46 @@ class PDFGEN extends FPDF {
 
 class FotosFPDLC extends FPDF {
 
+    // Page header
+    public $LogoCliente = '';
+
+    function getLogoCliente() {
+        return $this->LogoCliente;
+    }
+
+    function setLogoCliente($LogoCliente) {
+        $this->LogoCliente = $LogoCliente;
+    }
+
 // Page header
     function Header() {
+
+        $ExtensionesPermitidas = array('jpeg', 'png', 'jpg');
+        if (!empty($this->getLogoCliente())) {
+            //LogoCliente
+            $ext = pathinfo($this->getLogoCliente(), PATHINFO_EXTENSION);
+
+            if (in_array($ext, $ExtensionesPermitidas)) {
+                $this->Image($this->getLogoCliente(), 240/* X */, 5/* Y */, 25/* W *//* H */);
+            }
+        }
         $this->Image(base_url() . 'img/android-icon-192x192.png', 5, 3, 25);
         $this->Line(5, 20, 270, 20);
         // Título
         $this->SetFont('Arial', '', 15);
         $this->SetTextColor(0, 0, 0);
         $this->SetY(5);
-        $this->SetX(185);
-        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'R');
+        $this->SetX(95);
+        $this->Cell(90, 5, utf8_decode("PRESENTACIÓN FOTOGRÁFICA"), 0, 0, 'C');
         $this->SetY(10);
-        $this->SetX(185);
+        $this->SetX(95);
         $this->SetFont('Arial', '', 8);
-        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'R');
+        $this->Cell(90, 5, 'PARA: ' . utf8_decode($this->getClienteL()), 0, 1, 'C');
         /* DESCRIPCION LEVANTAMIENTO */
-        $this->SetY(10);
-        $this->SetX(70);
-        $this->SetFont('Arial', 'I', 7.5);
-        $this->MultiCell(150, 3, strtoupper(utf8_decode($this->getConceptoL())), 0, 'J');
+        $this->SetY(15);
+        $this->SetX(45);
+        $this->SetFont('Arial', 'I', 8.5);
+        $this->MultiCell(180, 5, 'TRABAJO: ' . strtoupper(utf8_decode($this->getConceptoL())), 1, 'C');
         /* CUERPO */
         $this->SetFont('Arial', 'I', 14);
         $this->SetTextColor(122, 122, 122);

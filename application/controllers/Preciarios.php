@@ -253,7 +253,7 @@ class Preciarios extends CI_Controller {
                         'Catalogo' => (isset($v->Catalogo) && $v->Catalogo !== NULL && $v->Catalogo !== '') ? $v->Catalogo : NULL,
                         'TipoPrecio' => (isset($v->TipoPrecio) && $v->TipoPrecio !== NULL && $v->TipoPrecio !== '') ? $v->TipoPrecio : NULL
                     );
-                    $IDPCO = $this->preciario_model->onAgregarPreciarioConceptos($data);
+                    $ID = $this->preciario_model->onAgregarPreciarioConceptos($data);
                 }
             }
             $URL_DOC = 'uploads/Preciarios';

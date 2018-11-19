@@ -23,6 +23,7 @@ class prefactura_model extends CI_Model {
                     . "WHEN  P.Estatus ='Borrador' THEN CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-secondary\'>','BORRADOR','</span>')"
                     . "ELSE CONCAT('<span style=\'font-size:14px;\' class=\'badge badge-danger\'>','Cancelado','</span>') END) AS Estatus ,"
                     . "CONCAT(' <span style=\'font-size:14px;\' class=\'badge badge-info\'>$',FORMAT(P.Importe,2),'</span> ') AS Importe,"
+                    . "IFNULL(EstatusPago,'') AS Pago ,"
                     . "concat(u.nombre,' ',u.apellidos)as 'Usuario' "
                     . "FROM PREFACTURAS P  "
                     . "INNER JOIN USUARIOS U ON U.ID = P.Usuario_ID WHERE P.ESTATUS in ('Concluido','Borrador') ", false);

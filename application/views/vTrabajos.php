@@ -18,7 +18,7 @@
                         <th>ID</th>
                         <th>Folio</th>
                         <th>Estatus</th>
-                        <th>Estatus</th>
+                        <th>Estatus Mov</th>
                         <th>Fecha</th>
 
                         <th>Adjunto</th>
@@ -191,7 +191,7 @@
                     <div role="tabpanel" class="tab-pane fade show active" id="Datos">
                         <div class="row">
                             <div class="col-5 col-sm-4 col-md-2 col-lg-2 col-xl-1">
-                                <label for="ID" class="control-label">Folio Interno</label>
+                                <label for="ID" class="control-label">ID</label>
                                 <input type="text" id="ID" name="ID" class="form-control form-control-sm" readonly="" placeholder="" >
                             </div>
                             <div class="col-7 col-sm-4 col-md-2 col-lg-2 col-xl-2">
@@ -1040,6 +1040,7 @@
                         </div>
                         <div id="FotosAntes" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntosLevantamiento">
                             <fieldset>
+
                                 <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotosAntes" name="fFotosAntes[]" multiple="" class="d-none">
                                 <div class="col-12" id="inputFotosAntes" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosAntes').trigger('click')">
                                     <div class="file_drag_area">
@@ -1048,7 +1049,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12"><br><br></div>
-                                <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotosAntes"></div>
+
+                                <div class="col-12 " style="height: 350px; overflow-y: auto;" id="vFotosAntes"></div>
+
                             </fieldset>
                         </div>
                     </div>
@@ -1064,14 +1067,14 @@
                         <div id="FotosProceso" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntosLevantamiento">
                             <fieldset>
                                 <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotosProceso" name="fFotosProceso[]" multiple="" class="d-none">
-                                <div class="col-12 d-none" id="inputFotosProceso" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosProceso').trigger('click')">
+                                <div class="col-12" id="inputFotosProceso" align="center"  onclick="AdjuntosLevantamiento.find('#fFotosProceso').trigger('click')">
                                     <div class="file_drag_area">
                                         <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
                                         <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
                                     </div>
                                 </div>
                                 <div class="col-12"><br><br></div>
-                                <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotosProceso"></div>
+                                <div class="col-12" style="height: 350px; overflow-y: auto;" id="vFotosProceso"></div>
                             </fieldset>
                         </div>
                     </div>
@@ -1094,7 +1097,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12"><br><br></div>
-                                <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotosDespues"></div>
+                                <div class="col-12 " style="height: 350px; overflow-y: auto;" id="vFotosDespues"></div>
                             </fieldset>
                         </div>
                     </div>
@@ -1416,7 +1419,6 @@
                     if (Estatus === 'Borrador' || EdicionMaestra) {
                         var dbEditor = tblConceptosPresupuesto.find('tbody #dbEditor');
                         var exist = tblConceptosPresupuesto.find('tbody #dbEditor').val();
-                        console.log('EXIST,', exist);
                         if (exist !== undefined) {
                             var celda = dbEditor.parent();
                             celda.html((exist === 'USD') ? '<span class="badge badge-danger">' + exist + '</span>' : exist);
@@ -1903,7 +1905,6 @@
                     processData: false,
                     data: frm
                 }).done(function (data, x, jq) {
-                    console.log(data);
                     onReloadFotosCajeroXConcepto(mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("[name='IdCajeroBBVADetalle']").val(), mdlTrabajoEditarFotosCajeroPorConceptoCajero.find("#IdTrabajo").val());
                 }).fail(function (x, y, z) {
                     onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
@@ -2792,7 +2793,6 @@
             var img = "";
             var nimg = 0;
             $.each(mdlAdjuntos.find("#fCroquis")[0].files, function (k, file) {
-                console.log(file.name);
                 img = "";
                 if (nimg === 3) {
                     img += '<div class="col-12" align="center"><br><hr><br></div>';
@@ -2854,7 +2854,6 @@
             onReloadFotosXConcepto(mdlAdjuntos.find("#IdTrabajoDetalle").val(), mdlAdjuntos.find("#IdTrabajo").val());
         });
         mdlAdjuntos.find("#fFotos").change(function () {
-            console.log('CONCEPTOS', mdlAdjuntos.find("#fFotos")[0].files);
             HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
             var img = "";
             var nimg = 0;
@@ -2990,11 +2989,11 @@
                 {"data": "Usuario_ID"} //12
             ],
             "columnDefs": [
-                {
-                    "targets": [3],
-                    "visible": false,
-                    "searchable": true
-                },
+//                {
+//                    "targets": [3],
+//                    "visible": false,
+//                    "searchable": true
+//                },
                 {
                     "width": "200px",
                     "targets": 7
@@ -3019,6 +3018,7 @@
             "autoWidth": true,
             "colReorder": true,
             "displayLength": 10,
+//            "bStateSave": true,
             "bLengthChange": false,
             "deferRender": true,
             "scrollX": true,
@@ -3686,38 +3686,46 @@
                             dataType: "JSON",
                             data: {ID: IDX}
                         }).done(function (datax, x, jq) {
-                            $.each(datax, function (i, v) {
-                                var frmGen = new FormData();
-                                frmGen.append('Concepto_ID', v.Concepto_ID);
-                                frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
-                                frmGen.append('Area', v.Area);
-                                frmGen.append('EstimacionNo', v.EstimacionNo);
-                                frmGen.append('Eje', v.Eje);
-                                frmGen.append('EntreEje1', v.EntreEje1);
-                                frmGen.append('EntreEje2', v.EntreEje2);
-                                frmGen.append('Largo', v.Largo);
-                                frmGen.append('Ancho', v.Ancho);
-                                frmGen.append('Alto', v.Alto);
-                                frmGen.append('Cantidad', v.Cantidad);
-                                frmGen.append('Total', v.Total);
-                                $.ajax({
-                                    url: master_url + 'onCopiarGenerador',
-                                    type: "POST",
-                                    cache: false,
-                                    contentType: false,
-                                    processData: false,
-                                    data: frmGen
-                                }).done(function (data, x, jq) {
-                                    console.log(data);
-                                    ConceptosPresupuesto.ajax.reload();
-                                    onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
-                                    HoldOn.close();
-                                }).fail(function (x, y, z) {
-                                    console.log(x, y, z);
-                                    HoldOn.close();
-                                    onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                            if (datax.length > 0) {
+                                $.each(datax, function (i, v) {
+                                    var frmGen = new FormData();
+                                    frmGen.append('Concepto_ID', v.Concepto_ID);
+                                    frmGen.append('IdTrabajoDetalle', id_nuevoConcepto);
+                                    frmGen.append('Area', v.Area);
+                                    frmGen.append('EstimacionNo', v.EstimacionNo);
+                                    frmGen.append('Eje', v.Eje);
+                                    frmGen.append('EntreEje1', v.EntreEje1);
+                                    frmGen.append('EntreEje2', v.EntreEje2);
+                                    frmGen.append('Largo', v.Largo);
+                                    frmGen.append('Ancho', v.Ancho);
+                                    frmGen.append('Alto', v.Alto);
+                                    frmGen.append('Cantidad', v.Cantidad);
+                                    frmGen.append('Total', v.Total);
+                                    $.ajax({
+                                        url: master_url + 'onCopiarGenerador',
+                                        type: "POST",
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        data: frmGen
+                                    }).done(function (data, x, jq) {
+                                        ConceptosPresupuesto.ajax.reload();
+                                        onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
+                                        HoldOn.close();
+                                    }).fail(function (x, y, z) {
+                                        console.log(x, y, z);
+                                        HoldOn.close();
+                                        onNotifyOld('fa fa-exclamation', 'EL CONCEPTO NO SE COPIO, INTENTE DE NUEVO', 'danger');
+                                    });
                                 });
-                            });
+
+
+
+                            } else {
+                                ConceptosPresupuesto.ajax.reload();
+                                onNotifyOld('fa fa-check', 'SE HA COPIADO EL CONCEPTO', 'success');
+                                HoldOn.close();
+                            }
                         }).fail(function (x, y, z) {
                             console.log(x, y, z);
                             HoldOn.close();

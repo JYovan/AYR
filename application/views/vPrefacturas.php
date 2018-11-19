@@ -21,6 +21,7 @@
                         <th>Referencia</th>
                         <th>Estatus</th>
                         <th>Importe</th>
+                        <th>Pago</th>
                         <th>Usuario</th>
                     </tr>
                 </thead>
@@ -652,6 +653,7 @@
                 {"data": "Referencia"},
                 {"data": "Estatus"},
                 {"data": "Importe"},
+                {"data": "Pago"},
                 {"data": "Usuario"}
             ],
             language: lang,

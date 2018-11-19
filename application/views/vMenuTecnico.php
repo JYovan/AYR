@@ -121,14 +121,14 @@
     }
 
     #sidebar ul ul a {
-        font-size: 0.9em !important;
-        padding-left: 30px !important;
+        font-size: 1em !important;
+        padding-left: 60px !important;
 
     }
 
     #sidebar ul ul ul a {
-        font-size: 0.9em !important;
-        padding-left: 60px !important;
+        font-size: 1em !important;
+        padding-left: 90px !important;
     }
     .navbar{
         box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -177,66 +177,12 @@
         </li>
     </ul>
     <ul class="list-unstyled components">
-
-        <!--        SERVICIOS-->
+        <!--        TECNICOS-->
         <li class="drop">
-            <a href="#Servicios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fas fa-chalkboard-teacher mr-1"></i>Mesa de Trabajo</a>
-            <ul class="collapse list-unstyled" id="Servicios">
-                <li class="item"><a href="Trabajos.py"> Servicios</a></li>
-                <li class="item"><a href="TrabajosPreciosUnitarios.py"> Servicios con Precios Unit.</a></li>
-            </ul>
-        </li>
-        <!--        CONTROL-->
-        <li class="drop">
-            <a href="#Control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-clipboard-check mr-1"></i> Control</a>
-            <ul class="collapse list-unstyled" id="Control">
-                <li class="item"><a href="Entregas.py"> Entregas</a></li>
-            </ul>
-        </li>
-        <!--        EXPLORADORES-->
-        <li class="drop">
-            <a href="#Exploradores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-binoculars mr-1"></i> Exploradores</a>
-            <ul class="collapse list-unstyled" id="Exploradores">
-                <li class="item"><a href="ExploradorServicios.py"> Servicios</a></li>
-                <li class="item"><a href="CuboInformacionGeneral.py"> Cubo</a></li>
-            </ul>
-        </li>
-        <!--        REPORTES-->
-        <li class="drop">
-            <a href="#Reportes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-file-pdf"  style="width: 40px;"></i>Reportes</a>
-            <ul class="collapse list-unstyled" id="Reportes">
-                <li class="item">
-                    <a class="" href="#" data-toggle="modal" data-target="#mdlReporteAdeudoCliente"> Reporte Adeudo</a>
-                </li>
-                <li class="item">
-                    <a class="" href="#" data-toggle="modal" data-target="#mdlReporteAntiguedad"> Reporte Antiguedad</a>
-                </li>
-            </ul>
-        </li>
-        <!--        CATÁLOGOS-->
-        <li class="drop">
-            <a href="#catalogos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fa fa-folder-open"></i> Catálogos</a>
-            <ul class="collapse list-unstyled" id="catalogos">
-                <li class="item">
-                    <a href="#Clientes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fa fa-users"></i> Clientes</a>
-                    <ul class="collapse list-unstyled" id="Clientes">
-                        <li class="item"><a href="Especialidades.py"> Especialidades</a></li>
-                        <li class="item"><a href="CentroCostos.py"> Centros de Costo</a></li>
-                        <li class="item"><a href="Areas.py"> Areas</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li class="item"><a href="Preciarios.py"> Preciarios</a></li>
-                <li class="item"><a href="Plantillas.py"> Plantillas</a></li>
-                <li class="item"><a href="EmpresasSupervisoras.py"> Empresas Supervisoras</a></li>
-                <li class="item"><a href="Cuadrillas.py"> Cuadrillas</a></li>
-                <li class="item"><a href="CodigosPPTA.py"> Códigos PPTA</a></li>
+            <a href="#Tecnicos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fas fa-wrench"  style="width: 40px;"></i>Técnicos</a>
+            <ul class="collapse list-unstyled" id="Tecnicos">
+                <li class="item"><a href="RequisicionesTec.py"> Requisiciones de Material</a></li>
             </ul>
         </li>
     </ul>
@@ -278,6 +224,7 @@
 <div class="overlay"></div>
 
 <script>
+
     var master_url = base_url + 'Sesion/';
     var sidebar = $("#sidebar");
     var components = sidebar.find("ul.list-unstyled.components");
@@ -375,6 +322,7 @@
                 Accion: accion
             }
         }).done(function (data, x, jq) {
+            console.log(data);
         }).fail(function (x, y, z) {
             console.log(x, y, z);
         }).always(function () {
@@ -419,7 +367,3 @@
     }
 </script>
 
-
-<?php
-$this->load->view('vReporteAdeudoCliente');
-$this->load->view('vReporteAntiguedad');

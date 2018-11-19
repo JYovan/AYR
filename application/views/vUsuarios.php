@@ -55,6 +55,7 @@
                             <option value="RESIDENTE">Residente</option>
                             <option value="CLIENTE">Cliente</option>
                             <option value="INVITADO">Invitado</option>
+                            <option value="TECNICO">Técnico</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-6 col-sm-6">

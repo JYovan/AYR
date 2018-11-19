@@ -626,7 +626,7 @@
             tblRegistrosX.DataTable().destroy();
         }
         Registros = tblRegistrosX.DataTable({
-            "dom": 'Bfrtip',
+            "dom": 'lfrtip',
             buttons: buttons,
             "ajax": {
                 "url": master_url + 'getRecords',
@@ -647,8 +647,9 @@
             "bStateSave": true,
             "colReorder": true,
             "scrollX": true,
-            "displayLength": 12,
-            "bLengthChange": false,
+            "displayLength": 15,
+            "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
+            "bLengthChange": true,
             "deferRender": true,
             "scrollCollapse": false,
             "bSort": true,

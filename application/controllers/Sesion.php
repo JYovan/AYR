@@ -38,6 +38,9 @@ class Sesion extends CI_Controller {
                 case 'CLIENTE':
                     $this->load->view('vMenuCliente');
                     break;
+                case 'TECNICO':
+                    $this->load->view('vMenuTecnico');
+                    break;
             }
 
             $this->load->view('vFondo');
@@ -72,6 +75,7 @@ class Sesion extends CI_Controller {
                     'ID' => $data[0]->ID,
                     'LOGGED' => TRUE,
                     'TipoAcceso' => $data[0]->TipoAcceso,
+                    'LOGO' => $data[0]->LOGO,
                 );
                 $this->session->mark_as_temp('LOGGED', 28800);
                 $this->session->set_userdata($newdata);

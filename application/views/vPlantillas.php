@@ -750,7 +750,6 @@
                 });
             }
         });
-        al('INFO', 'EL MOVIMIENTO YA FUE CONCLUIDO', 'info');
     }
     function getPreciarios() {
         $.ajax({

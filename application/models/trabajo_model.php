@@ -1568,7 +1568,7 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
                                 INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID", false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            //$this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->order_by('PCAT.ID', 'ASC');
             $this->db->group_by(array('PCAT.Descripcion'));
@@ -1600,7 +1600,6 @@ class trabajo_model extends CI_Model {
                                 LEFT JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
                                 LEFT JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             //$this->db->order_by('TD.ID', 'ASC');
             $query = $this->db->get();
@@ -1631,7 +1630,6 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
                                 LEFT JOIN empresassupervisoras ES ON ES.ID = S.EmpresaSupervisora_ID
                                 LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*
@@ -1655,7 +1653,6 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
                                 INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
                                 LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*
@@ -1681,7 +1678,6 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN sucursales S ON S.ID  = T.Sucursal_ID
                                 LEFT JOIN empresassupervisoras ES ON ES.ID = S.EmpresaSupervisora_ID
                                 LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*
@@ -1713,7 +1709,6 @@ class trabajo_model extends CI_Model {
                                 INNER JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
                                 INNER JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
                                 INNER JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->group_by(array('TD.IntExt', 'PCAT.Descripcion'));
             $query = $this->db->get();
@@ -1734,7 +1729,7 @@ class trabajo_model extends CI_Model {
             $this->db->query("set sql_mode=''");
             $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
-                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,(TD.Precio*TD.TipoCambio)*TD.Cantidad AS ImporteRenglon,
                                 PCAT.Descripcion AS Categoria, TD.Concepto AS Concepto,ES.Nombre AS Supervisora
                                 FROM TRABAJOS T
                                 INNER JOIN clientes CTE ON CTE.ID =  T.Cliente_ID
@@ -1745,7 +1740,6 @@ class trabajo_model extends CI_Model {
                                 LEFT JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
                                 LEFT JOIN empresassupervisoras ES ON ES.ID = S.empresasupervisora_id
                                 LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*
@@ -1780,7 +1774,6 @@ left JOIN preciarios PRE ON PRE.ID = T.Preciario_ID
 left JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
 left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
 left JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->order_by('PCAT.ID', 'ASC');
             $query = $this->db->get();
@@ -1817,7 +1810,6 @@ left JOIN preciarioconceptos PC ON PC.ID = TD.PreciarioConcepto_ID
 left JOIN preciariocategorias PCAT ON PCAT.ID = PC.PreciarioCategorias_ID
 left join generadortrabajosdetalle GTD ON GTD.IdTrabajoDetalle = TD.ID
 left JOIN empresas E ON E.id = S.Empresa_ID', false);
-            //$this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('GTD.Total IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TD.PreciarioConcepto_ID'));
@@ -2121,7 +2113,6 @@ T.ControlProceso,TDA.Clave ', false);
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->join('trabajodetallefotosproceso AS TDFP', 'TDFP.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TDA.ID'));
@@ -2145,6 +2136,7 @@ T.ControlProceso,TDA.Clave ', false);
             $this->db->select(' ,
                 TDA.ID AS ID,
                 CTE.Nombre AS Cliente,
+                CTE.RutaLogo AS LogoCliente,
                 S.CR, S.Nombre AS Sucursal,
                 E.Nombre AS Empresa,
 TDA.Descripcion AS Concepto,TDA.Descripcion2 AS Concepto2,TDA.Descripcion3 AS Concepto3,
@@ -2162,7 +2154,6 @@ TDFP.Observaciones ', false);
             $this->db->join('trabajodetallefotosproceso AS TDFP', 'TDFP.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('trabajodetalleanexosdos AS TDANE', 'TDANE.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido', 'Entregado'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDA.ID', $DetalleID);
             $this->db->where('TDFP.Url IS NOT NULL', NULL, FALSE);
@@ -2452,7 +2443,7 @@ left join preciariocategorias AS PCAT on PCAT.ID = PC.PreciarioCategorias_ID', f
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->join('cajerosbbvadetallefotos AS TDFA', 'TDFA.IdCajeroBBVADetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            //$this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
             $this->db->order_by('TDA.ID', 'ASC');
@@ -2496,7 +2487,7 @@ left join preciariocategorias AS PCAT on PCAT.ID = PC.PreciarioCategorias_ID', f
             $this->db->query("set sql_mode=''");
             $this->db->select('T.FechaCreacion,T.FolioCliente,T.Importe,
                                 CTE.Nombre AS Cliente,S.CR,S.Nombre AS Sucursal, E.Nombre AS Empresa,E.RutaLogo AS LogoEmpresa,CTE.RutaLogo AS LogoCliente,
-                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,TD.Importe AS ImporteRenglon,
+                                TD.Clave,TD.Unidad,TD.Cantidad,TD.Precio,TD.IntExt,(TD.Precio*TD.TipoCambio)*TD.Cantidad AS ImporteRenglon,
                                 PCAT.Descripcion AS Categoria, TD.Concepto AS Concepto,
                                 pc.TipoConcepto,pc.Catalogo,pc.TipoPrecio,
                                 CC.Nombre as CentroCostos, ESP.Descripcion AS Especialidad
@@ -2510,7 +2501,7 @@ left join preciariocategorias AS PCAT on PCAT.ID = PC.PreciarioCategorias_ID', f
                                 LEFT JOIN centrocostos CC ON CC.ID = T.CentroCostos_ID
                                 LEFT JOIN especialidades ESP ON ESP.ID = T.Especialidad_ID
                                 LEFT JOIN empresas E ON E.id = S.Empresa_ID', false);
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
+            //$this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $query = $this->db->get();
             /*

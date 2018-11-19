@@ -19,7 +19,7 @@
     }
 </style>
 <div id="watermark">
-    <div class="card-body text-center mt-5 fixedWatermark" >
+    <div class="card-body text-center fixedWatermark" >
         <img src="<?php print base_url(); ?>img/watermark.png"  class="img-fluid">
     </div>
 </div>

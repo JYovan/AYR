@@ -1,4 +1,13 @@
- .selectize-input {
+<style>
+    .selectize-input.focus2 {
+        border-color: #597ea2;
+        outline: 0;
+        /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); */
+        /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); */
+        box-shadow: 0 0 0 0 transparent !important;
+    }
+
+    .selectize-input {
         border: 1px solid #9E9E9E;
     }
     .form-control {
@@ -183,3 +192,4 @@
         background: linear-gradient(to bottom, rgba(0,0,0,0.63) 0%,rgba(0,0,0,0.63) 1%,rgba(0,0,0,0) 53%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
     }
+</style>

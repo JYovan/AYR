@@ -43,6 +43,8 @@ class Trabajos extends CI_Controller {
             }
             $this->load->view('vFondo');
             $this->load->view('vTrabajos');
+            $this->load->view('vReportesTrabajos');
+
             $this->load->view('vFooter');
 
             $dataRegistrarAccion = array(
@@ -1909,6 +1911,7 @@ class Trabajos extends CI_Controller {
 
             /* ENCABEZADO */
             $pdf->ID = $ID;
+            $pdf->LogoCliente = $encabezado->LogoCliente;
             $pdf->FolioCliente = $encabezado->FolioCliente;
             $pdf->Cliente = $encabezado->Cliente;
             $pdf->Sucursal = $encabezado->Sucursal;
@@ -1982,6 +1985,7 @@ class Trabajos extends CI_Controller {
 
             /* ENCABEZADO */
             $pdf->ID = $ID;
+            $pdf->LogoCliente = $encabezado->LogoCliente;
             $pdf->FolioCliente = $encabezado->FolioCliente;
             $pdf->Cliente = $encabezado->Cliente;
             $pdf->Sucursal = $encabezado->Sucursal;
@@ -3043,10 +3047,10 @@ class Trabajos extends CI_Controller {
                 $pdf->Cell(15, 5, utf8_decode("TOTAL"), 0, 1, 'C');
                 $pdf->SetY(71.5);
                 $pdf->SetX(175);
-                $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN BBVA BANCOMER"), 0, 'C');
+                $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN "), 0, 'C');
                 $pdf->SetY(73);
                 $pdf->SetX(202);
-                $pdf->MultiCell(25, 3, utf8_decode("VoBo BBVA BANCOMER"), 0, 'C');
+                $pdf->MultiCell(25, 3, utf8_decode("VoBo"), 0, 'C');
                 $pdf->SetY(73);
                 $pdf->SetX(230);
                 $pdf->MultiCell(44, 5, utf8_decode("CONFORMIDAD EMPRESA "), 0, 'C');
@@ -3289,10 +3293,10 @@ class Trabajos extends CI_Controller {
                             $pdf->Cell(15, 5, utf8_decode("TOTAL"), 0, 1, 'C');
                             $pdf->SetY(71.5);
                             $pdf->SetX(175);
-                            $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN BBVA BANCOMER"), 0, 'C');
+                            $pdf->MultiCell(25, 3, utf8_decode("CORRECCION SUPERVISIóN"), 0, 'C');
                             $pdf->SetY(73);
                             $pdf->SetX(202);
-                            $pdf->MultiCell(25, 3, utf8_decode("VoBo BBVA BANCOMER"), 0, 'C');
+                            $pdf->MultiCell(25, 3, utf8_decode("VoBo"), 0, 'C');
                             $pdf->SetY(73);
                             $pdf->SetX(230);
                             $pdf->MultiCell(44, 5, utf8_decode("CONFORMIDAD EMPRESA "), 0, 'C');
@@ -3648,6 +3652,7 @@ class Trabajos extends CI_Controller {
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
                         $pdf->DireccionL = $row->Direccion;
+                        $pdf->LogoCliente = $row->LogoCliente;
                         /* DETALLE IMAGENES */
                         $pdf->SetFont('Arial', 'I', 16);
                         $pdf->AddPage();
@@ -3756,6 +3761,7 @@ class Trabajos extends CI_Controller {
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
                         $pdf->DireccionL = $row->Direccion;
+                        $pdf->LogoCliente = $row->LogoCliente;
                         $pdf->SetFont('Arial', 'I', 16);
                         $pdf->AddPage();
                         $pdf->SetX(5);
@@ -3864,6 +3870,7 @@ class Trabajos extends CI_Controller {
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
                         $pdf->DireccionL = $row->Direccion;
+                        $pdf->LogoCliente = $row->LogoCliente;
                         $pdf->SetFont('Arial', 'I', 16);
                         $pdf->AddPage();
                         $pdf->SetX(5);
@@ -3985,6 +3992,7 @@ class Trabajos extends CI_Controller {
                         $pdf->EmpresaL = $row->Empresa;
                         $pdf->ConceptoL = $row->Concepto;
                         $pdf->ClienteL = $row->Cliente;
+                        $pdf->LogoCliente = $row->LogoCliente;
                         /* DETALLE IMAGENES */
                         $fotosAntes = $this->trabajo_model->getDetalleFotosAntesXID($row->ID, $ID);
                         $fotosDespues = $this->trabajo_model->getDetalleFotosDespuesXID($row->ID);
@@ -5747,6 +5755,10 @@ class Trabajos extends CI_Controller {
                 if (!empty($Concepto)) {
                     $pages_added = false;
                     $pdf = new FotosFPSGenerico('L', 'mm', array(279/* ANCHO */, 175/* ALTURA */));
+
+
+                    $pdf->LogoCliente = $row->LogoCliente;
+
                     $nfotosxconcepto = 0;
 
                     /* ENCABEZADO */
@@ -5810,7 +5822,7 @@ class Trabajos extends CI_Controller {
                             $YCuandoSonTres = 65;
                             $YCuandoSonDos = 65;
                             $widthSonDos = 115;
-                            $YCuandoEsUno = 80;
+                            $YCuandoEsUno = 50;
                             $widthEsUno = 115;
 
                             if ($Contador_Tiempo === 1) {
