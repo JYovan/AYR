@@ -216,6 +216,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoAntesPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoAntesNordes';
         } else {
             reporte = 'onReporteLevantamientoAntes';
         }
@@ -240,6 +242,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoProcesoPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoProcesoNordes';
         } else {
             reporte = 'onReporteLevantamientoProceso';
         }
@@ -264,6 +268,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoDespuesPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoDespuesNordes';
         } else {
             reporte = 'onReporteLevantamientoDespues';
         }
@@ -289,6 +295,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoCompletoPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoCompletoNordes';
         } else {
             reporte = 'onReporteLevantamientoCompleto';
         }
@@ -410,6 +418,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 8) {
             reporte = 'onReporteLevantamientoSemanal';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoSemanalNordes';
         } else {
             reporte = 'onReporteLevantamientoSemanalGenerico';
         }

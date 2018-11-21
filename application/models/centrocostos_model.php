@@ -12,7 +12,7 @@ class centrocostos_model extends CI_Model {
 
     public function getRecords($Cliente) {
         try {
-            $this->db->select('C.ID, C.Nombre, C.Descripcion', false);
+            $this->db->select('C.ID, C.Nombre, upper(C.Descripcion) AS Descripcion', false);
             $this->db->from('centrocostos AS C');
             $this->db->where_in('C.Estatus', 'ACTIVO');
             $this->db->where('C.Cliente_ID', $Cliente);

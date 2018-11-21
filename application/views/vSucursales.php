@@ -81,7 +81,7 @@
                                 <input type="text" id="CR" name="CR" maxlength="6" class="form-control form-control-sm numbersOnly" placeholder="" required>
 
                             </div>
-                            <div class="col-12 col-md-6 col-sm-12 col-lg-6">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label for="" class="control-label">Region*</label>
                                 <select id="Region" name="Region" class="form-control required" required="">
                                     <option value=""></option>
@@ -99,7 +99,14 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                            <div class="col-12  col-sm-12 col-md-6 col-lg-6">
+                                <label for="" class="control-label">Zona*</label>
+                                <select id="Zona_ID" name="Zona_ID" class="form-control required" required="">
+                                    <option value=""></option>
+                                </select>
+
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-12 col-lg-6">
                                 <label for="" class="control-label">Contratista*</label>
                                 <select id="Empresa_ID" name="Empresa_ID" class="form-control required" required="">
                                     <option value=""></option>
@@ -394,6 +401,7 @@
         $("[name='sCliente']").change(function () {
             getRecords($(this).val());
             cliente = $(this).val();
+            getZonasByCliente(cliente);
         });
         btnNuevo.click(function () {
             if (cliente !== '' && cliente !== undefined) {
@@ -648,7 +656,22 @@
         }).always(function () {
         });
     }
-
+    function getZonasByCliente(cliente) {
+        $.ajax({
+            url: master_url + 'getZonasByCliente',
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                Cliente: cliente
+            }
+        }).done(function (data, x, jq) {
+            $.each(data, function (k, v) {
+                $("[name='Zona_ID']")[0].selectize.addOption({text: v.Descripcion, value: v.ID});
+            });
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        });
+    }
 </script>
 
 

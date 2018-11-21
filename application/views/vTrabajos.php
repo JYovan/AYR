@@ -759,7 +759,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12"><br><br></div>
-                                <div class="col-12 row" style="height: 350px; overflow-y: auto;" id="vFotos"></div>
+                                <div class="col-12 " style="height: 350px; overflow-y: auto;" id="vFotos"></div>
                             </fieldset>
                         </div>
                     </div>

@@ -66,7 +66,7 @@
                 <div class="col-12 col-md-12 " >
                     <ul class="nav nav-tabs" role="tablist" id="Encabezado">
                         <li class="nav-item"><a href="#Generales" class="nav-link active show"  data-toggle="tab">Presupuesto</a></li>
-                        <li class="nav-item"><a href="#Estimacion" class="nav-link" data-toggle="tab">Fotográfico</a></li>
+                        <li class="nav-item"><a href="#Estimacion" class="nav-link" data-toggle="tab">Reportes Generales</a></li>
                         <li class="nav-item"><a href="#Fotos" class="nav-link" data-toggle="tab">Fotográfico</a></li>
                         <li class="nav-item d-none" id="rNordes"><a href="#Nordes" class="nav-link" data-toggle="tab">Nordes</a></li>
                     </ul>
@@ -814,8 +814,7 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESUPUESTO A&R, GENERADO', 'success');
-                ;
+
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -831,6 +830,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoDespuesPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoDespuesNordes';
         } else {
             reporte = 'onReporteLevantamientoDespues';
         }
@@ -841,7 +842,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOS DESPUES, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -856,6 +856,8 @@
         var reporte = '';
         if (parseFloat(Cliente) === 4) {
             reporte = 'onReporteLevantamientoCompletoPrinciple';
+        } else if (parseFloat(Cliente) === 16) {
+            reporte = 'onReporteLevantamientoCompletoNordes';
         } else {
             reporte = 'onReporteLevantamientoCompleto';
         }
@@ -866,7 +868,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE LEVANTAMIENTO GENERAL, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -885,7 +886,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADOR, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -904,7 +904,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE CROQUIS, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -924,7 +923,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE FOTOGRAFICO, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -944,7 +942,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'PRESENTACIÓN FOTOGRÁFICA, GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -964,7 +961,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -983,7 +979,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');
@@ -1002,7 +997,6 @@
             data: {ID: IdMovimiento}
         }).done(function (data, x, jq) {
             if (data.length > 0) {
-                onNotify('<span class="fa fa-check fa-lg"></span>', 'REPORTE GENERADO', 'success');
                 window.open(data, '_blank');
             } else {
                 onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'NO EXISTEN DATOS PARA EL REPORTE', 'danger');

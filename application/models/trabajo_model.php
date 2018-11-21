@@ -2048,7 +2048,6 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->join('trabajodetallefotosantes AS TDFA', 'TDFA.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDFA.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TDA.ID'));
@@ -2080,7 +2079,6 @@ CONCAT(S.Calle, " ", ifnull(S.NoExterior, ""), " ", ifnull(S.NoInterior, ""), " 
             $this->db->join('empresas AS E', 'E.id = S.Empresa_ID', 'left');
             $this->db->join('trabajodetallefotosdespues AS TDF', 'TDF.IdTrabajoDetalle = TDA.ID', 'left');
             $this->db->join('centrocostos AS CC', 'CC.ID = T.CentroCostos_ID', 'left');
-            $this->db->where_in('T.Estatus', array('Borrador', 'Concluido', 'Entregado'));
             $this->db->where('T.ID', $ID);
             $this->db->where('TDF.Url IS NOT NULL', NULL, FALSE);
             $this->db->group_by(array('TDA.ID'));

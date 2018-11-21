@@ -2296,7 +2296,7 @@ class FotosFPDLD extends FPDF {
         $this->SetTextColor(122, 122, 122);
         $this->SetY(45);
         $this->SetX(5);
-        $this->Cell(35, 6, utf8_decode("Estado Inicial"), 0, 1, 'L');
+        $this->Cell(35, 6, utf8_decode("Estado Final"), 0, 1, 'L');
         $this->Ln(20);
     }
 

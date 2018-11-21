@@ -14,6 +14,7 @@ class Sucursal extends CI_Controller {
         $this->load->model('cliente_model');
         $this->load->model('empresaSupervisora_model');
         $this->load->model('registroUsuarios_model');
+        $this->load->model('zonas_model');
     }
 
     public function index() {
@@ -85,6 +86,15 @@ class Sucursal extends CI_Controller {
         }
     }
 
+    public function getZonasByCliente() {
+        try {
+            $data = $this->zonas_model->getZonasByCliente($this->input->post('Cliente'));
+            print json_encode($data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function getClientes() {
         try {
             $data = $this->cliente_model->getClientes();
@@ -129,6 +139,7 @@ class Sucursal extends CI_Controller {
                 'Ciudad' => ($Ciudad !== NULL && $Ciudad !== '') ? $Ciudad : NULL,
                 'Estado' => ($Estado !== NULL && $Estado !== '') ? $Estado : NULL,
                 'Region' => ($Region !== NULL && $Region !== '') ? $Region : NULL,
+                'Zona_ID' => ($Zona_ID !== NULL && $Zona_ID !== '') ? $Zona_ID : NULL,
                 'FirmaManttoNombres1' => ($FirmaManttoNombres1 !== NULL && $FirmaManttoNombres1 !== '') ? $FirmaManttoNombres1 : NULL,
                 'FirmaManttoApellidos1' => ($FirmaManttoApellidos1 !== NULL && $FirmaManttoApellidos1 !== '') ? $FirmaManttoApellidos1 : NULL,
                 'FirmaManttoPuesto1' => ($FirmaManttoPuesto1 !== NULL && $FirmaManttoPuesto1 !== '') ? $FirmaManttoPuesto1 : NULL,
@@ -185,6 +196,7 @@ class Sucursal extends CI_Controller {
                 'Ciudad' => ($Ciudad !== NULL && $Ciudad !== '') ? $Ciudad : NULL,
                 'Estado' => ($Estado !== NULL && $Estado !== '') ? $Estado : NULL,
                 'Region' => ($Region !== NULL && $Region !== '') ? $Region : NULL,
+                'Zona_ID' => ($Zona_ID !== NULL && $Zona_ID !== '') ? $Zona_ID : NULL,
                 'FirmaManttoNombres1' => ($FirmaManttoNombres1 !== NULL && $FirmaManttoNombres1 !== '') ? $FirmaManttoNombres1 : NULL,
                 'FirmaManttoApellidos1' => ($FirmaManttoApellidos1 !== NULL && $FirmaManttoApellidos1 !== '') ? $FirmaManttoApellidos1 : NULL,
                 'FirmaManttoPuesto1' => ($FirmaManttoPuesto1 !== NULL && $FirmaManttoPuesto1 !== '') ? $FirmaManttoPuesto1 : NULL,

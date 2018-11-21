@@ -249,6 +249,7 @@
                         <li class="item"><a href="Especialidades.py"> Especialidades</a></li>
                         <li class="item"><a href="CentroCostos.py"> Centros de Costo</a></li>
                         <li class="item"><a href="Areas.py"> Areas</a></li>
+                        <li class="item"><a href="Zonas.py"> Zonas</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-divider"></li>

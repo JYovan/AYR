@@ -87,6 +87,8 @@
                         <th>ID</th>
                         <th>Material</th>
                         <th>Cantidad</th>
+                        <th>Unidad</th>
+                        <th>Fotos</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -111,6 +113,10 @@
                     <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <label for="" class="control-label">Cantidad</label>
                         <input type="text" id="Cantidad" name="Cantidad" maxlength="10" class="form-control form-control-sm numbersOnly" required="">
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                        <label for="" class="control-label">Unidad</label>
+                        <input type="text" id="Unidad" name="Unidad" maxlength="10" class="form-control form-control-sm " required="">
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                         <label for="" class="control-label">Material</label>
@@ -142,6 +148,10 @@
                         <label for="" class="control-label">Cantidad</label>
                         <input type="text" id="Cantidad" name="Cantidad" maxlength="10" class="form-control form-control-sm numbersOnly" required="">
                     </div>
+                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                        <label for="" class="control-label">Unidad</label>
+                        <input type="text" id="Unidad" name="Unidad" maxlength="10" class="form-control form-control-sm " required="">
+                    </div>
                     <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                         <label for="" class="control-label">Material</label>
                         <input type="text" id="Material" name="Material" class="form-control form-control-sm" required="">
@@ -152,6 +162,58 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnFinalizarEdicion">GUARDAR</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL AJUNTOS PRESUPUESTO-->
+<div id="Adjuntos" class="modal  modal-fullscreen animated slideInDown">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row d-none">
+                    <div class="col">
+                        <input type="text" readonly="" id="IdRequisicion" name="IdRequisicion"  class="form-control">
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly="" id="IdRequisicionDetalle" name="IdRequisicionDetalle"  class="form-control">
+                    </div>
+                </div>
+                <div class="accordion" id="AccordionAdjuntos">
+                    <div class="card  border-0">
+                        <div class="" id="cardFotos">
+                            <h5 class="mb-0">
+                                <a id="load_fotos" class="btn btn-info btn-block text-light collapsed mb-3" data-toggle="collapse" data-target="#Fotos" aria-expanded="true" aria-controls="Fotos">
+                                    <span class="fa fa-camera fa-lg"></span> Fotos
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="Fotos" class="collapse" aria-labelledby="cardFotos" data-parent="#AccordionAdjuntos">
+                            <fieldset>
+                                <input type="file" accept='image/x-png,image/gif,image/jpeg' id="fFotos" name="fFotos[]" multiple="" class="d-none">
+                                <div class="col-12" id="inputFotos" align="center"  onclick="setFotosEditar(this)">
+                                    <div class="file_drag_area">
+                                        <h5> Arrastre aquí los archivos a subir ó clic para seleccionarlos</h5>
+                                        <i class="fas fa-cloud-upload-alt fa-lg mt-1"></i>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4" style="height: 650px; overflow-y: auto;" id="vFotos">
+
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -177,6 +239,10 @@
     var nuevo = false;
     var tblRegistros = $("#tblRegistros"), Registros;
     var tblRegistrosDetalle = $("#tblRegistrosDetalle"), RegistrosDetalle;
+
+    /*fotos*/
+    var mdlAdjuntos = $("#Adjuntos");
+    var EditarFotosPorConcepto = mdlAdjuntos.find("#fFotos");
 
     $(document).ready(function () {
         mobilecheck();
@@ -333,6 +399,73 @@
                 });
             }
         });
+
+        /*FOTOS*/
+        mdlAdjuntos.find("#load_fotos").click(function () {
+            onReloadFotosXConcepto(mdlAdjuntos.find("#IdRequisicionDetalle").val(), mdlAdjuntos.find("#IdRequisicion").val());
+        });
+        mdlAdjuntos.find("#fFotos").change(function () {
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var img = "";
+            var nimg = 0;
+            $.each(mdlAdjuntos.find("#fFotos")[0].files, function (k, file) {
+                img = "";
+                if (nimg === 3) {
+                    img += '<div class="col-12" align="center"><br><hr><br></div>';
+                    nimg = 0;
+                }
+                nimg++;
+                var frm = new FormData();
+                frm.append('IdRequisicion', mdlAdjuntos.find("#IdRequisicion").val());
+                frm.append('IdRequisicionDetalle', mdlAdjuntos.find("#IdRequisicionDetalle").val());
+                frm.append('Observaciones', file.name);
+                frm.append('FOTO', file);
+                $.ajax({
+                    //Cambiar
+                    url: master_url + 'onAgregarFotosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosXConcepto(mdlAdjuntos.find("#IdRequisicionDetalle").val(), mdlAdjuntos.find("#IdRequisicion").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + file.name, 'danger');
+                    console.log(x, y, z);
+                    HoldOn.close();
+                });
+            });
+        });
+        mdlAdjuntos.find('#Fotos').find('.file_drag_area').on('drop', function (e) {
+            e.preventDefault();
+            $(this).removeClass('file_drag_over');
+            HoldOn.open({theme: "sk-bounce", message: "CARGANDO DATOS..."});
+            var frm = new FormData();
+            frm.append('IdRequisicion', mdlAdjuntos.find("#IdRequisicion").val());
+            frm.append('IdRequisicionDetalle', mdlAdjuntos.find("#IdRequisicionDetalle").val());
+            var files_list = e.originalEvent.dataTransfer.files;
+            for (var i = 0; i < files_list.length; i++)
+            {
+                frm.append('FOTO', files_list[i]);
+                frm.append('Observaciones', files_list[i].name);
+                $.ajax({
+                    //Cambiar
+                    url: master_url + 'onAgregarFotosEditar',
+                    type: "POST",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: frm
+                }).done(function (data, x, jq) {
+                    onReloadFotosXConcepto(mdlAdjuntos.find("#IdRequisicionDetalle").val(), mdlAdjuntos.find("#IdRequisicion").val());
+                }).fail(function (x, y, z) {
+                    onNotify('<span class="fa fa-exclamation fa-lg"></span>', 'ERROR AL AGREGAR FOTO: ' + files_list[i].name, 'danger');
+                    console.log(x, y, z);
+                    HoldOn.close();
+                });
+            }
+        });
     });
     /*Funciones de tablas*/
     function getRecords() {
@@ -464,6 +597,8 @@
                 {"data": "ID"},
                 {"data": "Material"},
                 {"data": "Cantidad"},
+                {"data": "Unidad"},
+                {"data": "Fotos"},
                 {"data": "Editar"},
                 {"data": "Eliminar"}
             ],
@@ -502,9 +637,13 @@
                             break;
                         case 2:
                             /*CONSUMO*/
+                            c.addClass('text-strong text-warning');
+                            break;
+                        case 4:
+                            /*CONSUMO*/
                             c.addClass('text-info text-strong');
                             break;
-                        case 3:
+                        case 5:
                             /*ELIMINAR*/
                             c.addClass('text-danger text-strong');
                             break;
@@ -518,6 +657,66 @@
         });
 
     }
+    /*ADJUNTOS PRESUPUESTO*/
+    function getAdjuntosByID(IDX, IDXX) {
+        onReloadFotosXConcepto(IDX, IDXX);
+        mdlAdjuntos.find("#IdRequisicion").val(IDXX);
+        mdlAdjuntos.find("#IdRequisicionDetalle").val(IDX);
+        //Cambiar
+        $.getJSON(master_url + 'getTotalFotos', {ID: IDXX, IDD: IDX}).done(function (data, x, jq) {
+            var x = data[0];
+            mdlAdjuntos.find("#load_fotos").html('<span class="fa fa-camera fa-lg"></span> Fotos (' + x.FOTOS + ')');
+        }).fail(function (x, y, z) {
+            console.log('ERROR AL OBTENER LOS CONTADORES', x.responseText);
+        }).always(function () {
+            mdlAdjuntos.modal('show');
+        });
+    }
+    function setFotosEditar(evt) {
+        mdlAdjuntos.find("#fFotos").trigger('click');
+    }
+    function onReloadFotosXConcepto(IDX, IDT) {
+        $.post(master_url + 'getFotosDetalleByID', {ID: IDX, IDT: IDT}).done(function (data, x, jq) {
+            if (data.length > 0) {
+                mdlAdjuntos.find("#vFotos").html("<div class=\"row\"></div>");
+                var picthumbnail = "";
+                var nimg = 0;
+                $.each(JSON.parse(data), function (k, v) {
+                    picthumbnail = "";
+                    if (nimg === 4) {
+                        picthumbnail += '<div class="col-12" align="center"></div>';
+                        nimg = 0;
+                    }
+                    picthumbnail += '<div class="col-12 col-sm-6 col-md-3 col-lg-3"><div class="thumbnail">' +
+                            '<div class="pull-left caption col-11" >' + v.Observaciones + '</div>' +
+                            '<div class="pull-right" >' +
+                            '<button class="close closeFotos customButtonEliminarFoto"' +
+                            'data-tooltip="Eliminar" onclick="onEliminarFotoXConcepto(' + v.ID + ',' + v.IdRequisicionDetalle + ',' + IDT + ')">×</button></div>' +
+                            '<a href="' + base_url + v.Url + '" target="_blank">' + '<img src="' + base_url + v.Url + '" alt="' + base_url + v.Url + '" width="100%" ></a></div></div>';
+                    mdlAdjuntos.find("#vFotos").find("div.row").append(picthumbnail);
+                    nimg++;
+                });
+            } else {
+                mdlAdjuntos.find("#vFotos").html("");
+            }
+            HoldOn.close();
+        }).fail(function (x, y, z) {
+        }).always(function () {
+            var total_fotos = mdlAdjuntos.find("#vFotos").find("div.thumbnail").length;
+            mdlAdjuntos.find("#load_fotos").html('<span class="fa fa-camera fa-lg"></span> Fotos (' + total_fotos + ')');
+        });
+    }
+    function onEliminarFotoXConcepto(IDX, IDTD, IDT) {
+        HoldOn.open({theme: "sk-bounce", message: "ELIMINANDO..."});
+        $.post(master_url + 'onEliminarFotoXConcepto', {ID: IDX, IDT: IdMovimiento}).done(function (data, x, jq) {
+            onReloadFotosXConcepto(IDTD, IDT);
+        }).fail(function (x, y, z) {
+            console.log(x, y, z);
+        }).always(function () {
+            HoldOn.close();
+        });
+
+    }
     function onEliminarDetalle(BTN, IDX) {
         swal({
             title: "Confirmar", text: "Deseas eliminar el registro?", icon: "warning", buttons: ["Cancelar", "Aceptar"]
@@ -527,7 +726,8 @@
                     url: master_url + 'onEliminarDetalle',
                     type: "POST",
                     data: {
-                        ID: IDX
+                        ID: IDX,
+                        IDT: IdMovimiento
                     }
                 }).done(function (data, x, jq) {
                     RegistrosDetalle.ajax.reload();
@@ -553,6 +753,7 @@
             mdlEditarDetalle.find("input").val("");
             mdlEditarDetalle.find("#Material").val(data[0].Material);
             mdlEditarDetalle.find("#Cantidad").val(data[0].Cantidad);
+            mdlEditarDetalle.find("#Unidad").val(data[0].Unidad);
             mdlEditarDetalle.modal('show');
         });
     }
@@ -571,5 +772,30 @@
 
     .text-strong {
         font-weight: bolder;
+    }
+    .hasItems{
+        color: #18BC9C !important;
+    }
+    /*Drag and drop*/
+    .file_drag_area
+    {
+        background: #f8f8f8;
+        border: 5px dashed #ddd;
+        width: 100%;
+        /*height: 150px;*/
+        text-align: center;
+        box-sizing: border-box;
+        padding: 18px;
+        cursor: pointer;
+        position: relative;
+        font-size: 16px;
+    }
+    .file_drag_area:hover
+    {
+        border-color:#002c4c !important;
+    }
+    .file_drag_over{
+        color:#B0B0B0;
+        border-color:#002c4c;
     }
 </style>

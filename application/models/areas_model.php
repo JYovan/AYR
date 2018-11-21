@@ -12,7 +12,7 @@ class areas_model extends CI_Model {
 
     public function getRecords($Cliente) {
         try {
-            return $this->db->select('E.ID, E.Descripcion', false)->from('areas AS E')->where_in('E.Estatus', 'ACTIVO')->where('E.Cliente_ID', $Cliente)->get()->result();
+            return $this->db->select('E.ID, upper(E.Descripcion) AS Descripcion', false)->from('areas AS E')->where_in('E.Estatus', 'ACTIVO')->where('E.Cliente_ID', $Cliente)->get()->result();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
